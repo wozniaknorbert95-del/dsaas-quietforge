@@ -152,28 +152,26 @@ export const salesFunnelSolutionSystemItems = [
   },
 ] as const;
 
-/** Complex Quote & Design Intake — INSPIRE extension (PARTIAL). SSoT: flexgrafik-inspire TRUTH-SNAPSHOT. */
+/** Complex Quote & Design Intake — INSPIRE extension (PARTIAL). SSoT: flexgrafik-inspire TRUTH-SNAPSHOT (v4.2.0, 2026-07-27). */
 export const salesFunnelInspireExtension = {
   eyebrow: 'Extension · PARTIAL',
   title: 'Complex Quote & Design Intake',
   lead:
-    'For vehicle branding and other custom jobs: NL chat intake, confirmed brief, Standard/Premium inspiration mockups, then priced Wizard checkout. Live supervised path on FlexGrafik — Quietforge deploys the same pattern for custom-product quoting.',
+    'For vehicle branding and other custom jobs: NL chat intake, an editable confirmed brief with logo upload, Standard/Premium inspiration mockups with indicative pricing, then a no-obligation offerte request — a personal studio quote within 48 hours. Live supervised path on FlexGrafik; the priced Wizard stays the internal fulfilment layer after quote acceptance — Quietforge deploys the same pattern for custom-product quoting.',
   statusBadge: 'PARTIAL — live supervised path',
   steps: [
     'Structured intake (vehicle branding request)',
-    'Confirmed DesignBrief',
-    'Standard / Premium inspiration mockups',
-    'Handoff into priced Wizard checkout',
+    'Confirmed DesignBrief — editable, with logo upload',
+    'Standard / Premium inspiration mockups, indicative pricing',
+    'Offerte request → personal studio quote within 48 hours',
   ],
   limitations: [
     'Inspiration mockups are not print-ready final artwork (drukklare = Illustrator)',
-    'Sales-chat formal GO still human-gated — Trust Pack smoke PASS; subjective stamp optional',
+    'Indicative pricing only — final quote is manual studio work (concierge by design)',
     'No invented conversion uplift claims',
   ],
   demoLabel: 'Open Design Intake →',
   demoHref: EXTERNAL.inspireDesignAgent,
-  wizardLabel: 'Open Wizard checkout →',
-  wizardHref: EXTERNAL.zzpackageWizardPath,
   evidence: [
     {
       src: '/gratka/inspire/intake.png',
@@ -184,11 +182,6 @@ export const salesFunnelInspireExtension = {
       src: '/gratka/inspire/mockups.png',
       alt: 'Standard and Premium inspiration mockups',
       caption: 'Direction',
-    },
-    {
-      src: '/gratka/inspire/wizard-handoff.png',
-      alt: 'Handoff into priced Wizard',
-      caption: 'Wizard',
     },
   ],
 } as const;

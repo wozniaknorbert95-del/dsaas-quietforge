@@ -68,7 +68,7 @@ export default function SalesFunnelPage() {
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-8">
           {inspire.lead}
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 max-w-3xl">
           {inspire.evidence.map((shot) => (
             <figure
               key={shot.src}
@@ -119,9 +119,6 @@ export default function SalesFunnelPage() {
         <div className="flex flex-wrap gap-4">
           <Button href={inspire.demoHref} withArrow variant="secondary">
             {inspire.demoLabel}
-          </Button>
-          <Button href={inspire.wizardHref} withArrow variant="ghost">
-            {inspire.wizardLabel}
           </Button>
           <Button href={ROUTES.bookDiscovery} withArrow>
             Book Automation Map

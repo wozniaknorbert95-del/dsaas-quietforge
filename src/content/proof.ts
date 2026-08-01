@@ -201,7 +201,7 @@ export const screens: Record<ScreenKey, ScreenShot> = {
   portalAssistant: { src: "/gratka/portal-assistant.png", alt: "Customer-facing portal assistant", caption: "Generic supervised sales chat LIVE. Qualification API proven; portal UX rollout PARTIAL.", ready: true },
   inspireIntake:   { src: "/gratka/inspire/intake.png", alt: "Design Intake — vehicle branding request form", caption: "Complex Quote & Design Intake — live supervised path (PARTIAL).", ready: true },
   inspireMockups:  { src: "/gratka/inspire/mockups.png", alt: "Standard and Premium inspiration mockups", caption: "Visual direction before price — mockups are not print-ready finals.", ready: true },
-  inspireHandoff:  { src: "/gratka/inspire/wizard-handoff.png", alt: "Design Intake handoff into Wizard", caption: "Confirmed brief continues into the priced Wizard path.", ready: true },
+  inspireHandoff:  { src: "/gratka/inspire/wizard-handoff.png", alt: "Offerte concierge request panel (recapture pending)", caption: "Customer path now ends in an offerte request (48h studio quote) — Wizard handoff removed; recapture pending.", ready: false },
   adminDashboard:  { src: "/gratka/agent-os-mission-control.png", alt: "Mission Control dashboard — tasks, queue, history and cost tabs", caption: "Mission Control — tasks, queue, history and cost tabs. LIVE on os.flexgrafik.nl.", ready: true },
   jadziaCommander: {
     src: '/gratka/jadzia-commander-home.png',

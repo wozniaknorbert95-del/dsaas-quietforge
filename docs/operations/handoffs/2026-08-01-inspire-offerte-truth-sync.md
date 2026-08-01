@@ -35,24 +35,28 @@ npm run build       # pass (36 routes)
 # visual: next start — /results/#design-intake + /solutions/sales-funnel/ OK (screens w Temp\opencode\)
 ```
 
-## ⚠️ Znalezisko krytyczne (pre-existing, POA scope sesji) — PRIMARY CTA niewidoczny na LIVE
+## ⚠️ Znalezisko krytyczne → FIXED w tej sesji (commit 2)
 
-**Objaw:** wszystkie anchor-based `Button variant="primary"` („Book Automation Map") renderują `color == background` (akcent na akcencie) = **niewidoczny label — site-wide, także na produkcji** (potwierdzone computed style na quietforge.flexgrafik.nl).
+**Objaw:** wszystkie anchor-based `Button variant="primary"` („Book Automation Map") renderowały `color == background` = **niewidoczny label — site-wide, także na produkcji**.
 
-**Root cause (dowody z live CSS):** `globals.css:250` `a { color: var(--qf-accent) }` jest **unlayered** (poz. 42582 w bundle), a Tailwind v4 utilities siedzą w `@layer utilities` (poz. 7418). Unlayered author CSS wygrywa z warstwami → nadpisuje `text-[var(--qf-bg)]` z Button primary. Skutek uboczny: wszystkie linki z utility color (`text-[var(--qf-info)]`, dim) też renderują się akcentem zamiast zamierzonych kolorów.
+**Root cause (dowody z live CSS):** `globals.css:250` `a { color: var(--qf-accent) }` był **unlayered** (poz. 42582 w bundle), Tailwind v4 utilities w `@layer utilities` (poz. 7418) → unlayered wygrywał z `text-[var(--qf-bg)]`.
 
-**Proponowany fix (wymaga GO — globals.css = risky/scope-lock):** objąć bazowe reguły elementów (`a`, `a:hover`, ewent. `p`, `h1–h3`, `::selection`) w `@layer base { }` → utilities zaczną działać zgodnie z klasami. Wymaga sweep wizualnego całej strony po zmianie (kolory linków wrócą do zamierzonych).
+**Fix:** blok typografii bazowej (`h1–h4`, `h1`, `h2`, `h3`, `p`, `a`, `a:hover`) objęty w `@layer base { }` w `globals.css`. Zweryfikowane lokalnie (computed): CTA `rgb(5,6,8)` na `rgb(232,163,61)` ✓, `p.max-w-none` → `none` ✓.
+
+**Znane follow-upy (nie w tej sesji):**
+- Klasy `text-[var(--qf-fs-*)]` kompilują się do `color:` (ambiguous arbitrary value — v4 traktuje jako kolor, font-size nigdy nie działał). Nagłówki żyją z reguł bazowych — wygląd niezmieniony. Fix: `text-[length:var(--qf-fs-*)]` sweep w osobnej sesji.
+- brain.md drift: brak `output:'export'`/`distDir` w next.config (API routes są ƒ) — `dist/` martwy artifact z maja; brain §2/§5 do korekty.
 
 ## Następny krok / Next steps
 
-1. **GO Dowódcy:** fix globalnego `a` w globals.css (@layer base) + sweep → osobna sesja (risky).
-2. **GO Dowódcy na płatny generate:** recapture evidence z prod (offerte panel/success, brief edit) → Phase 2, podmiana `inspireHandoff` + ewent. 3. screen w sekcji. Rate limit 1/IP/h, cap €0.50/sesja.
-3. Decyzja: etykieta PARTIAL → LIVE·supervised? (gates: G_SALES_VISUAL/CHAT/OFFERTE = PASS; FAIL_PRODUCT tylko na benchmarkach G_INSPIRE_2b / G_COMP_BENCH).
-4. LI-R10: przyszłe posty INSPIRE = narracja offerte concierge (48h quote), nie „priced Wizard"; stary anchor `#design-intake` działa bez zmian.
-5. brain.md drift: repo nie ma już `output:'export'`/`distDir` (API routes są ƒ) — `dist/` to martwy artifact z maja; brain §2/§5 do korekty przy okazji.
+1. ~~GO Dowódcy: fix globalnego `a`~~ — DONE (senior mandate 2026-08-01).
+2. **GO Dowódcy na płatny generate:** recapture evidence z prod (offerte panel/success, brief edit) → Phase 2. Rate limit 1/IP/h, cap €0.50/sesja.
+3. Decyzja: etykieta PARTIAL → LIVE·supervised?
+4. LI-R10: przyszłe posty INSPIRE = narracja offerte concierge (48h quote); anchor `#design-intake` bez zmian.
+5. Sweep `text-[length:var(--qf-fs-*)]` + korekta brain.md §2/§5 — osobna sesja.
 
 ## Post-deploy smoke (po ship)
 
-1. `/results/#design-intake` — tytuł „→ 48-hour quote", 2 screeny, zero wizard-handoff
-2. `/solutions/sales-funnel/` — blok inspire: krok 4 = offerte, brak CTA „Open Wizard checkout"
-3. Primary CTA „Book Automation Map" — **nadal niewidoczny label** do czasu fixa (znany bug)
+1. `/results/#design-intake` — tytuł „→ 48-hour quote", 2 screeny
+2. `/solutions/sales-funnel/` — krok 4 = offerte, brak CTA „Open Wizard checkout"
+3. **Primary CTA „Book Automation Map" — label WIDOCZNY (ciemny na bursztynie) na /, /results/, /pricing/, /book-discovery/**

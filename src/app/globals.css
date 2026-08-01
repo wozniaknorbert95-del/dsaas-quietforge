@@ -232,31 +232,35 @@ body[data-app="services"] {
   --accent-secondary: #b8842f; 
 }
 
-h1, h2, h3, h4 {
-  line-height: var(--qf-lh-tight);
-  font-weight: 700;
-  margin: 0 0 var(--qf-sp-4);
-}
+/* Base element typography in @layer base — Tailwind v4 utilities must win
+   (fix: unlayered `a { color: accent }` overrode Button primary text = invisible CTA) */
+@layer base {
+  h1, h2, h3, h4 {
+    line-height: var(--qf-lh-tight);
+    font-weight: 700;
+    margin: 0 0 var(--qf-sp-4);
+  }
 
-h1 { font-size: var(--qf-fs-3xl); letter-spacing: -0.02em; }
-h2 { font-size: var(--qf-fs-2xl); letter-spacing: -0.01em; }
-h3 { font-size: var(--qf-fs-xl); }
+  h1 { font-size: var(--qf-fs-3xl); letter-spacing: -0.02em; }
+  h2 { font-size: var(--qf-fs-2xl); letter-spacing: -0.01em; }
+  h3 { font-size: var(--qf-fs-xl); }
 
-p {
-  margin: 0 0 var(--qf-sp-4);
-  max-width: var(--qf-maxw-narrow);
-}
+  p {
+    margin: 0 0 var(--qf-sp-4);
+    max-width: var(--qf-maxw-narrow);
+  }
 
-a {
-  color: var(--qf-accent);
-  text-decoration: none;
-  transition: color var(--qf-transition);
-}
+  a {
+    color: var(--qf-accent);
+    text-decoration: none;
+    transition: color var(--qf-transition);
+  }
 
-a:hover {
-  color: var(--qf-text);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  a:hover {
+    color: var(--qf-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 }
 
 ::selection {

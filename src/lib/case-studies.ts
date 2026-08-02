@@ -67,7 +67,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     context: 'My own sales funnel — the same "what do you charge?" questions, answered by the system.',
     system:
       'Wizard Cash Engine on zzpackage.flexgrafik.nl — 9 UI screens, open pricing, Mollie from €199, plus Complex Quote & Design Intake (INSPIRE) as a live supervised path (PARTIAL).',
-    real: 'Checkout LIVE — configure → price → Mollie. Optional intake → brief → Standard/Premium mockups → Wizard (PARTIAL; mockups ≠ print-ready).',
+    real: 'Checkout LIVE — configure → price → Mollie. Optional Design Intake → mockups → offerte request → 48h studio quote (PARTIAL; mockups ≠ print-ready; Wizard = internal fulfilment).',
     measurement: caseMeasurements.salesFunnel.value ?? '',
     intents: ['money', 'efficiency'],
     manifestKey: 'salesFunnel',

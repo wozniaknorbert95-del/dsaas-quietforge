@@ -1,6 +1,6 @@
 {
   "pass": true,
-  "at": "2026-07-14T10:36:10.302Z",
+  "at": "2026-07-27T07:08:20.655Z",
   "mode": "e2e-proxy",
   "checks": {
     "proxy_mode": true,

@@ -93,14 +93,18 @@ async function main() {
   await page.waitForSelector('#da-chat-input', { timeout: TIMEOUT });
   await page.waitForSelector('.da-msg--bot', { timeout: TIMEOUT });
   const openingText = await page.locator('.da-msg--bot').first().textContent().catch(() => '');
-  if (/helpen/i.test(openingText || '')) {
+  if (/helpen|chatbot|AI generator/i.test(openingText || '')) {
     gate.pass = false;
-    gate.errors.push('opening contains helpen');
+    gate.errors.push('opening contains banned helpdesk/chatbot framing');
   } else gate.dom_checks.push('opening_no_helpen');
-  if (!/Standard/i.test(openingText || '') || !/Premium/i.test(openingText || '')) {
+  // Engagement v3: opening must NOT catalog Standard/Premium SKUs (proposal beat comes later).
+  if (/Standard/i.test(openingText || '') && /Premium/i.test(openingText || '')) {
+    gate.warnings.push('opening mentions Standard+Premium early — prefer proposal beat only before confirm');
+  }
+  if (!/bedrijfsnaam|gerichte vragen|professionele/i.test(openingText || '')) {
     gate.pass = false;
-    gate.errors.push('opening missing Standard/Premium');
-  } else gate.dom_checks.push('opening_standard_premium');
+    gate.errors.push('opening missing v3 agency intro (bedrijfsnaam/gerichte vragen)');
+  } else gate.dom_checks.push('opening_v3_agency');
 
   // Stap flow — orchestrator-first (no 'Hoi!')
   await sendMessage(page, 'Schilder Janssen');
@@ -132,6 +136,13 @@ async function main() {
     await sendMessage(page, 'Kun je mijn briefing samenvatten voor de mock-ups?');
     flowState = await waitForConfirmOrGenerate(page, 60_000);
   }
+
+  const preConfirmBots = await page.locator('.da-msg--bot').allTextContents().catch(() => []);
+  const proposalBlob = preConfirmBots.join('\n');
+  if (!/Standard/i.test(proposalBlob) || !/Premium/i.test(proposalBlob)) {
+    gate.pass = false;
+    gate.errors.push('proposal beat missing Standard/Premium before confirm');
+  } else gate.dom_checks.push('proposal_standard_premium');
 
   if (flowState === 'confirm') {
     await page.locator('#da-confirm-yes').click();
@@ -224,10 +235,10 @@ async function main() {
     gate.pass = false;
     gate.errors.push('missing Premium badge copy');
   } else gate.dom_checks.push('premium_badge');
-  if (!/BLS-SET-LOGO-CONTACT/i.test(pageText)) {
+  if (!/BLS-SET|CS-SET|NA-WRAP|MA-00/i.test(pageText)) {
     gate.pass = false;
-    gate.errors.push('missing Standard SKU on card');
-  } else gate.dom_checks.push('standard_sku');
+    gate.errors.push('missing product SKU on results card');
+  } else gate.dom_checks.push('product_sku_visible');
   if (!/AI-voorbeelden|inspiratie/i.test(pageText)) {
     gate.pass = false;
     gate.errors.push('missing AI disclaimer');

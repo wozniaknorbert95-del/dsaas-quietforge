@@ -2,24 +2,25 @@
   "pass": true,
   "errors": [],
   "warnings": [],
-  "at": "2026-07-14T10:35:07.549Z",
+  "at": "2026-07-27T07:07:19.284Z",
   "attempt": 1,
   "dom_checks": [
     "opening_no_helpen",
-    "opening_standard_premium",
+    "opening_v3_agency",
+    "proposal_standard_premium",
     "confirm_button",
     "stub_images",
     "no_tier_labels",
     "standard_badge",
     "premium_badge",
-    "standard_sku",
+    "product_sku_visible",
     "disclaimer",
     "wizard_cta",
     "cta_copy"
   ],
   "mockupSrcs": [
-    "https://api.zzpackage.flexgrafik.nl/uploads/design-agent/inspire-3eba53e86b55/mockup_standard.png",
-    "https://api.zzpackage.flexgrafik.nl/uploads/design-agent/inspire-3eba53e86b55/mockup_premium.png"
+    "https://api.zzpackage.flexgrafik.nl/uploads/design-agent/inspire-9822f85d3657/mockup_standard.png",
+    "https://api.zzpackage.flexgrafik.nl/uploads/design-agent/inspire-9822f85d3657/mockup_premium.png"
   ],
   "artifacts": [
     "prod-e2e-results.png",
@@ -27,5 +28,5 @@
     "prod-mockup-premium.png"
   ],
   "mockupCount": 2,
-  "duration_ms": 62753
+  "duration_ms": 61370
 }

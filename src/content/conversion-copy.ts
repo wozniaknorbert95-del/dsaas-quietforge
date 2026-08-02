@@ -171,7 +171,7 @@ export const SPEARHEAD = {
   body: WIZARD_VISUALIZER.lead,
   bullets: [
     'Live on zzpackage.flexgrafik.nl — try checkout in two minutes.',
-    'Optional Design Intake — brief → Standard/Premium direction → Wizard (PARTIAL).',
+    'Optional Design Intake — brief → Standard/Premium direction → offerte / 48h quote (PARTIAL).',
     'Same stack Quietforge deploys for SMB clients — human approval on critical steps.',
   ],
   primaryCta: WIZARD_VISUALIZER.wizardCta,

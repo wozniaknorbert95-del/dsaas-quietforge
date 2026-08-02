@@ -1,7 +1,7 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-02 · **Status:** Session close — verify + git hygiene  
-**Commit:** (see latest handoff)  
+**Updated:** 2026-08-02 · **Status:** Session close — verify + git hygiene CLOSED  
+**Commit:** `8636197`  
 **Canon:** site-map §3 v6.0 · §4 hero Jadzia  
 **Handoff:** [`handoffs/2026-08-02-session-verify-close.md`](handoffs/2026-08-02-session-verify-close.md)
 

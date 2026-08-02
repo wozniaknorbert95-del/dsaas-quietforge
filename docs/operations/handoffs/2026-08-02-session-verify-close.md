@@ -1,6 +1,6 @@
 # Handoff — Session verify + git hygiene close (2026-08-02)
 
-**Repo:** quietforge.flexgrafik.nl · **Build:** see verification below  
+**Repo:** quietforge.flexgrafik.nl · **Build:** `npm run build` ✅ (36 routes) · **Shipped:** `8636197`  
 **Prior session:** [`2026-08-01-inspire-offerte-truth-sync.md`](2026-08-01-inspire-offerte-truth-sync.md) (`e7bd923` + `fe2e930`)
 
 ## Cel / Goal

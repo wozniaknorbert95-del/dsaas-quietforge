@@ -156,8 +156,13 @@ export const salesFunnelSolutionSystemItems = [
 export const salesFunnelInspireExtension = {
   eyebrow: 'Extension · PARTIAL',
   title: 'Complex Quote & Design Intake',
+  /** LI-R10 hub H2 — outcome line for cold LinkedIn traffic */
+  outcomeTitle: 'Design Intake → visual direction → 48-hour quote',
   lead:
     'For vehicle branding and other custom jobs: NL chat intake, an editable confirmed brief with logo upload, Standard/Premium inspiration mockups with indicative pricing, then a no-obligation offerte request — a personal studio quote within 48 hours. Live supervised path on FlexGrafik; the priced Wizard stays the internal fulfilment layer after quote acceptance — Quietforge deploys the same pattern for custom-product quoting.',
+  /** Compact LI-R10 lead (results hub `#design-intake`) */
+  outcomeLead:
+    'Live on FlexGrafik: NL chat intake → editable confirmed brief with logo upload → Standard/Premium inspiration mockups with indicative pricing → offerte request → personal studio quote within 48 hours. PARTIAL — visual direction, not print-ready; final pricing stays manual by design (concierge, not checkout).',
   statusBadge: 'PARTIAL — live supervised path',
   steps: [
     'Structured intake (vehicle branding request)',
@@ -172,6 +177,9 @@ export const salesFunnelInspireExtension = {
   ],
   demoLabel: 'Open Design Intake →',
   demoHref: EXTERNAL.inspireDesignAgent,
+  /** Hub secondary — deep story of the offer (not Wizard-only case study) */
+  secondaryLabel: 'See solution details',
+  secondaryHref: `${ROUTES.salesFunnel}#inspire`,
   evidence: [
     {
       src: '/gratka/inspire/intake.png',
@@ -184,6 +192,16 @@ export const salesFunnelInspireExtension = {
       caption: 'Direction',
     },
   ],
+} as const;
+
+/** Case-study bridge back to the Complex Quote offer (solutions `#inspire`). */
+export const salesFunnelInspireBridge = {
+  eyebrow: '// complex quote',
+  title: 'Complex Quote & Design Intake',
+  lead:
+    'Vehicle branding and other custom jobs use a supervised Design Intake path — mockups and a 48-hour studio quote — separate from Wizard checkout. Full flow, limitations and live demo live on the Sales Funnel solution page.',
+  cta: 'See Design Intake on Sales Funnel →',
+  href: `${ROUTES.salesFunnel}#inspire`,
 } as const;
 
 export const salesFunnelSolutionEffectBefore = [...salesFunnelBeforeItems] as const;

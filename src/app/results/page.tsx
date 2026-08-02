@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Eyebrow from '@/components/ui/Eyebrow';
 import GratkaDiagram from '@/components/ui/GratkaDiagram';
-import { EXTERNAL, ROUTES, SITE_URL } from '@/lib/constants';
+import InspireExtensionBlock from '@/components/solutions/InspireExtensionBlock';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 import { CTAS } from '@/content/conversion-copy';
-import { resultsInspireLanding, resultsPageHero, resultsPageMeta } from '@/content/results-page';
-import { salesFunnelInspireExtension } from '@/content/sales-funnel-case-study';
+import { resultsPageHero, resultsPageMeta } from '@/content/results-page';
 import { GRATKA } from '@/lib/gratka';
 import { CASE_STUDIES } from '@/lib/case-studies';
 import FieldReports from '@/components/results/FieldReports';
@@ -139,51 +138,13 @@ export default function ResultsPage() {
         <p className="qf-hint mt-4 max-w-[var(--qf-maxw-narrow)]">{resultsPageHero.hint}</p>
       </Section>
 
-      {/* LI-R10: INSPIRE / complex-quote outbound landing */}
+      {/* LI-R10: INSPIRE / complex-quote outbound landing — shared SSoT block */}
       <Section background="surface" padding="large" id="design-intake">
-        <Eyebrow>{resultsInspireLanding.eyebrow}</Eyebrow>
-        <h2 className="mb-4 text-[var(--qf-fs-2xl)] font-bold tracking-tight max-w-3xl">
-          {resultsInspireLanding.title}
-        </h2>
-        <p className="mb-8 text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)]">
-          {resultsInspireLanding.lead}
-        </p>
-        <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl">
-          {salesFunnelInspireExtension.evidence.map((shot) => (
-            <figure
-              key={shot.src}
-              className="overflow-hidden rounded-[var(--qf-radius)] border border-[var(--qf-border)] bg-[var(--qf-bg-inset)]"
-            >
-              <Image
-                src={shot.src}
-                alt={shot.alt}
-                width={640}
-                height={400}
-                className="h-auto w-full"
-                loading="lazy"
-              />
-              <figcaption className="px-3 py-2 font-mono text-xs text-[var(--qf-text-faint)]">
-                {shot.caption}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-4">
-          <Button href={EXTERNAL.inspireDesignAgent} withArrow variant="secondary">
-            {resultsInspireLanding.ctaDemo}
-          </Button>
-          <Button href={ROUTES.resultsSalesFunnel} withArrow variant="ghost">
-            {resultsInspireLanding.ctaCase}
-          </Button>
-          <Button
-            href={ROUTES.bookDiscovery}
-            withArrow
-            analyticsEvent="cta_book_map_click"
-            analyticsDetail={{ location: 'results_inspire' }}
-          >
-            {resultsInspireLanding.ctaMap}
-          </Button>
-        </div>
+        <InspireExtensionBlock
+          headingMode="outcome"
+          showSolutionLink
+          mapAnalyticsLocation="results_inspire"
+        />
       </Section>
 
       <Section padding="large">

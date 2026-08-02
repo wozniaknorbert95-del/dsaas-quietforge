@@ -18,13 +18,8 @@ export const resultsPageMeta = {
   twitterDescription: 'Live Wizard, design intake and ops proof — honest stage, process-proof case studies.',
 } as const;
 
-/** LI-R10 landing block for INSPIRE / complex-quote outbound traffic — SSoT: flexgrafik-inspire TRUTH-SNAPSHOT (v4.2.0, 2026-07-27) */
-export const resultsInspireLanding = {
-  eyebrow: 'Complex quote · PARTIAL',
-  title: 'Design Intake → visual direction → 48-hour quote',
-  lead:
-    'Live on FlexGrafik: NL chat intake → editable confirmed brief with logo upload → Standard/Premium inspiration mockups with indicative pricing → offerte request → personal studio quote within 48 hours. PARTIAL — visual direction, not print-ready; final pricing stays manual by design (concierge, not checkout).',
-  ctaDemo: 'Open Design Intake',
-  ctaCase: 'Wizard case study',
-  ctaMap: 'Book Automation Map',
-} as const;
+/**
+ * LI-R10 landing — re-export of shared INSPIRE SSoT.
+ * Prefer `InspireExtensionBlock` + `salesFunnelInspireExtension` in UI.
+ */
+export { salesFunnelInspireExtension as resultsInspireLanding } from '@/content/sales-funnel-case-study';

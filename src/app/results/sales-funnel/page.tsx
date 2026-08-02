@@ -20,6 +20,7 @@ import {
   salesFunnelStack,
   salesFunnelStepsFootnote,
   salesFunnelWizardBridge,
+  salesFunnelInspireBridge,
   SALES_FUNNEL_SLUG,
 } from '@/content/sales-funnel-case-study';
 
@@ -96,6 +97,20 @@ export default function SalesFunnelCaseStudyPage() {
             </p>
             <Button href={salesFunnelWizardBridge.href} target="_blank" rel="noopener noreferrer" variant="primary">
               {salesFunnelWizardBridge.cta}
+            </Button>
+          </Card>
+          <Card className="mb-6 p-6">
+            <p className="mb-2 font-mono text-xs uppercase tracking-wider text-[var(--qf-accent)]">
+              {salesFunnelInspireBridge.eyebrow}
+            </p>
+            <p className="mb-3 text-[var(--qf-fs-lg)] font-bold text-[var(--qf-text)]">
+              {salesFunnelInspireBridge.title}
+            </p>
+            <p className="mb-4 max-w-[var(--qf-maxw-narrow)] text-sm text-[var(--qf-text-dim)]">
+              {salesFunnelInspireBridge.lead}
+            </p>
+            <Button href={salesFunnelInspireBridge.href} variant="secondary" withArrow>
+              {salesFunnelInspireBridge.cta}
             </Button>
           </Card>
           <Card className="mb-4 p-6">

@@ -2,7 +2,7 @@
 status: "[ACTIVE]"
 title: "2026-07 GTM Claim Lock — LinkedIn / Facebook ↔ Quietforge"
 owner: "Norbert Wozniak"
-updated: "2026-07-19"
+updated: "2026-08-02"
 classification: "L4 — outbound ↔ site LI-R10 gate"
 ---
 
@@ -14,7 +14,7 @@ classification: "L4 — outbound ↔ site LI-R10 gate"
 
 | Outbound promise | Required landing | Status after sync |
 |------------------|------------------|-------------------|
-| Complex quote / Design Intake / INSPIRE | `/results/?…#design-intake` + `/solutions/sales-funnel/` (+ Map CTA) | **SAFE TO PUBLISH** after this deploy (v3 draft deep-links updated) |
+| Complex quote / Design Intake / INSPIRE | Primary land: `/results/?utm_…#design-intake`. Secondary deep story: `/solutions/sales-funnel/#inspire` (Flow + Limitations). Map: `/book-discovery/`. **Not** Wizard case study as Complex Quote secondary. | **SAFE TO PUBLISH** — utm before hash; see `2026-08-02-inspire-link-ux-audit.md` |
 | Wizard Cash Engine / quote→checkout | `/solutions/sales-funnel/` · `/results/sales-funnel/` | SAFE |
 | Automation Map €290 | `/book-discovery/` · `/pricing/` | SAFE |
 | Operations Command / Jadzia ops | `/results/jadzia-coi/` · owner-ecosystem | SAFE (no autonomy claims) |
@@ -23,7 +23,8 @@ classification: "L4 — outbound ↔ site LI-R10 gate"
 
 ## Safe to publish (post-deploy)
 
-1. INSPIRE build-in-public carousels that land on `/results/#design-intake` or `/solutions/sales-funnel/`  
+1. INSPIRE build-in-public carousels that land on `/results/?…#design-intake` (primary) or `/solutions/sales-funnel/#inspire` (deep story)  
+
 2. Module Series posts that match live solution pages  
 3. Map €290 CTAs → `/book-discovery/`  
 

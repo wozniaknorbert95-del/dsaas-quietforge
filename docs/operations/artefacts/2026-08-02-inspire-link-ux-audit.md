@@ -1,9 +1,10 @@
 ---
-status: "[ACTIVE]"
+status: "[CLOSED — post-deploy PASS]"
 title: "2026-08-02 INSPIRE / Wizard — link + UX/UI audit"
 owner: "Norbert Wozniak"
 updated: "2026-08-02"
 classification: "L4 — dual-surface parity + CTA graph"
+shipped: "a8a9cb0 (+ follow-up CTA arrow polish)"
 ---
 
 # Audit: INSPIRE / Wizard — linki + UX/UI
@@ -20,24 +21,26 @@ classification: "L4 — dual-surface parity + CTA graph"
 
 **Fix applied same session:** shared `InspireExtensionBlock`, one SSoT, secondary → `/solutions/sales-funnel/#inspire`, CS bridge, GTM note.
 
+**Post-deploy (prod `a8a9cb0`, 2026-08-02):** all critical CTA smokes **PASS**. Residual P2 only: offerte-success PNG (Phase 2).
+
 ---
 
 ## 2. Link inventory + smoke
 
-| ID | Surface | Label (visible) | href (code / expected) | Expected job | Pre-fix | Smoke |
-|----|---------|-----------------|------------------------|--------------|----------|-------|
-| L01 | `/results/#design-intake` | Open Design Intake | `EXTERNAL.inspireDesignAgent` → `zzpackage…/voertuigreclame-ontwerp/` | Live Design Intake (not checkout) | OK | **PASS** — 200, chat + “geen betaling, geen Wizard” |
-| L02 | `/results/#design-intake` | Wizard case study | was `ROUTES.resultsSalesFunnel` | Deep story of **INSPIRE+Wizard offer** | **FAIL P0** — CS has Wizard bridges only | **FAIL** pre-fix → fixed to “See solution details” → `ROUTES.salesFunnel#inspire` |
+| ID | Surface | Label (visible) | href (code / expected) | Expected job | Pre-fix | Post-deploy smoke |
+|----|---------|-----------------|------------------------|--------------|----------|-------------------|
+| L01 | `/results/#design-intake` | Open Design Intake | `EXTERNAL.inspireDesignAgent` → `zzpackage…/voertuigreclame-ontwerp/` | Live Design Intake (not checkout) | OK | **PASS** — Design Agent + “geen betaling, geen Wizard” |
+| L02 | `/results/#design-intake` | See solution details | `ROUTES.salesFunnel#inspire` | Deep story of **INSPIRE+Wizard offer** | **FAIL P0** (was Wizard CS) | **PASS** — label + href live; solutions `#inspire` has Flow/Limitations |
 | L03 | `/results/#design-intake` | Book Automation Map | `ROUTES.bookDiscovery` | L3 qualify | OK | **PASS** |
-| L04 | `/solutions/sales-funnel/` | Open Design Intake → | `inspire.demoHref` | Live demo | OK | **PASS** (200 solutions) |
-| L05 | `/solutions/sales-funnel/` | Book Automation Map | book | L3 | OK | **PASS** |
-| L06 | `/solutions/sales-funnel/` | See live proof (SolutionLayout) | `ROUTES.resultsSalesFunnel` | Wizard proof depth | P1 — CS lacked INSPIRE bridge | Fixed: CS + inspire bridge |
-| L07 | `/results/sales-funnel/` | Open zzpackage wizard / See live wizard | `zzpackageWizardPath` / root | Wizard demo | OK for Wizard-only story | **PASS** — present; not used as Complex Quote CTA |
+| L04 | `/solutions/sales-funnel/#inspire` | Open Design Intake | `inspire.demoHref` | Live demo | OK | **PASS** — Flow + Limitations + PARTIAL badge |
+| L05 | `/solutions/sales-funnel/#inspire` | Book Automation Map | book | L3 | OK | **PASS** |
+| L06 | `/results/sales-funnel/` | See Design Intake on Sales Funnel | `ROUTES.salesFunnel#inspire` | INSPIRE bridge from Wizard CS | P1 missing | **PASS** — bridge live → `#inspire` |
+| L07 | `/results/sales-funnel/` | Open zzpackage wizard / See live wizard | `zzpackageWizardPath` / root | Wizard demo | OK for Wizard-only story | **PASS** — present; not Complex Quote secondary |
 | L08 | `/results/` hub card CS03 | Read full case study | `detailHref` → CS | Wizard proof | OK | **PASS** |
 | L09 | Nav / footer | Sales Funnel / Wizard Cash Engine | `ROUTES.salesFunnel` | Money page | OK | **PASS** |
 | L10 | Founder | See the Wizard Cash Engine | `resultsSalesFunnel` | Wizard proof | P2 OK | N/A click |
 | L11 | ecosystem | `proofRoute` → resultsSalesFunnel | Consistency | P1 OK (Wizard proof) | Code OK |
-| L12 | GTM drafts | `?utm_…#design-intake` | LI-R10 land | Hash after query | **PASS** — drafts use utm before hash |
+| L12 | GTM / LI-R10 | `?utm_…#design-intake` | LI-R10 land | Hash after query | **PASS** drafts | **PASS** — utm land; `#design-intake` in viewport (top≈72) |
 
 ### EXTERNAL
 
@@ -96,4 +99,8 @@ classification: "L4 — dual-surface parity + CTA graph"
 5. ✅ GTM claim-lock note: secondary deep-link = solutions `#inspire`
 6. ✅ Handoff + verify (ship with session)
 
-**Out of scope:** offerte PNG recapture; flexgrafik-inspire engine; full results hub redesign.
+**Out of scope / next steps:**
+1. **Phase 2 (recommended next):** recapture offerte-success PNG into `evidence[]` — only residual P2 on the unified block.
+2. LinkedIn media WIP (slides/mp4/scripts) — dedicated media session; do not mix into Quietforge product commits.
+3. Optional GTM: when a draft needs *secondary* deep story past the hub strip, use `/solutions/sales-funnel/#inspire` (primary LI land stays `#design-intake` — already correct in inspire drafts).
+4. Out of scope: flexgrafik-inspire engine; full results hub redesign.

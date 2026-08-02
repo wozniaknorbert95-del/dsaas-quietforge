@@ -175,7 +175,7 @@ export const salesFunnelInspireExtension = {
     'Indicative pricing only — final quote is manual studio work (concierge by design)',
     'No invented conversion uplift claims',
   ],
-  demoLabel: 'Open Design Intake →',
+  demoLabel: 'Open Design Intake',
   demoHref: EXTERNAL.inspireDesignAgent,
   /** Hub secondary — deep story of the offer (not Wizard-only case study) */
   secondaryLabel: 'See solution details',
@@ -200,7 +200,7 @@ export const salesFunnelInspireBridge = {
   title: 'Complex Quote & Design Intake',
   lead:
     'Vehicle branding and other custom jobs use a supervised Design Intake path — mockups and a 48-hour studio quote — separate from Wizard checkout. Full flow, limitations and live demo live on the Sales Funnel solution page.',
-  cta: 'See Design Intake on Sales Funnel →',
+  cta: 'See Design Intake on Sales Funnel',
   href: `${ROUTES.salesFunnel}#inspire`,
 } as const;
 

@@ -1,22 +1,23 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-02 · **Status:** Session close — verify + git hygiene CLOSED  
-**Commit:** `8636197`  
+**Updated:** 2026-08-02 · **Status:** INSPIRE dual-surface parity LIVE + post-deploy smoke PASS  
+**Commit:** `a8a9cb0` (+ CTA arrow polish follow-up if shipped same day)  
 **Canon:** site-map §3 v6.0 · §4 hero Jadzia  
-**Handoff:** [`handoffs/2026-08-02-session-verify-close.md`](handoffs/2026-08-02-session-verify-close.md)
+**Handoff:** [`handoffs/2026-08-02-inspire-dual-surface-parity.md`](handoffs/2026-08-02-inspire-dual-surface-parity.md)  
+**Audit:** [`artefacts/2026-08-02-inspire-link-ux-audit.md`](artefacts/2026-08-02-inspire-link-ux-audit.md) — CLOSED post-deploy
 
 ---
 
 ## CO
 
-Wczoraj (2026-08-01): INSPIRE offerte truth + CTA `@layer base` fix — LIVE OK.  
-Dziś: weryfikacja smoke + porządek git (gate inspire artifacts) + domknięcie anchor.
+INSPIRE dual-surface parity shipped and verified on prod: shared `InspireExtensionBlock`, secondary → `/solutions/sales-funnel/#inspire`, CS bridge, 0× “Wizard case study” at `#design-intake`.
 
 ---
 
 ## NASTĘPNY KROK (Commander)
 
-Hard refresh `/` + `/results/#design-intake` po Vercel. LinkedIn/inspire media WIP zostaje untracked (osobna sesja).
+**Phase 2:** recapture offerte-success PNG into INSPIRE `evidence[]` (audit residual P2).  
+LinkedIn/inspire media WIP stays untracked (osobna sesja).
 
 ---
 

@@ -38,14 +38,24 @@ rg "Wizard case study" src/   # 0 matches
 
 Pre-fix smoke: Design Intake EXTERNAL **PASS** (offerte, geen Wizard checkout). L02 **FAIL** → fixed in code.
 
-## Post-deploy smoke (Dowódca)
+## Post-deploy smoke (prod — 2026-08-02)
 
-1. `/results/#design-intake` — Flow + Limitations + badge; CTAs: Design Intake · See solution details · Book Map
-2. “See solution details” → `/solutions/sales-funnel/#inspire` with same Flow/Limitations
-3. `/results/sales-funnel/` — new Complex Quote bridge → `#inspire`
-4. Open Design Intake → `voertuigreclame-ontwerp/` (not Wizard checkout)
+| Check | Result |
+|-------|--------|
+| Deploy HEAD `a8a9cb0` == `origin/master` | **PASS** |
+| `/results/#design-intake` Flow + Limitations + PARTIAL | **PASS** |
+| CTAs: Open Design Intake · See solution details · Book Map (no Wizard case study) | **PASS** |
+| Secondary href → `/solutions/sales-funnel/#inspire` | **PASS** |
+| Solutions `#inspire` Flow + Limitations parity | **PASS** |
+| EXTERNAL Design Intake (offerte, geen Wizard) | **PASS** |
+| CS bridge → `#inspire` | **PASS** |
+| LI-R10 utm + `#design-intake` in viewport | **PASS** |
+| L01–L12 post-deploy table | **PASS** (see audit artefact) |
+
+Follow-up polish: strip trailing `→` from labels that use `Button withArrow` (demo + CS bridge) — avoids `→→`.
 
 ## Następny krok / Next steps
 
-- Phase 2 (optional): recapture offerte-success PNG into evidence
-- LinkedIn drafts: prefer secondary deep-link `#inspire` when pointing past the hub strip
+- **Phase 2 (recommended):** recapture offerte-success PNG into `evidence[]`
+- LinkedIn media WIP untracked — dedicated media session
+- Optional: when LI draft needs secondary deep story, use `/solutions/sales-funnel/#inspire` (primary `#design-intake` already OK)

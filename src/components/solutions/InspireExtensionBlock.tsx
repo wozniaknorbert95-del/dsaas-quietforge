@@ -49,7 +49,7 @@ export default function InspireExtensionBlock({
       <p className="mb-8 max-w-[var(--qf-maxw-narrow)] text-[var(--qf-fs-lg)] text-[var(--qf-text-dim)]">
         {lead}
       </p>
-      <div className="mb-8 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="mb-8 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {inspire.evidence.map((shot) => (
           <figure
             key={shot.src}

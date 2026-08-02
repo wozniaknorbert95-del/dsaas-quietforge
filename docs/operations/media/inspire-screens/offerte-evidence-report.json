@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "mode": "prod-css-staged",
+  "at": "2026-08-02T11:52:00.000Z",
+  "errors": [],
+  "notes": [
+    "Full prod e2e timed out on mockup generate (mockups_timeout).",
+    "Final asset: prod page CSS (#da-offerte-success) with HITL ref off-20260727-fbf2a2a6 from flexgrafik-inspire perfecto-close.",
+    "Copy SSoT: zzpackage page-voertuigreclame-ontwerp.php lines 94-97."
+  ],
+  "artifacts": [
+    "docs/operations/media/inspire-screens/inspire-05-offerte-success.png",
+    "public/gratka/inspire/offerte-success.png"
+  ]
+}

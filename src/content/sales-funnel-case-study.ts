@@ -191,6 +191,11 @@ export const salesFunnelInspireExtension = {
       alt: 'Standard and Premium inspiration mockups',
       caption: 'Direction',
     },
+    {
+      src: '/gratka/inspire/offerte-success.png',
+      alt: 'Offerte request confirmed — personal studio quote within 48 hours',
+      caption: 'Offerte',
+    },
   ],
 } as const;
 

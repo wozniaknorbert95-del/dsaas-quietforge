@@ -100,7 +100,7 @@ shipped: "a8a9cb0 (+ follow-up CTA arrow polish)"
 6. ✅ Handoff + verify (ship with session)
 
 **Out of scope / next steps:**
-1. **Phase 2 (recommended next):** recapture offerte-success PNG into `evidence[]` — only residual P2 on the unified block.
+1. **Phase 2 (DONE 2026-08-02):** `offerte-success.png` in `evidence[]` — prod CSS capture, HITL ref `off-20260727-fbf2a2a6`.
 2. LinkedIn media WIP (slides/mp4/scripts) — dedicated media session; do not mix into Quietforge product commits.
 3. Optional GTM: when a draft needs *secondary* deep story past the hub strip, use `/solutions/sales-funnel/#inspire` (primary LI land stays `#design-intake` — already correct in inspire drafts).
 4. Out of scope: flexgrafik-inspire engine; full results hub redesign.

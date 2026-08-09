@@ -120,6 +120,16 @@ export default function LivingSystemDiagram({
     );
   }, [integrationEdges, focusId]);
 
+  // Reset focused state when view changes away from architecture
+  const handleViewChange = useCallback((newView: DiagramView) => {
+    setView(newView);
+    if (newView !== 'architecture') {
+      setFocusedSlotId(null);
+      setHoveredBusId(null);
+      setTooltip(null);
+    }
+  }, []);
+
   const handleNodeClick = useCallback((id: DiagramNodeId) => {
     setSelectedId((prev) => (prev === id ? null : id));
     setFocusedSlotId(null);
@@ -191,18 +201,10 @@ export default function LivingSystemDiagram({
   const panelBelow = variant === 'founder';
   const isArchitecture = view === 'architecture';
 
-  useEffect(() => {
-    if (view !== 'architecture') {
-      setFocusedSlotId(null);
-      setHoveredBusId(null);
-      setTooltip(null);
-    }
-  }, [view]);
-
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <DiagramViewToggle view={view} onChange={setView} variant={variant} />
+        <DiagramViewToggle view={view} onChange={handleViewChange} variant={variant} />
         <div className="flex flex-wrap items-center gap-3">
           {isArchitecture && (
             <button

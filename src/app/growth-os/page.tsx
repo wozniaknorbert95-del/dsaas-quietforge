@@ -5,9 +5,8 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { INITIAL_GROWTH_CONTEXT, ClientContext } from '../../content/growth-os/GrowthContext';
 import { AGENT_REGISTRY, AgentType } from '../../content/growth-os/AgentType';
-import { CAPABILITY_REGISTRY } from '../../content/growth-os/GrowthCapability';
 import { GrowthProposal } from '../../content/growth-os/GrowthProposal';
-import { PerformanceTracker } from '../../lib/nooa/PerformanceTracker';
+import { PerformanceTracker, LedgerEntry } from '../../lib/nooa/PerformanceTracker';
 import { DecisionControl } from '../../lib/nooa/DecisionControl';
 import { DemandTrustAgent } from '../../lib/nooa/agents/DemandTrustAgent';
 import { ConversionRetentionAgent } from '../../lib/nooa/agents/ConversionRetentionAgent';
@@ -22,7 +21,7 @@ export default function GrowthOsPage() {
     OptimizationStrategy: 0.98
   });
   const [proposals, setProposals] = useState<GrowthProposal[]>([]);
-  const [ledger, setLedger] = useState<any[]>([]);
+  const [ledger, setLedger] = useState<LedgerEntry[]>([]);
   const [simulationLog, setSimulationLog] = useState<string[]>([]);
   const [isSimulating, setIsSimulation] = useState(false);
 
@@ -61,7 +60,7 @@ export default function GrowthOsPage() {
       ]);
     }
     loadData();
-  }, [activeClient]);
+  }, [activeClient, clientCtx]);
 
   const handleRunSimulation = async () => {
     setIsSimulation(true);
@@ -114,7 +113,7 @@ export default function GrowthOsPage() {
       <main className="flex-grow pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full">
         {/* Eyebrow & Title */}
         <div className="border-b border-[#2c2d30] pb-6 mb-8">
-          <div className="text-[#ffb300] text-sm uppercase tracking-wider mb-2">// MULTI-CLIENT dSAAS AUTOPILOT ENGINE</div>
+          <div className="text-[#ffb300] text-sm uppercase tracking-wider mb-2">{'// MULTI-CLIENT dSAAS AUTOPILOT ENGINE'}</div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Growth OS Cockpit</h1>
           <p className="text-[#98999a] mt-2 max-w-3xl">
             A fully decoupled agent execution platform. Running three autonomous agents mapping local ontologies, evaluating guardrails, and feeding the real-time conversion ledger.
@@ -158,7 +157,7 @@ export default function GrowthOsPage() {
         </div>
 
         {/* 3 Agents Architecture Cards */}
-        <h2 className="text-lg font-bold mb-4 text-[#ffb300] uppercase">// Active Agent Orchestration (NOOA Runtime)</h2>
+        <h2 className="text-lg font-bold mb-4 text-[#ffb300] uppercase">{'// Active Agent Orchestration (NOOA Runtime)'}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {(Object.keys(AGENT_REGISTRY) as AgentType[]).map((agentKey) => {
             const agent = AGENT_REGISTRY[agentKey];
@@ -188,7 +187,7 @@ export default function GrowthOsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
           <div className="lg:col-span-2 bg-[#14151a] border border-[#2c2d30] p-6 rounded-[2px]">
             <div className="flex justify-between items-center border-b border-[#2c2d30] pb-3 mb-4">
-              <h3 className="text-sm font-bold text-[#ffb300] uppercase">// Candidate Proposals (Staging Queue)</h3>
+              <h3 className="text-sm font-bold text-[#ffb300] uppercase">{'// Candidate Proposals (Staging Queue)'}</h3>
               <span className="text-xs text-[#98999a]">{proposals.length} Proposals Staged</span>
             </div>
 
@@ -210,7 +209,7 @@ export default function GrowthOsPage() {
                     </span>
                   </div>
                   <p className="text-xs text-[#f1f1f1] italic mb-3 font-sans leading-relaxed">
-                    "{prop.content}"
+                    {`"${prop.content}"`}
                   </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 border-t border-[#2c2d30] pt-2 text-[10px] text-[#98999a]">
                     <div>
@@ -237,7 +236,7 @@ export default function GrowthOsPage() {
 
           <div className="bg-[#14151a] border border-[#2c2d30] p-6 rounded-[2px] flex flex-col justify-between">
             <div>
-              <h3 className="text-sm font-bold text-[#ffb300] uppercase border-b border-[#2c2d30] pb-3 mb-4">// Loop Simulator</h3>
+              <h3 className="text-sm font-bold text-[#ffb300] uppercase border-b border-[#2c2d30] pb-3 mb-4">{'// Loop Simulator'}</h3>
               <p className="text-xs text-[#98999a] mb-6 leading-relaxed">
                 Run the multi-agent loop in real-time. Spawns discovery, compiles RDF graph, checks OPA guardrails, validates security vault, and updates the telemetry ledger.
               </p>
@@ -268,7 +267,7 @@ export default function GrowthOsPage() {
 
         {/* Telemetry Ledger */}
         <div className="bg-[#14151a] border border-[#2c2d30] p-6 rounded-[2px]">
-          <h3 className="text-sm font-bold text-[#ffb300] uppercase border-b border-[#2c2d30] pb-3 mb-4">// Real-Time Telemetry Ledger (ledger.json)</h3>
+          <h3 className="text-sm font-bold text-[#ffb300] uppercase border-b border-[#2c2d30] pb-3 mb-4">{'// Real-Time Telemetry Ledger (ledger.json)'}</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left text-[#98999a]">
               <thead>

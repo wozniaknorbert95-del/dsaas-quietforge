@@ -40,7 +40,7 @@ export default function BookDiscoveryPage() {
       <AnalyticsPageView event="book_discovery_view" />
       <Section padding="large">
         <p className="mb-3 font-mono text-xs uppercase tracking-wider text-[var(--qf-accent)]">
-          // paid first step
+          {'// paid first step'}
         </p>
         <h1 className="text-[var(--qf-fs-3xl)] font-bold tracking-tight leading-[var(--qf-lh-tight)] mb-4 max-w-3xl">
           Request your Automation Map slot — €{PRICING.discovery}, credited.

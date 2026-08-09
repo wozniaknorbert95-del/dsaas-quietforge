@@ -53,29 +53,23 @@ export const CASE_MEASUREMENT_KEYS: Record<string, CaseMeasurementKey> = {
   'whatsapp-discovery-pilot': 'whatsappPilot',
 } as const;
 
-/** Locked home stack — site-map.md §3 v5.0 (Jadzia-first + IntentRouter on home) */
+/** Locked home stack — site-map.md §3 v6.0 (buyer-first: pain → module pick → live ops proof → method → close) */
 export const HOME_SECTIONS = [
   'HeroSection',
   'PainGrid',
   'IntentRouter',
   'JadziaSpearhead',
-  'VcmsTrustStrip',
-  'WizardVisualizerCompact',
-  'BuiltVsPlanned',
   'WhyItWorks',
   'Pricing',
   'FinalCtaBand',
 ] as const;
 
-/** Home section markers — site-map.md §3 v5.0 (DOM verification) */
+/** Home section markers — site-map.md §3 v6.0 (DOM verification) */
 export const HOME_SECTION_MARKERS: Record<(typeof HOME_SECTIONS)[number], string> = {
   HeroSection: 'hero',
   PainGrid: 'pain-grid',
   IntentRouter: 'repo-router',
   JadziaSpearhead: 'jadzia-spearhead',
-  VcmsTrustStrip: 'vcms-trust',
-  WizardVisualizerCompact: 'wizard-visualizer',
-  BuiltVsPlanned: 'built-vs-planned',
   WhyItWorks: 'why-it-works',
   Pricing: 'pricing',
   FinalCtaBand: 'final-cta',
@@ -362,7 +356,7 @@ export const ECOSYSTEM_REPOS: readonly EcosystemRepo[] = [
 ] as const;
 
 /**
- * IntentRouter selection for home + `/solutions/` (site-map §3 v5.0).
+ * IntentRouter selection for home + `/solutions/` (site-map §3 v6.0).
  * Hides `flexgrafik-meta` only. VCMS visible. Full 8 on owner-ecosystem / founder.
  */
 export function getHomeRepos(): readonly EcosystemRepo[] {

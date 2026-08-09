@@ -64,8 +64,17 @@ export function HomeIntentProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [activeIntent, setActiveIntentState] = useState<IntentId | null>(null);
-  const [ready, setReady] = useState(false);
+  const [activeIntent, setActiveIntentState] = useState<IntentId | null>(() => {
+    // Lazy initialization - read from URL first, then storage
+    const fromUrl = parseIntentParam(searchParams.get(INTENT_QUERY));
+    if (fromUrl) return fromUrl;
+    return readStoredIntent();
+  });
+  const [ready] = useState(() => {
+    // Lazy init: we're ready if there's initial data
+    if (typeof window === 'undefined') return false;
+    return parseIntentParam(searchParams.get(INTENT_QUERY)) || readStoredIntent() ? true : false;
+  });
 
   const replaceIntentQuery = useCallback(
     (intent: IntentId | null) => {
@@ -87,17 +96,17 @@ export function HomeIntentProvider({ children }: { children: ReactNode }) {
     [pathname, router, searchParams]
   );
 
+  // Sync storage/URL on mount (no setState - ready comes from lazy init)
   useEffect(() => {
     const fromUrl = parseIntentParam(searchParams.get(INTENT_QUERY));
     const fromStore = readStoredIntent();
     const initial = fromUrl ?? fromStore;
-    setActiveIntentState(initial);
+    
+    // Write to storage and URL if needed
     writeStoredIntent(initial);
     if (initial && !fromUrl) {
       replaceIntentQuery(initial);
     }
-    setReady(true);
-    // Hydrate once from URL/storage; later updates go through setActiveIntent.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- mount hydrate only
   }, []);
 

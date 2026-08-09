@@ -16,6 +16,7 @@ import SystemMetrics from '@/components/home/SystemMetrics';
 import IntentBadges from '@/components/ui/IntentBadges';
 import StatusBadge from '@/components/ui/StatusBadge';
 import TrackedLink from '@/components/analytics/TrackedLink';
+import GrowthOsCtaSection from '@/components/results/GrowthOsCtaSection';
 
 interface CaseGratkaLink {
   label: string;
@@ -147,26 +148,8 @@ export default function ResultsPage() {
         />
       </Section>
 
-      {/* Multi-Client dSaaS Growth OS Cockpit Access */}
-      <Section padding="large" className="bg-[#14151a] border-t border-b border-[#2c2d30] py-12">
-        <div className="max-w-3xl mx-auto text-center font-mono">
-          <span className="text-xs text-[#ffb300] block mb-2">// AUTONOMOUS OPERATIONS DEMO</span>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#f1f1f1]">
-            Multi-Client Growth OS Platform
-          </h2>
-          <p className="text-sm text-[#98999a] mb-6 leading-relaxed max-w-2xl mx-auto">
-            Our multi-client dSaaS marketing engine runs autonomous agents checking OPA margin guardrails, compiling RDF Turtle ontologies, and self-tuning LLM temperatures in real-time. Experience the live sandbox cockpit for Quietforge and FlexGrafik.
-          </p>
-          <div className="inline-block">
-            <Link
-              href="/growth-os/"
-              className="px-6 py-3 bg-[#ffb300] text-[#0b0c10] font-bold text-xs rounded-[2px] uppercase hover:bg-[#ffb300]/90 transition inline-flex items-center gap-2"
-            >
-              Enter Growth OS Cockpit →
-            </Link>
-          </div>
-        </div>
-      </Section>
+      {/* Multi-Client dSaaS Growth OS Cockpit Access — design system tokens */}
+      <GrowthOsCtaSection />
 
       <Section padding="large">
         <div className="grid gap-[var(--qf-sp-6)] md:grid-cols-2">

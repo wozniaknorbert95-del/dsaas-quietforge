@@ -1,13 +1,14 @@
 import { NooaAgent } from '../NooaAgentRuntimeAdapter';
 import { GrowthProposal } from '../../../content/growth-os/GrowthProposal';
 import { ClientContext } from '../../../content/growth-os/GrowthContext';
+import { LedgerEntry } from '../PerformanceTracker';
 
 export class OptimizationStrategyAgent extends NooaAgent {
   constructor(context: ClientContext) {
     super('OptimizationStrategy', context);
   }
 
-  public async runOptimization(ledgerData: any[]): Promise<GrowthProposal> {
+  public async runOptimization(ledgerData: LedgerEntry[]): Promise<GrowthProposal> {
     const isQuietforge = this.context.clientId === 'quietforge';
     const objective = `Optimize LLM prompt parameters and campaign priority based on ledger telemetry`;
     const action = `Scan ledger.json entries for client ${this.context.clientId}, calculate actual CPA deviations, and update prompt weights.`;

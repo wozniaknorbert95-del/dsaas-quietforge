@@ -1,69 +1,95 @@
-import { EvaluationResult } from '../../content/growth-os/EvaluationResult';
 import { AgentType } from '../../content/growth-os/AgentType';
 
-// We store our ledger in the quietforge-growth-os content-engine folder
-const LEDGER_PATH = 'quietforge-growth-os/content-engine/ledger.json';
+export interface LedgerEntry {
+  timestamp: string;
+  proposal_id?: string;
+  post_id?: string;
+  clientId: 'flexgrafik' | 'quietforge';
+  agent: AgentType;
+  expected_cpa: number;
+  actual_cpa: number;
+  dwell_time_seconds: number;
+  impressions: number;
+  clicks: number;
+  saves: number;
+  bookings_count: number;
+  reliability_score: number;
+  was_profitable: boolean;
+  metrics?: {
+    estimated_cpa?: number;
+    clicks?: number;
+    saves?: number;
+    bookings_count?: number;
+  };
+}
+
+// API endpoint for ledger operations (avoids Turbopack 'fs' warnings)
+const LEDGER_API_URL = '/api/growth-os/ledger';
 
 export class PerformanceTracker {
-  public static async getLedgerData(): Promise<any[]> {
+  public static async getLedgerData(): Promise<LedgerEntry[]> {
     try {
-      // Since it runs in NextJS client/server, we can do a local check or provide safe default mock values if fs is missing
-      const fs = require('fs');
-      if (fs.existsSync(LEDGER_PATH)) {
-        const fileContent = fs.readFileSync(LEDGER_PATH, 'utf-8');
-        return JSON.parse(fileContent);
+      const response = await fetch(LEDGER_API_URL, {
+        cache: 'no-store',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
       }
+      return await response.json();
     } catch (e) {
-      console.warn('[PerformanceTracker] Server-side fs is not available or failed to read ledger. Using mock in-memory data.', e);
+      console.warn('[PerformanceTracker] API fetch failed, using mock data.', e);
+      // Fallback mock data for SSR/build time
+      return [
+        {
+          timestamp: "2026-08-09T14:30:00Z",
+          proposal_id: "post_1_linkedin_inbox",
+          clientId: "quietforge",
+          agent: "DemandTrust",
+          expected_cpa: 150,
+          actual_cpa: 96.60,
+          dwell_time_seconds: 42.5,
+          impressions: 1240,
+          clicks: 98,
+          saves: 14,
+          bookings_count: 3,
+          reliability_score: 1.0,
+          was_profitable: true
+        },
+        {
+          timestamp: "2026-08-09T15:00:00Z",
+          proposal_id: "post_2_linkedin_wizard",
+          clientId: "quietforge",
+          agent: "ConversionRetention",
+          expected_cpa: 290,
+          actual_cpa: 240.00,
+          dwell_time_seconds: 38.0,
+          impressions: 850,
+          clicks: 45,
+          saves: 8,
+          bookings_count: 1,
+          reliability_score: 1.0,
+          was_profitable: true
+        }
+      ];
     }
-    return [
-      {
-        timestamp: "2026-08-09T14:30:00Z",
-        proposal_id: "post_1_linkedin_inbox",
-        clientId: "quietforge",
-        agent: "DemandTrust",
-        expected_cpa: 150,
-        actual_cpa: 96.60,
-        dwell_time_seconds: 42.5,
-        impressions: 1240,
-        clicks: 98,
-        saves: 14,
-        bookings_count: 3,
-        reliability_score: 1.0,
-        was_profitable: true
-      },
-      {
-        timestamp: "2026-08-09T15:00:00Z",
-        proposal_id: "post_2_linkedin_wizard",
-        clientId: "quietforge",
-        agent: "ConversionRetention",
-        expected_cpa: 290,
-        actual_cpa: 240.00,
-        dwell_time_seconds: 38.0,
-        impressions: 850,
-        clicks: 45,
-        saves: 8,
-        bookings_count: 1,
-        reliability_score: 1.0,
-        was_profitable: true
-      }
-    ];
   }
 
-  public static async saveLedgerEntry(entry: any): Promise<boolean> {
+  public static async saveLedgerEntry(entry: Omit<LedgerEntry, 'timestamp'>): Promise<boolean> {
     try {
-      const fs = require('fs');
-      const ledger = await this.getLedgerData();
-      ledger.push({
-        timestamp: new Date().toISOString(),
-        ...entry
+      const response = await fetch(LEDGER_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entry)
       });
-      fs.writeFileSync(LEDGER_PATH, JSON.stringify(ledger, null, 2), 'utf-8');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
       return true;
     } catch (e) {
-      console.warn('[PerformanceTracker] Failed to persist ledger entry to fs.', e);
+      console.warn('[PerformanceTracker] Failed to persist ledger entry via API.', e);
+      return false;
     }
-    return false;
   }
 
   public static async calculateAgentScores(clientId: 'flexgrafik' | 'quietforge'): Promise<Record<AgentType, number>> {

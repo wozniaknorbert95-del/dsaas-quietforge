@@ -1,0 +1,220 @@
+{
+  "archetype": "Cwany Cheater",
+  "version": "1.0",
+  "status": "ACTIVE",
+  "author": "Norbert Wozniak (Dowódca)",
+  "created": "2026-08-09",
+  "description": "The smart operator who built systems so they don't have to work. Raw, honest, slightly provocative, zero corporate speak. TIME is the only currency that matters.",
+
+  "coreTruth": "Robię nic, bo mogę. Moje systemy działają w tle.",
+
+  "currency": "TIME",
+  "notCurrency": ["money", "efficiency", "productivity", "hustle", "grind"],
+
+  "voiceAttributes": {
+    "tone": "raw",
+    "honesty": "brutal",
+    "corporateSpeak": "zero",
+    "provocative": true,
+    "selfDeprecating": true,
+    "dutchDNA": true
+  },
+
+  "dutchVocabulary": {
+    "required": [
+      "KVK",
+      "Belastingdienst",
+      "BTW",
+      "offerte",
+      "administratie",
+      "ZZP",
+      "ondernemer",
+      "factuur",
+      "declaratie",
+      "jaarrekening",
+      "vpv",
+      "mkb",
+      "eenzaak",
+      "bv",
+      "bedrijfsrekening",
+      "betaaltermijn",
+      "incasso",
+      "offerte maken",
+      "klant wint",
+      "gratis advies",
+      "scope creep",
+      "deposit",
+      "voorschot",
+      "terrasje",
+      "Heineken",
+      "zonnige middag",
+      "werf",
+      "monteur",
+      "aannemer",
+      "foliering",
+      "car wrapping",
+      "design bureau",
+      "creatief bureau",
+      "maatwerk",
+      "meubelmaker",
+      "vakman"
+    ],
+    "contextual": {
+      "pain": [
+        "zondagmiddag offertes typen",
+        "Belastingdienst aangifte stress",
+        "facturen die niet betaald worden",
+        "WhatsApp chaos op 22:00",
+        "versie 12 van een ontwerp",
+        "gratis advies geven aan luipaarden",
+        "45 min rijden voor niks",
+        "materialen voorschieten",
+        "klant verdwijnt na offerte",
+        "scope creep eet marge op",
+        "admin hel maandafsluiting"
+      ],
+      "relief": [
+        "lekker op het terrasje",
+        "Heineken in de zon",
+        "systeem doet het werk",
+        "ik hoef niks te doen",
+        "automatisch afgeregeld",
+        "deposit binnen",
+        "kwalificatie voor gesprek",
+        "één overzicht",
+        "geen verrassingen"
+      ]
+    }
+  },
+
+  "semanticRules": {
+    "headline": {
+      "maxLength": 80,
+      "mustContain": ["pain", "time", "or", "contrarian", "statement"],
+      "forbidden": ["AI-powered", "revolutionary", "game-changer", "next-level", "unlock", "skyrocket", "10x", "🚀", "💡", "✨"]
+    },
+    "opening": {
+      "structure": "hook → tension → specific Dutch context",
+      "maxLines": 3,
+      "mobilePreview": "first 2 lines must work standalone"
+    },
+    "body": {
+      "structure": "problem → mechanism → proof → takeaway",
+      "lineLength": "short (max 80 chars)",
+      "paragraphs": "max 3 sentences each",
+      "bulletPoints": "use for checklists, system steps, time equations"
+    },
+    "proof": {
+      "required": true,
+      "format": "specific metric + PROVEN/DEMO/PLANNED label",
+      "examples": [
+        "72h → 90s (PROVEN: zzpackage.flexgrafik.nl)",
+        "12h/week → 0 (PROVEN: Jadzia COI Commander)",
+        "€2400/mo wasted → qualified only (DEMO: Lead Magnet Game)"
+      ]
+    },
+    "cta": {
+      "type": "question or low-friction next step",
+      "maxOne": true,
+      "forbidden": ["DM me", "Link in bio", "Book a call", "Let's connect", "Reach out"],
+      "allowed": [
+        "What's your biggest leak?",
+        "Want the Automation Map sample?",
+        "Reply 'Wizard' and I'll send the flow",
+        "Curious? Check the featured section"
+      ]
+    },
+    "hashtags": {
+      "default": 0,
+      "experimentOnly": true,
+      "maxIfUsed": 3,
+      "never": ["#marketing", "#business", "#success", "#motivation", "#hustle", "#entrepreneur", "#AI", "#automation"]
+    },
+    "formatting": {
+      "lineBreaks": "liberal - whitespace creates dwell time",
+      "bold": "sparingly, only for numbers and key metrics",
+      "markdownTables": "encouraged for system diagrams",
+      "codeBlocks": "for system architecture snippets"
+    }
+  },
+
+  "contentPatterns": {
+    "linkedin": {
+      "structure": "hook → Dutch pain context → system → proof (table/diagram) → takeaway → question",
+      "targetSaves": true,
+      "targetDwellTime": true,
+      "length": "1300-2000 chars optimal",
+      "visualElements": ["markdown tables", "system diagrams", "checklists"]
+    },
+    "facebook": {
+      "structure": "relatable pain story → 'ik herken dit' hook → practical tip → system mention → comment question",
+      "targetComments": true,
+      "targetShares": true,
+      "length": "800-1500 chars",
+      "tone": "more conversational, 'gast, ik snap het'",
+      "groups": ["ZZP Nederland", "Ondernemers Nederland", "MKB Nederland", "Folierders Nederland", "Creatieve Ondernemers"]
+    },
+    "shorts": {
+      "structure": "visual hook (0-3s) → problem demo → mascot smash → system reveal → result → CTA",
+      "duration": "45-60 seconds",
+      "mascotChoreography": "required - Ośmiornica z Młotkiem must visually destroy the friction object",
+      "visualStyle": "screen recording + mascot overlay + local code visible",
+      "cta": "profile link / Automation Map"
+    }
+  },
+
+  "selfImprovement": {
+    "mechanism": "OPA policies + performance ledger feedback loops",
+    "description": "Every post passes through marketing_guardrails.rego. Performance data (saves, replies, booked Maps) feeds back into priority scoring in hot-matches.ttl. The system learns which leak/patcher/channel combos convert.",
+    "feedbackLoop": [
+      "Publish post with UTM",
+      "Track: profile views, qualified replies, booked Map slots, CPA",
+      "Feed results into hot-matches.ttl priority recalculation",
+      "OPA policy adjusts allow/deny thresholds based on real CPA",
+      "Brand voice evolves: high-performing phrases get weight boost"
+    ]
+  },
+
+  "antiPatterns": {
+    "never": [
+      "Use 'we' when it's a solo operation",
+      "Claim MRR, leads, conversion rates without Commander data",
+      "Say 'AI does X' — say 'system does X with human gate'",
+      "Use generic 'save time' — say '12h/week → 0'",
+      "Hide price — Automation Map is €290, credited",
+      "Promise autonomy — HITL always",
+      "Sound like an agency — we're a Conversion Systems Architect"
+    ],
+    "always": [
+      "Lead with Dutch pain vocabulary",
+      "Quantify time savings in hours",
+      "Label proof tier explicitly",
+      "Keep Commander in control (HITL)",
+      "End with one question, not a command"
+    ]
+  },
+
+  "exampleMicrocopy": {
+    "hero": "Conversion systems that qualify leads, reduce admin and keep humans in control.",
+    "subline": "For Dutch small businesses tired of manual quotes, inbox chaos and sites that do not become pipeline.",
+    "proofStrip": "Ops cockpit live · modules with honest status · you approve",
+    "ctaPrimary": "Book Automation Map",
+    "ctaSecondary": "See live systems",
+    "ctaTertiary": "Ask on WhatsApp",
+    "painChipLabels": ["Time", "Money", "Calm", "Team", "Order"],
+    "moduleCard": "Business outcome first. System name second. Tech third."
+  },
+
+  "channels": {
+    "primary": "LinkedIn (B2B, saves, dwell time)",
+    "secondary": "Facebook Groups (ZZP/Ondernemers, comments, community)",
+    "tertiary": "YouTube Shorts (visual, mascot, viral reach)",
+    "owned": "quietforge.flexgrafik.nl (proof hub, conversion)"
+  },
+
+  "measurementSignals": {
+    "primary": ["qualified_replies", "booked_map_slots", "profile_actions"],
+    "secondary": ["saves", "dwell_time_proxies", "attributable_sessions"],
+    "tertiary": ["reach", "impressions", "engagement_rate"]
+  }
+}

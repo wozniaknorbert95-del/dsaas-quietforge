@@ -1,0 +1,298 @@
+@prefix qf: <https://quietforge.flexgrafik.nl/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+# =============================================================================
+# C2 HOT MATCHES — Target ↔ Patcher Priority Scoring
+# =============================================================================
+# Each qf:Match represents a Target-Patcher pairing with calculated priority
+# Score formula: (PainLevel * 0.4) + (DecisionSpeedWeight * 0.3) + (TimeSavingPotential * 0.3)
+# DecisionSpeedWeight: fast=100, medium=70, slow=40
+# TimeSavingPotential: based on patcher's hasTimeSavingHours * leak frequency
+# =============================================================================
+
+qf:Match a rdfs:Class ;
+    rdfs:label "Hot Match"@en ;
+    rdfs:comment "A Target-Patcher pairing with calculated priority score and recommended channel."@en .
+
+qf:hasMatchId a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:string .
+
+qf:hasTarget a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range qf:Target .
+
+qf:hasPatcher a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range qf:Patcher .
+
+qf:hasPriorityScore a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Priority Score 1-100"@en .
+
+qf:hasPainLevelWeight a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:decimal .
+
+qf:hasDecisionSpeedWeight a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:decimal .
+
+qf:hasTimeSavingWeight a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:decimal .
+
+qf:hasRecommendedChannel a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:string ;
+    rdfs:label "Primary channel: LinkedIn, Facebook, Shorts"@en .
+
+qf:hasRecommendedPostId a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:string ;
+    rdfs:label "Reference to content-engine/proposals/ post"@en .
+
+qf:hasTimeSavingPerEngagement a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "Hours saved per typical client engagement"@en .
+
+qf:hasEstimatedDealValue a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Estimated deal value EUR (Automation Map + Build)"@en .
+
+qf:hasUrgencySignal a rdf:Property ;
+    rdfs:domain qf:Match ;
+    rdfs:range xsd:string ;
+    rdfs:label "Urgency signal for copy: immediate, this-week, this-month"@en .
+
+# =============================================================================
+# MATCH 1: Car Wrapping × Wizard Cash Engine
+# =============================================================================
+qf:match-carwrap-wizard a qf:Match ;
+    qf:hasMatchId "qf:match-carwrap-wizard" ;
+    qf:hasTarget qf:target-carwrapping ;
+    qf:hasPatcher qf:patcher-wizard ;
+    qf:hasPriorityScore "96"^^xsd:integer ;
+    qf:hasPainLevelWeight "36.8"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "29.97"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-01-wizard-quote-leak" ;
+    qf:hasTimeSavingPerEngagement "23.975"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "immediate" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Highest priority. Zondag offertes = visceral pain. 72h → 90s is undeniable. Car wrappers decide fast when they see the math."@en .
+
+# =============================================================================
+# MATCH 2: Car Wrapping × Branding Inspiration Engine
+# =============================================================================
+qf:match-carwrap-inspire a qf:Match ;
+    qf:hasMatchId "qf:match-carwrap-inspire" ;
+    qf:hasTarget qf:target-carwrapping ;
+    qf:hasPatcher qf:patcher-inspire ;
+    qf:hasPriorityScore "92"^^xsd:integer ;
+    qf:hasPainLevelWeight "36.8"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "18.65"^^xsd:decimal ;
+    qf:hasRecommendedChannel "Facebook" ;
+    qf:hasRecommendedPostId "facebook-01-car-wrapping-zzo" ;
+    qf:hasTimeSavingPerEngagement "14.917"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "immediate" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Design brief chaos is the silent killer. 15h → 5min intake. Facebook groups (ZZP Nederland, Ondernemers) eat this up."@en .
+
+# =============================================================================
+# MATCH 3: Car Wrapping × DSaaS (VCMS) - governance
+# =============================================================================
+qf:match-carwrap-dsaas a qf:Match ;
+    qf:hasMatchId "qf:match-carwrap-dsaas" ;
+    qf:hasTarget qf:target-carwrapping ;
+    qf:hasPatcher qf:patcher-dsaas ;
+    qf:hasPriorityScore "78"^^xsd:integer ;
+    qf:hasPainLevelWeight "36.8"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "8.25"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-04-vcms-governance-leak" ;
+    qf:hasTimeSavingPerEngagement "5.5"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "3490"^^xsd:integer ;
+    qf:hasUrgencySignal "this-month" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Governance is a harder sell for solo wrappers. Position as 'never lose a file again' not 'governance layer'."@en .
+
+# =============================================================================
+# MATCH 4: Creative Agency × Inspiration Engine
+# =============================================================================
+qf:match-agency-inspire a qf:Match ;
+    qf:hasMatchId "qf:match-agency-inspire" ;
+    qf:hasTarget qf:target-creative-agency ;
+    qf:hasPatcher qf:patcher-inspire ;
+    qf:hasPriorityScore "91"^^xsd:integer ;
+    qf:hasPainLevelWeight "34.0"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "21.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "18.65"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-01-wizard-quote-leak" ;
+    qf:hasTimeSavingPerEngagement "14.917"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "this-week" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Agencies feel scope creep daily. 'Versie 12' is their trauma. Inspiration Engine = structured brief + deposit."@en .
+
+# =============================================================================
+# MATCH 5: Creative Agency × Trust Portal
+# =============================================================================
+qf:match-agency-portal a qf:Match ;
+    qf:hasMatchId "qf:match-agency-portal" ;
+    qf:hasTarget qf:target-creative-agency ;
+    qf:hasPatcher qf:patcher-portal ;
+    qf:hasPriorityScore "85"^^xsd:integer ;
+    qf:hasPainLevelWeight "34.0"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "21.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "15.0"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-02-inbox-chaos-leak" ;
+    qf:hasTimeSavingPerEngagement "12.0"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "this-week" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Agencies get tire-kickers. Portal qualifies before human time. 'KVK check before call' resonates hard."@en .
+
+# =============================================================================
+# MATCH 6: Creative Agency × DSaaS (VCMS) - admin chaos
+# =============================================================================
+qf:match-agency-dsaas a qf:Match ;
+    qf:hasMatchId "qf:match-agency-dsaas" ;
+    qf:hasTarget qf:target-creative-agency ;
+    qf:hasPatcher qf:patcher-dsaas ;
+    qf:hasPriorityScore "82"^^xsd:integer ;
+    qf:hasPainLevelWeight "34.0"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "21.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "8.25"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-04-vcms-governance-leak" ;
+    qf:hasTimeSavingPerEngagement "5.5"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "3490"^^xsd:integer ;
+    qf:hasUrgencySignal "this-month" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Admin chaos: Moneybird + Notion + Excel + Gmail. VCMS = single source of truth. Higher ticket, longer cycle."@en .
+
+# =============================================================================
+# MATCH 7: Premium Craftsman × Wizard Cash Engine
+# =============================================================================
+qf:match-craftsman-wizard a qf:Match ;
+    qf:hasMatchId "qf:match-craftsman-wizard" ;
+    qf:hasTarget qf:target-premium-craftsman ;
+    qf:hasPatcher qf:patcher-wizard ;
+    qf:hasPriorityScore "93"^^xsd:integer ;
+    qf:hasPainLevelWeight "35.2"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "23.975"^^xsd:decimal ;
+    qf:hasRecommendedChannel "Facebook" ;
+    qf:hasRecommendedPostId "facebook-03-premium-craftsman-quotes" ;
+    qf:hasTimeSavingPerEngagement "23.975"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "immediate" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Craftsmen hate 'kan je even kijken?' drives. Wizard = qualification + deposit + no free site visits. Fast close."@en .
+
+# =============================================================================
+# MATCH 8: Premium Craftsman × Lead Magnet Game
+# =============================================================================
+qf:match-craftsman-game a qf:Match ;
+    qf:hasMatchId "qf:match-craftsman-game" ;
+    qf:hasTarget qf:target-premium-craftsman ;
+    qf:hasPatcher qf:patcher-game ;
+    qf:hasPriorityScore "81"^^xsd:integer ;
+    qf:hasPainLevelWeight "35.2"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "11.625"^^xsd:decimal ;
+    qf:hasRecommendedChannel "Shorts" ;
+    qf:hasRecommendedPostId "shorts-01-octopus-hammer-wizard" ;
+    qf:hasTimeSavingPerEngagement "7.75"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "immediate" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Visual product = perfect for game. 'Speel → win korting → reken uit wat het kost' bypasses free advice trap."@en .
+
+# =============================================================================
+# MATCH 9: Premium Craftsman × DSaaS (Jadzia) - WhatsApp chaos
+# =============================================================================
+qf:match-craftsman-jadzia a qf:Match ;
+    qf:hasMatchId "qf:match-craftsman-jadzia" ;
+    qf:hasTarget qf:target-premium-craftsman ;
+    qf:hasPatcher qf:patcher-dsaas ;
+    qf:hasPriorityScore "88"^^xsd:integer ;
+    qf:hasPainLevelWeight "35.2"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "8.25"^^xsd:decimal ;
+    qf:hasRecommendedChannel "Shorts" ;
+    qf:hasRecommendedPostId "shorts-02-octopus-hammer-jadzia" ;
+    qf:hasTimeSavingPerEngagement "5.5"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "3490"^^xsd:integer ;
+    qf:hasUrgencySignal "immediate" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "WhatsApp chaos is visceral. Jadzia = one cockpit for leads/orders. Visual: Octopus smashing Outlook icon."@en .
+
+# =============================================================================
+# CROSS-NICHE MATCHES (Broader appeal)
+# =============================================================================
+
+# MATCH 10: All niches × Wizard (Lead Magnet angle)
+qf:match-all-game a qf:Match ;
+    qf:hasMatchId "qf:match-all-game" ;
+    qf:hasTarget qf:target-carwrapping ;
+    qf:hasPatcher qf:patcher-game ;
+    qf:hasPriorityScore "87"^^xsd:integer ;
+    qf:hasPainLevelWeight "36.8"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "30.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "11.625"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-03-lead-magnet-leak" ;
+    qf:hasTimeSavingPerEngagement "7.75"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "this-week" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Universal: stop wasting ad spend on tire-kickers. Game filters before you talk. Works for all 3 niches."@en .
+
+# MATCH 11: All niches × Jadzia (Operations Command)
+qf:match-all-jadzia a qf:Match ;
+    qf:hasMatchId "qf:match-all-jadzia" ;
+    qf:hasTarget qf:target-creative-agency ;
+    qf:hasPatcher qf:patcher-dsaas ;
+    qf:hasPriorityScore "84"^^xsd:integer ;
+    qf:hasPainLevelWeight "34.0"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "21.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "8.25"^^xsd:decimal ;
+    qf:hasRecommendedChannel "LinkedIn" ;
+    qf:hasRecommendedPostId "linkedin-05-jadzia-ops-command" ;
+    qf:hasTimeSavingPerEngagement "5.5"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "3490"^^xsd:integer ;
+    qf:hasUrgencySignal "this-month" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Owner brief = synthesis. 3 silos → 1 weekly brief. Appeals to anyone scaling past solo."@en .
+
+# MATCH 12: Facebook cross-post for Agencies (admin chaos)
+qf:match-agency-facebook a qf:Match ;
+    qf:hasMatchId "qf:match-agency-facebook" ;
+    qf:hasTarget qf:target-creative-agency ;
+    qf:hasPatcher qf:patcher-portal ;
+    qf:hasPriorityScore "80"^^xsd:integer ;
+    qf:hasPainLevelWeight "34.0"^^xsd:decimal ;
+    qf:hasDecisionSpeedWeight "21.0"^^xsd:decimal ;
+    qf:hasTimeSavingWeight "15.0"^^xsd:decimal ;
+    qf:hasRecommendedChannel "Facebook" ;
+    qf:hasRecommendedPostId "facebook-02-creative-agency-admin" ;
+    qf:hasTimeSavingPerEngagement "12.0"^^xsd:decimal ;
+    qf:hasEstimatedDealValue "290"^^xsd:integer ;
+    qf:hasUrgencySignal "this-week" ;
+    dct:created "2026-08-09"^^xsd:date ;
+    rdfs:comment "Facebook groups love 'admin hell' posts. Moneybird + Notion + Excel = relatable pain."@en .

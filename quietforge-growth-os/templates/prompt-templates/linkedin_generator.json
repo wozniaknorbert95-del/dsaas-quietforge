@@ -1,0 +1,12 @@
+{
+  "template_name": "LinkedIn Direct Attack Generator",
+  "audience": "Dutch SMB / ZZP",
+  "system_prompt": "Use the brand-voice.json configuration. Adopt the 'Cwany Cheater' persona. Target a specific Dutch niche (e.g., creative agency, tradesmen). Address a specific time leak in their administrative workflow.",
+  "structure": {
+    "hook": "Savage question about wasting time on administration instead of enjoying free time.",
+    "pain_quantification": "Highlight a concrete leak using real numbers (e.g. 10 hours/week, manual offerte drafting).",
+    "solution_introduction": "Introduce the specific Quietforge patcher without tech jargon. It runs in the background. 'Robię nic, bo mogę.'",
+    "cultural_anchoring": "Weave in Rotterdam/Amsterdam terrace references and BTW/Belastingdienst stress.",
+    "cta": "Single-action link to book an Automation Map for €290+."
+  }
+}

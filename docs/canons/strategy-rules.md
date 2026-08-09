@@ -2,7 +2,7 @@
 status: "[ACTIVE]"
 title: "Strategy Rules — Enforceable IA & Funnel"
 owner: "Norbert Wozniak"
-updated: "2026-06-29"
+updated: "2026-08-09"
 classification: "L2 — HARD rules (binding)"
 supersedes: "brain.md §5 (partial)"
 ---
@@ -97,4 +97,17 @@ On violation: cite rule ID, winner doc, proposed fix. Do not ship silent drift.
 
 ---
 
-*18 rules · Detail in strategy canon · Changes require `updated` bump + strategy-check skill sync*
+## Multi-client dSaaS & Agent Orchestration
+
+**SR-19 (HARD)** — Multi-client / dSaaS Architecture: Growth OS must run on a fully decoupled multi-client core structure, keeping Client 1 (Flexgrafik - Premium) and Client 2 (Quietforge - Clever Cheater) configurations, schemas, and assets completely isolated under `/dsaas-growth-os/clients/`.
+*Source:* dSaaS Architecture Vision 2026-08-09
+
+**SR-20 (HARD)** — 3-Agent Orchestration & GrowthProposals: All marketing campaigns and channel postings must be generated as structured `GrowthProposal` records from three deterministic agents (Demand & Trust, Conversion & Retention, Optimization & Strategy). No direct unstructured text generation.
+*Source:* dSaaS Agent Vision 2026-08-09
+
+**SR-21 (HARD)** — Dynamic Evaluation Loop & Ledger: Every execution must register expected vs actual outcomes inside a multi-client partitioned `ledger.json` to automatically tune temperature and weights for subsequent cycles.
+*Source:* dSaaS Loop Vision 2026-08-09
+
+---
+
+*21 rules · Detail in strategy canon · Changes require `updated` bump + strategy-check skill sync*

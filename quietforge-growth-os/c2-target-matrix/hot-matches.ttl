@@ -1,0 +1,43 @@
+@prefix qf: <https://quietforge.flexgrafik.nl/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+qf:HotMatch a rdfs:Class ;
+    rdfs:label "Hot Patcher-Leak Match" ;
+    rdfs:comment "A verified mapping of a target niche's specific leak to a Quietforge patcher." .
+
+qf:MatchAgencyProposal a qf:HotMatch ;
+    qf:targetNiche qf:CreativeAgencies ;
+    qf:identifiedLeak qf:ManualProposalDrafting ;
+    qf:matchingPatcher qf:WizardCashEngine ;
+    qf:businessImpact "Transforms manual 10-hour quoting into a 10-second structured intake form with payment." .
+
+qf:MatchAgencyConsulting a qf:HotMatch ;
+    qf:targetNiche qf:CreativeAgencies ;
+    qf:identifiedLeak qf:UnqualifiedDiscoveryCalls ;
+    qf:matchingPatcher qf:LeadMagnetGame ;
+    qf:businessImpact "Pre-qualifies incoming agency leads dynamically before they can book any call." .
+
+qf:MatchWrappingEstimates a qf:HotMatch ;
+    qf:targetNiche qf:CarWrappingShops ;
+    qf:identifiedLeak qf:ManualVehicleBrandingEstimates ;
+    qf:matchingPatcher qf:WizardCashEngine ;
+    qf:businessImpact "Automates vehicle measurements and vinyl pricing via a custom structured intake wizard." .
+
+qf:MatchWrappingAssets a qf:HotMatch ;
+    qf:targetNiche qf:CarWrappingShops ;
+    qf:identifiedLeak qf:UnstructuredAssetCollection ;
+    qf:matchingPatcher qf:InboxKiller ;
+    qf:businessImpact "Automatically captures, verifies, and files high-res logo files and client briefs." .
+
+qf:MatchTradesmenOfferte a qf:HotMatch ;
+    qf:targetNiche qf:PremiumTradesmen ;
+    qf:identifiedLeak qf:ManualOffertePreparation ;
+    qf:matchingPatcher qf:WizardCashEngine ;
+    qf:businessImpact "Generates structured PDF offertes and automates client onboarding in seconds." .
+
+qf:MatchTradesmenFollowups a qf:HotMatch ;
+    qf:targetNiche qf:PremiumTradesmen ;
+    qf:identifiedLeak qf:LateInvoiceFollowups ;
+    qf:matchingPatcher qf:JadziaCOI ;
+    qf:businessImpact "Coordinates payment webhooks and triggers automatic, professional payment escalation sequences." .

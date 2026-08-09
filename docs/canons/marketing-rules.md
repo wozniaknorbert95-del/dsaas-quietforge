@@ -2,7 +2,7 @@
 status: "[ACTIVE]"
 title: "Marketing Rules — Enforceable Copy & Proof"
 owner: "Norbert Wozniak"
-updated: "2026-06-25"
+updated: "2026-08-09"
 classification: "L2 — HARD rules (binding)"
 ---
 
@@ -111,4 +111,17 @@ Copy sessions load this file first. If copy reads like a feature list → fail r
 
 ---
 
-*18 rules · Commercial metrics: Commander fills traction-honesty §2.2 before investor/LinkedIn publish*
+## Agent Governance & Capability Layer
+
+**MR-19 (HARD)** — Multi-client Brand-Voice Partitioning: Brand voice and copy-generation for each dSaaS tenant must strictly adhere to their respective profiles in `/dsaas-growth-os/clients/`. No mixing of Quietforge’s "Cwany Cheater" style with Flexgrafik’s "Premium Strategy-Led" authority.
+*Source:* dSaaS Alignment 2026-08-09
+
+**MR-20 (HARD)** — Capability Layer Verification: Any autonomous proposals published via the Growth OS must explicitly map to one of the 7 core capabilities (Discovery, Demand, Trust, Conversion, Retention, Knowledge, Optimization) with traceable evidence references.
+*Source:* dSaaS System Design 2026-08-09
+
+**MR-21 (HARD)** — Truth-Style Separation: Generated content cannot synthesize claims about performance or client results. All performance metrics must be drawn from either the respective client's `patchers.ttl` or verified actual metrics in `ledger.json`.
+*Source:* dSaaS Integrity 2026-08-09
+
+---
+
+*21 rules · Commercial metrics: Commander fills traction-honesty §2.2 before investor/LinkedIn publish*

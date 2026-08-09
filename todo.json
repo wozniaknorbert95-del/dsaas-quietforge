@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Quietforge Portfolio Rebuild — Master Todo",
   "version": "2.0.0",
-  "updated": "2026-05-31",
+  "updated": "2026-08-09",
   "source_docs": [
     "Tak to ma być/Home — Copy & Wireframe (Filar 2).md",
     "Tak to ma być/Inbox Killer — Copy & Wireframe (Filar 2).md",
@@ -208,7 +208,9 @@
       "name": "Home Page (Deep Rebuild)",
       "sessions": 2,
       "priority": "highest",
-      "depends_on": ["phase-0"],
+      "depends_on": [
+        "phase-0"
+      ],
       "tasks": [
         {
           "id": "P1.1",
@@ -370,7 +372,9 @@
       "name": "Solutions Hub + Inbox Killer",
       "sessions": 2,
       "priority": "high",
-      "depends_on": ["phase-0"],
+      "depends_on": [
+        "phase-0"
+      ],
       "tasks": [
         {
           "id": "P2.1",
@@ -432,7 +436,9 @@
       "name": "Ladder Pages",
       "sessions": 2,
       "priority": "high",
-      "depends_on": ["phase-2"],
+      "depends_on": [
+        "phase-2"
+      ],
       "tasks": [
         {
           "id": "P3.1",
@@ -497,7 +503,9 @@
       "name": "Conversion & Trust Pages",
       "sessions": 2,
       "priority": "high",
-      "depends_on": ["phase-3"],
+      "depends_on": [
+        "phase-3"
+      ],
       "tasks": [
         {
           "id": "P4.1",
@@ -610,7 +618,9 @@
       "name": "Blog + Book Discovery (Payment Integration)",
       "sessions": 2,
       "priority": "high",
-      "depends_on": ["phase-4"],
+      "depends_on": [
+        "phase-4"
+      ],
       "config_changes": [
         "Add @next/mdx to package.json dependencies",
         "Update next.config.ts for MDX support",
@@ -717,7 +727,9 @@
       "name": "QA, SEO & Deploy Gate",
       "sessions": 1,
       "priority": "highest",
-      "depends_on": ["phase-5"],
+      "depends_on": [
+        "phase-5"
+      ],
       "tasks": [
         {
           "id": "P6.1",
@@ -811,6 +823,106 @@
             "`npm run typecheck` passes with zero errors",
             "Handoff doc written to docs/operations/handoffs/YYYY-MM-DD-quietforge-rebuild.md",
             "Handoff includes: route map, component architecture, payment integration notes, env vars required, pending decisions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-7",
+      "name": "dSaaS Platform Multi-Client Migration",
+      "sessions": 2,
+      "priority": "highest",
+      "depends_on": [
+        "phase-6"
+      ],
+      "tasks": [
+        {
+          "id": "P7.1",
+          "title": "Core Abstraction — Multi-Client Directory Structure",
+          "type": "code",
+          "description": "Refactor /quietforge-growth-os into a multi-client dSaaS engine layout at /dsaas-growth-os. Abstract configuration loaders so that target matrix, brand voice, and content proposals are isolated per-client.",
+          "files": [
+            "dsaas-growth-os/core/loader.ts",
+            "dsaas-growth-os/clients/README.md"
+          ],
+          "dod": [
+            "All client files isolated under /dsaas-growth-os/clients/[client-id]/",
+            "Loader can dynamically resolve config based on active client-id (flexgrafik or quietforge)",
+            "Build passes with zero multi-client namespace conflicts"
+          ]
+        },
+        {
+          "id": "P7.2",
+          "title": "Client 1 Configuration — Flexgrafik Growth OS Strategy",
+          "type": "content",
+          "description": "Establish Flexgrafik (Client 1) dSaaS configuration files. Write unique Turtle ontology mapping, brand-voice JSON, and content proposals reflecting Flexgrafik’s specific high-end branding positioning.",
+          "files": [
+            "dsaas-growth-os/clients/flexgrafik/patchers.ttl",
+            "dsaas-growth-os/clients/flexgrafik/brand-voice.json",
+            "dsaas-growth-os/clients/flexgrafik/proposals/*.md"
+          ],
+          "dod": [
+            "Turtle file parses 100% successfully and defines unique Flexgrafik systems",
+            "Brand voice JSON defines distinct premium-branding rules (vs Quietforge mono style)",
+            "Proposals (LinkedIn, Facebook) targeting premium design clients contain zero placeholders"
+          ]
+        },
+        {
+          "id": "P7.3",
+          "title": "Client 2 Configuration — Quietforge Growth OS Migration",
+          "type": "code",
+          "description": "Migrate previously generated Quietforge single-client files into the new dSaaS multi-client layout.",
+          "files": [
+            "dsaas-growth-os/clients/quietforge/patchers.ttl",
+            "dsaas-growth-os/clients/quietforge/brand-voice.json",
+            "dsaas-growth-os/clients/quietforge/proposals/*.md"
+          ],
+          "dod": [
+            "All single-client Quietforge files migrated to /dsaas-growth-os/clients/quietforge/",
+            "No broken paths or relative links in migrated files",
+            "Build and semantic parsing passes successfully"
+          ]
+        },
+        {
+          "id": "P7.4",
+          "title": "Multi-Tenant Telemetry & Ledger Partitioning",
+          "type": "code",
+          "description": "Update the telemetry ledger database schema to fully isolate client-specific interaction logs, clicks, saves, and CPA variables.",
+          "files": [
+            "dsaas-growth-os/core/ledger.json"
+          ],
+          "dod": [
+            "Ledger format supports client-id tagging on all entry records",
+            "Telemetry reader segregates stats so client data never leaks to another client",
+            "JSON parses successfully"
+          ]
+        },
+        {
+          "id": "P7.5",
+          "title": "Multi-Client OPA Guardrails Integration",
+          "type": "code",
+          "description": "Adapt OPA Rego policies to process multi-client inputs dynamically, validating target CPA limits according to client-specific margin variables.",
+          "files": [
+            "dsaas-growth-os/core/opa-policies/guardrails.rego"
+          ],
+          "dod": [
+            "Rego policy processes client-specific gross margin configurations",
+            "OPA test mock verifies rule allow = true/false works for both Flexgrafik and Quietforge inputs",
+            "Zero syntax errors"
+          ]
+        },
+        {
+          "id": "P7.6",
+          "title": "dSaaS Build Gate, Verification & Multi-Client Handoff",
+          "type": "qa",
+          "description": "Complete multi-client build and validation run. Run simulation switching between Flexgrafik and Quietforge environments. Write detailed architectural handoff.",
+          "files": [
+            "docs/operations/handoffs/YYYY-MM-DD-dsaas-platform-migration.md"
+          ],
+          "dod": [
+            "npm run build passes with zero errors",
+            "Verification script compiles both client graph models successfully",
+            "Handoff doc detailing dSaaS multi-tenant architecture and deployment guides complete"
           ]
         }
       ]

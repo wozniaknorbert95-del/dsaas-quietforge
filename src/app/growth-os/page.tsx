@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import { INITIAL_GROWTH_CONTEXT, ClientContext } from '../../content/growth-os/GrowthContext';
 import { AGENT_REGISTRY, AgentType } from '../../content/growth-os/AgentType';
 import { GrowthProposal } from '../../content/growth-os/GrowthProposal';
@@ -107,10 +105,8 @@ export default function GrowthOsPage() {
   };
 
   return (
-    <div className="bg-[#0b0c10] text-[#f1f1f1] min-h-screen font-mono flex flex-col selection:bg-[#ffb300] selection:text-[#0b0c10]">
-      <Header />
-
-      <main className="flex-grow pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full">
+    <div className="text-[#f1f1f1] font-mono selection:bg-[#ffb300] selection:text-[#0b0c10]">
+      <div className="pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full">
         {/* Eyebrow & Title */}
         <div className="border-b border-[#2c2d30] pb-6 mb-8">
           <div className="text-[#ffb300] text-sm uppercase tracking-wider mb-2">{'// MULTI-CLIENT dSAAS AUTOPILOT ENGINE'}</div>
@@ -299,9 +295,7 @@ export default function GrowthOsPage() {
             </table>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

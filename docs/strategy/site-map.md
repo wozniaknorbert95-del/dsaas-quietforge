@@ -140,6 +140,7 @@ Tertiary text: `Ask on WhatsApp` → WhatsApp deep link
 /results/jadzia-coi/             → Case study
 /results/advisory-modernisation/ → Case study, anonymised / in delivery
 /results/owner-ecosystem/        → Full LOS + governance proof
+/growth-os/                      → Growth OS multi-client dynamic agent cockpit and real-time ledger proof
 
 /solutions/                      → Productised systems hub
 /solutions/inbox-killer/         → Product page

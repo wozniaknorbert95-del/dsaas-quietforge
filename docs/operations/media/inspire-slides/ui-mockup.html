@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200, height=900" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: #0a0a0f;
+      color: #e4e4e7;
+      padding: 24px;
+    }
+    .da-chat {
+      max-width: 720px;
+      margin: 0 auto;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111118;
+    }
+    .da-chat__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      background: #18181f;
+      border-bottom: 1px solid #27272a;
+      font-size: 14px;
+    }
+    .da-chat__dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+    .da-chat__body { padding: 18px; min-height: 420px; }
+    .da-msg { margin-bottom: 14px; max-width: 92%; padding: 12px 14px; border-radius: 12px; font-size: 15px; line-height: 1.45; }
+    .da-msg--bot { background: #1a2e24; border: 1px solid #234434; }
+    .da-msg--user { background: #1e293b; margin-left: auto; }
+    .da-confirm-card {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid #3f3f46;
+      border-radius: 10px;
+      background: #14141c;
+    }
+    .da-confirm-card__title { margin-bottom: 10px; font-size: 16px; }
+    .da-confirm-card__body { font-size: 14px; line-height: 1.6; color: #a1a1aa; margin-bottom: 14px; }
+    .da-form-submit {
+      background: linear-gradient(135deg, #e8a33d, #d4881f);
+      color: #111;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .da-section--results { max-width: 960px; margin: 0 auto; padding: 24px; }
+    .da-section-header h2 { font-size: 28px; margin-bottom: 8px; }
+    .da-section-header p { color: #a1a1aa; font-size: 14px; margin-bottom: 6px; }
+    .da-mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    .da-mockup-grid img { width: 100%; border-radius: 8px; border: 1px solid #333; }
+    .da-mockup-card__label { font-size: 13px; color: #e8a33d; margin-top: 8px; font-weight: 600; }
+    .btn-vca {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #e8a33d, #d4881f);
+      color: #111;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+    .da-reco-card {
+      display: block;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      color: inherit;
+      text-decoration: none;
+    }
+    .da-reco-card--highlight { border-color: #e8a33d; }
+    .da-reco-card__price { color: #e8a33d; font-weight: 700; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const MOCK_STD = '../inspire-screens/bench/schilder-standard.png';
+    const MOCK_PREM = '../inspire-screens/bench/schilder-premium.png';
+
+    const SCENES = {
+      confirm: () => `
+        <div class="da-chat">
+          <div class="da-chat__header"><span class="da-chat__dot"></span>ZZPackage Design Agent <span style="margin-left:auto;color:#22c55e">Online</span></div>
+          <div class="da-chat__body">
+            <div class="da-msg da-msg--user">Telefoon 06-98765432, website www.janssen-schilder.nl.</div>
+            <div class="da-msg da-msg--bot">Perfect. Hier is je samenvatting — klopt dit?</div>
+            <div class="da-confirm-card">
+              <p class="da-confirm-card__title"><strong>Jouw briefing</strong></p>
+              <div class="da-confirm-card__body">
+                <strong>Bedrijf:</strong> Schilder Janssen<br>
+                <strong>Branche:</strong> Schilder<br>
+                <strong>Voertuig:</strong> bus_l<br>
+                <strong>Smart Start:</strong> BLS-SET-LOGO-CONTACT<br>
+                <strong>Premium Presence:</strong> NA-WRAP-BASIC<br>
+                <strong>Telefoon:</strong> 06-98765432<br>
+                <strong>Website:</strong> www.janssen-schilder.nl
+              </div>
+              <button class="da-form-submit">Bevestigen → mock-ups</button>
+            </div>
+          </div>
+        </div>`,
+
+      mockups: () => `
+        <div class="da-section--results">
+          <div class="da-section-header">
+            <h2>Jouw 2 ontwerpen</h2>
+            <p>Kies je favoriet — dit is inspiratie. Professionele uitvoering en drukklare bestanden door FlexGrafik.</p>
+            <p>AI-voorbeelden: logo en tekst op het voertuig zijn ter inspiratie, geen definitief drukbestand.</p>
+          </div>
+          <div class="da-mockup-grid">
+            <div><img src="${MOCK_STD}" alt="Standard" /><div class="da-mockup-card__label">Smart Start</div></div>
+            <div><img src="${MOCK_PREM}" alt="Premium" /><div class="da-mockup-card__label">Premium Presence</div></div>
+          </div>
+        </div>`,
+
+      wizard: () => `
+        <div class="da-section--results">
+          <h2 style="font-size:22px;margin-bottom:16px">Aanbevolen voor jouw voertuig</h2>
+          <a class="da-reco-card da-reco-card--highlight" href="#">
+            <div>BLS-SET-LOGO-CONTACT</div>
+            <div class="da-reco-card__price">€ 199,00</div>
+          </a>
+          <a class="btn-vca" href="#">Start in de Wizard →</a>
+        </div>`,
+    };
+
+    const scene = new URLSearchParams(location.search).get('scene') || 'confirm';
+    document.getElementById('root').innerHTML = SCENES[scene]();
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿{
+    "attempts":  [
+                     {
+                         "duration_ms":  56949,
+                         "pass":  true,
+                         "at":  "2026-07-10T20:02:04.6076036Z",
+                         "errors":  [
+
+                                    ],
+                         "exit_code":  0,
+                         "attempt":  1
+                     },
+                     {
+                         "duration_ms":  108547,
+                         "pass":  true,
+                         "at":  "2026-07-10T20:03:58.5004717Z",
+                         "errors":  [
+
+                                    ],
+                         "exit_code":  0,
+                         "attempt":  2
+                     }
+                 ],
+    "pass":  true,
+    "at":  "2026-07-10T20:03:58.5088588Z"
+}

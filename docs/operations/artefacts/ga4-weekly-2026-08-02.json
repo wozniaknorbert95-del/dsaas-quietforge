@@ -1,0 +1,216 @@
+{
+  "generated": "2026-08-02",
+  "property_id": "543331587",
+  "measurement_id": "G-LY0E7MW0HF",
+  "display_name": "Quietforge",
+  "domain": "quietforge.flexgrafik.nl",
+  "period": "28d rolling + 7d funnel",
+  "summary": {
+    "linkedin_sessions_28d": 0,
+    "linkedin_active_users_28d": 0,
+    "facebook_sessions_28d": 26,
+    "direct_sessions_28d": 34,
+    "by_source_medium": [
+      {
+        "source_medium": "(direct) / (none)",
+        "sessions": 34,
+        "active_users": 19
+      },
+      {
+        "source_medium": "facebook.com / referral",
+        "sessions": 10,
+        "active_users": 9
+      },
+      {
+        "source_medium": "m.facebook.com / referral",
+        "sessions": 10,
+        "active_users": 10
+      },
+      {
+        "source_medium": "l.facebook.com / referral",
+        "sessions": 4,
+        "active_users": 4
+      },
+      {
+        "source_medium": "lm.facebook.com / referral",
+        "sessions": 2,
+        "active_users": 2
+      },
+      {
+        "source_medium": "(not set)",
+        "sessions": 1,
+        "active_users": 1
+      }
+    ],
+    "map_funnel_28d": {
+      "book_discovery_view": 3,
+      "cta_book_map_click": 0,
+      "intake_submit": 0,
+      "book_payment_start": 0,
+      "book_payment_complete": 0
+    },
+    "funnel_7d": [
+      {
+        "step": "1. book_discovery_view",
+        "active_users": "1",
+        "completion_rate": "0"
+      }
+    ]
+  },
+  "traffic_7d": {
+    "row_count": 6,
+    "rows": [
+      {
+        "dimensions": [
+          "m.facebook.com / referral"
+        ],
+        "metrics": [
+          "8",
+          "8"
+        ]
+      },
+      {
+        "dimensions": [
+          "facebook.com / referral"
+        ],
+        "metrics": [
+          "6",
+          "5"
+        ]
+      },
+      {
+        "dimensions": [
+          "(direct) / (none)"
+        ],
+        "metrics": [
+          "4",
+          "4"
+        ]
+      },
+      {
+        "dimensions": [
+          "l.facebook.com / referral"
+        ],
+        "metrics": [
+          "2",
+          "2"
+        ]
+      },
+      {
+        "dimensions": [
+          "(not set)"
+        ],
+        "metrics": [
+          "1",
+          "1"
+        ]
+      },
+      {
+        "dimensions": [
+          "lm.facebook.com / referral"
+        ],
+        "metrics": [
+          "1",
+          "1"
+        ]
+      }
+    ]
+  },
+  "campaigns_28d": {
+    "row_count": 6,
+    "rows": [
+      {
+        "dimensions": [
+          "(direct)",
+          "(direct) / (none)"
+        ],
+        "metrics": [
+          "34",
+          "19"
+        ]
+      },
+      {
+        "dimensions": [
+          "(referral)",
+          "facebook.com / referral"
+        ],
+        "metrics": [
+          "10",
+          "9"
+        ]
+      },
+      {
+        "dimensions": [
+          "(referral)",
+          "m.facebook.com / referral"
+        ],
+        "metrics": [
+          "10",
+          "10"
+        ]
+      },
+      {
+        "dimensions": [
+          "(referral)",
+          "l.facebook.com / referral"
+        ],
+        "metrics": [
+          "4",
+          "4"
+        ]
+      },
+      {
+        "dimensions": [
+          "(referral)",
+          "lm.facebook.com / referral"
+        ],
+        "metrics": [
+          "2",
+          "2"
+        ]
+      },
+      {
+        "dimensions": [
+          "(not set)",
+          "(not set)"
+        ],
+        "metrics": [
+          "1",
+          "1"
+        ]
+      }
+    ]
+  },
+  "canon_events_28d": {
+    "row_count": 3,
+    "rows": [
+      {
+        "dimensions": [
+          "book_discovery_view"
+        ],
+        "metrics": [
+          "3"
+        ]
+      },
+      {
+        "dimensions": [
+          "cta_whatsapp_click"
+        ],
+        "metrics": [
+          "1"
+        ]
+      },
+      {
+        "dimensions": [
+          "pricing_view"
+        ],
+        "metrics": [
+          "1"
+        ]
+      }
+    ]
+  },
+  "delta_vs_prior": {
+    "note": "no_prior_week"
+  }
+}

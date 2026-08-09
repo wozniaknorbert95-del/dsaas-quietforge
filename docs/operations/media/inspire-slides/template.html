@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080, height=1920" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --qf-bg: #050608;
+      --qf-bg-raised: #0b0d12;
+      --qf-bg-inset: #11141b;
+      --qf-border: #252937;
+      --qf-text: #e5e7ef;
+      --qf-text-dim: #9ca3c7;
+      --qf-text-faint: #9ca3af;
+      --qf-accent: #e8a33d;
+      --qf-ok: #6fae6f;
+      --qf-partial: #c47a1a;
+      --qf-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    html, body {
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      background: var(--qf-bg);
+      color: var(--qf-text);
+      font-family: var(--qf-mono);
+    }
+    .slide {
+      width: 1080px;
+      height: 1920px;
+      padding: 72px 56px 80px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 56px; right: 56px;
+      height: 1px;
+      background: var(--qf-border);
+    }
+    .eyebrow {
+      font-size: 22px;
+      color: var(--qf-accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
+      text-transform: lowercase;
+    }
+    .headline {
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 40px;
+      max-width: 920px;
+    }
+    .headline em {
+      font-style: normal;
+      color: var(--qf-accent);
+    }
+    .bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+    .bullets li {
+      font-size: 26px;
+      color: var(--qf-text-dim);
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--qf-accent);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+      padding: 16px 24px;
+      border: 1px solid var(--qf-border);
+      background: var(--qf-bg-raised);
+      font-size: 22px;
+      letter-spacing: 0.06em;
+    }
+    .badge-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--qf-ok);
+      box-shadow: 0 0 12px rgba(111, 174, 111, 0.5);
+    }
+    .badge-partial {
+      display: inline-block;
+      margin-bottom: 28px;
+      padding: 12px 22px;
+      background: var(--qf-partial);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .screen-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      margin-top: 8px;
+    }
+    .screen-frame {
+      flex: 1;
+      border: 2px solid var(--qf-border);
+      background: var(--qf-bg-inset);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 980px;
+      max-height: 1180px;
+    }
+    .screen-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .callout {
+      margin-top: 28px;
+      padding: 24px 28px;
+      border: 1px solid var(--qf-border);
+      border-left: 3px solid var(--qf-accent);
+      background: var(--qf-bg-raised);
+    }
+    .callout p {
+      font-size: 24px;
+      line-height: 1.5;
+      color: var(--qf-text);
+    }
+    .callout span {
+      color: var(--qf-accent);
+    }
+    .sub {
+      font-size: 28px;
+      color: var(--qf-text-dim);
+      line-height: 1.5;
+      max-width: 900px;
+    }
+    .footer-url {
+      margin-top: auto;
+      font-size: 22px;
+      color: var(--qf-text-faint);
+      letter-spacing: 0.02em;
+    }
+    .rule {
+      height: 1px;
+      background: var(--qf-border);
+      margin: 32px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const SCENES = {
+      hook: {
+        eyebrow: '// leak',
+        headline: 'Your shop still quotes <em>vehicle wraps</em> in email?',
+        bullets: [
+          'Logo in one thread, coverage in another',
+          'Client never sees direction before they commit',
+          'Redraw rounds eat studio margin',
+        ],
+      },
+      pivot: {
+        eyebrow: '// supervised intake',
+        headline: 'INSPIRE — structured brief before any mockup.',
+        sub: 'NL client intake → confirmed brief → two directions → inspiration mockups → same wizard I already run live.',
+        badge: 'LIVE · zzpackage.flexgrafik.nl/voertuigreclame-ontwerp',
+      },
+      hero: {
+        eyebrow: '// live product',
+        screen: 'inspire-00-hero.png',
+        callout: 'Dutch client intake — <span>not a dev chat mockup</span>. Real product on my print site.',
+      },
+      intake: {
+        eyebrow: '// intake',
+        screen: 'inspire-01-intake.png',
+        callout: 'Structured questions — <span>branche, vehicle, services, contact</span> in one session.',
+      },
+      confirm: {
+        eyebrow: '// brief',
+        screen: 'inspire-02-confirm.png',
+        callout: 'Client confirms the brief <span>before</span> any mockup is generated.',
+      },
+      mockups: {
+        eyebrow: '// two directions',
+        screen: 'inspire-03-mockups.png',
+        callout: 'Two inspiration directions — <span>not print-ready files</span>. Final art stays in Illustrator.',
+      },
+      wizard: {
+        eyebrow: '// handoff',
+        screen: 'inspire-04-wizard.png',
+        callout: 'Handoff into the <span>same self-service wizard</span> — SKU and price already structured.',
+      },
+      cta: {
+        eyebrow: '// status',
+        partial: true,
+        headline: 'PARTIAL — pipeline works. Visual bar still tuning.',
+        sub: 'Building in public. If your shop has a messy quote path on complex SKUs — DM me.',
+        url: 'quietforge.flexgrafik.nl',
+      },
+    };
+
+    const sceneId = new URLSearchParams(location.search).get('scene') || 'hook';
+    const data = SCENES[sceneId];
+    const root = document.getElementById('root');
+    const screensBase = '../inspire-screens/';
+
+    function renderHook(d) {
+      return `<div class="slide">
+        <div class="eyebrow">${d.eyebrow}</div>
+        <h1 class="headline">${d.headline}</h1>
+        <ul class="bullets">${d.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+      </div>`;
+    }
+
+    function renderPivot(d) {
+      return `<div class="slide">
+        <div class="eyebrow">${d.eyebrow}</div>
+        <h1 class="headline">${d.headline}</h1>
+        <p class="sub">${d.sub}</p>
+        <div class="badge"><span class="badge-dot"></span>${d.badge}</div>
+      </div>`;
+    }
+
+    function renderScreen(d) {
+      return `<div class="slide">
+        <div class="eyebrow">${d.eyebrow}</div>
+        <div class="screen-wrap">
+          <div class="screen-frame">
+            <img src="${screensBase}${d.screen}" alt="" />
+          </div>
+          <div class="callout"><p>${d.callout}</p></div>
+        </div>
+      </div>`;
+    }
+
+    function renderCta(d) {
+      return `<div class="slide">
+        <div class="eyebrow">${d.eyebrow}</div>
+        ${d.partial ? '<div class="badge-partial">PARTIAL</div>' : ''}
+        <h1 class="headline">${d.headline}</h1>
+        <p class="sub">${d.sub}</p>
+        <div class="rule"></div>
+        <div class="footer-url">${d.url}</div>
+      </div>`;
+    }
+
+    const renderers = {
+      hook: renderHook,
+      pivot: renderPivot,
+      hero: renderScreen,
+      intake: renderScreen,
+      confirm: renderScreen,
+      mockups: renderScreen,
+      wizard: renderScreen,
+      cta: renderCta,
+    };
+
+    root.innerHTML = renderers[sceneId](data);
+  </script>
+</body>
+</html>

@@ -1,224 +1,47 @@
 @prefix qf: <https://quietforge.flexgrafik.nl/ontology/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-
-# =============================================================================
-# C1 LEAK PATCHERS — The 5 Verified FlexGrafik Systems (PROVEN)
-# =============================================================================
-# Status: Awaiting DSaaS Integration. Manual Commander Override Active.
-# Each patcher is an instance of qf:Patcher with verified tech stack and time equations.
-# Proof tier: PROVEN (traceable live systems, artefacts, walkthroughs)
-# =============================================================================
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 qf:Patcher a rdfs:Class ;
-    rdfs:label "Leak Patcher"@en ;
-    rdfs:comment "A verified, production-grade system that eliminates a specific operational leak for Dutch SMBs."@en .
+    rdfs:label "System Leak Patcher" ;
+    rdfs:comment "A system designed to patch operational or marketing time leaks." .
 
-qf:hasTurtleId a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Internal Turtle identifier"@en .
+qf:WizardCashEngine a qf:Patcher ;
+    rdfs:label "Wizard Cash Engine (zzpackage)" ;
+    qf:techStack "Next.js 16, React 19, Tailwind v4, Mollie SDK, Calendly API" ;
+    qf:beforeManualHours "10.0"^^xsd:decimal ;
+    qf:afterAutomatedSeconds "10.0"^^xsd:decimal ;
+    qf:timeSavingEquation "Before: 10 hours of manual back-and-forth email quoting vs After: 10 seconds structured intake with client-side Mollie pre-payment link." ;
+    qf:hasReadinessStatus "LIVE" .
 
-qf:hasSystemName a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Human-readable system name"@en .
+qf:InboxKiller a qf:Patcher ;
+    rdfs:label "Inbox Killer" ;
+    qf:techStack "Next.js App Router, OpenAI API, Tailwind v4, Vercel" ;
+    qf:beforeManualHours "15.0"^^xsd:decimal ;
+    qf:afterAutomatedSeconds "120.0"^^xsd:decimal ;
+    qf:timeSavingEquation "Before: 15 hours of manual email triage and lead qualification vs After: 2 minutes automated classification, routing, and response staging." ;
+    qf:hasReadinessStatus "LIVE" .
 
-qf:hasRepoKey a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "FlexGrafik repository key"@en .
+qf:JadziaCOI a qf:Patcher ;
+    rdfs:label "Jadzia Back-office Orchestrator" ;
+    qf:techStack "Next.js App Router, Jadzia Engine, Node.js, Webhooks" ;
+    qf:beforeManualHours "20.0"^^xsd:decimal ;
+    qf:afterAutomatedSeconds "30.0"^^xsd:decimal ;
+    qf:timeSavingEquation "Before: 20 hours of manual copy-pasting customer records, generating invoices, and checking systems vs After: 30 seconds secure automated back-office workflow execution." ;
+    qf:hasReadinessStatus "PARTIAL" .
 
-qf:hasStatus a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Proof tier: PROVEN, DEMO, or PLANNED"@en .
+qf:LeadMagnetGame a qf:Patcher ;
+    rdfs:label "Lead Magnet Game Ladder" ;
+    qf:techStack "React 19, Tailwind v4, GA4 Custom Events, Next.js" ;
+    qf:beforeManualHours "8.0"^^xsd:decimal ;
+    qf:afterAutomatedSeconds "15.0"^^xsd:decimal ;
+    qf:timeSavingEquation "Before: 8 hours pitching cold leads and explaining basic services vs After: 15 seconds interactive gamified qualification with dynamic leaderboard and lead capture." ;
+    qf:hasReadinessStatus "LIVE" .
 
-qf:hasTechStack a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Verified technology stack"@en .
-
-qf:hasTimeEquationBefore a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Manual process duration before patcher"@en .
-
-qf:hasTimeEquationAfter a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Automated process duration after patcher"@en .
-
-qf:hasTimeSavingHours a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:decimal ;
-    rdfs:label "Hours saved per typical engagement"@en .
-
-qf:hasBusinessEffect a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Measurable business effect"@en .
-
-qf:hasProofUrl a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:anyURI ;
-    rdfs:label "Live proof artefact URL"@en .
-
-qf:hasIntent a rdf:Property ;
-    rdfs:domain qf:Patcher ;
-    rdfs:range xsd:string ;
-    rdfs:label "Primary intent: time, money, order, calm, efficiency"@en .
-
-# =============================================================================
-# PATCHER 1: Wizard Cash Engine & Checkout Flow
-# =============================================================================
-qf:patcher-wizard a qf:Patcher ;
-    qf:hasTurtleId "qf:patcher-wizard" ;
-    qf:hasSystemName "Wizard Cash Engine & Checkout Flow" ;
-    qf:hasRepoKey "zzpackage" ;
-    qf:hasStatus "PROVEN" ;
-    qf:hasTechStack "Node.js (Next.js 16), TypeScript, Tailwind v4, Framer Motion, Mollie Payments, OPA (policy gates), SPARQL (product master)" ;
-    qf:hasTimeEquationBefore "3-day email ping-pong: client asks → you clarify → you calculate → you send offerte → client negotiates → you adjust → client accepts → you send payment link" ;
-    qf:hasTimeEquationAfter "90-second guided flow: client configures → sees live price → pays via Mollie → order confirmed" ;
-    qf:hasTimeEquationBeforeHours "24.0"^^xsd:decimal ;
-    qf:hasTimeEquationAfterHours "0.025"^^xsd:decimal ;
-    qf:hasTimeSavingHours "23.975"^^xsd:decimal ;
-    qf:hasBusinessEffect "Eliminates quote ghosting, captures deposit upfront, reduces sales cycle from days to minutes, qualifies budget before human touch" ;
-    qf:hasProofUrl <https://zzpackage.flexgrafik.nl/voertuigreclame-ontwerp/> ;
-    qf:hasIntent "money" ;
-    qf:hasIntent "efficiency" ;
-    dct:created "2026-06-15"^^xsd:date ;
-    dct:modified "2026-08-02"^^xsd:date ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/zzpackage> ;
-    rdfs:comment "Spearhead module. 9 UI screens, 7 business decision stages. 167 active SKUs in product master. Live checkout with Mollie."@en .
-
-# =============================================================================
-# PATCHER 2: Trust Portal & Supervised AI Chat
-# =============================================================================
-qf:patcher-portal a qf:Patcher ;
-    qf:hasTurtleId "qf:patcher-portal" ;
-    qf:hasSystemName "Trust Portal & Supervised AI Chat" ;
-    qf:hasRepoKey "flexgrafik-nl" ;
-    qf:hasStatus "PROVEN" ;
-    qf:hasTechStack "Node.js (Next.js 16), React 19, TypeScript, Tailwind v4, Supervised AI Chat (customer_agent), OPA qualification gates" ;
-    qf:hasTimeEquationBefore "Brochure website: visitors browse → leave → zero capture → you wonder why enquiries are flat" ;
-    qf:hasTimeEquationAfter "Trust path: visitor lands → sees proof → supervised chat qualifies → handoff to Wizard or booked call" ;
-    qf:hasTimeEquationBeforeHours "0"^^xsd:decimal ;
-    qf:hasTimeEquationAfterHours "0.5"^^xsd:decimal ;
-    qf:hasTimeSavingHours "12.0"^^xsd:decimal ;
-    qf:hasBusinessEffect "Converts anonymous traffic into qualified handoffs. Generic sales chat LIVE. Qualification API proven. Portal UX rollout PARTIAL." ;
-    qf:hasProofUrl <https://flexgrafik.nl/> ;
-    qf:hasIntent "money" ;
-    qf:hasIntent "order" ;
-    dct:created "2026-05-20"^^xsd:date ;
-    dct:modified "2026-07-19"^^xsd:date ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/flexgrafik-nl> ;
-    rdfs:comment "Qualification API LIVE. Portal UX remains generic (INT-012). Supervised chat prevents hallucination in client-facing context."@en .
-
-# =============================================================================
-# PATCHER 3: Lead Magnet Game (Bouwplaats Chaos)
-# =============================================================================
-qf:patcher-game a qf:Patcher ;
-    qf:hasTurtleId "qf:patcher-game" ;
-    qf:hasSystemName "Lead Magnet Game (Bouwplaats Chaos)" ;
-    qf:hasRepoKey "app.flexgrafik.nl" ;
-    qf:hasStatus "PROVEN" ;
-    qf:hasTechStack "Node.js (Next.js 16), React 19, TypeScript, Canvas/PWA, Tailwind v4, Leaderboard engine, Wizard bridge with tier-aware codes" ;
-    qf:hasTimeEquationBefore "Paid ads → cold landing page → 2% convert → 98% waste → you chase unqualified leads" ;
-    qf:hasTimeEquationAfter "Play → reward (discount code) → Wizard handoff with tier-aware code → only qualified buyers reach you" ;
-    qf:hasTimeEquationBeforeHours "8.0"^^xsd:decimal ;
-    qf:hasTimeEquationAfterHours "0.25"^^xsd:decimal ;
-    qf:hasTimeSavingHours "7.75"^^xsd:decimal ;
-    qf:hasBusinessEffect "Selective acquisition: 5 levels (Beginner → Boss: Belastingdienst), 4-tier reward ladder, monthly seasons. Game-sourced visitors enter same configurator paying clients use." ;
-    qf:hasProofUrl <https://app.flexgrafik.nl/> ;
-    qf:hasIntent "money" ;
-    dct:created "2026-04-10"^^xsd:date ;
-    dct:modified "2026-07-19"^^xsd:date ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/app.flexgrafik.nl> ;
-    rdfs:comment "PWA, rewards, Wizard bridge, lead sync INT-004 LIVE. Selective fit — not default after every Web Upgrade."@en .
-
-# =============================================================================
-# PATCHER 4: Branding Inspiration Engine
-# =============================================================================
-qf:patcher-inspire a qf:Patcher ;
-    qf:hasTurtleId "qf:patcher-inspire" ;
-    qf:hasSystemName "Branding Inspiration Engine" ;
-    qf:hasRepoKey "zzpackage" ;
-    qf:hasSubPath "voertuigreclame-ontwerp" ;
-    qf:hasStatus "PROVEN" ;
-    qf:hasTechStack "Node.js (Next.js 16), TypeScript, Tailwind v4, Structured intake forms, Standard/Premium mockup generator, Studio quote pipeline" ;
-    qf:hasTimeEquationBefore "15 hours manual design briefs per client: WhatsApp back-and-forth → vague requirements → scope creep → endless revisions → no deposit" ;
-    qf:hasTimeEquationAfter "5-minute structured intake → Standard/Premium mockups generated → Studio quote in 48h → deposit before production" ;
-    qf:hasTimeEquationBeforeHours "15.0"^^xsd:decimal ;
-    qf:hasTimeEquationAfterHours "0.083"^^xsd:decimal ;
-    qf:hasTimeSavingHours "14.917"^^xsd:decimal ;
-    qf:hasBusinessEffect "Eliminates scope creep, captures deposit, standardizes visual direction before price. Customer path ends in offerte concierge — no Wizard checkout." ;
-    qf:hasProofUrl <https://zzpackage.flexgrafik.nl/voertuigreclame-ontwerp/> ;
-    qf:hasIntent "money" ;
-    qf:hasIntent "order" ;
-    qf:hasIntent "calm" ;
-    dct:created "2026-06-01"^^xsd:date ;
-    dct:modified "2026-08-02"^^xsd:date ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/zzpackage> ;
-    rdfs:comment "Standard mockup (visual direction) + Premium mockup (print-ready direction). Studio quotes in 48h. Supervised intake flow."@en .
-
-# =============================================================================
-# PATCHER 5: Quietforge DSaaS Platform (VCMS + Mission Control + Agent OS)
-# =============================================================================
-qf:patcher-dsaas a qf:Patcher ;
-    qf:hasTurtleId "qf:patcher-dsaas" ;
-    qf:hasSystemName "Quietforge DSaaS Platform (VCMS + Mission Control + Agent OS)" ;
-    qf:hasRepoKey "flex-vcms" ;
-    qf:hasComponentRepos "flex-vcms, agent-os, agent-os-ui" ;
-    qf:hasStatus "PROVEN" ;
-    qf:hasTechStack "Node.js, Python (FastAPI), OPA (Rego), SPARQL, LangGraph, TypeScript, GitHub Actions CI/CD, EU VPS hosting" ;
-    qf:hasTimeEquationBefore "Ad-hoc changes: no logged gate → silent drift → production breaks → firefighting weekends" ;
-    qf:hasTimeEquationAfter "Fixed supervised workflow: 8-repo scan → conflict detection → KODA assistant → HITL approve → deploy with audit trail" ;
-    qf:hasTimeEquationBeforeHours "6.0"^^xsd:decimal ;
-    qf:hasTimeEquationAfterHours "0.5"^^xsd:decimal ;
-    qf:hasTimeSavingHours "5.5"^^xsd:decimal ;
-    qf:hasBusinessEffect "Governance: 8-repo scan, Conflicts: 0 target. Operations: Commander cockpit, Marketing Brain shadow F0-F3, weekly HITL brief. Engineering: 5-node LangGraph, hybrid VPS+local, prod E2E handoff." ;
-    qf:hasProofUrl <https://os.flexgrafik.nl/> ;
-    qf:hasIntent "time" ;
-    qf:hasIntent "calm" ;
-    qf:hasIntent "order" ;
-    qf:hasIntent "efficiency" ;
-    dct:created "2026-03-15"^^xsd:date ;
-    dct:modified "2026-08-02"^^xsd:date ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/flex-vcms> ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/agent-os> ;
-    prov:wasGeneratedBy <https://github.com/wozniaknorbert95-del/agent-os-ui> ;
-    rdfs:comment "Three-brain architecture: VCMS (Governance), Jadzia COI (Operations), Agent OS (Engineering). HITL always. Zasada 11: Deploy manual only."@en .
-
-# =============================================================================
-# INTENT MAPPING FOR QUERYING
-# =============================================================================
-qf:intent-time a qf:Intent ;
-    rdfs:label "Save time"@en ;
-    rdfs:label "Tijd besparen"@nl .
-
-qf:intent-money a qf:Intent ;
-    rdfs:label "Earn more"@en ;
-    rdfs:label "Meer verdienen"@nl .
-
-qf:intent-order a qf:Intent ;
-    rdfs:label "Order systems and tech"@en ;
-    rdfs:label "Systemen en tech ordenen"@nl .
-
-qf:intent-calm a qf:Intent ;
-    rdfs:label "Less chaos and stress"@en ;
-    rdfs:label "Minder chaos en stress"@nl .
-
-qf:intent-efficiency a qf:Intent ;
-    rdfs:label "Raise team efficiency"@en ;
-    rdfs:label "Teamefficiëntie verhogen"@nl .
-
-# Link patchers to intents
-qf:patcher-wizard qf:hasIntent qf:intent-money, qf:intent-efficiency .
-qf:patcher-portal qf:hasIntent qf:intent-money, qf:intent-order .
-qf:patcher-game qf:hasIntent qf:intent-money .
-qf:patcher-inspire qf:hasIntent qf:intent-money, qf:intent-order, qf:intent-calm .
-qf:patcher-dsaas qf:hasIntent qf:intent-time, qf:intent-calm, qf:intent-order, qf:intent-efficiency .
+qf:VcmsScan a qf:Patcher ;
+    rdfs:label "VCMS Governance Scan" ;
+    qf:techStack "Next.js App Router, Flex-vcms Assistant, Node.js" ;
+    qf:beforeManualHours "5.0"^^xsd:decimal ;
+    qf:afterAutomatedSeconds "5.0"^^xsd:decimal ;
+    qf:timeSavingEquation "Before: 5 hours manual dependency checking, site audit, and conflict reporting vs After: 5 seconds automated integrity scan." ;
+    qf:hasReadinessStatus "LIVE" .

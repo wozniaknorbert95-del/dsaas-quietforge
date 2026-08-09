@@ -1,200 +1,68 @@
-# Quietforge Growth OS — Marketing & Positioning Infrastructure
+# Quietforge Growth OS
 
-**STATUS: Awaiting DSaaS Integration. Manual Commander Override Active.**
+This is the B2B Marketing Engine and Operational Architecture for **Quietforge** (`https://quietforge.flexgrafik.nl`), built using **FLEXGRAFIK** (`https://flexgrafik.nl`) as its core case study.
 
----
-
-## System Architecture
+## Directory Structure
 
 ```
-quietforge-growth-os/
-├── c1-leak-patchers/           # Weaponry: 5 verified FlexGrafik systems as OPA-evaluatable patchers
-│   └── patchers.ttl            # RDF/Turtle: qf:Patcher instances with tech stack, time equations
-├── c2-target-matrix/           # Intelligence: Dutch ZZP/SMB niches with leak mapping
-│   ├── prospects.ttl           # RDF/Turtle: qf:Target instances with detected leaks
-│   └── hot-matches.ttl         # RDF/Turtle: qf:Match instances with priority scores
-├── templates/                  # Brand DNA
-│   ├── brand-voice.json        # Cwany Cheater archetype semantic rules
-│   └── prompt-templates/       # Reusable prompt scaffolding
-└── content-engine/             # Production pipeline
+/quietforge-growth-os
+├── README.md                           # Main engineering documentation
+├── c1-leak-patchers/
+│   └── patchers.ttl                    # Semantic definition of our 5 leak-patching systems (Turtle)
+├── c2-target-matrix/
+│   ├── prospects.ttl                   # Identification of Dutch SMB/ZZP target niches and leaks (Turtle)
+│   └── hot-matches.ttl                 # Hot mapping connecting targets, leaks, and patchers (Turtle)
+├── templates/
+│   ├── brand-voice.json                # "Cwany Cheater" archetype programmable LLM parameters
+│   └── prompt-templates/
+│       └── linkedin_generator.json     # Template for direct attack LinkedIn copywriting
+└── content-engine/
     ├── opa-policies/
-    │   └── marketing_guardrails.rego  # Policy-as-code: economic guardrails for every post
-    └── proposals/              # 10 launch-ready marketing assets
-        ├── linkedin-01-wizard-quote-leak.md
-        ├── linkedin-02-inbox-chaos-leak.md
-        ├── linkedin-03-lead-magnet-leak.md
-        ├── linkedin-04-vcms-governance-leak.md
-        ├── linkedin-05-jadzia-ops-command.md
-        ├── facebook-01-car-wrapping-zzo.md
-        ├── facebook-02-creative-agency-admin.md
-        ├── facebook-03-premium-craftsman-quotes.md
-        ├── shorts-01-octopus-hammer-wizard.md
-        └── shorts-02-octopus-hammer-jadzia.md
+    │   └── marketing_guardrails.rego   # OPA policy implementing CPA/margin economic guardrail
+    └── proposals/
+        ├── post_1_linkedin_inbox.md    # LinkedIn Post: The Inbox Killer for Dutch Agencies
+        ├── post_2_linkedin_wizard.md   # LinkedIn Post: Wizard Cash Engine for Dutch Freelancers
+        ├── post_3_linkedin_game.md     # LinkedIn Post: Lead Magnet Game for Dutch Agencies
+        ├── post_4_linkedin_branding.md  # LinkedIn Post: Car Wrapping Automation Engine
+        ├── post_5_linkedin_platform.md  # LinkedIn Post: Chaos of Unconnected Software Tools
+        ├── post_6_fb_agencies.md       # Facebook Post: Stop Working on Rotterdam Terraces
+        ├── post_7_fb_wrapping.md       # Facebook Post: Stop Wasting Vinyl and Time
+        ├── post_8_fb_crafts.md         # Facebook Post: Less Paperwork, More Cold Beers
+        ├── script_9_yt_intake.md       # YouTube Short Script: Manual Quoting Smasher
+        └── script_10_yt_nothing.md     # YouTube Short Script: "Robię Nic, Bo Mogę"
 ```
 
----
+## System Definitions & Tech Stacks (c1-leak-patchers)
 
-## Dual-Agent Operating Model
+Quietforge operates on 5 core conversion and back-office systems, represented semantically in `patchers.ttl`:
 
-| Agent | Role | Authority |
-|-------|------|-----------|
-| **Lead Systems Architect** | Infrastructure, policy-as-code, semantic integrity, OPA evaluation | `c1-leak-patchers/`, `c2-target-matrix/`, `content-engine/opa-policies/`, `templates/` |
-| **B2B CMO** | Positioning, copy, channel strategy, Dutch market localization | `content-engine/proposals/`, `templates/brand-voice.json` |
+1. **Wizard Cash Engine (`qf:WizardCashEngine` - zzpackage):** Fully automated quoting and pre-payment intake.
+   - *Tech Stack:* Next.js 16, React 19, Tailwind v4, Mollie SDK, Calendly API.
+   - *Time Saving:* 10 hours manual quoting reduced to a 10-second client-side checkout.
+2. **Inbox Killer (`qf:InboxKiller`):** Intelligent triage, lead qualification, and automated drafting.
+   - *Tech Stack:* Next.js, OpenAI API, Tailwind v4, Vercel.
+   - *Time Saving:* 15 hours manual email management reduced to a 2-minute automated review.
+3. **Jadzia COI Backend (`qf:JadziaCOI`):** Back-office orchestrator for contract drafting and KvK lookup.
+   - *Tech Stack:* Next.js, Jadzia Engine, Node.js, Webhooks.
+   - *Time Saving:* 20 hours manual admin reduced to a 30-second webhook automation.
+4. **Lead Magnet Game (`qf:LeadMagnetGame`):** Highly qualified gamified lead generation.
+   - *Tech Stack:* React 19, Tailwind v4, GA4 Custom Events, Next.js.
+   - *Time Saving:* 8 hours of cold outreach pitches reduced to 15 seconds interactive qualification.
+5. **VCMS Governance Scan (`qf:VcmsScan`):** System health scan and automated conflict resolver.
+   - *Tech Stack:* Next.js, Flex-vcms Assistant, Node.js.
+   - *Time Saving:* 5 hours manual dependency and site health checking reduced to 5 seconds.
 
----
+## Open Policy Agent Guardrail (OPA)
 
-## Core Invariants (Non-Negotiable)
+To safeguard marketing spending, the `marketing_guardrails.rego` policy enforces an immutable financial constraint:
 
-1. **Economic Guardrail** — Every marketing proposal must pass OPA policy: `target_cpa < (0.40 * gross_margin)`
-2. **Proof Discipline** — Every claim labeled: **PROVEN** / **DEMO** / **PLANNED** (per `marketing-rules.md` MR-13)
-3. **No Hashtag Clouds** — Zero hashtags by default (per `AI_MARKETING_PLAYBOOK.md` §5)
-4. **Dutch-First Localization** — KVK, Belastingdienst, BTW, offerte, administratie, ZZP terminology mandatory
-5. **Time as Currency** — Every post quantifies hours saved vs. manual process
-6. **Cwany Cheater Voice** — "Robię nic, bo mogę. Moje systemy działają w tle." — raw, honest, non-corporate
-7. **Manual Commander Override** — All 10 posts are pre-approved for immediate Commander selection & publish
+$$\text{CPA}_{\text{target}} < 0.40 \times \text{Gross Margin}$$
 
----
+This policy runs on our automated ad networks, blocking campaigns programmatically if target acquisition costs exceed 40% of the services gross margins.
 
-## Data Flow
+## Brand Voice - "Cwany Cheater" (templates/brand-voice.json)
 
-```mermaid
-flowchart LR
-    A[C1: 5 Verified Patchers] --> D[OPA Policy Evaluation]
-    B[C2: Dutch Target Matrix] --> D
-    C[Brand Voice JSON] --> D
-    D --> E{PASS/FAIL}
-    E -->|PASS| F[content-engine/proposals/]
-    E -->|FAIL| G[Reject with error message]
-    F --> H[Commander Selects & Publishes]
-```
-
----
-
-## C1 — The 5 Verified Patchers (PROVEN)
-
-| ID | System | Repo | Time Equation (Before → After) |
-|----|--------|------|--------------------------------|
-| `qf:patcher-wizard` | Wizard Cash Engine & Checkout Flow | `zzpackage` | 3-day email ping-pong → 90-second guided checkout |
-| `qf:patcher-portal` | Trust Portal & Supervised AI Chat | `flexgrafik-nl` | Generic brochure site → Qualified handoff in one session |
-| `qf:patcher-game` | Lead Magnet Game (Bouwplaats Chaos) | `app.flexgrafik.nl` | Cold traffic → Play → Reward → Wizard handoff (selective) |
-| `qf:patcher-inspire` | Branding Inspiration Engine | `zzpackage/voertuigreclame-ontwerp` | 15h manual design briefs → 5-min structured intake → Studio quote in 48h |
-| `qf:patcher-dsaas` | Quietforge DSaaS Platform (VCMS + Mission Control + Agent OS) | `flex-vcms` + `agent-os-ui` + `agent-os` | Ad-hoc changes → Governed workflow with HITL gate |
-
----
-
-## C2 — Target Niches (Researched Dutch Market)
-
-| Niche | Hidden Leak | Matched Patcher | Priority Score |
-|-------|-------------|-----------------|----------------|
-| Car Wrapping / Foliering Shops | Weekends writing manual `offerte`, chasing `BTW` invoices | `qf:patcher-wizard`, `qf:patcher-inspire` | 94/100 |
-| Creative Agencies (Branding/Design) | 12h/week unstructured design briefs, scope creep, no deposit system | `qf:patcher-inspire`, `qf:patcher-portal` | 89/100 |
-| Premium Craftsmen (Custom Furniture, Specialist Trades) | WhatsApp chaos, no qualification, "kan je even kijken?" time vampires | `qf:patcher-wizard`, `qf:patcher-game` | 87/100 |
-
----
-
-## OPA Policy: Economic Guardrail
-
-**File:** `content-engine/opa-policies/marketing_guardrails.rego`
-
-```rego
-package marketing.guardrails
-
-allow := true {
-    input.target_cpa < (0.40 * input.gross_margin)
-}
-
-error_message := msg {
-    not allow
-    margin_40 := 0.40 * input.gross_margin
-    msg := sprintf("ECONOMIC VIOLATION: target_cpa %.2f >= 40%% gross_margin (%.2f). Abort or reduce CPA.", [input.target_cpa, margin_40])
-}
-```
-
-**Input schema:**
-```json
-{
-  "estimated_reach": 5000,
-  "target_cpa": 120,
-  "product_price": 290,
-  "gross_margin": 0.60
-}
-```
-
----
-
-## Brand Voice: Cwany Cheater
-
-**Archetype:** The smart operator who built systems so they don't have to work.
-- **Core truth:** "Robię nic, bo mogę. Moje systemy działają w tle."
-- **Currency:** TIME (not money, not "efficiency" — TIME)
-- **Tone:** Raw, honest, slightly provocative, zero corporate speak
-- **Dutch DNA:** KVK, Belastingdienst, BTW, offerte, administratie, ZZP, "lekker op het terrasje"
-- **Self-improvement:** Systems adapt via OPA policies + performance ledger feedback
-
----
-
-## 10 Launch-Ready Posts (Content Engine Proposals)
-
-All posts:
-- ✅ Pair specific C1 patcher + C2 target
-- ✅ Use Cwany Cheater voice with Dutch localization
-- ✅ Quantify time savings (hours → seconds)
-- ✅ Include system diagrams (Markdown) or visual storyboard
-- ✅ Pass OPA economic guardrail
-- ✅ Zero placeholders — copy-paste ready
-
-| # | Channel | Title | C1 Patcher | C2 Target | Time Hook |
-|---|---------|-------|------------|-----------|-----------|
-| 1 | LinkedIn | The 3-Day Quote Ping-Pong Is Dead | Wizard | Car Wrapping | 72h → 90s |
-| 2 | LinkedIn | Your Inbox Is Not a To-Do List | Portal | Creative Agency | 12h/wk → 0 |
-| 3 | LinkedIn | Stop Chasing Clicks. Start Qualifying Humans. | Game | Premium Craftsman | €0 wasted → qualified only |
-| 4 | LinkedIn | Governance Is Not Bureaucracy. It's Survival. | DSaaS (VCMS) | All | Drift detected → Conflicts: 0 |
-| 5 | LinkedIn | One Cockpit. Every Lead. Every Order. Every Week. | DSaaS (Jadzia) | All | 3 silos → 1 brief |
-| 6 | Facebook | Folierders: Hoe lang nog offertes schrijven op zondag? | Wizard + Inspire | Car Wrapping | Zondag 4h → 5 min |
-| 7 | Facebook | Creatieve bureaus: Scope creep eet je marge op | Inspire + Portal | Creative Agency | 15h briefs → gestructureerd |
-| 8 | Facebook | Specialisten: "Kan je even kijken?" is geen businessmodel | Wizard + Game | Premium Craftsman | Gratis advies → betaalde intake |
-| 9 | Shorts | Ośmiornica z Młotkiem vs. Excel Quote Tracker | Wizard | Car Wrapping | Visual: smashes spreadsheet |
-| 10 | Shorts | Ośmiornica z Młotkem vs. Outlook Inbox Chaos | Jadzia | All | Visual: smashes Outlook icon |
-
----
-
-## Usage Protocol (Commander Workflow)
-
-```bash
-# 1. Verify all proposals pass economic guardrail
-opa eval -i content-engine/proposals/linkedin-01-wizard-quote-leak.json \
-  -d content-engine/opa-policies/marketing_guardrails.rego \
-  "data.marketing.guardrails"
-
-# 2. Select post(s) for today
-# 3. Copy content from proposal → LinkedIn / Facebook / YouTube
-# 4. Add UTMs: ?utm_source=linkedin&utm_medium=organic&utm_campaign=qf-growth-os-001
-# 5. Publish. Track: profile views, qualified replies, booked Map slots
-# 6. Log result in handoff: docs/operations/handoffs/YYYY-MM-DD-growth-os-publish.md
-```
-
----
-
-## Integration with Quietforge Canon
-
-- **Strategy Rules:** `docs/canons/strategy-rules.md` (SR-01 through SR-18)
-- **Marketing Rules:** `docs/canons/marketing-rules.md` (MR-01 through MR-18)
-- **Site Map:** `docs/strategy/site-map.md` §3 (home order), §8 (pricing)
-- **Conversion Pipeline:** `docs/strategy/conversion-pipeline.md` (CTA tiers, funnel)
-- **Proof Manifest:** `src/content/proof.ts` (PROVEN/DEMO/PLANNED labels)
-- **Ecosystem:** `src/content/ecosystem.ts` (modules, repos, intents)
-- **Authority Chain:** `docs/architecture/authority-chain.md`
-
----
-
-## Next Phase: DSaaS Integration (Post-Manual Override)
-
-When DSaaS platform is live (~2 months):
-1. Replace manual Commander selection with automated proposal → approval → publish pipeline
-2. Connect OPA policies to real-time GA4/LinkedIn analytics
-3. Enable performance ledger feedback loop (self-improving Cwany Cheater)
-4. Scale from 10 posts → continuous content engine with A/B testing
-
----
-
-*Owner: Norbert Wozniak (Dowódca) · Created: 2026-08-09 · Status: Launch-ready under Manual Commander Override*
+The tone represents our rogue contractor identity:
+- **Time as Currency:** Wasting hours sitting inside a stuffy Rotterdam office on Friday afternoons doing manual fakturowanie instead of sitting on a terrace drinking a Heineken with friends is a financial and emotional tragedy.
+- **Moje systemy działają w tle. Robię nic, bo mogę.**
+- **Zero AI-isms:** Highly pragmatic, direct, unfiltered English peppered with real Dutch business terms (`KVK`, `BTW`, `Belastingdienst`, `offerte`, `administratie`).

@@ -1,240 +1,58 @@
 @prefix qf: <https://quietforge.flexgrafik.nl/ontology/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-
-# =============================================================================
-# C2 TARGET MATRIX — Dutch ZZP/SMB Niches with Detected Leaks
-# =============================================================================
-# Researched target niches: Car Wrapping, Creative Agencies, Premium Craftsmen
-# Each target is a qf:Target with detected leaks mapped to C1 patchers
-# =============================================================================
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 qf:Target a rdfs:Class ;
-    rdfs:label "Target Niche"@en ;
-    rdfs:comment "A Dutch ZZP or small business niche with quantified operational leaks."@en .
+    rdfs:label "Niche Target ICP" ;
+    rdfs:comment "A specific Dutch SMB/ZZP business niche targeting group." .
 
-qf:hasTurtleId a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:string .
+qf:CreativeAgencies a qf:Target ;
+    rdfs:label "Dutch Creative Agencies" ;
+    qf:hasNicheRegion "Netherlands (NL)" ;
+    qf:typicalSize "ZZP / small BV (2-15 employees)" ;
+    qf:hasLeak qf:ManualProposalDrafting ;
+    qf:hasLeak qf:UnqualifiedDiscoveryCalls .
 
-qf:hasNicheName a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:string .
+qf:CarWrappingShops a qf:Target ;
+    rdfs:label "Premium Car Wrapping and Branding Shops" ;
+    qf:hasNicheRegion "Netherlands (NL)" ;
+    qf:typicalSize "ZZP / small BV (1-8 employees)" ;
+    qf:hasLeak qf:ManualVehicleBrandingEstimates ;
+    qf:hasLeak qf:UnstructuredAssetCollection .
 
-qf:hasNicheNameNL a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:string .
+qf:PremiumTradesmen a qf:Target ;
+    rdfs:label "Premium Tradesmen (Aannemers & Builders)" ;
+    qf:hasNicheRegion "Netherlands (NL)" ;
+    qf:typicalSize "ZZP / small BV (1-12 employees)" ;
+    qf:hasLeak qf:ManualOffertePreparation ;
+    qf:hasLeak qf:LateInvoiceFollowups .
 
-qf:hasKvkCode a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:string ;
-    rdfs:label "KVK (Chamber of Commerce) industry code"@en .
+qf:ManualProposalDrafting a qf:Leak ;
+    rdfs:label "Manual RFP and Proposal drafting" ;
+    qf:wastedHoursPerWeek "12.0"^^xsd:decimal ;
+    qf:leakDescription "Wasting hours drafting custom proposals for leads who might not even have a budget of €1,000+." .
 
-qf:hasEstimatedMarketSize a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:integer ;
-    rdfs:label "Estimated number of businesses in NL"@en .
+qf:UnqualifiedDiscoveryCalls a qf:Leak ;
+    rdfs:label "Unqualified free consulting calls" ;
+    qf:wastedHoursPerWeek "8.0"^^xsd:decimal ;
+    qf:leakDescription "Conducting multiple free 45-minute discovery calls each week with brochure-only clients." .
 
-qf:hasAvgRevenue a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:integer ;
-    rdfs:label "Average annual revenue EUR"@en .
+qf:ManualVehicleBrandingEstimates a qf:Leak ;
+    rdfs:label "Manual vehicle-branding offer calculation" ;
+    qf:wastedHoursPerWeek "10.0"^^xsd:decimal ;
+    qf:leakDescription "Manually measuring vinyl square meters and calculating film costs for various vehicle templates." .
 
-qf:hasDecisionSpeed a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:string ;
-    rdfs:label "Decision speed: fast, medium, slow"@en .
+qf:UnstructuredAssetCollection a qf:Leak ;
+    rdfs:label "Chasing clients for high-res logo vectors" ;
+    qf:wastedHoursPerWeek "6.0"^^xsd:decimal ;
+    qf:leakDescription "Endless email chains chasing clients for vector files or vehicle measurements." .
 
-qf:hasPainLevel a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:integer ;
-    rdfs:label "Pain level 1-100"@en .
+qf:ManualOffertePreparation a qf:Leak ;
+    rdfs:label "Manual Offerte preparation and KVK verification" ;
+    qf:wastedHoursPerWeek "15.0"^^xsd:decimal ;
+    qf:leakDescription "Writing custom offer sheets in Word/Excel, double-checking KvK details manually, and waiting for signatures." .
 
-qf:hasDetectedLeak a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range qf:Leak .
-
-qf:hasMatchedPatcher a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range qf:Patcher .
-
-qf:hasPriorityScore a rdf:Property ;
-    rdfs:domain qf:Target ;
-    rdfs:range xsd:integer ;
-    rdfs:label "Hot Match Priority Score 1-100"@en .
-
-qf:Leak a rdfs:Class ;
-    rdfs:label "Operational Leak"@en ;
-    rdfs:comment "A specific, quantified operational pain point."@en .
-
-qf:hasLeakId a rdf:Property ;
-    rdfs:domain qf:Leak ;
-    rdfs:range xsd:string .
-
-qf:hasLeakDescription a rdf:Property ;
-    rdfs:domain qf:Leak ;
-    rdfs:range xsd:string .
-
-qf:hasLeakDescriptionNL a rdf:Property ;
-    rdfs:domain qf:Leak ;
-    rdfs:range xsd:string .
-
-qf:hasLeakCostHoursWeekly a rdf:Property ;
-    rdfs:domain qf:Leak ;
-    rdfs:range xsd:decimal ;
-    rdfs:label "Hours lost per week"@en .
-
-qf:hasLeakCostEurMonthly a rdf:Property ;
-    rdfs:domain qf:Leak ;
-    rdfs:range xsd:integer ;
-    rdfs:label "Estimated EUR cost per month"@en .
-
-qf:hasLeakContextNL a rdf:Property ;
-    rdfs:domain qf:Leak ;
-    rdfs:range xsd:string ;
-    rdfs:label "Dutch market context description"@en .
-
-# =============================================================================
-# LEAK DEFINITIONS (Referenced by targets)
-# =============================================================================
-
-# --- Car Wrapping / Foliering Leaks ---
-qf:leak-carwrap-manual-quotes a qf:Leak ;
-    qf:hasLeakId "leak-carwrap-manual-quotes" ;
-    qf:hasLeakDescription "Manual quote creation for every car wrapping inquiry" ;
-    qf:hasLeakDescriptionNL "Handmatig offertes schrijven voor elke foliering-aanvraag" ;
-    qf:hasLeakCostHoursWeekly "4.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "800"^^xsd:integer ;
-    qf:hasLeakContextNL "Zondagmiddag offertes typen in Excel terwijl de zon schijnt op de Maas. Klant vraagt 'wat kost het?', je meet, reken, typt, stuurt, wacht, onderhandelt. 3 dagen later: 'te duur' of stilte."@nl .
-
-qf:leak-carwrap-btw-invoices a qf:Leak ;
-    qf:hasLeakId "leak-carwrap-btw-invoices" ;
-    qf:hasLeakDescription "Chasing BTW invoices and payment follow-up" ;
-    qf:hasLeakDescriptionNL "BTW-facturen najagen en betalingen herinneren" ;
-    qf:hasLeakCostHoursWeekly "2.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "400"^^xsd:integer ;
-    qf:hasLeakContextNL "Belastingdienst aangifte is al stress genoeg. Nog facturen sturen die niet betaald worden? Dat is gratis geld voor de klant, pijn voor jou."@nl .
-
-qf:leak-carwrap-design-briefs a qf:Leak ;
-    qf:hasLeakId "leak-carwrap-design-briefs" ;
-    qf:hasLeakDescription "Unstructured design briefs leading to scope creep" ;
-    qf:hasLeakDescriptionNL "Ongestructureerde design briefs die leiden tot scope creep" ;
-    qf:hasLeakCostHoursWeekly "6.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "1200"^^xsd:integer ;
-    qf:hasLeakContextNL "Klant wil 'iets moois' maar kan het niet uitleggen. Je maakt 5 ontwerpen, ze kiezen er geen, je werkt gratis. Geen deposit, geen duidelijke scope."@nl .
-
-# --- Creative Agency Leaks ---
-qf:leak-agency-unstructured-briefs a qf:Leak ;
-    qf:hasLeakId "leak-agency-unstructured-briefs" ;
-    qf:hasLeakDescription "Unstructured design briefs causing scope creep and endless revisions" ;
-    qf:hasLeakDescriptionNL "Ongestructureerde briefs die scope creep en oneindige revisies veroorzaken" ;
-    qf:hasLeakCostHoursWeekly "12.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "2400"^^xsd:integer ;
-    qf:hasLeakContextNL "Klant: 'Maak het poppier.' Jij: *versie 12*. Geen deposit, geen vast aantal rondes. Je marge verdampt in WhatsApp-gesprekken op 22:00."@nl .
-
-qf:leak-agency-no-qualification a qf:Leak ;
-    qf:hasLeakId "leak-agency-no-qualification" ;
-    qf:hasLeakDescription "No lead qualification — talking to tire-kickers with €500 budget" ;
-    qf:hasLeakDescriptionNL "Geen lead kwalificatie — praten met luipaarden van €500 budget" ;
-    qf:hasLeakCostHoursWeekly "6.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "1200"^^xsd:integer ;
-    qf:hasLeakContextNL "Je besteedt 2 uur aan een discovery call voor iemand die 'even wil brainstormen'. Tijd die je niet factureert. KVK-nummer checken voordat je belt? Wie doet dat?"@nl .
-
-qf:leak-agency-admin-chaos a qf:Leak ;
-    qf:hasLeakId "leak-agency-admin-chaos" ;
-    qf:hasLeakDescription "Admin chaos: invoices, contracts, BTW, urenregistratie scattered across tools" ;
-    qf:hasLeakDescriptionNL "Administratie chaos: facturen, contracten, BTW, urenregistratie verspreid over tools" ;
-    qf:hasLeakCostHoursWeekly "4.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "800"^^xsd:integer ;
-    qf:hasLeakContextNL "Moneybird voor facturen, Notion voor projecten, Excel voor uren, Gmail voor contracten. Niks praat met elkaar. Maandafsluiting = hel."@nl .
-
-# --- Premium Craftsmen / Specialist Trades Leaks ---
-qf:leak-craftsman-whatsapp-chaos a qf:Leak ;
-    qf:hasLeakId "leak-craftsman-whatsapp-chaos" ;
-    qf:hasLeakDescription "WhatsApp chaos: leads, questions, 'kan je even kijken?' all in one pile" ;
-    qf:hasLeakDescriptionNL "WhatsApp chaos: leads, vragen, 'kan je even kijken?' alles in één hoop" ;
-    qf:hasLeakCostHoursWeekly "8.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "1600"^^xsd:integer ;
-    qf:hasLeakContextNL "Op de werf staan met vuile handen, telefoon trilt. 'Kan je even kijken naar mijn keuken?' Gratis advies, geen commit. 's Avonds 30 appjes doorlezen, 2 series."@nl .
-
-qf:leak-craftsman-no-deposit a qf:Leak ;
-    qf:hasLeakId "leak-craftsman-no-deposit" ;
-    qf:hasLeakDescription "No deposit system — buying materials upfront, client ghosts" ;
-    qf:hasLeakDescriptionNL "Geen deposit systeem — materialen voorschieten, klant verdwijnt" ;
-    qf:hasLeakCostHoursWeekly "3.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "600"^^xsd:integer ;
-    qf:hasLeakContextNL "Hout, verf, beschlag bestellen voor €2000. Klant belt: 'heb het ergens anders gekregen.' Jij zit op de kosten. Geen Mallie checkout, geen deposit."@nl .
-
-qf:leak-craftsman-no-qualification a qf:Leak ;
-    qf:hasLeakId "leak-craftsman-no-qualification" ;
-    qf:hasLeakDescription "No qualification — driving 45 min for 'wat zou het kosten?' conversations" ;
-    qf:hasLeakDescriptionNL "Geen kwalificatie — 45 min rijden voor 'wat zou het kosten?' gesprekken" ;
-    qf:hasLeakCostHoursWeekly "5.0"^^xsd:decimal ;
-    qf:hasLeakCostEurMonthly "1000"^^xsd:integer ;
-    qf:hasLeakContextNL "Benzine, tijd, toleratie. Je rijdt heen, meet, adviseert, stuurt offerte, hoort niks meer. Die middag had je kunnen produceren."@nl .
-
-# =============================================================================
-# TARGET 1: Car Wrapping / Foliering Shops
-# =============================================================================
-qf:target-carwrapping a qf:Target ;
-    qf:hasTurtleId "qf:target-carwrapping" ;
-    qf:hasNicheName "Car Wrapping / Foliering Shops" ;
-    qf:hasNicheNameNL "Autofoliering / Car Wrapping Bedrijven" ;
-    qf:hasKvkCode "43341 / 95111" ;
-    qf:hasEstimatedMarketSize "1200"^^xsd:integer ;
-    qf:hasAvgRevenue "180000"^^xsd:integer ;
-    qf:hasDecisionSpeed "fast" ;
-    qf:hasPainLevel "92"^^xsd:integer ;
-    qf:hasPriorityScore "94"^^xsd:integer ;
-    qf:hasDetectedLeak qf:leak-carwrap-manual-quotes ;
-    qf:hasDetectedLeak qf:leak-carwrap-btw-invoices ;
-    qf:hasDetectedLeak qf:leak-carwrap-design-briefs ;
-    qf:hasMatchedPatcher qf:patcher-wizard ;
-    qf:hasMatchedPatcher qf:patcher-inspire ;
-    dct:created "2026-08-09"^^xsd:date ;
-    rdfs:comment "High pain, fast decision, visual product perfect for Wizard + Inspiration Engine. Zondag offertes = absolute priority."@en .
-
-# =============================================================================
-# TARGET 2: Creative Agencies (Branding, Design, Marketing)
-# =============================================================================
-qf:target-creative-agency a qf:Target ;
-    qf:hasTurtleId "qf:target-creative-agency" ;
-    qf:hasNicheName "Creative Agencies (Branding, Design, Marketing)" ;
-    qf:hasNicheNameNL "Creatieve Bureaus (Branding, Design, Marketing)" ;
-    qf:hasKvkCode "73110 / 74100" ;
-    qf:hasEstimatedMarketSize "8500"^^xsd:integer ;
-    qf:hasAvgRevenue "320000"^^xsd:integer ;
-    qf:hasDecisionSpeed "medium" ;
-    qf:hasPainLevel "85"^^xsd:integer ;
-    qf:hasPriorityScore "89"^^xsd:integer ;
-    qf:hasDetectedLeak qf:leak-agency-unstructured-briefs ;
-    qf:hasDetectedLeak qf:leak-agency-no-qualification ;
-    qf:hasDetectedLeak qf:leak-agency-admin-chaos ;
-    qf:hasMatchedPatcher qf:patcher-inspire ;
-    qf:hasMatchedPatcher qf:patcher-portal ;
-    dct:created "2026-08-09"^^xsd:date ;
-    rdfs:comment "High value, medium speed. Scope creep kills margins. Inspiration Engine structures briefs; Portal qualifies before human time."@en .
-
-# =============================================================================
-# TARGET 3: Premium Craftsmen / Specialist Trades
-# =============================================================================
-qf:target-premium-craftsman a qf:Target ;
-    qf:hasTurtleId "qf:target-premium-craftsman" ;
-    qf:hasNicheName "Premium Craftsmen / Specialist Trades (Custom Furniture, Specialist Installations)" ;
-    qf:hasNicheNameNL "Premium Vaklieden / Specialisten (Maatmeubelen, Specialistische Installaties)" ;
-    qf:hasKvkCode "31010 / 43221 / 43991" ;
-    qf:hasEstimatedMarketSize "3200"^^xsd:integer ;
-    qf:hasAvgRevenue "220000"^^xsd:integer ;
-    qf:hasDecisionSpeed "fast" ;
-    qf:hasPainLevel "88"^^xsd:integer ;
-    qf:hasPriorityScore "87"^^xsd:integer ;
-    qf:hasDetectedLeak qf:leak-craftsman-whatsapp-chaos ;
-    qf:hasDetectedLeak qf:leak-craftsman-no-deposit ;
-    qf:hasDetectedLeak qf:leak-craftsman-no-qualification ;
-    qf:hasMatchedPatcher qf:patcher-wizard ;
-    qf:hasMatchedPatcher qf:patcher-game ;
-    dct:created "2026-08-09"^^xsd:date ;
-    rdfs:comment "Fast decision, high pain. WhatsApp chaos + no deposit = Wizard for qualification/deposit + Game for selective acquisition."@en .
+qf:LateInvoiceFollowups a qf:Leak ;
+    rdfs:label "Manual administratie and chasing late BTW-invoice payments" ;
+    qf:wastedHoursPerWeek "5.0"^^xsd:decimal ;
+    qf:leakDescription "Sending manual invoice reminders on Friday afternoons instead of being on the terrace." .

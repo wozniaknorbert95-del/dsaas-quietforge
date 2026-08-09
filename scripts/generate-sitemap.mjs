@@ -27,6 +27,7 @@ const ROUTES = [
   '/results/jadzia-coi/',
   '/results/advisory-modernisation/',
   '/results/owner-ecosystem/',
+  '/growth-os/',
   '/book-discovery/',
   '/founder/',
   '/about/',

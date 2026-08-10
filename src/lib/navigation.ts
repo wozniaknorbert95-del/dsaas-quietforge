@@ -41,6 +41,12 @@ export const SOLUTIONS_NAV: readonly SolutionNavItem[] = [
     price: PRICING_MATRIX.salesFunnel.range,
   },
   {
+    label: 'ZZP Profile Boost',
+    href: ROUTES.zzpProfileBoost,
+    badge: 'ZZP • New',
+    price: '€390–€1.290',
+  },
+  {
     label: 'Ops Command Layer',
     href: ROUTES.resultsJadziaCoi,
     badge: 'Ops',

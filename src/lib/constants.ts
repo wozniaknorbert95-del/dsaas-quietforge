@@ -71,6 +71,8 @@ export const ROUTES = {
   bookDiscovery: '/book-discovery/',
   legal: '/legal/',
   leadMagnet: '/artefacts/automation-map-sample.pdf',
+  zzpProfileBoost: '/solutions/zzp-profile-boost/',
+  zzpGrowth: '/solutions/zzp-profile-boost/',
 } as const;
 
 /** Owner ecosystem — external live demos */

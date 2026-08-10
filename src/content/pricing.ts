@@ -13,6 +13,10 @@ export const PRICING_NUMBERS = {
   ecosystemBuild: { from: 3490, to: 12000 },
   managedAutomation: { from: 349, to: 890 },
   budgetQualificationFloor: 1200,
+  zzpLinkedIn: { from: 490, to: 1290 },
+  zzpFacebook: { from: 690, to: 1900 },
+  zzpGoogle: { from: 390, to: 990 },
+  zzpCombo: { from: 1490, to: 2990 },
 } as const;
 
 export function formatEuro(amount: number): string {
@@ -79,6 +83,34 @@ export const PRICING_MATRIX = {
       PRICING_NUMBERS.managedAutomation.from,
       PRICING_NUMBERS.managedAutomation.to,
       true
+    ),
+  },
+  zzpLinkedIn: {
+    label: 'ZZP LinkedIn Pack',
+    range: formatRange(
+      PRICING_NUMBERS.zzpLinkedIn.from,
+      PRICING_NUMBERS.zzpLinkedIn.to
+    ),
+  },
+  zzpFacebook: {
+    label: 'ZZP Facebook Autopilot',
+    range: formatRange(
+      PRICING_NUMBERS.zzpFacebook.from,
+      PRICING_NUMBERS.zzpFacebook.to
+    ),
+  },
+  zzpGoogle: {
+    label: 'ZZP Google Business',
+    range: formatRange(
+      PRICING_NUMBERS.zzpGoogle.from,
+      PRICING_NUMBERS.zzpGoogle.to
+    ),
+  },
+  zzpCombo: {
+    label: 'ZZP Growth Engine (Combo)',
+    range: formatRange(
+      PRICING_NUMBERS.zzpCombo.from,
+      PRICING_NUMBERS.zzpCombo.to
     ),
   },
 } as const;

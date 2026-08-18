@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "tenant_id": "quietforge",
+  "display_name": "QuietForge",
+  "status": "active-test",
+  "domain": "quietforge.flexgrafik.nl",
+  "industry": "b2b-conversion-systems",
+  "locale": "en",
+  "decision_owner": "commander",
+  "production_changes": "manual-only",
+  "platform_lock": "../platform.lock.json"
+}

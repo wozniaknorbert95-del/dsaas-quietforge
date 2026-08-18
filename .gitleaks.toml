@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Generated dependency and build outputs are reproducible, ignored artifacts."
+paths = [
+  '''(^|/)\.next(/|$)''',
+  '''(^|/)node_modules(/|$)''',
+  '''(^|/)(out|dist|coverage)(/|$)'''
+]

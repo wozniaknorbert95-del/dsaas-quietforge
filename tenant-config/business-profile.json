@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "tenant_id": "quietforge",
+  "business": {
+    "industry": "ai-operations-and-automation",
+    "primary_market": "nl",
+    "brand_voice": [
+      "calm",
+      "precise",
+      "evidence-led",
+      "no-hype"
+    ]
+  },
+  "goals": [
+    {
+      "id": "qualified-intake",
+      "name": "Increase qualified QuietForge intake",
+      "status": "active-test"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "qualified-intake-rate",
+      "unit": "ratio",
+      "decision_owner": "commander"
+    },
+    {
+      "id": "proposal-to-approval-time",
+      "unit": "hours",
+      "decision_owner": "commander"
+    }
+  ],
+  "budget": {
+    "currency": "EUR",
+    "approval_mode": "manual-only",
+    "limits": []
+  },
+  "integrations": {
+    "configuration_source": "environment",
+    "credentials_in_repository": false,
+    "production_changes": "manual-only"
+  }
+}

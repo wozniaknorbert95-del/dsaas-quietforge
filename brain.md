@@ -1,4 +1,4 @@
-# Brain — services.flexgrafik.nl
+# Brain — dsaas-quietforge
 
 ## Canonical project memory | v2.0 | 2026-06-25
 
@@ -26,7 +26,7 @@
 | | |
 |---|---|
 | **Domain** | `quietforge.flexgrafik.nl` (legacy: `services.flexgrafik.nl`) |
-| **Repo** | `wozniaknorbert95-del/services` (standalone sibling asset) |
+| **Repo** | `wozniaknorbert95-del/dsaas-quietforge` (active DSaaS tenant) |
 | **Role** | B2B Conversion Systems Portfolio — qualify SMB leads + LOS investor bridge |
 | **Positioning** | Conversion Systems Architect — see [`marketing-rules.md`](docs/canons/marketing-rules.md) |
 | **Language** | English (all public B2B assets) |
@@ -70,7 +70,7 @@
 4. **Animations respect `prefers-reduced-motion`.**
 5. **Mobile-first.** Tap targets ≥ 44px.
 6. **Zero secrets in repo.** Keys in `.env.local` (gitignored).
-7. **Deploy:** Vercel auto on push to `master` (marketing asset exception to global Zasada 11).
+7. **Deploy:** manual only by the Commander; repository work must not trigger an autonomous production deploy.
 8. **OG image for every new route** — `scripts/generate-og.mjs`.
 9. **Sitemap** regenerates on build — `scripts/generate-sitemap.mjs`.
 10. **Handoff every session** — `docs/operations/handoffs/YYYY-MM-DD-*.md`.

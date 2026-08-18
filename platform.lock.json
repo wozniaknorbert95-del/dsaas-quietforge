@@ -1,0 +1,16 @@
+{
+  "contract_version": "1.0.0",
+  "platform_repository": "wozniaknorbert95-del/dsaas-platform-main",
+  "platform_release": "kanon/0.3.0",
+  "platform_commit": "7292b2830da001708c2cd273bc061dfae42ed50d",
+  "tenant_schema_version": "1.0.0",
+  "compatibility": {
+    "minimum_platform_release": "kanon/0.3.0",
+    "backward_compatible_with": ["1.x"],
+    "migration_required": false
+  },
+  "rollback": {
+    "strategy": "restore_previous_lock",
+    "requires_commander_approval": true
+  }
+}

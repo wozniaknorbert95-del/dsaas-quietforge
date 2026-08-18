@@ -1,13 +1,13 @@
 {
-  "name": "services",
-  "version": "0.1.0",
+  "name": "dsaas-quietforge",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "generate:og": "node scripts/generate-og.mjs",

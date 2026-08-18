@@ -1,6 +1,6 @@
 ---
 status: "[ACTIVE]"
-title: "Knowledge Map — services.flexgrafik.nl"
+title: "Knowledge Map — dsaas-quietforge"
 owner: "Norbert Wozniak"
 updated: "2026-06-29"
 classification: "L1 — documentation entry point"

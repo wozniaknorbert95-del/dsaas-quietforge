@@ -1,4 +1,4 @@
-# AGENTS — quietforge.flexgrafik.nl
+# AGENTS — dsaas-quietforge
 
 ## Projekt
 Standalone B2B SMB Conversion Systems Portfolio — FlexGrafik Digital (Quietforge).
@@ -36,7 +36,7 @@ Visual implementation: `DESIGN-SYSTEM.md` + `src/app/globals.css`. Project memor
 ## Workflow
 - Hermes = orchestrator (planuje, deleguje, weryfikuje)
 - OpenCode = executor (implementuje komponenty, pages)
-- Deploy: auto via Vercel CD na push do `master`
+- Deploy: wyłącznie ręczny krok Dowódcy; agent nie uruchamia produkcji
 
 ## Zasady
 1. Jeden komponent per sesja OpenCode — nie mega-diffy. Zmiany muszą być zgodne ze strategy canon. **Batch mode:** max 3 sekcje/sesja z build gate między.

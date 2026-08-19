@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Publishing Gate  scan, flag conflicts, approve, then publish</title>
+  <desc id="desc">Sources are scanned for drift. Conflicts block publish until a named person approves.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0e0c0a; }
+      .box { fill: #15120e; stroke: #2a241c; stroke-width: 1.5; }
+      .warn { fill: #d98f4a; fill-opacity: 0.12; stroke: #d98f4a; stroke-width: 1.5; }
+      .gate { fill: #e8a33d; fill-opacity: 0.12; stroke: #e8a33d; stroke-width: 1.5; }
+      .t { fill: #e9e2d4; font-family: ui-monospace, Consolas, monospace; font-size: 14px; font-weight: 700; }
+      .s { fill: #9a907e; font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520"/>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Publishing Gate  nothing live until the conflict list is empty or accepted</text>
+  <text x="600" y="64" class="s" text-anchor="middle">docs · site · offers · named approval · log · rollback</text>
+  <rect class="box" x="48" y="120" width="250" height="80"/><text x="173" y="154" class="t" text-anchor="middle">Scan sources</text><text x="173" y="176" class="s" text-anchor="middle">what is allowed to go live</text>
+  <rect class="warn" x="336" y="120" width="250" height="80"/><text x="461" y="154" class="t" text-anchor="middle">Flag conflicts</text><text x="461" y="176" class="s" text-anchor="middle">price ` site ` PDF</text>
+  <rect class="gate" x="624" y="120" width="250" height="80"/><text x="749" y="154" class="t" text-anchor="middle">You approve</text><text x="749" y="176" class="s" text-anchor="middle">named trail</text>
+  <rect class="box" x="912" y="120" width="240" height="80"/><text x="1032" y="154" class="t" text-anchor="middle">Publish</text><text x="1032" y="176" class="s" text-anchor="middle">log + rollback path</text>
+  <rect class="box" x="200" y="260" width="360" height="72"/><text x="380" y="302" class="s" text-anchor="middle">Read-only explanation  does not publish</text>
+  <rect class="box" x="640" y="260" width="360" height="72"/><text x="820" y="302" class="s" text-anchor="middle">Target: zero unresolved conflicts</text>
+  <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. Live social cadence stays off until you unlock it in writing.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge · quietforge.flexgrafik.nl</text>
+</svg>

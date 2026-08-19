@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Owner Cockpit  one overview, one next action, weekly brief as a draft</title>
+  <desc id="desc">Orders, leads and analytics land in one queue. The weekly brief waits for owner approval.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0e0c0a; }
+      .box { fill: #15120e; stroke: #2a241c; stroke-width: 1.5; }
+      .gate { fill: #e8a33d; fill-opacity: 0.12; stroke: #e8a33d; stroke-width: 1.5; }
+      .t { fill: #e9e2d4; font-family: ui-monospace, Consolas, monospace; font-size: 14px; font-weight: 700; }
+      .s { fill: #9a907e; font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520"/>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Owner Cockpit  one next action, not twenty widgets</text>
+  <text x="600" y="64" class="s" text-anchor="middle">orders · leads · analytics snapshot · draft brief · you decide</text>
+  <rect class="box" x="48" y="120" width="210" height="88"/><text x="153" y="156" class="t" text-anchor="middle">Orders</text><text x="153" y="178" class="s" text-anchor="middle">paid jobs in one list</text>
+  <rect class="box" x="286" y="120" width="210" height="88"/><text x="391" y="156" class="t" text-anchor="middle">Leads</text><text x="391" y="178" class="s" text-anchor="middle">scored · routed</text>
+  <rect class="box" x="524" y="120" width="210" height="88"/><text x="629" y="156" class="t" text-anchor="middle">Analytics</text><text x="629" y="178" class="s" text-anchor="middle">weekly snapshot</text>
+  <rect class="box" x="762" y="120" width="390" height="88"/><text x="957" y="156" class="t" text-anchor="middle">One action queue</text><text x="957" y="178" class="s" text-anchor="middle">what to do now</text>
+  <rect class="box" x="160" y="260" width="360" height="80"/><text x="340" y="296" class="t" text-anchor="middle">Weekly brief as a draft</text><text x="340" y="318" class="s" text-anchor="middle">not an auto-sent newsletter</text>
+  <rect class="gate" x="560" y="260" width="360" height="80"/><text x="740" y="296" class="t" text-anchor="middle">You approve</text><text x="740" y="318" class="s" text-anchor="middle">stale data pauses risky steps</text>
+  <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. Full autonomy is not offered. Propose ’ you click.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge · quietforge.flexgrafik.nl</text>
+</svg>

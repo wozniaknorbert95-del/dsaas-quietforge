@@ -17,8 +17,9 @@ export const PRICING_NUMBERS = {
   budgetQualificationFloor: 1200,
 } as const;
 
+/** Public currency: €2,500 (comma thousands). Never €2.500. */
 export function formatEuro(amount: number): string {
-  return `€${amount.toLocaleString('en-NL')}`;
+  return `€${amount.toLocaleString('en-US')}`;
 }
 
 export function formatRange(from: number, to: number, perMonth = false): string {

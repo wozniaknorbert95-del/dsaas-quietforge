@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Build and Release Flow  plan, change, test, you approve, then ship with a log</title>
+  <desc id="desc">Five specialist steps. Production stays a human click. Secrets are scanned before ship.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0e0c0a; }
+      .box { fill: #15120e; stroke: #2a241c; stroke-width: 1.5; }
+      .gate { fill: #e8a33d; fill-opacity: 0.12; stroke: #e8a33d; stroke-width: 1.5; }
+      .t { fill: #e9e2d4; font-family: ui-monospace, Consolas, monospace; font-size: 13px; font-weight: 700; }
+      .s { fill: #9a907e; font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520"/>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Build &amp; Release  a habit, not a platform team</text>
+  <text x="600" y="64" class="s" text-anchor="middle">plan · change one module · test · approve · close with a handoff</text>
+  <rect class="box" x="36" y="120" width="210" height="88"/><text x="141" y="156" class="t" text-anchor="middle">1. Plan</text><text x="141" y="178" class="s" text-anchor="middle">scope on disk</text>
+  <rect class="box" x="266" y="120" width="210" height="88"/><text x="371" y="156" class="t" text-anchor="middle">2. Change</text><text x="371" y="178" class="s" text-anchor="middle">one module</text>
+  <rect class="box" x="496" y="120" width="210" height="88"/><text x="601" y="156" class="t" text-anchor="middle">3. Test</text><text x="601" y="178" class="s" text-anchor="middle">pass / fail report</text>
+  <rect class="gate" x="726" y="120" width="210" height="88"/><text x="831" y="156" class="t" text-anchor="middle">4. You approve</text><text x="831" y="178" class="s" text-anchor="middle">or block</text>
+  <rect class="box" x="956" y="120" width="208" height="88"/><text x="1060" y="156" class="t" text-anchor="middle">5. Close</text><text x="1060" y="178" class="s" text-anchor="middle">handoff + log</text>
+  <rect class="box" x="160" y="260" width="400" height="72"/><text x="360" y="302" class="s" text-anchor="middle">Secret and dependency scan before the click</text>
+  <rect class="box" x="640" y="260" width="400" height="72"/><text x="840" y="302" class="s" text-anchor="middle">No silent deploy to your production</text>
+  <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. Specialist steps  not a free-for-all. You still press the last button.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge · quietforge.flexgrafik.nl</text>
+</svg>

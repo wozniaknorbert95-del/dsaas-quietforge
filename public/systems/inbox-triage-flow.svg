@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Inbox Triage  read, classify, draft, you approve, then send</title>
+  <desc id="desc">Mail is read, sorted into four lanes, drafted, and sent only after a human click.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0e0c0a; }
+      .box { fill: #15120e; stroke: #2a241c; stroke-width: 1.5; }
+      .gate { fill: #e8a33d; fill-opacity: 0.12; stroke: #e8a33d; stroke-width: 1.5; }
+      .t { fill: #e9e2d4; font-family: ui-monospace, Consolas, monospace; font-size: 14px; font-weight: 700; }
+      .s { fill: #9a907e; font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520"/>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Inbox Triage  nothing sends without your click</text>
+  <text x="600" y="64" class="s" text-anchor="middle">read · four lanes · draft · approval gate · send log</text>
+  <rect class="box" x="40" y="110" width="200" height="72"/><text x="140" y="142" class="t" text-anchor="middle">Read</text><text x="140" y="164" class="s" text-anchor="middle">Gmail or Microsoft 365</text>
+  <rect class="box" x="280" y="110" width="200" height="72"/><text x="380" y="142" class="t" text-anchor="middle">Classify</text><text x="380" y="164" class="s" text-anchor="middle">lead · client · invoice · noise</text>
+  <rect class="box" x="520" y="110" width="200" height="72"/><text x="620" y="142" class="t" text-anchor="middle">Draft</text><text x="620" y="164" class="s" text-anchor="middle">your tone · waits</text>
+  <rect class="gate" x="760" y="110" width="200" height="72"/><text x="860" y="142" class="t" text-anchor="middle">You approve</text><text x="860" y="164" class="s" text-anchor="middle">edit · send · discard</text>
+  <rect class="box" x="1000" y="110" width="160" height="72"/><text x="1080" y="142" class="t" text-anchor="middle">Send</text><text x="1080" y="164" class="s" text-anchor="middle">logged</text>
+  <rect class="box" x="160" y="260" width="180" height="56"/><text x="250" y="294" class="s" text-anchor="middle">Lead lane first</text>
+  <rect class="box" x="380" y="260" width="180" height="56"/><text x="470" y="294" class="s" text-anchor="middle">Client threads</text>
+  <rect class="box" x="600" y="260" width="180" height="56"/><text x="690" y="294" class="s" text-anchor="middle">Invoice mail</text>
+  <rect class="box" x="820" y="260" width="180" height="56"/><text x="910" y="294" class="s" text-anchor="middle">Noise archived</text>
+  <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. The approval gate is the product  drafts never leave alone.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge · quietforge.flexgrafik.nl</text>
+</svg>

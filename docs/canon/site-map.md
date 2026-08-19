@@ -111,9 +111,11 @@ S1 creates **thin but honest** S2/S3 destinations so 301s do not 404. Full desig
 11. FAQ
 12. CTA band
 
-## Spoke template
+## Spoke template (B1–B10)
 
-Problem (3) · How it works (4) · What you get · ROI example labelled example · Good to know · Works well with · CTA
+TL;DR (what / typically gives back / replaces) · Cost of inaction (labelled facts + €40/h) · Composite example company · Feature gallery (6–10, repo-backed) · Flow diagram · How it works (4) · What you get · ROI (same math) · FAQ including when NOT · Works well with · CTA (scan + WhatsApp)
+
+Status on Wizard/inbox/lead/cockpit: `PROVEN IN THE LAB`. Publishing gate + build-release: `NEW ON THE PLATFORM`. Never `LIVE AT CLIENT` until verified.
 
 ## Out of scope this sprint
 

@@ -1,10 +1,17 @@
 ---
-status: "[ACTIVE]"
+status: "[SUPERSEDED]"
 title: "LinkedIn Strategy — Quietforge B2B"
 owner: "Norbert Wozniak"
-updated: "2026-06-30"
-version: "3.0 — professional repair"
-classification: "L3 — LinkedIn channel canon"
+updated: "2026-08-19"
+version: "3.0 — SUPERSEDED by docs/canon/linkedin-profile-pack.md"
+classification: "L3 — LinkedIn channel canon (historical)"
+---
+
+# SUPERSEDED — 2026-08-19
+
+Use [`docs/canon/linkedin-profile-pack.md`](../../canon/linkedin-profile-pack.md).  
+Live posting cadence is **PARKED**. Dual-brand “FlexGrafik = proof” is withdrawn.
+
 ---
 
 # LinkedIn — Quietforge B2B Channel

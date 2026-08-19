@@ -1944,3 +1944,43 @@ body[data-app="services"] {
   content-visibility: auto;
   contain-intrinsic-size: 0 500px;
 }
+
+.qf-intent-chip {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--qf-border);
+  background: transparent;
+  color: var(--qf-text-dim);
+  font-size: var(--qf-fs-sm);
+}
+
+.qf-intent-chip[data-active='true'] {
+  border-color: var(--qf-accent);
+  color: var(--qf-accent);
+}
+
+.qf-hours-counter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qf-sp-6);
+  align-items: baseline;
+}
+
+.qf-hours-counter strong {
+  font-size: var(--qf-fs-3xl);
+  color: var(--qf-text);
+}
+
+.qf-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--qf-fs-sm);
+}
+
+.qf-compare-table th,
+.qf-compare-table td {
+  border-bottom: 1px solid var(--qf-border);
+  padding: 12px 8px;
+  text-align: left;
+  vertical-align: top;
+}

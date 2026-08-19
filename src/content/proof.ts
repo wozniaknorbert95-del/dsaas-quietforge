@@ -270,7 +270,7 @@ import { PRICING_MATRIX, PRICING_NUMBERS, formatEuro } from './pricing';
 
 // Pricing tiers — derived from pricing.ts SSoT
 export const pricing = {
-  discovery: { price: PRICING_MATRIX.automationMap.price, note: 'Credited toward your project.' },
+  discovery: { price: PRICING_MATRIX.automationScan.price, note: 'Credited toward implementation.' },
   singleSystem: {
     from: formatEuro(PRICING_NUMBERS.singleSystem.from),
     timeline: '2-3 weeks',

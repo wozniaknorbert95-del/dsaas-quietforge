@@ -10,7 +10,7 @@ export const BRAND_WORDMARK = 'quietforge';
 
 export const BRAND_LOGO = {
   src: '/brand/quietforge-logo.png',
-  alt: 'Quietforge — Conversion Systems Architect',
+  alt: 'Quietforge — system builder for small businesses',
   width: 1024,
   height: 1024,
 } as const;
@@ -22,63 +22,73 @@ export const CREATOR = 'Norbert Wozniak';
 export const WHATSAPP = {
   url:
     process.env.NEXT_PUBLIC_WHATSAPP_URL ??
-    'https://wa.me/31687286151?text=Hi%20Norbert%2C%20I%27d%20like%20to%20explore%20conversion%20systems%20for%20my%20business.',
-  /** Fast path: ready buyer asking for Map payment link */
+    'https://wa.me/31687286151?text=Hi%20Norbert%2C%20I%27d%20like%20to%20book%20an%20Automation%20Scan%20for%20my%20business.',
   bookMapUrl:
     process.env.NEXT_PUBLIC_WHATSAPP_BOOK_MAP_URL ??
-    'https://wa.me/31687286151?text=Hi%20Norbert%2C%20I%20want%20to%20book%20the%20Automation%20Map%20(%E2%82%AC290)%20%E2%80%94%20please%20send%20the%20payment%20link%20and%20available%20slots.',
+    'https://wa.me/31687286151?text=Hi%20Norbert%2C%20I%20want%20to%20book%20the%20Automation%20Scan%20(%E2%82%AC690)%20%E2%80%94%20please%20send%20the%20payment%20link%20and%20available%20slots.',
   label: 'Ask on WhatsApp',
-  bookMapLabel: 'WhatsApp — send me the €290 link',
+  bookMapLabel: 'WhatsApp — send me the €690 link',
   offlineFallback: `mailto:${EMAIL}?subject=WhatsApp%20unavailable`,
 } as const;
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/flexgrafik-quietforge';
+/** Lab heritage only — never labelled live proof in public chrome. */
 export const FLEXGRAFIK_URL = 'https://flexgrafik.nl';
 
 /** External social / connect links — footer, about, JSON-LD sameAs */
 export const SOCIAL_LINKS = [
   { label: 'LinkedIn profile', href: LINKEDIN_URL, icon: 'linkedin' as const },
-  { label: 'FlexGrafik — live proof', href: FLEXGRAFIK_URL, icon: 'globe' as const },
   { label: WHATSAPP.label, href: WHATSAPP.url, icon: 'whatsapp' as const },
 ] as const;
 
 export const ROUTES = {
   home: '/',
-  solutions: '/solutions/',
-  inboxKiller: '/solutions/inbox-killer/',
-  webUpgrade: '/solutions/web-upgrade/',
-  salesFunnel: '/solutions/sales-funnel/',
-  leadMagnetGame: '/solutions/lead-magnet-game/',
-  managedAutomation: '/solutions/managed-automation/',
-  pricing: '/pricing/',
-  trust: '/trust/',
-  howItWorks: '/how-it-works/',
-  results: '/results/',
-  resultsInboxKiller: '/results/inbox-killer/',
-  resultsAgentOrchestrator: '/results/agent-orchestrator/',
-  resultsSalesFunnel: '/results/sales-funnel/',
-  resultsAdvisoryModernisation: '/results/advisory-modernisation/',
-  resultsOwnerEcosystem: '/results/owner-ecosystem/',
-  resultsJadziaCoi: '/results/jadzia-coi/',
-  resultsOwnerEcosystemWhyVcms: '/results/owner-ecosystem/#why-vcms',
-  resultsLeadMagnet: '/results/lead-magnet/',
-  resultsWhatsappPilot: '/results/whatsapp-discovery-pilot/',
+  systems: '/systems/',
+  quoteOrderEngine: '/systems/quote-order-engine/',
+  inboxTriage: '/systems/inbox-triage/',
+  leadScout: '/systems/lead-scout/',
+  ownerCockpit: '/systems/owner-cockpit/',
+  publishingGate: '/systems/publishing-gate/',
+  buildReleaseFlow: '/systems/build-release-flow/',
+  approach: '/approach/',
+  security: '/security/',
+  proof: '/proof/',
+  proofMethodology: '/proof/methodology/',
   about: '/about/',
-  founder: '/founder/',
-  /** Interactive Technical map — canonical LOS drill-down anchor */
-  founderSystemDiagram: '/founder/#system-diagram',
-  blog: '/blog/',
-  bookDiscovery: '/book-discovery/',
+  aboutLab: '/about/#lab',
+  pricing: '/pricing/',
+  bookAScan: '/book-a-scan/',
   legal: '/legal/',
+  /** Legacy aliases — kept so old imports compile; 301 to v2 routes. */
+  solutions: '/systems/',
+  inboxKiller: '/systems/inbox-triage/',
+  webUpgrade: '/systems/',
+  salesFunnel: '/systems/quote-order-engine/',
+  leadMagnetGame: '/systems/lead-scout/',
+  managedAutomation: '/systems/',
+  trust: '/security/',
+  howItWorks: '/approach/',
+  results: '/proof/',
+  resultsInboxKiller: '/systems/inbox-triage/',
+  resultsAgentOrchestrator: '/systems/build-release-flow/',
+  resultsSalesFunnel: '/systems/quote-order-engine/',
+  resultsAdvisoryModernisation: '/proof/',
+  resultsOwnerEcosystem: '/about/#lab',
+  resultsJadziaCoi: '/systems/owner-cockpit/',
+  resultsOwnerEcosystemWhyVcms: '/about/#lab',
+  resultsLeadMagnet: '/systems/lead-scout/',
+  resultsWhatsappPilot: '/proof/',
+  founder: '/about/',
+  founderSystemDiagram: '/about/#lab',
+  blog: '/blog/',
+  bookDiscovery: '/book-a-scan/',
   leadMagnet: '/artefacts/automation-map-sample.pdf',
 } as const;
 
-/** Owner ecosystem — external live demos */
+/** Owner ecosystem — external live demos (lab heritage, not public proof claims). */
 export const EXTERNAL = {
   zzpackageWizard: 'https://zzpackage.flexgrafik.nl/',
-  /** Wizard entry — prefer /wizard/ when linking demo CTAs */
   zzpackageWizardPath: 'https://zzpackage.flexgrafik.nl/wizard/',
-  /** Complex Quote & Design Intake (INSPIRE) — PARTIAL live supervised path on FlexGrafik */
   inspireDesignAgent: 'https://zzpackage.flexgrafik.nl/voertuigreclame-ontwerp/',
   leadMagnetGame: 'https://app.flexgrafik.nl/',
 } as const;
@@ -88,4 +98,3 @@ export const ARTEFACTS = {
   dataSafetyPlaybook: '/artefacts/data-safety-playbook.pdf',
   maintenanceHandover: '/artefacts/maintenance-handover.pdf',
 } as const;
-

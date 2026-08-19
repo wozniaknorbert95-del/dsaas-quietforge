@@ -4,9 +4,11 @@
   "display_name": "QuietForge",
   "status": "active-test",
   "domain": "quietforge.flexgrafik.nl",
-  "industry": "b2b-conversion-systems",
+  "industry": "smb-operating-systems",
   "locale": "en",
   "decision_owner": "commander",
   "production_changes": "manual-only",
-  "platform_lock": "../platform.lock.json"
+  "platform_lock": "../platform.lock.json",
+  "identity_lock": "../docs/canon/identity.md",
+  "public_label": "System builder for small businesses"
 }

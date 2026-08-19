@@ -7,16 +7,6 @@
       "has": [{ "type": "host", "value": "services.flexgrafik.nl" }],
       "destination": "https://quietforge.flexgrafik.nl/:path*",
       "permanent": true
-    },
-    {
-      "source": "/inbox-killer/",
-      "destination": "/solutions/inbox-killer/",
-      "permanent": true
-    },
-    {
-      "source": "/digital-modernization/",
-      "destination": "/solutions/web-upgrade/",
-      "permanent": true
     }
   ]
 }

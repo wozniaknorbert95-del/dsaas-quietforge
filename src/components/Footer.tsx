@@ -86,14 +86,9 @@ export default function Footer() {
         <div className="mt-[var(--qf-sp-4)] flex flex-col gap-2 border-t border-[var(--qf-border)] pt-[var(--qf-sp-4)] sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[var(--qf-text-faint)]">
             {FOOTER.portfolioPrompt}{' '}
-            <a
-              href={FOOTER.portfolioHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--qf-accent)]"
-            >
+            <Link href={FOOTER.portfolioHref} className="text-[var(--qf-accent)]">
               {FOOTER.portfolioLink}
-            </a>
+            </Link>
           </p>
           <p className="text-[var(--qf-text-faint)]">
             &copy; {new Date().getFullYear()} Quietforge. All rights reserved.

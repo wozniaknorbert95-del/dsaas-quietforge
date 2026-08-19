@@ -12,6 +12,7 @@
  */
 
 import { createHash, timingSafeEqual } from 'crypto';
+import { PRICING_NUMBERS } from '@/content/pricing';
 
 // Types for Mollie API responses
 export interface MolliePayment {
@@ -209,26 +210,27 @@ class MollieClient {
 // Singleton instance
 export const mollieClient = new MollieClient();
 
-// Helper for creating Automation Map €290 payment
+// Helper for creating Automation Scan payment
 export async function createAutomationMapPayment(
   proposalId: string,
   clientId: 'flexgrafik' | 'quietforge',
   returnUrl: string,
   webhookUrl: string
 ): Promise<MolliePayment> {
+  const amount = PRICING_NUMBERS.discovery;
   return mollieClient.createQuietforgePayment({
     proposalId,
     clientId,
-    amount: 290,
-    description: `Quietforge Automation Map - Strategic Discovery Session (€290 credited toward build)`,
+    amount,
+    description: `Quietforge Automation Scan (€${amount} credited toward implementation)`,
     returnUrl,
     webhookUrl,
     metadata: {
       proposal_id: proposalId,
       client_id: clientId,
       agent: 'DemandTrust',
-      channel: 'book-discovery',
-      product: 'automation-map'
+      channel: 'book-a-scan',
+      product: 'automation-scan'
     }
   });
 }

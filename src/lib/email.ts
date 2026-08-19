@@ -103,7 +103,7 @@ export function checkRateLimit(ip: string): boolean {
 
 function composeIntakeText(p: IntakePayload): string {
   return [
-    `New Automation Map request`,
+    `New Automation Scan request`,
     ``,
     `Name:            ${p.name}`,
     `Company:         ${p.company}`,
@@ -125,7 +125,7 @@ function composeIntakeHtml(p: IntakePayload): string {
 
   return `
     <div style="font-family:monospace;color:#111827">
-      <h2 style="margin:0 0 16px;font-size:16px">New Automation Map request</h2>
+      <h2 style="margin:0 0 16px;font-size:16px">New Automation Scan request</h2>
       <table style="border-collapse:collapse">
         ${row('Name', escapeHtml(p.name))}
         ${row('Company', escapeHtml(p.company))}
@@ -161,7 +161,7 @@ export async function sendIntakeEmail(payload: IntakePayload): Promise<SendResul
       from: intakeFrom(),
       to: intakeTo(),
       replyTo: payload.email,
-      subject: `[Automation Map] ${payload.company} — ${payload.name}`,
+      subject: `[Automation Scan] ${payload.company} — ${payload.name}`,
       text: composeIntakeText(payload),
       html: composeIntakeHtml(payload),
     });

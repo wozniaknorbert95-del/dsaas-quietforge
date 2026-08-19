@@ -1,10 +1,27 @@
 ---
-status: "[ACTIVE]"
+status: "[SUPERSEDED]"
 title: "LinkedIn Strategy — Quietforge B2B"
 owner: "Norbert Wozniak"
-updated: "2026-06-30"
-version: "3.1 — module series + competency signals"
-classification: "L3 — LinkedIn strategy"
+updated: "2026-08-19"
+version: "3.1 — SUPERSEDED by docs/canon/linkedin-profile-pack.md"
+classification: "L3 — LinkedIn strategy (historical)"
+---
+
+# SUPERSEDED — 2026-08-19
+
+**Do not use this file for new profile or post work.**
+
+Canonical pack: [`docs/canon/linkedin-profile-pack.md`](../../canon/linkedin-profile-pack.md)
+
+What this v3.1 file got wrong vs identity lock:
+
+- Label “Conversion Systems Architect”
+- FlexGrafik as LinkedIn proof layer
+- Primary CTA Automation Map €290
+- Live 2 posts / week cadence (PARKED)
+
+Kept below as historical context only.
+
 ---
 
 # LinkedIn Strategy — Quietforge B2B

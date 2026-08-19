@@ -3,21 +3,19 @@
 // Source: docs/strategy/marketing-strategy.md + inspiracja pro.md BLOK 2
 // ============================================================================
 
-import { metrics } from '@/content/proof';
 import { PRICING_NUMBERS, formatEuro } from '@/content/pricing';
 
 export const POSITIONING = {
-  label: 'Conversion Systems Architect',
-  antiPositioning: 'Not a web designer. Not an AI chatbot builder.',
+  label: 'System builder for small businesses',
+  antiPositioning: 'Not a programmer for hire. Not an agency. Not “the AI guy”.',
 } as const;
 
 export const HERO = {
-  eyebrow: '// Conversion Systems Architect for NL small business',
-  headline:
-    'Conversion systems that qualify leads, reduce admin and keep humans in control.',
+  eyebrow: '// System builder for small businesses · EU',
+  headline: 'Systems that give you back your time.',
   subline:
-    'For Dutch small businesses tired of manual quotes, inbox chaos and sites that do not become pipeline.',
-  dualBrandLine: 'Quietforge deploys · FlexGrafik is the live proof',
+    'Quotes, orders, inbox and reporting — rebuilt as managed systems. AI speed, engineering discipline, nothing live without your approval.',
+  dualBrandLine: 'QuietForge implements. You approve. FlexGrafik is a paused lab.',
   beats: {
     problem: {
       label: 'Problem',
@@ -32,14 +30,14 @@ export const HERO = {
       text: 'Fewer missed leads. Less admin. You decide.',
     },
   },
-  proofStrip: 'Ops cockpit live · modules with honest status · you approve',
-  proofLine: 'Ops cockpit live · modules with honest status · you approve',
+  proofStrip: 'Hours given back · you approve · counter starts at zero',
+  proofLine: 'Hours given back · you approve · counter starts at zero',
   microTrust:
-    'Quietforge deploys the same architecture that runs FLEXGRAFIK — my registered company, not a demo.',
-  primaryCta: 'Book Automation Map',
-  primaryCtaMeta: `${formatEuro(PRICING_NUMBERS.discovery)} · credited · 60–90 min`,
-  secondaryCta: 'See live systems',
-  secondaryHref: '/results/',
+    'I build at AI speed and deliver with engineering discipline. FlexGrafik is a paused lab, not a client proof.',
+  primaryCta: 'Book a scan',
+  primaryCtaMeta: `${formatEuro(PRICING_NUMBERS.discovery)} · credited · 90 min`,
+  secondaryCta: 'See the systems',
+  secondaryHref: '/systems/',
   wizardCta: 'Try the wizard (2 min)',
   wizardHref: 'https://zzpackage.flexgrafik.nl/',
   whatsappCta: 'Ask on WhatsApp',
@@ -72,11 +70,11 @@ export const OBJECTIONS = [
   {
     objection: 'Price',
     rebuttal:
-      'The €290 is a filter, not a hidden cost — you get a written Automation Map either way.',
+      'The €690 scan is a filter, not a hidden cost — you keep the written report either way.',
   },
   {
     objection: 'Trust',
-    rebuttal: 'Live URLs, artefacts and named limitations — see my own ecosystem running in production.',
+    rebuttal: 'Review, scans, approval gates, and your repo from day one — process you can inspect, not a live-proof slogan.',
   },
   {
     objection: 'Timing',
@@ -88,8 +86,24 @@ export const OBJECTIONS = [
   },
 ] as const;
 
-export const BUDGET_QUALIFICATION =
-  'If your budget is below €1,200, start with the Automation Map to scope before committing.';
+export const PUBLIC_OFFER = {
+  scanName: 'Automation Scan',
+  scanPrice: formatEuro(PRICING_NUMBERS.discovery),
+  scanNote: '90 minutes. The report is yours. Credited toward implementation.',
+  implementationName: 'Implementation',
+  implementationPrice: `from ${formatEuro(PRICING_NUMBERS.implementationFrom)}`,
+  implementationNote: 'Fixed scope, 2–4 weeks, 1–3 modules.',
+  maintenanceName: 'Maintenance',
+  maintenancePrice: `from ${formatEuro(PRICING_NUMBERS.maintenanceFrom)}/mo`,
+  maintenanceNote: 'Monitoring, fixes, one optimisation per month. Cancel monthly.',
+  alwaysIncluded: [
+    'Independent code review',
+    'Secret and dependency scans',
+    'Tests before release',
+    'Documentation and handover',
+    'Your repository from day one',
+  ],
+} as const;
 
 export const WEBSITE_ONLY_EXCEPTION =
   'If you only need a brochure website with no qualification or automation, this is not the right fit — and I will tell you before you spend money.';
@@ -212,9 +226,9 @@ export const PRICING_SECTION = {
 } as const;
 
 export const CTAS = {
-  bookAutomationMap: 'Book Automation Map',
+  bookAutomationMap: 'Book a scan',
   seeSystems: 'See the systems',
-  seeResults: 'See all results',
+  seeResults: 'See the proof',
 } as const;
 
 /** GTM Faza 0 — dual-brand band (01-two-brand-model, 05-content-pillars P3). */
@@ -277,29 +291,29 @@ export const FEATURED_STRIP = {
 } as const;
 
 export const ABOUT = {
-  metaTitle: 'About — Conversion Systems Architect',
-  heroTitle: 'Conversion Systems Architect for businesses that need systems, not slides.',
+  metaTitle: 'About — system builder for small businesses',
+  heroTitle: 'Norbert · system builder',
   heroIntro:
-    "I'm Norbert Wozniak — I design conversion systems that qualify leads, automate bookings and reduce admin work, with you in the loop on every critical step. Everything here is proven on a live operation before it reaches a client.",
-  storyTitle: 'FLEXGRAFIK is the proof — Quietforge is how I deploy it for you',
+    'I build operating systems for small companies — from quotes, through orders, to inbox and reports. I build at AI speed and deliver with engineering discipline: human review, security scans, approval gates, documentation. My currency is hours, stress and money given back.',
+  storyTitle: 'The lab is paused. The practice is QuietForge.',
   storyBody:
-    `FLEXGRAFIK is my Netherlands-registered print and design company — and the live operating environment for this stack: an Operations Command Layer (Jadzia), VCMS governance, a ${metrics.skus}-SKU Wizard Cash Engine with optional Complex Quote & Design Intake, inbox automation, and a selective lead-generation game. Quietforge is the consulting arm: I deploy the same architecture for Dutch ZZP and SME owners, with human-in-the-loop on every critical step.`,
-  moatTitle: 'What makes this different',
+    'FlexGrafik was the owner-operated lab where the stack grew up. It is paused as a market offer. The lesson: a working system is not the same as paying clients. QuietForge implements company operating systems for firms of 1–15 people, with the code in your repo from day one.',
+  moatTitle: 'What this is',
   moatPillars: [
     {
-      title: 'I build my own AI workforce.',
-      body: "Most of the delivery runs on systems I built — not on billable hours. That's why I'm faster, leaner, and can deliver architect-level work at a small-business price.",
+      title: 'AI speed, engineering discipline',
+      body: 'Build with agents. Deliver with review, scans, gates and docs. Process, not adjectives.',
     },
     {
-      title: 'Branding, UX and automation under one roof.',
-      body: "From the logo to the back-end, it's one coherent system — not five vendors who don't talk to each other.",
+      title: 'You stay the gate',
+      body: 'Nothing customer-facing goes live without your approval. I earn when it works.',
     },
     {
-      title: 'No hype — only systems that work, with you in control.',
-      body: "I don't sell buzzwords. I sell systems that earn their keep, with human-in-the-loop at every critical step.",
+      title: 'Replaceable by design',
+      body: 'Your repository from day one. Handover is part of the product, not an extra.',
     },
   ],
-  whyTitle: 'Why this matters for you',
+  whyTitle: 'How I work',
   whyBody:
     'You get the kind of architecture usually reserved for big budgets — designed around how your work really flows, at a price a small business understands, with full control over what the system does.',
   principlesTitle: 'How I work',
@@ -312,12 +326,11 @@ export const ABOUT = {
 } as const;
 
 export const FOOTER = {
-  tagline:
-    'Conversion systems for NL small businesses — qualify leads, reduce admin, you stay in control.',
-  portfolioPrompt: 'Building something bigger?',
-  portfolioLink: 'See the full architecture →',
-  portfolioHref: 'https://portfolio.flexgrafik.nl',
-  columnSolutions: 'Solutions',
+  tagline: 'Systems that give you back your time.',
+  portfolioPrompt: 'This site runs on its own integrated platform.',
+  portfolioLink: 'How we work →',
+  portfolioHref: '/approach/',
+  columnSolutions: 'Systems',
   columnCompany: 'Company',
   columnGetStarted: 'Get started',
   columnResources: 'Resources',

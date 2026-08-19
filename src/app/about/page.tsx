@@ -7,13 +7,13 @@ import { ROUTES, SITE_URL } from '@/lib/constants';
 import { ABOUT, CTAS, POSITIONING } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
-  title: ABOUT.metaTitle,
+  title: 'Norbert · system builder',
   description:
-    'Norbert Wozniak — Conversion Systems Architect for NL small businesses. Systems that qualify leads and reduce admin — built on a live owner ecosystem.',
+    'Norbert Wozniak — system builder for small businesses. AI speed, engineering discipline, hours given back.',
   openGraph: {
     title: ABOUT.metaTitle,
     description:
-      'Conversion systems with human approval gates — built on a live owner ecosystem, not theory.',
+      'System builder for small businesses. AI speed, engineering discipline, hours given back.',
     url: `${SITE_URL}/about`,
     images: [
       {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: ABOUT.metaTitle,
-    description: 'Conversion systems with human approval gates — process-first delivery.',
+    description: 'System builder for small businesses — you approve, we measure hours given back.',
     images: ['/og/about.svg'],
   },
 };
@@ -96,22 +96,18 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section background="surface" padding="large">
-        <h2 className="text-[var(--qf-fs-2xl)] font-bold tracking-tight mb-6">
-          Building something bigger?
+      <Section id="lab" background="surface" padding="large">
+        <h2 className="mb-6 text-[var(--qf-fs-2xl)] font-bold tracking-tight">
+          The lab — where it started
         </h2>
-        <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-8">
-          If you&apos;re growing toward full multi-agent systems, orchestration and governance,
-          that&apos;s a different conversation — and I do that too.
+        <p className="mb-4 max-w-[var(--qf-maxw-narrow)] text-[var(--qf-text-dim)]">
+          FlexGrafik is a paused owner-operated lab. Systems still exist as heritage. It is
+          not a market proof and not the offer. QuietForge sells given-back time, not a
+          catalogue of modules.
         </p>
-        <a
-          href="https://portfolio.flexgrafik.nl"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-[var(--qf-accent)] text-sm font-semibold hover:text-[var(--qf-text)] transition-colors"
-        >
-          See how the full system works →
-        </a>
+        <p className="max-w-[var(--qf-maxw-narrow)] text-sm text-[var(--qf-text-faint)]">
+          Status: LAB: PAUSED. Today the public site talks about QuietForge only.
+        </p>
       </Section>
 
       <Section padding="large">

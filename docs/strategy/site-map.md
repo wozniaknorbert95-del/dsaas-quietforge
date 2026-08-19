@@ -1,8 +1,10 @@
 # Site Map — quietforge.flexgrafik.nl
 
-**Version:** 2.0  
-**Status:** Canonical — post-audit IA, home layout, routes, CTA hierarchy  
-**Supersedes:** Site Map v1.0 home order and route exposure rules  
+> **SUPERSEDED for public IA (2026-08-19).** Use [`docs/canon/site-map.md`](../canon/site-map.md).  
+> This file remains as historical L3 until S2/S3 finish legal and pricing pages.
+
+**Version:** 2.0 (historical)  
+**Status:** Superseded by canon site map v2  
 **Audit reference:** [`docs/audits/2026-06-25/quietforge-ux-ia.md`](../audits/2026-06-25/quietforge-ux-ia.md) · 2026-06-25
 
 > Core decision the site must answer: **“Can this person design and deploy a system that improves my business?”**  

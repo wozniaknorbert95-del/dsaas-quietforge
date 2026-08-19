@@ -269,7 +269,7 @@ export default function BookDiscoveryForm() {
         analyticsEvent="cta_book_map_click"
         analyticsDetail={{ location: 'book_discovery_submit' }}
       >
-        {status === 'submitting' ? 'Sending…' : 'Request my Automation Map slot'}
+        {status === 'submitting' ? 'Sending…' : 'Request the scan — I reply within one working day'}
       </Button>
 
       {errorMessage && (

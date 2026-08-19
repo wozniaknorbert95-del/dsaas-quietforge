@@ -4,7 +4,9 @@
 // ============================================================================
 
 export const PRICING_NUMBERS = {
-  discovery: 290,
+  discovery: 690,
+  implementationFrom: 2500,
+  maintenanceFrom: 300,
   inboxKiller: { from: 1200, to: 4800 },
   webUpgrade: { from: 1800, to: 5500 },
   salesFunnel: { from: 2400, to: 6500 },
@@ -29,10 +31,15 @@ export function formatFromRange(from: number, to: number, perMonth = false): str
 }
 
 export const PRICING_MATRIX = {
-  automationMap: {
-    label: 'Automation Map',
+  automationScan: {
+    label: 'Automation Scan',
     price: formatEuro(PRICING_NUMBERS.discovery),
-    note: 'credited toward your first project',
+    note: 'credited toward your first implementation',
+  },
+  automationMap: {
+    label: 'Automation Scan',
+    price: formatEuro(PRICING_NUMBERS.discovery),
+    note: 'credited toward your first implementation',
   },
   inboxKiller: {
     label: 'Inbox Killer',
@@ -162,6 +169,8 @@ export const SOLUTION_DETAIL_PRICES = {
 /** Legacy shape for components that import PRICING from constants */
 export const PRICING = {
   discovery: PRICING_NUMBERS.discovery,
+  implementationFrom: PRICING_NUMBERS.implementationFrom,
+  maintenanceFrom: PRICING_NUMBERS.maintenanceFrom,
   inboxKiller: PRICING_NUMBERS.inboxKiller,
   webUpgrade: PRICING_NUMBERS.webUpgrade,
   salesFunnel: PRICING_NUMBERS.salesFunnel,

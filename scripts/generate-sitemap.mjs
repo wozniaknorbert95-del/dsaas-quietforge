@@ -11,36 +11,25 @@ const root = join(__dirname, '..');
 
 const ROUTES = [
   '/',
-  '/solutions/',
-  '/solutions/inbox-killer/',
-  '/solutions/web-upgrade/',
-  '/solutions/sales-funnel/',
-  '/solutions/lead-magnet-game/',
-  '/solutions/managed-automation/',
+  '/systems/',
+  '/systems/quote-order-engine/',
+  '/systems/inbox-triage/',
+  '/systems/lead-scout/',
+  '/systems/owner-cockpit/',
+  '/systems/publishing-gate/',
+  '/systems/build-release-flow/',
+  '/approach/',
+  '/security/',
+  '/proof/',
+  '/proof/methodology/',
   '/pricing/',
-  '/how-it-works/',
-  '/results/',
-  '/results/inbox-killer/',
-  '/results/agent-orchestrator/',
-  '/results/sales-funnel/',
-  '/results/lead-magnet/',
-  '/results/jadzia-coi/',
-  '/results/advisory-modernisation/',
-  '/results/owner-ecosystem/',
-  '/growth-os/',
-  '/book-discovery/',
-  '/founder/',
+  '/book-a-scan/',
   '/about/',
-  '/trust/',
   '/legal/',
-  '/blog/',
-  '/blog/automation-for-small-business/',
-  '/blog/digital-transformation-without-the-jargon/',
-  '/blog/under-the-hood-how-inbox-killer-works/',
 ];
 
-const HIGH_INTENT = new Set(['/solutions/', '/pricing/', '/book-discovery/']);
-const PROOF_HUBS = new Set(['/results/', '/how-it-works/', '/founder/', '/trust/']);
+const HIGH_INTENT = new Set(['/systems/', '/pricing/', '/book-a-scan/']);
+const PROOF_HUBS = new Set(['/proof/', '/approach/', '/security/']);
 
 /** @param {string} path */
 function getSitemapMeta(path) {
@@ -53,11 +42,8 @@ function getSitemapMeta(path) {
   if (PROOF_HUBS.has(path)) {
     return { priority: '0.8', changefreq: 'weekly' };
   }
-  if (path.startsWith('/solutions/') && path !== '/solutions/') {
+  if (path.startsWith('/systems/') && path !== '/systems/') {
     return { priority: '0.75', changefreq: 'weekly' };
-  }
-  if (path.startsWith('/results/') && path !== '/results/') {
-    return { priority: '0.7', changefreq: 'monthly' };
   }
   if (path === '/blog/' || path.startsWith('/blog/')) {
     return { priority: '0.5', changefreq: 'monthly' };

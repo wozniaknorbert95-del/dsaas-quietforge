@@ -2,27 +2,49 @@
   "schema_version": "1.0.0",
   "tenant_id": "quietforge",
   "business": {
-    "industry": "ai-operations-and-automation",
+    "industry": "smb-operating-systems",
+    "category_nl": "procesautomatisering / systeembouwer voor het MKB",
     "primary_market": "nl",
+    "secondary_market": "pl",
+    "icp": "owners-1-to-15-people",
     "brand_voice": [
       "calm",
       "precise",
       "evidence-led",
-      "no-hype"
+      "no-hype",
+      "hours-given-back"
     ]
+  },
+  "identity": {
+    "one_liner_pl": "Norbert — budowniczy systemów operacyjnych dla małych firm. Szybkość AI, dyscyplina inżyniera, waluta: zaoszczędzone godziny, nerwy i pieniądze.",
+    "public_label_en": "System builder for small businesses",
+    "currency": ["hours", "stress", "money"]
   },
   "goals": [
     {
-      "id": "qualified-intake",
-      "name": "Increase qualified QuietForge intake",
+      "id": "qualified-scan",
+      "name": "Increase qualified Automation Scan bookings",
       "status": "active-test"
+    },
+    {
+      "id": "hours-given-back",
+      "name": "Public hours and euro given back (verified only)",
+      "status": "active-test",
+      "current_hours": 0,
+      "current_euro": 0
     }
   ],
   "kpis": [
     {
-      "id": "qualified-intake-rate",
+      "id": "qualified-scan-rate",
       "unit": "ratio",
       "decision_owner": "commander"
+    },
+    {
+      "id": "hours-given-back",
+      "unit": "hours",
+      "decision_owner": "commander",
+      "publish_rule": "verified-client-only"
     },
     {
       "id": "proposal-to-approval-time",
@@ -30,6 +52,13 @@
       "decision_owner": "commander"
     }
   ],
+  "pricing": {
+    "currency": "EUR",
+    "scan": 690,
+    "implementation_from": 2500,
+    "maintenance_from": 300,
+    "scan_credited": true
+  },
   "budget": {
     "currency": "EUR",
     "approval_mode": "manual-only",

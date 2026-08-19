@@ -4,48 +4,46 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HashScroll from "@/components/layout/HashScroll";
-import { BRAND_LOGO, CREATOR, EMAIL, FLEXGRAFIK_URL, LINKEDIN_URL, SITE_NAME, SITE_URL } from "@/lib/constants";
+import { BRAND_LOGO, CREATOR, EMAIL, LINKEDIN_URL, SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Quietforge — Conversion Systems Architect',
+    default: 'Quietforge — systems that give you back your time',
     template: '%s | Quietforge',
   },
   description:
-    'Conversion systems for NL small businesses — qualify leads, reduce admin, human-in-the-loop. Live wizard checkout · honest built vs planned.',
+    'Operating systems for small businesses — quotes, orders, inbox, reports. AI speed, engineering discipline, you approve.',
   keywords: [
-    'small business automation',
-    'inbox automation',
-    'website automation',
-    'conversion systems',
-    'digital transformation',
-    'SMB automation',
-    'lead qualification',
+    'small business operating systems',
+    'SMB workflow automation',
+    'quote to order automation',
+    'inbox triage',
+    'engineering discipline',
   ],
-  authors: [{ name: 'Norbert Wozniak', url: `${SITE_URL}/founder/` }],
+  authors: [{ name: 'Norbert Wozniak', url: `${SITE_URL}/about/` }],
   creator: 'Norbert Wozniak',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: SITE_URL,
     siteName: 'Quietforge',
-    title: 'Quietforge — Conversion Systems Architect',
+    title: 'Quietforge — systems that give you back your time',
     description:
-      'Conversion systems that qualify leads, reduce admin and keep humans in control. Live wizard checkout · honest built vs planned.',
+      'Quotes, orders, inbox, reporting — rebuilt as managed systems. Nothing live without your approval.',
     images: [
       {
         url: '/og/home.svg',
         width: 1200,
         height: 630,
-        alt: 'Quietforge — Conversion Systems Architect',
+        alt: 'Quietforge — systems that give you back your time',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Quietforge — Conversion Systems Architect',
-    description: 'Conversion systems for NL SMB — live wizard proof · honest built vs planned.',
+    title: 'Quietforge — systems that give you back your time',
+    description: 'Operating systems for small businesses — you approve, we measure hours given back.',
     creator: '@flexgrafik',
     images: ['/og/home.svg'],
   },
@@ -75,7 +73,7 @@ export default function RootLayout({
       name: SITE_NAME,
       url: SITE_URL,
       description:
-        "Conversion systems for small businesses — lead qualification, automation, and custom VCMS.",
+        "Operating systems for small businesses — quotes, orders, inbox, reports. Human approval on every live step.",
     },
     {
       "@context": "https://schema.org",
@@ -84,22 +82,16 @@ export default function RootLayout({
       url: SITE_URL,
       email: EMAIL,
       founder: { "@type": "Person", name: CREATOR },
-      sameAs: [
-        LINKEDIN_URL,
-        FLEXGRAFIK_URL,
-      ],
+      sameAs: [LINKEDIN_URL],
     },
     {
       "@context": "https://schema.org",
       "@type": "Person",
       name: CREATOR,
-      jobTitle: "Conversion Systems Architect",
-      url: `${SITE_URL}/founder/`,
+      jobTitle: "System builder for small businesses",
+      url: `${SITE_URL}/about/`,
       worksFor: { "@type": "Organization", name: SITE_NAME },
-      sameAs: [
-        LINKEDIN_URL,
-        FLEXGRAFIK_URL,
-      ],
+      sameAs: [LINKEDIN_URL],
     },
   ];
 

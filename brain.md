@@ -27,8 +27,8 @@
 |---|---|
 | **Domain** | `quietforge.flexgrafik.nl` (legacy: `services.flexgrafik.nl`) |
 | **Repo** | `wozniaknorbert95-del/dsaas-quietforge` (active DSaaS tenant) |
-| **Role** | B2B Conversion Systems Portfolio — qualify SMB leads + LOS investor bridge |
-| **Positioning** | Conversion Systems Architect — see [`marketing-rules.md`](docs/canons/marketing-rules.md) |
+| **Role** | QuietForge tenant — company operating systems for SMB |
+| **Positioning** | System builder for small businesses — see [`docs/canon/identity.md`](docs/canon/identity.md) |
 | **Language** | English (all public B2B assets) |
 | **Audience** | ZZP, small BV, professional services + tech/investor via `/results/owner-ecosystem/` |
 

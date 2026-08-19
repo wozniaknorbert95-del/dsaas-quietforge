@@ -61,27 +61,32 @@ export default async function SystemSpokePage({ params }: Props) {
 
   return (
     <>
-      <Section padding="large">
+      <Section>
         <p className="qf-sys-crumb">
           <Link href={ROUTES.systems}>Systems</Link>
           {' / '}
           {system.name}
         </p>
         <p className="qf-sys-status">
-          {system.status} · {system.intents.join(' · ')}
+          <span className="qf-sys-badge">{system.status}</span>
+          <span className="qf-sys-intents">{system.intents.join(' · ')}</span>
         </p>
         <h1 className="qf-sys-h1">{system.name}</h1>
         <p className="qf-sys-tagline">{system.tagline}</p>
         <p className="qf-sys-meta">
-          {system.timeline} · {system.priceNote} · {system.integrations}
+          {system.timeline}
+          <span aria-hidden="true"> · </span>
+          {system.priceNote}
+          <span aria-hidden="true"> · </span>
+          {system.integrations}
         </p>
         <div className="qf-sys-cta-row">
           <Link href={ROUTES.bookAScan} className="qf-btn-fill">
-            Book the scan first →
+            Book a scan →
           </Link>
           <a
             href={WHATSAPP.url}
-            className="qf-hero-cta-whatsapp"
+            className="qf-btn-ghost"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -94,9 +99,9 @@ export default async function SystemSpokePage({ params }: Props) {
       <Section>
         <h2 className="qf-sys-h2">What it costs you without this</h2>
         <p className="qf-sys-lead">
-          Calm arithmetic, not fear. Hours × €40 —{' '}
+          Calm arithmetic, not fear.{' '}
           <Link href={ROUTES.proofMethodology} className="qf-sys-link">
-            methodology
+            Methodology
           </Link>
           .
         </p>
@@ -109,24 +114,20 @@ export default async function SystemSpokePage({ params }: Props) {
       </Section>
 
       <Section>
-        <h2 className="qf-sys-h2">What is actually in the system</h2>
+        <h2 className="qf-sys-h2">What is in the system</h2>
         <p className="qf-sys-lead">
-          Features you can point to. Missing pieces stay off this page.
+          Only what we can point to. Missing pieces stay off this page.
         </p>
         <FeatureGallery features={system.features} />
       </Section>
 
       <Section background="surface">
-        <h2 className="qf-sys-h2">How the flow looks</h2>
+        <h2 className="qf-sys-h2">How it works</h2>
         <FlowDiagram
           src={system.flowSrc}
           alt={system.flowAlt}
           caption={system.flowCaption}
         />
-      </Section>
-
-      <Section>
-        <h2 className="qf-sys-h2">How it works</h2>
         <ol className="qf-sys-steps">
           {system.steps.map((step, index) => (
             <li key={step}>
@@ -136,34 +137,22 @@ export default async function SystemSpokePage({ params }: Props) {
         </ol>
       </Section>
 
-      <Section background="surface">
-        <h2 className="qf-sys-h2">What you get</h2>
+      <Section>
+        <h2 className="qf-sys-h2">In the build</h2>
         <ul className="qf-sys-get">
           {system.youGet.map((item) => (
-            <li key={item}>— {item}</li>
+            <li key={item}>{item}</li>
           ))}
         </ul>
         <p className="qf-sys-lead">
-          Approval gates and your repo:{' '}
           <Link href={`${ROUTES.security}#approval-gates`} className="qf-sys-link">
-            approval gates
+            Approval gates
           </Link>
           {' · '}
           <Link href={`${ROUTES.security}#handover`} className="qf-sys-link">
             your repo, day one
           </Link>
           .
-        </p>
-      </Section>
-
-      <Section>
-        <h2 className="qf-sys-h2">The hours in euros</h2>
-        <p className="qf-sys-lead">{system.roiExample}</p>
-        <p className="qf-sys-lead">
-          Same €40/h as above.{' '}
-          <Link href={ROUTES.proofMethodology} className="qf-sys-link">
-            How we count hours →
-          </Link>
         </p>
       </Section>
 
@@ -190,20 +179,31 @@ export default async function SystemSpokePage({ params }: Props) {
             </li>
           ))}
         </ul>
-        <div className="qf-sys-cta-row">
-          <Link href={ROUTES.bookAScan} className="qf-btn-fill">
-            Book the scan first →
-          </Link>
-          <a
-            href={WHATSAPP.url}
-            className="qf-hero-cta-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {WHATSAPP.label}
-          </a>
-        </div>
       </Section>
+
+      <section className="qf-final-cta" aria-labelledby="spoke-cta-title">
+        <div className="qf-final-cta-inner">
+          <h2 id="spoke-cta-title" className="qf-sys-h2">
+            Start with the scan
+          </h2>
+          <p className="qf-final-cta-lead">
+            90 minutes. Written report is yours. Then a fixed price — or a clear no.
+          </p>
+          <div className="qf-sys-cta-row">
+            <Link href={ROUTES.bookAScan} className="qf-btn-fill">
+              Book a scan →
+            </Link>
+            <a
+              href={WHATSAPP.url}
+              className="qf-btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {WHATSAPP.label}
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -11,7 +11,7 @@ export const POSITIONING = {
 } as const;
 
 export const HERO = {
-  eyebrow: '// System builder for small businesses · EU',
+  eyebrow: 'System builder for small businesses · EU',
   headline: 'Systems that give you back your time.',
   subline:
     'Quotes, orders, inbox and reporting — rebuilt as managed systems. AI speed, engineering discipline, nothing live without your approval.',

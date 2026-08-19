@@ -23,7 +23,7 @@ export default function Card({
         variant === 'spearhead' &&
           'border-[var(--qf-accent)] shadow-[0_0_0_1px_var(--qf-accent-glow),0_0_40px_var(--qf-accent-glow)]',
         hover && 'hover:border-[var(--qf-border-bright)]',
-        interactive && 'cursor-pointer hover:border-[var(--qf-border-bright)] hover:-translate-y-0.5',
+        interactive && 'cursor-pointer hover:border-[var(--qf-border-bright)]',
         className
       )}
     >

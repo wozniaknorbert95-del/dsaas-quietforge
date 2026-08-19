@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
+import { useId, useState } from 'react';
 
 interface FaqItemProps {
   question: string;
@@ -11,34 +10,28 @@ interface FaqItemProps {
 
 export default function FaqItem({ question, answer, className }: FaqItemProps) {
   const [open, setOpen] = useState(false);
+  const panelId = useId();
 
   return (
-    <div
-      className={cn(
-        'rounded-[var(--qf-radius)] border border-[var(--qf-border)] bg-[var(--qf-bg-raised)] overflow-hidden',
-        className
-      )}
-    >
+    <div className={`qf-faq-item ${className ?? ''}`.trim()}>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex w-full items-center justify-between px-6 py-4 text-left text-[var(--qf-text)] font-semibold"
+        className="qf-faq-trigger"
         aria-expanded={open}
+        aria-controls={panelId}
       >
         {question}
-        <span className="ml-4 text-[var(--qf-accent)] text-lg transition-transform duration-[var(--qf-transition)]">
+        <span className="qf-faq-icon" aria-hidden="true">
           {open ? '−' : '+'}
         </span>
       </button>
       <div
-        className={cn(
-          'grid transition-all duration-300 ease-out',
-          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-        )}
+        id={panelId}
+        className={open ? 'qf-faq-panel is-open' : 'qf-faq-panel'}
+        hidden={!open}
       >
-        <div className="overflow-hidden">
-          <p className="px-6 pb-4 text-[var(--qf-text-dim)]">{answer}</p>
-        </div>
+        <p className="qf-faq-answer">{answer}</p>
       </div>
     </div>
   );

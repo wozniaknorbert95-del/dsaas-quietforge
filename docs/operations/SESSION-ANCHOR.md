@@ -1,8 +1,8 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-19 · **Status:** Six `/systems/[slug]` spokes rebuilt; ship to `main`  
-**Canon:** `docs/canon/identity.md` LOCKED · `docs/canon/site-map.md` v2 (spoke template B1–B10)  
-**Handoff:** [`handoffs/2026-08-19-systems-spokes.md`](handoffs/2026-08-19-systems-spokes.md)
+**Updated:** 2026-08-19 · **Status:** Home + 6 spokes polished; ship to `main`  
+**Canon:** `docs/canon/identity.md` LOCKED · `docs/canon/site-map.md` v2  
+**Handoff:** [`handoffs/2026-08-19-home-systems-polish.md`](handoffs/2026-08-19-home-systems-polish.md)
 
 ---
 

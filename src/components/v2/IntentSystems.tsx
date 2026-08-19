@@ -29,14 +29,15 @@ export default function IntentSystems({
 
   return (
     <div>
-      <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-        {heading}
-      </h2>
-      <div className="mb-[var(--qf-sp-6)] flex flex-wrap gap-2" role="tablist" aria-label="Intent">
+      {heading ? (
+        <h2 className="qf-sys-h2">{heading}</h2>
+      ) : null}
+      <div className="qf-intent-chips" role="tablist" aria-label="Intent">
         <button
           type="button"
           className="qf-intent-chip"
           data-active={intent === 'all'}
+          aria-pressed={intent === 'all'}
           onClick={() => setIntent('all')}
         >
           All
@@ -46,39 +47,37 @@ export default function IntentSystems({
             key={item.id}
             type="button"
             className="qf-intent-chip"
+            data-intent={item.id}
             data-active={intent === item.id}
+            aria-pressed={intent === item.id}
             onClick={() => setIntent(item.id)}
           >
             {item.label}
           </button>
         ))}
       </div>
-      <ul className="grid gap-[var(--qf-sp-4)] md:grid-cols-2">
+      <ul className="qf-intent-grid">
         {visible.map((system) => (
           <li key={system.slug}>
             <Card hover interactive>
-              <Link href={system.href} className="block no-underline">
-                <p className="font-mono text-[var(--qf-fs-xs)] text-[var(--qf-accent)]">
-                  {system.status} · {system.intents.join(' · ')}
+              <Link href={system.href} className="qf-intent-card-link">
+                <p className="qf-intent-card-meta">
+                  <span className="qf-sys-badge">{system.statusShort}</span>
+                  {' · '}
+                  {system.intents.join(' · ')}
                 </p>
-                <h3 className="mt-2 text-xl font-semibold text-[var(--qf-text)]">
-                  {system.name}
-                </h3>
-                <p className="mt-2 text-[var(--qf-text-dim)]">{system.tagline}</p>
-                <p className="mt-3 text-sm text-[var(--qf-text-faint)]">
+                <h3 className="qf-intent-card-name">{system.name}</h3>
+                <p className="qf-intent-card-tag">{system.tagline}</p>
+                <p className="qf-intent-card-hours">
                   Typically gives back: {system.typicallyHours}
                 </p>
-                <p className="text-sm text-[var(--qf-text-faint)]">
-                  Replaces: {system.replaces}
-                </p>
+                <p className="qf-intent-card-hours">Replaces: {system.replaces}</p>
                 {showRequirements ? (
-                  <p className="mt-2 text-sm text-[var(--qf-text-dim)]">
+                  <p className="qf-intent-card-req">
                     {system.priceNote} · {system.timeline}
                   </p>
                 ) : null}
-                <span className="mt-4 inline-block text-sm text-[var(--qf-accent)]">
-                  Open system →
-                </span>
+                <span className="qf-intent-card-cta">Open system →</span>
               </Link>
             </Card>
           </li>

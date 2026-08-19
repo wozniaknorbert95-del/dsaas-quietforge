@@ -7,6 +7,7 @@ import StickyCta from '@/components/layout/StickyCta';
 import IntentSystems from '@/components/v2/IntentSystems';
 import { PRICING, ROUTES, WHATSAPP } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
+import { CTAS, HERO, POSITIONING, PUBLIC_OFFER } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
   title: 'Systems that give you back your time',
@@ -32,7 +33,7 @@ const DISCIPLINE = [
   { title: 'Secret scans', href: '/security/#secrets', evidence: 'Gitleaks before deploy.' },
   { title: 'Server-side auth', href: '/security/#authorization', evidence: 'No secrets in client code.' },
   { title: 'Dependency scans', href: '/security/#dependencies', evidence: 'CVE check before change.' },
-  { title: 'Approval gates', href: '/security/#approval-gates', evidence: 'Agent proposes. You click.' },
+  { title: 'Approval gates', href: '/security/#approval-gates', evidence: 'The system proposes. You click.' },
   { title: 'Your repo, day one', href: '/security/#handover', evidence: 'Replaceable by design.' },
 ];
 
@@ -63,7 +64,7 @@ const FAQ = [
   },
   {
     q: 'Why is the scan paid?',
-    a: 'So both sides take it seriously. €690 is credited toward implementation. You keep the report either way.',
+    a: `So both sides take it seriously. ${formatEuro(PRICING.discovery)} is credited toward implementation. You keep the report either way.`,
   },
   {
     q: 'Do you have client case studies yet?',
@@ -84,24 +85,21 @@ export default function Home() {
     <div className="pb-20 lg:pb-0">
       <section data-home-section="hero" className="qf-hero">
         <div className="qf-hero-inner">
-          <p className="qf-hero-eyebrow">Business operating systems for SMBs · EU</p>
-          <h1 className="qf-hero-headline">Systems that give you back your time.</h1>
-          <p className="qf-hero-subline">
-            Quotes, orders, inbox and reporting — rebuilt as managed systems. AI speed,
-            engineering discipline, nothing live without your approval.
-          </p>
+          <p className="qf-hero-eyebrow">{POSITIONING.label} · EU</p>
+          <h1 className="qf-hero-headline">{HERO.headline}</h1>
+          <p className="qf-hero-subline">{HERO.subline}</p>
+          <p className="qf-hero-anti">{POSITIONING.antiPositioning}</p>
+          <p className="qf-hero-proof-strip">{HERO.proofStrip}</p>
           <div className="qf-hero-cta-band">
             <Link href={ROUTES.bookAScan} className="qf-hero-cta-primary">
               <span className="qf-hero-cta-primary-label">
-                Book a scan <span aria-hidden="true">→</span>
+                {CTAS.bookAutomationMap} <span aria-hidden="true">→</span>
               </span>
-              <span className="qf-hero-cta-primary-meta">
-                {formatEuro(PRICING.discovery)} · 90 min · credited
-              </span>
+              <span className="qf-hero-cta-primary-meta">{HERO.primaryCtaMeta}</span>
             </Link>
             <div className="qf-hero-cta-secondary-row">
               <Link href={ROUTES.systems} className="qf-hero-cta-secondary">
-                See the systems
+                {CTAS.seeSystems}
               </Link>
               <a
                 href={WHATSAPP.url}
@@ -109,7 +107,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WhatsApp
+                {HERO.whatsappCta}
               </a>
             </div>
           </div>
@@ -117,21 +115,21 @@ export default function Home() {
       </section>
 
       <Section data-home-section="counter" background="surface">
-        <p className="font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
-          Given back to SMBs
-        </p>
-        <div className="qf-hours-counter mt-[var(--qf-sp-3)]">
-          <p>
-            <strong>0</strong> hours
+        <p className="qf-home-kicker">Given back to SMBs</p>
+        <div className="qf-hours-counter">
+          <p className="qf-hours-item">
+            <span>Hours confirmed</span>
+            <strong>0</strong>
           </p>
-          <p>
+          <p className="qf-hours-item">
+            <span>At €40/h</span>
             <strong>€0</strong>
           </p>
         </div>
         <p className="mt-[var(--qf-sp-4)] max-w-2xl text-[var(--qf-text-dim)]">
           Hours per week × €40/h, only after the client confirms. The counter starts at zero
           on purpose.{' '}
-          <Link href={ROUTES.proofMethodology} className="text-[var(--qf-accent)]">
+          <Link href={ROUTES.proofMethodology} className="qf-sys-link">
             How we measure
           </Link>
           .
@@ -143,25 +141,23 @@ export default function Home() {
       </Section>
 
       <Section data-home-section="approach">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-          From scan to system in three weeks.
-        </h2>
-        <ol className="space-y-3 text-[var(--qf-text-dim)]">
+        <p className="qf-home-kicker">Approach</p>
+        <h2 className="qf-sys-h2">From scan to system in two to four weeks.</h2>
+        <ol className="qf-sys-steps">
           {STEPS.map((step, index) => (
             <li key={step}>
-              <span className="font-mono text-[var(--qf-accent)]">{index + 1}.</span> {step}
+              <span className="qf-sys-step-n">{index + 1}.</span> {step}
             </li>
           ))}
         </ol>
-        <Link href={ROUTES.approach} className="mt-6 inline-block text-[var(--qf-accent)]">
+        <Link href={ROUTES.approach} className="mt-6 inline-block qf-sys-link">
           Full approach →
         </Link>
       </Section>
 
       <Section data-home-section="compare" background="surface">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-          Agency, freelancer, QuietForge
-        </h2>
+        <p className="qf-home-kicker">Fit</p>
+        <h2 className="qf-sys-h2">Agency, freelancer, QuietForge</h2>
         <div className="overflow-x-auto">
           <table className="qf-compare-table">
             <thead>
@@ -206,16 +202,15 @@ export default function Home() {
       </Section>
 
       <Section data-home-section="discipline">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-          Engineering discipline
-        </h2>
-        <ul className="grid gap-4 md:grid-cols-2">
+        <p className="qf-home-kicker">Discipline</p>
+        <h2 className="qf-sys-h2">Engineering discipline</h2>
+        <ul className="qf-intent-grid">
           {DISCIPLINE.map((item) => (
             <li key={item.title}>
               <Card>
                 <h3 className="font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-[var(--qf-text-dim)]">{item.evidence}</p>
-                <Link href={item.href} className="mt-3 inline-block text-sm text-[var(--qf-accent)]">
+                <p className="qf-price-note mt-[var(--qf-sp-2)]">{item.evidence}</p>
+                <Link href={item.href} className="qf-intent-card-cta">
                   Evidence →
                 </Link>
               </Card>
@@ -225,67 +220,65 @@ export default function Home() {
       </Section>
 
       <Section data-home-section="proof" background="surface">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-          Proof starts at zero
-        </h2>
+        <p className="qf-home-kicker">Proof</p>
+        <h2 className="qf-sys-h2">Proof starts at zero</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
           Three client slots are open. Until a client verifies hours, we do not invent a
           number. Lab measurements stay labelled as examples.
         </p>
-        <Link href={ROUTES.proof} className="mt-4 inline-block text-[var(--qf-accent)]">
+        <Link href={ROUTES.proof} className="mt-4 inline-block qf-sys-link">
           Proof hub →
         </Link>
       </Section>
 
       <Section data-home-section="about">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-          Norbert · system builder
-        </h2>
+        <p className="qf-home-kicker">About</p>
+        <h2 className="qf-sys-h2">Norbert · system builder</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
           I build operating systems for small companies — from quotes, through orders, to
           inbox and reports. I build at AI speed and deliver with engineering discipline.
           My currency is hours, stress and money given back.
         </p>
-        <Link href={ROUTES.about} className="mt-4 inline-block text-[var(--qf-accent)]">
+        <Link href={ROUTES.about} className="mt-4 inline-block qf-sys-link">
           About →
         </Link>
       </Section>
 
       <Section data-home-section="pricing">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">
-          Clear prices, fixed scope
-        </h2>
-        <ul className="grid gap-4 md:grid-cols-3">
+        <p className="qf-home-kicker">Prices</p>
+        <h2 className="qf-sys-h2">Clear prices, fixed scope</h2>
+        <ul className="qf-price-grid">
           <li>
             <Card>
-              <h3 className="font-semibold">Automation Scan</h3>
-              <p className="mt-2 text-2xl">{formatEuro(PRICING.discovery)}</p>
-              <p className="mt-2 text-sm text-[var(--qf-text-dim)]">Credited toward implementation.</p>
+              <h3 className="font-semibold">{PUBLIC_OFFER.scanName}</h3>
+              <p className="qf-price-amount">{PUBLIC_OFFER.scanPrice}</p>
+              <p className="qf-price-note">{PUBLIC_OFFER.scanNote}</p>
             </Card>
           </li>
           <li>
             <Card>
-              <h3 className="font-semibold">Implementation</h3>
-              <p className="mt-2 text-2xl">from {formatEuro(PRICING.implementationFrom)}</p>
-              <p className="mt-2 text-sm text-[var(--qf-text-dim)]">Fixed price, 2–4 weeks.</p>
+              <h3 className="font-semibold">{PUBLIC_OFFER.implementationName}</h3>
+              <p className="qf-price-amount">{PUBLIC_OFFER.implementationPrice}</p>
+              <p className="qf-price-note">{PUBLIC_OFFER.implementationNote}</p>
             </Card>
           </li>
           <li>
             <Card>
-              <h3 className="font-semibold">Maintenance</h3>
-              <p className="mt-2 text-2xl">from {formatEuro(PRICING.maintenanceFrom)}/mo</p>
-              <p className="mt-2 text-sm text-[var(--qf-text-dim)]">Monthly cancellable.</p>
+              <h3 className="font-semibold">{PUBLIC_OFFER.maintenanceName}</h3>
+              <p className="qf-price-amount">{PUBLIC_OFFER.maintenancePrice}</p>
+              <p className="qf-price-note">{PUBLIC_OFFER.maintenanceNote}</p>
             </Card>
           </li>
         </ul>
-        <Link href={ROUTES.pricing} className="mt-6 inline-block text-[var(--qf-accent)]">
+        <Link href={ROUTES.pricing} className="mt-6 inline-block qf-sys-link">
           Pricing →
         </Link>
       </Section>
 
       <Section data-home-section="faq">
-        <h2 className="mb-[var(--qf-sp-4)] text-[var(--qf-fs-2xl)] font-bold">Questions</h2>
-        <div className="space-y-3">
+        <p className="qf-home-kicker">Questions</p>
+        <h2 className="qf-sys-h2">Good to know</h2>
+        <div className="qf-sys-faq">
           {FAQ.map((item) => (
             <FaqItem key={item.q} question={item.q} answer={item.a} />
           ))}
@@ -294,16 +287,26 @@ export default function Home() {
 
       <section className="qf-final-cta" aria-labelledby="home-cta-title">
         <div className="qf-final-cta-inner">
-          <h2 id="home-cta-title" className="mb-[var(--qf-sp-4)]">
+          <h2 id="home-cta-title" className="qf-sys-h2">
             Book the Automation Scan
           </h2>
           <p className="qf-final-cta-lead">
             90 minutes. {formatEuro(PRICING.discovery)}. The report is yours. Credited if we
             build.
           </p>
-          <Link href={ROUTES.bookAScan} className="qf-btn-fill">
-            Book a scan <span aria-hidden="true">→</span>
-          </Link>
+          <div className="qf-sys-cta-row">
+            <Link href={ROUTES.bookAScan} className="qf-btn-fill">
+              {CTAS.bookAutomationMap} <span aria-hidden="true">→</span>
+            </Link>
+            <a
+              href={WHATSAPP.url}
+              className="qf-btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {HERO.whatsappCta}
+            </a>
+          </div>
         </div>
       </section>
       <StickyCta />

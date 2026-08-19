@@ -11,7 +11,7 @@ export default function FeatureGallery({
         <li key={feature.name} className="qf-feature-card">
           <h3 className="qf-feature-name">{feature.name}</h3>
           <p className="qf-feature-does">{feature.does}</p>
-          <p className="qf-feature-see">{feature.ownerSees}</p>
+          <p className="qf-feature-see">You see: {feature.ownerSees}</p>
         </li>
       ))}
     </ul>

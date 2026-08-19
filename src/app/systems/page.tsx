@@ -12,18 +12,17 @@ export const metadata: Metadata = {
 
 export default function SystemsHubPage() {
   return (
-    <Section padding="large">
-      <h1 className="mb-4 text-[var(--qf-fs-3xl)] font-bold tracking-tight">
-        Six systems that give time back.
-      </h1>
-      <p className="mb-10 max-w-2xl text-[var(--qf-text-dim)]">
+    <Section>
+      <p className="qf-home-kicker">Systems</p>
+      <h1 className="qf-sys-h1">Six systems that give time back.</h1>
+      <p className="qf-sys-lead">
         Filter by where the week leaks. Not sure which fits? The scan tells you.
       </p>
-      <IntentSystems heading="Choose an intent" showRequirements />
-      <p className="mt-10 text-[var(--qf-text-dim)]">
+      <IntentSystems heading="" showRequirements />
+      <p className="qf-sys-lead">
         Not sure which fits?{' '}
-        <Link href={ROUTES.bookAScan} className="text-[var(--qf-accent)]">
-          Book the scan
+        <Link href={ROUTES.bookAScan} className="qf-sys-link">
+          Book a scan
         </Link>
         .
       </p>

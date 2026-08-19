@@ -15,7 +15,7 @@ const MEASURES = [
   { id: 'authorization', title: 'Auth on the server', evidence: 'You approve who can do what.' },
   { id: 'dependencies', title: 'Dependencies are scanned', evidence: 'CVE check before each change.' },
   { id: 'review', title: 'Human code review', evidence: 'Independent programmer on every build.' },
-  { id: 'approval-gates', title: 'Approval gates', evidence: 'Agent proposes. You click.' },
+  { id: 'approval-gates', title: 'Approval gates', evidence: 'The system proposes. You click.' },
   { id: 'logging', title: 'Logging', evidence: 'Actions leave a trail.' },
   { id: 'gdpr', title: 'GDPR', evidence: 'DPA on request. EU hosting for intake.' },
   { id: 'backup', title: 'Backup and rollback', evidence: 'A change that fails can be reversed.' },

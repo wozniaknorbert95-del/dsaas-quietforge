@@ -9,8 +9,13 @@ export default function FlowDiagram({
 }) {
   return (
     <figure className="qf-flow">
-      {/* SVG schematic — not a live screenshot. */}
-      <img src={src} alt={alt} className="qf-flow-img" />
+      <img
+        src={src}
+        alt={alt}
+        width={1200}
+        height={520}
+        className="qf-flow-img"
+      />
       <figcaption className="qf-flow-caption">{caption}</figcaption>
     </figure>
   );

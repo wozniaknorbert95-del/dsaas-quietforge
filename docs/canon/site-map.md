@@ -98,11 +98,11 @@ S1 creates **thin but honest** S2/S3 destinations so 301s do not 404. Full desig
 
 ## Home (S1)
 
-1. Hero — H1: **Systems that give you back your time.** Eyebrow: Business operating systems for SMBs · EU
+1. Hero — H1: **Systems that give you back your time.** Eyebrow: System builder for small businesses · EU. Anti-position under subline.
 2. Counter at 0 + methodology honesty
 3. Intent router (Time · Money · Calm · Team · Order)
 4. Six system cards
-5. Approach short (5 steps)
+5. Approach short (5 steps) — “two to four weeks”
 6. Comparison Agency / Freelancer / QuietForge
 7. Engineering discipline tiles → `/security`
 8. Proof slots (open)

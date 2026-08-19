@@ -94,7 +94,7 @@ export const SYSTEMS: SystemRecord[] = [
     integrations: 'Mollie checkout · catalog rules · order handoff',
     tldr: {
       is: 'A guided quote-to-order flow: configure, see the price, pay, land in the cockpit.',
-      givesBack: 'Typically gives back ~8–15 h/week of quote ping-pong.',
+      givesBack: '~8–15 h/week of quote ping-pong',
       replaces: 'Email quotes, spreadsheet prices, and a shop you do not need.',
     },
     costs: [
@@ -237,7 +237,7 @@ export const SYSTEMS: SystemRecord[] = [
     integrations: 'Gmail or Microsoft 365 · approval gate',
     tldr: {
       is: 'Mail is classified into lanes. Replies are drafted. You click send.',
-      givesBack: 'Typically gives back ~8–12 h/week of morning triage.',
+      givesBack: '~8–12 h/week of morning triage',
       replaces: 'One overflowing mailbox and drafts started from zero.',
     },
     costs: [
@@ -375,7 +375,7 @@ export const SYSTEMS: SystemRecord[] = [
     integrations: 'GA4 events · handoff to quote flow',
     tldr: {
       is: 'A finishable play that qualifies a visitor, then hands them to your quote flow.',
-      givesBack: 'Typically recovers leads that a static form never gets.',
+      givesBack: 'leads a static form never gets',
       replaces: 'A brochure page with a form nobody finishes.',
     },
     costs: [
@@ -509,7 +509,7 @@ export const SYSTEMS: SystemRecord[] = [
     integrations: 'Orders · leads · analytics snapshot · approval queue',
     tldr: {
       is: 'One owner screen: facts, the next action, a weekly brief as a draft.',
-      givesBack: 'Typically gives back ~1 workday/week of searching three tools.',
+      givesBack: '~1 workday/week of searching three tools',
       replaces: 'Margin after the fact and decisions from memory.',
     },
     costs: [
@@ -652,7 +652,7 @@ export const SYSTEMS: SystemRecord[] = [
     integrations: 'Docs · site · repos · approval trail',
     tldr: {
       is: 'A scan that flags when docs, site and offers disagree — then you approve publish.',
-      givesBack: 'Typically gives back ~3 h/week of “who published this?”.',
+      givesBack: '~3 h/week of “who published this?”',
       replaces: 'Silent drift and no rollback story.',
     },
     costs: [
@@ -786,7 +786,7 @@ export const SYSTEMS: SystemRecord[] = [
     integrations: 'Git · secret scan · test report · approval log',
     tldr: {
       is: 'A fixed sequence: plan, change, test, you approve, then ship with a log.',
-      givesBack: 'Typically the cost of one “who changed this?” incident.',
+      givesBack: 'the cost of one “who changed this?” incident',
       replaces: 'FTP-by-default and no audit.',
     },
     costs: [

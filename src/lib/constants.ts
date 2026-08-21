@@ -32,12 +32,14 @@ export const WHATSAPP = {
 } as const;
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/flexgrafik-quietforge';
+export const GITHUB_URL = 'https://github.com/wozniaknorbert95-del';
 /** Lab heritage only — never labelled live proof in public chrome. */
 export const FLEXGRAFIK_URL = 'https://flexgrafik.nl';
 
 /** External social / connect links — footer, about, JSON-LD sameAs */
 export const SOCIAL_LINKS = [
   { label: 'LinkedIn profile', href: LINKEDIN_URL, icon: 'linkedin' as const },
+  { label: 'GitHub profile', href: GITHUB_URL, icon: 'github' as const },
   { label: WHATSAPP.label, href: WHATSAPP.url, icon: 'whatsapp' as const },
 ] as const;
 

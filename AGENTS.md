@@ -7,6 +7,7 @@ Stack: Next.js 16.2.6, React 19, TypeScript, Tailwind v4, Framer Motion, Lucide 
 
 ## Knowledge read order (mandatory before page/component work)
 
+0. [`docs/ROADMAP.md`](docs/ROADMAP.md) — business goals SoT („Musimy"); KOKPIT = other repo
 1. [`docs/README.md`](docs/README.md) — knowledge map + authority layers
 2. [`docs/canons/vision-system.md`](docs/canons/vision-system.md) — direction
 3. [`docs/canons/strategy-rules.md`](docs/canons/strategy-rules.md) — IA / funnel HARD rules

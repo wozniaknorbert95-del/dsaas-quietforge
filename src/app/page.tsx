@@ -8,6 +8,7 @@ import IntentSystems from '@/components/v2/IntentSystems';
 import { PRICING, ROUTES, WHATSAPP } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
 import { CTAS, HERO, POSITIONING, PUBLIC_OFFER } from '@/content/conversion-copy';
+import { hoursCounter, hoursValueEuro } from '@/content/hours-counter';
 
 export const metadata: Metadata = {
   title: 'Systems that give you back your time',
@@ -119,15 +120,15 @@ export default function Home() {
         <div className="qf-hours-counter">
           <p className="qf-hours-item">
             <span>Hours confirmed</span>
-            <strong>0</strong>
+            <strong>{hoursCounter.hoursConfirmed}</strong>
           </p>
           <p className="qf-hours-item">
-            <span>At €40/h</span>
-            <strong>€0</strong>
+            <span>At €{hoursCounter.ratePerHour}/h</span>
+            <strong>€{hoursValueEuro}</strong>
           </p>
         </div>
         <p className="mt-[var(--qf-sp-4)] max-w-2xl text-[var(--qf-text-dim)]">
-          Hours per week × €40/h, only after the client confirms. The counter starts at zero
+          Hours per week × €{hoursCounter.ratePerHour}/h, only after the client confirms. The counter starts at zero
           on purpose.{' '}
           <Link href={ROUTES.proofMethodology} className="qf-sys-link">
             How we measure

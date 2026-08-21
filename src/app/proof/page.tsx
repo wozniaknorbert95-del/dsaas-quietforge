@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants';
+import { hoursCounter, hoursValueEuro } from '@/content/hours-counter';
 
 export const metadata: Metadata = {
   title: 'Proof: hours and money saved, counted publicly',
@@ -16,7 +17,9 @@ export default function ProofPage() {
       <h1 className="mb-4 text-[var(--qf-fs-3xl)] font-bold tracking-tight">
         We count publicly what we give back.
       </h1>
-      <p className="text-[var(--qf-fs-2xl)] font-bold">0 hours · €0</p>
+      <p className="text-[var(--qf-fs-2xl)] font-bold">
+        {hoursCounter.hoursConfirmed} hours · €{hoursValueEuro}
+      </p>
       <p className="mt-4 max-w-2xl text-[var(--qf-text-dim)]">
         Not a missing widget — an honest start. Methodology is public.{' '}
         <Link href={ROUTES.proofMethodology} className="text-[var(--qf-accent)]">

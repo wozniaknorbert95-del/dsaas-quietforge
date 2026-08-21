@@ -10,6 +10,8 @@ classification: "L1 — documentation entry point"
 
 > **Start here.** Single entry point for agents, Commander, and investors browsing repo docs.
 
+**Business goals / „Musimy" list:** [`ROADMAP.md`](./ROADMAP.md) — SoT for QuietForge objectives (platform, site, proof, GitHub, marketing locks). Do not keep that list in `zlotaskrzynia`.
+
 ---
 
 ## Authority layers

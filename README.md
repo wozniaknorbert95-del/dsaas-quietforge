@@ -5,8 +5,8 @@ Active test tenant for the DSaaS platform and the operating repository for
 
 ## Boundary
 
-- This repository owns QuietForge brand, content, goals, KPI, intake and tenant configuration.
-- **Business roadmap (SoT):** [`docs/ROADMAP.md`](docs/ROADMAP.md) — goals from „Musimy", status, locks. Not in `zlotaskrzynia`.
+- **Business roadmap tool (SoT):** private repo [`quietforge-roadmap`](https://github.com/wozniaknorbert95-del/quietforge-roadmap) — not this repo.
+- This repository owns QuietForge brand site, content, intake and tenant configuration (data waiting for the platform).
 - Generic decision, policy, lifecycle and agent runtime belongs to `dsaas-platform-main`.
 - Client battlecards / KOKPIT tool live in `zlotaskrzynia` (separate product, separate sessions).
 - Platform compatibility is pinned in `platform.lock.json`.

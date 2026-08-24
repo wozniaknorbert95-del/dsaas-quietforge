@@ -14,7 +14,7 @@ export const HERO = {
   eyebrow: 'System builder for small businesses · EU',
   headline: 'Systems that give you back your time.',
   subline:
-    'Quotes, orders, inbox and reporting — rebuilt as managed systems. AI speed, engineering discipline, nothing live without your approval.',
+    'Quotes, orders, inbox, reporting — rebuilt as self-improving systems that work 24/7 and propose their own upgrades. Built at AI speed, delivered with engineering discipline — nothing goes live without your approval.',
   dualBrandLine: 'QuietForge implements. You approve. FlexGrafik is a paused lab.',
   beats: {
     problem: {
@@ -32,6 +32,7 @@ export const HERO = {
   },
   proofStrip: 'Hours given back · you approve · counter starts at zero',
   proofLine: 'Hours given back · you approve · counter starts at zero',
+  proofChip: 'AI-assisted engineering — review · scans · gates',
   microTrust:
     'I build at AI speed and deliver with engineering discipline. FlexGrafik is a paused lab, not a client proof.',
   primaryCta: 'Book a scan',
@@ -96,13 +97,77 @@ export const PUBLIC_OFFER = {
   maintenanceName: 'Maintenance',
   maintenancePrice: `from ${formatEuro(PRICING_NUMBERS.maintenanceFrom)}/mo`,
   maintenanceNote: 'Monitoring, fixes, one optimisation per month. Cancel monthly.',
+  /** Build variants — oferty v1 (Oferta B). SYSTEM = most chosen. */
+  buildVariants: [
+    {
+      name: 'ESSENTIAL',
+      price: formatEuro(PRICING_NUMBERS.buildEssential),
+      what: '1 core workflow end-to-end (e.g. quote → order, or inbox triage)',
+      timeline: '2–3 weeks',
+      gates: 'at test & at live',
+      mostChosen: false,
+    },
+    {
+      name: 'SYSTEM',
+      price: formatEuro(PRICING_NUMBERS.buildSystem),
+      what: '2–3 connected modules + owner dashboard',
+      timeline: '3–4 weeks',
+      gates: 'at architecture, test & live',
+      mostChosen: true,
+    },
+    {
+      name: 'AUTONOMOUS',
+      price: formatEuro(PRICING_NUMBERS.buildAutonomous),
+      what: 'System + custom AI agent with approval gates + company-brain foundation',
+      timeline: '5–6 weeks',
+      gates: 'at architecture, test & live + agent scope',
+      mostChosen: false,
+    },
+  ],
+  /** Care variants — oferty v1 (Oferta C). GROW = most chosen. Monthly cancellable. */
+  careVariants: [
+    {
+      name: 'CARE',
+      price: `${formatEuro(PRICING_NUMBERS.care)}/mo`,
+      mostChosen: false,
+      features: ['Monitoring & health checks', 'Fixes <48h business days', 'Monthly report (hours · €)'],
+    },
+    {
+      name: 'GROW',
+      price: `${formatEuro(PRICING_NUMBERS.grow)}/mo`,
+      mostChosen: true,
+      features: ['Everything in CARE', '1 improvement per month', 'Priority response', 'Quarterly strategy review'],
+    },
+    {
+      name: 'AUTONOMY',
+      price: `${formatEuro(PRICING_NUMBERS.autonomy)}/mo`,
+      mostChosen: false,
+      features: ['Everything in GROW', 'Agent-researched upgrade proposals (you approve)'],
+    },
+  ],
+  paymentTerms:
+    'Scan: 100% upfront. Build: 50/50 — final 50% invoiced only after it runs in your production. Care: monthly, cancellable at month-end.',
   alwaysIncluded: [
     'Independent code review',
     'Secret and dependency scans',
     'Tests before release',
     'Documentation and handover',
     'Your repository from day one',
+    '30 days post-launch support',
   ],
+} as const;
+
+/** Reference program — marketing v1 §6. Max 5 firms, then closed. */
+export const REFERENCE_PROGRAM = {
+  heading: 'Proof starts at zero — and we’re opening five doors.',
+  lead:
+    'Five reference spots this quarter: the full Automation Scan (€690 value) at €0–€345, in exchange for publishing the measured results. After five, the program closes.',
+  terms: [
+    'Before/after numbers (hours × €40/h) published in a case study',
+    'One named reference sentence + consent to name your industry',
+    'A 30-minute case-study conversation after the build',
+  ],
+  closing: 'Maximum five firms. Priority: webshops and accounting offices. After five — closed.',
 } as const;
 
 export const WEBSITE_ONLY_EXCEPTION =
@@ -291,38 +356,70 @@ export const FEATURED_STRIP = {
 } as const;
 
 export const ABOUT = {
-  metaTitle: 'About — system builder for small businesses',
-  heroTitle: 'Norbert · system builder',
+  metaTitle: 'About — architect of autonomous operating systems',
+  heroTitle: 'Norbert — architect of autonomous operating systems for small companies.',
   heroIntro:
-    'I build operating systems for small companies — from quotes, through orders, to inbox and reports. I build at AI speed and deliver with engineering discipline: human review, security scans, approval gates, documentation. My currency is hours, stress and money given back.',
-  storyTitle: 'The lab is paused. The practice is QuietForge.',
-  storyBody:
-    'FlexGrafik was the owner-operated lab where the stack grew up. It is paused as a market offer. The lesson: a working system is not the same as paying clients. QuietForge implements company operating systems for firms of 1–15 people, with the code in your repo from day one.',
-  moatTitle: 'What this is',
-  moatPillars: [
+    'I design and deploy autonomous operating systems — from quotes, through orders, to inbox and reporting. Not a programmer for hire, not the AI guy, not an agency.',
+  storyTitle: 'My story — built from need, not theory.',
+  storyBody: [
+    'I started from zero. No programming background, no courses, no mentor — one thing only: the desperate need to save my own company. When the tools I needed did not exist or cost too much, I decided to build them. With AI as a partner I learned to build — and today I control the AI, not the other way around.',
+    'For three years I built in production, on a live business — eight repositories, each from scratch: from a shop configurator to a mobile game to an owner cockpit. Today those eight repos become one integrated platform. Finishing things is my identity, not a resolution.',
+    'The most expensive lesson, and the most honest one: a working system is not the same as paying clients. FlexGrafik is a paused lab; the systems still run as heritage. That lesson makes me a better advisor than any theorist: I know what a system gives — and what it does not.',
+  ],
+  buildTitle: 'What I build',
+  buildPillars: [
     {
-      title: 'AI speed, engineering discipline',
-      body: 'Build with agents. Deliver with review, scans, gates and docs. Process, not adjectives.',
+      title: 'Company Brains',
+      body: 'The central nervous system of your company — structured knowledge that ends information chaos and that AI can reliably use.',
     },
     {
-      title: 'You stay the gate',
-      body: 'Nothing customer-facing goes live without your approval. I earn when it works.',
+      title: 'Agentic engineering & orchestration',
+      body: 'Not rigid scripts: multi-agent systems that carry whole workflows, with AI as the execution layer I orchestrate.',
     },
     {
-      title: 'Replaceable by design',
-      body: 'Your repository from day one. Handover is part of the product, not an extra.',
+      title: 'Self-improvement with a human in the loop',
+      body: 'Systems that evolve in closed feedback loops — the agent researches and proposes, you click.',
     },
   ],
-  whyTitle: 'How I work',
-  whyBody:
-    'You get the kind of architecture usually reserved for big budgets — designed around how your work really flows, at a price a small business understands, with full control over what the system does.',
-  principlesTitle: 'How I work',
-  principles: [
-    'Outcome first. I measure success in your time saved and clients won, not features shipped.',
-    'Built to last. Lean, maintainable systems — no bloat, no lock-in.',
-    'You decide. Nothing happens without your approval.',
-    'Honest numbers. Clear pricing, clear ROI, no surprises.',
+  deliverTitle: 'How I deliver — AI-assisted engineering, not vibe coding',
+  deliverPoints: [
+    {
+      title: 'Security as standard',
+      body: 'Server-side authentication, row-level security, dependency audits before every deploy.',
+      href: '/security/#authorization',
+    },
+    {
+      title: 'Zero leaks',
+      body: 'Secrets scanned on every release — your API keys stay yours.',
+      href: '/security/#secrets',
+    },
+    {
+      title: 'Verifiable quality',
+      body: 'Independent human code review, logging, monitoring, snapshot and rollback on every release.',
+      href: '/security/#review',
+    },
   ],
+  currencyTitle: 'What you receive — my currency',
+  currencyPoints: [
+    'Hours given back — measured, not asserted.',
+    'Nerves removed: errors caught before they reach your customers.',
+    'Money: every recommendation ranked by payback.',
+    'Full control and ownership — your repo from day one, README and handover included. Replaceable by design.',
+    'Maintenance that earns its keep — I earn when it works, not when it breaks.',
+  ],
+  numbersTitle: 'In numbers',
+  numbers: [
+    { value: '30', label: 'trades — I speak your industry’s language and see patterns between them' },
+    { value: '3', label: 'years running systems in production on my own company' },
+    { value: '8 → 1', label: 'repositories rebuilt into one integrated platform' },
+    { value: 'EN · PL · NL-basic', label: 'languages spoken by your industry' },
+  ],
+  offClockTitle: 'Off the clock',
+  offClockBody:
+    'Weightlifting teaches progression — small loads added systematically. Tennis is tactics under pressure. Cycling is endurance, and where architecture ideas arrive. Psychology is why clients hesitate and what builds trust. Reading is patterns, read like an engineer: structures worth looping.',
+  labTitle: 'The lab — where it started',
+  ctaTitle: 'Let’s find what’s worth automating.',
+  kvk: 'KVK 89057554',
 } as const;
 
 export const FOOTER = {

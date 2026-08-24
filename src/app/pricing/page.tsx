@@ -4,47 +4,21 @@ import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import FaqItem from '@/components/ui/FaqItem';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
+import VariantCta from '@/components/pricing/VariantCta';
 import { ROUTES, SITE_URL } from '@/lib/constants';
 import { CTAS, PUBLIC_OFFER, WEBSITE_ONLY_EXCEPTION } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
-  title: 'Pricing: scan, implementation, maintenance',
+  title: 'Pricing: scan, build variants, care',
   description:
-    'Clear prices, fixed scope. Automation Scan €690 credited. Implementation from €2,500. Maintenance from €300/month.',
+    'Clear prices, fixed scope. Automation Scan €690 credited. Builds: ESSENTIAL €2,500 · SYSTEM €4,500 · AUTONOMOUS €7,900. Care from €300/month, cancellable.',
   openGraph: {
-    title: 'Pricing: scan, implementation, maintenance | Quietforge',
-    description: 'Scan €690 credited. Implementation from €2,500. Maintenance from €300/month.',
+    title: 'Pricing: scan, build variants, care | Quietforge',
+    description: 'Scan €690 credited. Builds €2,500–€7,900 fixed. Care €300–€1,000/mo, cancellable.',
     url: `${SITE_URL}/pricing/`,
     images: [{ url: '/og/pricing.svg', width: 1200, height: 630, alt: 'Quietforge pricing' }],
   },
 };
-
-const TIERS = [
-  {
-    name: PUBLIC_OFFER.scanName,
-    price: PUBLIC_OFFER.scanPrice,
-    note: PUBLIC_OFFER.scanNote,
-    href: ROUTES.bookAScan,
-    cta: CTAS.bookAutomationMap,
-    featured: true,
-  },
-  {
-    name: PUBLIC_OFFER.implementationName,
-    price: PUBLIC_OFFER.implementationPrice,
-    note: PUBLIC_OFFER.implementationNote,
-    href: ROUTES.bookAScan,
-    cta: 'Start with the scan',
-    featured: false,
-  },
-  {
-    name: PUBLIC_OFFER.maintenanceName,
-    price: PUBLIC_OFFER.maintenancePrice,
-    note: PUBLIC_OFFER.maintenanceNote,
-    href: ROUTES.bookAScan,
-    cta: 'Ask at the scan',
-    featured: false,
-  },
-] as const;
 
 const DRIVERS = [
   'How many leaks the scan finds worth closing first.',
@@ -56,19 +30,23 @@ const DRIVERS = [
 const FAQS = [
   {
     q: 'Is the scan credited?',
-    a: 'Yes. The full scan fee comes off the first implementation if we build.',
+    a: 'Yes. The full scan fee comes off the first implementation if we build, within 30 days.',
   },
   {
     q: 'Why paid, not a free call?',
     a: 'So both sides take it seriously. You keep the report even if we do not build.',
   },
   {
-    q: 'Why “from” on implementation?',
-    a: 'The scan locks scope. After that the price is fixed. No hourly surprise.',
+    q: 'What if it doesn’t work?',
+    a: 'You sign off before anything goes live — and the final 50% is invoiced only after the system runs in your production.',
+  },
+  {
+    q: 'What does “most chosen” mean?',
+    a: 'The variant most owners pick at this stage. It is a default to think from, not pressure — the scan locks what you actually need.',
   },
   {
     q: 'Must I take maintenance?',
-    a: 'No. Monthly and cancellable. Most people add it once the system is live.',
+    a: 'No. Monthly and cancellable at month-end. Most people add it once the system is live.',
   },
 ];
 
@@ -84,22 +62,72 @@ export default function PricingPage() {
           You buy given-back time, not a pile of hours.
         </h1>
         <p className="mb-10 max-w-2xl text-[var(--qf-text-dim)]">
-          Scan first. Then a fixed-price system. Maintenance only if you want it.
+          Scan first. Then a fixed-price build at the depth you choose. Care only if you want it.
+        </p>
+
+        <Card variant="accent" className="max-w-2xl p-6">
+          <h2 className="text-lg font-semibold">{PUBLIC_OFFER.scanName}</h2>
+          <p className="mt-3 text-2xl font-bold">{PUBLIC_OFFER.scanPrice}</p>
+          <p className="mt-3 text-sm text-[var(--qf-text-dim)]">{PUBLIC_OFFER.scanNote}</p>
+          <p className="mt-2 text-sm text-[var(--qf-text-faint)]">
+            Honest guarantee: if the scan finds nothing worth automating, the report says exactly that — and it is yours either way.
+          </p>
+          <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-6 inline-flex justify-center">
+            {CTAS.bookAutomationMap} →
+          </Link>
+        </Card>
+      </Section>
+
+      <Section background="surface">
+        <h2 className="mb-2 text-[var(--qf-fs-2xl)] font-bold">Build — choose your depth</h2>
+        <p className="mb-8 max-w-2xl text-sm text-[var(--qf-text-dim)]">
+          All fixed-price. All include independent code review, security scans, tests on your real scenarios, documentation and your repo from day one.
         </p>
         <ul className="grid gap-4 md:grid-cols-3">
-          {TIERS.map((tier) => (
-            <li key={tier.name}>
-              <Card variant={tier.featured ? 'accent' : 'default'} className="flex h-full flex-col">
-                <h2 className="text-lg font-semibold">{tier.name}</h2>
-                <p className="mt-3 text-2xl font-bold">{tier.price}</p>
-                <p className="mt-3 flex-1 text-sm text-[var(--qf-text-dim)]">{tier.note}</p>
-                <Link href={tier.href} className="qf-btn-fill mt-6 inline-flex justify-center">
-                  {tier.cta} →
-                </Link>
+          {PUBLIC_OFFER.buildVariants.map((variant) => (
+            <li key={variant.name}>
+              <Card variant={variant.mostChosen ? 'accent' : 'default'} className="flex h-full flex-col p-6">
+                <h3 className="font-mono text-sm font-bold tracking-[0.14em]">
+                  {variant.name}
+                  {variant.mostChosen ? ' · most chosen' : ''}
+                </h3>
+                <p className="mt-3 text-2xl font-bold">{variant.price}</p>
+                <p className="mt-3 text-sm text-[var(--qf-text-dim)]">{variant.what}</p>
+                <p className="mt-2 text-sm text-[var(--qf-text-faint)]">Timeline: {variant.timeline}</p>
+                <p className="text-sm text-[var(--qf-text-faint)]">Your approval gates: {variant.gates}</p>
+                <div className="mt-auto">
+                  <VariantCta variant={variant.name} />
+                </div>
               </Card>
             </li>
           ))}
         </ul>
+      </Section>
+
+      <Section>
+        <h2 className="mb-2 text-[var(--qf-fs-2xl)] font-bold">Care — keep it improving</h2>
+        <p className="mb-8 max-w-2xl text-sm text-[var(--qf-text-dim)]">
+          For every delivered system. Monthly cancellable, no lock-in. I earn when it works, not when it breaks.
+        </p>
+        <ul className="grid gap-4 md:grid-cols-3">
+          {PUBLIC_OFFER.careVariants.map((variant) => (
+            <li key={variant.name}>
+              <Card variant={variant.mostChosen ? 'accent' : 'default'} className="flex h-full flex-col p-6">
+                <h3 className="font-mono text-sm font-bold tracking-[0.14em]">
+                  {variant.name}
+                  {variant.mostChosen ? ' · most chosen' : ''}
+                </h3>
+                <p className="mt-3 text-2xl font-bold">{variant.price}</p>
+                <ul className="mt-3 space-y-1 text-sm text-[var(--qf-text-dim)]">
+                  {variant.features.map((feature) => (
+                    <li key={feature}>— {feature}</li>
+                  ))}
+                </ul>
+              </Card>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 max-w-2xl text-sm text-[var(--qf-text-faint)]">{PUBLIC_OFFER.paymentTerms}</p>
       </Section>
 
       <Section background="surface">

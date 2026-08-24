@@ -4,6 +4,7 @@ import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants';
 import { hoursCounter, hoursValueEuro } from '@/content/hours-counter';
+import { REFERENCE_PROGRAM } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
   title: 'Proof: hours and money saved, counted publicly',
@@ -42,6 +43,28 @@ export default function ProofPage() {
           </li>
         ))}
       </ul>
+
+      <div id="reference" className="mt-14 border-t border-[var(--qf-border)] pt-10">
+        <h2 className="text-[var(--qf-fs-2xl)] font-bold tracking-tight">
+          {REFERENCE_PROGRAM.heading}
+        </h2>
+        <p className="mt-4 max-w-2xl text-[var(--qf-text-dim)]">{REFERENCE_PROGRAM.lead}</p>
+        <p className="mt-6 mb-3 font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
+          In exchange, you agree to
+        </p>
+        <ul className="max-w-xl space-y-2 text-[var(--qf-text-dim)]">
+          {REFERENCE_PROGRAM.terms.map((term) => (
+            <li key={term.slice(0, 24)}>— {term}</li>
+          ))}
+        </ul>
+        <p className="mt-6 max-w-2xl text-sm text-[var(--qf-text-faint)]">
+          {REFERENCE_PROGRAM.closing}
+        </p>
+        <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-8 inline-flex">
+          Apply for a reference spot →
+        </Link>
+      </div>
+
       <p className="mt-8 text-[var(--qf-text-dim)]">
         The lab where this started:{' '}
         <Link href={ROUTES.aboutLab} className="text-[var(--qf-accent)]">

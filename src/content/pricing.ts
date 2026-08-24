@@ -7,6 +7,17 @@ export const PRICING_NUMBERS = {
   discovery: 690,
   implementationFrom: 2500,
   maintenanceFrom: 300,
+  /** Build variants — oferty v1 (Oferta B). */
+  buildEssential: 2500,
+  buildSystem: 4500,
+  buildAutonomous: 7900,
+  /** Care variants — oferty v1 (Oferta C), per month. */
+  care: 300,
+  grow: 600,
+  autonomy: 1000,
+  /** AI Security Audit fixed range — etap 4 §3.2. */
+  securityAuditFrom: 1500,
+  securityAuditTo: 3000,
   inboxKiller: { from: 1200, to: 4800 },
   webUpgrade: { from: 1800, to: 5500 },
   salesFunnel: { from: 2400, to: 6500 },

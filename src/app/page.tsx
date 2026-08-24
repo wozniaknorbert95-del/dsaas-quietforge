@@ -7,8 +7,9 @@ import StickyCta from '@/components/layout/StickyCta';
 import IntentSystems from '@/components/v2/IntentSystems';
 import { PRICING, ROUTES, WHATSAPP } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
-import { CTAS, HERO, POSITIONING, PUBLIC_OFFER } from '@/content/conversion-copy';
+import { CTAS, HERO, POSITIONING, PUBLIC_OFFER, REFERENCE_PROGRAM } from '@/content/conversion-copy';
 import { hoursCounter, hoursValueEuro } from '@/content/hours-counter';
+import ReferenceCta from '@/components/home/ReferenceCta';
 
 export const metadata: Metadata = {
   title: 'Systems that give you back your time',
@@ -79,6 +80,14 @@ const FAQ = [
     q: 'What if it is not worth automating?',
     a: 'The scan can conclude “don’t automate”. That is a successful scan.',
   },
+  {
+    q: 'What if it doesn’t work?',
+    a: 'You sign off before anything goes live — and the final 50% is invoiced only after it runs in your production.',
+  },
+  {
+    q: 'What’s the reference program?',
+    a: 'Five reference spots this quarter: the full scan at €0–€345 in exchange for publishing the measured results. After five, it closes.',
+  },
 ];
 
 export default function Home() {
@@ -91,6 +100,7 @@ export default function Home() {
           <p className="qf-hero-subline">{HERO.subline}</p>
           <p className="qf-hero-anti">{POSITIONING.antiPositioning}</p>
           <p className="qf-hero-proof-strip">{HERO.proofStrip}</p>
+          <p className="qf-hero-chip">{HERO.proofChip}</p>
           <div className="qf-hero-cta-band">
             <Link href={ROUTES.bookAScan} className="qf-hero-cta-primary">
               <span className="qf-hero-cta-primary-label">
@@ -151,6 +161,13 @@ export default function Home() {
             </li>
           ))}
         </ol>
+        <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">
+          Fixed price after the scan. ESSENTIAL, SYSTEM or AUTONOMOUS — you choose the depth.{' '}
+          <Link href={ROUTES.pricing} className="qf-sys-link">
+            See variants
+          </Link>
+          .
+        </p>
         <Link href={ROUTES.approach} className="mt-6 inline-block qf-sys-link">
           Full approach →
         </Link>
@@ -194,6 +211,12 @@ export default function Home() {
                 <td>Risky</td>
                 <td>We will say no</td>
               </tr>
+              <tr>
+                <td>Who checks security</td>
+                <td>Sometimes</td>
+                <td>Rarely</td>
+                <td>Every build: review + scans</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -222,23 +245,21 @@ export default function Home() {
 
       <Section data-home-section="proof" background="surface">
         <p className="qf-home-kicker">Proof</p>
-        <h2 className="qf-sys-h2">Proof starts at zero</h2>
+        <h2 className="qf-sys-h2">{REFERENCE_PROGRAM.heading}</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
-          Three client slots are open. Until a client verifies hours, we do not invent a
-          number. Lab measurements stay labelled as examples.
+          {REFERENCE_PROGRAM.lead} Until a client verifies hours, we do not invent a number.
+          Lab measurements stay labelled as examples.
         </p>
-        <Link href={ROUTES.proof} className="mt-4 inline-block qf-sys-link">
-          Proof hub →
-        </Link>
+        <ReferenceCta label="The five reference spots" />
       </Section>
 
       <Section data-home-section="about">
         <p className="qf-home-kicker">About</p>
         <h2 className="qf-sys-h2">Norbert · system builder</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
-          I build operating systems for small companies — from quotes, through orders, to
-          inbox and reports. I build at AI speed and deliver with engineering discipline.
-          My currency is hours, stress and money given back.
+          Architect of autonomous operating systems. Thirty trades taught me your
+          industry&apos;s language; three years running my own company taught me what
+          systems really cost — and give back.
         </p>
         <Link href={ROUTES.about} className="mt-4 inline-block qf-sys-link">
           About →
@@ -258,19 +279,29 @@ export default function Home() {
           </li>
           <li>
             <Card>
-              <h3 className="font-semibold">{PUBLIC_OFFER.implementationName}</h3>
-              <p className="qf-price-amount">{PUBLIC_OFFER.implementationPrice}</p>
-              <p className="qf-price-note">{PUBLIC_OFFER.implementationNote}</p>
+              <h3 className="font-semibold">Build</h3>
+              <p className="qf-price-amount">
+                {PUBLIC_OFFER.buildVariants.map((variant) => variant.price).join(' / ')}
+              </p>
+              <p className="qf-price-note">
+                ESSENTIAL / SYSTEM* / AUTONOMOUS — you choose the depth. (* most chosen)
+              </p>
             </Card>
           </li>
           <li>
             <Card>
-              <h3 className="font-semibold">{PUBLIC_OFFER.maintenanceName}</h3>
-              <p className="qf-price-amount">{PUBLIC_OFFER.maintenancePrice}</p>
-              <p className="qf-price-note">{PUBLIC_OFFER.maintenanceNote}</p>
+              <h3 className="font-semibold">Care</h3>
+              <p className="qf-price-amount">
+                {PUBLIC_OFFER.careVariants.map((variant) => variant.price).join(' / ')}
+              </p>
+              <p className="qf-price-note">CARE / GROW* / AUTONOMY — monthly, cancellable.</p>
             </Card>
           </li>
         </ul>
+        <p className="mt-6 max-w-2xl text-sm text-[var(--qf-text-faint)]">
+          Every build: independent code review, security scans, tests, docs, your repo from
+          day one. Final 50% after it runs in production.
+        </p>
         <Link href={ROUTES.pricing} className="mt-6 inline-block qf-sys-link">
           Pricing →
         </Link>

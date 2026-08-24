@@ -18,6 +18,9 @@ const ROUTES = [
   '/systems/owner-cockpit/',
   '/systems/publishing-gate/',
   '/systems/build-release-flow/',
+  '/systems/company-brain/',
+  '/systems/ai-security-audit/',
+  '/systems/custom-ai-agent/',
   '/approach/',
   '/security/',
   '/proof/',
@@ -26,6 +29,13 @@ const ROUTES = [
   '/book-a-scan/',
   '/about/',
   '/legal/',
+  '/blog/',
+  '/blog/automation-for-small-business/',
+  '/blog/digital-transformation-without-the-jargon/',
+  '/blog/under-the-hood-how-inbox-killer-works/',
+  '/blog/company-knows-more-than-it-remembers/',
+  '/blog/model-proposes-policy-decides/',
+  '/blog/owner-cockpit-one-screen/',
 ];
 
 const HIGH_INTENT = new Set(['/systems/', '/pricing/', '/book-a-scan/']);
@@ -46,7 +56,7 @@ function getSitemapMeta(path) {
     return { priority: '0.75', changefreq: 'weekly' };
   }
   if (path === '/blog/' || path.startsWith('/blog/')) {
-    return { priority: '0.5', changefreq: 'monthly' };
+    return { priority: '0.5', changefreq: 'weekly' };
   }
   if (path === '/about/') {
     return { priority: '0.3', changefreq: 'monthly' };

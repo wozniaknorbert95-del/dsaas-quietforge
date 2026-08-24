@@ -910,6 +910,378 @@ export const SYSTEMS: SystemRecord[] = [
     ],
     worksWith: ['owner-cockpit', 'publishing-gate'],
   },
+  {
+    slug: 'company-brain',
+    href: ROUTES.companyBrain,
+    name: 'Company Brain',
+    tagline: 'One structured brain for your whole company — answers with sources, improves with use.',
+    intents: ['time', 'money', 'team', 'order'],
+    status: 'NEW ON THE PLATFORM',
+    statusShort: 'New · Flagship',
+    typicallyHours: '~1 workday/week of information archaeology',
+    replaces: 'Scattered Notion, inbox threads and answers that live in heads',
+    timeline: TIMELINE,
+    priceNote: PRICE,
+    integrations: 'Docs · inbox · repos · your sources of truth',
+    tldr: {
+      is: 'The central nervous system of your company: structured knowledge that AI can reliably use.',
+      givesBack: '~1 workday/week of searching, re-asking and re-explaining',
+      replaces: 'Notion graveyards, inbox archaeology and tribal knowledge.',
+    },
+    costs: [
+      {
+        text: 'Every question becomes archaeology: three tools, two threads and one colleague who “just knows”.',
+        label: 'Illustrative example',
+      },
+      {
+        text: 'New hires take weeks to find what the company already knows — onboarding is oral tradition.',
+        label: 'Illustrative example',
+      },
+      {
+        text: 'Two documents disagree and nobody notices until a customer does.',
+        label: 'Illustrative example',
+      },
+    ],
+    roi: {
+      hoursPerWeek: 8,
+      euroPerMonth: monthFromHours(8),
+      formula: '8 h/week of searching × €40/h × 4 weeks',
+    },
+    example: {
+      name: 'Bakker & Zonen',
+      profile: '12-person family business, knowledge in heads, one shared drive and forty inboxes',
+      before: [
+        'Pricing rules live in a PDF from 2023 and in the owner’s head.',
+        'Every new hire shadows for weeks before they can answer alone.',
+        '“Where is the latest version?” is a daily question.',
+      ],
+      withSystem: [
+        'One brain with sources: answers cite where they come from.',
+        'Conflicts between documents are flagged, not hidden.',
+        'Onboarding drops from weeks to days — the brain answers.',
+      ],
+      math: [
+        { metric: 'Time to an answer', before: 'Hours of searching', after: 'Seconds, with source' },
+        { metric: 'Onboarding', before: 'Weeks of shadowing', after: 'Days with the brain' },
+        { metric: '€/month at €40/h', before: formatEuro(monthFromHours(8)), after: 'Scan gives your number' },
+      ],
+    },
+    features: [
+      {
+        name: 'Knowledge graph (BKG)',
+        does: 'Your facts as structured, linked knowledge — not another folder of PDFs.',
+        ownerSees: 'Answers that cite their source, every time.',
+      },
+      {
+        name: 'Source-first answers',
+        does: 'The brain answers from your documents and says “I don’t know” when it doesn’t.',
+        ownerSees: 'No invented confidence. Ever.',
+      },
+      {
+        name: 'Conflict detection',
+        does: 'When two sources disagree, the brain flags it instead of picking silently.',
+        ownerSees: 'A short list of decisions only you can make.',
+      },
+      {
+        name: 'Human approval loop',
+        does: 'Agents read and propose; people approve what becomes truth.',
+        ownerSees: 'You stay the editor-in-chief of your company’s knowledge.',
+      },
+      {
+        name: 'Grows with use',
+        does: 'Every correction feeds the loop — the brain is better next month.',
+        ownerSees: 'An asset that appreciates, not a wiki that rots.',
+      },
+      {
+        name: 'Onboarding mode',
+        does: 'New hires ask the brain before they interrupt you.',
+        ownerSees: 'Your weeks back; their ramp in days.',
+      },
+    ],
+    flowSrc: '/systems/company-brain-flow.svg',
+    flowAlt: 'Sources in, structured knowledge, answers with citations, you approve corrections',
+    flowCaption: 'Documents and threads become structured knowledge; answers cite sources; corrections wait for your click.',
+    pains: [
+      'The company knows more than anyone can find.',
+      'Answers depend on who is in the building.',
+      'Documents drift and nobody owns the truth.',
+    ],
+    steps: [
+      'Map where your knowledge actually lives.',
+      'Structure it into a graph AI can use reliably.',
+      'Wire answers with sources and conflict flags.',
+      'Run the approval loop — you stay the gate.',
+    ],
+    youGet: [
+      'Knowledge graph built from your real sources',
+      'Answers with citations — and an honest “I don’t know”',
+      'Conflict detection between documents',
+      'Onboarding path measured in days, not weeks',
+      'Approval loop: agents propose, you decide',
+      'Documentation, scans, handover',
+      'Your repository from day one',
+    ],
+    roiExample: `Illustrative composite example — 8 h/week of information archaeology ≈ ${formatEuro(monthFromHours(8))}/month at €40/h. Market research puts company-brain builds at $5–25k (elevatedsignal.com, 2026); ours lands at €3.5–8k — agency discipline, solo price. Your scan gives the real numbers.`,
+    faq: [
+      {
+        q: 'Who is this for — and who is it not for?',
+        a: 'For companies whose knowledge is in processes, not just documents: 1–15 people who answer the same questions daily. If your truth changes hourly and lives in one head by choice, start with the scan — we may say “not yet”.',
+      },
+      {
+        q: 'Does the AI invent answers?',
+        a: 'No. Answers carry their source, and when the brain doesn’t know, it says so. That is a feature, not a gap.',
+      },
+      {
+        q: 'How is this different from Notion with AI search?',
+        a: 'Search finds text; a brain holds structured knowledge with conflicts flagged and a human approval loop. The difference shows up when two documents disagree.',
+      },
+    ],
+    worksWith: ['owner-cockpit', 'custom-ai-agent'],
+  },
+  {
+    slug: 'ai-security-audit',
+    href: ROUTES.aiSecurityAudit,
+    name: 'AI Security Audit',
+    tagline: 'Your AI tools, checked in documents, not adjectives.',
+    intents: ['calm', 'money'],
+    status: 'NEW ON THE PLATFORM',
+    statusShort: 'New · Pioneer',
+    typicallyHours: 'Fixed-price report in days — not an open-ended engagement',
+    replaces: 'Hoping for the best',
+    timeline: '1–2 weeks, fixed price',
+    priceNote: PRICE,
+    integrations: 'Your repos · your AI tooling · your deploy pipeline',
+    tldr: {
+      is: 'A fixed-price checklist audit of your AI tools: exposed keys, access control, dependencies — with a report you can hand any stakeholder.',
+      givesBack: 'Sleep, and a document instead of a worry',
+      replaces: '“We hope nobody finds the API key.”',
+    },
+    costs: [
+      {
+        text: 'Industry scan of 2,096 vibe-built apps: ~75% shipped with security holes (CMU-aligned research, 2026).',
+        label: 'Illustrative example',
+      },
+      {
+        text: 'One leaked key in client code can mean a bill, a breach notice and a reputation hit.',
+        label: 'Illustrative example',
+      },
+      {
+        text: 'Without a report, every stakeholder conversation about AI risk starts from zero.',
+        label: 'Illustrative example',
+      },
+    ],
+    roi: {
+      hoursPerWeek: 2,
+      euroPerMonth: monthFromHours(2),
+      formula: 'Fixed price €1,500–€3,000 — valued against one avoided incident',
+    },
+    example: {
+      name: 'Studio Noorderlicht',
+      profile: '6-person agency that shipped a customer chatbot and two internal automations',
+      before: [
+        'An API key sits in a client-side bundle.',
+        'Nobody knows which dependencies ship in the chatbot.',
+        'A stakeholder asks “is this safe?” and the answer is a shrug.',
+      ],
+      withSystem: [
+        'Secrets scanned (Gitleaks), findings fixed or accepted in writing.',
+        'Server-side auth and row-level security checked where data lives.',
+        'A fixed-price report with a remediation plan — hand it to any stakeholder.',
+      ],
+      math: [
+        { metric: 'Exposed secrets', before: 'Unknown', after: 'Listed and fixed' },
+        { metric: 'Answer to “is it safe?”', before: 'A shrug', after: 'A document' },
+        { metric: 'Price', before: 'Open-ended fear', after: '€1,500–€3,000 fixed' },
+      ],
+    },
+    features: [
+      {
+        name: 'Secrets scan',
+        does: 'Gitleaks over history and code — keys, tokens, passwords.',
+        ownerSees: 'A list, not a rumour.',
+      },
+      {
+        name: 'Access control review',
+        does: 'Server-side authentication and row-level security where your data lives.',
+        ownerSees: 'Who can see what — in writing.',
+      },
+      {
+        name: 'Dependency audit',
+        does: 'CVE checks on what your AI tools actually ship.',
+        ownerSees: 'Known holes named with fixes.',
+      },
+      {
+        name: 'Remediation plan',
+        does: 'Each finding ranked by risk with a concrete fix order.',
+        ownerSees: 'A plan your next developer can execute.',
+      },
+      {
+        name: 'Stakeholder report',
+        does: 'A document written for humans: what we checked, what we found, what we fixed.',
+        ownerSees: 'The answer to “is this safe?” you can forward.',
+      },
+    ],
+    flowSrc: '/systems/ai-security-audit-flow.svg',
+    flowAlt: 'Scan secrets, check access control, audit dependencies, deliver report and remediation plan',
+    flowCaption: 'Four checks, one fixed price, a report you can hand any stakeholder. Not a penetration test — an honest checklist audit.',
+    pains: [
+      'You shipped AI tools faster than you could check them.',
+      '“Is this safe?” has no document behind it.',
+      'One leaked key is one bill too many.',
+    ],
+    steps: [
+      'Scope the audit: repos, tools, data flows.',
+      'Run secrets, access-control and dependency checks.',
+      'Rank findings and agree the remediation order.',
+      'Deliver the report — yours either way.',
+    ],
+    youGet: [
+      'Secrets scan with history check (Gitleaks)',
+      'Server-side auth + row-level security review',
+      'Dependency (CVE) audit of shipped tooling',
+      'Remediation plan ranked by risk',
+      'Stakeholder-ready report, fixed price',
+      'Honest scope: not a penetration test or certification',
+    ],
+    roiExample: 'Fixed price €1,500–€3,000. Research on 2,096 generated apps found ~75% with security holes (industry scan, 2026) — one avoided incident pays for the audit many times over. Your scope sets the exact number.',
+    faq: [
+      {
+        q: 'Is this a penetration test or a certification?',
+        a: 'No. It is a fixed-price checklist audit with a report you can hand any stakeholder. If you need a certified pentest, we will say so and point you to one.',
+      },
+      {
+        q: 'We already shipped our AI tools. Is it too late?',
+        a: 'This audit is built exactly for that: chatbots, automations and vibe-built apps already in the wild.',
+      },
+      {
+        q: 'What if you find nothing?',
+        a: 'Then the report says so, and you keep a document that proves you checked. That is a successful audit.',
+      },
+    ],
+    worksWith: ['build-release-flow', 'company-brain'],
+  },
+  {
+    slug: 'custom-ai-agent',
+    href: ROUTES.customAiAgent,
+    name: 'Custom AI Agent',
+    tagline: 'Real work, behind approval gates.',
+    intents: ['time', 'money'],
+    status: 'NEW ON THE PLATFORM',
+    statusShort: 'New',
+    typicallyHours: '~6–12 h/week of manual repeated work',
+    replaces: 'Manual repeated work you already know by heart',
+    timeline: TIMELINE,
+    priceNote: PRICE,
+    integrations: 'Your tools · your inbox · your documents · approval trail',
+    tldr: {
+      is: 'An agent that does real work — qualifying, routing, drafting — with tool use, guardrails and human sign-off.',
+      givesBack: '~6–12 h/week of the work you can already describe step by step',
+      replaces: 'Copy-paste evenings and “I’ll do it after dinner.”',
+    },
+    costs: [
+      {
+        text: 'Work you can describe step by step is work you are still doing by hand.',
+        label: 'Illustrative example',
+      },
+      {
+        text: 'Every manual handoff is a place where a busy week becomes a lost lead.',
+        label: 'Illustrative example',
+      },
+      {
+        text: 'Agency-grade agent builds are quoted at $40–90k (FDE market research, 2026) — most SMBs never get one.',
+        label: 'Illustrative example',
+      },
+    ],
+    roi: {
+      hoursPerWeek: 10,
+      euroPerMonth: monthFromHours(10),
+      formula: '10 h/week × €40/h × 4 weeks',
+    },
+    example: {
+      name: 'Van Leeuwen Administraties',
+      profile: '8-person accounting office drowning in intake emails and document chase',
+      before: [
+        'New client emails are read, sorted and answered by hand.',
+        'Missing documents are chased in threads.',
+        'Nothing moves after 6 pm or on Friday.',
+      ],
+      withSystem: [
+        'The agent qualifies intake and routes it to the right colleague.',
+        'Document chase runs as drafts — a human approves every send.',
+        'A log shows what the agent did and why.',
+      ],
+      math: [
+        { metric: 'Intake handling', before: 'Same-day, by hand', after: 'Minutes, routed' },
+        { metric: 'Hours/week on chase', before: '~10 h', after: 'Exceptions only' },
+        { metric: '€/month at €40/h', before: formatEuro(monthFromHours(10)), after: 'Scan gives your number' },
+      ],
+    },
+    features: [
+      {
+        name: 'Approval gates',
+        does: 'Nothing customer-facing sends, publishes or deploys without your click.',
+        ownerSees: 'The agent proposes. You decide.',
+      },
+      {
+        name: 'Six hard boundaries',
+        does: 'Scope limits in writing — what the agent may touch, and what it never will.',
+        ownerSees: 'Guardrails you can read, not vibes.',
+      },
+      {
+        name: 'Tool use with a trail',
+        does: 'Every action the agent takes is logged with reason and result.',
+        ownerSees: 'An audit trail, not a black box.',
+      },
+      {
+        name: 'Rollback path',
+        does: 'Each release ships with a snapshot and a way back.',
+        ownerSees: 'Courage to automate, because undo exists.',
+      },
+      {
+        name: 'Your IP from day one',
+        does: 'The agent lives in your repository with docs and handover.',
+        ownerSees: 'Replaceable by design — including me.',
+      },
+    ],
+    flowSrc: '/systems/custom-ai-agent-flow.svg',
+    flowAlt: 'Task in, agent works within boundaries, human approves, action logged with rollback',
+    flowCaption: 'The agent does the work; the boundaries and the click stay human. Every action logged, every release rollback-able.',
+    pains: [
+      'You can describe the work step by step — and still do it by hand.',
+      'Busy weeks turn into lost leads at the handoffs.',
+      '“AI” demos that do nothing real, or everything uncontrolled.',
+    ],
+    steps: [
+      'Pick one workflow you can describe end to end.',
+      'Define the six hard boundaries and the approval gates.',
+      'Build the agent with tool use, logs and rollback.',
+      'Run it in shadow, then live — on your click.',
+    ],
+    youGet: [
+      'Agent scoped to one real workflow',
+      'Six hard boundaries in writing',
+      'Approval gates on everything customer-facing',
+      'Full action log with reasons',
+      'Snapshot and rollback on every release',
+      'Your repository and IP from day one',
+    ],
+    roiExample: `Illustrative composite example — 10 h/week of manual repeated work ≈ ${formatEuro(monthFromHours(10))}/month at €40/h. FDE agencies quote $40–90k for agent builds (market research, 2026); our SMB version lands at €4–9k. Your scan gives the real numbers.`,
+    faq: [
+      {
+        q: 'Will the agent act without me?',
+        a: 'No. Nothing customer-facing goes live without your approval. Internal drafts and research yes; external actions never without a gate.',
+      },
+      {
+        q: 'What is this NOT?',
+        a: 'Not a chatbot demo, not “full autonomy”, not a black box. It is one workflow, bounded, logged, rollback-able.',
+      },
+      {
+        q: 'Who owns the agent?',
+        a: 'You. Code, prompts, docs and IP live in your repository from day one.',
+      },
+    ],
+    worksWith: ['company-brain', 'build-release-flow'],
+  },
 ];
 
 export function systemBySlug(slug: string): SystemRecord | undefined {

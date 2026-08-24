@@ -27,6 +27,9 @@ const OG_BY_SLUG: Record<string, string> = {
   'owner-cockpit': '/og/solutions.svg',
   'publishing-gate': '/og/solutions.svg',
   'build-release-flow': '/og/solutions.svg',
+  'company-brain': '/og/company-brain.svg',
+  'ai-security-audit': '/og/ai-security-audit.svg',
+  'custom-ai-agent': '/og/custom-ai-agent.svg',
 };
 
 export function generateStaticParams() {

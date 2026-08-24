@@ -5,16 +5,16 @@ import IntentSystems from '@/components/v2/IntentSystems';
 import { ROUTES } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Six systems that give time back',
+  title: 'Nine systems that give time back',
   description:
-    'Quote and order, inbox triage, lead scout, owner cockpit, publishing gate, build and release — managed systems for small businesses.',
+    'Quote and order, inbox triage, lead scout, owner cockpit, publishing gate, build and release, company brain, AI security audit, custom AI agent — managed systems for small businesses.',
 };
 
 export default function SystemsHubPage() {
   return (
     <Section>
       <p className="qf-home-kicker">Systems</p>
-      <h1 className="qf-sys-h1">Six systems that give time back.</h1>
+      <h1 className="qf-sys-h1">Nine systems that give time back.</h1>
       <p className="qf-sys-lead">
         Filter by where the week leaks. Not sure which fits? The scan tells you.
       </p>

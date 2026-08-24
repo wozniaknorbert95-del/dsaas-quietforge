@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Custom AI Agent — task in, bounded work, human approval, logged action</title>
+  <desc id="desc">The agent works within six hard boundaries. Nothing customer-facing sends without a human click. Every action logged, every release rollback-able.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0e0c0a; }
+      .box { fill: #15120e; stroke: #2a241c; stroke-width: 1.5; }
+      .warn { fill: #d98f4a; fill-opacity: 0.12; stroke: #d98f4a; stroke-width: 1.5; }
+      .gate { fill: #e8a33d; fill-opacity: 0.12; stroke: #e8a33d; stroke-width: 1.5; }
+      .t { fill: #e9e2d4; font-family: ui-monospace, Consolas, monospace; font-size: 14px; font-weight: 700; }
+      .s { fill: #9a907e; font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520"/>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Custom AI Agent — real work, behind approval gates</text>
+  <text x="600" y="64" class="s" text-anchor="middle">task · boundaries · agent work · your click · log + rollback</text>
+  <rect class="box" x="48" y="120" width="250" height="80"/><text x="173" y="154" class="t" text-anchor="middle">One workflow</text><text x="173" y="176" class="s" text-anchor="middle">you can describe end-to-end</text>
+  <rect class="warn" x="336" y="120" width="250" height="80"/><text x="461" y="154" class="t" text-anchor="middle">Six hard boundaries</text><text x="461" y="176" class="s" text-anchor="middle">in writing, readable</text>
+  <rect class="box" x="624" y="120" width="250" height="80"/><text x="749" y="154" class="t" text-anchor="middle">Agent works</text><text x="749" y="176" class="s" text-anchor="middle">qualify · route · draft</text>
+  <rect class="gate" x="912" y="120" width="240" height="80"/><text x="1032" y="154" class="t" text-anchor="middle">You click</text><text x="1032" y="176" class="s" text-anchor="middle">nothing sends without it</text>
+  <rect class="box" x="200" y="260" width="360" height="72"/><text x="380" y="302" class="s" text-anchor="middle">Full action log — what, why, result</text>
+  <rect class="box" x="640" y="260" width="360" height="72"/><text x="820" y="302" class="s" text-anchor="middle">Snapshot + rollback on every release</text>
+  <text x="600" y="400" class="s" text-anchor="middle">Your repo and IP from day one. Replaceable by design — including me.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge · quietforge.flexgrafik.nl</text>
+</svg>

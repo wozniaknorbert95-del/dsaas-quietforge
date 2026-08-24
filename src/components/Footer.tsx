@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import BrandLogo from '@/components/ui/BrandLogo';
-import { EMAIL } from '@/lib/constants';
+import { BRAND_LOGO, EMAIL } from '@/lib/constants';
 import SocialLinks from '@/components/ui/SocialLinks';
 import {
   FOOTER_SOLUTIONS,
@@ -18,7 +19,16 @@ export default function Footer() {
       <div className="mx-auto max-w-[var(--qf-maxw)] px-[var(--qf-sp-6)]">
         <div className="grid gap-[var(--qf-sp-8)] sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <BrandLogo size="footer" linked={false} />
+            <div className="flex items-center gap-3">
+              <Image
+                src={BRAND_LOGO.src}
+                alt=""
+                width={28}
+                height={28}
+                className="h-7 w-7 opacity-90"
+              />
+              <BrandLogo size="footer" linked={false} />
+            </div>
             <p className="mt-1 font-mono text-xs text-[var(--qf-accent)]">{POSITIONING.label}</p>
             <p className="mt-[var(--qf-sp-3)] text-[var(--qf-text-faint)]">{FOOTER.tagline}</p>
             <SocialLinks className="mt-[var(--qf-sp-4)]" />

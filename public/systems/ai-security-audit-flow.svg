@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">AI Security Audit — scan, check, audit, report</title>
+  <desc id="desc">Secrets scanned, access control reviewed, dependencies audited. One fixed price, one stakeholder-ready report with a remediation plan.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0e0c0a; }
+      .box { fill: #15120e; stroke: #2a241c; stroke-width: 1.5; }
+      .warn { fill: #d98f4a; fill-opacity: 0.12; stroke: #d98f4a; stroke-width: 1.5; }
+      .gate { fill: #e8a33d; fill-opacity: 0.12; stroke: #e8a33d; stroke-width: 1.5; }
+      .t { fill: #e9e2d4; font-family: ui-monospace, Consolas, monospace; font-size: 14px; font-weight: 700; }
+      .s { fill: #9a907e; font-family: ui-monospace, Consolas, monospace; font-size: 11px; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520"/>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">AI Security Audit — checked in documents, not adjectives</text>
+  <text x="600" y="64" class="s" text-anchor="middle">secrets · access control · dependencies · report · remediation plan</text>
+  <rect class="warn" x="48" y="120" width="250" height="80"/><text x="173" y="154" class="t" text-anchor="middle">Secrets scan</text><text x="173" y="176" class="s" text-anchor="middle">Gitleaks over history</text>
+  <rect class="warn" x="336" y="120" width="250" height="80"/><text x="461" y="154" class="t" text-anchor="middle">Access control</text><text x="461" y="176" class="s" text-anchor="middle">server-side auth · RLS</text>
+  <rect class="warn" x="624" y="120" width="250" height="80"/><text x="749" y="154" class="t" text-anchor="middle">Dependency audit</text><text x="749" y="176" class="s" text-anchor="middle">CVE check on what ships</text>
+  <rect class="gate" x="912" y="120" width="240" height="80"/><text x="1032" y="154" class="t" text-anchor="middle">Report + plan</text><text x="1032" y="176" class="s" text-anchor="middle">hand any stakeholder</text>
+  <rect class="box" x="200" y="260" width="360" height="72"/><text x="380" y="302" class="s" text-anchor="middle">Findings ranked by risk — fix order agreed with you</text>
+  <rect class="box" x="640" y="260" width="360" height="72"/><text x="820" y="302" class="s" text-anchor="middle">Not a pentest. An honest checklist audit, fixed price.</text>
+  <text x="600" y="400" class="s" text-anchor="middle">€1,500–€3,000 fixed. The report is yours either way.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge · quietforge.flexgrafik.nl</text>
+</svg>

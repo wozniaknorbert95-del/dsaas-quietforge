@@ -2,7 +2,7 @@
 status: ACTIVE
 title: QuietForge site map v2.0
 owner: Norbert Wozniak
-updated: 2026-08-19
+updated: 2026-08-24
 source: Desktop/aktualizacja quietforge/quietforge-mapa-strony-v2.md
 ---
 
@@ -25,7 +25,10 @@ quietforge.flexgrafik.nl
 │   ├── /systems/lead-scout
 │   ├── /systems/owner-cockpit
 │   ├── /systems/publishing-gate
-│   └── /systems/build-release-flow
+│   ├── /systems/build-release-flow
+│   ├── /systems/company-brain            NEW (etap 4, flagship)
+│   ├── /systems/ai-security-audit        NEW (etap 4, pioneer)
+│   └── /systems/custom-ai-agent          NEW (etap 4)
 ├── /approach
 ├── /security
 ├── /proof
@@ -35,6 +38,7 @@ quietforge.flexgrafik.nl
 ├── /pricing
 ├── /book-a-scan
 │   └── /book-a-scan/thank-you   noindex
+├── /blog (+/blog/[slug])        LIVE (etap 4: 6 posts, kategorie, schema Article)
 ├── /toolbox                     reserved — do not build, do not link
 ├── /privacy  /terms  /dpa  /colophon
 └── /404
@@ -97,6 +101,8 @@ Until a client verifies a case, public statuses stay lab / new / open — never 
 S1 creates **thin but honest** S2/S3 destinations so 301s do not 404. Full design of those pages is S2/S3.
 
 ## Home (S1)
+
+> **Etap 4 (2026-08-24):** section ORDER unchanged (SR-01). Copy refreshed: hero lead = self-improving systems + proof chip; Proof = „five doors” reference program (link /proof#reference); Prices = build/care variants (ESSENTIAL/SYSTEM*/AUTONOMOUS · CARE/GROW*/AUTONOMY); FAQ +2 (guarantee, reference program); Fit +1 row (who checks security); Approach +1 line (choose the depth).
 
 1. Hero — H1: **Systems that give you back your time.** Eyebrow: System builder for small businesses · EU. Anti-position under subline.
 2. Counter at 0 + methodology honesty

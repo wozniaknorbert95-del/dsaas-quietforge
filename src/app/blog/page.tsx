@@ -37,7 +37,42 @@ interface Post {
   excerpt: string;
 }
 
+const CATEGORIES = [
+  'Five Pillars',
+  'Automation',
+  'Digital Transformation',
+  'Under the Hood',
+] as const;
+
+type Category = (typeof CATEGORIES)[number];
+
+const FILTERS: ReadonlyArray<Category | 'All'> = ['All', ...CATEGORIES];
+
 const POSTS: Post[] = [
+  {
+    slug: 'owner-cockpit-one-screen',
+    title: 'The owner cockpit: your whole company on one screen, decisions from data',
+    date: '2026-09-15',
+    category: 'Five Pillars',
+    excerpt:
+      'Most dashboards show thirty numbers and explain nothing. The owner cockpit shows the five to eight that change a decision — leads, orders, margin — in one place.',
+  },
+  {
+    slug: 'model-proposes-policy-decides',
+    title: 'The model proposes. Policy decides. Why our AI never decides for the client',
+    date: '2026-09-08',
+    category: 'Five Pillars',
+    excerpt:
+      'An AI that acts alone is a liability with a good vocabulary. Our agents propose; written policy decides what runs automatically and what waits for a human click.',
+  },
+  {
+    slug: 'company-knows-more-than-it-remembers',
+    title: 'Your company knows more than it remembers — the knowledge graph as backbone',
+    date: '2026-09-01',
+    category: 'Five Pillars',
+    excerpt:
+      'Pricing logic, client history and your best answers live in Notion, the inbox and a few heads. A business knowledge graph turns that scatter into knowledge an AI can use — with sources.',
+  },
   {
     slug: 'automation-for-small-business',
     title: 'Automation for small business — where to start',
@@ -64,7 +99,18 @@ const POSTS: Post[] = [
   },
 ];
 
-export default function BlogPage() {
+const chipHref = (filter: Category | 'All'): string =>
+  filter === 'All' ? '/blog/' : `/blog/?category=${encodeURIComponent(filter)}`;
+
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const { category } = await searchParams;
+  const active: Category | undefined = CATEGORIES.find((c) => c === category);
+  const visible = active ? POSTS.filter((post) => post.category === active) : POSTS;
+
   return (
     <>
       <Section padding="large">
@@ -74,10 +120,34 @@ export default function BlogPage() {
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)]">
           Short, honest writing on digital transformation for small business. No buzzwords.
         </p>
+        <div className="mt-10 flex flex-wrap gap-2">
+          {FILTERS.map((filter) => {
+            const isActive = filter === 'All' ? !active : active === filter;
+            return (
+              <Link
+                key={filter}
+                href={chipHref(filter)}
+                aria-pressed={isActive}
+                data-active={isActive}
+                className="qf-blog-chip"
+              >
+                {filter}
+              </Link>
+            );
+          })}
+        </div>
       </Section>
 
       <div className="space-y-8 pb-16">
-        {POSTS.map((post) => (
+        {active ? (
+          <p className="text-[var(--qf-fs-xs)] text-[var(--qf-text-faint)]">
+            Showing {visible.length} of {POSTS.length} posts — {active}.{' '}
+            <Link href="/blog/" className="text-[var(--qf-accent)] hover:text-[var(--qf-text)]">
+              Show all
+            </Link>
+          </p>
+        ) : null}
+        {visible.map((post) => (
           <article
             key={post.slug}
             className="border-b border-[var(--qf-border)] pb-8 last:border-0"
@@ -113,7 +183,7 @@ export default function BlogPage() {
         <h3 className="text-[var(--qf-fs-lg)] font-bold text-[var(--qf-text)] mb-4">
           Ready to find your biggest time leak?
         </h3>
-        <Button href={ROUTES.bookDiscovery} withArrow size="lg">
+        <Button href={ROUTES.bookAScan} withArrow size="lg">
           {CTAS.bookAutomationMap}
         </Button>
       </div>

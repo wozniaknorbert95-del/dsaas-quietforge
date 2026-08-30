@@ -1,7 +1,7 @@
 # Handoff — 2026-08-30 dead-code cleanup + kompleksowy deploy
 
 **Sesja:** Dead-code cleanup II (kompleksowe czyszczenie martwych komponentów/exportów/CSS) + commit + push + deploy.
-**Status:** DEPLOYED ✅ (Vercel prod, push do main)
+**Status:** DEPLOYED ✅ (Vercel prod, dpl_9fQf6988xuANHRLREMpCThpEenua, commit `f8ac6c2`)
 **Build gate:** `npm run typecheck` ✅ · `npm run build` ✅ (56 stron) · sitemap 27 routes regenerowany.
 
 ## Cel
@@ -31,11 +31,15 @@ Dowódca dał zgodę na kompleksowe dokończenie czyszczenia martwego kodu (rozp
 - `npm run lint` — 3 błędy **pre-existing** (niezmodyfikowane pliki): `src/components/analytics/CookieConsent.tsx` (react-hooks/set-state-in-effect), `scripts/fix-flow-svgs.cjs` (2× no-require-imports). Poza zakresem tej sesji — do osobnej decyzji.
 - Canon: `docs/canon/site-map.md` §Home order zweryfikowany 1:1 z live `page.tsx` (Hero→Counter→Systems→Approach→Fit→Discipline→Proof→About→Pricing→FAQ→CTA) — brak zmian potrzebnych.
 
-## Post-deploy smoke (do wykonania przez Dowódcę)
+## Post-deploy smoke
 
-1. `https://quietforge.flexgrafik.nl/` — render 11 sekcji, brak wizualnych pęknięć po usunięciu CSS (szczególnie IntentSystems grid, compare table, pricing grid).
-2. `/book-a-scan/` — blok `qf-book-hero-cta` (Czy zachowany), WhatsApp pain-picker.
-3. `/results/owner-ecosystem/` — tabela readiness (README_ROWS + SystemMetrics z `useHomeIntent` fallback).
+- `https://quietforge.flexgrafik.nl/` — 200, 11 sekcji, IntentSystems grid, compare table, pricing grid, FAQ, final CTA renderują się poprawnie (weryfikacja wizualna w przeglądarce).
+- `/approach/` — 200, timeline + report anatomy + porównanie + metryki + FAQ + CTA kompletne.
+- `/security/`, `/book-a-scan/` (w tym `qf-book-hero-cta`), `/pricing/` — 200.
+- `/artefacts/automation-map-sample.pdf` — 200 `application/pdf`.
+- `/og/home.svg`, `/og/approach.svg` — 200 `image/svg+xml`.
+- `sitemap.xml` — 200, 27 routes, `/approach` obecne. `robots.txt` — 200.
+- `/results/owner-ecosystem` → 308 redirect do `/about/` (zamierzone, zdefiniowane w `next.config.ts` redirects).
 
 ## Następny krok
 

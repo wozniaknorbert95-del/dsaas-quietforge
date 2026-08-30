@@ -198,9 +198,9 @@ export const ABOUT = {
   ],
   numbersTitle: 'In numbers',
   numbers: [
-    { value: '30', label: 'trades — I speak your industry’s language and see patterns between them' },
+    { value: '30', label: 'trades — I see the patterns between them' },
     { value: '8 → 1', label: 'repositories rebuilt into one integrated platform' },
-    { value: 'EN · PL · NL-basic', label: 'languages spoken by your industry' },
+    { value: 'EN · PL · NL', label: 'spoken EN/PL · written NL (email)' },
   ],
   offClockTitle: 'Off the clock',
   offClockBody:

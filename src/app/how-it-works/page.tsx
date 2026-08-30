@@ -152,7 +152,7 @@ export default function HowItWorksPage() {
           We build it — fast, because it&apos;s already proven.
         </h2>
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-6">
-          Your system is adapted from modules that already run a live business, not coded from zero.
+          Your system is adapted from modules we already built and run for ourselves, not coded from zero.
           Scoped productized builds typically land in days to a few weeks — not open-ended IT projects.
           We configure it to your data, your voice and your tools, test it, and hand it over working.
         </p>

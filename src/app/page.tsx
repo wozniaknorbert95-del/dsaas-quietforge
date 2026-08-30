@@ -295,8 +295,8 @@ export default function Home() {
         <h2 className="qf-sys-h2">Norbert · your systems architect</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
           Architect of autonomous operating systems. Thirty trades taught me your
-          industry&apos;s language; three years running my own company taught me what
-          systems really cost — and give back.
+          industry&apos;s language; three years building systems for my own company
+          taught me what they really cost — and give back.
         </p>
         <Link href={ROUTES.about} className="mt-4 inline-block qf-sys-link">
           About →

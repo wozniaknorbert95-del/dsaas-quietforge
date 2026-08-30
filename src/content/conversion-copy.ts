@@ -152,7 +152,7 @@ export const ABOUT = {
   storyTitle: 'My story — built from need, not theory.',
   storyBody: [
     'I started from zero. No programming background, no courses, no mentor — one thing only: the desperate need to save my own company. When the tools I needed did not exist or cost too much, I decided to build them. With AI as a partner I learned to build — and today I control the AI, not the other way around.',
-    'For three years I built in production, on a live business — eight repositories, each from scratch: from a shop configurator to a mobile game to an owner cockpit. Today those eight repos become one integrated platform. Finishing things is my identity, not a resolution.',
+    'For three years I learned on my own repositories and built a complete platform — eight of them, each from scratch: from a shop configurator to a mobile game to an owner cockpit. Today those eight repos become one integrated platform. Finishing things is my identity, not a resolution.',
     'The most expensive lesson, and the most honest one: a working system is not the same as paying clients. FlexGrafik is a paused lab; the systems still run as heritage. That lesson makes me a better advisor than any theorist: I know what a system gives — and what it does not.',
   ],
   buildTitle: 'What I build',
@@ -199,7 +199,6 @@ export const ABOUT = {
   numbersTitle: 'In numbers',
   numbers: [
     { value: '30', label: 'trades — I speak your industry’s language and see patterns between them' },
-    { value: '3', label: 'years running systems in production on my own company' },
     { value: '8 → 1', label: 'repositories rebuilt into one integrated platform' },
     { value: 'EN · PL · NL-basic', label: 'languages spoken by your industry' },
   ],

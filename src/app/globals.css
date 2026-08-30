@@ -2518,6 +2518,107 @@ body[data-app="services"] {
   }
 }
 
+/* Security page — gate cards + artefact grid (v2) */
+.qf-gate-grid {
+  display: grid;
+  gap: var(--qf-sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-gate-card {
+  border: 1px solid var(--qf-border);
+  background: var(--qf-bg-raised);
+  padding: var(--qf-sp-5);
+  scroll-margin-top: 5rem;
+}
+
+.qf-gate-n {
+  display: block;
+  margin-bottom: var(--qf-sp-2);
+  font-family: var(--qf-mono);
+  font-size: var(--qf-fs-xs);
+  letter-spacing: 0.08em;
+  color: var(--qf-accent);
+}
+
+.qf-gate-title {
+  margin: 0 0 var(--qf-sp-2);
+  font-size: var(--qf-fs-base);
+  font-weight: 700;
+}
+
+.qf-gate-what {
+  margin: 0 0 var(--qf-sp-3);
+  color: var(--qf-text-dim);
+}
+
+.qf-gate-evidence {
+  margin: 0;
+  padding-top: var(--qf-sp-3);
+  border-top: 1px solid var(--qf-border);
+  font-size: var(--qf-fs-sm);
+  color: var(--qf-text-faint);
+}
+
+.qf-gate-evidence b {
+  font-family: var(--qf-mono);
+  font-size: var(--qf-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--qf-accent);
+}
+
+.qf-artefact-grid {
+  display: grid;
+  gap: var(--qf-sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-artefact-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--qf-border);
+  background: var(--qf-bg-raised);
+  padding: var(--qf-sp-5);
+}
+
+.qf-artefact-title {
+  margin: 0 0 var(--qf-sp-2);
+  font-weight: 700;
+}
+
+.qf-artefact-desc {
+  margin: 0 0 var(--qf-sp-3);
+  font-size: var(--qf-fs-sm);
+  color: var(--qf-text-dim);
+}
+
+.qf-artefact-link {
+  margin-top: auto;
+  color: var(--qf-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.qf-artefact-link:hover {
+  color: var(--qf-text);
+}
+
+@media (min-width: 768px) {
+  .qf-gate-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .qf-artefact-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 /* Cookie consent banner — GDPR/AVG, dark-first, quiet styling */
 .qf-cookie-consent {
   position: fixed;

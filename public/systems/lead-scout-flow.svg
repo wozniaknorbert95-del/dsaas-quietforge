@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
-  <title id="title">Lead Scout  play, qualify, hand off to the quote flow</title>
+  <title id="title">Lead Scout — play, qualify, hand off to the quote flow</title>
   <desc id="desc">Visitor registers, finishes a play, earns a next step, then is handed to quote or inbox.</desc>
   <defs>
     <style>
@@ -11,15 +11,15 @@
     </style>
   </defs>
   <rect class="bg" width="1200" height="520"/>
-  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Lead Scout  a click becomes a named hand-off</text>
-  <text x="600" y="64" class="s" text-anchor="middle">register � finishable play � reward rules � qualify � quote or inbox</text>
+  <text x="600" y="40" class="t" text-anchor="middle" font-size="18">Lead Scout — a click becomes a named hand-off</text>
+  <text x="600" y="64" class="s" text-anchor="middle">register — finishable play — reward rules — qualify — quote or inbox</text>
   <rect class="box" x="48" y="120" width="200" height="80"/><text x="148" y="154" class="t" text-anchor="middle">Visitor</text><text x="148" y="176" class="s" text-anchor="middle">cold traffic</text>
   <rect class="box" x="276" y="120" width="200" height="80"/><text x="376" y="154" class="t" text-anchor="middle">Register</text><text x="376" y="176" class="s" text-anchor="middle">name + email</text>
   <rect class="box" x="504" y="120" width="200" height="80"/><text x="604" y="154" class="t" text-anchor="middle">Play</text><text x="604" y="176" class="s" text-anchor="middle">finishable acts</text>
   <rect class="box" x="732" y="120" width="200" height="80"/><text x="832" y="154" class="t" text-anchor="middle">Qualify</text><text x="832" y="176" class="s" text-anchor="middle">rules you wrote</text>
   <rect class="ok" x="960" y="120" width="192" height="80"/><text x="1056" y="154" class="t" text-anchor="middle">Hand-off</text><text x="1056" y="176" class="s" text-anchor="middle">quote or inbox</text>
-  <rect class="box" x="276" y="260" width="280" height="64"/><text x="416" y="298" class="s" text-anchor="middle">GA4 on every step  drop-off is visible</text>
-  <rect class="box" x="644" y="260" width="280" height="64"/><text x="784" y="298" class="s" text-anchor="middle">Reward ladder  not a lottery</text>
-  <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. Only when a play earns the ask  a form is allowed to win.</text>
-  <text x="600" y="480" class="s" text-anchor="middle">Quietforge � quietforge.flexgrafik.nl</text>
+  <rect class="box" x="276" y="260" width="280" height="64"/><text x="416" y="298" class="s" text-anchor="middle">GA4 on every step — drop-off is visible</text>
+  <rect class="box" x="644" y="260" width="280" height="64"/><text x="784" y="298" class="s" text-anchor="middle">Reward ladder — not a lottery</text>
+  <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. Only when a play earns the ask — a form is allowed to win.</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge — quietforge.flexgrafik.nl</text>
 </svg>

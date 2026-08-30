@@ -443,6 +443,29 @@ body[data-app="services"] {
   color: var(--qf-accent);
 }
 
+.qf-hero-pas {
+  display: flex;
+  gap: var(--qf-sp-6);
+  margin: var(--qf-sp-4) 0;
+  font-size: var(--qf-fs-lg);
+  color: var(--qf-text-dim);
+}
+.qf-hero-pas-item {
+  display: flex;
+  flex-direction: column;
+}
+.qf-hero-pas-label {
+  font-family: var(--qf-mono);
+  font-size: var(--qf-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--qf-accent);
+  margin-bottom: var(--qf-sp-1);
+}
+.qf-hero-pas-text {
+  font-size: var(--qf-fs-lg);
+}
+
 .qf-hero {
   position: relative;
   padding: var(--qf-sp-10) 0 var(--qf-sp-16);

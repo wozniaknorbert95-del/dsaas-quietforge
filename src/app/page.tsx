@@ -98,6 +98,20 @@ export default function Home() {
           <p className="qf-hero-eyebrow">{POSITIONING.label} · EU</p>
           <h1 className="qf-hero-headline">{HERO.headline}</h1>
           <p className="qf-hero-subline">{HERO.subline}</p>
+          <div className="qf-hero-pas">
+            <div className="qf-hero-pas-item">
+              <span className="qf-hero-pas-label">{HERO.beats.problem.label}</span>
+              <span className="qf-hero-pas-text">{HERO.beats.problem.text}</span>
+            </div>
+            <div className="qf-hero-pas-item">
+              <span className="qf-hero-pas-label">{HERO.beats.system.label}</span>
+              <span className="qf-hero-pas-text">{HERO.beats.system.text}</span>
+            </div>
+            <div className="qf-hero-pas-item">
+              <span className="qf-hero-pas-label">{HERO.beats.effect.label}</span>
+              <span className="qf-hero-pas-text">{HERO.beats.effect.text}</span>
+            </div>
+          </div>
           <p className="qf-hero-anti">{POSITIONING.antiPositioning}</p>
           <p className="qf-hero-proof-strip">{HERO.proofStrip}</p>
           <p className="qf-hero-chip">{HERO.proofChip}</p>

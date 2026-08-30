@@ -53,3 +53,6 @@ docs/*.mp4
 
 /dist/
 
+# Internal QuietForge strategy & finance docs — NOT for the public repo
+/quietforge/
+

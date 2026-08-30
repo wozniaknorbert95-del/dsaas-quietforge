@@ -47,7 +47,7 @@ Use actively in hero/founder/about contexts:
 | Geography | Netherlands; English-friendly SMB |
 | Entity | ZZP, small BV, professional services, specialist e-commerce |
 | Pain | inbox chaos, manual quotes, weak lead capture, scattered tools, no repeatable sales process |
-| Budget signal | willing to pay €290 for strategic mapping; project budget normally €1,200+ |
+| Budget signal | willing to pay €690 for strategic mapping; project budget normally €1,200+ |
 | Decision style | wants proof before call; values safety and control |
 | Not for | pure brochure site, sub-€199 impulse buyers, enterprise procurement theatre |
 
@@ -144,7 +144,7 @@ All public copy must use the same matrix.
 
 | Offer | Price |
 |---|---:|
-| Automation Map | €290, credited toward first project |
+| Automation Scan | €690, credited toward first project |
 | Inbox Killer | €1,200–€4,800 |
 | Web Upgrade | €1,800–€5,500 |
 | Sales Funnel / Wizard Cash Engine | €2,400–€6,500 |
@@ -283,9 +283,9 @@ Must tell the owner-system story without unfinished placeholders.
 |---|---|
 | `/` | Conversion Systems Architect for Small Business \| Quietforge |
 | `/solutions/` | Solutions — Lead Qualification & Automation Systems \| Quietforge |
-| `/pricing/` | Pricing — Automation Map & Conversion Systems \| Quietforge |
+| `/pricing/` | Pricing — Automation Scan & Conversion Systems \| Quietforge |
 | `/results/` | Results — Live Production Systems \| Quietforge |
-| `/book-discovery/` | Book Automation Map — €290 Credited \| Quietforge |
+| `/book-discovery/` | Book Automation Scan — €690 Credited \| Quietforge |
 | `/how-it-works/` | How It Works — Map, Build, Handover \| Quietforge |
 | `/founder/` | Founder’s System — Built in Production \| Quietforge |
 | `/trust/` | Trust & Safety — HITL, EU Data, AVG \| Quietforge |

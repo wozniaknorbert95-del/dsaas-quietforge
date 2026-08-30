@@ -147,7 +147,7 @@ export default function SecurityPage() {
           Security
         </p>
         <p className="qf-sys-status">
-          <span className="qf-sys-badge">How we work</span>
+          <span className="qf-sys-badge">Approach</span>
           <span className="qf-sys-intents">trust · gates · your data</span>
         </p>
         <h1 className="qf-sys-h1">Security in documents, not adjectives.</h1>

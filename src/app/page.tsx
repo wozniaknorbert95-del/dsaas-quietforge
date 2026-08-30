@@ -42,7 +42,7 @@ const DISCIPLINE = [
 ];
 
 const STEPS = [
-  'Scan — 90 minutes, written report is yours.',
+  'Scan — pre-work, a 90-minute session, and a written go/no-go in 2 days.',
   'Scope — one system, fixed price, two to four weeks.',
   'Build — AI speed, human review, scans.',
   'You approve — nothing live without it.',
@@ -185,7 +185,11 @@ export default function Home() {
       <Section data-home-section="approach">
         <p className="qf-home-kicker">Approach</p>
         <h2 className="qf-sys-h2">From scan to first system in 2–4 weeks.</h2>
-        <ol className="qf-sys-steps">
+        <p className="max-w-2xl text-[var(--qf-text-dim)]">
+          The scan is a written decision, not a sales call — pre-work, one live session,
+          a go/no-go you keep either way.
+        </p>
+        <ol className="qf-sys-steps mt-4">
           {STEPS.map((step, index) => (
             <li key={step}>
               <span className="qf-sys-step-n">{index + 1}.</span> {step}

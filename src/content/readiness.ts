@@ -29,8 +29,6 @@ export const READINESS_HEADER = {
  * Order: Wizard, Jadzia COI, Agent OS, Governance (T4: replaced Lead Magnet with Governance).
  * Full 8-row table on `/results/owner-ecosystem/`.
  */
-/** Compact BuiltVsPlanned rows (component kept; not rendered on home since site-map §3 v6.0). */
-export const HOME_ROW_KEYS = ['jadzia-core', 'flex-vcms', 'zzpackage', 'agent-os'] as const;
 
 /** Eight-repo readiness — sync with flexgrafik-meta as-is-inventory.md */
 export const READINESS_ROWS: readonly ReadinessRow[] = [
@@ -100,17 +98,4 @@ export const READINESS_ROWS: readonly ReadinessRow[] = [
 
 export function getReadinessStatus(repoKey: string): ReadinessStatus | undefined {
   return READINESS_ROWS.find((row) => row.repoKey === repoKey)?.status;
-}
-
-export function readinessStatusClass(status: ReadinessStatus): string {
-  if (status === 'LIVE') return 'text-emerald-500';
-  if (status === 'PARTIAL') return 'text-amber-500';
-  return 'text-[var(--qf-text-faint)]';
-}
-
-/** Home compact rows — filtered by HOME_ROW_KEYS, preserves order. */
-export function getHomeReadinessRows(): readonly ReadinessRow[] {
-  return HOME_ROW_KEYS.map((key) =>
-    READINESS_ROWS.find((row) => row.repoKey === key)
-  ).filter((row): row is ReadinessRow => row !== undefined);
 }

@@ -104,7 +104,7 @@ S1 creates **thin but honest** S2/S3 destinations so 301s do not 404. Full desig
 
 > **Etap 4 (2026-08-24):** section ORDER unchanged (SR-01). Copy refreshed: hero lead = self-improving systems + proof chip; Proof = „five doors” reference program (link /proof#reference); Prices = build/care variants (ESSENTIAL/SYSTEM*/AUTONOMOUS · CARE/GROW*/AUTONOMY); FAQ +2 (guarantee, reference program); Fit +1 row (who checks security); Approach +1 line (choose the depth).
 
-1. Hero — H1: **Systems that give you back your time.** Eyebrow: System builder for small businesses · EU. Anti-position under subline.
+1. Hero — H1: **Systems that give you back your time.** Eyebrow: Conversion systems architect for small businesses · EU. Anti-position under subline.
 2. Counter at 0 + methodology honesty
 3. Intent router (Time · Money · Calm · Team · Order)
 4. Six system cards

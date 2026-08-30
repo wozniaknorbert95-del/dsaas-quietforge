@@ -73,14 +73,14 @@ These must never be swapped on `/solutions/`, cards, pricing or metadata.
 
 ## §3 HOME — section order
 
-> **Version 7.0 (2026-08-30):** Live home per `src/app/page.tsx`. Hero CTA band sits directly after the subline (first viewport on mobile), PAS beats move below it. Intent router defaults to 4 flagship systems with a `See all 9 systems →` link. Counter reframed around the reference program. Variants renamed Core/Scale/Command + Keep/Grow/Unlock.
+> **Version 7.0 (2026-08-30):** Live home per `src/app/page.tsx`. Hero CTA band sits directly after the subline (first viewport on mobile), PAS beats move below it. Intent router defaults to 4 flagship systems with a `See all 9 systems →` link. Counter reframed around the reference program. Variants renamed Core/Scale/Command + Keep/Grow/Unlock. **Approach step 1 synced to the live scan process** (pre-work + 60–90 min session + written go/no-go in 2 days), footer label `Approach →`, OG home.svg updated to current positioning.
 
 | # | Section | Component(s) | Funnel job | Primary content rule |
 |---|---|---|---|---|
 | 1 | Hero | `qf-hero` | 5-second clarity | Who / for whom / **CTA band after subline (above fold, incl. mobile)**; PAS beats + anti-position + proof strip + chip below the CTA |
 | 2 | Counter | hours counter | Honest proof | Starts at zero by design — first verified client case opens the count; reference program `X of 5 spots open` beside it |
 | 3 | Intent router | `IntentSystems` (`home`) | ICP match | **4 flagship systems** (Quote & Order, Inbox Triage, Company Brain, AI Security Audit) on the default view; intent chips route the full 9-system catalog; `See all 9 systems →` |
-| 4 | Approach | 5 steps | De-risk | Scan → Scope → Build → You approve → Handover, 2–4 weeks |
+| 4 | Approach | 5 steps | De-risk | Scan (pre-work + 60–90 min session + written go/no-go in 2 days) → Scope → Build → You approve → Handover, 2–4 weeks |
 | 5 | Fit | Compare table | Anti-positioning | Agency vs freelancer vs QuietForge; ERP rewrite → we say no |
 | 6 | Discipline | 6 tiles | Engineering safety | review · scans · approval gates · repo day one → `/security/` |
 | 7 | Proof | `ReferenceCta` | Open evidence | 5 reference spots; scan €0–€345 for published results |

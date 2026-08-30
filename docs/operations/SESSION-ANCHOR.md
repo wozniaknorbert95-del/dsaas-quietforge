@@ -1,10 +1,10 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-30 · **Status:** DEPLOYED ✅ (Vercel prod, dpl_8H7keJrQWj7m9tnUjTy6GypNrFrF) · 56 pages, sitemap 27 routes
+**Updated:** 2026-08-30 · **Status:** DEPLOYED ✅ (Vercel prod) · 56 pages, sitemap 27 routes
 
-**Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
+**Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
-**Handoff:** [`handoffs/2026-08-30-conversion-plan-implementation.md`](handoffs/2026-08-30-conversion-plan-implementation.md)
+**Handoff:** [`handoffs/2026-08-30-home-stale-data-sync.md`](handoffs/2026-08-30-home-stale-data-sync.md)
 
 ## CO
 
@@ -22,11 +22,29 @@ Zaimplementowano plan optymalizacji konwersji (audyt 2026-08-30) — wszystkie 7
 - **Naprawa:** wszystkie 9 SVG czyste (em-dash `—`, brak znaków kontrolnych); skrypt naprawczy `scripts/fix-flow-svgs.cjs`.
 - **Weryfikacja:** build ✅ (56 stron), 9/9 SVG 200 na produkcji bez znaków kontrolnych, nagłówki security aktywne.
 
-**Rebuild /security/ do standardu professional (ostatnia sesja):**
-- Płaska lista 10 pozycji → pełna strona konwersyjna: hero (breadcrumb, badge, H1, meta, dual CTA), 10 kart bramek z numeracją + dowodami (kotwice `#secrets/#database/#authorization/#dependencies/#review/#approval-gates/#logging/#gdpr/#backup/#handover` zachowane — linkują do nich home i systemy), sekcja „Your data is yours" (3 artefakty PDF), FAQ security (5 pytań), final CTA.
-- Nowe klasy CSS `.qf-gate-*` / `.qf-artefact-*` (grid 2-kolumnowy desktop / 1-kolumna mobile).
-- OG `/og/trust.svg` zaktualizowany do nowego tytułu; metadata title bez duplikatu sufiksu.
-- **Deploy:** dpl_8H7keJrQWj7m9tnUjTy6GypNrFrF → **READY**, alias `services.flexgrafik.nl`, live potwierdzony (200, wszystkie sekcje, OG obecny).
+**Rebuild /approach/ do standardu premium (bieżąca sesja):**
+- Płaska lista 5 kroków → pełna strona konwersyjna uzasadniająca €690: hero (breadcrumb, badge, H1, meta, dual CTA), timeline „Day 0 pre-work → Day 1–2 session → Day 3–4 report", anatomia raportu (5 kart), porównanie kategoriami (free audit / generic consultant / doing nothing — MR-16, bez nazw firm), 4 źródłowane metryki (Amex 11 h/tydz., KfW 15 h/mies., Knab €81/h, 2× admin vs selling), build path 4 kroki, FAQ 6 pytań, final CTA z risk reversal.
+- Metadata title bez duplikatu; nowy OG `/og/approach.svg` (1200×630, czyste UTF-8).
+- Nowe klasy CSS `.qf-approach-*` / `.qf-tl-*` / `.qf-compare-*` / `.qf-metric-*` (gridy desktop → 1 kol. mobile).
+- **Artefakty PDF (bug 404):** linki w constants wskazywały na nieistniejące `.pdf` (były tylko `.md`) → wygenerowano 13 PDF-ów (`npm run generate:artefacts`), wszystkie 200 `application/pdf`. Sample report ulepszony z szablonu `[brackets]` → realny deliverable (fikcyjna firma, jawnie oznaczone Illustration, pełna struktura raportu).
+- **Runbook:** `docs/operations/runbooks/scan-delivery-runbook.md` — SOP dostarczenia scanu, twardy budżet €276/scan (typowy ~€100–140), zero-AI-slop gate.
+
+**Home stale data sync (2026-08-30):**
+- **STEPS §Approach:** Step 1 → „Scan — pre-work, a 90-minute session, and a written go/no-go in 2 days." + lead „a decision, not a sales call" (spójne z /approach/).
+- **Footer:** `FOOTER.portfolioLink` „How we work →" → „Approach →"; badge kategorii na /approach/ i /security/ → „Approach".
+- **OG home.svg:** „Living Operating System - 8 repos - governance-first" → „Systems that give you back your time · you approve · you own the repo" (czyste UTF-8).
+- **Stawki:** adnotacja w /approach/ — €80/h = conservative scenario (Knab €81/h), public methodology = €40/h (licznik i /proof/ bez zmian).
+- **Docs:** marketing-strategy.md §8 €290→€690 + „Automation Map"→„Automation Scan" (4 wystąpienia) + ui-ux-principles.md button €690; canon site-map §Home eyebrow → „Conversion systems architect for small businesses · EU".
+- **Dead cleanup:** usunięto 12 martwych komponentów home (PainGrid, IntentRouter, JadziaSpearhead, VcmsTrustStrip, WizardVisualizerCompact, WhyItWorks, FinalCtaBand, DualBrandBand, FeaturedStrip, TrustAndObjections, SpearheadSpotlight, IntentFilterChips) + martwy sections/Pricing.tsx; z conversion-copy.ts usunięto 11 nieużywanych exportów (WHY_THIS_WORKS_PILLARS, OBJECTIONS, JADZIA_SPEARHEAD, VCMS_STRIP, WIZARD_VISUALIZER, SPEARHEAD, WHY_IT_WORKS, FINAL_CTA, PRICING_SECTION, DUAL_BRAND, FEATURED_STRIP).
+- **Weryfikacja:** typecheck ✅ · build ✅ (56 stron) · smoke local + production ✅ · deploy Vercel prod dpl_297F8gPxYsqZjMDoepVDCfjNrYc8.
+
+**Dead-code cleanup II (2026-08-30, kompleksowy):**
+- **Komponenty:** usunięto ostatnie 6 martwych plików (HeroSection, HomeIntentBoundary, BuiltVsPlanned, HowIWork, IntentFilterSticky, layout/SectionProgress) — razem z poprzednią sesją wszystkie martwe home/layout komponenty usunięte.
+- **Exporty content:** usunięto martwe `HOME_SECTIONS` + `HOME_SECTION_MARKERS`, `INTENT_ROUTER_HEADER`, `PAIN_GRID` + `PAIN_GRID_HEADER` + `PainCard`, `getHomeRepos` (ecosystem.ts); `HOME_ROW_KEYS`, `getHomeReadinessRows`, `readinessStatusClass` (readiness.ts); `HomeIntentProvider`, `matchesHomeIntent`, storage helpers (home-intent.tsx — zostaje `useHomeIntent` z fallbackiem, używany przez SystemMetrics).
+- **CSS:** usunięto martwe bloki z globals.css — `qf-dual-brand-*`, `qf-featured-*`, `qf-intent-sticky-*`, `qf-pain-*`, `qf-module-*`, `qf-spearhead-*`, `qf-wizard-viz-*`, `qf-why-*`, `qf-pricing-featured/badge` (zachowano `qf-book-hero-cta`/`qf-book-fast-path` używane przez /book-a-scan/ i `qf-final-cta*`). ~13,7 kB CSS mniej.
+- **Canon:** `docs/canon/site-map.md` §Home order zweryfikowany 1:1 z live page.tsx (Hero→Counter→Systems→Approach→Fit→Discipline→Proof→About→Pricing→FAQ→CTA).
+- **Notka:** `quietforge.css` (root) to legacy nieimportowany nigdzie — zostawiony, do decyzji Dowódcy.
+- **Weryfikacja:** typecheck ✅ · build ✅ (56 stron) · lint: 3 błędy pre-existing (CookieConsent.tsx react-hooks/set-state-in-effect, fix-flow-svgs.cjs require) — poza zakresem tej sesji.
 
 Public offer: Scan €690 credited · Core €2,500 / Scale €4,500* / Command €7,900 · Keep €300 / Grow €600* / Unlock €1,000/mo.
 
@@ -36,10 +54,12 @@ D1 eyebrow hero = lock („Conversion systems architect…”); D2 slots+#refere
 
 ## NASTĘPNY KROK
 
-1. **Dowódca: post-deploy smoke** — banner cookie + mobile fold na telefonie; nowa strona /security/ wizualnie (desktop + mobile).
+1. **Dowódca: post-deploy smoke** — home (nowy step 1 + footer „Approach →"), /approach/ (adnotacja stawek), OG home.svg w social post inspector.
 2. **Looker Studio dashboard** — zbudować wg `conversion-pipeline.md` §10.3 (7 kart, GA4 connector).
-3. Po baseline: testy P3 (A/B cen, B-8 sticky timing, B-1 /pl/ decyzja strategiczna).
-4. Decyzja o usunięciu artefaktu projektu Vercel `dsaas-quietforge` (błędny projekt z pierwszego deployu).
+3. Decyzja: sample report (fikcyjna firma, Illustration) zostaje jawnie publiczny czy PDF tylko na żądanie.
+4. Po baseline: testy P3 (A/B cen, B-8 sticky timing, B-1 /pl/ decyzja strategiczna).
+5. Luka globalna: brak canonical na wszystkich routes (SEO fix w osobnej sesji).
+6. Decyzja o usunięciu artefaktu projektu Vercel `dsaas-quietforge` (błędny projekt z pierwszego deployu).
 
 ---
 

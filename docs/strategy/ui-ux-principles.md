@@ -265,7 +265,7 @@ The form must match the commercial promise.
 
 If paid checkout is live:
 
-- button: `Pay €290 and pick a slot`
+- button: `Pay €690 and pick a slot`
 - payment step visible,
 - slot selection visible,
 - intake after payment or before payment, but clearly labelled.

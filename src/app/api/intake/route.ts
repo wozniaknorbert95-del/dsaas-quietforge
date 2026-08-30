@@ -41,6 +41,11 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json({ ok: false, error: 'BOT_DETECTED' }, { status: 422 });
   }
 
+  // GDPR/AVG: personal data is processed only with explicit consent.
+  if (body.consent !== true) {
+    return NextResponse.json({ ok: false, error: 'CONSENT_REQUIRED' }, { status: 422 });
+  }
+
   const name = trimmed(body.name);
   const company = trimmed(body.company);
   const email = trimmed(body.email);

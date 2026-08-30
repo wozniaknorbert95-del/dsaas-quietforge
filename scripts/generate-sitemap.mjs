@@ -30,6 +30,7 @@ const ROUTES = [
   '/about/',
   '/legal/',
   '/blog/',
+  '/blog/quote-to-order-automation/',
   '/blog/automation-for-small-business/',
   '/blog/digital-transformation-without-the-jargon/',
   '/blog/under-the-hood-how-inbox-killer-works/',

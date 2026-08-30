@@ -4,12 +4,13 @@ import { notFound } from 'next/navigation';
 import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import FaqItem from '@/components/ui/FaqItem';
+import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
 import TLDRBox from '@/components/v2/TLDRBox';
 import CostOfInaction from '@/components/v2/CostOfInaction';
 import ExampleCompany from '@/components/v2/ExampleCompany';
 import FeatureGallery from '@/components/v2/FeatureGallery';
 import FlowDiagram from '@/components/v2/FlowDiagram';
-import { ROUTES, WHATSAPP } from '@/lib/constants';
+import { ROUTES, SITE_URL, WHATSAPP } from '@/lib/constants';
 import {
   SYSTEMS,
   relatedSystems,
@@ -62,8 +63,34 @@ export default async function SystemSpokePage({ params }: Props) {
   }
   const related = relatedSystems(system);
 
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: system.name,
+    serviceType: 'Business automation system',
+    description: system.tldr.is,
+    url: `${SITE_URL}${system.href}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Quietforge',
+      url: SITE_URL,
+    },
+    areaServed: 'EU',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      description: 'Scan first — then a fixed price after scope.',
+    },
+  };
+
   return (
     <>
+      <AnalyticsPageView event="system_page_view" detail={{ slug }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <Section>
         <p className="qf-sys-crumb">
           <Link href={ROUTES.systems}>Systems</Link>

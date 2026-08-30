@@ -1,37 +1,35 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-30 · **Status:** Deployed ✅ · Etap 4 + PAS hero LIVE na `quietforge.flexgrafik.nl` (projekt Vercel `flexgrafik-services`); smoke ✅
+**Updated:** 2026-08-30 · **Status:** Implementation complete, NOT deployed (manual Vercel step by Dowódca) · Plan conversion audit zaimplementowany end-to-end; build ✅ 55 pages
 
-**Canon:** `docs/canon/identity.md` LOCKED · `docs/canon/site-map.md` v2 (updated 24.08)
+**Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
-**Handoff:** [`handoffs/2026-08-30-home-hero-pas-added.md`](handoffs/2026-08-30-home-hero-pas-added.md)
+**Handoff:** [`handoffs/2026-08-30-conversion-plan-implementation.md`](handoffs/2026-08-30-conversion-plan-implementation.md)
 
 ## CO
 
-Etap 4 (plan v2.0 w `quietforge/quietforge-strona-etap4-plan.md`):
-- /about v2 (9 sekcji, KVK w stopce) · /pricing v2 (warianty ESSENTIAL/SYSTEM*/AUTONOMOUS + CARE/GROW*/AUTONOMY) · /proof#reference (program 5 firm).
-- Home: lead hero (self-improving systems), proof „five doors”, ceny wariantowe, FAQ +2, Fit +1, hero chip.
-- 3 nowe spokes: company-brain (flagship) · ai-security-audit (pioneer) · custom-ai-agent — pełny szablon B1–B10, hub „Nine systems”.
-- Blog: +3 wpisy Five Pillars, kategorie, schema Article. Ośmiornica w footerze.
-- Eventy: pricing_variant_click · reference_program_click · blog_read · about_section_scroll.
-- Sitemap 26 routes. Canon site-map zsynchronizowany (SR-03).
+Zaimplementowano plan optymalizacji konwersji (audyt 2026-08-30) — wszystkie 7 todos:
+- **P0 GDPR:** Consent Mode v2 + banner cookie + checkbox zgody (client+server) + /legal/ (DPA, cookies, company, retention, usunięty Calendly).
+- **P0 Proof:** próbka raportu PDF + 3 bullety „what you get" + credit line na /book-a-scan/ (oraz pricing + final CTA).
+- **P0 Docs:** sync €290 → €690 w conversion-pipeline + site-map; Care €300/mo.
+- **P1 Home:** hero CTA w 1. viewporcie (mobile), 4 flagowce + „See all 9 systems", rename wariantów Core/Scale/Command + Keep/Grow/Unlock, framing licznika + spots tracker.
+- **P1 Analytics:** eventy form_error/payment_link_click/sample_scan_download/system_page_view/whatsapp_prefill_selected, UTM na WhatsApp, spec dashboardu Looker Studio (§10.3).
+- **P1 Tech:** security headers (CSP/XCTO/XFO/Referrer/Permissions) + JSON-LD (FAQPage home, Service/Offer systemy).
+- **P2:** A/B WhatsApp pain-picker, start programu referencyjnego (5 spots tracker), wpis blogowy `quote-to-order-automation`.
 
-Dodano sekcję Problem → System → Effect (PAS) do hero na stronie głównej, wykorzystując istniejące dane z conversion-copy.ts. Sekcja PAS znajduje się między subline a anti-position.
-
-Public offer: Scan €690 · ESSENTIAL €2,500 / SYSTEM €4,500* / AUTONOMOUS €7,900 · CARE €300 / GROW €600* / AUTONOMOUS €1,000/mo.
+Public offer: Scan €690 credited · Core €2,500 / Scale €4,500* / Command €7,900 · Keep €300 / Grow €600* / Unlock €1,000/mo.
 
 ## DECYZJE (veta Dowódcy)
 
-D1 eyebrow hero = lock („System builder…”); D2 slots+#reference współistnieją; D3 Blog w footerze; D4 bez portretu; D5 KVK 89057554; OG ośmiornica = decyzja otwarta.
+D1 eyebrow hero = lock („Conversion systems architect…”); D2 slots+#reference współistnieją; D3 Blog w footerze; D4 bez portretu; D5 KVK 89057554; OG ośmiornica = decyzja otwarta.
 
 ## NASTĘPNY KROK
-1. Dowódca: decyzja o usunięciu artefaktu projektu `dsaas-quietforge` na Vercel (błędnie utworzony przy pierwszym deployu; domena wskazuje `flexgrafik-services`).
-2. Optymalizacja sekcji IntentSystems (redukcja liczby odznak na kartach).
-3. Poprawa a11y FAQ (aria-controls, hidden, fokus).
-4. Refaktoryzacja sekcji Approach i Compare w stylu PAS.
-5. Przegl zmian z Dowódcą i zgoda na dalsze optymalizacje.
-6. LinkedIn dopiero po akceptacji strony vs `kim jestem`.
-7. Nie publikować PNG z `proof.ts`, których nie ma w `public/gratka/`.
+
+1. **Dowódca: deploy** — `npx vercel --prod --project flexgrafik-services --yes` (uważać: nie tworzyć nowego projektu; domena = `flexgrafik-services`).
+2. Post-deploy smoke wg handoff (nagłówki, mobile fold, banner cookie, /blog/quote-to-order-automation/).
+3. **Looker Studio dashboard** — zbudować wg `conversion-pipeline.md` §10.3 (7 kart, GA4 connector).
+4. Po baseline: testy P3 (A/B cen, B-8 sticky timing, B-1 /pl/ decyzja strategiczna).
+5. Decyzja o usunięciu artefaktu projektu Vercel `dsaas-quietforge` (błędny projekt z pierwszego deployu).
 
 ---
 

@@ -732,7 +732,7 @@ export const SYSTEMS: SystemRecord[] = [
     ],
     flowSrc: '/systems/publishing-gate-flow.svg',
     flowAlt: 'Publishing gate: scan sources, flag conflicts, approve, publish with a log',
-    flowCaption: 'Conflict report before live. Caption: nothing publishes until you approve.',
+    flowCaption: 'Conflict report before live. Nothing publishes until you approve.',
     pains: [
       'Docs and the site disagree.',
       'Nobody can say who published what.',

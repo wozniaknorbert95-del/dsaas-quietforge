@@ -5,11 +5,13 @@ import Card from '@/components/ui/Card';
 import FaqItem from '@/components/ui/FaqItem';
 import StickyCta from '@/components/layout/StickyCta';
 import IntentSystems from '@/components/v2/IntentSystems';
-import { PRICING, ROUTES, WHATSAPP } from '@/lib/constants';
+import { PRICING, ROUTES } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
 import { CTAS, HERO, POSITIONING, PUBLIC_OFFER, REFERENCE_PROGRAM } from '@/content/conversion-copy';
-import { hoursCounter, hoursValueEuro } from '@/content/hours-counter';
+import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
 import ReferenceCta from '@/components/home/ReferenceCta';
+import SampleScanLink from '@/components/analytics/SampleScanLink';
+import WhatsAppLink from '@/components/analytics/WhatsAppLink';
 
 export const metadata: Metadata = {
   title: 'Systems that give you back your time',
@@ -91,13 +93,41 @@ const FAQ = [
 ];
 
 export default function Home() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+
   return (
     <div className="pb-20 lg:pb-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <section data-home-section="hero" className="qf-hero">
         <div className="qf-hero-inner">
           <p className="qf-hero-eyebrow">{POSITIONING.label} · EU</p>
           <h1 className="qf-hero-headline">{HERO.headline}</h1>
           <p className="qf-hero-subline">{HERO.subline}</p>
+          <div className="qf-hero-cta-band">
+            <Link href={ROUTES.bookAScan} className="qf-hero-cta-primary">
+              <span className="qf-hero-cta-primary-label">
+                {CTAS.bookAutomationMap} <span aria-hidden="true">→</span>
+              </span>
+              <span className="qf-hero-cta-primary-meta">{HERO.primaryCtaMeta}</span>
+            </Link>
+            <div className="qf-hero-cta-secondary-row">
+              <Link href={ROUTES.systems} className="qf-hero-cta-secondary">
+                {CTAS.seeSystems}
+              </Link>
+              <WhatsAppLink location="hero" className="qf-hero-cta-whatsapp" />
+            </div>
+          </div>
           <div className="qf-hero-pas">
             <div className="qf-hero-pas-item">
               <span className="qf-hero-pas-label">{HERO.beats.problem.label}</span>
@@ -115,32 +145,11 @@ export default function Home() {
           <p className="qf-hero-anti">{POSITIONING.antiPositioning}</p>
           <p className="qf-hero-proof-strip">{HERO.proofStrip}</p>
           <p className="qf-hero-chip">{HERO.proofChip}</p>
-          <div className="qf-hero-cta-band">
-            <Link href={ROUTES.bookAScan} className="qf-hero-cta-primary">
-              <span className="qf-hero-cta-primary-label">
-                {CTAS.bookAutomationMap} <span aria-hidden="true">→</span>
-              </span>
-              <span className="qf-hero-cta-primary-meta">{HERO.primaryCtaMeta}</span>
-            </Link>
-            <div className="qf-hero-cta-secondary-row">
-              <Link href={ROUTES.systems} className="qf-hero-cta-secondary">
-                {CTAS.seeSystems}
-              </Link>
-              <a
-                href={WHATSAPP.url}
-                className="qf-hero-cta-whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {HERO.whatsappCta}
-              </a>
-            </div>
-          </div>
         </div>
       </section>
 
       <Section data-home-section="counter" background="surface">
-        <p className="qf-home-kicker">Given back to SMBs</p>
+        <p className="qf-home-kicker">Hours returned · verified by clients</p>
         <div className="qf-hours-counter">
           <p className="qf-hours-item">
             <span>Hours confirmed</span>
@@ -152,22 +161,30 @@ export default function Home() {
           </p>
         </div>
         <p className="mt-[var(--qf-sp-4)] max-w-2xl text-[var(--qf-text-dim)]">
-          Hours per week × €{hoursCounter.ratePerHour}/h, only after the client confirms. The counter starts at zero
-          on purpose.{' '}
+          Counting starts at zero by design — the first verified client case opens the
+          count. No invented numbers.{' '}
           <Link href={ROUTES.proofMethodology} className="qf-sys-link">
             How we measure
+          </Link>
+          .
+        </p>
+        <p className="mt-[var(--qf-sp-3)] max-w-2xl text-sm text-[var(--qf-text-faint)]">
+          Reference program:{' '}
+          {referenceSpotsOpen} of {referenceProgram.spotsTotal} spots open —{' '}
+          <Link href={ROUTES.proof} className="qf-sys-link">
+            apply for a reference spot
           </Link>
           .
         </p>
       </Section>
 
       <Section data-home-section="systems">
-        <IntentSystems heading="Where does your time leak away?" />
+        <IntentSystems heading="Where does your time leak away?" home />
       </Section>
 
       <Section data-home-section="approach">
         <p className="qf-home-kicker">Approach</p>
-        <h2 className="qf-sys-h2">From scan to system in two to four weeks.</h2>
+        <h2 className="qf-sys-h2">From scan to first system in 2–4 weeks.</h2>
         <ol className="qf-sys-steps">
           {STEPS.map((step, index) => (
             <li key={step}>
@@ -176,7 +193,7 @@ export default function Home() {
           ))}
         </ol>
         <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">
-          Fixed price after the scan. ESSENTIAL, SYSTEM or AUTONOMOUS — you choose the depth.{' '}
+          Fixed price after the scan. Core, Scale or Command — you choose the depth.{' '}
           <Link href={ROUTES.pricing} className="qf-sys-link">
             See variants
           </Link>
@@ -264,12 +281,14 @@ export default function Home() {
           {REFERENCE_PROGRAM.lead} Until a client verifies hours, we do not invent a number.
           Lab measurements stay labelled as examples.
         </p>
-        <ReferenceCta label="The five reference spots" />
+        <ReferenceCta
+          label={`Apply — ${referenceSpotsOpen} spots open, scan from €0`}
+        />
       </Section>
 
       <Section data-home-section="about">
         <p className="qf-home-kicker">About</p>
-        <h2 className="qf-sys-h2">Norbert · system builder</h2>
+        <h2 className="qf-sys-h2">Norbert · your systems architect</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
           Architect of autonomous operating systems. Thirty trades taught me your
           industry&apos;s language; three years running my own company taught me what
@@ -298,7 +317,7 @@ export default function Home() {
                 {PUBLIC_OFFER.buildVariants.map((variant) => variant.price).join(' / ')}
               </p>
               <p className="qf-price-note">
-                ESSENTIAL / SYSTEM* / AUTONOMOUS — you choose the depth. (* most chosen)
+                Core / Scale* / Command — you choose the depth. (* most chosen)
               </p>
             </Card>
           </li>
@@ -308,7 +327,7 @@ export default function Home() {
               <p className="qf-price-amount">
                 {PUBLIC_OFFER.careVariants.map((variant) => variant.price).join(' / ')}
               </p>
-              <p className="qf-price-note">CARE / GROW* / AUTONOMY — monthly, cancellable.</p>
+              <p className="qf-price-note">Keep / Grow* / Unlock — monthly, cancellable.</p>
             </Card>
           </li>
         </ul>
@@ -323,7 +342,7 @@ export default function Home() {
 
       <Section data-home-section="faq">
         <p className="qf-home-kicker">Questions</p>
-        <h2 className="qf-sys-h2">Good to know</h2>
+        <h2 className="qf-sys-h2">Straight answers</h2>
         <div className="qf-sys-faq">
           {FAQ.map((item) => (
             <FaqItem key={item.q} question={item.q} answer={item.a} />
@@ -340,18 +359,14 @@ export default function Home() {
             90 minutes. {formatEuro(PRICING.discovery)}. The report is yours. Credited if we
             build.
           </p>
+          <p className="qf-final-cta-sample">
+            <SampleScanLink />
+          </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">
               {CTAS.bookAutomationMap} <span aria-hidden="true">→</span>
             </Link>
-            <a
-              href={WHATSAPP.url}
-              className="qf-btn-ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {HERO.whatsappCta}
-            </a>
+            <WhatsAppLink location="final_cta" className="qf-btn-ghost" />
           </div>
         </div>
       </section>

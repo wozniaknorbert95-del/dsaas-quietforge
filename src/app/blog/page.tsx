@@ -50,6 +50,14 @@ const FILTERS: ReadonlyArray<Category | 'All'> = ['All', ...CATEGORIES];
 
 const POSTS: Post[] = [
   {
+    slug: 'quote-to-order-automation',
+    title: 'Quote-to-order automation: stop losing money in email ping-pong',
+    date: '2026-08-30',
+    category: 'Automation',
+    excerpt:
+      'Every quote sent by email costs the same hours: re-reading threads, chasing details, pricing by hand. A quote-to-order engine turns that into one flow — configure, see the price, pay.',
+  },
+  {
     slug: 'owner-cockpit-one-screen',
     title: 'The owner cockpit: your whole company on one screen, decisions from data',
     date: '2026-09-15',

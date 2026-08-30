@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { trackEvent } from '@/lib/analytics';
 import { EMAIL } from '@/lib/constants';
@@ -36,6 +37,7 @@ export default function BookDiscoveryForm() {
     other: '',
     website: '',
   });
+  const [consent, setConsent] = useState(false);
 
   const handlePainToggle = (pain: string) => {
     setFormData((prev) => ({
@@ -48,6 +50,12 @@ export default function BookDiscoveryForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) {
+      setErrorMessage('consent_required');
+      setStatus('error');
+      trackEvent('form_error', { location: 'book_discovery_form', reason: 'consent_missing' });
+      return;
+    }
     setStatus('submitting');
     trackEvent('intake_submit', { location: 'book_discovery_form' });
 
@@ -55,7 +63,7 @@ export default function BookDiscoveryForm() {
       const res = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, referrer: window.location.href }),
+        body: JSON.stringify({ ...formData, consent, referrer: window.location.href }),
       });
 
       if (res.ok) {
@@ -66,9 +74,11 @@ export default function BookDiscoveryForm() {
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       setErrorMessage(data.error ?? 'send_failed');
       setStatus('error');
+      trackEvent('form_error', { location: 'book_discovery_form', reason: data.error ?? 'send_failed' });
     } catch {
       setErrorMessage('network_error');
       setStatus('error');
+      trackEvent('form_error', { location: 'book_discovery_form', reason: 'network_error' });
     }
   };
 
@@ -273,10 +283,32 @@ export default function BookDiscoveryForm() {
       </Button>
 
       {errorMessage && (
-        <p className="text-xs text-[var(--qf-error)]">
-          Error: {errorMessage}
+        <p className="text-xs text-[var(--qf-error)]" role="alert">
+          {errorMessage === 'consent_required'
+            ? 'Please confirm the privacy consent before sending your request.'
+            : errorMessage === 'network_error'
+              ? 'Your request could not be sent right now. Please try again, or email me directly.'
+              : `Error: ${errorMessage}`}
         </p>
       )}
+
+      <label className="flex items-start gap-3 text-sm text-[var(--qf-text-dim)]">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          required
+          className="mt-1 h-4 w-4 accent-[var(--qf-accent)]"
+        />
+        <span>
+          I agree that my details may be used to respond to this enquiry and to follow
+          up about the Automation Scan, per the{' '}
+          <Link href="/legal/#privacy" className="text-[var(--qf-accent)] hover:underline">
+            privacy policy
+          </Link>
+          . I can withdraw at any time.
+        </span>
+      </label>
 
       <p className="text-xs text-[var(--qf-text-faint)]">
         If the fit is right, I&apos;ll send a payment link and available times within 24 hours. No spam.

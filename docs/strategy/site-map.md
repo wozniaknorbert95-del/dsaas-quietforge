@@ -73,28 +73,27 @@ These must never be swapped on `/solutions/`, cards, pricing or metadata.
 
 ## §3 HOME — section order
 
-> **Version 6.0 (2026-07-19):** Home prune — cash engine / governance / honesty strips **out**. IntentRouter carries module status; Jadzia = sole deep proof (Marketing Brain shadow + HITL). Pain filter polish from v5.2 kept.
+> **Version 7.0 (2026-08-30):** Live home per `src/app/page.tsx`. Hero CTA band sits directly after the subline (first viewport on mobile), PAS beats move below it. Intent router defaults to 4 flagship systems with a `See all 9 systems →` link. Counter reframed around the reference program. Variants renamed Core/Scale/Command + Keep/Grow/Unlock.
 
 | # | Section | Component(s) | Funnel job | Primary content rule |
 |---|---|---|---|---|
-| 1 | Hero | `HeroSection` | 5-second clarity | Who / for whom / dual-brand 1-liner / **Book Map CTA above fold** / proof strip: ops cockpit · honest module status · you approve |
-| 2 | Pain router | `PainGrid` + chips (+ sticky) | Recognition + intent filter | **9 leak cards** + **5 short chips**; hide non-matches; Clear + See modules; `?intent=` shareable |
-| 3 | Intent router | `IntentRouter` | Module awareness | ≥7 module cards incl. **VCMS** + Wizard; **no chips on home**; status badges = home honesty; `/solutions/` keeps chips |
-| 4 | Live proof — Jadzia | `JadziaSpearhead` | Ops pearl | Operations Command + Marketing Brain **shadow** F0–F3 · HITL · no Act/autonomy claim; CTA → `/results/jadzia-coi/` |
-| 5 | Why / How it works | `WhyItWorks` | Delivery + safety | Method + safety + objections — one H2 |
-| 6 | Pricing | `Pricing` | Commercial | Map Most popular · builds · Managed |
-| 7 | Final CTA | `FinalCtaBand` | Close | Strong L3 Book Map + sample Map |
-
-**Removed from home (kept in repo):** `VcmsTrustStrip`, `WizardVisualizerCompact`, `BuiltVsPlanned` compact, `DualBrandBand`, `FeaturedStrip`, standalone `SystemMetrics`, Wizard-as-Spearhead.
-
-**Still off home:** full LOS / Built vs Planned table / LivingSystemTeaser / BehindTheScenes → `/results/owner-ecosystem/`.
+| 1 | Hero | `qf-hero` | 5-second clarity | Who / for whom / **CTA band after subline (above fold, incl. mobile)**; PAS beats + anti-position + proof strip + chip below the CTA |
+| 2 | Counter | hours counter | Honest proof | Starts at zero by design — first verified client case opens the count; reference program `X of 5 spots open` beside it |
+| 3 | Intent router | `IntentSystems` (`home`) | ICP match | **4 flagship systems** (Quote & Order, Inbox Triage, Company Brain, AI Security Audit) on the default view; intent chips route the full 9-system catalog; `See all 9 systems →` |
+| 4 | Approach | 5 steps | De-risk | Scan → Scope → Build → You approve → Handover, 2–4 weeks |
+| 5 | Fit | Compare table | Anti-positioning | Agency vs freelancer vs QuietForge; ERP rewrite → we say no |
+| 6 | Discipline | 6 tiles | Engineering safety | review · scans · approval gates · repo day one → `/security/` |
+| 7 | Proof | `ReferenceCta` | Open evidence | 5 reference spots; scan €0–€345 for published results |
+| 8 | About | short bio | Face + authority | Norbert · systems architect; 30 trades, 3 years production |
+| 9 | Pricing | 3 cards | Commercial clarity | Scan €690 credited · Build Core/Scale/Command · Care Keep/Grow/Unlock |
+| 10 | FAQ | `FaqItem` list | Objections | Straight answers; aria-expanded/controls correct |
+| 11 | Final CTA | `qf-final-cta` + `StickyCta` | Close | Book scan €690 · WhatsApp · sample scan report link |
 
 ### Home chrome
 
-- `SectionProgress`: Start → Pick → Proof → Close.
 - `StickyCta`: mobile only, after hero exits viewport.
-- Sticky mobile: **Book Automation Map** (filled) + **Ask on WhatsApp** (outline).
-- Desktop primary CTA remains **Book Automation Map**.
+- Sticky mobile: **Book a scan** (filled) + **Ask on WhatsApp** (outline).
+- Desktop primary CTA remains **Book a scan**.
 
 ---
 
@@ -222,7 +221,7 @@ All pages must use the same commercial matrix.
 
 | Offer | Public price |
 |---|---:|
-| Automation Map | €290, credited toward first project |
+| Automation Map | €690, credited toward first project |
 | Inbox Killer | €1,200–€4,800 |
 | Web Upgrade | €1,800–€5,500 |
 | Sales Funnel / Wizard Cash Engine | €2,400–€6,500 |
@@ -234,7 +233,7 @@ All pages must use the same commercial matrix.
 Forbidden live price fragments:
 
 - `from €99/mo` for Managed Automation (live range is €349–€890/mo)
-- `from €290/mo` for Maintenance, unless the whole pricing matrix is changed
+- `from €300/mo` for Care, unless the whole pricing matrix is changed
 - mismatched Sales Funnel/Web Upgrade ranges
 - “contact for price” on named offers
 
@@ -249,14 +248,14 @@ The page must not mix paid-booking language with a generic enquiry form.
 ### Required flow
 
 ```text
-Understand value → See what is included → Pay €290 → Pick slot → Intake → Confirmation
+Understand value → See what is included → Pay €690 → Pick slot → Intake → Confirmation
 ```
 
-If payment/calendar is not technically live, the page must switch copy to **Request Automation Map slot** and clearly state that a payment link follows after fit check.
+If payment/calendar is not technically live, the page must switch copy to **Request Automation Scan slot** and clearly state that a payment link follows after fit check.
 
 ### Preferred professional target
 
-Primary CTA: `Pay €290 and pick a slot`  
+Primary CTA: `Pay €690 and pick a slot`  
 Secondary: `Download sample Map`  
 Fallback: `Ask a question on WhatsApp`
 

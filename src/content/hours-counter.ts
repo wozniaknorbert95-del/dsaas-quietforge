@@ -11,3 +11,15 @@ export const hoursCounter = {
 } as const;
 
 export const hoursValueEuro = hoursCounter.hoursConfirmed * hoursCounter.ratePerHour;
+
+// ============================================================================
+// REFERENCE PROGRAM — public open-spots tracker (marketing v1 §6, 5 firms max).
+// spotsTaken increments only when a firm is accepted into the program.
+// ============================================================================
+
+export const referenceProgram = {
+  spotsTotal: 5,
+  spotsTaken: 0,
+} as const;
+
+export const referenceSpotsOpen = referenceProgram.spotsTotal - referenceProgram.spotsTaken;

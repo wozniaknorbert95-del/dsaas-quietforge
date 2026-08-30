@@ -4,6 +4,7 @@ import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import FaqItem from '@/components/ui/FaqItem';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
+import SampleScanLink from '@/components/analytics/SampleScanLink';
 import VariantCta from '@/components/pricing/VariantCta';
 import { ROUTES, SITE_URL } from '@/lib/constants';
 import { CTAS, PUBLIC_OFFER, WEBSITE_ONLY_EXCEPTION } from '@/content/conversion-copy';
@@ -11,7 +12,7 @@ import { CTAS, PUBLIC_OFFER, WEBSITE_ONLY_EXCEPTION } from '@/content/conversion
 export const metadata: Metadata = {
   title: 'Pricing: scan, build variants, care',
   description:
-    'Clear prices, fixed scope. Automation Scan €690 credited. Builds: ESSENTIAL €2,500 · SYSTEM €4,500 · AUTONOMOUS €7,900. Care from €300/month, cancellable.',
+    'Clear prices, fixed scope. Automation Scan €690 credited. Builds: Core €2,500 · Scale €4,500 · Command €7,900. Care from €300/month, cancellable.',
   openGraph: {
     title: 'Pricing: scan, build variants, care | Quietforge',
     description: 'Scan €690 credited. Builds €2,500–€7,900 fixed. Care €300–€1,000/mo, cancellable.',
@@ -71,6 +72,9 @@ export default function PricingPage() {
           <p className="mt-3 text-sm text-[var(--qf-text-dim)]">{PUBLIC_OFFER.scanNote}</p>
           <p className="mt-2 text-sm text-[var(--qf-text-faint)]">
             Honest guarantee: if the scan finds nothing worth automating, the report says exactly that — and it is yours either way.
+          </p>
+          <p className="mt-4 text-sm">
+            <SampleScanLink />
           </p>
           <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-6 inline-flex justify-center">
             {CTAS.bookAutomationMap} →

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import CookieConsent from "@/components/analytics/CookieConsent";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HashScroll from "@/components/layout/HashScroll";
@@ -88,7 +89,7 @@ export default function RootLayout({
       "@context": "https://schema.org",
       "@type": "Person",
       name: CREATOR,
-      jobTitle: "System builder for small businesses",
+      jobTitle: "Conversion systems architect for small businesses",
       url: `${SITE_URL}/about/`,
       worksFor: { "@type": "Organization", name: SITE_NAME },
       sameAs: [LINKEDIN_URL],
@@ -111,6 +112,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );

@@ -6,12 +6,12 @@
 import { PRICING_NUMBERS, formatEuro } from '@/content/pricing';
 
 export const POSITIONING = {
-  label: 'System builder for small businesses',
+  label: 'Conversion systems architect for small businesses',
   antiPositioning: 'Not a programmer for hire. Not an agency. Not “the AI guy”.',
 } as const;
 
 export const HERO = {
-  eyebrow: 'System builder for small businesses · EU',
+  eyebrow: 'Conversion systems architect for small businesses · EU',
   headline: 'Systems that give you back your time.',
   subline:
     'Quotes, orders, inbox, reporting — rebuilt as self-improving systems that work 24/7 and propose their own upgrades. Built at AI speed, delivered with engineering discipline — nothing goes live without your approval.',
@@ -22,7 +22,7 @@ export const HERO = {
       text: 'Manual quotes, inbox chaos, no pipeline.',
     },
     system: {
-      label: 'System',
+      label: 'The fix',
       text: 'Qualify → route → approve before send.',
     },
     effect: {
@@ -32,7 +32,7 @@ export const HERO = {
   },
   proofStrip: 'Hours given back · you approve · counter starts at zero',
   proofLine: 'Hours given back · you approve · counter starts at zero',
-  proofChip: 'AI-assisted engineering — review · scans · gates',
+  proofChip: 'Human-reviewed · security-scanned · gated by you',
   microTrust:
     'I build at AI speed and deliver with engineering discipline. FlexGrafik is a paused lab, not a client proof.',
   primaryCta: 'Book a scan',
@@ -97,10 +97,10 @@ export const PUBLIC_OFFER = {
   maintenanceName: 'Maintenance',
   maintenancePrice: `from ${formatEuro(PRICING_NUMBERS.maintenanceFrom)}/mo`,
   maintenanceNote: 'Monitoring, fixes, one optimisation per month. Cancel monthly.',
-  /** Build variants — oferty v1 (Oferta B). SYSTEM = most chosen. */
+  /** Build variants — oferty v1 (Oferta B). Scale = most chosen. */
   buildVariants: [
     {
-      name: 'ESSENTIAL',
+      name: 'Core',
       price: formatEuro(PRICING_NUMBERS.buildEssential),
       what: '1 core workflow end-to-end (e.g. quote → order, or inbox triage)',
       timeline: '2–3 weeks',
@@ -108,7 +108,7 @@ export const PUBLIC_OFFER = {
       mostChosen: false,
     },
     {
-      name: 'SYSTEM',
+      name: 'Scale',
       price: formatEuro(PRICING_NUMBERS.buildSystem),
       what: '2–3 connected modules + owner dashboard',
       timeline: '3–4 weeks',
@@ -116,7 +116,7 @@ export const PUBLIC_OFFER = {
       mostChosen: true,
     },
     {
-      name: 'AUTONOMOUS',
+      name: 'Command',
       price: formatEuro(PRICING_NUMBERS.buildAutonomous),
       what: 'System + custom AI agent with approval gates + company-brain foundation',
       timeline: '5–6 weeks',
@@ -124,25 +124,25 @@ export const PUBLIC_OFFER = {
       mostChosen: false,
     },
   ],
-  /** Care variants — oferty v1 (Oferta C). GROW = most chosen. Monthly cancellable. */
+  /** Care variants — oferty v1 (Oferta C). Grow = most chosen. Monthly cancellable. */
   careVariants: [
     {
-      name: 'CARE',
+      name: 'Keep',
       price: `${formatEuro(PRICING_NUMBERS.care)}/mo`,
       mostChosen: false,
       features: ['Monitoring & health checks', 'Fixes <48h business days', 'Monthly report (hours · €)'],
     },
     {
-      name: 'GROW',
+      name: 'Grow',
       price: `${formatEuro(PRICING_NUMBERS.grow)}/mo`,
       mostChosen: true,
-      features: ['Everything in CARE', '1 improvement per month', 'Priority response', 'Quarterly strategy review'],
+      features: ['Everything in Keep', '1 improvement per month', 'Priority response', 'Quarterly strategy review'],
     },
     {
-      name: 'AUTONOMY',
+      name: 'Unlock',
       price: `${formatEuro(PRICING_NUMBERS.autonomy)}/mo`,
       mostChosen: false,
-      features: ['Everything in GROW', 'Agent-researched upgrade proposals (you approve)'],
+      features: ['Everything in Grow', 'Agent-researched upgrade proposals (you approve)'],
     },
   ],
   paymentTerms:
@@ -292,7 +292,7 @@ export const PRICING_SECTION = {
 
 export const CTAS = {
   bookAutomationMap: 'Book a scan',
-  seeSystems: 'See the systems',
+  seeSystems: 'Explore the systems',
   seeResults: 'See the proof',
 } as const;
 

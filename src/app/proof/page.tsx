@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants';
-import { hoursCounter, hoursValueEuro } from '@/content/hours-counter';
+import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
 import { REFERENCE_PROGRAM } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
@@ -22,7 +22,8 @@ export default function ProofPage() {
         {hoursCounter.hoursConfirmed} hours · €{hoursValueEuro}
       </p>
       <p className="mt-4 max-w-2xl text-[var(--qf-text-dim)]">
-        Not a missing widget — an honest start. Methodology is public.{' '}
+        Counting starts at zero by design — the first verified client case opens the
+        count. Methodology is public.{' '}
         <Link href={ROUTES.proofMethodology} className="text-[var(--qf-accent)]">
           How we measure
         </Link>
@@ -49,6 +50,9 @@ export default function ProofPage() {
           {REFERENCE_PROGRAM.heading}
         </h2>
         <p className="mt-4 max-w-2xl text-[var(--qf-text-dim)]">{REFERENCE_PROGRAM.lead}</p>
+        <p className="mt-4 font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
+          {referenceSpotsOpen} of {referenceProgram.spotsTotal} spots open
+        </p>
         <p className="mt-6 mb-3 font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
           In exchange, you agree to
         </p>

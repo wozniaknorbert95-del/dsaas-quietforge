@@ -33,7 +33,7 @@ Scoped build / no-build recommendation
 | Cold | “Is this for my problem?” | Show pains and outcomes in plain language |
 | Interested | “Is it real?” | Show live systems, screenshots, case studies |
 | Cautious | “Is this safe?” | Show HITL, AVG, EU, no lock-in, logs |
-| Price-aware | “Can I afford the first step?” | Show €290 Map and build ranges clearly |
+| Price-aware | “Can I afford the first step?” | Show €690 Scan and build ranges clearly |
 | Ready | “What happens after I click?” | Paid booking flow with no ambiguity |
 
 ---
@@ -46,7 +46,7 @@ Each viewport section gets **one primary** action.
 |---|---|---|---|
 | L1 — Explore | Low commitment | See live systems · View results · Explore architecture | `/results/`, `/results/owner-ecosystem/` |
 | L2 — Demo | See it work | Try the wizard · Watch walkthrough | external wizard / video / proof asset |
-| L3 — Commit | Start qualification | Book Automation Map · Pay €290 and pick a slot | `/book-discovery/` |
+| L3 — Commit | Start qualification | Book Automation Scan · Pay €690 and pick a slot | `/book-a-scan/` |
 | Support | Ask before committing | Ask on WhatsApp | WhatsApp deep link |
 
 **Forbidden:** two filled buttons in one viewport section.
@@ -95,9 +95,9 @@ This is the highest-priority conversion surface.
 ### Professional target flow
 
 ```text
-1. User understands €290 value
+1. User understands €690 value
 2. User sees what is included
-3. User pays €290
+3. User pays €690
 4. User picks a slot
 5. User completes intake
 6. Confirmation email explains next steps
@@ -111,8 +111,8 @@ If the page says “Pay & pick a slot”, the UI must actually support payment a
 
 Use this fallback language instead:
 
-- Page title: `Request your Automation Map slot — €290, credited`
-- Primary CTA: `Request a paid Map slot`
+- Page title: `Request your Automation Scan slot — €690, credited`
+- Primary CTA: `Request a paid Scan slot`
 - Form submit: `Request my Automation Map slot`
 - Microcopy: `If the fit is right, I’ll send a payment link and available times within 24 hours.`
 
@@ -133,7 +133,7 @@ Do **not** use `Send enquiry` as the main submit label on the paid Map page.
 
 - Automation Map sample download
 - 3 bullets: what user receives
-- Credit line: `The €290 fee is credited toward your first build.`
+- Credit line: `The €690 fee is credited toward your first build.`
 - No-pressure line: `If there is nothing worth automating, you keep the Map and stop there.`
 
 ---
@@ -215,7 +215,7 @@ All labels must be plain language. Technical names are secondary.
 
 | Offer | Public price |
 |---|---:|
-| Automation Map | €290 credited |
+| Automation Map | €690 credited |
 | Inbox Killer | €1,200–€4,800 |
 | Web Upgrade | €1,800–€5,500 |
 | Sales Funnel / Wizard Cash Engine | €2,400–€6,500 |
@@ -253,20 +253,51 @@ Every broken flow must have one obvious next step.
 
 ## 10. Measurement
 
-Track these events:
+### 10.1 Events (GA4 — Consent Mode v2)
+
+Analytics load `denied` by default; only `analytics_storage` becomes `granted` after explicit consent. All events below fire through `trackEvent` (`src/lib/analytics.ts`) → `gaEvent` (`src/lib/gtag.ts`).
 
 | Event | Trigger |
 |---|---|
 | `cta_book_map_click` | Any Book Automation Map click |
 | `cta_whatsapp_click` | WhatsApp click |
-| `sample_map_download` | Automation Map sample |
+| `payment_link_click` | WhatsApp **payment** fast-path click (`WHATSAPP.bookMapUrl`, UTM-tagged) — manual-payment funnel step |
+| `sample_scan_download` | Automation Map sample PDF download (replaces `sample_map_download`) |
+| `sample_map_download` | Legacy alias — keep firing until GA4 data is clean |
 | `wizard_demo_click` | External wizard click |
 | `case_study_open` | Results card click |
 | `pricing_view` | Pricing section/page view |
+| `pricing_variant_click` | Build/Care variant CTA click (`value` = Core/Scale/Command · Keep/Grow/Unlock) |
+| `reference_program_click` | Reference-spot CTA click |
+| `system_page_view` | System detail page view (`slug` param) |
 | `book_discovery_view` | Book Discovery page view |
-| `book_payment_start` | Payment step begins |
-| `book_payment_complete` | Payment completed |
-| `intake_submit` | Intake completed |
+| `book_payment_start` | Payment step begins (manual log; automatic when Mollie lands) |
+| `book_payment_complete` | Payment completed (manual log; automatic when Mollie lands) |
+| `intake_submit` | Intake form completed |
+| `form_error` | Form failed validation/server (`reason` param: consent_missing / send_failed / network_error) |
+
+### 10.2 Funnel
+
+```text
+visit → system_page_view → pricing_view → book_discovery_view
+      → intake_submit | payment_link_click
+      → book_payment_start → book_payment_complete
+      → scan_delivered → build_signed
+```
+
+### 10.3 Looker Studio dashboard (weekly)
+
+Seven cards, source = GA4 property (Consent Mode v2):
+
+1. **Leads per week** — `intake_submit` + `payment_link_click`, split by source/medium.
+2. **Funnel conversion** — view → `book_discovery_view` → `intake_submit`/`payment_link_click`.
+3. **Sources/medium** — sessions vs leads by source.
+4. **Top systems & intents** — `system_page_view` by slug; intent chips (via `?intent=` on home).
+5. **CTA CTR** — hero, sticky, final, header (`cta_book_map_click` by location).
+6. **Engagement** — bounce, engagement time, scroll depth by page.
+7. **Consent rate** — sessions with `analytics_storage=granted` share (GA4 consent report).
+
+Build steps: GA4 property → export to Looker Studio (native connector) → one page, 7 scorecards/charts, weekly email schedule to `quietforge@flexgrafik.nl`.
 
 ---
 

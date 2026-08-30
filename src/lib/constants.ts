@@ -19,17 +19,35 @@ export const EMAIL = 'quietforge@flexgrafik.nl';
 export const CREATOR = 'Norbert Wozniak';
 
 /** WhatsApp discovery — override via NEXT_PUBLIC_WHATSAPP_URL in Vercel if needed */
+const WHATSAPP_PHONE = '31687286151';
+const WHATSAPP_UTM = 'utm_source=quietforge&utm_medium=website&utm_campaign=automation-scan';
+
+function waLink(text: string, content: string): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}&${WHATSAPP_UTM}&utm_content=${content}`;
+}
+
 export const WHATSAPP = {
   url:
     process.env.NEXT_PUBLIC_WHATSAPP_URL ??
-    'https://wa.me/31687286151?text=Hi%20Norbert%2C%20I%27d%20like%20to%20book%20an%20Automation%20Scan%20for%20my%20business.',
+    waLink('Hi Norbert, I\'d like to book an Automation Scan for my business.', 'ask'),
   bookMapUrl:
     process.env.NEXT_PUBLIC_WHATSAPP_BOOK_MAP_URL ??
-    'https://wa.me/31687286151?text=Hi%20Norbert%2C%20I%20want%20to%20book%20the%20Automation%20Scan%20(%E2%82%AC690)%20%E2%80%94%20please%20send%20the%20payment%20link%20and%20available%20slots.',
+    waLink(
+      'Hi Norbert, I want to book the Automation Scan (€690) — please send the payment link and available slots.',
+      'payment-link'
+    ),
   label: 'Ask on WhatsApp',
   bookMapLabel: 'WhatsApp — send me the €690 link',
   offlineFallback: `mailto:${EMAIL}?subject=WhatsApp%20unavailable`,
 } as const;
+
+/** A/B prefill variant — personalized message with the visitor's biggest leak (media plan P1-5). */
+export function whatsappBookUrlWithLeak(leak: string): string {
+  return waLink(
+    `Hi Norbert — I'd like to book the €690 Automation Scan. My biggest time leak is ${leak}.`,
+    'payment-link'
+  );
+}
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/flexgrafik-quietforge';
 export const GITHUB_URL = 'https://github.com/wozniaknorbert95-del';

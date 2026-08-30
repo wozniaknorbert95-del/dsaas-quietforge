@@ -19,6 +19,45 @@ const nextConfig: NextConfig = {
   },
   trailingSlash: true,
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "base-uri 'self'",
+              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob: https://www.google-analytics.com",
+              "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+              "form-action 'self' mailto:",
+              "frame-ancestors 'self'",
+            ].join('; '),
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       ...pair('/digital-modernization', '/systems/'),

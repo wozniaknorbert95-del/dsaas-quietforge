@@ -8,6 +8,12 @@ import { CTAS } from '@/content/conversion-copy';
 
 /* ── post registry ── */
 const POST_META: Record<string, { title: string; date: string; category: string; excerpt: string }> = {
+  'quote-to-order-automation': {
+    title: 'Quote-to-order automation: stop losing money in email ping-pong',
+    date: '2026-08-30',
+    category: 'Automation',
+    excerpt: 'Every quote sent by email costs the same hours: re-reading threads, chasing details, pricing by hand. A quote-to-order engine turns that into one flow — configure, see the price, pay.',
+  },
   'automation-for-small-business': {
     title: 'Automation for small business — where to start',
     date: '2026-05-28',
@@ -47,6 +53,7 @@ const POST_META: Record<string, { title: string; date: string; category: string;
 };
 
 const POST_COMPONENTS: Record<string, () => Promise<{ default: React.ComponentType }>> = {
+  'quote-to-order-automation': () => import('../posts/quote-to-order-automation.mdx'),
   'automation-for-small-business': () => import('../posts/automation-for-small-business.mdx'),
   'digital-transformation-without-the-jargon': () => import('../posts/digital-transformation-without-the-jargon.mdx'),
   'under-the-hood-how-inbox-killer-works': () => import('../posts/under-the-hood-how-inbox-killer-works.mdx'),

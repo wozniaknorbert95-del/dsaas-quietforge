@@ -20,7 +20,12 @@ export type AnalyticsEvent =
   | 'book_discovery_view'
   | 'book_payment_start'
   | 'book_payment_complete'
-  | 'intake_submit';
+  | 'payment_link_click'
+  | 'system_page_view'
+  | 'whatsapp_prefill_selected'
+  | 'intake_submit'
+  | 'form_error'
+  | 'sample_scan_download';
 
 export function trackEvent(event: AnalyticsEvent, detail?: Record<string, string>): void {
   if (typeof window === 'undefined') {

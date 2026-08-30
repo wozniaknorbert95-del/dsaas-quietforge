@@ -1,6 +1,6 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-30 · **Status:** DEPLOYED ✅ (Vercel prod, dpl_9fQf6988xuANHRLREMpCThpEenua) · 56 pages, sitemap 27 routes
+**Updated:** 2026-08-30 · **Status:** DEPLOYED ✅ (Vercel prod, dpl_DfpDn9Ge2crCYEgrGH7d9fvmfNYY) · 56 pages, sitemap 27 routes
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 

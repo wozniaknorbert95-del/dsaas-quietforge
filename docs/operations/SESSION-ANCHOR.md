@@ -1,6 +1,6 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-30 · **Status:** Etap 4 LIVE na produkcji (vercel --prod, projekt flexgrafik-services); smoke 12 URL ✓; home hero PAS added; ship to main
+**Updated:** 2026-08-30 · **Status:** Deployed ✅ · Etap 4 + PAS hero LIVE na `quietforge.flexgrafik.nl` (projekt Vercel `flexgrafik-services`); smoke ✅
 
 **Canon:** `docs/canon/identity.md` LOCKED · `docs/canon/site-map.md` v2 (updated 24.08)
 
@@ -25,14 +25,13 @@ Public offer: Scan €690 · ESSENTIAL €2,500 / SYSTEM €4,500* / AUTONOMOUS 
 D1 eyebrow hero = lock („System builder…”); D2 slots+#reference współistnieją; D3 Blog w footerze; D4 bez portretu; D5 KVK 89057554; OG ośmiornica = decyzja otwarta.
 
 ## NASTĘPNY KROK
-1. Optymalizacja sekcji IntentSystems (redukcja liczby odznak na kartach).
-2. Poprawa a11y FAQ (aria-controls, hidden, fokus).
-3. Refaktoryzacja sekcji Approach i Compare w stylu PAS.
-4. Przegl zmian z Dowódcą i zgoda na dalsze optymalizacje.
-5. Dowódca: review diff → commit/push/deploy (ręczny, Zasada 11).
-6. Smoke po deployu: / · /about · /pricing · /proof#reference · /systems + 3 spokes · /blog.
-7. LinkedIn dopiero po akceptacji strony vs `kim jestem`.
-8. Nie publikować PNG z `proof.ts`, których nie ma w `public/gratka/`.
+1. Dowódca: decyzja o usunięciu artefaktu projektu `dsaas-quietforge` na Vercel (błędnie utworzony przy pierwszym deployu; domena wskazuje `flexgrafik-services`).
+2. Optymalizacja sekcji IntentSystems (redukcja liczby odznak na kartach).
+3. Poprawa a11y FAQ (aria-controls, hidden, fokus).
+4. Refaktoryzacja sekcji Approach i Compare w stylu PAS.
+5. Przegl zmian z Dowódcą i zgoda na dalsze optymalizacje.
+6. LinkedIn dopiero po akceptacji strony vs `kim jestem`.
+7. Nie publikować PNG z `proof.ts`, których nie ma w `public/gratka/`.
 
 ---
 

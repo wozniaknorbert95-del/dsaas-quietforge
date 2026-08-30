@@ -1,9 +1,9 @@
-# Handoff — Home hero PAS added (2026-08-30)
+# Handoff — Home hero PAS added + Etap4 deploy (2026-08-30)
 
-**Repo:** quietforge.flexgrafik.nl · **Build:** typecheck + build ✅ (49 routes)
+**Repo:** quietforge.flexgrafik.nl · **Build:** typecheck + build ✅ (55 routes) · **Deploy:** ✅ LIVE
 
 ## Cel / Goal
-Dodanie sekcji Problem → System → Effect (PAS) do hero na stronie głównej, zgodnie z kanony sprzedażowe i poprawa gęstości sekcji hero poprzez strukturalizację PAS.
+Dodanie sekcji Problem → System → Effect (PAS) do hero na stronie głównej, zgodnie z kanony sprzedażowe i poprawa gęstości sekcji hero poprzez strukturalizację PAS. Następnie pełny deploy produkcji z integracją pracy etap4 z remote.
 
 ## Co zrobiono
 - Zmodyfikowano `src/app/page.tsx`: wstawiono div `.qf-hero-pas` z trzema elementami (Problem, System, Effect) wykorzystującymi istniejące dane z `HERO.beats` w `conversion-copy.ts`.
@@ -19,16 +19,26 @@ npm run build       # pass (z ostrzeżeniami CSS, ale bez błędów)
 npm run lint        # pass (0 błędów, tylko ostrzeżenia)
 ```
 
+## Deploy (2026-08-30)
+- Integracja z remote: local main miał bazę `d8c8a5b` (19.08), remote doszedł do `6cf6e20` (etap4: company-brain, ai-security-audit, custom-ai-agent, pricing v2, blog Five Pillars). Wykonano `git rebase origin/main` + rozwiązano konflikty (sitemap, SESSION-ANCHOR).
+- Commit `da36bc1` na origin/main, sitemap 26 routes.
+- **Uwaga krytyczna:** pierwszy `npx vercel --prod` utworzył NOWY projekt `dsaas-quietforge` (repo nie miało linku `.vercel`), podczas gdy domena `quietforge.flexgrafik.nl` wskazuje na projekt **`flexgrafik-services`**. Deploy powtórzono poprawnie:
+  ```
+  npx vercel --prod --project flexgrafik-services --yes
+  ```
+- Deployment READY: `flexgrafik-services-bxikp9od8-wozniaknorbert95-dels-projects.vercel.app` · alias `services.flexgrafik.nl` + `quietforge.flexgrafik.nl`.
+- Smoke ✅: `/` (PAS + hero chip), `/systems/company-brain/` (200, h1 OK), sitemap 26 wpisów, wszystkie kluczowe routes 200.
+
 ## Post-deploy smoke (manual)
 1. `/` — eyebrow System builder · EU, anti-position, nowa sekcja PAS pod subline, paski CTA i proof strip poniżej.
 2. Sprawdzenie responsywności: na szerokości ekranu 375px (mobile) pas CTA jest nadal widoczny bez przewijania? (Wymaga ręcznej weryfikacji, ale brak czasu na pełną automatyzację.)
 3. Kolory i czcionki PAS zgodne z zmiennymi design systemu.
 
 ## Następny krok
-1. Przejść do optymalizacji innych sekcji strony głównej zgodnie z planem: IntentSystems (redukcja liczby odznak), FAQ (poprawa a11y), Approach (refaktoryzacja PAS), Compare (dodanie opisów PAS), Discipline (przepisanie kafelków w stylu PAS).
-2. Umówić się z Dowódcą na przegląd zmian i zgodę na dalsze optymalizacje.
-3. Aktualizacja `docs/canon/site-map.md` §3, jeśli zmieniono kolejność sekcji na stronie głównej (nie zmieniono w tej sesji).
-4. Na końcu każdej sesji: utworzenie handoff, aktualizacja SESSION-ANCHOR, oraz bramka budowy (typecheck + build) między sesjami.
+1. **Dowódca:** ewentualne usunięcie artefaktu projektu `dsaas-quietforge` na Vercel (utworzony błędnie przy pierwszym deployu; domena nie wskazuje na niego) — decyzja Dowódcy.
+2. Przejść do optymalizacji innych sekcji strony głównej zgodnie z planem: IntentSystems (redukcja liczby odznak), FAQ (poprawa a11y), Approach (refaktoryzacja PAS), Compare (dodanie opisów PAS), Discipline (przepisanie kafelków w stylu PAS).
+3. Umówić się z Dowódcą na przegląd zmian i zgodę na dalsze optymalizacje.
+4. Aktualizacja `docs/canon/site-map.md` §3, jeśli zmieniono kolejność sekcji na stronie głównej (nie zmieniono w tej sesji).
 
 ## Decyzje (D1)
 D1: Decyzja o wstawieniu sekcji PAS w hero ponad anti-position i poniżej subline, wykorzystując istniejące dane z conversion-copy.ts. Decyzja podjęta w celu zwiększenia jasności przekazu sprzedażowego i zgodności z ramką Problem → System → Effect. Nie narusza wyraźnie żadnej zasady kanonu (nie zmieniło kolejności sekcji home określonych w site-map.md §3, które są: Hero, Pain router, Intent router, Live proof — Jadzia, Why / How it works, Pricing, Final CTA, FAQ, About, itd.). Sekcja PAS jest wewnątrz sekcji Hero, więc nie narusza zasady antychaos dotyczącej zmiany page.tsx bez aktualizacji site-map.md.

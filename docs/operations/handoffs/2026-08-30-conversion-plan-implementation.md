@@ -82,18 +82,25 @@ npm run build       # pass (55 pages, 27 sitemap routes)
 #   book-a-scan: sample link + consent checkbox + pain picker ✓
 ```
 
-## Post-deploy smoke (Dowódca)
+## Diagram audit (dodane po planie)
 
-1. `npm run build` → `npx vercel --prod --project flexgrafik-services --yes` (właściwy projekt! nie twórz nowego).
-2. Sprawdź nagłówki: `curl -I https://quietforge.flexgrafik.nl/` → X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, Content-Security-Policy.
-3. Mobile 375px: CTA "Book a scan" widoczny w 1. viewporcie; PAS poniżej.
-4. `/book-a-scan/` → cookie banner, checkbox zgody (bez zgody submit blokowany), sample PDF, pain picker.
-5. `/blog/quote-to-order-automation/` → 200 + Article schema.
-6. Google Search Console: Rich Results Test dla `/` (FAQPage) i `/systems/quote-order-engine/` (Service/Offer).
+- **Problem:** 6 z 9 diagramów (`public/systems/*.svg`) zawierało znak kontrolny U+0014 zamiast em-dasha (`—`) → renderowało się jako tofu w przeglądarce. Dodatkowo `owner-cockpit` miał `’` zamiast `→` („Propose → you click"), a `publishing-gate` backticki zamiast `·` („price · site · PDF").
+- **Naprawa:** wszystkie 6 plików przepisane z poprawnym UTF-8; skrypt naprawczy `scripts/fix-flow-svgs.cjs` (idempotentny, do ponownego użycia).
+- **Weryfikacja:** 9/9 SVG — 200 na produkcji, zero znaków kontrolnych/U+FFFD, em-dash obecny; wizualnie potwierdzone w przeglądarce (naturalWidth 1200).
+
+## Post-deploy smoke (wykonany 2026-08-30 ✅)
+
+Deploy: `npx vercel --prod --project flexgrafik-services --yes` → `dpl_Hi6FJHDuhNBcJyCB1LRwL9CzZf26`, **READY**, alias `services.flexgrafik.nl` (live `quietforge.flexgrafik.nl`).
+
+1. ✅ `npm run build` pass (56 pages, 27 sitemap routes).
+2. ✅ Nagłówki: CSP, XCTO, XFO, Referrer-Policy, Permissions-Policy, HSTS — wszystkie obecne.
+3. ✅ Diagramy systemów: 9/9 SVG 200, czyste, poprawnie renderowane.
+4. ✅ `/book-a-scan/`, `/pricing/`, `/blog/quote-to-order-automation/`, `/sitemap.xml` → 200.
+5. ⏳ Dowódca: Rich Results Test (FAQPage + Service/Offer) + smoke na telefonie (mobile fold, cookie banner).
 
 ## Następny krok / Next steps
 
 - **Looker Studio dashboard** — build per `conversion-pipeline.md` §10.3 (7 kart), GA4 connector, weekly email.
-- **Deploy** manualny przez Dowódcę (Zasada 11 — agent nie deployuje).
+- Deploy wykonany 2026-08-30 (zgoda Dowódcy). Kolejne buildy: `npx vercel --prod --project flexgrafik-services --yes`.
 - Zbudować dashboard, mierzyć baseline konwersji skanu; po baseline → testy P3 (ceny, B-8 sticky timing).
 - Ewentualne A/B: rozszerzyć pain-picker o `reporting`/`other` po pierwszych danych.

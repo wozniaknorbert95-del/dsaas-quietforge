@@ -1,6 +1,6 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-30 · **Status:** Implementation complete, NOT deployed (manual Vercel step by Dowódca) · Plan conversion audit zaimplementowany end-to-end; build ✅ 55 pages
+**Updated:** 2026-08-30 · **Status:** DEPLOYED ✅ (Vercel prod, dpl_Hi6FJHDuhNBcJyCB1LRwL9CzZf26) · 56 pages, sitemap 27 routes
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
@@ -17,6 +17,12 @@ Zaimplementowano plan optymalizacji konwersji (audyt 2026-08-30) — wszystkie 7
 - **P1 Tech:** security headers (CSP/XCTO/XFO/Referrer/Permissions) + JSON-LD (FAQPage home, Service/Offer systemy).
 - **P2:** A/B WhatsApp pain-picker, start programu referencyjnego (5 spots tracker), wpis blogowy `quote-to-order-automation`.
 
+**Audyt diagramów + deploy (ostatnia sesja):**
+- **Wykryto:** 6 z 9 diagramów systemów miało uszkodzony em-dash (U+0014 zamiast `—` → tofu w przeglądarce); `owner-cockpit` miał `’` zamiast `→`, `publishing-gate` backticks zamiast `·`.
+- **Naprawa:** wszystkie 9 SVG czyste (em-dash `—`, brak znaków kontrolnych); skrypt naprawczy `scripts/fix-flow-svgs.cjs`.
+- **Weryfikacja:** build ✅ (56 stron), 9/9 SVG 200 na produkcji bez znaków kontrolnych, nagłówki security aktywne.
+- **Deploy:** `npx vercel --prod --project flexgrafik-services` → **READY**, alias `https://services.flexgrafik.nl` (live: `quietforge.flexgrafik.nl`).
+
 Public offer: Scan €690 credited · Core €2,500 / Scale €4,500* / Command €7,900 · Keep €300 / Grow €600* / Unlock €1,000/mo.
 
 ## DECYZJE (veta Dowódcy)
@@ -25,11 +31,10 @@ D1 eyebrow hero = lock („Conversion systems architect…”); D2 slots+#refere
 
 ## NASTĘPNY KROK
 
-1. **Dowódca: deploy** — `npx vercel --prod --project flexgrafik-services --yes` (uważać: nie tworzyć nowego projektu; domena = `flexgrafik-services`).
-2. Post-deploy smoke wg handoff (nagłówki, mobile fold, banner cookie, /blog/quote-to-order-automation/).
-3. **Looker Studio dashboard** — zbudować wg `conversion-pipeline.md` §10.3 (7 kart, GA4 connector).
-4. Po baseline: testy P3 (A/B cen, B-8 sticky timing, B-1 /pl/ decyzja strategiczna).
-5. Decyzja o usunięciu artefaktu projektu Vercel `dsaas-quietforge` (błędny projekt z pierwszego deployu).
+1. **Dowódca: post-deploy smoke** — banner cookie + mobile fold na telefonie; diagramy systemów (9/9) wizualnie.
+2. **Looker Studio dashboard** — zbudować wg `conversion-pipeline.md` §10.3 (7 kart, GA4 connector).
+3. Po baseline: testy P3 (A/B cen, B-8 sticky timing, B-1 /pl/ decyzja strategiczna).
+4. Decyzja o usunięciu artefaktu projektu Vercel `dsaas-quietforge` (błędny projekt z pierwszego deployu).
 
 ---
 

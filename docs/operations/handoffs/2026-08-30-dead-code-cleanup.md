@@ -41,8 +41,25 @@ Dowódca dał zgodę na kompleksowe dokończenie czyszczenia martwego kodu (rozp
 - `sitemap.xml` — 200, 27 routes, `/approach` obecne. `robots.txt` — 200.
 - `/results/owner-ecosystem` → 308 redirect do `/about/` (zamierzone, zdefiniowane w `next.config.ts` redirects).
 
+## Decyzje / Decisions
+
+| Decyzja | Uzasadnienie |
+| --- | --- |
+| Usunięto `getHomeRepos` + `homeVisible` zostaje jako pole danych manifestu | `homeVisible` to dane (nie kod) — bezpieczne do użycia w przyszłości |
+| Zachowano `useHomeIntent` z fallbackiem (bez Providera) | `SystemMetrics` na /results/ używa go; fallback `defaultIntentValue` wystarcza |
+| Zachowano `qf-book-hero-cta` / `qf-book-fast-path` / `qf-final-cta*` | Używane przez aktywne strony (/book-a-scan/, WhatsAppPainPicker, wszystkie final CTAs) |
+| `quietforge.css` (root) NIE usunięty | Legacy, nieimportowany nigdzie — decyzja Dowódcy otwarta |
+
+## Blokery / Blockers
+
+| Bloker | Wpływ |
+| --- | --- |
+| 3 pre-existing lint errors (`CookieConsent.tsx` react-hooks/set-state-in-effect; `fix-flow-svgs.cjs` 2× no-require-imports) | `npm run lint` exit 1 — nie dotyka zmian tej sesji; naprawa w osobnej sesji |
+| 2 warningi CSS build (`--qf-fs-*` arbitrary value w Tailwind) | `--qf-fs-*` nie istnieje jako token — pewnie literówka w starym kodzie; do przeglądu |
+
 ## Następny krok
 
 1. **Dowódca: post-deploy smoke** (powyżej).
 2. Decyzja: `quietforge.css` (root, legacy, nieimportowany nigdzie) — usunąć czy zostawić jako archiwum.
 3. Decyzja: 3 pre-existing lint errors — naprawić w osobnej sesji (CookieConsent useEffect, fix-flow-svgs require).
+4. Decyzja: sample report (fikcyjna firma, Illustration) — publiczny czy PDF tylko na żądanie (z SESSION-ANCHOR).

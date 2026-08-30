@@ -1,32 +1,32 @@
 ---
 description: Session anchor + /handoff workflow — services.flexgrafik.nl
-updated: 2026-06-24
+updated: 2026-08-30
 ---
 
-# SESSION ANCHOR — 2026-06-24
+# SESSION ANCHOR — 2026-08-30
 
 > **Live:** https://quietforge.flexgrafik.nl/  
-> **Branch:** `master` @ `9c5f9f3`  
-> **Następna sesja:** Lead Magnet video (CapCut beat 03) / Inbox Killer wieczorna sesja
+> **Branch:** `main` @ `c1d1c1a`  
+> **Deploy:** Vercel prod `dpl_9fQf6988xuANHRLREMpCThpEenua` · 56 routes · sitemap 27  
+> **Następna sesja:** decyzje Dowódcy — smoke ✓ · quietforge.css legacy · lint pre-existing · sample report publiczny
 
 ---
 
-## Co dziś domknięte (Lead Magnet reward ladder)
+## Co domknięte w bieżącej sesji (dead-code cleanup + deploy)
 
 | Commit | Co |
 |--------|-----|
-| `9c5f9f3` | Four-tier reward ladder sync — SVG v2, Reward ladder section, gallery captions |
-| `340fa4a` | Rebuild case study layout, SSoT, 7-screen gallery, GA4 outcome |
-| `857c834` | SVG UTF-8 prolog and ASCII-safe text |
+| `f8ac6c2` | Kompleksowe czyszczenie martwego kodu + home sync — 18 martwych komponentów usuniętych łącznie, martwe exporty content (ecosystem/readiness/home-intent), ~13,7 kB martwego CSS, home STEPS/footer/OG/docs sync |
+| `c1d1c1a` | Docs: rekord deployu + handoff |
 
-**Build:** `npm run build` + `typecheck` PASS · 33 routes · HTTPS quietforge 200 ✅
+**Build:** `npm run build` + `typecheck` PASS · 56 routes · HTTPS quietforge 200 ✅ · smoke wszystkich kluczowych route'ów ✅
 
----
-
-## Werdykt eksperta (Lead Magnet PRO)
-Reward ladder L2–L5 live on portfolio. Season prize + purchase-bonus disclaimer shipped. Video czeka na CapCut export.
+Handoffs tej sesji: `docs/operations/handoffs/2026-08-30-approach-scan-690.md` · `2026-08-30-home-stale-data-sync.md` · `2026-08-30-dead-code-cleanup.md` · runbook `scan-delivery-runbook.md`
 
 ---
+
+## Werdykt eksperta (dead-code cleanup)
+Home i money-pages renderują się kompletnie po wycięciu martwych komponentów/CSS. Canon §Home zweryfikowany 1:1 z live. Lint: 3 błędy pre-existing (poza sesją). Decyzje otwarte: quietforge.css (legacy), sample report publiczny, lint fix.
 
 ---
 

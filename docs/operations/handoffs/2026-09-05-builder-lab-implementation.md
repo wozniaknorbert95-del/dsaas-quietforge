@@ -2,6 +2,8 @@
 
 **Repo:** dsaas-quietforge · **Build:** `npm run build` passed (57 pages)
 
+**Release commit:** `b9a2561 feat: add Builder's Lab reference proof` · **Push/deploy:** not executed; Commander-controlled
+
 ## Cel / Goal
 
 Implement the approved Builder's Lab plan for `quietforge.flexgrafik.nl`: show the build path from FlexGrafik public surfaces to the QuietForge tenant and dSaaS platform without presenting FlexGrafik as an external client case.
@@ -20,6 +22,7 @@ Implement the approved Builder's Lab plan for `quietforge.flexgrafik.nl`: show t
 - Removed Mission Control/API health links from legacy public proof surfaces and changed the public platform wording to `Tenant Platform Core`.
 - Synchronized active CTA rules and `strategy-check` with `/book-a-scan/` and the current site map.
 - GitHub profile and repository changes remain deferred until the website passes post-deploy verification.
+- The release was committed as one clean changeset after staged diff review; no push was performed.
 
 ## Pliki / Files
 
@@ -91,3 +94,25 @@ Known baseline limitations:
 2. Run the evidence registry review for Jadzia, Mission Control and dSaaS platform status.
 3. Repair or replace stale navigation/menu-footer audits in a separate maintenance task.
 4. Only after the website passes post-deploy verification, prepare the separate GitHub profile and repository plan.
+
+## Manual release command (Commander only)
+
+After reviewing `git show --stat b9a2561`:
+
+```powershell
+git push origin main
+npx vercel dist --prod --yes
+```
+
+If the configured Vercel project expects a different build output, use the existing project target and do not create a new project. The agent did not run the deploy command.
+
+## Post-deploy command smoke
+
+```powershell
+curl.exe -sI https://quietforge.flexgrafik.nl/lab/
+curl.exe -sI https://quietforge.flexgrafik.nl/og/lab.svg
+curl.exe -sI https://quietforge.flexgrafik.nl/sitemap.xml
+curl.exe -sI https://quietforge.flexgrafik.nl/results/owner-ecosystem/
+```
+
+Expected: `/lab/`, OG and sitemap return 200; the legacy owner-ecosystem route redirects to `/lab/`; no public request targets Mission Control or its health endpoint.

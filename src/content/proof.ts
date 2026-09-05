@@ -147,11 +147,6 @@ export const agentOsNarrative = {
     'Three named modules — Agent OS (execute), jadzia-core (operate), Flex-VCMS (govern). Not one prompt; fixed roles with a human at the gate.',
 } as const;
 
-export const agentOsPublicUrls = {
-  missionControl: 'https://os.flexgrafik.nl',
-  apiHealth: 'https://os-api.flexgrafik.nl/api/v1/health',
-} as const;
-
 /** Honest VCMS feature labels for portfolio — sync with flex-vcms/docs/VCMS_SALES_REPORT.md */
 export const vcmsFeatureStatus: Record<string, { label: string; status: FeatureClaimStatus }> = {
   scan:           { label: 'Repo & content scan', status: 'PROVEN' },
@@ -202,19 +197,19 @@ export const screens: Record<ScreenKey, ScreenShot> = {
   inspireIntake:   { src: "/gratka/inspire/intake.png", alt: "Design Intake — vehicle branding request form", caption: "Complex Quote & Design Intake — live supervised path (PARTIAL).", ready: true },
   inspireMockups:  { src: "/gratka/inspire/mockups.png", alt: "Standard and Premium inspiration mockups", caption: "Visual direction before price — mockups are not print-ready finals.", ready: true },
   inspireHandoff:  { src: "/gratka/inspire/offerte-success.png", alt: "Offerte request confirmed — 48-hour studio quote", caption: "Customer path ends in offerte concierge — no Wizard checkout.", ready: true },
-  adminDashboard:  { src: "/gratka/agent-os-mission-control.png", alt: "Mission Control dashboard — tasks, queue, history and cost tabs", caption: "Mission Control — tasks, queue, history and cost tabs. LIVE on os.flexgrafik.nl.", ready: true },
+  adminDashboard:  { src: "/gratka/agent-cards.svg", alt: "Agent OS fixed roles and human review gate", caption: "Fixed agent roles and a human review gate — sanitized reference evidence.", ready: true },
   jadziaCommander: {
-    src: '/gratka/jadzia-commander-home.png',
-    alt: 'COI Commander Start — queue actions and system map',
+    src: '/gratka/private-reference.svg',
+    alt: 'Private Jadzia operational reference — sanitized walkthrough available on request',
     caption:
-      'Live COI Commander Start on FlexGrafik — owner picks one queued action (e.g. CS follow-up); confirm before anything consequential. No client PII in this view.',
+      'Private operational reference. A sanitized walkthrough is available without exposing tenant data or credentials.',
     ready: true,
   },
   jadziaDataHealth: {
-    src: '/gratka/jadzia-commander-data-health.png',
-    alt: 'COI Commander Analityka — Data Health truth layer',
+    src: '/gratka/private-reference.svg',
+    alt: 'Private operational data reference — sanitized walkthrough available on request',
     caption:
-      'Data Health (DTL): freshness and margin facts the Marketing Brain reads — shadow propose only; Act blocked.',
+      'Private operational data reference. Tenant facts and internal system details are not public assets.',
     ready: true,
   },
 };

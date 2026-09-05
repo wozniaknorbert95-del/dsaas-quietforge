@@ -70,9 +70,9 @@ export default function ProofPage() {
       </div>
 
       <p className="mt-8 text-[var(--qf-text-dim)]">
-        The lab where this started:{' '}
-        <Link href={ROUTES.aboutLab} className="text-[var(--qf-accent)]">
-          FlexGrafik, paused
+        See the build laboratory:{' '}
+        <Link href={ROUTES.lab} className="text-[var(--qf-accent)]">
+          Builder&apos;s Lab
         </Link>
         .
       </p>

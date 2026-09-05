@@ -28,5 +28,5 @@
   </g>
   <rect x="120" y="280" width="720" height="48" rx="4" fill="#e8a33d" fill-opacity="0.1" stroke="#e8a33d" stroke-dasharray="6 4"/>
   <text x="480" y="310" class="a" text-anchor="middle" font-size="12">Human approval before ship - no auto-deploy</text>
-  <text x="480" y="380" class="s" text-anchor="middle">Mission Control: tasks · queue · history · costs - LIVE on os.flexgrafik.nl</text>
+  <text x="480" y="380" class="s" text-anchor="middle">Private operator view: tasks · queue · history · costs</text>
 </svg>

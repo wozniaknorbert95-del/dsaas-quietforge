@@ -25,7 +25,10 @@ export type AnalyticsEvent =
   | 'whatsapp_prefill_selected'
   | 'intake_submit'
   | 'form_error'
-  | 'sample_scan_download';
+  | 'sample_scan_download'
+  | 'lab_timeline_select'
+  | 'lab_external_demo_click'
+  | 'lab_evidence_open';
 
 export function trackEvent(event: AnalyticsEvent, detail?: Record<string, string>): void {
   if (typeof window === 'undefined') {

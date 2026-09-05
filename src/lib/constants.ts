@@ -51,7 +51,7 @@ export function whatsappBookUrlWithLeak(leak: string): string {
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/flexgrafik-quietforge';
 export const GITHUB_URL = 'https://github.com/wozniaknorbert95-del';
-/** Lab heritage only — never labelled live proof in public chrome. */
+/** Independent owner-operated reference business and build laboratory. */
 export const FLEXGRAFIK_URL = 'https://flexgrafik.nl';
 
 /** External social / connect links — footer, about, JSON-LD sameAs */
@@ -77,6 +77,7 @@ export const ROUTES = {
   security: '/security/',
   proof: '/proof/',
   proofMethodology: '/proof/methodology/',
+  lab: '/lab/',
   about: '/about/',
   aboutLab: '/about/#lab',
   pricing: '/pricing/',
@@ -96,9 +97,9 @@ export const ROUTES = {
   resultsAgentOrchestrator: '/systems/build-release-flow/',
   resultsSalesFunnel: '/systems/quote-order-engine/',
   resultsAdvisoryModernisation: '/proof/',
-  resultsOwnerEcosystem: '/about/#lab',
+  resultsOwnerEcosystem: '/lab/',
   resultsJadziaCoi: '/systems/owner-cockpit/',
-  resultsOwnerEcosystemWhyVcms: '/about/#lab',
+  resultsOwnerEcosystemWhyVcms: '/lab/#platform',
   resultsLeadMagnet: '/systems/lead-scout/',
   resultsWhatsappPilot: '/proof/',
   founder: '/about/',
@@ -110,6 +111,7 @@ export const ROUTES = {
 
 /** Owner ecosystem — external live demos (lab heritage, not public proof claims). */
 export const EXTERNAL = {
+  flexgrafikPortal: 'https://flexgrafik.nl/',
   zzpackageWizard: 'https://zzpackage.flexgrafik.nl/',
   zzpackageWizardPath: 'https://zzpackage.flexgrafik.nl/wizard/',
   inspireDesignAgent: 'https://zzpackage.flexgrafik.nl/voertuigreclame-ontwerp/',

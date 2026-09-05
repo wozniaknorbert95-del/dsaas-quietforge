@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
   <title id="title">Jadzia COI - Chief Operating Intelligence architecture</title>
-  <desc id="desc">Central jadzia.db hub with wizard orders, game leads, portal chat, WordPress SSH agent and Telegram HITL guard.</desc>
+  <desc id="desc">High-level Operations Command Layer with governed inputs, proposals and human approval.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6 Z" fill="#e8a33d"/>
@@ -19,18 +19,18 @@
 
   <rect class="bg" width="1200" height="900"/>
   <text x="600" y="40" class="text" text-anchor="middle" font-size="20">Jadzia COI  -  Chief Operating Intelligence</text>
-  <text x="600" y="66" class="sub" text-anchor="middle">FastAPI :8000 · jadzia.db · orders · leads · chat · WP SSH · HITL</text>
+  <text x="600" y="66" class="sub" text-anchor="middle">Operational inputs · proposals · guarded actions · human approval</text>
 
   <!-- Hub -->
   <rect x="420" y="320" width="360" height="120" rx="4" class="hub"/>
   <text x="600" y="358" class="accent" text-anchor="middle" font-size="16">JADZIA COI</text>
-  <text x="600" y="384" class="text" text-anchor="middle" font-size="13">jadzia.db · worker queue · strategist</text>
+  <text x="600" y="384" class="text" text-anchor="middle" font-size="13">Operational records · review queue · strategy</text>
   <text x="600" y="408" class="sub" text-anchor="middle">Sense to Think to Act to Guard</text>
 
   <!-- Inputs top -->
   <rect x="80" y="120" width="200" height="72" rx="4" class="box"/>
   <text x="180" y="152" class="text" text-anchor="middle" font-size="13">Wizard</text>
-  <text x="180" y="174" class="sub" text-anchor="middle">orders · widget chat</text>
+  <text x="180" y="174" class="sub" text-anchor="middle">business inputs · supervised chat</text>
 
   <rect x="320" y="120" width="200" height="72" rx="4" class="box"/>
   <text x="420" y="152" class="text" text-anchor="middle" font-size="13">Lead game</text>
@@ -59,7 +59,7 @@
   <text x="490" y="574" class="sub" text-anchor="middle">scored · attributed</text>
 
   <rect x="640" y="520" width="220" height="72" rx="4" class="box"/>
-  <text x="750" y="552" class="text" text-anchor="middle" font-size="13">WP SSH agent</text>
+  <text x="750" y="552" class="text" text-anchor="middle" font-size="13">External system adapter</text>
   <text x="750" y="574" class="sub" text-anchor="middle">diff · write · rollback</text>
 
   <rect x="900" y="520" width="200" height="72" rx="4" class="box"/>
@@ -74,7 +74,7 @@
   <!-- HITL gate -->
   <rect x="380" y="660" width="440" height="80" rx="4" class="gate"/>
   <text x="600" y="694" class="accent" text-anchor="middle" font-size="14">· HUMAN APPROVAL GATE</text>
-  <text x="600" y="718" class="sub" text-anchor="middle">Telegram approve · worker JWT · Kaizen guard · Zasada 11 manual deploy</text>
+  <text x="600" y="718" class="sub" text-anchor="middle">Approval channel · guarded actions · manual release</text>
 
   <line x1="600" y1="592" x2="600" y2="658" stroke="#e8a33d" stroke-width="2" marker-end="url(#arrow)"/>
 

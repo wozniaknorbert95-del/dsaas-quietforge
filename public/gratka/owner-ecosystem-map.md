@@ -35,7 +35,7 @@ Norbert runs a real multi-repo ecosystem before selling automation to clients. T
 |---|---|
 | **flexgrafik.nl** | Brand portal + chat assistant — routes visitors to wizard & game |
 | **app.flexgrafik.nl** | Lead magnet game — coupons & leads → wizard |
-| **jadzia-core** | AI backend · orders · ops · `jadzia.db` — modules improved via agent loop |
+| **jadzia-core** | Operations command layer · orders · proposals · human approval |
 
 ### AI execution
 | Module | Role |
@@ -54,7 +54,7 @@ Norbert runs a real multi-repo ecosystem before selling automation to clients. T
 ## Typical flow (simplified)
 
 ```
-Visitor → flexgrafik.nl (assistant) → wizard or game → order in jadzia.db
+Visitor → flexgrafik.nl (assistant) → wizard or game → governed operational handoff
        → Agent OS builds & tests changes → VCMS scan (conflicts: 0 target)
        → human approves deploy · Inbox Killer handles email ops in parallel
 

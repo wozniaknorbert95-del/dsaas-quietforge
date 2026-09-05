@@ -14,7 +14,7 @@ import { GRATKA } from '@/lib/gratka';
 export const metadata: Metadata = {
   title: 'How it works — three clear steps',
   description:
-    'A calm, transparent process: a paid Automation Map, a productized build with human approval gates, and optional monthly care. Typical scoped builds aim for weeks, not open-ended IT projects. Book an Automation Map.',
+    'A calm, transparent process: a paid Automation Scan, a productized build with human approval gates, and optional monthly care. Typical scoped builds aim for weeks, not open-ended IT projects. Book a scan.',
   openGraph: {
     title: 'How it works — three clear steps',
     description:

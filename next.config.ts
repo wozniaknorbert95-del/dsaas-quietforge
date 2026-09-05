@@ -66,7 +66,7 @@ const nextConfig: NextConfig = {
       ...pair('/results/lead-magnet', '/systems/lead-scout/'),
       ...pair('/results/jadzia-coi', '/systems/owner-cockpit/'),
       ...pair('/results/agent-orchestrator', '/systems/build-release-flow/'),
-      ...pair('/results/owner-ecosystem', '/about/'),
+      ...pair('/results/owner-ecosystem', '/lab/'),
       ...pair('/results/inbox-killer', '/systems/inbox-triage/'),
       ...pair('/results/advisory-modernisation', '/proof/'),
       ...pair('/results/whatsapp-discovery-pilot', '/proof/'),

@@ -54,7 +54,7 @@
 
   <rect x="40" y="460" width="1120" height="72" rx="2" class="memory"/>
   <text x="56" y="484" class="sub" font-size="11" fill="#6f8fae">MEMORY</text>
-  <text x="56" y="504" class="sub">jadzia.db, handoffs, SESSION-ANCHOR, meta docs core</text>
+  <text x="56" y="504" class="sub">operational records, handoffs, governance docs</text>
   <rect x="900" y="490" width="160" height="28" rx="2" class="repo"/><text x="980" y="508" class="sub" text-anchor="middle" font-size="9">Constitution</text>
 
   <line x1="600" y1="236" x2="600" y2="250" stroke="#e8a33d" stroke-width="2" marker-end="url(#arrow)"/>

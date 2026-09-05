@@ -44,7 +44,7 @@ Each viewport section gets **one primary** action.
 
 | Tier | User intent | Label examples | Destination |
 |---|---|---|---|
-| L1 — Explore | Low commitment | See live systems · View results · Explore architecture | `/results/`, `/results/owner-ecosystem/` |
+| L1 — Explore | Low commitment | See live systems · Builder's Lab · Explore architecture | `/proof/`, `/lab/` |
 | L2 — Demo | See it work | Try the wizard · Watch walkthrough | external wizard / video / proof asset |
 | L3 — Commit | Start qualification | Book Automation Scan · Pay €690 and pick a slot | `/book-a-scan/` |
 | Support | Ask before committing | Ask on WhatsApp | WhatsApp deep link |

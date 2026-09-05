@@ -1,15 +1,14 @@
 // ============================================================================
 // LIVE DEMOS — public URLs for investor / technical partner section.
-// Binding: portfolio-update-plan §3.4 + proof.ts agentOsPublicUrls
+// Binding: portfolio-update-plan §3.4 + verified public reference surfaces
 // ============================================================================
 
-import { agentOsPublicUrls } from '@/content/proof';
 
 export const INVESTOR_SECTION = {
   eyebrow: 'For investors & technical partners',
   title: 'Live demos — no slide deck required',
   lead:
-    'Four production-touching surfaces you can verify yourself. Architecture documentation available on request — no private repo links.',
+    'Three public production-touching surfaces you can verify yourself. Private operational walkthroughs are available on request — no private repo links.',
   docsNote: 'Architecture documentation available on request.',
 } as const;
 
@@ -43,13 +42,5 @@ export const LIVE_DEMO_LINKS: readonly LiveDemoLink[] = [
     href: 'https://flexgrafik.nl/',
     status: 'LIVE',
     note: 'Brand portal · generic sales chat',
-  },
-  {
-    id: 'mission-control',
-    label: 'Mission Control',
-    href: agentOsPublicUrls.missionControl,
-    verifyHref: agentOsPublicUrls.apiHealth,
-    status: 'LIVE',
-    note: 'Dashboard UI auth-gated · public API health for verification',
   },
 ] as const;

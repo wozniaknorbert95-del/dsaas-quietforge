@@ -18,6 +18,7 @@
     "audit:links": "npx broken-link-checker https://quietforge.flexgrafik.nl --ordered",
     "audit:navigation": "node scripts/audit-navigation.mjs",
     "audit:menu-footer": "node scripts/audit-menu-footer.mjs",
+    "audit:lab": "node scripts/audit-lab-smoke.mjs",
     "ga4:smoke": "node scripts/ga4-prod-smoke.mjs",
     "ga4:audit": "python scripts/ga4-api-audit.py",
     "ga4:gate": "node scripts/ga4-prod-smoke.mjs && python scripts/ga4-api-audit.py --strict --output docs/operations/ga4-audit-2026-06-28-quietforge.json",

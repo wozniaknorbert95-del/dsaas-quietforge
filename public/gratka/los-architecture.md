@@ -19,7 +19,7 @@ A living system runs: **Sense → Interpret → Propose → Verify → HITL → 
 | **Orchestrate** | Governed pipelines | Planner, Agent OS, VCMS — Agent OS, Mission Ctrl, VCMS |
 | **Act** | Bounded writes (HITL) | Checkout, deploy, publish — Wizard, Jadzia COI, Agent OS |
 | **Guard** | Always on | global-rules, Kaizen, HITL, Zasada 11 — flexgrafik-meta DNA |
-| **Memory** | Feedback loop | jadzia.db, handoffs, meta docs — Constitution (flexgrafik-meta) |
+| **Memory** | Feedback loop | operational records, handoffs, governance docs |
 
 ---
 

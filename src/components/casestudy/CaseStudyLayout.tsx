@@ -211,7 +211,7 @@ export default function CaseStudyLayout({
           workflowSlot={workflowSlot}
           screenSlot={screenSlot}
           emptyCtaHref={ROUTES.bookDiscovery}
-          emptyCtaLabel="Book Automation Map"
+          emptyCtaLabel="Book a scan"
         />
       </Section>
 

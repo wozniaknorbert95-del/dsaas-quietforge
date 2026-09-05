@@ -1,216 +1,130 @@
 /**
- * Comprehensive navigation + home section audit (Playwright).
+ * Current Quietforge navigation, home marker and Builder's Lab audit.
  * Usage: node scripts/audit-navigation.mjs [baseUrl]
- * Default base: http://localhost:3000
  */
 import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
 
 const BASE = process.argv[2] ?? 'http://localhost:3000';
-
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
-const SITEMAP_ROUTES = [...sitemap.matchAll(/<loc>https:\/\/quietforge\.flexgrafik\.nl([^<]*)<\/loc>/g)].map(
-  (m) => m[1] || '/'
-);
+const SITEMAP_ROUTES = [
+  ...sitemap.matchAll(/<loc>https:\/\/quietforge\.flexgrafik\.nl([^<]*)<\/loc>/g),
+].map((match) => match[1] || '/');
 
 const NAV_LINKS = [
-  '/results/',
-  '/how-it-works/',
-  '/solutions/',
-  '/solutions/inbox-killer/',
-  '/solutions/sales-funnel/',
-  '/solutions/web-upgrade/',
-  '/solutions/lead-magnet-game/',
-  '/solutions/managed-automation/',
+  '/systems/',
+  '/approach/',
+  '/security/',
+  '/proof/',
   '/pricing/',
-  '/founder/',
-  '/founder/#system-diagram',
-  '/book-discovery/',
-  '/results/owner-ecosystem/#los',
+  '/book-a-scan/',
   '/about/',
-  '/trust/',
+  '/lab/',
   '/blog/',
   '/legal/',
 ];
 
-/** site-map.md §3 v5.0 — home data-home-section markers */
 const HOME_SECTIONS = [
   'hero',
-  'pain-grid',
-  'repo-router',
-  'jadzia-spearhead',
-  'vcms-trust',
-  'wizard-visualizer',
-  'built-vs-planned',
-  'why-it-works',
+  'counter',
+  'systems',
+  'approach',
+  'compare',
+  'discipline',
+  'proof',
+  'about',
   'pricing',
-  'final-cta',
+  'faq',
 ];
 
-const HOME_ANCHORS = ['built-vs-planned', 'why-it-works'];
-
-function pathOf(url) {
-  try {
-    const u = new URL(url);
-    return u.pathname + u.hash;
-  } catch {
-    return url;
-  }
-}
-
 async function checkRoute(page, route) {
-  const url = `${BASE}${route}`;
   const failed = [];
-  const handler = (res) => {
-    const s = res.status();
-    const u = res.url();
-    if (s >= 400 && u.startsWith(BASE) && !u.includes('_rsc=')) failed.push({ status: s, url: u });
+  const responseHandler = (response) => {
+    if (response.status() >= 400 && response.url().startsWith(BASE) && !response.url().includes('_rsc=')) {
+      failed.push({ status: response.status(), url: response.url() });
+    }
   };
-  page.on('response', handler);
+  page.on('response', responseHandler);
   let status = 0;
-  let title = '';
-  let h1Count = 0;
   let error = null;
   try {
-    const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
-    status = res?.status() ?? 0;
-    await page.waitForTimeout(400);
-    title = await page.title();
-    h1Count = await page.locator('h1').count();
-  } catch (e) {
-    error = e.message;
+    const response = await page.goto(`${BASE}${route}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    status = response?.status() ?? 0;
+  } catch (caught) {
+    error = caught.message;
   }
-  page.removeListener('response', handler);
-  return { route, url, status, title, h1Count, failed, error };
+  const h1Count = await page.locator('h1').count().catch(() => 0);
+  page.removeListener('response', responseHandler);
+  return { route, status, h1Count, failed, error };
 }
 
-async function checkHomeSections(page) {
+async function checkHome(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle', timeout: 60000 });
   const missing = [];
   const empty = [];
   for (const section of HOME_SECTIONS) {
-    const el = page.locator(`[data-home-section="${section}"]`).first();
-    const count = await el.count();
-    if (count === 0) {
+    const element = page.locator(`[data-home-section="${section}"]`).first();
+    if ((await element.count()) === 0) {
       missing.push(section);
       continue;
     }
-    const text = (await el.innerText()).trim();
-    if (text.length < 20) empty.push(section);
+    if ((await element.innerText()).trim().length < 20) empty.push(section);
   }
-  return { missing, empty };
+  const headerLinks = await page.locator('header nav[aria-label="Primary"] a').evaluateAll((links) =>
+    links.map((link) => ({ href: link.getAttribute('href'), text: link.textContent?.trim() }))
+  );
+  const headerCta = headerLinks.filter((link) => /Book a scan/.test(link.text ?? '')).length;
+  return { missing, empty, headerLinks, headerCta };
 }
 
-async function checkHomeAnchors(page) {
-  const results = [];
-  for (const id of HOME_ANCHORS) {
-    await page.goto(`${BASE}/#${id}`, { waitUntil: 'networkidle', timeout: 60000 });
-    await page.waitForTimeout(2000);
-    const hash = await page.evaluate(() => window.location.hash);
-    const target = page.locator(`#${id}`).first();
-    const exists = (await target.count()) > 0;
-    let inView = false;
-    if (exists) {
-      inView = await target.evaluate((el) => {
-        const nav = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 64;
-        const r = el.getBoundingClientRect();
-        return r.top >= nav && r.top < window.innerHeight * 0.85;
-      });
-    }
-    results.push({ id, hash, exists, inView });
-  }
-  return results;
-}
-
-async function checkFounderDiagram(page) {
-  await page.goto(`${BASE}/founder/#system-diagram`, { waitUntil: 'networkidle', timeout: 60000 });
-  await page.waitForTimeout(600);
-  const section = page.locator('#system-diagram').first();
-  const exists = (await section.count()) > 0;
-  const diagram = page.locator('[aria-label="Living Operating System interactive diagram"]').first();
-  const hasDiagram = (await diagram.count()) > 0;
-  let inView = false;
-  if (exists) {
-    inView = await section.evaluate((el) => {
-      const r = el.getBoundingClientRect();
-      return r.top >= -120 && r.top < window.innerHeight * 0.7;
-    });
-  }
-  return { exists, hasDiagram, inView };
-}
-
-async function checkOwnerEcosystemLos(page) {
-  await page.goto(`${BASE}/results/owner-ecosystem/#los`, { waitUntil: 'networkidle', timeout: 60000 });
-  await page.waitForTimeout(600);
-  const los = page.locator('#los').first();
-  const exists = (await los.count()) > 0;
-  const diagram = page.locator(
-    '[aria-label="Living Operating System interactive diagram"], img[alt*="Living Operating System"]'
-  ).first();
-  const hasDiagram = (await diagram.count()) > 0;
-  let inView = false;
-  if (exists) {
-    inView = await los.evaluate((el) => {
-      const r = el.getBoundingClientRect();
-      return r.top >= -120 && r.top < window.innerHeight * 0.7;
-    });
-  }
-  return { exists, hasDiagram, inView };
+async function checkLab(page) {
+  await page.goto(`${BASE}/lab/`, { waitUntil: 'networkidle', timeout: 60000 });
+  const h1 = await page.locator('h1').count();
+  const milestones = await page.locator('.qf-lab-stage').count();
+  const labLink = await page.getByRole('link', { name: "Builder's Lab" }).count();
+  return { h1, milestones, labLink };
 }
 
 async function main() {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
-
+  const routes = [...new Set([...SITEMAP_ROUTES, ...NAV_LINKS])];
   const routeResults = [];
-  for (const route of [...new Set([...SITEMAP_ROUTES, ...NAV_LINKS])]) {
-    routeResults.push(await checkRoute(page, route));
-  }
-
-  const homeSections = await checkHomeSections(page);
-  const homeAnchors = await checkHomeAnchors(page);
-  const founderDiagram = await checkFounderDiagram(page);
-  const losAnchor = await checkOwnerEcosystemLos(page);
-
-  // Header link smoke from home
-  await page.goto(`${BASE}/`, { waitUntil: 'domcontentloaded' });
-  const headerLinks = await page.locator('header nav[aria-label="Primary"] a').evaluateAll((els) =>
-    els.map((a) => ({ href: a.getAttribute('href'), text: a.textContent?.trim() }))
-  );
-
+  for (const route of routes) routeResults.push(await checkRoute(page, route));
+  const home = await checkHome(page);
+  const lab = await checkLab(page);
   await browser.close();
 
-  const routeFails = routeResults.filter((r) => r.status !== 200 || r.error || r.h1Count === 0);
-  const assetFails = routeResults.flatMap((r) =>
-    r.failed.map((f) => ({ route: r.route, ...f }))
-  );
-
+  const routeFails = routeResults.filter((result) => result.status !== 200 || result.error || result.h1Count === 0);
+  const assetFails = routeResults.flatMap((result) => result.failed.map((failure) => ({ route: result.route, ...failure })));
+  const expectedHeader = ['Systems', 'Approach', 'Security', 'Proof', 'Pricing'];
+  const actualHeader = home.headerLinks.map((link) => link.text);
+  const headerOk = expectedHeader.every((label) => actualHeader.includes(label));
   const report = {
     base: BASE,
     routes: { total: routeResults.length, failed: routeFails.length, details: routeFails },
     assets404: assetFails,
-    homeSections,
-    homeAnchors,
-    founderDiagram,
-    ownerEcosystemLos: losAnchor,
-    headerLinks,
+    home,
+    lab,
+    header: { expected: expectedHeader, actual: actualHeader, ctaCount: home.headerCta, ok: headerOk },
     verdict:
       routeFails.length === 0 &&
-      homeSections.missing.length === 0 &&
-      homeAnchors.every((a) => a.exists && a.inView) &&
-      founderDiagram.exists &&
-      founderDiagram.hasDiagram &&
-      losAnchor.exists &&
-      losAnchor.inView
+      assetFails.length === 0 &&
+      home.missing.length === 0 &&
+      home.empty.length === 0 &&
+      headerOk &&
+      home.headerCta === 1 &&
+      lab.h1 === 1 &&
+      lab.milestones === 9 &&
+      lab.labLink > 0
         ? 'PASS'
         : 'FAIL',
   };
-
   console.log(JSON.stringify(report, null, 2));
   process.exitCode = report.verdict === 'PASS' ? 0 : 1;
 }
 
-main().catch((e) => {
-  console.error(e);
+main().catch((error) => {
+  console.error(error);
   process.exit(1);
 });

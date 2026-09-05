@@ -27,7 +27,6 @@ import {
 import {
   agentOsFeatureStatus,
   agentOsNarrative,
-  agentOsPublicUrls,
   agentOsVerifiedMetrics,
   screens,
   type AgentOsClaimLabel,
@@ -238,23 +237,10 @@ export default function AgentOrchestratorCaseStudyPage() {
       <div className="mb-6 max-w-3xl">
         <ProofScreenSlot screen={screens.adminDashboard} screenKey="adminDashboard" />
       </div>
-      <div className="mb-10 flex flex-wrap gap-4 text-sm">
-        <a
-          href={agentOsPublicUrls.missionControl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--qf-accent)] hover:text-[var(--qf-text)]"
-        >
-          Mission Control (os.flexgrafik.nl) ↗
-        </a>
-        <a
-          href={agentOsPublicUrls.apiHealth}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--qf-accent)] hover:text-[var(--qf-text)]"
-        >
-          API health ↗
-        </a>
+      <div className="mb-10 text-sm text-[var(--qf-text-faint)]">
+        Mission Control is an access-gated private reference. A sanitized walkthrough is available
+        on request; internal hosts and health endpoints are not public proof.
+        <span className="ml-2 text-[var(--qf-accent)]">Private reference</span>{' '}
         <Link href={ROUTES.trust} className="text-[var(--qf-accent)] hover:text-[var(--qf-text)]">
           Trust & observability page →
         </Link>

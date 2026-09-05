@@ -15,7 +15,7 @@ export const HERO = {
   headline: 'Systems that give you back your time.',
   subline:
     'Quotes, orders, inbox, reporting — rebuilt as self-improving systems that work 24/7 and propose their own upgrades. Built at AI speed, delivered with engineering discipline — nothing goes live without your approval.',
-  dualBrandLine: 'QuietForge implements. You approve. FlexGrafik is a paused lab.',
+  dualBrandLine: 'QuietForge implements. You approve. FlexGrafik is the reference business and build lab.',
   beats: {
     problem: {
       label: 'Problem',
@@ -34,7 +34,7 @@ export const HERO = {
   proofLine: 'Hours given back · you approve · counter starts at zero',
   proofChip: 'Human-reviewed · security-scanned · gated by you',
   microTrust:
-    'I build at AI speed and deliver with engineering discipline. FlexGrafik is a paused lab, not a client proof.',
+    'I build at AI speed and deliver with engineering discipline. FlexGrafik is an owner-operated reference business and build lab, not a client proof.',
   primaryCta: 'Book a scan',
   primaryCtaMeta: `${formatEuro(PRICING_NUMBERS.discovery)} · credited · 90 min`,
   secondaryCta: 'See the systems',
@@ -43,9 +43,9 @@ export const HERO = {
   wizardHref: 'https://zzpackage.flexgrafik.nl/',
   whatsappCta: 'Ask on WhatsApp',
   proofVisual: {
-    src: '/gratka/jadzia-commander-home.png',
-    alt: 'COI Commander Start — live ops cockpit on FlexGrafik',
-    caption: 'Live ops cockpit — pick one action; you approve',
+    src: '/gratka/agent-cards.svg',
+    alt: 'Agent OS fixed roles and human review gate',
+    caption: 'Fixed roles and human review gate — sanitized reference evidence',
   },
 } as const;
 
@@ -145,15 +145,15 @@ export const CTAS = {
 } as const;
 
 export const ABOUT = {
-  metaTitle: 'About — architect of autonomous operating systems',
-  heroTitle: 'Norbert — architect of autonomous operating systems for small companies.',
+  metaTitle: 'About Norbert — Conversion Systems Architect',
+  heroTitle: 'Norbert — Conversion Systems Architect for small businesses.',
   heroIntro:
-    'I design and deploy autonomous operating systems — from quotes, through orders, to inbox and reporting. Not a programmer for hire, not the AI guy, not an agency.',
+    'I design and deploy supervised conversion and operations systems — from quotes, through orders, to inbox and reporting. Not a programmer for hire, not the AI guy, not an agency.',
   storyTitle: 'My story — built from need, not theory.',
   storyBody: [
     'I started from zero. No programming background, no courses, no mentor — one thing only: the desperate need to save my own company. When the tools I needed did not exist or cost too much, I decided to build them. With AI as a partner I learned to build — and today I control the AI, not the other way around.',
-    'For three years I learned on my own repositories and built a complete platform — eight of them, each from scratch: from a shop configurator to a mobile game to an owner cockpit. Today those eight repos become one integrated platform. Finishing things is my identity, not a resolution.',
-    'The most expensive lesson, and the most honest one: a working system is not the same as paying clients. FlexGrafik is a paused lab; the systems still run as heritage. That lesson makes me a better advisor than any theorist: I know what a system gives — and what it does not.',
+    'For three years I learned by building connected systems for my own business: from a shop configurator to a mobile game to an owner cockpit. Those working patterns are now being extracted into a governed platform direction. Finishing things is my identity, not a resolution.',
+    'The most expensive lesson, and the most honest one: a working system is not the same as paying clients. FlexGrafik is the owner-operated business and build laboratory where these systems were exercised. That makes the boundary clear: the lab proves what I built, not what an external QuietForge client achieved.',
   ],
   buildTitle: 'What I build',
   buildPillars: [
@@ -199,13 +199,17 @@ export const ABOUT = {
   numbersTitle: 'In numbers',
   numbers: [
     { value: '30', label: 'trades — I see the patterns between them' },
-    { value: '8 → 1', label: 'repositories rebuilt into one integrated platform' },
+    { value: 'Build → platform', label: 'working business patterns extracted into a governed core' },
     { value: 'EN · PL · NL', label: 'spoken EN/PL · written NL (email)' },
   ],
   offClockTitle: 'Off the clock',
   offClockBody:
     'Weightlifting teaches progression — small loads added systematically. Tennis is tactics under pressure. Cycling is endurance, and where architecture ideas arrive. Psychology is why clients hesitate and what builds trust. Reading is patterns, read like an engineer: structures worth looping.',
   labTitle: 'The lab — where it started',
+  labBody:
+    'FlexGrafik is an owner-operated reference business and build laboratory. Its public surfaces are available to test, but it is not an external client case and does not replace verified QuietForge customer proof.',
+  labStatus: 'OWNER-OPERATED REFERENCE · BUILD LABORATORY',
+  labLinkLabel: 'Explore the Builder\'s Lab →',
   ctaTitle: 'Let’s find what’s worth automating.',
   kvk: 'KVK 89057554',
 } as const;
@@ -213,8 +217,8 @@ export const ABOUT = {
 export const FOOTER = {
   tagline: 'Systems that give you back your time.',
   portfolioPrompt: 'This site runs on its own integrated platform.',
-  portfolioLink: 'Approach →',
-  portfolioHref: '/approach/',
+  portfolioLink: "Builder's Lab →",
+  portfolioHref: '/lab/',
   columnSolutions: 'Systems',
   columnCompany: 'Company',
   columnGetStarted: 'Get started',

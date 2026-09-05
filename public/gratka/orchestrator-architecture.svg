@@ -27,7 +27,7 @@
   <text x="100" y="118" class="accent" font-size="12">VPS CONTROL PLANE (24/7)</text>
   <text x="340" y="148" class="text" text-anchor="middle" font-size="14">FastAPI + LangGraph + PostgreSQL</text>
   <text x="340" y="172" class="sub" text-anchor="middle">Task queue · HITL · WAITING_RUNNER · Langfuse</text>
-  <text x="340" y="196" class="sub" text-anchor="middle">os-api.flexgrafik.nl · os.flexgrafik.nl</text>
+  <text x="340" y="196" class="sub" text-anchor="middle">Access-gated control plane · private operator view</text>
   <rect x="120" y="214" width="180" height="56" rx="4" class="box"/>
   <text x="210" y="248" class="sub" text-anchor="middle">Mission Control UI</text>
   <rect x="380" y="214" width="180" height="56" rx="4" class="box"/>

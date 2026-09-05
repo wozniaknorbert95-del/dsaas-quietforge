@@ -25,6 +25,7 @@ const ROUTES = [
   '/security/',
   '/proof/',
   '/proof/methodology/',
+  '/lab/',
   '/pricing/',
   '/book-a-scan/',
   '/about/',
@@ -40,7 +41,7 @@ const ROUTES = [
 ];
 
 const HIGH_INTENT = new Set(['/systems/', '/pricing/', '/book-a-scan/']);
-const PROOF_HUBS = new Set(['/proof/', '/approach/', '/security/']);
+const PROOF_HUBS = new Set(['/proof/', '/lab/', '/approach/', '/security/']);
 
 /** @param {string} path */
 function getSitemapMeta(path) {

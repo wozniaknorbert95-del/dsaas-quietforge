@@ -2,7 +2,7 @@
 status: ACTIVE
 title: QuietForge site map v2.0
 owner: Norbert Wozniak
-updated: 2026-08-24
+updated: 2026-09-05
 source: Desktop/aktualizacja quietforge/quietforge-mapa-strony-v2.md
 ---
 
@@ -34,7 +34,8 @@ quietforge.flexgrafik.nl
 ├── /proof
 │   ├── /proof/methodology
 │   └── /proof/cases/[slug]
-├── /about                       + #lab (FlexGrafik paused)
+├── /lab                         Builder's Lab / owner-operated reference
+├── /about                       Founder story + #lab bridge
 ├── /pricing
 ├── /book-a-scan
 │   └── /book-a-scan/thank-you   noindex
@@ -52,13 +53,13 @@ Artefact URLs (`/artefacts/…`) stay stable.
 |---------|------|
 | Header | Systems · Approach · Security · Proof · Pricing · primary **Book a scan** |
 | CTA | PRIMARY: Book the Automation Scan — €690 · SECONDARY: WhatsApp · TERTIARY: See the systems |
-| Footer | Promise: “Systems that give you back your time.” · no FlexGrafik live-proof link · “this site runs on its own integrated platform” |
+| Footer | Promise: “Systems that give you back your time.” · Builder's Lab reference link · “this site runs on its own integrated platform” |
 | Counter | Home + /proof · start **0** · never hardcoded growth |
 | Language | English ✓ / Nederlands (later) |
 
 ## Claim rules (R7)
 
-- Zero FlexGrafik market claims. Lab only on `/about#lab`: paused, systems still running as heritage — not a client proof.
+- FlexGrafik may be shown as an owner-operated reference business and live build laboratory. It is not an external client case, does not create client-result claims and does not replace verified customer proof.
 - Numbers: lab example labelled “example”, or verified case. Typical hours always with “typically”.
 - Counter grows only after client verification.
 - **Censors:** vibe coding, post-coding, DSAAS, agents-as-product, “we can build anything”.
@@ -66,9 +67,10 @@ Artefact URLs (`/artefacts/…`) stay stable.
 
 ## Status vocabulary
 
-`LIVE AT CLIENT` · `PROVEN IN THE LAB` · `NEW ON THE PLATFORM` · `SCAN SCHEDULED` · `OPEN — BECOME A CASE` · `LAB: PAUSED`
+`LIVE AT CLIENT` · `PROVEN IN THE LAB` · `NEW ON THE PLATFORM` · `OWNER-OPERATED REFERENCE` · `SCAN SCHEDULED` · `OPEN — BECOME A CASE` · `LAB: PAUSED`
 
 Until a client verifies a case, public statuses stay lab / new / open — never fake LIVE AT CLIENT.
+`LAB: PAUSED` applies only to a historical laboratory that is no longer publicly active; it is not the status of the FlexGrafik business.
 
 ## 301 map (this host)
 
@@ -79,7 +81,7 @@ Until a client verifies a case, public statuses stay lab / new / open — never 
 | `/results/lead-magnet/` | `/systems/lead-scout/` |
 | `/results/jadzia-coi/` | `/systems/owner-cockpit/` |
 | `/results/agent-orchestrator/` | `/systems/build-release-flow/` |
-| `/results/owner-ecosystem/` | `/about/#lab` |
+| `/results/owner-ecosystem/` | `/lab/` |
 | `/solutions/` | `/systems/` |
 | `/solutions/sales-funnel/` | `/systems/quote-order-engine/` |
 | `/solutions/inbox-killer/` | `/systems/inbox-triage/` |

@@ -76,7 +76,7 @@ const FAQ = [
   },
   {
     q: 'Is FlexGrafik the proof?',
-    a: 'FlexGrafik is a paused lab, not a market proof. QuietForge sells given-back time, not a catalogue of modules.',
+    a: 'FlexGrafik is an owner-operated reference business and build laboratory, not an external client case. QuietForge sells given-back time, not a catalogue of modules.',
   },
   {
     q: 'What if it is not worth automating?',
@@ -294,7 +294,7 @@ export default function Home() {
         <p className="qf-home-kicker">About</p>
         <h2 className="qf-sys-h2">Norbert · your systems architect</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
-          Architect of autonomous operating systems. Thirty trades taught me how
+              Conversion Systems Architect. Thirty trades taught me how
           small businesses actually work; three years building systems for my own
           company taught me what they really cost — and give back.
         </p>

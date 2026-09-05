@@ -1,10 +1,27 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-08-30 · **Status:** DEPLOYED ✅ (Vercel prod, dpl_DfpDn9Ge2crCYEgrGH7d9fvmfNYY) · 56 pages, sitemap 27 routes
+**Updated:** 2026-09-05 · **Status:** LOCAL IMPLEMENTATION COMPLETE, NOT DEPLOYED · 57 pages, sitemap 28 routes
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
 **Handoff:** [`handoffs/2026-08-30-home-stale-data-sync.md`](handoffs/2026-08-30-home-stale-data-sync.md)
+
+**Current handoff:** [`handoffs/2026-09-05-builder-lab-implementation.md`](handoffs/2026-09-05-builder-lab-implementation.md)
+
+## Builder's Lab implementation (2026-09-05)
+
+- Added canonical `/lab/` Builder's Lab route for the owner-operated FlexGrafik reference business and build laboratory.
+- Added nine-stage build timeline, public test bench, private-reference states, system connection path, dSaaS platform chapter and ownership/handover wording.
+- Added `src/content/lab.ts` as the dedicated Lab content source; no repository is presented as public proof unless its URL and visibility are confirmed.
+- Removed public operational screenshots with token fields, local paths or tenant context; replaced them with sanitized reference art and neutral high-level diagrams.
+- Removed public Mission Control/API health links and sanitized old architecture copy before release review.
+- Updated active canon R7, route map, conversion pipeline, footer/About/Proof entry points and legacy `/results/owner-ecosystem/` redirect target.
+- Added `/og/lab.svg`, sitemap entry and `audit:lab` smoke test.
+- FlexGrafik language now separates the active business from the build laboratory; `LAB: PAUSED` is no longer used as the business status.
+
+**Verification:** `npm run typecheck` ✅ · `npm run build` ✅ (57 pages) · targeted changed-file ESLint ✅ · `npm run audit:lab` ✅ (9 stages, mobile no overflow, console errors 0) · sensitive legacy assets 404 ✅ · sanitized fallback 200 ✅.
+
+**Known baseline:** `npm run lint` passes with 10 non-blocking warnings in archive/legacy scripts and image/script guidance. The navigation and menu-footer audits were updated to the active canon and pass against the local production server. Next dev still reports the existing Tailwind CSS parser warning around generated `var(--qf-fs-*)`; production build/server are clean.
 
 ## CO
 

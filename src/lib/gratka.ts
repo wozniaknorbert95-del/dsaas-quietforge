@@ -16,8 +16,8 @@ export const GRATKA = {
   /** @deprecated Retired from UI — use losArchitectureSvg download. */
   ownerEcosystemMapPdf: '/gratka/owner-ecosystem-map.pdf',
   jadziaCoiArchitectureSvg: '/gratka/jadzia-coi-architecture.svg',
-  jadziaCommanderHome: '/gratka/jadzia-commander-home.png',
-  jadziaCommanderDataHealth: '/gratka/jadzia-commander-data-health.png',
+  jadziaCommanderHome: '/gratka/private-reference.svg',
+  jadziaCommanderDataHealth: '/gratka/private-reference.svg',
   /** Canonical system architecture — Living Operating System (home §2 SSoT). */
   losArchitectureSvg: '/gratka/los-architecture.svg',
   /** Generated from public/gratka/los-architecture.md via npm run generate:artefacts */

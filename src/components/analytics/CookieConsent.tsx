@@ -19,8 +19,10 @@ export default function CookieConsent() {
 
   useEffect(() => {
     if (!getStoredConsent()) {
-      setVisible(true);
+      const frame = window.requestAnimationFrame(() => setVisible(true));
+      return () => window.cancelAnimationFrame(frame);
     }
+    return undefined;
   }, []);
 
   const decide = (decision: ConsentDecision) => {

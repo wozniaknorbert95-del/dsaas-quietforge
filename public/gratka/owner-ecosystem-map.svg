@@ -72,7 +72,7 @@
   <rect x="800" y="368" width="340" height="88" rx="4" class="box"/>
   <text x="970" y="396" class="text" text-anchor="middle" font-size="12">jadzia-core</text>
   <text x="970" y="416" class="sub" text-anchor="middle">AI backend · automation engine</text>
-  <text x="970" y="432" class="sub" text-anchor="middle">orders · ops · jadzia.db</text>
+  <text x="970" y="432" class="sub" text-anchor="middle">orders · operations record · review</text>
   <text x="970" y="448" class="sub" text-anchor="middle">modules improved in agent loop</text>
 
   <!-- Flow arrows between apps -->
@@ -120,7 +120,7 @@
   <!-- Data flow summary -->
   <rect x="120" y="760" width="960" height="120" rx="4" class="layer"/>
   <text x="600" y="788" class="text" text-anchor="middle" font-size="13">Typical flow (simplified)</text>
-  <text x="600" y="812" class="sub" text-anchor="middle">Visitor · flexgrafik.nl (assistant) · wizard or game · order in jadzia.db</text>
+  <text x="600" y="812" class="sub" text-anchor="middle">Visitor · portal · wizard or game · governed operational handoff</text>
   <text x="600" y="832" class="sub" text-anchor="middle">· Agent OS builds &amp; tests module changes · VCMS scan confirms no conflicts</text>
   <text x="600" y="852" class="sub" text-anchor="middle">· human approves deploy · Inbox Killer handles operational email in parallel</text>
   <text x="600" y="872" class="sub" text-anchor="middle">B2B client path: quietforge.flexgrafik.nl · Automation Map · same delivery workflow</text>

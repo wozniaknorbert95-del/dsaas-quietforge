@@ -20,7 +20,7 @@ export default function PricingCard({
   period,
   features,
   ctaLabel = `${CTAS.bookAutomationMap} →`,
-  ctaHref = '/book-discovery/',
+  ctaHref = '/book-a-scan/',
   highlighted = false,
   badge,
   className,

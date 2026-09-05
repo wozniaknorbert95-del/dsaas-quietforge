@@ -339,7 +339,7 @@ export const DIAGRAM_NODES: readonly DiagramNode[] = [
     hoverLine: 'Planner→Coder→Tester→Reviewer→Summarizer · hybrid VPS LIVE',
     asIs: [
       '5-node LangGraph pipeline',
-      'FastAPI on os-api.flexgrafik.nl',
+      'Access-gated control plane',
       'Hybrid WAITING_RUNNER + Local Runner',
       'Multi-repo code changes (INT-011)',
     ],
@@ -409,7 +409,7 @@ export const DIAGRAM_NODES: readonly DiagramNode[] = [
     northStar: 'Operator cockpit — queue, diffs, history, costs — HITL before ship.',
     hoverLine: 'Task queue · approve/reject · Langfuse costs',
     asIs: [
-      'Mission Control at os.flexgrafik.nl',
+      'Access-gated operator cockpit',
       'HITL approve/reject for Agent OS pipeline',
       'Cost tracking via backend',
     ],

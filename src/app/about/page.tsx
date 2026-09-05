@@ -9,13 +9,13 @@ import { ABOUT, CTAS, POSITIONING } from '@/content/conversion-copy';
 import AboutScrollTracker from '@/components/analytics/AboutScrollTracker';
 
 export const metadata: Metadata = {
-  title: 'Norbert · architect of autonomous operating systems',
+  title: 'About Norbert · Conversion Systems Architect',
   description:
-    'Norbert Wozniak — architect of autonomous operating systems for small companies. AI speed, engineering discipline, hours given back.',
+    'Norbert Wozniak — Conversion Systems Architect for small businesses. AI speed, engineering discipline, hours given back.',
   openGraph: {
     title: ABOUT.metaTitle,
     description:
-      'Architect of autonomous operating systems for small companies. AI speed, engineering discipline, hours given back.',
+      'Conversion Systems Architect for small businesses. AI speed, engineering discipline, hours given back.',
     url: `${SITE_URL}/about`,
     images: [
       {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: ABOUT.metaTitle,
-    description: 'Architect of autonomous operating systems — you approve, we measure hours given back.',
+    description: 'Conversion systems for small businesses — you approve, we measure hours given back.',
     images: ['/og/about.svg'],
   },
 };
@@ -143,12 +143,13 @@ export default function AboutPage() {
           {ABOUT.labTitle}
         </h2>
         <p className="mb-4 max-w-[var(--qf-maxw-narrow)] text-[var(--qf-text-dim)]">
-          FlexGrafik is a paused owner-operated lab. Systems still exist as heritage. It is
-          not a market proof and not the offer. QuietForge sells given-back time, not a
-          catalogue of modules.
+          {ABOUT.labBody}
         </p>
         <p className="max-w-[var(--qf-maxw-narrow)] text-sm text-[var(--qf-text-faint)]">
-          Status: LAB: PAUSED. Today the public site talks about QuietForge only.
+          Context: {ABOUT.labStatus}{' '}
+          <Link href={ROUTES.lab} className="text-[var(--qf-accent)]">
+            {ABOUT.labLinkLabel}
+          </Link>
         </p>
       </Section>
 

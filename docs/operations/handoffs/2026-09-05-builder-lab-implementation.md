@@ -1,8 +1,8 @@
 # Handoff - Builder's Lab implementation (2026-09-05)
 
-**Repo:** dsaas-quietforge · **Build:** `npm run build` passed (57 pages)
+**Repo:** dsaas-quietforge · **Build:** `npm run build` passed (57 pages) · **Production:** deployed
 
-**Release commit:** `b9a2561 feat: add Builder's Lab reference proof` · **Push/deploy:** not executed; Commander-controlled
+**Release commits:** `b9a2561`, `258cc91`, `60d63ef` · **Deployment:** `6fM9JWnB4EJ4RSQbg1aFexBJkVBT`
 
 ## Cel / Goal
 
@@ -22,7 +22,7 @@ Implement the approved Builder's Lab plan for `quietforge.flexgrafik.nl`: show t
 - Removed Mission Control/API health links from legacy public proof surfaces and changed the public platform wording to `Tenant Platform Core`.
 - Synchronized active CTA rules and `strategy-check` with `/book-a-scan/` and the current site map.
 - GitHub profile and repository changes remain deferred until the website passes post-deploy verification.
-- The release was committed as one clean changeset after staged diff review; no push was performed.
+- The release was committed, pushed to `origin/main` and deployed through the existing `flexgrafik-services` Vercel project.
 
 ## Pliki / Files
 
@@ -95,16 +95,16 @@ Known baseline limitations:
 3. Repair or replace stale navigation/menu-footer audits in a separate maintenance task.
 4. Only after the website passes post-deploy verification, prepare the separate GitHub profile and repository plan.
 
-## Manual release command (Commander only)
+## Release command used (Commander-authorized)
 
 After reviewing `git show --stat b9a2561`:
 
 ```powershell
 git push origin main
-npx vercel dist --prod --yes
+npx vercel --prod --yes --scope wozniaknorbert95-dels-projects
 ```
 
-If the configured Vercel project expects a different build output, use the existing project target and do not create a new project. The agent did not run the deploy command.
+The project uses the native Next.js build. The historical `npx vercel dist --prod --yes` command was incorrect because this repo no longer produces `dist/`.
 
 ## Post-deploy command smoke
 
@@ -115,4 +115,6 @@ curl.exe -sI https://quietforge.flexgrafik.nl/sitemap.xml
 curl.exe -sI https://quietforge.flexgrafik.nl/results/owner-ecosystem/
 ```
 
-Expected: `/lab/`, OG and sitemap return 200; the legacy owner-ecosystem route redirects to `/lab/`; no public request targets Mission Control or its health endpoint.
+Production result: `/lab/`, OG and sitemap return 200; the legacy owner-ecosystem route redirects to `/lab/`; no public request targets Mission Control or its health endpoint; GA4 regional collection is allowed by CSP.
+
+The broken-link checker reports LinkedIn `HTTP_999`; this is LinkedIn anti-bot behavior, not a QuietForge route failure. All internal routes and assets pass.

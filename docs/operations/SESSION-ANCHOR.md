@@ -1,6 +1,6 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-05 · **Status:** LOCAL IMPLEMENTATION COMPLETE, NOT DEPLOYED · 57 pages, sitemap 28 routes
+**Updated:** 2026-09-05 · **Status:** DEPLOYED ✅ · Vercel deployment `6fM9JWnB4EJ4RSQbg1aFexBJkVBT` · 57 pages, sitemap 28 routes
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
@@ -19,7 +19,7 @@
 - Added `/og/lab.svg`, sitemap entry and `audit:lab` smoke test.
 - FlexGrafik language now separates the active business from the build laboratory; `LAB: PAUSED` is no longer used as the business status.
 
-**Verification:** `npm run typecheck` ✅ · `npm run build` ✅ (57 pages) · targeted changed-file ESLint ✅ · `npm run audit:lab` ✅ (9 stages, mobile no overflow, console errors 0) · sensitive legacy assets 404 ✅ · sanitized fallback 200 ✅.
+**Verification:** `npm run typecheck` ✅ · `npm run build` ✅ (57 pages) · `npm run lint` ✅ (10 warnings, 0 errors) · production navigation/menu/lab audits ✅ · GA4 CSP ✅ · sensitive legacy assets 404 ✅ · sanitized fallback 200 ✅.
 
 **Known baseline:** `npm run lint` passes with 10 non-blocking warnings in archive/legacy scripts and image/script guidance. The navigation and menu-footer audits were updated to the active canon and pass against the local production server. Next dev still reports the existing Tailwind CSS parser warning around generated `var(--qf-fs-*)`; production build/server are clean.
 

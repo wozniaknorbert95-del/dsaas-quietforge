@@ -2,7 +2,7 @@
 
 **Repo:** dsaas-quietforge · **Build:** `npm run build` passed (57 pages) · **Production:** deployed
 
-**Release commits:** `b9a2561`, `258cc91`, `60d63ef` · **Deployment:** `6fM9JWnB4EJ4RSQbg1aFexBJkVBT`
+**Release commits:** `b9a2561`, `258cc91`, `60d63ef`, `6c77ccd` · **Deployment:** `5ywfqFGtFrB4VBqSwNyUgUnW4LsL`
 
 ## Cel / Goal
 
@@ -116,5 +116,7 @@ curl.exe -sI https://quietforge.flexgrafik.nl/results/owner-ecosystem/
 ```
 
 Production result: `/lab/`, OG and sitemap return 200; the legacy owner-ecosystem route redirects to `/lab/`; no public request targets Mission Control or its health endpoint; GA4 regional collection is allowed by CSP.
+
+Final production verification: navigation PASS, menu/footer PASS, Builder's Lab PASS, console errors 0, mobile horizontal overflow false, canonical/OG/JSON-LD PASS, sensitive legacy assets 404, private-reference fallback 200.
 
 The broken-link checker reports LinkedIn `HTTP_999`; this is LinkedIn anti-bot behavior, not a QuietForge route failure. All internal routes and assets pass.

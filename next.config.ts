@@ -49,7 +49,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https://www.google-analytics.com",
-              "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
               "form-action 'self' mailto:",
               "frame-ancestors 'self'",
             ].join('; '),

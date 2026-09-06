@@ -54,3 +54,6 @@ GitHub Secret Scanning: profile 0; portfolio 0; dsaas-quietforge 0; flexgrafik-a
 
 After the Commander actions, continue with full history/IP review and choose one sanitized,
 reproducible proof repository. Only then execute pinning and G7 acceptance review.
+
+The profile audit and polish plan is recorded at
+`docs/operations/plans/2026-09-06-github-profile-polish-plan.md`.

@@ -21,6 +21,9 @@
 
 **Next GitHub gate:** Commander revokes/rotates the exposed Google key, then complete G1 account security review and G2 history/IP clearance before any pinning.
 
+**Profile audit:** [`plans/2026-09-06-github-profile-polish-plan.md`](plans/2026-09-06-github-profile-polish-plan.md)
+**Next focused task:** Profile README v2 copy hierarchy and `Current focus`; no additional graphics before first proof approval.
+
 ## Builder's Lab implementation (2026-09-05)
 
 - Added canonical `/lab/` Builder's Lab route for the owner-operated FlexGrafik reference business and build laboratory.

@@ -200,8 +200,8 @@ The live account inventory was checked with GitHub CLI:
 - both `*-proposed` repositories were made private during G3, and `jadzia` was made private
   after GitHub Secret Scanning reported an open Google API key alert; the account now has
   5 public and 16 private repositories;
-- GitHub display name, bio and website fields remain pending because the authenticated
-  CLI token lacks the `user` scope.
+- GitHub display name, bio and website fields were updated after the `user` scope was
+  authorized: `Norbert Wozniak | QuietForge`, QuietForge bio and website.
 
 ## Repository taxonomy
 
@@ -499,7 +499,10 @@ Recommended first decisions:
 - `Flex-vcms`, `flexgrafik-app` and `dsaas-quietforge`: remain public but are not approved
   for pinning until their individual history/IP review passes.
 - `jadzia`: private after one open `google_api_key` Secret Scanning alert; the key must be
-  revoked/rotated before the alert can be closed.
+  revoked/rotated before the alert can be closed. Commander explicitly deferred rotation;
+  `jadzia` remains excluded from all public proof and pinning.
+- Public repository descriptions and topics were normalized for `dsaas-quietforge`,
+  `Flex-vcms` and `flexgrafik-app`.
 
 ### G4 - Repository baseline
 
@@ -527,8 +530,7 @@ For each approved public repo:
 - include ownership/licensing boundary.
 - replace autonomous/free-scan/contact language with the approved QuietForge CTA path;
 - add a short `Current work` or `Last verified` signal without vanity statistics.
-- account display name, bio and website remain pending until the Commander authorizes a
-  GitHub token refresh with the `user` scope.
+- account display name, bio and website updated through GitHub API after `user` scope authorization.
 
 ### G6 - Pin and promote
 

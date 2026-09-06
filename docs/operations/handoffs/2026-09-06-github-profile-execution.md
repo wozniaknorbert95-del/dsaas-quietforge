@@ -12,6 +12,8 @@ profile-index rewrite, public proof baseline and visibility containment.
 - Confirmed the real account inventory: 21 repositories, initially 8 public and 13 private.
 - Rewrote and pushed the profile repository as commit `1b644bf`.
 - Added and pushed the profile system-map visual as commit `efbceac`.
+- Updated the GitHub account display name, bio and website after authorizing the `user` scope.
+- Normalized descriptions and topics for the public tenant, VCMS hold candidate and owner-operated reference app.
 - Added profile `SECURITY.md` and `CODEOWNERS`; updated repository description and topics.
 - Rewrote `portfolio` as `PUBLIC PROOF CANDIDATE - HOLD`, added security baseline and
   updated Next.js from `16.2.6` to `16.3.4`.
@@ -44,10 +46,9 @@ GitHub Secret Scanning: profile 0; portfolio 0; dsaas-quietforge 0; flexgrafik-a
 
 ## Blockers / Commander actions
 
-1. Revoke and rotate the exposed Google API key from `jadzia`; then resolve alert 1 as `revoked`.
+1. Revoke and rotate the exposed Google API key from `jadzia` when the Commander authorizes it; until then keep `jadzia` private and excluded from proof/pins.
 2. Review GitHub 2FA/passkeys, recovery codes, PATs, OAuth apps, SSH keys and GitHub Apps.
-3. Run `gh auth refresh -h github.com -s user` before changing profile display name, bio and website.
-4. Do not pin `jadzia`, `Flex-vcms`, `dsaas-quietforge`, `flexgrafik-app` or `portfolio` until G2/G4 pass.
+3. Do not pin `jadzia`, `Flex-vcms`, `dsaas-quietforge`, `flexgrafik-app` or `portfolio` until G2/G4 pass.
 
 ## Następny krok / Next steps
 

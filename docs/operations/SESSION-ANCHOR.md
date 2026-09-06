@@ -1,12 +1,12 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-05 · **Status:** DEPLOYED ✅ · Vercel deployment `5ywfqFGtFrB4VBqSwNyUgUnW4LsL` · 57 pages, sitemap 28 routes
+**Updated:** 2026-09-06 · **Status:** DEPLOYED ✅ · Vercel deployment `5ywfqFGtFrB4VBqSwNyUgUnW4LsL` · 57 pages, sitemap 28 routes
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
 **Handoff:** [`handoffs/2026-08-30-home-stale-data-sync.md`](handoffs/2026-08-30-home-stale-data-sync.md)
 
-**Current handoff:** [`handoffs/2026-09-06-github-profile-execution.md`](handoffs/2026-09-06-github-profile-execution.md)
+**Current handoff:** [`handoffs/2026-09-06-github-profile-closure.md`](handoffs/2026-09-06-github-profile-closure.md)
 
 ## GitHub profile execution (2026-09-06)
 
@@ -23,6 +23,15 @@
   jobs profile off, private contributions off, and pins set to `dsaas-quietforge` + `quietforge-proof`.
 
 **Next GitHub gate:** Commander revokes/rotates the exposed Google key, then complete G1 account security review and G2 history/IP clearance before any pinning.
+
+## GitHub profile closure (2026-09-06)
+
+- Live Chrome walkthrough completed on `github.com/settings/profile` and the public profile.
+- Profile settings: LinkedIn shown; public email, achievements, private contribution count,
+  local time and jobs profile hidden/off.
+- Profile pins: `dsaas-quietforge` and `quietforge-proof`.
+- `todo.json` updated to v2.1.0 with `phase-github-profile` and five promotion tasks.
+- Build/typecheck verified after the documentation/todo updates; no production deploy made.
 
 **Profile audit:** [`plans/2026-09-06-github-profile-polish-plan.md`](plans/2026-09-06-github-profile-polish-plan.md)
 **Completed:** Profile README v2 copy hierarchy, `Current focus` and CTA order pushed as `ecbb343`.

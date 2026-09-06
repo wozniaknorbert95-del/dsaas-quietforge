@@ -11,6 +11,7 @@ profile-index rewrite, public proof baseline and visibility containment.
 
 - Confirmed the real account inventory: 21 repositories, initially 8 public and 13 private.
 - Rewrote and pushed the profile repository as commit `1b644bf`.
+- Added and pushed the profile system-map visual as commit `efbceac`.
 - Added profile `SECURITY.md` and `CODEOWNERS`; updated repository description and topics.
 - Rewrote `portfolio` as `PUBLIC PROOF CANDIDATE - HOLD`, added security baseline and
   updated Next.js from `16.2.6` to `16.3.4`.
@@ -36,6 +37,7 @@ QuietForge typecheck/build baseline: PASS before docs-only updates (57 pages)
 Profile links /lab/, /proof/, /book-a-scan/: HTTP 200
 Portfolio npm audit --omit=dev: 0 vulnerabilities
 Portfolio npm run build: PASS (49 routes)
+Profile visual asset: present at `assets/quietforge-system-map.svg`
 Profile and portfolio git diff --check: PASS
 GitHub Secret Scanning: profile 0; portfolio 0; dsaas-quietforge 0; flexgrafik-app 0; jadzia 1 open
 ```

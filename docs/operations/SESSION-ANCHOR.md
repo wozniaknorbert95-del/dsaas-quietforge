@@ -12,6 +12,7 @@
 
 - G0 inventory confirmed 21 repositories: 5 public and 16 private after cleanup.
 - Profile repository rewritten and pushed as `1b644bf`; `SECURITY.md`, `CODEOWNERS`, topics and description added.
+- Profile visual layer added and pushed as `efbceac`: accessible QuietForge system-map SVG in the README.
 - `portfolio` rewritten as `PUBLIC PROOF CANDIDATE - HOLD`, pushed as `13309bd`; Next.js updated to `16.3.4`, `npm audit` clean, build passed.
 - `dsaas-platform-main-proposed` and `zzpackage-proposed` made private staging repositories.
 - `jadzia` made private after GitHub Secret Scanning reported one open `google_api_key` alert in historical commit `919ad1d...`.

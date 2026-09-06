@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-06  
 **Scope:** `wozniaknorbert95-del` GitHub account and repository portfolio  
-**Prerequisite:** QuietForge Builder's Lab deployed and verified
+**Prerequisite:** QuietForge Builder's Lab deployed, post-deploy smoke approved, and public wording accepted
 
 ## Executive verdict
 
@@ -26,6 +26,96 @@ The order is mandatory:
 Inventory -> account security -> secret/IP clearance -> visibility decisions
 -> README/security baseline -> profile rewrite -> pins -> public promotion
 ```
+
+## Professional benchmark audit (2026-09-06)
+
+There is no exact public GitHub equivalent of a solo **Conversion Systems Architect for
+SMBs**. The correct benchmark is therefore a small set of adjacent, high-signal
+builders rather than generic AI influencer profiles:
+
+| Profile | What is working | Adopt for Norbert | Do not copy |
+|---|---|---|---|
+| [Simon Willison](https://github.com/simonw) | Self-updating profile README, current releases, blog/TIL trail and a small set of canonical pinned tools | Make current work and evidence easy to verify; maintain a visible proof trail | His scale, follower count or open-source volume |
+| [Hamel Husain](https://github.com/hamelsmu) | Clear independent-consultant identity, one operating theme (evals), teaching/writing and relevant pinned work | Explain the method behind delivery: evaluation, failure analysis, safety and measurement | Broad ML authority that is not yet Norbert's claim |
+| [Jason Liu](https://github.com/jxnl) | Consulting plus one flagship open-source product, concise profile README, external knowledge hub and curated pins | Select one flagship proof asset and connect GitHub to QuietForge/Lab | A public product-download model for private QuietForge IP |
+| [Matt Van Horn](https://github.com/mvanhorn) | Very short founder positioning, explicit current builds and proof through shipped agent tooling | Keep the profile current and outcome-led; show what is being built now | Star counts and claims that are not independently verified |
+
+[Harrison Chase](https://github.com/hwchase17) is a useful negative control: major
+agent-platform impact does not automatically produce a strong personal profile
+README. GitHub can show technical history, but it must still explain the person,
+the work and the next action.
+
+### Benchmark-derived target state
+
+After G0-G7, the account should have:
+
+- one clear identity: Norbert Wozniak, Conversion Systems Architect, QuietForge;
+- one primary destination: QuietForge, with Builder's Lab as the technical proof layer;
+- one curated proof chain: role -> system -> evidence -> boundary -> next action;
+- three or four verified pins, not a public dump of all repositories;
+- at least one sanitized, reproducible technical proof with setup, test/build result and
+  a walkthrough or live fallback;
+- a visible maintenance signal: verified date, release/changelog or dated evidence note;
+- explicit separation between technical proof, owner-operated reference and commercial
+  client outcome;
+- no invented OSS, client, autonomy, ROI or traction claims.
+
+This is a credibility target, not a follower or star target.
+
+## Audit findings and plan amendments
+
+### P0 - Acceptance gate correction
+
+The original final gate says `G0-G5` are complete while the promotion work and buyer,
+technical and truth tests live in `G6-G7`. Promotion must require **G0-G7**, including
+the pin review and acceptance review. This is a plan defect, not an optional improvement.
+
+### P0 - Public profile baseline
+
+The live account still exposes the exact risks this plan identifies: the profile README
+uses autonomous-systems wording, offers a free scan, links `/contact`, and names
+unresolved repositories. The profile repository is also MIT-licensed while the public
+proof and tenant repositories have not yet received a deliberate licence/IP decision.
+G5 must replace the live copy, not merely append new sections.
+
+### P1 - Proof must be runnable or inspectable
+
+The README contract is strong, but a list of claims is not a proof. Every selected public
+proof repository must include one of the following before pinning:
+
+- a clean local quickstart with a deterministic test/build command; or
+- a sanitized walkthrough with diagrams, fixtures, screenshots and a live fallback.
+
+If neither is possible, the repository remains private and the profile links to the
+Builder's Lab explanation instead.
+
+### P1 - Add a maintenance signal
+
+The plan needs a lightweight maintenance policy: update the profile's `Current work`
+and each public proof repository's `last verified` field after a meaningful release, and
+review the complete profile at least monthly during the first quarter. Do not use a
+contribution heatmap or statistics widget as evidence.
+
+### P1 - Add an evidence ladder
+
+The profile must keep the existing proof tiers only: `PROVEN`, `DEMO` and `PLANNED`.
+The evidence context is then made explicit without creating a fourth proof tier:
+
+- `PROVEN` - reproducible technical evidence or a measured owner-operated result;
+- `OWNER-OPERATED REFERENCE` - Norbert's own business/build laboratory, never an
+  external client case;
+- `DEMO` - deliberate fixture or walkthrough;
+- `PLANNED` - future work with no public proof yet.
+
+The existing repository statuses remain the source of truth; this distinction only makes
+the profile-level reading order and evidence context explicit.
+
+### P2 - Keep the positioning narrow
+
+The source identity document describes Company Brains, multi-agent orchestration and
+AI-assisted engineering. Those are capabilities and method. The public GitHub headline
+must remain **Conversion Systems Architect** / **system builder for small businesses**,
+with AI and autonomy explained only where evidence and proof boundaries support them.
 
 ## Target operating model
 
@@ -83,15 +173,35 @@ The account currently exposes eight public repositories:
 - `Flex-vcms`;
 - `flexgrafik-app`.
 
-The following names cannot currently be treated as public canonical repositories under the account without confirmation:
+The following names are confirmed private and must not be treated as public canonical repositories:
 
-- `dsaas-platform-main`;
-- `zzpackage`;
-- `agent-os-ui`;
-- `flexgrafik-nl`;
-- `flexgrafik-inspire`.
+- `dsaas-platform-main` - confirmed private;
+- `zzpackage` - confirmed private;
+- `agent-os-ui` - confirmed private;
+- `flexgrafik-nl` - confirmed private;
+- `flexgrafik-inspire` - confirmed private.
 
 Live URLs and GitHub repositories are separate inventory items. A working application URL does not prove that its source repository is public or belongs to this account.
+
+### G0 verification (2026-09-06)
+
+The live account inventory was checked with GitHub CLI:
+
+- account owner: `wozniaknorbert95-del`;
+- total repositories: 21;
+- public repositories before G3 cleanup: 8;
+- private repositories before G3 cleanup: 13;
+- default branches vary between `main` and `master` and must be recorded per repository;
+- `dsaas-platform-main`, `zzpackage`, `agent-os-ui`, `flexgrafik-nl` and
+  `flexgrafik-inspire` are confirmed private, not unresolved public canonicals;
+- `dsaas-platform-main-proposed` and `zzpackage-proposed` were public staging repositories
+  before G3 and are now private; they must not be presented as production canonicals;
+- the profile repository was rewritten and pushed as commit `1b644bf`;
+- both `*-proposed` repositories were made private during G3, and `jadzia` was made private
+  after GitHub Secret Scanning reported an open Google API key alert; the account now has
+  5 public and 16 private repositories;
+- GitHub display name, bio and website fields remain pending because the authenticated
+  CLI token lacks the `user` scope.
 
 ## Repository taxonomy
 
@@ -317,7 +427,7 @@ Default commercial model:
 
 Special caution:
 
-- `dsaas-platform-main-proposed` and `zzpackage-proposed` currently expose MIT licensing. Their history and authorship must be reviewed before changing visibility or reusing code commercially.
+- `dsaas-platform-main-proposed` and `zzpackage-proposed` contain MIT licensing in their history. Their history and authorship must be reviewed before reusing code commercially.
 - `flexgrafik-app` claims MIT in README but must be checked for a real top-level licence file.
 - Absence of a licence is not a free-use licence, but it is also not a substitute for a written proprietary ownership notice.
 
@@ -340,7 +450,7 @@ Create a private registry with:
 - deployment target;
 - evidence owner and review date.
 
-Blocked until canonical URLs are confirmed for:
+The previously unresolved names were checked in G0 and are confirmed private:
 
 - `dsaas-platform-main`;
 - `zzpackage`;
@@ -374,10 +484,22 @@ Recommended first decisions:
 | `portfolio` | Public proof, rewrite README |
 | `Flex-vcms` | Hold public until sanitized README/security gate |
 | `dsaas-quietforge` | Hold public/pin until tenant/IP review |
-| `jadzia` | Private or sanitized proof fork |
+| `jadzia` | Made private after open secret alert; sanitized proof only later |
 | `flexgrafik-app` | Hold until Lead Scout identity is confirmed |
 | `*-proposed` | Private staging or archive, never pin |
 | unresolved repos | No public link until URL confirmation |
+
+### G3/G4 execution status (2026-09-06)
+
+- Profile repository: public, README/security baseline complete, pushed as `1b644bf`.
+- `portfolio`: public proof candidate, README/security baseline complete, dependency audit
+  clean after Next.js `16.3.4` update, build passed; remains `HOLD` and is not pinned.
+- `dsaas-platform-main-proposed`: changed to private staging.
+- `zzpackage-proposed`: changed to private staging.
+- `Flex-vcms`, `flexgrafik-app` and `dsaas-quietforge`: remain public but are not approved
+  for pinning until their individual history/IP review passes.
+- `jadzia`: private after one open `google_api_key` Secret Scanning alert; the key must be
+  revoked/rotated before the alert can be closed.
 
 ### G4 - Repository baseline
 
@@ -392,6 +514,8 @@ For each approved public repo:
 - clean setup or explicit docs-only state;
 - release/changelog policy;
 - last verified/review due fields.
+- one reproducible quickstart or inspectable sanitized walkthrough;
+- one visible maintenance signal after meaningful changes.
 
 ### G5 - Profile rewrite
 
@@ -401,6 +525,10 @@ For each approved public repo:
 - link `/lab/` as primary technical proof;
 - present only curated repositories;
 - include ownership/licensing boundary.
+- replace autonomous/free-scan/contact language with the approved QuietForge CTA path;
+- add a short `Current work` or `Last verified` signal without vanity statistics.
+- account display name, bio and website remain pending until the Commander authorizes a
+  GitHub token refresh with the `user` scope.
 
 ### G6 - Pin and promote
 
@@ -450,9 +578,10 @@ Truth test:
 
 GitHub promotion is allowed only when:
 
-- G0–G5 are complete;
+- G0–G7 are complete;
 - profile README has no dead links or outdated offer;
 - selected pinned repos pass README/security/licence review;
+- at least one selected proof path is reproducible or inspectable without exposing tenant data;
 - public repo history has no unresolved secret/IP blocker;
 - profile links to `/lab/` and `/book-a-scan/`;
 - proposed/unresolved repos are not presented as canonical;

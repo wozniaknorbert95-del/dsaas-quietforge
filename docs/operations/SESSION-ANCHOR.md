@@ -6,7 +6,19 @@
 
 **Handoff:** [`handoffs/2026-08-30-home-stale-data-sync.md`](handoffs/2026-08-30-home-stale-data-sync.md)
 
-**Current handoff:** [`handoffs/2026-09-05-builder-lab-implementation.md`](handoffs/2026-09-05-builder-lab-implementation.md)
+**Current handoff:** [`handoffs/2026-09-06-github-profile-execution.md`](handoffs/2026-09-06-github-profile-execution.md)
+
+## GitHub profile execution (2026-09-06)
+
+- G0 inventory confirmed 21 repositories: 5 public and 16 private after cleanup.
+- Profile repository rewritten and pushed as `1b644bf`; `SECURITY.md`, `CODEOWNERS`, topics and description added.
+- `portfolio` rewritten as `PUBLIC PROOF CANDIDATE - HOLD`, pushed as `13309bd`; Next.js updated to `16.3.4`, `npm audit` clean, build passed.
+- `dsaas-platform-main-proposed` and `zzpackage-proposed` made private staging repositories.
+- `jadzia` made private after GitHub Secret Scanning reported one open `google_api_key` alert in historical commit `919ad1d...`.
+- No repositories are approved for pinning yet. `Flex-vcms` remains HOLD because of internal operational references and historical exposure documentation.
+- Account display name/bio/website are pending `gh auth refresh -h github.com -s user`.
+
+**Next GitHub gate:** Commander revokes/rotates the exposed Google key, then complete G1 account security review and G2 history/IP clearance before any pinning.
 
 ## Builder's Lab implementation (2026-09-05)
 

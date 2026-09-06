@@ -14,6 +14,8 @@ profile-index rewrite, public proof baseline and visibility containment.
 - Added and pushed the profile system-map visual as commit `efbceac`.
 - Updated the GitHub account display name, bio and website after authorizing the `user` scope.
 - Normalized descriptions and topics for the public tenant, VCMS hold candidate and owner-operated reference app.
+- Created and published `quietforge-proof` as the first sanitized public `DEMO` proof;
+  `npm test` passed, Secret Scanning returned `0`, and the profile links it.
 - Added profile `SECURITY.md` and `CODEOWNERS`; updated repository description and topics.
 - Rewrote `portfolio` as `PUBLIC PROOF CANDIDATE - HOLD`, added security baseline and
   updated Next.js from `16.2.6` to `16.3.4`.

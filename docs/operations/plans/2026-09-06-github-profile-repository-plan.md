@@ -188,7 +188,7 @@ Live URLs and GitHub repositories are separate inventory items. A working applic
 The live account inventory was checked with GitHub CLI:
 
 - account owner: `wozniaknorbert95-del`;
-- total repositories: 21;
+- total repositories: 22;
 - public repositories before G3 cleanup: 8;
 - private repositories before G3 cleanup: 13;
 - default branches vary between `main` and `master` and must be recorded per repository;
@@ -199,7 +199,7 @@ The live account inventory was checked with GitHub CLI:
 - the profile repository was rewritten and pushed as commit `1b644bf`;
 - both `*-proposed` repositories were made private during G3, and `jadzia` was made private
   after GitHub Secret Scanning reported an open Google API key alert; the account now has
-  5 public and 16 private repositories;
+  6 public and 16 private repositories;
 - GitHub display name, bio and website fields were updated after the `user` scope was
   authorized: `Norbert Wozniak | QuietForge`, QuietForge bio and website.
 
@@ -494,6 +494,8 @@ Recommended first decisions:
 - Profile repository: public, README/security baseline complete, pushed as `1b644bf`.
 - `portfolio`: public proof candidate, README/security baseline complete, dependency audit
   clean after Next.js `16.3.4` update, build passed; remains `HOLD` and is not pinned.
+- `quietforge-proof`: public `DEMO` proof, `npm test` PASS, GitHub Secret Scanning `0`,
+  sanitized SVG/fixture/manifest and no client or production claim.
 - `dsaas-platform-main-proposed`: changed to private staging.
 - `zzpackage-proposed`: changed to private staging.
 - `Flex-vcms`, `flexgrafik-app` and `dsaas-quietforge`: remain public but are not approved

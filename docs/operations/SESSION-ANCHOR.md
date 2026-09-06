@@ -10,10 +10,11 @@
 
 ## GitHub profile execution (2026-09-06)
 
-- G0 inventory confirmed 21 repositories: 5 public and 16 private after cleanup.
+- G0 inventory confirmed 22 repositories: 6 public and 16 private after cleanup.
 - Profile repository rewritten and pushed as `1b644bf`; `SECURITY.md`, `CODEOWNERS`, topics and description added.
 - Profile visual layer added and pushed as `efbceac`: accessible QuietForge system-map SVG in the README.
 - `portfolio` rewritten as `PUBLIC PROOF CANDIDATE - HOLD`, pushed as `13309bd`; Next.js updated to `16.3.4`, `npm audit` clean, build passed.
+- `quietforge-proof` published as the first public `DEMO` proof; `npm test` PASS and Secret Scanning `0`.
 - `dsaas-platform-main-proposed` and `zzpackage-proposed` made private staging repositories.
 - `jadzia` made private after GitHub Secret Scanning reported one open `google_api_key` alert in historical commit `919ad1d...`.
 - No repositories are approved for pinning yet. `Flex-vcms` remains HOLD because of internal operational references and historical exposure documentation.

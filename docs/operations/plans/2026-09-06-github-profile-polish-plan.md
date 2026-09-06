@@ -125,10 +125,14 @@ polished profile from being mistaken for a fully cleared public proof portfolio.
 
 ### Polish P1 - First proof candidate
 
-- Choose exactly one candidate: `portfolio` or a new deliberate sanitized proof repository.
-- Give it one business outcome, one reproducible path and one evidence owner.
-- Add release/changelog signal and `last verified` date.
-- Pin only after buyer, technical, truth and security tests pass.
+- Choose exactly one candidate: `quietforge-proof` is now the selected public `DEMO` proof;
+  `portfolio` remains `HOLD`.
+- Give it one business outcome, one reproducible path and one evidence owner. **Done:**
+  governed quote-to-handover workflow, `npm test`, manifest and synthetic fixture.
+- Add release/changelog signal and `last verified` date. **Done:** evidence manifest and
+  README verification date.
+- Pin only after buyer, technical, truth and security tests pass; pinning remains pending
+  until the account-level promotion gate is complete.
 
 ### Polish P2 - Ongoing maintenance
 

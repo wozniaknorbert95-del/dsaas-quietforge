@@ -57,3 +57,6 @@ reproducible proof repository. Only then execute pinning and G7 acceptance revie
 
 The profile audit and polish plan is recorded at
 `docs/operations/plans/2026-09-06-github-profile-polish-plan.md`.
+
+Profile README v2 was completed and pushed as `ecbb343`: dated `Current focus`, reordered
+CTAs, three outcome-led build statements and a linked proof boundary.

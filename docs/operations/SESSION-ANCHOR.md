@@ -22,7 +22,8 @@
 **Next GitHub gate:** Commander revokes/rotates the exposed Google key, then complete G1 account security review and G2 history/IP clearance before any pinning.
 
 **Profile audit:** [`plans/2026-09-06-github-profile-polish-plan.md`](plans/2026-09-06-github-profile-polish-plan.md)
-**Next focused task:** Profile README v2 copy hierarchy and `Current focus`; no additional graphics before first proof approval.
+**Completed:** Profile README v2 copy hierarchy, `Current focus` and CTA order pushed as `ecbb343`.
+**Next focused task:** prepare the first sanitized proof candidate; no additional graphics before proof approval.
 
 ## Builder's Lab implementation (2026-09-05)
 

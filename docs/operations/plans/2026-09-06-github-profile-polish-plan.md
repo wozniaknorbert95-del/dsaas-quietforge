@@ -82,6 +82,32 @@ no fake metrics. Future visual work should add at most:
 
 ## Execution phases
 
+## Definition of Done
+
+### Profile README DoD
+
+- [x] Identity is clear in five seconds: person, role, audience and QuietForge.
+- [x] One visual anchor supports the message without decorative clutter.
+- [x] CTA order is explicit: QuietForge -> Builder's Lab -> Automation Scan.
+- [x] `Current focus` is dated and states the present proof-building activity.
+- [x] `What I build` uses three outcome-led statements, not a feature dump.
+- [x] Proof boundary contains only `PROVEN`, `DEMO`, `PLANNED` plus the owner-operated context.
+- [x] No free offer, dead `/contact` link, unresolved canonical repo or unsupported client claim.
+- [x] All profile links return `200` and the README renders correctly on GitHub.
+- [x] Profile repository has `SECURITY.md`, `CODEOWNERS`, licence/IP wording and a review date.
+
+### Profile Promotion DoD
+
+- [ ] GitHub account security review is complete.
+- [ ] All public repositories selected for pins pass history, secret, IP and licence review.
+- [ ] At least one selected proof repository has a reproducible or inspectable proof path.
+- [ ] The first proof repository is labelled and linked with a verified last-review date.
+- [ ] G2 blockers, including deferred secret rotation, are resolved or explicitly rejected by the Commander.
+- [ ] Three or four pins pass buyer, technical and truth acceptance tests.
+
+The README DoD can be complete while Promotion DoD remains blocked. This prevents a
+polished profile from being mistaken for a fully cleared public proof portfolio.
+
 ### Polish P0 - Security and visibility gate
 
 - Keep `jadzia` private while Google key rotation is deferred.
@@ -138,6 +164,8 @@ role, proof tier, security boundary, licence decision and review date.
 
 ## Next implementation task
 
-The next focused session should implement **Polish P1 - Profile README v2 only**:
-copy hierarchy, `Current focus`, CTA order and concise proof boundary. Do not add more
-graphics until the first proof candidate is approved.
+**Completed 2026-09-06:** Polish P1 - Profile README v2: copy hierarchy, `Current focus`,
+CTA order and concise proof boundary.
+
+The next focused session should prepare the first proof candidate. Do not add more graphics
+until that candidate is approved.

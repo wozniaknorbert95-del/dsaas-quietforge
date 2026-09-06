@@ -19,6 +19,8 @@
 - `jadzia` made private after GitHub Secret Scanning reported one open `google_api_key` alert in historical commit `919ad1d...`.
 - No repositories are approved for pinning yet. `Flex-vcms` remains HOLD because of internal operational references and historical exposure documentation.
 - Account display name/bio/website updated through GitHub API after `user` scope authorization.
+- Browser walkthrough completed: LinkedIn added, public email hidden, Achievements hidden,
+  jobs profile off, private contributions off, and pins set to `dsaas-quietforge` + `quietforge-proof`.
 
 **Next GitHub gate:** Commander revokes/rotates the exposed Google key, then complete G1 account security review and G2 history/IP clearance before any pinning.
 

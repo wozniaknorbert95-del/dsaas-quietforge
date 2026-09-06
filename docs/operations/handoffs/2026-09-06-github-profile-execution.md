@@ -62,3 +62,7 @@ The profile audit and polish plan is recorded at
 
 Profile README v2 was completed and pushed as `ecbb343`: dated `Current focus`, reordered
 CTAs, three outcome-led build statements and a linked proof boundary.
+
+Live browser walkthrough completed: LinkedIn is shown, public email/achievements/private
+contributions/local time are hidden, jobs profile is off, and exactly two pins are set:
+`dsaas-quietforge` and `quietforge-proof`.

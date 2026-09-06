@@ -95,6 +95,10 @@ no fake metrics. Future visual work should add at most:
 - [x] No free offer, dead `/contact` link, unresolved canonical repo or unsupported client claim.
 - [x] All profile links return `200` and the README renders correctly on GitHub.
 - [x] Profile repository has `SECURITY.md`, `CODEOWNERS`, licence/IP wording and a review date.
+- [x] Public email remains hidden; LinkedIn is the only social account shown.
+- [x] Achievements are hidden to keep the profile focused on professional proof.
+- [x] Jobs profile remains off; private contributions and local time remain hidden.
+- [x] Exactly two initial pins are set: `dsaas-quietforge` and `quietforge-proof`.
 
 ### Profile Promotion DoD
 

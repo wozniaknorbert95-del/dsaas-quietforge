@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Quietforge Portfolio Rebuild — Master Todo",
-  "version": "2.0.0",
-  "updated": "2026-08-09",
+  "version": "2.1.0",
+  "updated": "2026-09-06",
   "source_docs": [
     "Tak to ma być/Home — Copy & Wireframe (Filar 2).md",
     "Tak to ma być/Inbox Killer — Copy & Wireframe (Filar 2).md",
@@ -923,6 +923,83 @@
             "npm run build passes with zero errors",
             "Verification script compiles both client graph models successfully",
             "Handoff doc detailing dSaaS multi-tenant architecture and deployment guides complete"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-github-profile",
+      "name": "GitHub Profile — Full Promoted Technical Portfolio",
+      "sessions": 2,
+      "priority": "highest",
+      "depends_on": [],
+      "tasks": [
+        {
+          "id": "GHP.1",
+          "title": "Freeze the public proof map",
+          "type": "research",
+          "description": "Maintain one canonical inventory of all public/private repositories, role, proof tier, owner, licence/IP boundary, security state and last verification date.",
+          "dod": [
+            "Every public repository has one role: PROFILE INDEX, PUBLIC PROOF, PRIVATE TENANT, PRIVATE CORE, PROPOSED or ARCHIVE",
+            "No unresolved repository is linked from the profile",
+            "HOLD repositories are visibly excluded from pins and promotion",
+            "Inventory records the Commander decision when a security rotation is deliberately deferred"
+          ]
+        },
+        {
+          "id": "GHP.2",
+          "title": "Clear the public repository security and IP gate",
+          "type": "qa",
+          "description": "Run full history, branch, tag, release and Actions-artifact review for each candidate proof repository. Rotate or formally defer exposed credentials, and record ownership/licence decisions before pinning.",
+          "dod": [
+            "Secret scan result recorded for every candidate",
+            "No active secret alert remains on a repository selected for promotion",
+            "Tenant data, PII, internal hosts, local paths and operational screenshots are absent",
+            "Every selected repository has SECURITY.md, CODEOWNERS and explicit licence/IP wording",
+            "jadzia remains private and excluded while its Google API key rotation is deferred"
+          ]
+        },
+        {
+          "id": "GHP.3",
+          "title": "Graduate one proof path from DEMO to approved public evidence",
+          "type": "content",
+          "description": "Use quietforge-proof as the first candidate. Keep it DEMO until the evidence owner approves the boundary; graduate only when a reproducible technical result or measured owner-operated result is traceable.",
+          "files": [
+            "quietforge-proof/README.md",
+            "quietforge-proof/proof/evidence.json"
+          ],
+          "dod": [
+            "One business outcome is stated in plain language",
+            "A reproducible validator or inspectable walkthrough passes",
+            "Evidence tier is exactly PROVEN, DEMO or PLANNED",
+            "What it proves and what it does not prove are explicit",
+            "Last verified date and evidence owner are present"
+          ]
+        },
+        {
+          "id": "GHP.4",
+          "title": "Pin and publish the verified proof set",
+          "type": "ops",
+          "description": "After GHP.1-GHP.3 pass, manually configure the GitHub profile pins and verify the public profile as a buyer and technical reviewer. Initial target: quietforge-proof DEMO plus dsaas-quietforge owner-operated reference after its tenant/IP gate.",
+          "dod": [
+            "Three or fewer pins are used until the portfolio has more than one approved proof",
+            "quietforge-proof is labelled DEMO and never presented as a client case",
+            "dsaas-quietforge is labelled owner-operated reference if approved",
+            "portfolio, Flex-vcms, flexgrafik-app and jadzia are not pinned while HOLD/private gates remain",
+            "Profile README, repository descriptions and pins tell one consistent story"
+          ]
+        },
+        {
+          "id": "GHP.5",
+          "title": "Run final promotion acceptance and maintenance cadence",
+          "type": "qa",
+          "description": "Perform the 5-second, 30-second, proof, trust and maintenance tests. Establish a monthly profile review and update Current focus after meaningful proof releases.",
+          "dod": [
+            "Visitor understands who Norbert is, who QuietForge serves and the next action",
+            "Visitor can distinguish DEMO, PROVEN, PLANNED and owner-operated reference",
+            "No dead links, unsupported ROI/client/autonomy claims or free-code implication",
+            "All selected pins pass security, licence, setup and truth review",
+            "Commander approves public promotion"
           ]
         }
       ]

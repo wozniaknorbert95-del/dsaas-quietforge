@@ -1,14 +1,13 @@
 name: Deploy to Vercel
 
+# Phase 2 + brain.md: production deploy is manual (Commander). No push-triggered deploys.
 on:
-  push:
-    branches: [master, main]
+  workflow_dispatch:
 
 jobs:
   deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
 

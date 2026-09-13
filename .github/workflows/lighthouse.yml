@@ -1,8 +1,7 @@
 name: Lighthouse CI
 
+# Phase 2 cost cut: no automatic PR runs (npm ci + build + lighthouse). Run on demand.
 on:
-  pull_request:
-    branches: [master, main]
   workflow_dispatch:
 
 jobs:

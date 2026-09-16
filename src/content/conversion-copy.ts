@@ -14,9 +14,10 @@ export const HERO = {
   eyebrow: 'Conversion systems architect for small businesses · EU',
   headline: 'Quotes, leads and inbox. You approve before anything sends.',
   subline:
-    'I automate quote flows, lead qualification and inbox triage for Dutch small businesses. The system collects the right inputs and prepares the next step — nothing customer-facing goes out without your click.',
+    'I automate quote flows, lead qualification and inbox triage for Dutch small businesses. The system collects the right inputs and prepares the next step.',
+  hitlLine: 'The system proposes. You decide. Nothing customer-facing sends without your click.',
   dualBrandLine:
-    'Runs on FlexGrafik — my own branding and print business in the Netherlands. Owner-operated reference lab, not a client case.',
+    'QuietForge sells the system. FlexGrafik runs it live — owner-operated lab in the Netherlands, not a client case.',
   beats: {
     problem: {
       label: 'Problem',
@@ -55,9 +56,12 @@ export const PUBLIC_OFFER = {
   scanName: 'Automation Scan',
   scanPrice: formatEuro(PRICING_NUMBERS.discovery),
   scanNote: '90 minutes. The report is yours. Credited toward implementation.',
+  scanForWho: 'Not sure what to automate first — priorities, ROI and a written plan.',
   implementationName: 'Implementation',
   implementationPrice: `from ${formatEuro(PRICING_NUMBERS.implementationFrom)}`,
-  implementationNote: 'Fixed scope, 2–4 weeks, 1–3 modules.',
+  implementationNote: 'One concrete problem — first module usually 2–3 weeks after sign-off.',
+  buildForWho: 'One clear bottleneck — quote flow, inbox or lead hand-off.',
+  careForWho: 'You want monitoring, fixes and one improvement per month.',
   maintenanceName: 'Maintenance',
   maintenancePrice: `from ${formatEuro(PRICING_NUMBERS.maintenanceFrom)}/mo`,
   maintenanceNote: 'Monitoring, fixes, one optimisation per month. Cancel monthly.',
@@ -216,8 +220,16 @@ export const ABOUT = {
   kvk: 'KVK 89057554',
 } as const;
 
+/** Three buyer pains — home systems lead (SMB Clarity audit §6.2). */
+export const HOME_SYSTEMS_PAINS = [
+  'Quotes stuck in email ping-pong.',
+  'Inbox eating the first hour of your day.',
+  'Website traffic that never becomes a qualified lead.',
+] as const;
+
 export const FOOTER = {
   tagline: 'Systems that give you back your time.',
+  trustLine: 'Rotterdam, Netherlands · KVK 89057554 · Service in EN and NL',
   portfolioPrompt: 'This site runs on its own integrated platform.',
   portfolioLink: "Builder's Lab →",
   portfolioHref: '/lab/',

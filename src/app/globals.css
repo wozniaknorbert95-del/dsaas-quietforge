@@ -422,6 +422,13 @@ body[data-app="services"] {
   color: var(--qf-text-dim);
 }
 
+.qf-hero-hitl {
+  margin: 0 0 var(--qf-sp-4);
+  font-size: var(--qf-fs-base);
+  font-weight: 600;
+  color: var(--qf-accent);
+}
+
 .qf-hero-dual {
   margin: 0 0 var(--qf-sp-5);
   font-family: var(--qf-mono);

@@ -31,6 +31,7 @@ export default function Footer() {
             </div>
             <p className="mt-1 font-mono text-xs text-[var(--qf-accent)]">{POSITIONING.label}</p>
             <p className="mt-[var(--qf-sp-3)] text-[var(--qf-text-faint)]">{FOOTER.tagline}</p>
+            <p className="mt-[var(--qf-sp-2)] text-[var(--qf-text-faint)]">{FOOTER.trustLine}</p>
             <SocialLinks className="mt-[var(--qf-sp-4)]" />
           </div>
 

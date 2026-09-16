@@ -1,16 +1,12 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-16 · **Status:** DEPLOYED · SMB Clarity W1 LIVE
+**Updated:** 2026-09-16 · **Status:** DEPLOYED · SMB Clarity W1+W2 LIVE
 
-**Commit:** `c5991aa` on `main`
+**Commit:** (see latest on `main` — W2 polish after `c5991aa`)
 
-**Deployment:** `dpl_HGNahbN4Wz3CartRidGdjCukkoqv` · project `flexgrafik-services` · Production
+**Current handoff:** [`handoffs/2026-09-16-smb-clarity-w2-polish.md`](handoffs/2026-09-16-smb-clarity-w2-polish.md)
 
-**Live:** https://quietforge.flexgrafik.nl/ — hero quotes/leads/inbox · 3 flagships · FlexGrafik proof story
-
-**Current handoff:** [`handoffs/2026-09-16-smb-clarity-w1.md`](handoffs/2026-09-16-smb-clarity-w1.md)
-
-**Prior:** [`handoffs/2026-09-16-lab-prod-live.md`](handoffs/2026-09-16-lab-prod-live.md) · Lab `dpl_rxjATdSR5mzj31kj9b7WmroWFV1q`
+**Prior:** [`handoffs/2026-09-16-smb-clarity-w1.md`](handoffs/2026-09-16-smb-clarity-w1.md) · Lab `dpl_rxjATdSR5mzj31kj9b7WmroWFV1q`
 
 **Audit source:** [`../audits/2026-09-16/smb-clarity-external-audit.md`](../audits/2026-09-16/smb-clarity-external-audit.md)
 

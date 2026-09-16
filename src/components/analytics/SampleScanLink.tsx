@@ -3,13 +3,13 @@
 import { ARTEFACTS } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
 
-export default function SampleScanLink() {
+export default function SampleScanLink({ location = 'book_a_scan' }: { location?: string }) {
   return (
     <a
       href={ARTEFACTS.automationMapSample}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent('sample_scan_download', { location: 'book_a_scan' })}
+      onClick={() => trackEvent('sample_scan_download', { location })}
       className="text-[var(--qf-accent)] hover:underline"
     >
       See a sample scan report (PDF)

@@ -7,7 +7,15 @@ import StickyCta from '@/components/layout/StickyCta';
 import IntentSystems from '@/components/v2/IntentSystems';
 import { PRICING, ROUTES } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
-import { CTAS, HERO, POSITIONING, PUBLIC_OFFER, REFERENCE_PROGRAM } from '@/content/conversion-copy';
+import {
+  ABOUT,
+  CTAS,
+  HERO,
+  HOME_SYSTEMS_PAINS,
+  POSITIONING,
+  PUBLIC_OFFER,
+  REFERENCE_PROGRAM,
+} from '@/content/conversion-copy';
 import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
 import ReferenceCta from '@/components/home/ReferenceCta';
 import SampleScanLink from '@/components/analytics/SampleScanLink';
@@ -90,6 +98,10 @@ const FAQ = [
     a: 'Intake form data is processed on EU hosting. Analytics are anonymous and consent-based. Full detail is on Security and Legal.',
   },
   {
+    q: 'Can I run this on my own VPS?',
+    a: 'Yes, when the scan says it fits. You keep the keys and the repo — we scope hosting before build, not as a surprise later.',
+  },
+  {
     q: 'Where does the code live?',
     a: 'In your repository from day one. I am replaceable by design.',
   },
@@ -141,6 +153,7 @@ export default function Home() {
           <p className="qf-hero-eyebrow">{POSITIONING.label} · EU</p>
           <h1 className="qf-hero-headline">{HERO.headline}</h1>
           <p className="qf-hero-subline">{HERO.subline}</p>
+          <p className="qf-hero-hitl">{HERO.hitlLine}</p>
           <div className="qf-hero-cta-band">
             <Link href={ROUTES.bookAScan} className="qf-hero-cta-primary">
               <span className="qf-hero-cta-primary-label">
@@ -171,7 +184,7 @@ export default function Home() {
           </div>
           <p className="qf-hero-anti">{POSITIONING.antiPositioning}</p>
           <p className="qf-hero-proof-strip">{HERO.dualBrandLine}</p>
-          <p className="qf-hero-chip">{HERO.microTrust}</p>
+          <p className="qf-hero-chip">{HERO.proofChip}</p>
         </div>
       </section>
 
@@ -206,7 +219,15 @@ export default function Home() {
       </Section>
 
       <Section data-home-section="systems">
-        <IntentSystems heading="Three places owners lose hours" home />
+        <h2 className="qf-sys-h2">Three places owners lose hours</h2>
+        <ul className="mt-3 max-w-2xl list-disc space-y-1 pl-5 text-[var(--qf-text-dim)]">
+          {HOME_SYSTEMS_PAINS.map((pain) => (
+            <li key={pain}>{pain}</li>
+          ))}
+        </ul>
+        <div className="mt-6">
+          <IntentSystems heading="" home />
+        </div>
       </Section>
 
       <Section data-home-section="approach">
@@ -233,7 +254,7 @@ export default function Home() {
           .
         </p>
         <p className="mt-4">
-          <SampleScanLink />
+          <SampleScanLink location="home_approach" />
         </p>
         <Link href={ROUTES.approach} className="mt-6 inline-block qf-sys-link">
           Full approach →
@@ -341,11 +362,11 @@ export default function Home() {
 
       <Section data-home-section="about">
         <p className="qf-home-kicker">About</p>
-        <h2 className="qf-sys-h2">Norbert · your systems architect</h2>
+        <h2 className="qf-sys-h2">Norbert Wozniak · Rotterdam</h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
-              Conversion Systems Architect. Thirty trades taught me how
-          small businesses actually work; three years building systems for my own
-          company taught me what they really cost — and give back.
+          Conversion Systems Architect for Dutch small businesses. Thirty trades taught me
+          how owners actually work; three years building systems for FlexGrafik taught me
+          what they cost — and give back. {ABOUT.kvk}.
         </p>
         <Link href={ROUTES.about} className="mt-4 inline-block qf-sys-link">
           About →
@@ -361,6 +382,7 @@ export default function Home() {
               <h3 className="font-semibold">{PUBLIC_OFFER.scanName}</h3>
               <p className="qf-price-amount">{PUBLIC_OFFER.scanPrice}</p>
               <p className="qf-price-note">{PUBLIC_OFFER.scanNote}</p>
+              <p className="qf-price-note mt-[var(--qf-sp-2)]">{PUBLIC_OFFER.scanForWho}</p>
             </Card>
           </li>
           <li>
@@ -372,6 +394,7 @@ export default function Home() {
               <p className="qf-price-note">
                 Core / Scale* / Command — you choose the depth. (* most chosen)
               </p>
+              <p className="qf-price-note mt-[var(--qf-sp-2)]">{PUBLIC_OFFER.buildForWho}</p>
             </Card>
           </li>
           <li>
@@ -381,6 +404,7 @@ export default function Home() {
                 {PUBLIC_OFFER.careVariants.map((variant) => variant.price).join(' / ')}
               </p>
               <p className="qf-price-note">Keep / Grow* / Unlock — monthly, cancellable.</p>
+              <p className="qf-price-note mt-[var(--qf-sp-2)]">{PUBLIC_OFFER.careForWho}</p>
             </Card>
           </li>
         </ul>
@@ -413,7 +437,7 @@ export default function Home() {
             build.
           </p>
           <p className="qf-final-cta-sample">
-            <SampleScanLink />
+            <SampleScanLink location="home_final_cta" />
           </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">

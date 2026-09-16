@@ -1,12 +1,16 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-06 · **Status:** DEPLOYED ✅ · Vercel deployment `5ywfqFGtFrB4VBqSwNyUgUnW4LsL` · 57 pages, sitemap 28 routes
+**Updated:** 2026-09-16 · **Status:** LAB ICP MERGE READY — 7-stage timeline · awaiting Commander deploy
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
-**Handoff:** [`handoffs/2026-08-30-home-stale-data-sync.md`](handoffs/2026-08-30-home-stale-data-sync.md)
+**Handoff:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
 
-**Current handoff:** [`handoffs/2026-09-06-github-profile-closure.md`](handoffs/2026-09-06-github-profile-closure.md)
+**Current handoff:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
+
+**Active audit:** [`audits/2026-09-16/lab-platform-stages-merge-audit.md`](../audits/2026-09-16/lab-platform-stages-merge-audit.md) — IMPLEMENTED (07+08+09 → `platform-build`)
+
+**Prior handoff (2026-09-06):** [`handoffs/2026-09-06-github-profile-closure.md`](handoffs/2026-09-06-github-profile-closure.md)
 
 ## GitHub profile execution (2026-09-06)
 

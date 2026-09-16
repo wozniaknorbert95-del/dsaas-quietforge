@@ -1,5 +1,5 @@
 import { metrics } from '@/content/proof';
-import { EXTERNAL, FLEXGRAFIK_URL, ROUTES } from '@/lib/constants';
+import { EXTERNAL, ROUTES } from '@/lib/constants';
 
 export type LabProofTier = 'PROVEN' | 'DEMO' | 'PLANNED';
 export type LabReadiness = 'LIVE' | 'PARTIAL' | 'PLANNED' | 'TENANT-READY CORE (POC)';
@@ -38,7 +38,7 @@ export const LAB_PAGE = {
   eyebrow: "Builder's Lab",
   title: 'I built this before I offered it.',
   lead:
-    'A live owner-operated reference business and build laboratory. Follow the path from customer-facing surfaces to a governed tenant platform.',
+    'A live owner-operated reference business and build laboratory. Follow a connected customer path, keep owner control, and see how hours stop leaking into manual back-and-forth.',
   primaryCta: 'Book a scan',
   referenceCta: 'Visit the FlexGrafik reference business',
   honestyTitle: 'Read this before you test anything',
@@ -63,25 +63,27 @@ export const LAB_PAGE = {
   provesTitle: 'What this proves for your business',
   proves: [
     {
-      title: 'Complete implementation',
-      body: 'A business path can move from entry to action instead of stopping at a polished screen.',
+      title: 'Complete path',
+      body: 'A buyer can move from entry to a clear next action instead of stopping at a polished screen — less manual quote ping-pong.',
     },
     {
-      title: 'Connected systems',
-      body: 'Portal, lead capture, design intake, Wizard, payment and operations work as connected patterns.',
+      title: 'Connected handoffs',
+      body: 'Portal, lead capture, design intake, Wizard, payment and operations pass work forward as one pattern — fewer silos and lost threads.',
     },
     {
-      title: 'Governed delivery',
-      body: 'Approval boundaries, testing, security checks, documentation and handover are part of the build.',
+      title: 'You stay in control',
+      body: 'Approval boundaries, testing, security checks and handover are part of the build — automation without silent decisions.',
     },
   ],
-  timelineTitle: 'From one working surface to a governed tenant platform',
-  timelineLead: 'Every stage has a public effect, a proof boundary and a next lesson. Nothing here is presented as an external client case.',
+  timelineTitle: 'From one working surface to one governed platform',
+  timelineLead:
+    'Seven stages. Each has a public effect, a proof boundary and a next lesson. The last stage is one platform project — not three products. Nothing here is an external client case.',
   testBenchTitle: 'Test the public surfaces',
   testBenchLead: 'Start with the journey that matters. Private operations stay documented without exposing tenant data.',
   connectionsTitle: 'How the pieces connect',
   platformTitle: 'The platform chapter',
-  platformLead: 'The reusable platform is being extracted from one working business. Its current public status is a tenant-ready core, not a universal production guarantee.',
+  platformLead:
+    'Extracted from one working business. Tenant-ready core (POC) — not a public multi-tenant SaaS product.',
   ownershipTitle: 'Ownership and handover',
   ownershipLead: 'A public reference is not a free product. A client receives the agreed implementation, repository access and handover under contract.',
 } as const;
@@ -261,90 +263,48 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     ],
   },
   {
-    id: 'mission-control',
+    id: 'platform-build',
     sequence: '07',
-    title: 'Agent OS UI / Mission Control',
-    eyebrow: 'Govern the work',
-    tenant: 'FlexGrafik reference infrastructure',
-    status: 'NEW ON THE PLATFORM',
-    readiness: 'PARTIAL',
-    proofTier: 'DEMO',
-    evidenceClass: 'PRIVATE REFERENCE',
-    problem: 'Agent work needed a visible queue, approval history and cost boundary instead of an opaque run.',
-    built: 'Mission Control presents tasks, approvals, history and cost for a supervised build workflow.',
-    effect: 'The owner can inspect what is waiting, what was approved and what the workflow consumed.',
-    learned: 'A control surface is part of a safe agent system, not an afterthought behind the model.',
-    notProven: 'The current surface is access-gated and is not an anonymous public demo or public multi-tenant SaaS.',
-    ownership: 'Reference infrastructure; access-controlled and separate from client data.',
-    reviewed: '2026-09-05',
-    links: [
-      {
-        label: 'Access-gated reference',
-        kind: 'fallback',
-        availability: 'private',
-        note: 'The public surface requires access; use the sanitized walkthrough instead.',
-      },
-    ],
-  },
-  {
-    id: 'platform',
-    sequence: '08',
-    title: 'Tenant Platform Core',
-    eyebrow: 'Extract the platform',
-    tenant: 'Platform core',
+    title: 'Governed tenant platform',
+    eyebrow: 'Build the platform',
+    tenant: 'Platform core · QuietForge Tenant 1',
     status: 'NEW ON THE PLATFORM',
     readiness: 'TENANT-READY CORE (POC)',
-    proofTier: 'PLANNED',
-    evidenceClass: 'ARCHITECTURE ONLY',
-    problem: 'Patterns built for one business needed a governed boundary before they could serve more than one tenant.',
-    built: 'A platform direction with a tenant-scoped knowledge graph, policy evaluation, append-only ledgers and a human stop for sensitive actions.',
-    effect: 'The reusable platform boundary can be discussed separately from tenant-specific brand, data and workflows.',
-    learned: 'A platform is not a pile of copied tenant repos; it needs explicit partitions, policies, evidence and ownership boundaries.',
-    notProven: 'This page does not claim universal production readiness, certification or public multi-tenant SaaS availability.',
-    ownership: 'Reusable platform core; implementation status and licence boundary are controlled by QuietForge.',
-    reviewed: '2026-09-05',
+    proofTier: 'DEMO',
+    evidenceClass: 'ARCHITECTURE + PRIVATE REFERENCE',
+    problem:
+      'Patterns proven in one business would spread chaos if copied without a governed boundary — more tools, more manual recovery, less owner control.',
+    built:
+      'One platform project: a supervised work surface for queue, approvals and cost; policy and evidence boundaries with a human stop on sensitive paths; QuietForge running as Tenant 1 on the commercial site.',
+    effect:
+      'Work stays inspectable and consequential actions wait for approval — the owner spends time deciding, not chasing silent automation or scattered status.',
+    learned:
+      'Surfaces and tenants are chapters of one build, not three products. A platform needs partitions, policies, evidence and ownership — not cloned repos.',
+    notProven:
+      'No universal production readiness, certification, anonymous Mission Control demo, or client-scale multi-tenant SaaS. FlexGrafik as Tenant 2 remains planned.',
+    ownership:
+      'Reusable platform core stays with QuietForge. QuietForge site is Tenant 1. FlexGrafik remains the reference business. Client delivery stays contract-scoped.',
+    reviewed: '2026-09-16',
     links: [
       {
         label: 'Architecture chapter',
         href: '#platform',
         kind: 'internal-route',
         availability: 'verified-public',
-        note: 'High-level explanation below; no private runtime configuration exposed.',
+        note: 'One platform project explained below — not a public SaaS product page.',
       },
-    ],
-  },
-  {
-    id: 'quietforge',
-    sequence: '09',
-    title: 'QuietForge Tenant',
-    eyebrow: 'Deploy the implementation business',
-    tenant: 'QuietForge · Tenant 1',
-    status: 'NEW ON THE PLATFORM',
-    readiness: 'PARTIAL',
-    proofTier: 'PROVEN',
-    evidenceClass: 'PUBLIC LIVE SURFACE',
-    problem: 'The implementation business needed its own tenant context, offer, proof rules and conversion path.',
-    built: 'QuietForge runs as the active commercial tenant and uses its own governed site, content and intake context.',
-    effect: 'The platform is exercised on the business that sells implementation systems before a second tenant is introduced.',
-    learned: 'Tenant separation must be visible in content, data, ownership and decision rights, not only in infrastructure.',
-    notProven: 'FlexGrafik is the planned Tenant 2; client-scale multi-tenant readiness remains a separately governed milestone.',
-    ownership: 'QuietForge tenant configuration and public portfolio; platform core remains separately governed.',
-    reviewed: '2026-09-05',
-    links: [
       {
         label: 'Open QuietForge',
         href: ROUTES.home,
         kind: 'internal-route',
         availability: 'verified-public',
-        note: 'Current commercial implementation tenant.',
+        note: 'Tenant 1 commercial surface.',
       },
       {
-        label: 'Visit FlexGrafik',
-        href: FLEXGRAFIK_URL,
-        kind: 'live-demo',
-        availability: 'verified-public',
-        note: 'Planned second tenant reference business, currently linked as an independent business.',
-        external: true,
+        label: 'Mission Control',
+        kind: 'fallback',
+        availability: 'private',
+        note: 'Access-gated reference; not an anonymous public demo.',
       },
     ],
   },
@@ -357,24 +317,24 @@ export const LAB_CONNECTIONS = [
   'Payment',
   'Operations',
   'Governance',
-  'Tenant Platform',
+  'Platform',
 ] as const;
 
 export const LAB_PLATFORM_FACTS = [
   {
-    title: 'Business Knowledge Graph',
-    body: 'The platform direction treats a tenant-scoped knowledge graph as the canonical operational truth, with provenance and lifecycle states.',
+    title: 'One operational truth per business',
+    body: 'Each tenant keeps a governed operational record instead of status living in chat threads — fewer contradictory answers and less rework.',
   },
   {
-    title: 'Model proposes. Policy evaluates. Ledger records.',
-    body: 'Decision proposals are evaluated by governed policy and recorded as evidence instead of becoming silent actions.',
+    title: 'AI proposes. Rules decide. The record stays.',
+    body: 'Models suggest next steps; governed rules decide; evidence is recorded. No silent actions that burn owner hours on cleanup.',
   },
   {
-    title: 'Human stop on sensitive paths',
-    body: 'Sensitive write, publish and release paths keep a human approval boundary. Read-only projections are not described as manual work.',
+    title: 'Human stop on sensitive actions',
+    body: 'Write, publish and release paths wait for an owner decision. Read-only views are not billed as manual work.',
   },
   {
-    title: 'Tenant boundary',
-    body: 'QuietForge is Tenant 1. FlexGrafik is the planned Tenant 2. Brand, data and tenant-specific configuration remain separate from the reusable core.',
+    title: 'Your business context stays separate',
+    body: 'QuietForge is Tenant 1. FlexGrafik is the planned Tenant 2. Brand, data and configuration stay partitioned from the reusable core.',
   },
 ] as const;

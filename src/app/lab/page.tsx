@@ -5,13 +5,13 @@ import Button from '@/components/ui/Button';
 import LabEvidenceBench from '@/components/lab/LabEvidenceBench';
 import LabPlatformChapter from '@/components/lab/LabPlatformChapter';
 import LabTimeline from '@/components/lab/LabTimeline';
-import { LAB_MILESTONES, LAB_PAGE } from '@/content/lab';
+import { LAB_CONNECTIONS, LAB_MILESTONES, LAB_PAGE } from '@/content/lab';
 import { ROUTES, SITE_URL, FLEXGRAFIK_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: "Builder's Lab - What I built in a live owner-operated business",
   description:
-    'Follow the systems built for an owner-operated business, from public customer paths to a governed tenant platform. This is implementation proof, not a client case study.',
+    'Follow connected customer paths to one governed platform — implementation proof from an owner-operated reference business, not a client case study.',
   alternates: { canonical: `${SITE_URL}${ROUTES.lab}` },
   openGraph: {
     title: "Builder's Lab | Quietforge",
@@ -48,22 +48,12 @@ const labJsonLd = {
   },
   mainEntity: {
     '@type': 'ItemList',
-    numberOfItems: 9,
+    numberOfItems: LAB_MILESTONES.length,
     itemListOrder: 'https://schema.org/ItemListOrderAscending',
-    itemListElement: [
-      'FlexGrafik Portal',
-      'ZZPackage Commerce Surface',
-      'Wizard Cash Engine',
-      'Bouwplaats Chaos Lead Game',
-      'FlexGrafik INSPIRE',
-      'Jadzia Operations Command Layer',
-      'Agent OS UI / Mission Control',
-      'Tenant Platform Core',
-      'QuietForge Tenant',
-    ].map((name, index) => ({
+    itemListElement: LAB_MILESTONES.map((milestone, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      name,
+      name: milestone.title,
     })),
   },
 };
@@ -176,14 +166,12 @@ export default function LabPage() {
           <h2 className="qf-lab-h2">{LAB_PAGE.connectionsTitle}</h2>
         </div>
         <ol className="qf-lab-connections" aria-label="System connection path">
-          {['Portal', 'Game / Design Assistant', 'Wizard', 'Payment', 'Operations', 'Governance', 'Tenant Platform'].map(
-            (step, index) => (
-              <li key={step}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{step}</strong>
-              </li>
-            )
-          )}
+          {LAB_CONNECTIONS.map((step, index) => (
+            <li key={step}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{step}</strong>
+            </li>
+          ))}
         </ol>
       </Section>
 
@@ -219,7 +207,7 @@ export default function LabPage() {
             Start with the leak, not the technology.
           </h2>
           <p className="qf-final-cta-lead">
-            The Automation Scan finds the first workflow worth building and gives you a written
+            The Automation Scan finds the first workflow that returns hours and gives you a written
             decision before implementation.
           </p>
           <div className="qf-lab-actions">

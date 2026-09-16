@@ -8,8 +8,22 @@ interface LabTimelineProps {
   milestones: readonly LabMilestone[];
 }
 
+/** Legacy hashes from the pre-merge 9-stage Lab timeline. */
+const LEGACY_STAGE_ALIASES: Readonly<Record<string, string>> = {
+  'stage-08': 'platform-build',
+  'stage-09': 'platform-build',
+};
+
 function milestoneHash(milestone: LabMilestone): string {
   return `stage-${milestone.sequence}`;
+}
+
+function resolveMilestoneId(hash: string, milestones: readonly LabMilestone[]): string | undefined {
+  const aliasedId = LEGACY_STAGE_ALIASES[hash];
+  if (aliasedId) {
+    return milestones.some((milestone) => milestone.id === aliasedId) ? aliasedId : undefined;
+  }
+  return milestones.find((milestone) => milestoneHash(milestone) === hash)?.id;
 }
 
 export default function LabTimeline({ milestones }: LabTimelineProps) {
@@ -19,9 +33,15 @@ export default function LabTimeline({ milestones }: LabTimelineProps) {
   useEffect(() => {
     const selectFromHash = () => {
       const hash = window.location.hash.slice(1);
-      const match = milestones.find((milestone) => milestoneHash(milestone) === hash);
-      if (match) {
-        setSelectedId(match.id);
+      const matchId = resolveMilestoneId(hash, milestones);
+      if (matchId) {
+        setSelectedId(matchId);
+        if (LEGACY_STAGE_ALIASES[hash]) {
+          const canonical = milestones.find((milestone) => milestone.id === matchId);
+          if (canonical) {
+            window.history.replaceState(null, '', `#${milestoneHash(canonical)}`);
+          }
+        }
       }
     };
 

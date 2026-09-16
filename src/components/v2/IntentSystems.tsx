@@ -11,8 +11,8 @@ import {
 } from '@/content/systems-catalog';
 import { ROUTES } from '@/lib/constants';
 
-/** Home showcase — 4 flagship systems (site-map §3 v6.0). The rest live on /systems/. */
-const FLAGSHIP_SLUGS = ['quote-order-engine', 'inbox-triage', 'company-brain', 'ai-security-audit'];
+/** Home showcase — 3 buyer pains (SMB Clarity W1). The rest live on /systems/. */
+const FLAGSHIP_SLUGS = ['quote-order-engine', 'inbox-triage', 'lead-scout'];
 
 function matchesIntent(system: SystemRecord, intent: IntentId | 'all'): boolean {
   return intent === 'all' || system.intents.includes(intent);

@@ -12,10 +12,11 @@ export const POSITIONING = {
 
 export const HERO = {
   eyebrow: 'Conversion systems architect for small businesses · EU',
-  headline: 'Systems that give you back your time.',
+  headline: 'Quotes, leads and inbox. You approve before anything sends.',
   subline:
-    'Quotes, orders, inbox, reporting — rebuilt as self-improving systems that work 24/7 and propose their own upgrades. Built at AI speed, delivered with engineering discipline — nothing goes live without your approval.',
-  dualBrandLine: 'QuietForge implements. You approve. FlexGrafik is the reference business and build lab.',
+    'I automate quote flows, lead qualification and inbox triage for Dutch small businesses. The system collects the right inputs and prepares the next step — nothing customer-facing goes out without your click.',
+  dualBrandLine:
+    'Runs on FlexGrafik — my own branding and print business in the Netherlands. Owner-operated reference lab, not a client case.',
   beats: {
     problem: {
       label: 'Problem',
@@ -30,15 +31,16 @@ export const HERO = {
       text: 'Fewer missed leads. Less admin. You decide.',
     },
   },
-  proofStrip: 'Hours given back · you approve · counter starts at zero',
+  proofStrip:
+    'QuietForge implements. You approve. FlexGrafik is the reference business and build lab.',
   proofLine: 'Hours given back · you approve · counter starts at zero',
   proofChip: 'Human-reviewed · security-scanned · gated by you',
   microTrust:
-    'I build at AI speed and deliver with engineering discipline. FlexGrafik is an owner-operated reference business and build lab, not a client proof.',
+    'Validated on FlexGrafik. Client hours publish only after verification — the counter starts at zero.',
   primaryCta: 'Book a scan',
   primaryCtaMeta: `${formatEuro(PRICING_NUMBERS.discovery)} · credited · 90 min`,
-  secondaryCta: 'See the systems',
-  secondaryHref: '/systems/',
+  secondaryCta: 'See live proof',
+  secondaryHref: '/proof/',
   wizardCta: 'Try the wizard (2 min)',
   wizardHref: 'https://zzpackage.flexgrafik.nl/',
   whatsappCta: 'Ask on WhatsApp',
@@ -141,7 +143,7 @@ export const SITE_GOAL =
 export const CTAS = {
   bookAutomationMap: 'Book a scan',
   seeSystems: 'Explore the systems',
-  seeResults: 'See the proof',
+  seeResults: 'See live proof',
 } as const;
 
 export const ABOUT = {

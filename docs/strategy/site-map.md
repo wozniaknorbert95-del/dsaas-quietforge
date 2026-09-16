@@ -73,20 +73,20 @@ These must never be swapped on `/solutions/`, cards, pricing or metadata.
 
 ## §3 HOME — section order
 
-> **Version 7.0 (2026-08-30):** Live home per `src/app/page.tsx`. Hero CTA band sits directly after the subline (first viewport on mobile), PAS beats move below it. Intent router defaults to 4 flagship systems with a `See all 9 systems →` link. Counter reframed around the reference program. Variants renamed Core/Scale/Command + Keep/Grow/Unlock. **Approach step 1 synced to the live scan process** (pre-work + 60–90 min session + written go/no-go in 2 days), footer label `Approach →`, OG home.svg updated to current positioning.
+> **Version 7.1 (2026-09-16 SMB Clarity W1):** Live home per `src/app/page.tsx`. Hero CTA band after subline; secondary = See live proof → `/proof/`. Intent router defaults to **3 flagship systems** (Quote & Order, Inbox Triage, Lead Scout) with `See all N systems →`. Proof opens with FlexGrafik OWNER-OPERATED REFERENCE narrative, then reference program. Approach = first module 2–3 weeks + sample scan. FAQ includes CRM and EU data.
 
 | # | Section | Component(s) | Funnel job | Primary content rule |
 |---|---|---|---|---|
-| 1 | Hero | `qf-hero` | 5-second clarity | Who / for whom / **CTA band after subline (above fold, incl. mobile)**; PAS beats + anti-position + proof strip + chip below the CTA |
+| 1 | Hero | `qf-hero` | 5-second clarity | Who / for whom / **CTA band after subline (above fold, incl. mobile)**; PAS beats + anti-position + dual-brand + honest microTrust below the CTA |
 | 2 | Counter | hours counter | Honest proof | Starts at zero by design — first verified client case opens the count; reference program `X of 5 spots open` beside it |
-| 3 | Intent router | `IntentSystems` (`home`) | ICP match | **4 flagship systems** (Quote & Order, Inbox Triage, Company Brain, AI Security Audit) on the default view; intent chips route the full 9-system catalog; `See all 9 systems →` |
-| 4 | Approach | 5 steps | De-risk | Scan (pre-work + 60–90 min session + written go/no-go in 2 days) → Scope → Build → You approve → Handover, 2–4 weeks |
+| 3 | Intent router | `IntentSystems` (`home`) | ICP match | **3 flagship systems** (Quote & Order, Inbox Triage, Lead Scout) on the default view; intent chips route the full catalog; `See all N systems →` |
+| 4 | Approach | 5 steps | De-risk | Scan → Scope → Build → You approve → Handover; first working module usually 2–3 weeks after scope sign-off; sample scan link |
 | 5 | Fit | Compare table | Anti-positioning | Agency vs freelancer vs QuietForge; ERP rewrite → we say no |
 | 6 | Discipline | 6 tiles | Engineering safety | review · scans · approval gates · repo day one → `/security/` |
-| 7 | Proof | `ReferenceCta` | Open evidence | 5 reference spots; scan €0–€345 for published results |
+| 7 | Proof | FlexGrafik story + `ReferenceCta` | Open evidence | OWNER-OPERATED REFERENCE narrative; then 5 reference spots; scan €0–€345 for published results |
 | 8 | About | short bio | Face + authority | Norbert · systems architect; 30 trades, 3 years production |
 | 9 | Pricing | 3 cards | Commercial clarity | Scan €690 credited · Build Core/Scale/Command · Care Keep/Grow/Unlock |
-| 10 | FAQ | `FaqItem` list | Objections | Straight answers; aria-expanded/controls correct |
+| 10 | FAQ | `FaqItem` list | Objections | Straight answers incl. CRM change and EU data; aria-expanded/controls correct |
 | 11 | Final CTA | `qf-final-cta` + `StickyCta` | Close | Book scan €690 · WhatsApp · sample scan report link |
 
 ### Home chrome
@@ -110,20 +110,17 @@ Every home hero must include exactly these elements in order:
 
 ### Recommended hero copy
 
-**H1**  
-Conversion systems that qualify leads, reduce admin and keep humans in control.
+**H1**
+Quotes, leads and inbox. You approve before anything sends.
 
-**Lead** (live = `HERO.subline`)  
-For Dutch small businesses tired of manual quotes, inbox chaos and sites that do not become pipeline.
+**Lead** (live = `HERO.subline`)
+I automate quote flows, lead qualification and inbox triage for Dutch small businesses. Nothing customer-facing goes out without your click.
 
-**Proof strip**  
-Ops cockpit live · modules with honest status · you approve
+**Proof strip**
+Runs on FlexGrafik — owner-operated reference lab, not a client case.
 
-**Proof visual**  
-Jadzia COI Commander Start (`/gratka/jadzia-commander-home.png`) — not Wizard checkout.
-
-**CTA**  
-Primary: `Book Automation Map` → `/book-discovery/`  
+**CTA**
+Primary: `Book a scan` → `/book-a-scan/` · Secondary: `See live proof` → `/proof/` · WhatsApp tertiary
 Secondary: `See live systems` → `/results/`  
 Tertiary text: `Ask on WhatsApp` → WhatsApp deep link
 

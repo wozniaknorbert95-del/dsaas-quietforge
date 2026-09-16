@@ -14,19 +14,19 @@ import SampleScanLink from '@/components/analytics/SampleScanLink';
 import WhatsAppLink from '@/components/analytics/WhatsAppLink';
 
 export const metadata: Metadata = {
-  title: 'Systems that give you back your time',
+  title: 'Quotes, leads and inbox — you approve before anything sends',
   description:
-    'Operating systems for small businesses — quotes, orders, inbox and reports. AI speed, engineering discipline, nothing live without your approval.',
+    'Automation for Dutch small businesses: quote flows, lead qualification and inbox triage. Nothing customer-facing goes out without your click. Start with the Automation Scan.',
   openGraph: {
-    title: 'Systems that give you back your time | Quietforge',
+    title: 'Quotes, leads and inbox — you approve | Quietforge',
     description:
-      'Quotes, orders, inbox, reporting — rebuilt as managed systems. You approve. We measure hours given back.',
+      'Systems for Dutch SMB owners: quotes, leads and inbox. You approve. FlexGrafik is the live reference lab.',
     images: [
       {
         url: '/og/home.svg',
         width: 1200,
         height: 630,
-        alt: 'Quietforge — systems that give you back your time',
+        alt: 'Quietforge — quotes, leads and inbox with human approval',
       },
     ],
   },
@@ -43,11 +43,30 @@ const DISCIPLINE = [
 
 const STEPS = [
   'Scan — pre-work, a 90-minute session, and a written go/no-go in 2 days.',
-  'Scope — one system, fixed price, two to four weeks.',
+  'Scope — one module, fixed price, usually 2–3 weeks after sign-off.',
   'Build — AI speed, human review, scans.',
   'You approve — nothing live without it.',
   'Handover — docs, repo, optional maintenance.',
 ];
+
+const FLEXGRAFIK_STORY = [
+  {
+    label: 'Before',
+    text: 'Quote requests and inbox threads competed with print deadlines — answers waited on whoever opened the mailbox.',
+  },
+  {
+    label: 'System',
+    text: 'Qualify the request, draft the next step, then stop for a human click before anything customer-facing goes out.',
+  },
+  {
+    label: 'Now',
+    text: 'Portal, quote wizard and triage patterns run in the FlexGrafik lab as an owner-operated reference — not a client case study.',
+  },
+  {
+    label: 'Not yet',
+    text: 'Not every process is fully automated; the lab still shows PARTIAL and PLANNED work honestly.',
+  },
+] as const;
 
 const FAQ = [
   {
@@ -61,6 +80,14 @@ const FAQ = [
   {
     q: 'Will automation run without me?',
     a: 'No. Nothing customer-facing goes live without your approval.',
+  },
+  {
+    q: 'Do I need to change my CRM?',
+    a: 'No. Keep your tools unless the scan shows a specific integration is required — and that stays in scope before build.',
+  },
+  {
+    q: 'Do my data leave the EU?',
+    a: 'Intake form data is processed on EU hosting. Analytics are anonymous and consent-based. Full detail is on Security and Legal.',
   },
   {
     q: 'Where does the code live?',
@@ -122,8 +149,8 @@ export default function Home() {
               <span className="qf-hero-cta-primary-meta">{HERO.primaryCtaMeta}</span>
             </Link>
             <div className="qf-hero-cta-secondary-row">
-              <Link href={ROUTES.systems} className="qf-hero-cta-secondary">
-                {CTAS.seeSystems}
+              <Link href={ROUTES.proof} className="qf-hero-cta-secondary">
+                {CTAS.seeResults}
               </Link>
               <WhatsAppLink location="hero" className="qf-hero-cta-whatsapp" />
             </div>
@@ -143,8 +170,8 @@ export default function Home() {
             </div>
           </div>
           <p className="qf-hero-anti">{POSITIONING.antiPositioning}</p>
-          <p className="qf-hero-proof-strip">{HERO.proofStrip}</p>
-          <p className="qf-hero-chip">{HERO.proofChip}</p>
+          <p className="qf-hero-proof-strip">{HERO.dualBrandLine}</p>
+          <p className="qf-hero-chip">{HERO.microTrust}</p>
         </div>
       </section>
 
@@ -179,12 +206,14 @@ export default function Home() {
       </Section>
 
       <Section data-home-section="systems">
-        <IntentSystems heading="Where does your time leak away?" home />
+        <IntentSystems heading="Three places owners lose hours" home />
       </Section>
 
       <Section data-home-section="approach">
         <p className="qf-home-kicker">Approach</p>
-        <h2 className="qf-sys-h2">From scan to first system in 2–4 weeks.</h2>
+        <h2 className="qf-sys-h2">
+          First working module usually 2–3 weeks after scope sign-off.
+        </h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
           The scan is a written decision, not a sales call — pre-work, one live session,
           a go/no-go you keep either way.
@@ -202,6 +231,9 @@ export default function Home() {
             See variants
           </Link>
           .
+        </p>
+        <p className="mt-4">
+          <SampleScanLink />
         </p>
         <Link href={ROUTES.approach} className="mt-6 inline-block qf-sys-link">
           Full approach →
@@ -226,7 +258,7 @@ export default function Home() {
                 <td>Time to first system</td>
                 <td>Months</td>
                 <td>Depends</td>
-                <td>Scan, then 2–4 weeks</td>
+                <td>Scan, then usually 2–3 weeks to first module</td>
               </tr>
               <tr>
                 <td>Who owns the repo</td>
@@ -280,7 +312,24 @@ export default function Home() {
 
       <Section data-home-section="proof" background="surface">
         <p className="qf-home-kicker">Proof</p>
-        <h2 className="qf-sys-h2">{REFERENCE_PROGRAM.heading}</h2>
+        <h2 className="qf-sys-h2">How FlexGrafik shortened quote and inbox work</h2>
+        <p className="max-w-2xl text-sm text-[var(--qf-text-faint)]">
+          OWNER-OPERATED REFERENCE — lab evidence, not an external client result.
+        </p>
+        <ul className="mt-4 max-w-2xl space-y-3 text-[var(--qf-text-dim)]">
+          {FLEXGRAFIK_STORY.map((item) => (
+            <li key={item.label}>
+              <strong className="text-[var(--qf-text)]">{item.label}.</strong> {item.text}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">
+          {HERO.microTrust}{' '}
+          <Link href={ROUTES.lab} className="qf-sys-link">
+            See the Builder's Lab →
+          </Link>
+        </p>
+        <h3 className="qf-sys-h2 mt-10">{REFERENCE_PROGRAM.heading}</h3>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
           {REFERENCE_PROGRAM.lead} Until a client verifies hours, we do not invent a number.
           Lab measurements stay labelled as examples.

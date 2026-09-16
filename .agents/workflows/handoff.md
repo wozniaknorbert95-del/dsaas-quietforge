@@ -5,32 +5,30 @@ updated: 2026-09-16
 
 # SESSION ANCHOR — 2026-09-16
 
-> **Live domain:** https://quietforge.flexgrafik.nl/lab/ — **STILL OLD (9 stages)** until Promote  
-> **NEW build ready:** https://flexgrafik-services-git-main-wozniaknorbert95-dels-projects.vercel.app/lab/  
-> **Branch:** `main` @ `bc527cd` (Lab ICP merge `1ab4b95` + deploy handoff)  
-> **Cloud agent:** cannot `vercel login` / `workflow_dispatch` (403) / no `VERCEL_TOKEN`  
-> **Następna sesja (LOKALNY AGENT):** weryfikacja · polerka · Promote/deploy kompleksowy — prompt na dole tego pliku
+> **Live domain:** https://quietforge.flexgrafik.nl/lab/ — **LIVE (7 stages, Governed tenant platform)**  
+> **Branch:** `main` @ `5fb4ec0`  
+> **Deploy:** `dpl_rxjATdSR5mzj31kj9b7WmroWFV1q` · `flexgrafik-services` Production  
+> **Smoke:** `audit:lab` PASS on production · stages 01–07 · no 08/09 numbers  
+> **Następna sesja:** opcjonalnie commit docs + naprawa Actions `VERCEL_*` / refresh brain.md deploy path
 
 ---
 
-## Co domknięte w sesji cloud (Lab ICP)
+## Co domknięte w sesji lokalnej (deploy)
 
-| Commit | Co |
-|--------|-----|
-| `36e2eb5` | Lab: merge stages 07–09 → `platform-build` + buyer-safe copy |
-| `1ab4b95` | Merge feature → `main` |
-| `bc527cd` | Docs: prod promote blocker + SESSION-ANCHOR |
+| Krok | Wynik |
+|------|--------|
+| Verify (typecheck/build/lint/grep/audit local) | ✅ |
+| Polish | skipped (gates green) |
+| `npx vercel --prod --yes` | ✅ Production READY |
+| Prod smoke + `audit:lab` | ✅ |
 
-**Build (cloud):** `npm run typecheck` ✅ · `npm run build` ✅ · `npm run audit:lab` (local :3000) ✅  
-**Prod domain:** blocked — needs Commander/local **Promote to Production** on `flexgrafik-services`
-
-Handoffs: `docs/operations/handoffs/2026-09-16-lab-icp-platform-merge.md` · `2026-09-16-lab-production-deploy.md` · audit `docs/audits/2026-09-16/lab-platform-stages-merge-audit.md`
+Handoff: `docs/operations/handoffs/2026-09-16-lab-prod-live.md` · prior: `2026-09-16-lab-production-deploy.md` · audit `docs/audits/2026-09-16/lab-platform-stages-merge-audit.md`
 
 ---
 
 ## Werdykt
 
-Lab IA naprawione w kodzie (7 etapów, jeden projekt platformy, ICP oszczędności). Deploy kodu na `main` + git-main alias OK. Custom domain nieprzypięta do nowego Production — to jedyny bloker.
+Lab 7-etapów jest na `quietforge.flexgrafik.nl/lab/`. Bloker Promote rozwiązany lokalnym CLI.
 
 ---
 

@@ -1,18 +1,14 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-16 · **Status:** MAIN MERGED · PROD DOMAIN PENDING PROMOTE
+**Updated:** 2026-09-16 · **Status:** SMB Clarity W1 ready · deploy after verify
 
-**Commit:** `1ab4b95` on `main` (Lab ICP 7-stage merge)
+**Commit (pre-deploy):** working tree — home clarity (hero / 3 flagships / FlexGrafik proof)
 
-**Handoff:** [`handoffs/2026-09-16-lab-production-deploy.md`](handoffs/2026-09-16-lab-production-deploy.md)
+**Current handoff:** [`handoffs/2026-09-16-smb-clarity-w1.md`](handoffs/2026-09-16-smb-clarity-w1.md)
 
-**Current handoff:** [`handoffs/2026-09-16-lab-production-deploy.md`](handoffs/2026-09-16-lab-production-deploy.md)
+**Prior:** [`handoffs/2026-09-16-lab-prod-live.md`](handoffs/2026-09-16-lab-prod-live.md) · Lab LIVE `dpl_rxjATdSR5mzj31kj9b7WmroWFV1q`
 
-**Deploy truth:**
-- NEW Lab live on `flexgrafik-services-git-main-…vercel.app/lab/` and `dsaas-quietforge.vercel.app/lab/`
-- `quietforge.flexgrafik.nl/lab/` still OLD until Commander **Promote to Production** on project `flexgrafik-services`
-
-**Prior:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
+**Audit source:** [`../audits/2026-09-16/smb-clarity-external-audit.md`](../audits/2026-09-16/smb-clarity-external-audit.md)
 
 ## GitHub profile execution (2026-09-06)
 

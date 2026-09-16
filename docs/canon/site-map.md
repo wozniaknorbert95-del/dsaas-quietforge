@@ -104,20 +104,19 @@ S1 creates **thin but honest** S2/S3 destinations so 301s do not 404. Full desig
 
 ## Home (S1)
 
-> **Etap 4 (2026-08-24):** section ORDER unchanged (SR-01). Copy refreshed: hero lead = self-improving systems + proof chip; Proof = „five doors” reference program (link /proof#reference); Prices = build/care variants (ESSENTIAL/SYSTEM*/AUTONOMOUS · CARE/GROW*/AUTONOMY); FAQ +2 (guarantee, reference program); Fit +1 row (who checks security); Approach +1 line (choose the depth).
+> **SMB Clarity W1 (2026-09-16):** section ORDER unchanged (SR-01). Hero = quotes/leads/inbox + HITL; secondary CTA → `/proof/`; home flagships = Quote & Order, Inbox Triage, Lead Scout; Proof = FlexGrafik OWNER-OPERATED REFERENCE story + reference program; Approach = first module 2–3 weeks + sample scan link; FAQ + CRM / EU data.
 
-1. Hero — H1: **Systems that give you back your time.** Eyebrow: Conversion systems architect for small businesses · EU. Anti-position under subline.
+1. Hero — H1: **Quotes, leads and inbox. You approve before anything sends.** Eyebrow: Conversion systems architect · EU. Primary Book a scan · secondary See live proof → `/proof/` · WhatsApp tertiary. Dual-brand + honest microTrust under PAS.
 2. Counter at 0 + methodology honesty
-3. Intent router (Time · Money · Calm · Team · Order)
-4. Six system cards
-5. Approach short (5 steps) — “two to four weeks”
-6. Comparison Agency / Freelancer / QuietForge
-7. Engineering discipline tiles → `/security`
-8. Proof slots (open)
-9. About short
-10. Pricing short
-11. FAQ
-12. CTA band
+3. Intent router (Time · Money · Calm · Team · Order) — default **3 flagships**: quote-order-engine, inbox-triage, lead-scout · `See all N systems →`
+4. Approach short (5 steps) — first working module usually 2–3 weeks after scope sign-off · sample scan link
+5. Comparison Agency / Freelancer / QuietForge
+6. Engineering discipline tiles → `/security`
+7. Proof — FlexGrafik lab narrative (before/system/now/not yet) + reference program
+8. About short
+9. Pricing short
+10. FAQ (incl. CRM change · EU data)
+11. CTA band + StickyCta (mobile)
 
 ## Spoke template (B1–B10)
 

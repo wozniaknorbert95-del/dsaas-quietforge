@@ -1,14 +1,14 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-16 · **Status:** AUDIT READY — Lab platform stages · awaiting Commander GO (no code)
+**Updated:** 2026-09-16 · **Status:** LAB ICP MERGE READY — 7-stage timeline · awaiting Commander deploy
 
 **Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
 
-**Handoff:** [`handoffs/2026-09-16-lab-platform-stages-audit.md`](handoffs/2026-09-16-lab-platform-stages-audit.md)
+**Handoff:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
 
-**Current handoff:** [`handoffs/2026-09-16-lab-platform-stages-audit.md`](handoffs/2026-09-16-lab-platform-stages-audit.md)
+**Current handoff:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
 
-**Active audit:** [`audits/2026-09-16/lab-platform-stages-merge-audit.md`](../audits/2026-09-16/lab-platform-stages-merge-audit.md) — merge Lab timeline `07+08+09` → one platform project.
+**Active audit:** [`audits/2026-09-16/lab-platform-stages-merge-audit.md`](../audits/2026-09-16/lab-platform-stages-merge-audit.md) — IMPLEMENTED (07+08+09 → `platform-build`)
 
 **Prior handoff (2026-09-06):** [`handoffs/2026-09-06-github-profile-closure.md`](handoffs/2026-09-06-github-profile-closure.md)
 

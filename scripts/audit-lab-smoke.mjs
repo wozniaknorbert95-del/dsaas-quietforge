@@ -14,7 +14,7 @@ await page.goto(`${base}/lab/`, { waitUntil: 'networkidle' });
 const h1 = await page.locator('h1').count();
 const milestones = await page.locator('.qf-lab-stage').count();
 const initialTitle = await page.locator('#lab-milestone-detail h3').textContent();
-await page.locator('#stage-09 button').click();
+await page.locator('#stage-07 button').click();
 const selectedTitle = await page.locator('#lab-milestone-detail h3').textContent();
 const footerLab = await page.getByRole('link', { name: "Builder's Lab" }).count();
 const horizontalOverflow = await page.evaluate(
@@ -36,6 +36,13 @@ const result = {
 console.log(JSON.stringify(result, null, 2));
 await browser.close();
 
-if (h1 !== 1 || milestones !== 9 || footerLab < 1 || horizontalOverflow || consoleErrors.length > 0) {
+if (
+  h1 !== 1 ||
+  milestones !== 7 ||
+  selectedTitle?.trim() !== 'Governed tenant platform' ||
+  footerLab < 1 ||
+  horizontalOverflow ||
+  consoleErrors.length > 0
+) {
   process.exitCode = 1;
 }

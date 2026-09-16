@@ -4,6 +4,8 @@
 **Scope:** quietforge.flexgrafik.nl only
 **GitHub profile work:** deferred until this plan is shipped and verified
 
+> **Supersession (2026-09-16):** Timeline stages are **7**, not 9. Former stages 07 (Mission Control), 08 (Tenant Platform Core) and 09 (QuietForge Tenant) are one milestone `platform-build` (`#stage-07`). See `docs/audits/2026-09-16/lab-platform-stages-merge-audit.md` and handoff `2026-09-16-lab-icp-platform-merge.md`.
+
 ## Executive decision
 
 Build one canonical route:

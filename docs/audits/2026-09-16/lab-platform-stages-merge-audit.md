@@ -1,5 +1,5 @@
 ---
-status: "[ACTIVE — AWAITING COMMANDER GO]"
+status: "[IMPLEMENTED 2026-09-16]"
 title: "Lab timeline audit — merge stages 07–09 into one platform project"
 owner: "Norbert Wozniak"
 auditor: "Cloud Agent (vibe-init 2026-09-16)"
@@ -8,20 +8,17 @@ classification: "L4 — site audit / content IA"
 route: "https://quietforge.flexgrafik.nl/lab/"
 anchors:
   - "#stage-06 (Jadzia — not the defect)"
-  - "#stage-07 Agent OS UI / Mission Control"
-  - "#stage-08 Tenant Platform Core"
-  - "#stage-09 QuietForge Tenant"
+  - "#stage-07 Governed tenant platform (merged)"
+  - "#stage-08 / #stage-09 → alias to platform-build"
 ---
 
 # Lab audit — three platform stages → one project
 
 ## Verdict
 
-**P0 content IA defect.** Timeline stages `07` + `08` + `09` narrate **one** internal platform build as **three** separate projects. That contradicts Commander intent, business-plan platform language, and the Lab’s single job (prove implementation capability — not sell a multi-product platform catalogue).
+**IMPLEMENTED.** Timeline stages `07` + `08` + `09` collapsed into one milestone `platform-build` (`#stage-07`). Lab copy reframed for ICP savings (hours / control / less back-and-forth). Legacy hashes `#stage-08` / `#stage-09` alias to `platform-build`.
 
-**Recommended fix:** keep FlexGrafik surface stages `01–06`, collapse `07–09` into **one** milestone `07` (“I built the governed platform”), keep the existing Platform chapter as progressive disclosure, do not invent a public SaaS product.
-
-**No code shipped in this session** (vibe-init). Implementation waits on Commander GO.
+See implementation handoff: `docs/operations/handoffs/2026-09-16-lab-icp-platform-merge.md`.
 
 ---
 
@@ -40,9 +37,9 @@ Dutch browser translation of `07–09` matches the pasted titles (“Zarządzaj 
 
 ---
 
-## Current AS-IS (SSoT)
+## Current AS-IS (SSoT) — superseded by implementation
 
-Source: `src/content/lab.ts` → `LAB_MILESTONES` + `LAB_PLATFORM_FACTS` · UI: `LabTimeline`, `LabEvidenceBench`, `LabPlatformChapter` · JSON-LD `numberOfItems: 9`.
+Source: `src/content/lab.ts` → `LAB_MILESTONES` (7 stages) · `platform-build` replaces former 07–09.
 
 ```text
 01 Portal → 02 Commerce → 03 Wizard → 04 Game → 05 INSPIRE → 06 Jadzia

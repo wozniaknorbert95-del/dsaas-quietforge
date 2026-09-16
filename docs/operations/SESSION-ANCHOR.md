@@ -2,7 +2,11 @@
 
 **Updated:** 2026-09-16 · **Status:** DEPLOYED · SMB Clarity W1+W2 LIVE
 
-**Commit:** (see latest on `main` — W2 polish after `c5991aa`)
+**Commit:** `03de011` on `main`
+
+**Deployment:** `dpl_DzAg7xJYtQQVRMsNeZB9FZn8jePf` · project `flexgrafik-services` · Production
+
+**Live:** https://quietforge.flexgrafik.nl/
 
 **Current handoff:** [`handoffs/2026-09-16-smb-clarity-w2-polish.md`](handoffs/2026-09-16-smb-clarity-w2-polish.md)
 

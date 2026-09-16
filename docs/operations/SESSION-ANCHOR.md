@@ -1,16 +1,18 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-16 · **Status:** LAB ICP MERGE READY — 7-stage timeline · awaiting Commander deploy
+**Updated:** 2026-09-16 · **Status:** MAIN MERGED · PROD DOMAIN PENDING PROMOTE
 
-**Canon:** `docs/strategy/site-map.md` §3 v7.0 (home order live + STEPS synced) · `docs/strategy/conversion-pipeline.md` v3.0 (ceny €690, eventy §10)
+**Commit:** `1ab4b95` on `main` (Lab ICP 7-stage merge)
 
-**Handoff:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
+**Handoff:** [`handoffs/2026-09-16-lab-production-deploy.md`](handoffs/2026-09-16-lab-production-deploy.md)
 
-**Current handoff:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
+**Current handoff:** [`handoffs/2026-09-16-lab-production-deploy.md`](handoffs/2026-09-16-lab-production-deploy.md)
 
-**Active audit:** [`audits/2026-09-16/lab-platform-stages-merge-audit.md`](../audits/2026-09-16/lab-platform-stages-merge-audit.md) — IMPLEMENTED (07+08+09 → `platform-build`)
+**Deploy truth:**
+- NEW Lab live on `flexgrafik-services-git-main-…vercel.app/lab/` and `dsaas-quietforge.vercel.app/lab/`
+- `quietforge.flexgrafik.nl/lab/` still OLD until Commander **Promote to Production** on project `flexgrafik-services`
 
-**Prior handoff (2026-09-06):** [`handoffs/2026-09-06-github-profile-closure.md`](handoffs/2026-09-06-github-profile-closure.md)
+**Prior:** [`handoffs/2026-09-16-lab-icp-platform-merge.md`](handoffs/2026-09-16-lab-icp-platform-merge.md)
 
 ## GitHub profile execution (2026-09-06)
 

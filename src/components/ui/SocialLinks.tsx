@@ -35,12 +35,19 @@ const ICONS = {
   whatsapp: MessageCircle,
 } as const;
 
+type SocialIcon = (typeof SOCIAL_LINKS)[number]['icon'];
+
 interface SocialLinksProps {
   showLabels?: boolean;
   className?: string;
+  icons?: readonly SocialIcon[];
 }
 
-export default function SocialLinks({ showLabels = false, className }: SocialLinksProps) {
+export default function SocialLinks({ showLabels = false, className, icons }: SocialLinksProps) {
+  const items = icons
+    ? SOCIAL_LINKS.filter((item) => icons.includes(item.icon))
+    : SOCIAL_LINKS;
+
   return (
     <ul
       className={cn(
@@ -50,7 +57,7 @@ export default function SocialLinks({ showLabels = false, className }: SocialLin
       )}
       aria-label="Connect"
     >
-      {SOCIAL_LINKS.map((item) => {
+      {items.map((item) => {
         const Icon = ICONS[item.icon];
         return (
           <li key={item.label}>
@@ -58,11 +65,7 @@ export default function SocialLinks({ showLabels = false, className }: SocialLin
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(
-                'inline-flex items-center gap-2 text-[var(--qf-text-dim)] hover:text-[var(--qf-accent)]',
-                !showLabels &&
-                  'min-h-11 min-w-11 justify-center border border-[var(--qf-border)] hover:border-[var(--qf-accent)]'
-              )}
+              className={showLabels ? 'qf-social-row' : 'qf-social-icon'}
               aria-label={item.label}
             >
               {item.icon === 'linkedin' ? (

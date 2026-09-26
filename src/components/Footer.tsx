@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import BrandLogo from '@/components/ui/BrandLogo';
-import { BRAND_LOGO, EMAIL } from '@/lib/constants';
+import { BRAND_LOGO, EMAIL, ROUTES } from '@/lib/constants';
 import SocialLinks from '@/components/ui/SocialLinks';
 import {
-  FOOTER_SOLUTIONS,
-  FOOTER_COMPANY,
   FOOTER_ARTEFACTS,
+  FOOTER_COMPANY,
   FOOTER_LEGAL,
+  FOOTER_SOCIAL_ICONS,
   HEADER_CTA,
 } from '@/lib/navigation';
 import FooterArtefactLinks from '@/components/FooterArtefactLinks';
@@ -15,93 +15,58 @@ import { FOOTER, POSITIONING } from '@/content/conversion-copy';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--qf-border)] bg-[var(--qf-bg)] py-[var(--qf-sp-12)] text-[var(--qf-text-dim)] text-[var(--qf-fs-sm)]">
-      <div className="mx-auto max-w-[var(--qf-maxw)] px-[var(--qf-sp-6)]">
-        <div className="grid gap-[var(--qf-sp-8)] sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div className="flex items-center gap-3">
+    <footer className="qf-footer">
+      <div className="qf-footer-inner">
+        <div className="qf-footer-band">
+          <div className="qf-footer-brand">
+            <Link href={ROUTES.home} className="qf-footer-lockup" aria-label="Quietforge home">
               <Image
                 src={BRAND_LOGO.src}
                 alt=""
                 width={28}
                 height={28}
-                className="h-7 w-7 opacity-90"
+                className="qf-footer-mark"
               />
               <BrandLogo size="footer" linked={false} />
-            </div>
-            <p className="mt-1 font-mono text-xs text-[var(--qf-accent)]">{POSITIONING.label}</p>
-            <p className="mt-[var(--qf-sp-3)] text-[var(--qf-text-faint)]">{FOOTER.tagline}</p>
-            <p className="mt-[var(--qf-sp-2)] text-[var(--qf-text-faint)]">{FOOTER.trustLine}</p>
-            <SocialLinks className="mt-[var(--qf-sp-4)]" />
+            </Link>
+            <p className="qf-footer-role">{POSITIONING.label}</p>
+            <p className="qf-footer-tag">{FOOTER.tagline}</p>
+            <p className="qf-footer-trust">{FOOTER.trustLine}</p>
+            <SocialLinks className="qf-footer-social" icons={FOOTER_SOCIAL_ICONS} />
           </div>
 
-          <div>
-            <span className="mb-[var(--qf-sp-4)] block text-[var(--qf-text)] text-[var(--qf-fs-xs)] uppercase tracking-[0.1em]">
-              {FOOTER.columnSolutions}
-            </span>
-            <ul className="space-y-2">
-              {FOOTER_SOLUTIONS.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="hover:text-[var(--qf-accent)]">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <span className="mb-[var(--qf-sp-4)] block text-[var(--qf-text)] text-[var(--qf-fs-xs)] uppercase tracking-[0.1em]">
-              {FOOTER.columnCompany}
-            </span>
-            <ul className="space-y-2">
+          <div className="qf-footer-start">
+            <Link href={HEADER_CTA.href} className="qf-footer-cta">
+              {HEADER_CTA.label} →
+            </Link>
+            <a href={`mailto:${EMAIL}`} className="qf-footer-mail">
+              {EMAIL}
+            </a>
+            <ul className="qf-footer-nav">
               {FOOTER_COMPANY.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="hover:text-[var(--qf-accent)]">
-                    {link.label}
-                  </Link>
+                  <Link href={link.href}>{link.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div>
-            <span className="mb-[var(--qf-sp-4)] block text-[var(--qf-text)] text-[var(--qf-fs-xs)] uppercase tracking-[0.1em]">
-              {FOOTER.columnGetStarted}
-            </span>
-            <p className="mb-2">
-              <Link href={HEADER_CTA.href} className="text-[var(--qf-accent)]">
-                {HEADER_CTA.label} →
-              </Link>
-            </p>
-            <p className="mb-2">
-              <a href={`mailto:${EMAIL}`} className="hover:text-[var(--qf-accent)]">
-                {EMAIL}
-              </a>
-            </p>
           </div>
         </div>
 
-        <div className="mt-[var(--qf-sp-8)] flex flex-wrap gap-x-6 gap-y-2 border-t border-[var(--qf-border)] pt-[var(--qf-sp-6)]">
-          <span className="w-full text-[var(--qf-text)] text-[var(--qf-fs-xs)] uppercase tracking-[0.1em]">
-            {FOOTER.columnResources}
-          </span>
+        <div className="qf-footer-legal">
           {FOOTER_LEGAL.map((link) => (
-            <Link key={link.label} href={link.href} className="hover:text-[var(--qf-accent)]">
+            <Link key={link.label} href={link.href}>
               {link.label}
             </Link>
           ))}
           {FOOTER_ARTEFACTS.length > 0 ? <FooterArtefactLinks links={FOOTER_ARTEFACTS} /> : null}
         </div>
 
-        <div className="mt-[var(--qf-sp-4)] flex flex-col gap-2 border-t border-[var(--qf-border)] pt-[var(--qf-sp-4)] sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[var(--qf-text-faint)]">
+        <div className="qf-footer-meta">
+          <p>
             {FOOTER.portfolioPrompt}{' '}
-            <Link href={FOOTER.portfolioHref} className="text-[var(--qf-accent)]">
-              {FOOTER.portfolioLink}
-            </Link>
+            <Link href={FOOTER.portfolioHref}>{FOOTER.portfolioLink}</Link>
           </p>
-          <p className="text-[var(--qf-text-faint)]">
+          <p>
             &copy; {new Date().getFullYear()} Quietforge. All rights reserved.
           </p>
         </div>

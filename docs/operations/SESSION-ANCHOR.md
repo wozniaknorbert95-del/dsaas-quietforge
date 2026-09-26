@@ -1,24 +1,24 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** DEPLOYED · Hours Scan buyer education
+**Updated:** 2026-09-26 · **Status:** SHIPPING · Footer calm (29 → 11 links)
 
-**Live production:** `eda0a5e` / `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw`
+**Live production (until this promote):** Hours Scan education `eda0a5e` / `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw`
 
-**Current handoff:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md)
+**Current handoff:** [`handoffs/2026-09-26-footer-calm.md`](handoffs/2026-09-26-footer-calm.md)
 
-**Prior:** [`handoffs/2026-09-26-flexgrafik-company-case.md`](handoffs/2026-09-26-flexgrafik-company-case.md) · Production `dpl_2TKESNuSHNEzSeVGeAAHFqXNkhZk`
+**Prior:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md)
 
-**SSoT:** `src/content/scan.ts` (lab hook, tracks, FAQ) + hours-counter `0` + FlexGrafik featured case
+**SSoT:** `src/lib/navigation.ts` footer lists + `Footer.tsx`
 
 ## CO
 
-`/book-a-scan/` sells a paid lab result (stack + gate), not a free 30-minute call. `/proof/` hours stay **0**. FlexGrafik featured case LIVE. LinkedIn cadence PARKED.
+Stopka = close + trust + legal. Nie katalog 9 systemów. Lab ×1. GitHub na About.
 
 ## NASTĘPNY KROK
 
-1. Live smoke: `/book-a-scan/` H1 + FAQ foil + sample PDF illustration (done at promote).
-2. Do not put FlexGrafik in the hours counter.
-3. LinkedIn live cadence still PARKED (tool-first).
+1. Push + `vercel promote` jeśli Git CD zostawi Preview.
+2. Smoke live footer: 11 linków, brak listy systemów.
+3. LinkedIn cadence PARKED.
 
 ---
 

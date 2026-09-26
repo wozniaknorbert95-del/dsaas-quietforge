@@ -234,8 +234,4 @@ export const FOOTER = {
   portfolioPrompt: 'This site runs on its own integrated platform.',
   portfolioLink: "Builder's Lab →",
   portfolioHref: '/lab/',
-  columnSolutions: 'Systems',
-  columnCompany: 'Company',
-  columnGetStarted: 'Get started',
-  columnResources: 'Resources',
 } as const;

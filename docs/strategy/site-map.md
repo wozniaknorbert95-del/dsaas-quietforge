@@ -262,14 +262,11 @@ Form submit must never say only “Send enquiry” while the page promises payme
 
 ---
 
-## §10 Footer
+## §10 Footer (historical — do not implement)
+
+> **STALE.** Active chrome: [`docs/canon/site-map.md`](../canon/site-map.md) Global chrome. Footer is close + trust + legal, not a second sitemap. Do not restore the SKU catalog or Sales Funnel / Web Upgrade labels here.
 
 Footer may expose more links than the header, but must preserve hierarchy.
-
-**Company:** Systems & Results · How It Works · Pricing · Trust · Founder · About · Blog  
-**Solutions:** Sales Funnel (spearhead) · Web Upgrade · Lead Magnet Game · Inbox Killer · Managed Automation · Ops Command Layer (multi-system)  
-**Artefacts:** Automation Map sample · Data safety playbook · LOS diagram · Handover policy  
-**Legal:** Privacy · Terms · Contact
 
 WhatsApp appears once in social/contact area, not repeated in every footer column.
 

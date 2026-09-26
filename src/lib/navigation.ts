@@ -3,7 +3,7 @@
 // Binding: docs/canon/site-map.md
 // ============================================================================
 
-import { ARTEFACTS, EMAIL, ROUTES } from '@/lib/constants';
+import { ARTEFACTS, ROUTES } from '@/lib/constants';
 import { CTAS } from '@/content/conversion-copy';
 import { SYSTEMS } from '@/content/systems-catalog';
 
@@ -36,32 +36,26 @@ export const SOLUTIONS_NAV: readonly SolutionNavItem[] = SYSTEMS.map((system) =>
   badge: system.statusShort,
 }));
 
-export const FOOTER_SOLUTIONS: readonly NavLink[] = [
-  { label: 'All systems', href: ROUTES.systems },
-  ...SYSTEMS.map(({ name, href }) => ({ label: name, href })),
-];
-
+/** Footer close — not a catalog. Lab link lives in the platform sentence. */
 export const FOOTER_COMPANY: readonly NavLink[] = [
-  { label: 'Approach', href: ROUTES.approach },
-  { label: 'Security', href: ROUTES.security },
-  { label: 'Proof', href: ROUTES.proof },
-  { label: 'Pricing', href: ROUTES.pricing },
   { label: 'About', href: ROUTES.about },
-  { label: "Builder's Lab", href: ROUTES.lab },
+  { label: 'Proof', href: ROUTES.proof },
   { label: 'Blog', href: ROUTES.blog },
 ] as const;
 
 export const FOOTER_ARTEFACTS: readonly NavLink[] = [
   { label: 'Scan sample', href: ARTEFACTS.automationMapSample },
-  { label: 'Data safety playbook', href: ARTEFACTS.dataSafetyPlaybook },
-  { label: 'Handover policy', href: ARTEFACTS.maintenanceHandover },
 ] as const;
 
 export const FOOTER_LEGAL: readonly NavLink[] = [
-  { label: 'Privacy', href: ROUTES.legal },
-  { label: 'Terms', href: ROUTES.legal },
-  { label: 'Contact', href: `mailto:${EMAIL}` },
+  { label: 'Privacy & terms', href: ROUTES.legal },
 ] as const;
+
+/** Chrome social: owner channels. GitHub stays on About / Lab. */
+export const FOOTER_SOCIAL_ICONS = ['linkedin', 'whatsapp'] as const;
+
+/** Audit budget — footer is close, not a sitemap. */
+export const FOOTER_LINK_BUDGET = 12;
 
 export const HEADER_CTA = {
   label: CTAS.bookAutomationMap,

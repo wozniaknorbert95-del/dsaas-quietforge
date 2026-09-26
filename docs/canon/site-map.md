@@ -2,7 +2,7 @@
 status: ACTIVE
 title: QuietForge site map v2.0
 owner: Norbert Wozniak
-updated: 2026-09-05
+updated: 2026-09-26
 source: Desktop/aktualizacja quietforge/quietforge-mapa-strony-v2.md
 ---
 
@@ -54,7 +54,7 @@ Artefact URLs (`/artefacts/…`) stay stable.
 |---------|------|
 | Header | Systems · Approach · Security · Proof · Pricing · primary **Book a scan** |
 | CTA | PRIMARY: Book a scan — from €149 excl. VAT · SECONDARY: WhatsApp · TERTIARY: See the systems |
-| Footer | Promise: “Systems that give you back your time.” · Builder's Lab reference link · “this site runs on its own integrated platform” |
+| Footer | Close, not a catalog. Promise + KVK. Book a scan + email. About · Proof · Blog. One Lab link in the platform sentence. Privacy & terms · scan sample. LinkedIn + WhatsApp (GitHub on About/Lab). No 9-system list. Max 12 links. |
 | Counter | Home + /proof · start **0** · never hardcoded growth · /proof featured FlexGrafik above 3 OPEN client slots |
 | Language | English ✓ / Nederlands (later) |
 

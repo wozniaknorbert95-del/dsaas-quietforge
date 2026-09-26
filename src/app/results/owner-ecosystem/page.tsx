@@ -161,14 +161,14 @@ export default function OwnerEcosystemPage() {
               {repo.repoKey === 'flexgrafik-meta' ? (
                 <>
                   <p className="mb-3 text-sm text-[var(--qf-text-dim)]">
-                    Method / Automation Map — the paid first step.
+                    Method / Hours Engine Scan — the paid first step.
                   </p>
                   <Link
                     href={ARTEFACTS.automationMapSample}
                     download
                     className="text-sm text-[var(--qf-accent)] hover:text-[var(--qf-text)]"
                   >
-                    Automation Map sample ↓
+                    Hours Engine sample ↓
                   </Link>
                 </>
               ) : repo.repoKey === 'flex-vcms' ? (
@@ -480,8 +480,8 @@ export default function OwnerEcosystemPage() {
           Want this level of structure?
         </h2>
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-8">
-          You rarely need the full stack on day one. Start with a paid Automation Map — we score
-          which layers matter for your business first.
+          You rarely need the full stack on day one. Start with a paid Hours Engine Scan — we measure
+          which leaks matter for your business first.
         </p>
         <Button href={ROUTES.bookDiscovery} withArrow size="lg">
           {CTAS.bookAutomationMap}

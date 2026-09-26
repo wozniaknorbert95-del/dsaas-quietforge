@@ -429,11 +429,11 @@ export const DIAGRAM_NODES: readonly DiagramNode[] = [
     status: 'LIVE',
     readiness: 'B2B',
     northStar: 'Service layer — deploy governed conversion systems for SMB clients.',
-    hoverLine: 'Automation Map €290 → scoped build → handover',
+    hoverLine: 'Hours Engine Scan from €149 → scoped build → handover',
     asIs: [
       'B2B portfolio at quietforge.flexgrafik.nl',
       'Case studies + honest Built vs Planned',
-      'Automation Map entry (€290 credited)',
+      'Hours Engine Scan entry (from €149 excl. VAT, credited 30 days)',
     ],
     toBe: ['Interactive diagram (this map)', 'Investor pack redirect'],
     demoUrl: SITE_URL,

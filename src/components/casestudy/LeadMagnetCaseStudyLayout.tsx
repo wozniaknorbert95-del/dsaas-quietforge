@@ -260,8 +260,8 @@ export default function LeadMagnetCaseStudyLayout({
           Could this work for your business?
         </h2>
         <p className="mb-8 max-w-[var(--qf-maxw-narrow)] text-[var(--qf-fs-lg)] text-[var(--qf-text-dim)]">
-          Start with a paid Automation Map. In 60–90 minutes we map your audience, score the ROI, and
-          recommend whether a gamified lead system is the right first build.
+          Start with a paid Hours Engine Scan. You send files; we measure whether a gamified
+          lead system is the right first build.
         </p>
         <Button href={ROUTES.bookDiscovery} withArrow size="lg">
           {CTAS.bookAutomationMap}

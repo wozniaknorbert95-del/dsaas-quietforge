@@ -167,8 +167,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             Want this for your business?
           </h3>
           <p className="text-[var(--qf-text-dim)] mb-4">
-            Book a paid Automation Map — we find your biggest time-and-money leaks and show you
-            the ROI in 60–90 minutes.
+            Book a paid Hours Engine Scan — we find your biggest time-and-money leaks from your
+            files. Ranking only from measured hours.
           </p>
           <Button href={ROUTES.bookDiscovery} withArrow>
             {CTAS.bookAutomationMap}

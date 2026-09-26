@@ -106,7 +106,7 @@ Work proceeds in **six phases** (timeline diagram available as separate download
 
 ## Next step
 
-Considering a similar programme for your advisory or professional services firm? Book a paid **Automation Map** — we score whether web + assistant + content is the right first build, or something simpler gets you there faster.
+Considering a similar programme for your advisory or professional services firm? Book a paid **Hours Engine Scan** — we measure whether web + assistant + content is the right first build, or something simpler gets you there faster.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

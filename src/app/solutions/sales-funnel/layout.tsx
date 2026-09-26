@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Sales Funnel Engine — quotes & bookings on autopilot',
   description:
-    'A simple step-by-step flow that quotes, books and qualifies for you. Built-in logic, CRM integration, fewer emails. From €2,400. Book a paid Automation Map.',
+    'A simple step-by-step flow that quotes, books and qualifies for you. Built-in logic, CRM integration, fewer emails. From €2,400. Book a paid Hours Engine Scan.',
   openGraph: {
     title: 'Sales Funnel Engine — quotes & bookings on autopilot',
     description:

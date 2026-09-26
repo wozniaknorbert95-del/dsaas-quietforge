@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Conversion Web Upgrade — a site that converts',
   description:
-    'A fast, modern, mobile-first website built to turn visitors into enquiries. Lead capture, GA4 tracking, no bloated builders. From €1,800. Book a paid Automation Map.',
+    'A fast, modern, mobile-first website built to turn visitors into enquiries. Lead capture, GA4 tracking, no bloated builders. From €1,800. Book a paid Hours Engine Scan.',
   openGraph: {
     title: 'Conversion Web Upgrade — a site that converts',
     description:

@@ -237,8 +237,8 @@ export default function CaseStudyLayout({
           Could this work for your business?
         </h2>
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-8">
-          Start with a paid Automation Map. In 60–90 minutes we map your exact setup, score the ROI, and
-          recommend whether this is the right first system — before you commit to anything bigger.
+          Start with a paid Hours Engine Scan. You send owner files; we measure leaks
+          and recommend whether this is the right first system — before you commit to anything bigger.
         </p>
         <Button href={ROUTES.bookDiscovery} withArrow size="lg">
           {CTAS.bookAutomationMap}

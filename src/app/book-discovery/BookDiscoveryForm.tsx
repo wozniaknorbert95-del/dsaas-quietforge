@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { trackEvent } from '@/lib/analytics';
 import { EMAIL } from '@/lib/constants';
+import { getScanSku, type ScanSkuId } from '@/content/scan';
+import { formatEuro } from '@/content/pricing';
 
 const PAIN_OPTIONS = [
   'Drowning in email',
@@ -23,7 +25,8 @@ const BUDGET_OPTIONS = [
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-export default function BookDiscoveryForm() {
+export default function BookDiscoveryForm({ skuId }: { skuId: ScanSkuId }) {
+  const sku = getScanSku(skuId);
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
@@ -63,7 +66,7 @@ export default function BookDiscoveryForm() {
       const res = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, consent, referrer: window.location.href }),
+        body: JSON.stringify({ ...formData, skuId, consent, referrer: window.location.href }),
       });
 
       if (res.ok) {
@@ -89,8 +92,8 @@ export default function BookDiscoveryForm() {
           Request received.
         </h3>
         <p className="text-[var(--qf-text-dim)]">
-          Thank you — if the fit is right, I will send a payment link and available session times
-          within 24 hours.
+          Thank you — if the fit is right, I will send a payment link and export
+          instructions within 24 hours.
         </p>
       </div>
     );
@@ -105,7 +108,7 @@ export default function BookDiscoveryForm() {
         <p className="text-[var(--qf-text-dim)] mb-4">
           Your request could not be sent right now. Please try again, or email me directly at{' '}
           <a
-            href={`mailto:${EMAIL}?subject=Automation%20Map%20request`}
+            href={`mailto:${EMAIL}?subject=Hours%20Engine%20Scan%20request`}
             className="text-[var(--qf-accent)] hover:underline"
           >
             {EMAIL}
@@ -128,6 +131,9 @@ export default function BookDiscoveryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
+      <p className="text-sm text-[var(--qf-text-dim)]">
+        Requesting: {sku.name} · {formatEuro(sku.priceNet)} excl. VAT
+      </p>
       <div>
         <label htmlFor="bdf-name" className="block text-sm font-semibold text-[var(--qf-text)] mb-2">
           Name
@@ -302,7 +308,7 @@ export default function BookDiscoveryForm() {
         />
         <span>
           I agree that my details may be used to respond to this enquiry and to follow
-          up about the Automation Scan, per the{' '}
+          up about the Hours Engine Scan, per the{' '}
           <Link href="/legal/#privacy" className="text-[var(--qf-accent)] hover:underline">
             privacy policy
           </Link>
@@ -311,7 +317,7 @@ export default function BookDiscoveryForm() {
       </label>
 
       <p className="text-xs text-[var(--qf-text-faint)]">
-        If the fit is right, I&apos;ll send a payment link and available times within 24 hours. No spam.
+        If the fit is right, I&apos;ll send a payment link and export instructions within 24 hours. No spam.
       </p>
     </form>
   );

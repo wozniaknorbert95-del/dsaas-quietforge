@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { WHATSAPP, whatsappBookUrlWithLeak } from '@/lib/constants';
+import { WHATSAPP, whatsappBookUrl, whatsappBookUrlWithLeak } from '@/lib/constants';
 import { trackEvent } from '@/lib/analytics';
+import { DEFAULT_SCAN_SKU_ID, type ScanSkuId } from '@/content/scan';
 
 const LEAKS = [
   { id: 'quotes', label: 'Quotes & orders' },
@@ -16,10 +17,16 @@ const LEAKS = [
  * WhatsApp message ("My biggest time leak is …"). No pick = control message.
  * Measured via payment_link_click with/without the leak param.
  */
-export default function WhatsAppPainPicker({ location }: { location: string }) {
+export default function WhatsAppPainPicker({
+  location,
+  skuId = DEFAULT_SCAN_SKU_ID,
+}: {
+  location: string;
+  skuId?: ScanSkuId;
+}) {
   const [leak, setLeak] = useState<string | null>(null);
 
-  const href = leak ? whatsappBookUrlWithLeak(leak) : WHATSAPP.bookMapUrl;
+  const href = leak ? whatsappBookUrlWithLeak(leak, skuId) : whatsappBookUrl(skuId);
 
   return (
     <div>

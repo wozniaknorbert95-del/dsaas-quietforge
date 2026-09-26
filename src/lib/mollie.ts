@@ -12,7 +12,7 @@
  */
 
 import { createHash, timingSafeEqual } from 'crypto';
-import { PRICING_NUMBERS } from '@/content/pricing';
+import { DEFAULT_SCAN_SKU_ID, getScanSku, type ScanSkuId } from '@/content/scan';
 
 // Types for Mollie API responses
 export interface MolliePayment {
@@ -71,6 +71,7 @@ export interface QuietforgePaymentContext {
     agent: string;
     channel: string;
     product: string;
+    sku?: string;
   };
 }
 
@@ -215,14 +216,16 @@ export async function createAutomationMapPayment(
   proposalId: string,
   clientId: 'flexgrafik' | 'quietforge',
   returnUrl: string,
-  webhookUrl: string
+  webhookUrl: string,
+  skuId: ScanSkuId = DEFAULT_SCAN_SKU_ID
 ): Promise<MolliePayment> {
-  const amount = PRICING_NUMBERS.discovery;
+  const sku = getScanSku(skuId);
+  const amount = sku.priceNet;
   return mollieClient.createQuietforgePayment({
     proposalId,
     clientId,
     amount,
-    description: `Quietforge Automation Scan (€${amount} credited toward implementation)`,
+    description: `Quietforge ${sku.name} (€${amount} credited toward implementation)`,
     returnUrl,
     webhookUrl,
     metadata: {
@@ -230,7 +233,8 @@ export async function createAutomationMapPayment(
       client_id: clientId,
       agent: 'DemandTrust',
       channel: 'book-a-scan',
-      product: 'automation-scan'
+      product: 'hours-engine-scan',
+      sku: sku.id,
     }
   });
 }

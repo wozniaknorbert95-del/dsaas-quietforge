@@ -169,14 +169,14 @@ export default function LegalPage() {
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Payment:</strong> The Automation
-                Scan (€690) is paid upfront. Build fees are invoiced 50% at kickoff and the
+                Scan (Hours €149 / Both-lanes €290 / Decision €490 excl. VAT) is paid upfront. Build fees are invoiced 50% at kickoff and the
                 final 50% only after the system runs in your production. Care plans are
                 billed monthly in advance.
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Scan credit:</strong> The scan
                 fee is credited toward any implementation started within 30 days of the
-                session.
+                report.
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Cancellation:</strong>{' '}

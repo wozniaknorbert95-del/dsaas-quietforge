@@ -85,7 +85,7 @@ export const advisoryModernisationDeliveryPhases: readonly AdvisoryDeliveryPhase
   {
     step: '01',
     title: 'Map & scope',
-    detail: 'Automation Map, scope lock, AVG requirements. Gate: signed scope document.',
+    detail: 'Hours Engine Scan, scope lock, AVG requirements. Gate: signed scope document.',
   },
   {
     step: '02',

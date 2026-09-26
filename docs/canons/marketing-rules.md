@@ -50,7 +50,7 @@ Copy sessions load this file first. If copy reads like a feature list → fail r
 
 ## ICP & objections
 
-**MR-08 (HARD)** — ICP: NL ZZP/small BV, professional services, English-friendly, budget signal Automation Map €290+ / projects €1,200+.  
+**MR-08 (HARD)** — ICP: NL ZZP/small BV, professional services, English-friendly, budget signal Hours Engine Scan from €149 excl. VAT / projects €1,200+.  
 *Not for:* Enterprise procurement, design-only, sub-€199 impulse.  
 *Source:* marketing-strategy §3
 

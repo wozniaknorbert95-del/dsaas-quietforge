@@ -135,7 +135,7 @@ export interface EcosystemModule {
 export const ECOSYSTEM_MODULES: readonly EcosystemModule[] = [
   {
     id: 'm1',
-    name: 'Automation Map',
+    name: 'Hours Engine Scan',
     effect: 'Before we build anything, we map what is worth automating and why.',
     intents: ['order', 'money', 'calm'],
     route: ROUTES.bookDiscovery,
@@ -313,7 +313,7 @@ export const ECOSYSTEM_REPOS: readonly EcosystemRepo[] = [
     number: 7,
     repoKey: 'flexgrafik-meta',
     outcomeLabel: 'Start every project with a written operating map',
-    role: 'Method / Automation Map',
+    role: 'Method / Hours Engine Scan',
     intents: ['order', 'money'],
     losLayers: ['guard', 'memory'],
     proofRoute: ROUTES.howItWorks,

@@ -217,7 +217,7 @@ export default async function SystemSpokePage({ params }: Props) {
             Start with the scan
           </h2>
           <p className="qf-final-cta-lead">
-            90 minutes. Written report is yours. Then a fixed price — or a clear no.
+            You send files. Written report is yours. Then a fixed price — or a clear no.
           </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">

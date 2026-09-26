@@ -33,7 +33,7 @@ Scoped build / no-build recommendation
 | Cold | “Is this for my problem?” | Show pains and outcomes in plain language |
 | Interested | “Is it real?” | Show live systems, screenshots, case studies |
 | Cautious | “Is this safe?” | Show HITL, AVG, EU, no lock-in, logs |
-| Price-aware | “Can I afford the first step?” | Show €690 Scan and build ranges clearly |
+| Price-aware | “Can I afford the first step?” | Show Hours Engine Scan from €149 excl. VAT and build ranges clearly |
 | Ready | “What happens after I click?” | Paid booking flow with no ambiguity |
 
 ---
@@ -46,7 +46,7 @@ Each viewport section gets **one primary** action.
 |---|---|---|---|
 | L1 — Explore | Low commitment | See live systems · Builder's Lab · Explore architecture | `/proof/`, `/lab/` |
 | L2 — Demo | See it work | Try the wizard · Watch walkthrough | external wizard / video / proof asset |
-| L3 — Commit | Start qualification | Book Automation Scan · Pay €690 and pick a slot | `/book-a-scan/` |
+| L3 — Commit | Start qualification | Book an Hours Engine Scan · request a payment link | `/book-a-scan/` |
 | Support | Ask before committing | Ask on WhatsApp | WhatsApp deep link |
 
 **Forbidden:** two filled buttons in one viewport section.
@@ -95,11 +95,11 @@ This is the highest-priority conversion surface.
 ### Professional target flow
 
 ```text
-1. User understands €690 value
-2. User sees what is included
-3. User pays €690
-4. User picks a slot
-5. User completes intake
+1. User understands Hours / Both-lanes / Decision
+2. User sees what they must send
+3. User requests a payment link (SKU selected)
+4. Operator sends export instructions after payment
+5. User completes export
 6. Confirmation email explains next steps
 ```
 
@@ -111,7 +111,7 @@ If the page says “Pay & pick a slot”, the UI must actually support payment a
 
 Use this fallback language instead:
 
-- Page title: `Request your Automation Scan slot — €690, credited`
+- Page title: `Request your Hours Engine Scan — from €149 excl. VAT, credited 30 days`
 - Primary CTA: `Request a paid Scan slot`
 - Form submit: `Request my Automation Map slot`
 - Microcopy: `If the fit is right, I’ll send a payment link and available times within 24 hours.`
@@ -133,7 +133,7 @@ Do **not** use `Send enquiry` as the main submit label on the paid Map page.
 
 - Automation Map sample download
 - 3 bullets: what user receives
-- Credit line: `The €690 fee is credited toward your first build.`
+- Credit line: `The fee you pay is credited toward your first build if we start within 30 days.`
 - No-pressure line: `If there is nothing worth automating, you keep the Map and stop there.`
 
 ---
@@ -215,7 +215,7 @@ All labels must be plain language. Technical names are secondary.
 
 | Offer | Public price |
 |---|---:|
-| Automation Map | €690 credited |
+| Hours Engine Scan | Hours €149 · Both-lanes €290 · Decision €490 excl. VAT, credited 30 days |
 | Inbox Killer | €1,200–€4,800 |
 | Web Upgrade | €1,800–€5,500 |
 | Sales Funnel / Wizard Cash Engine | €2,400–€6,500 |

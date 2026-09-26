@@ -5,9 +5,10 @@ import Button from '@/components/ui/Button';
 import FaqItem from '@/components/ui/FaqItem';
 import GratkaDiagram from '@/components/ui/GratkaDiagram';
 import Link from 'next/link';
-import { ROUTES, PRICING, SITE_URL } from '@/lib/constants';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 import { PRICING_MATRIX } from '@/content/pricing';
 import { CTAS } from '@/content/conversion-copy';
+import { SCAN_COPY } from '@/content/scan';
 import { GRATKA } from '@/lib/gratka';
 
 /* ── metadata ── */
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'How it works — three clear steps',
     description:
-      'A calm, transparent process: a paid Automation Map, a productized build with human approval gates, and optional monthly care.',
+      'A calm, transparent process: a paid Hours Engine Scan, a productized build with human approval gates, and optional monthly care.',
     url: `${SITE_URL}/how-it-works`,
     images: [
       {
@@ -49,12 +50,12 @@ const FAQS = [
   },
   {
     question: 'What if I only want Step 1?',
-    answer: "That's fine — the Automation Map stands on its own, and it's yours to keep.",
+    answer: "That's fine — the Hours Engine Scan stands on its own, and it's yours to keep.",
   },
 ];
 
 const TIMELINE = [
-  { day: 'Day 0', label: 'Automation Map', note: 'paid, credited' },
+  { day: 'Day 0', label: 'Hours Engine Scan', note: 'paid, credited 30d' },
   { day: 'Day 1–3', label: 'Scope locked', note: 'fixed quote' },
   { day: 'Day 3–14', label: 'Build, test, refine', note: '' },
   { day: 'Go-live', label: 'Handover + training', note: '' },
@@ -119,18 +120,18 @@ export default function HowItWorksPage() {
       <Section background="surface" padding="large">
         <Eyebrow>Step 1</Eyebrow>
         <h2 className="text-[var(--qf-fs-2xl)] font-bold tracking-tight mb-6">
-          We find what&apos;s actually costing you — the Automation Map.
+          We find what&apos;s actually costing you — the Hours Engine Scan.
         </h2>
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-6">
-          A focused 60–90 minute working session and a written roadmap. We map your processes —
-          sales, enquiries, email, orders — and pinpoint your two or three biggest time-and-money
-          leaks, each with a clear ROI.
+          You send a website URL and an owner-only export. We measure where the week leaks
+          (quotes, inbox, leads) and write it down with evidence labels. Ranking only from
+          measured hours — never from a crawl or from waiting on email.
         </p>
         <ul className="space-y-2 max-w-2xl mb-6">
           {[
-            'A written Automation Map you keep.',
-            'A recommended first step, with the numbers behind it.',
-            `€${PRICING.discovery} — credited toward your project.`,
+            'A written Hours Engine report you keep.',
+            'A recommended first step, with the labels behind each number.',
+            `${SCAN_COPY.fromPrice} — credited 30 days toward your first build.`,
           ].map((item) => (
             <li key={item} className="flex items-start gap-3 text-[var(--qf-text-dim)]">
               <span className="text-[var(--qf-ok)] mt-0.5 shrink-0">✓</span>
@@ -279,7 +280,7 @@ export default function HowItWorksPage() {
          ═══════════════════════════════════════════════════════════ */}
       <Section background="surface" padding="large">
         <h2 className="text-[var(--qf-fs-2xl)] font-bold tracking-tight mb-4">
-          Start with clarity — Step 1 is the Automation Map.
+          Start with clarity — Step 1 is the Hours Engine Scan.
         </h2>
         <Button href={ROUTES.bookDiscovery} withArrow size="lg">
           {CTAS.bookAutomationMap}

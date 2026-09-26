@@ -275,8 +275,8 @@ export default function ResultsPage() {
           Let&apos;s find what&apos;s worth automating in your business.
         </h2>
         <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] max-w-[var(--qf-maxw-narrow)] mb-8">
-          Start with a paid Automation Map. In 60–90 minutes we&apos;ll pinpoint your biggest leaks
-          and show you the ROI — before you commit to anything bigger.
+          Start with a paid Hours Engine Scan. You send files; we measure your biggest leaks
+          before you commit to anything bigger.
         </p>
         <Button href={ROUTES.bookDiscovery} withArrow size="lg" analyticsEvent="cta_book_map_click" analyticsDetail={{ location: 'results_footer' }}>
           {CTAS.bookAutomationMap}

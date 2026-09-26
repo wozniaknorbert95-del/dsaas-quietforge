@@ -5,8 +5,7 @@ import Card from '@/components/ui/Card';
 import FaqItem from '@/components/ui/FaqItem';
 import StickyCta from '@/components/layout/StickyCta';
 import IntentSystems from '@/components/v2/IntentSystems';
-import { PRICING, ROUTES } from '@/lib/constants';
-import { formatEuro } from '@/content/pricing';
+import { ROUTES } from '@/lib/constants';
 import {
   ABOUT,
   CTAS,
@@ -16,6 +15,7 @@ import {
   PUBLIC_OFFER,
   REFERENCE_PROGRAM,
 } from '@/content/conversion-copy';
+import { SCAN_COPY } from '@/content/scan';
 import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
 import ReferenceCta from '@/components/home/ReferenceCta';
 import SampleScanLink from '@/components/analytics/SampleScanLink';
@@ -50,7 +50,7 @@ const DISCIPLINE = [
 ];
 
 const STEPS = [
-  'Scan — pre-work, a 90-minute session, and a written go/no-go in 2 days.',
+  'Scan — you send files, we measure leaks, written GO / PARK / NO. No invented euro.',
   'Scope — one module, fixed price, usually 2–3 weeks after sign-off.',
   'Build — AI speed, human review, scans.',
   'You approve — nothing live without it.',
@@ -107,7 +107,7 @@ const FAQ = [
   },
   {
     q: 'Why is the scan paid?',
-    a: `So both sides take it seriously. ${formatEuro(PRICING.discovery)} is credited toward implementation. You keep the report either way.`,
+    a: `So both sides take it seriously. ${SCAN_COPY.creditLine} You keep the report either way.`,
   },
   {
     q: 'Do you have client case studies yet?',
@@ -236,8 +236,8 @@ export default function Home() {
           First working module usually 2–3 weeks after scope sign-off.
         </h2>
         <p className="max-w-2xl text-[var(--qf-text-dim)]">
-          The scan is a written decision, not a sales call — pre-work, one live session,
-          a go/no-go you keep either way.
+          The scan is a written measurement, not a sales call — you send files, we label
+          every number, you keep the report either way.
         </p>
         <ol className="qf-sys-steps mt-4">
           {STEPS.map((step, index) => (
@@ -347,7 +347,7 @@ export default function Home() {
         <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">
           {HERO.microTrust}{' '}
           <Link href={ROUTES.lab} className="qf-sys-link">
-            See the Builder's Lab →
+            See the Builder&apos;s Lab →
           </Link>
         </p>
         <h3 className="qf-sys-h2 mt-10">{REFERENCE_PROGRAM.heading}</h3>
@@ -430,11 +430,10 @@ export default function Home() {
       <section className="qf-final-cta" aria-labelledby="home-cta-title">
         <div className="qf-final-cta-inner">
           <h2 id="home-cta-title" className="qf-sys-h2">
-            Book the Automation Scan
+            Book an Hours Engine Scan
           </h2>
           <p className="qf-final-cta-lead">
-            90 minutes. {formatEuro(PRICING.discovery)}. The report is yours. Credited if we
-            build.
+            {SCAN_COPY.fromPrice}. The report is yours. {SCAN_COPY.creditLine}
           </p>
           <p className="qf-final-cta-sample">
             <SampleScanLink location="home_final_cta" />

@@ -52,7 +52,7 @@ README, walkthrough, optional light monthly care. Take it in-house anytime.
 
 ## Next step
 
-**Automation Map** — 60–90 minutes, fee credited toward your project.
+**Hours Engine Scan** — you send owner files; we measure. Fee credited 30 days toward your first build.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

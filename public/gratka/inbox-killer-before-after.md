@@ -52,7 +52,7 @@ classify → plan → diff → approve
 
 ## Next step
 
-Not sure if your inbox is worth automating first? Book a paid **Automation Map** — 60–90 minutes, ROI scored, document is yours either way.
+Not sure if your inbox is worth automating first? Book a paid **Hours Engine Scan** — you send files, we measure, document is yours either way.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

@@ -1,6 +1,6 @@
 /**
  * Intake endpoint — POST /api/intake
- * Sends Automation Map request to INTAKE_TO (quietforge@flexgrafik.nl) via SMTP.
+ * Sends Hours Engine Scan request to INTAKE_TO (quietforge@flexgrafik.nl) via SMTP.
  * Guards: honeypot `website`, server-side validation, in-memory rate limit per IP.
  * Binding: docs/operations/handoffs/2026-07-15-intake-email.md
  */
@@ -10,6 +10,7 @@ import {
   sendIntakeEmail,
   type IntakePayload,
 } from '@/lib/email';
+import { DEFAULT_SCAN_SKU_ID, isScanSkuId } from '@/content/scan';
 
 function getClientIp(req: Request): string {
   const forwarded = req.headers.get('x-forwarded-for');
@@ -55,11 +56,15 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json({ ok: false, error: 'VALIDATION' }, { status: 422 });
   }
 
+  const skuRaw = trimmed(body.skuId);
+  const skuId = isScanSkuId(skuRaw) ? skuRaw : DEFAULT_SCAN_SKU_ID;
+
   const payload: IntakePayload = {
     name,
     company,
     email,
     url,
+    skuId,
     pains: arr(body.pains),
     budget: trimmed(body.budget),
     availability: str(body.availability),

@@ -1,28 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
-import { EMAIL, PRICING, ROUTES, SITE_URL } from '@/lib/constants';
-import { formatEuro } from '@/content/pricing';
+import { EMAIL, ROUTES, SITE_URL } from '@/lib/constants';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
 import SampleScanLink from '@/components/analytics/SampleScanLink';
-import WhatsAppPainPicker from '@/components/analytics/WhatsAppPainPicker';
-import BookDiscoveryForm from '@/app/book-discovery/BookDiscoveryForm';
+import BookScanIntake from '@/components/scan/BookScanIntake';
+import {
+  SCAN_COPY,
+  SCAN_CREDIT_DAYS,
+  SCAN_EVIDENCE_LABELS,
+} from '@/content/scan';
 
 export const metadata: Metadata = {
-  title: `Book the Automation Scan — ${formatEuro(PRICING.discovery)}`,
+  title: `Book an Hours Engine Scan — ${SCAN_COPY.fromPrice}`,
   description:
-    '90 minutes, written report is yours, credited toward implementation. QuietForge Automation Scan.',
+    'Hours, Both-lanes, or Decision. You send owner files; we measure. Ranking only from measured hours. Credited 30 days.',
   openGraph: {
-    title: `Book the Automation Scan — ${formatEuro(PRICING.discovery)}`,
+    title: `Book an Hours Engine Scan — ${SCAN_COPY.fromPrice}`,
     url: `${SITE_URL}/book-a-scan/`,
   },
 };
-
-const SCAN_DELIVERABLES = [
-  'Your 3 biggest time-and-money leaks, ranked by payback',
-  'For each leak: hours lost per week × €40/h — the math is shown, not asserted',
-  'A build roadmap: what first, what later, and what NOT to automate',
-];
 
 export default function BookAScanPage() {
   return (
@@ -30,12 +27,11 @@ export default function BookAScanPage() {
       <AnalyticsPageView event="book_discovery_view" />
       <Section padding="large">
         <h1 className="mb-4 max-w-3xl text-[var(--qf-fs-3xl)] font-bold tracking-tight">
-          The Automation Scan — 90 minutes, {formatEuro(PRICING.discovery)}, and the
-          report is yours.
+          Book an Hours Engine Scan — {SCAN_COPY.fromPrice}.
         </h1>
         <p className="mb-4 max-w-2xl text-[var(--qf-text-dim)]">
-          We find where the week leaks (quotes, orders, inbox, reporting), write it down,
-          and decide whether a system is worth building. Credited toward implementation.
+          {SCAN_COPY.clientPicks} You send a website URL and an owner-only export. We
+          measure. We do not invent euro from a call.
         </p>
         <p className="mb-8 max-w-2xl border-l-2 border-[var(--qf-accent)] pl-4 text-sm text-[var(--qf-text-dim)]">
           Why paid? So both sides take it seriously. If there is nothing worth automating,
@@ -44,45 +40,37 @@ export default function BookAScanPage() {
 
         <div className="mb-10 max-w-2xl">
           <p className="text-sm font-semibold text-[var(--qf-text)]">What you get</p>
-          <ul className="mt-3 space-y-2">
-            {SCAN_DELIVERABLES.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-sm text-[var(--qf-text-dim)]">
-                <span aria-hidden="true" className="text-[var(--qf-accent)]">✓</span>
-                {item}
-              </li>
-            ))}
-          </ul>
+          <table className="qf-scan-label-table">
+            <thead>
+              <tr>
+                <th scope="col">Label</th>
+                <th scope="col">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SCAN_EVIDENCE_LABELS.map((row) => (
+                <tr key={row.label}>
+                  <th scope="row">{row.label}</th>
+                  <td>{row.meaning}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-4 text-sm text-[var(--qf-text-dim)]">{SCAN_COPY.howWeCalculate}</p>
           <p className="mt-4 text-sm">
             <SampleScanLink />
           </p>
           <p className="mt-4 border-l-2 border-[var(--qf-border)] pl-4 text-sm text-[var(--qf-text-faint)]">
-            The {formatEuro(PRICING.discovery)} fee is credited toward your first build. If
-            there is nothing worth automating, you keep the report and stop there.
+            {SCAN_COPY.creditLine} {SCAN_COPY.guarantee}
           </p>
+          <p className="mt-3 text-sm text-[var(--qf-text-faint)]">{SCAN_COPY.noExportHonesty}</p>
         </div>
 
-        <div className="qf-book-hero-cta max-w-xl">
-          <p className="qf-book-hero-cta-title">Ready to book?</p>
-          <p className="qf-book-hero-cta-lead">
-            WhatsApp for the payment link, or the form below. I reply within one working
-            day.
-          </p>
-          <div className="qf-book-hero-cta-actions">
-            <WhatsAppPainPicker location="book_a_scan" />
-            <Link
-              href="#request-slot"
-              className="inline-flex min-h-12 items-center border border-[var(--qf-border)] px-5 text-sm font-semibold"
-            >
-              Prefer the form ↓
-            </Link>
-          </div>
-        </div>
+        <BookScanIntake />
+
         <p className="mt-6 text-sm text-[var(--qf-text-faint)]">
-          {EMAIL} · Rotterdam · reply within one working day
+          {EMAIL} · Rotterdam · reply within one working day · credited {SCAN_CREDIT_DAYS} days
         </p>
-        <div id="request-slot" className="mt-12">
-          <BookDiscoveryForm />
-        </div>
         <p className="mt-8 text-sm text-[var(--qf-text-faint)]">
           Your details are used only to respond to this enquiry. See the{' '}
           <Link href={ROUTES.legal} className="text-[var(--qf-accent)]">

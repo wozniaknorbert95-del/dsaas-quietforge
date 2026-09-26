@@ -1,4 +1,5 @@
 import { PRICING, PRODUCT_TIER_RANGES } from '@/content/pricing';
+import { DEFAULT_SCAN_SKU_ID, getScanSku, scanPriceLine, type ScanSkuId } from '@/content/scan';
 
 export { PRICING, PRODUCT_TIER_RANGES };
 
@@ -26,25 +27,35 @@ function waLink(text: string, content: string): string {
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}&${WHATSAPP_UTM}&utm_content=${content}`;
 }
 
+function bookScanMessage(skuId: ScanSkuId): string {
+  const sku = getScanSku(skuId);
+  return `Hi Norbert, I want to book the ${sku.name} (${scanPriceLine(sku)}) — please send the payment link.`;
+}
+
 export const WHATSAPP = {
   url:
     process.env.NEXT_PUBLIC_WHATSAPP_URL ??
-    waLink('Hi Norbert, I\'d like to book an Automation Scan for my business.', 'ask'),
+    waLink("Hi Norbert, I'd like to book an Hours Engine Scan for my business.", 'ask'),
   bookMapUrl:
     process.env.NEXT_PUBLIC_WHATSAPP_BOOK_MAP_URL ??
-    waLink(
-      'Hi Norbert, I want to book the Automation Scan (€690) — please send the payment link and available slots.',
-      'payment-link'
-    ),
+    waLink(bookScanMessage(DEFAULT_SCAN_SKU_ID), 'payment-link'),
   label: 'Ask on WhatsApp',
-  bookMapLabel: 'WhatsApp — send me the €690 link',
+  bookMapLabel: 'WhatsApp — send me the payment link',
   offlineFallback: `mailto:${EMAIL}?subject=WhatsApp%20unavailable`,
 } as const;
 
 /** A/B prefill variant — personalized message with the visitor's biggest leak (media plan P1-5). */
-export function whatsappBookUrlWithLeak(leak: string): string {
+export function whatsappBookUrl(skuId: ScanSkuId = DEFAULT_SCAN_SKU_ID): string {
+  return waLink(bookScanMessage(skuId), 'payment-link');
+}
+
+export function whatsappBookUrlWithLeak(
+  leak: string,
+  skuId: ScanSkuId = DEFAULT_SCAN_SKU_ID
+): string {
+  const sku = getScanSku(skuId);
   return waLink(
-    `Hi Norbert — I'd like to book the €690 Automation Scan. My biggest time leak is ${leak}.`,
+    `Hi Norbert — I'd like to book the ${sku.name} (${scanPriceLine(sku)}). My biggest time leak is ${leak}.`,
     'payment-link'
   );
 }

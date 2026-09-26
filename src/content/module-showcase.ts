@@ -54,7 +54,7 @@ export const MODULE_SHOWCASE: Record<string, ModuleShowcase> = {
     portfolioLabel: 'Constitution',
     effect:
       'Ecosystem constitution — global rules, master plan, agent hierarchy and module specs agents read at session start.',
-    highlights: ['Automation Map method', 'Agent cards', 'Enterprise doc suite'],
+    highlights: ['Hours Engine method', 'Agent cards', 'Enterprise doc suite'],
   },
   'flex-vcms': {
     repoKey: 'flex-vcms',

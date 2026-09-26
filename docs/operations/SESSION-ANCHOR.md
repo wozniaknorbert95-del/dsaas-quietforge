@@ -1,6 +1,44 @@
 # SESSION-ANCHOR — Live Session Pointer
 
+**Updated:** 2026-09-26 · **Status:** SHIPPING · Scan SKU cutover → `main` (Vercel CD)
+
+**Branch:** `main`
+
+**Current handoff:** [`handoffs/2026-09-26-scan-sku-cutover.md`](handoffs/2026-09-26-scan-sku-cutover.md)
+
+**Prior:** [`handoffs/2026-09-16-smb-clarity-w2-polish.md`](handoffs/2026-09-16-smb-clarity-w2-polish.md) · Production `dpl_DzAg7xJY`
+
+**SSoT:** tenant `oferty-v1.md` v1.1 + `src/content/scan.ts`
+
+## CO
+
+Public Offer A is no longer Automation Scan €690 / 90 min. It is Hours Engine Scan:
+
+- Hours €149 excl. VAT (start here)
+- Both-lanes €290
+- Decision €490
+
+Credited 30 days toward Offer B. Ranking only of measured hours. Offer B (Core/Scale/Command) and C (Keep/Grow/Unlock) unchanged.
+
+## NASTĘPNY KROK
+
+1. Post-deploy smoke on live home / pricing / book-a-scan / approach (see handoff).
+2. Runtime job Scan Measure stays a platform issue — not this repo.
+3. LinkedIn live cadence still PARKED.
+
+---
+
+# Prior pointer — SMB Clarity W2 (2026-09-16)
+
 **Updated:** 2026-09-16 · **Status:** DEPLOYED · SMB Clarity W1+W2 LIVE
+
+**Commit:** `03de011` on `main`
+
+**Deployment:** `dpl_DzAg7xJYtQQVRMsNeZB9FZn8jePf` · project `flexgrafik-services` · Production
+
+**Live:** https://quietforge.flexgrafik.nl/
+
+**Current handoff:** [`handoffs/2026-09-16-smb-clarity-w2-polish.md`](handoffs/2026-09-16-smb-clarity-w2-polish.md)
 
 **Commit:** `03de011` on `main`
 

@@ -37,7 +37,7 @@ I work with owners of 1–15 person firms in the NL/PL who are drowning in manua
 
 Nothing goes live without your approval. The code lives in your repo from day one.
 
-First step: the Automation Scan — 90 minutes, €690, credited toward implementation. The report is yours either way.
+First step: the Hours Engine Scan — from €149 excl. VAT (Hours / Both-lanes / Decision). You send owner files; we measure. Credited 30 days toward a build. The report is yours either way.
 
 quietforge.flexgrafik.nl
 ```
@@ -45,7 +45,7 @@ quietforge.flexgrafik.nl
 ## Featured (order)
 
 1. Site — `https://quietforge.flexgrafik.nl/`
-2. Book the Automation Scan — `https://quietforge.flexgrafik.nl/book-a-scan/`
+2. Book an Hours Engine Scan — `https://quietforge.flexgrafik.nl/book-a-scan/`
 3. After S2: How we measure — `https://quietforge.flexgrafik.nl/proof/methodology/`
 4. Optional artefact: Data safety playbook PDF on the site
 

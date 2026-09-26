@@ -58,7 +58,7 @@ This sample mirrors the live 5-node LangGraph pipeline — names anonymised.
 
 ## Next step
 
-Want this level of structure for your business operations? Start with a paid **Automation Map**.
+Want this level of structure for your business operations? Start with a paid **Hours Engine Scan**.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

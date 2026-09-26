@@ -123,7 +123,7 @@ export default function FounderPage() {
             Stop working for your tools.
           </h2>
           <p className="text-[var(--qf-text-dim)] text-[var(--qf-fs-lg)] mb-8">
-            Let your tools work for you. Start with an Automation Map and we&apos;ll see if this architecture
+            Let your tools work for you. Start with an Hours Engine Scan and we&apos;ll see if this architecture
             fits your business.
           </p>
           <Button href={ROUTES.bookDiscovery} withArrow size="xl">

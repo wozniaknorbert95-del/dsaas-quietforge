@@ -39,7 +39,7 @@ export const HERO = {
   microTrust:
     'Validated on FlexGrafik. Client hours publish only after verification — the counter starts at zero.',
   primaryCta: 'Book a scan',
-  primaryCtaMeta: `${formatEuro(PRICING_NUMBERS.discovery)} · credited · 90 min`,
+  primaryCtaMeta: `from ${formatEuro(PRICING_NUMBERS.scanFrom)} excl. VAT · credited 30d`,
   secondaryCta: 'See live proof',
   secondaryHref: '/proof/',
   wizardCta: 'Try the wizard (2 min)',
@@ -53,10 +53,11 @@ export const HERO = {
 } as const;
 
 export const PUBLIC_OFFER = {
-  scanName: 'Automation Scan',
-  scanPrice: formatEuro(PRICING_NUMBERS.discovery),
-  scanNote: '90 minutes. The report is yours. Credited toward implementation.',
-  scanForWho: 'Not sure what to automate first — priorities, ROI and a written plan.',
+  scanName: 'Hours Engine Scan',
+  scanPrice: `from ${formatEuro(PRICING_NUMBERS.scanFrom)} excl. VAT`,
+  scanNote:
+    'Hours €149 · Both-lanes €290 · Decision €490. You pick depth of evidence. Credited 30 days.',
+  scanForWho: 'Not sure what to automate first — we measure from your files. No invented euro.',
   implementationName: 'Implementation',
   implementationPrice: `from ${formatEuro(PRICING_NUMBERS.implementationFrom)}`,
   implementationNote: 'One concrete problem — first module usually 2–3 weeks after sign-off.',
@@ -129,7 +130,7 @@ export const PUBLIC_OFFER = {
 export const REFERENCE_PROGRAM = {
   heading: 'Proof starts at zero — and we’re opening five doors.',
   lead:
-    'Five reference spots this quarter: the full Automation Scan (€690 value) at €0–€345, in exchange for publishing the measured results. After five, the program closes.',
+    'Five reference spots this quarter: an Hours Engine Scan at €0–€345, in exchange for publishing the measured results. After five, the program closes.',
   terms: [
     'Before/after numbers (hours × €40/h) published in a case study',
     'One named reference sentence + consent to name your industry',
@@ -198,7 +199,7 @@ export const ABOUT = {
   currencyPoints: [
     'Hours given back — measured, not asserted.',
     'Nerves removed: errors caught before they reach your customers.',
-    'Money: every recommendation ranked by payback.',
+    'Money: measured hours ranked — never euro invented from a crawl or a wait.',
     'Full control and ownership — your repo from day one, README and handover included. Replaceable by design.',
     'Maintenance that earns its keep — I earn when it works, not when it breaks.',
   ],

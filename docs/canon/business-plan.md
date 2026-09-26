@@ -36,13 +36,13 @@ QuietForge is a one-person practice, strengthened by AI agents and external code
 
 | Offer | Public price | Note |
 |-------|--------------|------|
-| Automation Scan | **€690** | 90 min; report is theirs; credited toward implementation |
+| Hours Engine Scan | **from €149 excl. VAT** | Hours €149 · Both-lanes €290 · Decision €490; credited 30 days |
 | Implementation | **from €2 500** | Fixed scope, 2–4 weeks, 1–3 modules |
 | Maintenance | **from €300 / month** | Monthly cancellable |
 
 Reference implementations (max 3, months 1–3) may be €0–1 500 **in exchange for** a named case with numbers. That discount is not the public site price.
 
-**Superseded:** Automation Map €290. Do not use it on site or LinkedIn.
+**Superseded:** Automation Scan €690 / 90 min workshop, and Automation Map €290 as a single SKU. Do not use them on site or LinkedIn.
 
 ## 4. Platform vs tenant
 

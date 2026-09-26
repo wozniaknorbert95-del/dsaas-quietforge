@@ -142,7 +142,7 @@ export const agentOsDeliveryPhases = [
   {
     step: '01',
     title: 'Map',
-    detail: 'Find leaks, score ROI, agree first system. Deliverable: Automation Map.',
+    detail: 'Find leaks, measure hours, agree first system. Deliverable: Hours Engine report.',
   },
   {
     step: '02',

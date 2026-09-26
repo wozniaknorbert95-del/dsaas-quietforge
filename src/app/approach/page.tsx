@@ -4,78 +4,58 @@ import Section from '@/components/ui/Section';
 import FaqItem from '@/components/ui/FaqItem';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
 import SampleScanLink from '@/components/analytics/SampleScanLink';
-import { PRICING, ROUTES, WHATSAPP } from '@/lib/constants';
+import { ROUTES, WHATSAPP } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
+import {
+  SCAN_COPY,
+  SCAN_CREDIT_DAYS,
+  SCAN_EVIDENCE_LABELS,
+  SCAN_SKUS,
+  SCAN_TOOLS,
+  scanVatLine,
+} from '@/content/scan';
 
 export const metadata: Metadata = {
-  title: 'The Automation Scan — a decision, not a sales call',
+  title: 'The Hours Engine Scan — depth of evidence, not a sales call',
   description:
-    'Pre-work, a 90-minute session, and a written report with a go/no-go. The Automation Scan is a fixed-price decision basis, not a pitch.',
+    'Hours, Both-lanes, or Decision. You send owner files; we measure leaks. Ranking only from measured hours. From €149 excl. VAT, credited 30 days.',
   openGraph: {
-    title: 'The Automation Scan — a decision, not a sales call | Quietforge',
+    title: 'The Hours Engine Scan — depth of evidence, not a sales call | Quietforge',
     description:
-      `${formatEuro(PRICING.discovery)} buys a written decision: leaks ranked by payback, the math shown, a roadmap and a go/no-go.`,
+      'You pick how much evidence we read. No invented euro. From €149 excl. VAT, credited 30 days.',
     images: [
       {
         url: '/og/approach.svg',
         width: 1200,
         height: 630,
-        alt: 'The Automation Scan — a decision, not a sales call',
+        alt: 'The Hours Engine Scan — depth of evidence, not a sales call',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Automation Scan — a decision, not a sales call | Quietforge',
+    title: 'The Hours Engine Scan — depth of evidence, not a sales call | Quietforge',
     description:
-      `${formatEuro(PRICING.discovery)} buys a written decision: leaks ranked by payback, the math shown, a roadmap and a go/no-go.`,
+      'You pick how much evidence we read. No invented euro. From €149 excl. VAT, credited 30 days.',
     images: ['/og/approach.svg'],
   },
 };
 
 const TIMELINE = [
   {
-    day: 'Day 0 — pre-work',
-    title: 'We study your business before you talk',
-    body: 'Your site, your stack, your volumes are reviewed before the session. The agenda is prepared, so the live call starts with numbers, not "tell me about your business".',
+    day: 'You send',
+    title: 'URL + owner export',
+    body: 'One host, and mailbox or quotes as a file. No live login. You write down the time window. About 20–40 minutes of your time.',
   },
   {
-    day: 'Day 1–2 — live session',
-    title: '60–90 minutes, mapped leaks',
-    body: 'We map where the week leaks: quotes, orders, inbox, reporting. Hard numbers instead of impressions — hours, volumes, what waits on you.',
+    day: 'We measure',
+    title: 'Files first, website second',
+    body: 'The Hours Engine labels every number. The crawl looks at your site only — it never prints hours or euro.',
   },
   {
-    day: 'Day 3–4 — written report',
-    title: 'A decision you can act on',
-    body: 'A written report with your leaks ranked by payback, the math shown, and a roadmap: what first, what later, what NOT to automate.',
-  },
-];
-
-const REPORT_SECTIONS = [
-  {
-    n: '01',
-    title: 'Scored maturity',
-    body: 'Five dimensions — tools, processes, data, automation, people — each scored so the imbalances are visible, not just a single number.',
-  },
-  {
-    n: '02',
-    title: 'Opportunity matrix',
-    body: 'Every candidate process scored on impact × effort × risk. The high-payback, low-effort items float to the top.',
-  },
-  {
-    n: '03',
-    title: 'Quantified payback',
-    body: 'For each leak: hours lost per week × your hour value. The math is shown line by line — nothing asserted.',
-  },
-  {
-    n: '04',
-    title: '30/60/90 roadmap',
-    body: 'What to do first, who does it, and how long it takes. Quick wins in the first month, bigger moves after.',
-  },
-  {
-    n: '05',
-    title: 'Go / no-go',
-    body: 'A clear recommendation — including "do not automate". That is a valid, successful outcome.',
+    day: 'You keep',
+    title: 'A written report',
+    body: 'Typically within 5 working days of a complete export. Ranking only where hours were measured. GO / PARK / NO on Decision.',
   },
 ];
 
@@ -93,7 +73,7 @@ const COMPARISON = [
   {
     name: 'Doing nothing',
     vs: 'the real cost',
-    body: 'Small-business owners spend about 11 hours a week on admin — roughly 2× the time they spend selling. At €80/h that is a €46K+/year leak.',
+    body: 'Small-business owners spend about 11 hours a week on admin — roughly 2× the time they spend selling (Amex SME Barometer, 2025). The scan measures your files; it does not invent that euro.',
   },
 ];
 
@@ -110,7 +90,7 @@ const METRICS = [
   },
   {
     value: '€81',
-    label: 'average hourly rate, NL freelancers',
+    label: 'average hourly rate, NL freelancers — context, not the scan rate',
     src: 'Knab, 2025',
   },
   {
@@ -146,27 +126,27 @@ const STEPS_AFTER = [
 const FAQ = [
   {
     q: 'Is this a sales call?',
-    a: 'No. The deliverable is a written decision basis, not a pitch. The session is anti-sales by design — if the answer is "do not automate", the report says so, and that is a successful scan.',
+    a: 'No. The deliverable is a written report with evidence labels. If the answer is “do not automate”, the report says so, and that is a successful scan.',
   },
   {
     q: 'What exactly do I receive?',
-    a: 'A written report with your top leaks ranked by payback, the hour-by-hour math, a scored maturity view, a 30/60/90 roadmap and a go/no-go. You keep it regardless of what you do next.',
+    a: 'A written report. Every number carries a label: Measured hours, Waiting time, You stated, Website hypothesis, or Not enough data. Ranking only of measured hours.',
   },
   {
     q: 'How long until I get the report?',
-    a: 'Day 0 pre-work, a 60–90 minute session in the first two days, and the report within two working days after the session.',
+    a: SCAN_COPY.reportWindow,
   },
   {
     q: 'Is the fee really credited?',
-    a: `Yes. The ${formatEuro(PRICING.discovery)} is credited toward your first build. If there is nothing worth automating, you keep the report and stop there.`,
+    a: `${SCAN_COPY.creditLine} If there is nothing worth automating, you keep the report and stop there.`,
   },
   {
-    q: 'What if the scan finds nothing worth automating?',
-    a: 'That is a valid outcome. The report says so, and you have a document that proves you checked. Not every process deserves automation.',
+    q: 'What if I cannot send an export?',
+    a: SCAN_COPY.noExportHonesty,
   },
   {
     q: 'Is my data safe during the scan?',
-    a: 'Intake data is processed on EU hosting; analytics are anonymous and consent-based. For delivery, every system stays gated and logged. See the security page for the gate list.',
+    a: 'Owner-only files. No staff inboxes. No live mailbox login. Raw files stay out of git and are deleted after you accept the report or abandon the scan. See Security.',
   },
 ];
 
@@ -182,16 +162,12 @@ export default function ApproachPage() {
         </p>
         <p className="qf-sys-status">
           <span className="qf-sys-badge">Approach</span>
-          <span className="qf-sys-intents">decision · process · no surprises</span>
+          <span className="qf-sys-intents">evidence · labels · no invented euro</span>
         </p>
-        <h1 className="qf-sys-h1">The Automation Scan — a decision, not a sales call.</h1>
-        <p className="qf-sys-tagline">
-          {formatEuro(PRICING.discovery)} buys a written decision basis: your leaks ranked
-          by payback, the math shown, and a clear go/no-go. The session is input, not the
-          product.
-        </p>
+        <h1 className="qf-sys-h1">The Hours Engine Scan — depth of evidence, not a sales call.</h1>
+        <p className="qf-sys-tagline">{SCAN_COPY.clientPicks} {SCAN_COPY.noWorkshop}</p>
         <p className="qf-sys-meta">
-          pre-work · 60–90 min session · report in 2 days · credited toward your build
+          {SCAN_COPY.fromPrice} · credited {SCAN_CREDIT_DAYS} days · {SCAN_COPY.reportWindow}
         </p>
         <div className="qf-sys-cta-row">
           <Link href={ROUTES.bookAScan} className="qf-btn-fill">
@@ -209,10 +185,26 @@ export default function ApproachPage() {
       </Section>
 
       <Section background="surface">
+        <h2 className="qf-sys-h2">Three depths. Same tools.</h2>
+        <p className="qf-sys-lead">{SCAN_COPY.clientPicks}</p>
+        <ul className="qf-scan-sku-grid">
+          {SCAN_SKUS.map((sku) => (
+            <li key={sku.id} className="qf-approach-card">
+              <span className="qf-approach-card-n">{sku.eyebrow}</span>
+              <h3 className="qf-approach-card-title">
+                {sku.name} · {formatEuro(sku.priceNet)}
+              </h3>
+              <p className="qf-approach-card-body">{scanVatLine(sku)}</p>
+              <p className="qf-approach-card-body">{sku.youMustSend}</p>
+              <p className="qf-approach-card-body">{sku.rankingMayInclude}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section>
         <h2 className="qf-sys-h2">What happens, and when</h2>
-        <p className="qf-sys-lead">
-          No ambiguity about what you get or when. The whole engagement fits in four days.
-        </p>
+        <p className="qf-sys-lead">{SCAN_COPY.reportWindow}</p>
         <ul className="qf-approach-timeline">
           {TIMELINE.map((step) => (
             <li key={step.day} className="qf-tl-item">
@@ -224,29 +216,48 @@ export default function ApproachPage() {
         </ul>
       </Section>
 
+      <Section background="surface">
+        <h2 className="qf-sys-h2">Every number carries a label</h2>
+        <p className="qf-sys-lead">{SCAN_COPY.howWeCalculate}</p>
+        <table className="qf-scan-label-table">
+          <thead>
+            <tr>
+              <th scope="col">Label on the page</th>
+              <th scope="col">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SCAN_EVIDENCE_LABELS.map((row) => (
+              <tr key={row.label}>
+                <th scope="row">{row.label}</th>
+                <td>{row.meaning}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="qf-sys-lead">{SCAN_COPY.noExportHonesty}</p>
+      </Section>
+
       <Section>
-        <h2 className="qf-sys-h2">What the report contains</h2>
+        <h2 className="qf-sys-h2">Tools we run — not a menu for you</h2>
         <p className="qf-sys-lead">
-          You see the structure before you book. This is what lands in your inbox.
+          The same tools on every SKU. A higher SKU means more of your data in the report, not a new logo.
         </p>
-        <ul className="qf-approach-grid">
-          {REPORT_SECTIONS.map((section) => (
-            <li key={section.n} className="qf-approach-card">
-              <span className="qf-approach-card-n">{section.n}</span>
-              <h3 className="qf-approach-card-title">{section.title}</h3>
-              <p className="qf-approach-card-body">{section.body}</p>
+        <ul className="qf-scan-tool-grid">
+          {SCAN_TOOLS.map((item) => (
+            <li key={item.tool} className="qf-approach-card">
+              <h3 className="qf-approach-card-title">{item.tool}</h3>
+              <p className="qf-approach-card-body">Looks at: {item.looksAt}</p>
+              <p className="qf-approach-card-body">Never: {item.never}</p>
             </li>
           ))}
         </ul>
       </Section>
 
       <Section background="surface">
-        <h2 className="qf-sys-h2">
-          Why {formatEuro(PRICING.discovery)} is the calmest number in consulting
-        </h2>
+        <h2 className="qf-sys-h2">Why a paid scan is the calmest first step</h2>
         <p className="qf-sys-lead">
-          Fixed price. Fixed scope. A report you own either way. Compare it with what you
-          actually choose between:
+          Fixed net prices. A report you own either way. Compare it with what you actually choose between:
         </p>
         <ul className="qf-compare">
           {COMPARISON.map((item, index) => (
@@ -258,16 +269,14 @@ export default function ApproachPage() {
           ))}
         </ul>
         <p className="qf-sys-lead">
-          The fee is credited toward your first build. The report stays yours. If nothing
-          is worth automating, you stop — and keep the document.
+          {SCAN_COPY.creditLine} {SCAN_COPY.guarantee}
         </p>
       </Section>
 
       <Section>
         <h2 className="qf-sys-h2">The numbers behind the scan</h2>
         <p className="qf-sys-lead">
-          Admin quietly eats the week of a small-business owner. The scan measures where,
-          for you specifically. The context below is sourced:
+          Admin quietly eats the week of a small-business owner. The scan measures where, for you specifically, from your files. The context below is sourced industry research — not a QuietForge result:
         </p>
         <ul className="qf-approach-metrics">
           {METRICS.map((metric) => (
@@ -278,11 +287,7 @@ export default function ApproachPage() {
             </li>
           ))}
         </ul>
-        <p className="qf-sys-lead">
-          The €80/h used in the comparison above is a conservative scenario based on
-          Knab&apos;s €81/h NL freelance rate. Our public methodology values hours at
-          €40/h — the counter and case studies stay at that rate.
-        </p>
+        <p className="qf-sys-lead">{SCAN_COPY.howWeCalculate}</p>
         <p className="qf-sys-lead">
           <SampleScanLink />
         </p>
@@ -291,7 +296,7 @@ export default function ApproachPage() {
       <Section background="surface">
         <h2 className="qf-sys-h2">After the scan: the build</h2>
         <p className="qf-sys-lead">
-          The scan decides whether to build. If yes, the path is short and gated:
+          The scan decides whether to build. GO on a scan line is not start of build. If yes, the path is short and gated:
         </p>
         <ol className="qf-sys-steps">
           {STEPS_AFTER.map((step, index) => (
@@ -316,11 +321,10 @@ export default function ApproachPage() {
       <section className="qf-final-cta" aria-labelledby="approach-cta-title">
         <div className="qf-final-cta-inner">
           <h2 id="approach-cta-title" className="qf-sys-h2">
-            Start with the scan
+            Start with Hours
           </h2>
           <p className="qf-final-cta-lead">
-            90 minutes and a written decision. The report is yours either way — and the
-            fee is credited if we build.
+            {SCAN_COPY.fromPrice}. You send a file. We measure. The report is yours either way.
           </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">

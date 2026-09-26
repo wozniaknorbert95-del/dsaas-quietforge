@@ -52,7 +52,7 @@ Artefact URLs (`/artefacts/…`) stay stable.
 | Element | Spec |
 |---------|------|
 | Header | Systems · Approach · Security · Proof · Pricing · primary **Book a scan** |
-| CTA | PRIMARY: Book the Automation Scan — €690 · SECONDARY: WhatsApp · TERTIARY: See the systems |
+| CTA | PRIMARY: Book a scan — from €149 excl. VAT · SECONDARY: WhatsApp · TERTIARY: See the systems |
 | Footer | Promise: “Systems that give you back your time.” · Builder's Lab reference link · “this site runs on its own integrated platform” |
 | Counter | Home + /proof · start **0** · never hardcoded growth |
 | Language | English ✓ / Nederlands (later) |

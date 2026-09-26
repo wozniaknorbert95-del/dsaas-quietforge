@@ -46,7 +46,7 @@ export default function SolutionLayout({
       : rawFrom
         ? `from ${rawFrom}`
         : null;
-  const priceLabel = priceFrom ?? priceFromTier ?? 'Scoped after Automation Map';
+  const priceLabel = priceFrom ?? priceFromTier ?? 'Scoped after Hours Engine Scan';
 
   return (
     <>
@@ -143,8 +143,8 @@ export default function SolutionLayout({
           <h2 className="text-[var(--qf-fs-2xl)] font-bold tracking-tight mb-2">Ready to implement?</h2>
           <div className="text-[var(--qf-fs-xl)] font-bold text-[var(--qf-accent)] mb-6">{priceLabel}</div>
           <p className="text-[var(--qf-text-dim)] max-w-xl mx-auto mb-8">
-            Start with a paid Automation Map. In 60–90 minutes we map your setup, score the ROI, and confirm if
-            this system is the right first build.
+            Start with a paid Hours Engine Scan. You send owner files; we measure leaks.
+            Ranking only from measured hours — then we confirm if this system is the right first build.
           </p>
           <div className="flex flex-col items-center gap-4">
             <Button href={ROUTES.bookDiscovery} size="xl" withArrow analyticsEvent="cta_book_map_click" analyticsDetail={{ location: 'solution_detail' }}>

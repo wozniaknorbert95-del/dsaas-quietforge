@@ -4,7 +4,12 @@
 // ============================================================================
 
 export const PRICING_NUMBERS = {
-  discovery: 690,
+  /** Offer A — Hours Engine Scan SKUs (net, excl. VAT). */
+  scanHours: 149,
+  scanBothLanes: 290,
+  scanDecision: 490,
+  /** Lowest scan SKU — public “from” price. */
+  scanFrom: 149,
   implementationFrom: 2500,
   maintenanceFrom: 300,
   /** Build variants — oferty v1 (Oferta B). */
@@ -44,14 +49,14 @@ export function formatFromRange(from: number, to: number, perMonth = false): str
 
 export const PRICING_MATRIX = {
   automationScan: {
-    label: 'Automation Scan',
-    price: formatEuro(PRICING_NUMBERS.discovery),
-    note: 'credited toward your first implementation',
+    label: 'Hours Engine Scan',
+    price: `from ${formatEuro(PRICING_NUMBERS.scanFrom)}`,
+    note: 'excl. VAT · credited 30 days toward first build',
   },
   automationMap: {
-    label: 'Automation Scan',
-    price: formatEuro(PRICING_NUMBERS.discovery),
-    note: 'credited toward your first implementation',
+    label: 'Hours Engine Scan',
+    price: `from ${formatEuro(PRICING_NUMBERS.scanFrom)}`,
+    note: 'excl. VAT · credited 30 days toward first build',
   },
   inboxKiller: {
     label: 'Inbox Killer',
@@ -180,7 +185,10 @@ export const SOLUTION_DETAIL_PRICES = {
 
 /** Legacy shape for components that import PRICING from constants */
 export const PRICING = {
-  discovery: PRICING_NUMBERS.discovery,
+  scanFrom: PRICING_NUMBERS.scanFrom,
+  scanHours: PRICING_NUMBERS.scanHours,
+  scanBothLanes: PRICING_NUMBERS.scanBothLanes,
+  scanDecision: PRICING_NUMBERS.scanDecision,
   implementationFrom: PRICING_NUMBERS.implementationFrom,
   maintenanceFrom: PRICING_NUMBERS.maintenanceFrom,
   inboxKiller: PRICING_NUMBERS.inboxKiller,

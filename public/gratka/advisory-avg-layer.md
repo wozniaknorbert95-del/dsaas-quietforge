@@ -70,7 +70,7 @@ Any system that collects, stores or processes **personal data** on behalf of an 
 
 ## Next step
 
-Want the same rigour applied to your firm? Book a paid **Automation Map** — we identify what data your first system will touch and what agreements you need before a single line of code hits production.
+Want the same rigour applied to your firm? Book a paid **Hours Engine Scan** — we identify what data your first system will touch and what agreements you need before a single line of code hits production.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

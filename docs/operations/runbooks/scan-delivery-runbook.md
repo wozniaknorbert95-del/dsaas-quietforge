@@ -1,110 +1,101 @@
-# Scan Delivery Runbook — Automation Scan (€690)
+# Scan Delivery Runbook — Hours Engine Scan (€149 / €290 / €490)
 
-Internal SOP for delivering the paid Automation Scan. This is an **operations** document —
-nothing here names tools in public copy (MR-11). The public page is `/approach/`.
+Internal SOP for delivering Offer A. Public pages: `/approach/` and `/book-a-scan/`.
+SSoT: `src/content/scan.ts` + tenant `oferty-v1.md` v1.1.
 
-**Updated:** 2026-08-30 · **Owner:** Norbert · **Cost ceiling:** €276/scan (60% margin)
+**Updated:** 2026-09-26 · **Owner:** Norbert · **Split:** 60% spent on this client's files and report / 40% operator time.
+
+Operator ceiling (40% of net): Hours €59.60 · Both-lanes €116.00 · Decision €196.00.
 
 ---
 
 ## 1. What the client buys
 
-A **written decision basis**, not 90 minutes:
+Depth of evidence, not a workshop:
 
-- Pre-work analysis before the session (site, stack, volumes, quote path).
-- One 60–90 minute live session.
-- A written report within 2–3 working days.
-- Fee credited toward a build. Report stays theirs either way.
+- Hours (€149): one host + **one** owner export (mailbox **or** quotes).
+- Both-lanes (€290): one host + **both** exports.
+- Decision (€490): Both-lanes + a short GO / PARK / NO call.
 
-Non-negotiables (the "100% calm" promise):
-- Fixed price, fixed timeline, written before booking.
-- No upselling inside the session. The report is the deliverable.
-- "Do not automate" is a valid, successful outcome — say it when it is true.
-- Client data stays EU; everything delivered is logged and revocable.
+The engine is measurement from files. A live workshop is not the product.
+
+Non-negotiables:
+
+- Ranking only of **measured hours**. Waiting time never × €40. Crawl never prints euro.
+- Every number carries a label: Measured hours / Waiting time / You stated / Website hypothesis / Not enough data.
+- Math: hours/week × €40/h unless the owner declared another rate in writing.
+- Do **not** write “pays back in weeks” (needs a build price).
+- “Do not automate” is a successful scan. The report stays theirs.
+- Paid SKU credited toward Offer B if a build starts within 30 days.
+- Owner-only files. No staff inboxes. No live mailbox login. Raw files out of git.
 
 ---
 
 ## 2. Process
 
-### Phase 0 — Intake (before booking)
-- Check the client fits ICP: 1–20 person NL service business, owner = bottleneck.
-- Confirm the price and the credited fee in writing.
-- Collect access to: site, analytics (if any), a sample of the quote path, inbox setup.
-- No full admin access at this stage. Minimal, revocable access only.
+### Phase 0 — Intake (before payment link)
 
-### Phase 1 — Pre-work (Day 0, ~1.5–2 h)
-Checklist:
-- [ ] Site review: what does a visitor see, where is the CTA, what converts.
-- [ ] Quote/order path: fetch 3–5 real examples, note steps and handoffs.
-- [ ] Volume estimation: calls/messages/quotes per week (ask client for rough counts).
-- [ ] Stack inventory: what tools are in use, what is disconnected.
-- [ ] Load all docs into the analysis library (NotebookLM, grounded citations).
-- [ ] Prepare the session agenda with 5–6 measured questions — no "tell me about your business".
+- Fit: 1–20 person NL service business, owner = bottleneck.
+- Confirm SKU, net price, VAT, credit 30 days, and what they must send.
+- Collect: one hostname. Do **not** ask for live Outlook/Gmail login.
 
-### Phase 2 — Live session (Day 1–2, 60–90 min)
-- Record with client consent (transcription tool, auto-delete after report).
-- Use a shared screen walk: inbox → quoting → reporting, as-is.
-- Capture numbers in a table live: hours/week per leak, volumes, wait times.
-- Ask the owner: "What do you do on Sunday evenings?" — surface the emotional leaks.
-- End with the three biggest leaks stated aloud and confirmed by the client.
+### Phase 1 — Export instructions (after payment)
 
-### Phase 3 — Analysis + report (Day 2–4)
-1. Draft the report from the transcript + pre-work notes.
-2. Score maturity on 5 dimensions (tools, processes, data, automation, people).
-3. Build the opportunity matrix (impact × effort × risk).
-4. Quantify payback: hours × €80/h (conservative, state the assumption).
-5. Validate every number against the transcript — no invented metrics.
-6. Human review pass: read it as if you were the client. Kill any filler.
-7. Render to PDF (Gamma or md-to-pdf), filename `automation-scan-<client>.pdf`.
+- Send the export recipe (Outlook/Gmail → file, or quote spreadsheet).
+- Require the time window in writing (example: last 30 days).
+- Hours: one file. Both-lanes / Decision: mailbox **and** quotes.
 
-### Phase 4 — Delivery + follow-up
-- Send the PDF with a 1-paragraph cover note (no sales pitch).
-- Book a 20-minute "read-through" call — optional, offered, not pushed.
-- If the recommendation is build: present the scope + price as a separate step.
-- If the recommendation is "do not automate": say it plainly, keep the relationship.
+### Phase 2 — Measure (after complete export)
+
+- Parse the owner file(s) into the input table (`lane`, `case_id`, `activity`, `timestamp`, `duration_minutes` if present).
+- Crawl **one** host only (self-host). Label site findings as Website hypothesis.
+- Rank **only** MEASURED hours. PARK lines with insufficient data.
+
+### Phase 3 — Report (typically within 5 working days of a complete export)
+
+1. Draft with labels on every number.
+2. Human review: kill filler; no invented metrics.
+3. Decision SKU only: propose GO / PARK / NO, then a short confirmation call. Numbers said on the call = You stated.
+4. Render PDF. Filename `hours-engine-<client>.pdf`.
+5. Delete raw exports after the owner accepts the report or abandons the scan.
+
+### Phase 4 — Delivery
+
+- Send the PDF with a 1-paragraph cover note (no pitch).
+- If GO and they want a build: separate Offer B scope + price. Apply the credited SKU fee.
+- If NO: say it plainly. Keep the relationship.
 
 ---
 
-## 3. Cost budget (max €276/scan)
+## 3. Cost budget (40% operator, per SKU)
 
-Typical spend is **€100–140/scan** at 1–3 scans/week — safely under the ceiling.
+Spend the other 60% on **this** client's files and report — not platform R&D, not another tenant.
 
-| Item | Cost | When |
-|---|---|---|
-| Session transcription | €0 | every scan (Fathom free tier) |
-| Client-doc analysis library | ~€5 | every scan (NotebookLM/Gemini) |
-| Report drafting assistant | ~€20 | every scan (Claude Pro, prompt = report template) |
-| PDF render | ~€20 | every scan (Gamma Pro / md-to-pdf) |
-| Diagrams | €0 | every scan (Napkin AI free) |
-| **Core subtotal** | **~€45** | |
-| Task-mining on real data | ~$99/mo | only when client gives log/CSV exports (ProcessMind) — amortized across scans that month |
-| Industry expert call | €50–150 | ~50% of scans (Clarity/Topmate/Talkspresso) when domain depth matters |
-| **Worst case** | **~€265** | within the €276 ceiling |
+| SKU | Net | 60% on this client | 40% operator ceiling |
+|---|---:|---:|---:|
+| Hours | €149 | €89.40 | €59.60 |
+| Both-lanes | €290 | €174.00 | €116.00 |
+| Decision | €490 | €294.00 | €196.00 |
 
-Gate: if a scan would exceed the ceiling, drop the expert call or the mining tier first —
-never cut the human review or the transcript.
+Never cut the human review gate to save money.
 
 ---
 
 ## 4. Report template
 
-Structure (public page promises exactly this):
+Match the public sample (`public/artefacts/automation-map-sample.md`):
 
-1. **Executive summary** — three leaks, combined €/year, top recommendation.
-2. **How the scan ran** — session + pre-work, what was measured.
-3. **Scored maturity** — 5 dimensions, 1–5, with what we saw.
-4. **Opportunity matrix** — every candidate scored impact × effort × risk.
-5. **Quantified payback** — hours × €80/h, the math shown line by line.
-6. **30/60/90 roadmap** — what, who, how long.
-7. **Go / no-go** — clear recommendation, including "do not automate".
-8. **What you keep** — the document + diagrams, regardless of next steps.
-
-Example deliverable: `public/artefacts/automation-map-sample.md` (rendered to PDF) —
-illustration-only, fictional numbers, same structure.
+1. Executive summary — sources used, which lines ranked.
+2. How the scan ran — SKU, files, window. Never “measured in session”.
+3. Evidence labels used.
+4. Findings table with labels. Ranking = measured hours only.
+5. Website hypotheses (no euro).
+6. What we would NOT automate.
+7. What you keep. GO on a line is not start of build.
 
 ---
 
-## 5. Benchmarks (sourced, safe to cite as context)
+## 5. Benchmarks (sourced, context only)
 
 | Metric | Source | Year |
 |---|---|---|
@@ -112,26 +103,25 @@ illustration-only, fictional numbers, same structure.
 | Median ~15 h/month admin burden | KfW Focus No. 495, DE | 2025 |
 | ~€81–83/h average NL freelancer rate | Knab | 2025 |
 
-Sanity check: 11 h/wk × €80/h ≈ €46K/year → ~66× the scan price. Use as framing only,
-never as a guaranteed outcome for a specific client (MR-14).
+Cite as industry context. Never multiply a benchmark by €40 (or €80) and call it this client's result. Scan rate = €40/h or OWNER_DECLARED.
 
 ---
 
 ## 6. Zero-AI-slop gate (before every delivery)
 
 - [ ] No `[FILL:]`, brackets, or placeholder text left in the report.
-- [ ] Every number traceable to the transcript, pre-work notes, or a cited benchmark.
+- [ ] Every number has an evidence label.
+- [ ] No euro from crawl or from waiting time.
+- [ ] No payback-in-weeks.
 - [ ] No invented testimonials, logos, or client results.
-- [ ] No tool names in the report that the client cannot verify or benefit from.
 - [ ] Human voice: first person, concrete, no marketing boilerplate.
-- [ ] Read-aloud pass: any sentence that sounds like generated filler → rewrite.
 
 ---
 
 ## 7. Definition of done
 
-- [ ] Report PDF delivered within 2–3 working days.
-- [ ] Cost logged and under €276.
+- [ ] Report PDF delivered typically within 5 working days of a complete export.
+- [ ] Operator cost under the 40% ceiling for that SKU.
 - [ ] Zero-AI-slop gate passed.
-- [ ] Read-through call offered.
-- [ ] If build follows: separate scope + fixed price, credited fee applied.
+- [ ] Raw files deleted after accept or abandon.
+- [ ] If build follows: separate scope + fixed price, credited SKU fee applied.

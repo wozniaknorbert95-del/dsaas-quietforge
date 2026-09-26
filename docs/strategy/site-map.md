@@ -85,9 +85,9 @@ These must never be swapped on `/solutions/`, cards, pricing or metadata.
 | 6 | Discipline | 6 tiles | Engineering safety | review · scans · approval gates · repo day one → `/security/` |
 | 7 | Proof | FlexGrafik story + `ReferenceCta` | Open evidence | OWNER-OPERATED REFERENCE narrative; then 5 reference spots; scan €0–€345 for published results |
 | 8 | About | short bio | Face + authority | Norbert · systems architect; 30 trades, 3 years production |
-| 9 | Pricing | 3 cards | Commercial clarity | Scan €690 credited · Build Core/Scale/Command · Care Keep/Grow/Unlock |
+| 9 | Pricing | 3 cards | Commercial clarity | Hours Engine from €149 · Build Core/Scale/Command · Care Keep/Grow/Unlock |
 | 10 | FAQ | `FaqItem` list | Objections | Straight answers incl. CRM change and EU data; aria-expanded/controls correct |
-| 11 | Final CTA | `qf-final-cta` + `StickyCta` | Close | Book scan €690 · WhatsApp · sample scan report link |
+| 11 | Final CTA | `qf-final-cta` + `StickyCta` | Close | Book scan from €149 · WhatsApp · sample scan report link |
 
 ### Home chrome
 
@@ -218,7 +218,7 @@ All pages must use the same commercial matrix.
 
 | Offer | Public price |
 |---|---:|
-| Automation Map | €690, credited toward first project |
+| Hours Engine Scan | from €149 excl. VAT, credited 30 days |
 | Inbox Killer | €1,200–€4,800 |
 | Web Upgrade | €1,800–€5,500 |
 | Sales Funnel / Wizard Cash Engine | €2,400–€6,500 |
@@ -238,22 +238,22 @@ Forbidden live price fragments:
 
 ## §9 Book Discovery route contract
 
-`/book-discovery/` is a paid Automation Map conversion page.
+`/book-a-scan/` is an Hours Engine Scan conversion page.
 
 The page must not mix paid-booking language with a generic enquiry form.
 
 ### Required flow
 
 ```text
-Understand value → See what is included → Pay €690 → Pick slot → Intake → Confirmation
+Understand SKU → See what you must send → Request payment link → Export → Report
 ```
 
-If payment/calendar is not technically live, the page must switch copy to **Request Automation Scan slot** and clearly state that a payment link follows after fit check.
+If payment/calendar is not technically live, the page must switch copy to **Request Hours Engine Scan** and clearly state that a payment link follows after fit check.
 
 ### Preferred professional target
 
-Primary CTA: `Pay €690 and pick a slot`  
-Secondary: `Download sample Map`  
+Primary CTA: `Request the scan — I reply within one working day`  
+Secondary: `Download sample report`  
 Fallback: `Ask a question on WhatsApp`
 
 Form submit must never say only “Send enquiry” while the page promises payment and slot selection.

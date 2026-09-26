@@ -82,7 +82,7 @@ Prospect enters configurator
 
 ## Next step
 
-Book a paid **Automation Map** (60–90 min). We map your quoting leaks, score ROI qualitatively, and recommend whether a 7-step configurator — or something simpler — is the right first build.
+Book a paid **Hours Engine Scan**. We measure quoting leaks from your files and recommend whether a configurator is the right first build.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

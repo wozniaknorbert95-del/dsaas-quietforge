@@ -51,7 +51,7 @@ export const INITIAL_GROWTH_CONTEXT: GrowthContext = {
       grossMargin: 0.85,
       maxCpaLimit: 480,
       offers: [
-        { name: 'Automation Map', price: 290, description: 'Paid detailed discovery process mapping time leaks.' },
+        { name: 'Hours Scan', price: 149, description: 'Hours Engine Scan — owner export + one host, measured hours only.' },
         { name: 'Inbox Killer', price: 1200, description: 'Triage, lead qualification and email automatic response engine.' },
         { name: 'Wizard Cash Engine', price: 2400, description: '9-step checkout portal with client-side Mollie prepayment.' }
       ],

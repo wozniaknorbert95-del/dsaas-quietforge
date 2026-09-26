@@ -5,7 +5,7 @@ export const resultsPageHero = {
   h1: 'Live checkout, capture and ops — dogfooded in production.',
   lead:
     'The conversion stack runs inside my Netherlands print business: Wizard checkout with open pricing, Design Intake on a live supervised path (PARTIAL), lead capture, and an Operations Command Layer with Marketing Brain in shadow. Same architecture Quietforge deploys for SMB clients — with named limitations, not invented revenue.',
-  hint: 'Try the Wizard or Design Intake on zzpackage.flexgrafik.nl — then book an Automation Map.',
+  hint: 'Try the Wizard or Design Intake on zzpackage.flexgrafik.nl — then book an Hours Engine Scan.',
 } as const;
 
 export const resultsPageMeta = {

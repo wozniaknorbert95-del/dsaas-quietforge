@@ -9,6 +9,7 @@
  */
 import nodemailer from 'nodemailer';
 import { EMAIL } from '@/lib/constants';
+import { getScanSku, scanPriceLine, type ScanSkuId } from '@/content/scan';
 
 export type SendResult = { ok: true } | { ok: false; error: string };
 
@@ -17,6 +18,7 @@ export interface IntakePayload {
   company: string;
   email: string;
   url: string;
+  skuId: ScanSkuId;
   pains: readonly string[];
   budget: string;
   availability: string;
@@ -102,9 +104,11 @@ export function checkRateLimit(ip: string): boolean {
 }
 
 function composeIntakeText(p: IntakePayload): string {
+  const sku = getScanSku(p.skuId);
   return [
-    `New Automation Scan request`,
+    `New Hours Engine Scan request`,
     ``,
+    `SKU:             ${sku.name} (${scanPriceLine(sku)})`,
     `Name:            ${p.name}`,
     `Company:         ${p.company}`,
     `Email:           ${p.email}`,
@@ -120,13 +124,15 @@ function composeIntakeText(p: IntakePayload): string {
 }
 
 function composeIntakeHtml(p: IntakePayload): string {
+  const sku = getScanSku(p.skuId);
   const row = (label: string, value: string) =>
     `<tr><td style="padding:4px 12px 4px 0;color:#6b7280;font-family:monospace;font-size:13px;white-space:nowrap">${label}</td><td style="padding:4px 0;font-family:monospace;font-size:13px">${value}</td></tr>`;
 
   return `
     <div style="font-family:monospace;color:#111827">
-      <h2 style="margin:0 0 16px;font-size:16px">New Automation Scan request</h2>
+      <h2 style="margin:0 0 16px;font-size:16px">New Hours Engine Scan request</h2>
       <table style="border-collapse:collapse">
+        ${row('SKU', `${sku.name} (${scanPriceLine(sku)})`)}
         ${row('Name', escapeHtml(p.name))}
         ${row('Company', escapeHtml(p.company))}
         ${row('Email', escapeHtml(p.email))}
@@ -161,7 +167,7 @@ export async function sendIntakeEmail(payload: IntakePayload): Promise<SendResul
       from: intakeFrom(),
       to: intakeTo(),
       replyTo: payload.email,
-      subject: `[Automation Scan] ${payload.company} — ${payload.name}`,
+      subject: `[${getScanSku(payload.skuId).name}] ${payload.company} — ${payload.name}`,
       text: composeIntakeText(payload),
       html: composeIntakeHtml(payload),
     });

@@ -47,7 +47,7 @@ Welcome → [7 config steps] → Summary & checkout → your CRM / inbox / sheet
 
 ## Next step
 
-Want a self-service funnel shaped around *your* offer? Book a paid **Automation Map** — we map your current quoting process and whether a configurator is the right first system.
+Want a self-service funnel shaped around *your* offer? Book a paid **Hours Engine Scan** — we measure your quoting leaks and whether a configurator is the right first system.
 
 **Book:** quietforge.flexgrafik.nl/book-discovery/
 

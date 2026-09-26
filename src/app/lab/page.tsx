@@ -207,7 +207,7 @@ export default function LabPage() {
             Start with the leak, not the technology.
           </h2>
           <p className="qf-final-cta-lead">
-            The Automation Scan finds the first workflow that returns hours and gives you a written
+            The Hours Engine Scan finds the first workflow that returns hours and gives you a written
             decision before implementation.
           </p>
           <div className="qf-lab-actions">

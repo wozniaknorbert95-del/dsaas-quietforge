@@ -7,15 +7,17 @@ import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
 import SampleScanLink from '@/components/analytics/SampleScanLink';
 import VariantCta from '@/components/pricing/VariantCta';
 import { ROUTES, SITE_URL } from '@/lib/constants';
+import { formatEuro } from '@/content/pricing';
+import { SCAN_COPY, SCAN_SKUS, scanVatLine } from '@/content/scan';
 import { CTAS, PUBLIC_OFFER, WEBSITE_ONLY_EXCEPTION } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
   title: 'Pricing: scan, build variants, care',
   description:
-    'Clear prices, fixed scope. Automation Scan €690 credited. Builds: Core €2,500 · Scale €4,500 · Command €7,900. Care from €300/month, cancellable.',
+    'Clear prices, fixed scope. Hours Scan from €149 excl. VAT. Builds: Core €2,500 · Scale €4,500 · Command €7,900. Care from €300/month, cancellable.',
   openGraph: {
     title: 'Pricing: scan, build variants, care | Quietforge',
-    description: 'Scan €690 credited. Builds €2,500–€7,900 fixed. Care €300–€1,000/mo, cancellable.',
+    description: 'Hours Scan from €149 excl. VAT. Builds €2,500–€7,900 fixed. Care €300–€1,000/mo, cancellable.',
     url: `${SITE_URL}/pricing/`,
     images: [{ url: '/og/pricing.svg', width: 1200, height: 630, alt: 'Quietforge pricing' }],
   },
@@ -31,7 +33,7 @@ const DRIVERS = [
 const FAQS = [
   {
     q: 'Is the scan credited?',
-    a: 'Yes. The full scan fee comes off the first implementation if we build, within 30 days.',
+    a: 'Yes. The SKU you pay (Hours €149, Both-lanes €290, or Decision €490) comes off the first implementation if we build within 30 days.',
   },
   {
     q: 'Why paid, not a free call?',
@@ -66,20 +68,31 @@ export default function PricingPage() {
           Scan first. Then a fixed-price build at the depth you choose. Care only if you want it.
         </p>
 
-        <Card variant="accent" className="max-w-2xl p-6">
-          <h2 className="text-lg font-semibold">{PUBLIC_OFFER.scanName}</h2>
-          <p className="mt-3 text-2xl font-bold">{PUBLIC_OFFER.scanPrice}</p>
-          <p className="mt-3 text-sm text-[var(--qf-text-dim)]">{PUBLIC_OFFER.scanNote}</p>
-          <p className="mt-2 text-sm text-[var(--qf-text-faint)]">
-            Honest guarantee: if the scan finds nothing worth automating, the report says exactly that — and it is yours either way.
-          </p>
-          <p className="mt-4 text-sm">
-            <SampleScanLink />
-          </p>
-          <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-6 inline-flex justify-center">
-            {CTAS.bookAutomationMap} →
-          </Link>
-        </Card>
+        <p className="mb-6 max-w-2xl text-sm text-[var(--qf-text-dim)]">{SCAN_COPY.clientPicks}</p>
+        <ul className="qf-scan-sku-grid">
+          {SCAN_SKUS.map((sku) => (
+            <li key={sku.id}>
+              <Card variant={sku.mostChosen ? 'accent' : 'default'} className="flex h-full flex-col p-6">
+                <p className="qf-approach-card-n">{sku.eyebrow}</p>
+                <h2 className="font-mono text-sm font-bold tracking-[0.14em]">
+                  {sku.name}
+                </h2>
+                <p className="mt-3 text-2xl font-bold">{formatEuro(sku.priceNet)}</p>
+                <p className="mt-1 text-sm text-[var(--qf-text-faint)]">{scanVatLine(sku)}</p>
+                <p className="mt-3 text-sm text-[var(--qf-text-dim)]">{sku.youMustSend}</p>
+                <p className="mt-2 text-sm text-[var(--qf-text-faint)]">{sku.rankingMayInclude}</p>
+              </Card>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">{SCAN_COPY.guarantee}</p>
+        <p className="mt-2 max-w-2xl text-sm text-[var(--qf-text-faint)]">{SCAN_COPY.creditLine}</p>
+        <p className="mt-4 text-sm">
+          <SampleScanLink />
+        </p>
+        <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-6 inline-flex justify-center">
+          {CTAS.bookAutomationMap} →
+        </Link>
       </Section>
 
       <Section background="surface">

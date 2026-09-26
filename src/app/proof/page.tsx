@@ -4,7 +4,11 @@ import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants';
 import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
-import { REFERENCE_PROGRAM } from '@/content/conversion-copy';
+import { REFERENCE_PROGRAM, CTAS } from '@/content/conversion-copy';
+import {
+  FLEXGRAFIK_COMPANY_CASE,
+  FLEXGRAFIK_PROOF_FEATURED,
+} from '@/content/flexgrafik-company-case';
 
 export const metadata: Metadata = {
   title: 'Proof: hours and money saved, counted publicly',
@@ -29,7 +33,18 @@ export default function ProofPage() {
         </Link>
         .
       </p>
-      <ul className="mt-10 grid gap-4 md:grid-cols-3">
+
+      <article className="qf-fg-featured">
+        <p className="qf-fg-chip">{FLEXGRAFIK_COMPANY_CASE.honestyChip}</p>
+        <p className="qf-lab-eyebrow">{FLEXGRAFIK_PROOF_FEATURED.eyebrow}</p>
+        <h2 className="qf-fg-featured-title">{FLEXGRAFIK_PROOF_FEATURED.title}</h2>
+        <p className="qf-fg-featured-body">{FLEXGRAFIK_PROOF_FEATURED.body}</p>
+        <Link href={FLEXGRAFIK_PROOF_FEATURED.href} className="qf-btn-fill">
+          {FLEXGRAFIK_PROOF_FEATURED.cta} →
+        </Link>
+      </article>
+
+      <ul className="qf-proof-open-grid">
         {['01', '02', '03'].map((slot) => (
           <li key={slot}>
             <Card>
@@ -77,7 +92,7 @@ export default function ProofPage() {
         .
       </p>
       <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-8 inline-flex">
-        Book a scan →
+        {CTAS.bookAutomationMap} →
       </Link>
     </Section>
   );

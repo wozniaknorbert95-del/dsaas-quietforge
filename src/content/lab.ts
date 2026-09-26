@@ -267,24 +267,24 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     sequence: '07',
     title: 'Governed tenant platform',
     eyebrow: 'Build the platform',
-    tenant: 'Platform core · QuietForge Tenant 1',
-    status: 'NEW ON THE PLATFORM',
-    readiness: 'TENANT-READY CORE (POC)',
-    proofTier: 'DEMO',
-    evidenceClass: 'ARCHITECTURE + PRIVATE REFERENCE',
+    tenant: 'Platform core · QuietForge Tenant 1 · FlexGrafik Tenant 2',
+    status: 'PROVEN IN THE LAB',
+    readiness: 'LIVE',
+    proofTier: 'PROVEN',
+    evidenceClass: 'PUBLIC LIVE SURFACE + LAB MEASUREMENT',
     problem:
       'Patterns proven in one business would spread chaos if copied without a governed boundary — more tools, more manual recovery, less owner control.',
     built:
-      'One platform project: a supervised work surface for queue, approvals and cost; policy and evidence boundaries with a human stop on sensitive paths; QuietForge running as Tenant 1 on the commercial site.',
+      'One platform project: a supervised work surface for queue, approvals and cost; policy and evidence boundaries with a human stop on sensitive paths; QuietForge as Tenant 1; FlexGrafik as Tenant 2 on the same core.',
     effect:
-      'Work stays inspectable and consequential actions wait for approval — the owner spends time deciding, not chasing silent automation or scattered status.',
+      'Work stays inspectable and consequential actions wait for approval — the owner spends time deciding, not chasing silent automation or scattered status. FlexGrafik runs as a live tenant, not a cloned shop.',
     learned:
       'Surfaces and tenants are chapters of one build, not three products. A platform needs partitions, policies, evidence and ownership — not cloned repos.',
     notProven:
-      'No universal production readiness, certification, anonymous Mission Control demo, or client-scale multi-tenant SaaS. FlexGrafik as Tenant 2 remains planned.',
+      'No universal production readiness, certification, anonymous Mission Control demo, client-scale multi-tenant SaaS, order counts, GMV or conversion rates.',
     ownership:
-      'Reusable platform core stays with QuietForge. QuietForge site is Tenant 1. FlexGrafik remains the reference business. Client delivery stays contract-scoped.',
-    reviewed: '2026-09-16',
+      'Reusable platform core stays with QuietForge. QuietForge site is Tenant 1. FlexGrafik is Tenant 2 and the owner-operated reference business. Client delivery stays contract-scoped.',
+    reviewed: '2026-09-26',
     links: [
       {
         label: 'Architecture chapter',
@@ -335,6 +335,6 @@ export const LAB_PLATFORM_FACTS = [
   },
   {
     title: 'Your business context stays separate',
-    body: 'QuietForge is Tenant 1. FlexGrafik is the planned Tenant 2. Brand, data and configuration stay partitioned from the reusable core.',
+    body: 'QuietForge is Tenant 1. FlexGrafik is Tenant 2, live. Brand, data and configuration stay partitioned from the reusable core.',
   },
 ] as const;

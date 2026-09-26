@@ -19,6 +19,7 @@ classification: "Architecture — src/content ownership"
 | `ecosystem.ts` | Modules, ECOSYSTEM_REPOS, intents, HOME_SECTIONS, screen keys | site-map §2–§4 |
 | `conversion-copy.ts` | Hero, objections, CTAs, footer, anti-positioning | marketing-strategy |
 | `scan.ts` | Offer A SKUs (Hours / Both-lanes / Decision), labels, tools | oferty-v1 v1.1, QF-SCAN-ENGINE-RESEARCH |
+| `flexgrafik-company-case.ts` | Owner-operated finished-company case (not a client slot) | proof-rules, lab Tenant 2 |
 | `proof.ts` | Metrics, screens, videos, pricing, case measurements | proof-rules |
 | `readiness.ts` | Built vs Planned 8-row table | meta as-is-inventory |
 | `los-copy.ts` | LOS teaser layers on home | living-system-architecture |

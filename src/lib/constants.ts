@@ -88,6 +88,7 @@ export const ROUTES = {
   security: '/security/',
   proof: '/proof/',
   proofMethodology: '/proof/methodology/',
+  resultsFlexgrafik: '/results/flexgrafik/',
   lab: '/lab/',
   about: '/about/',
   aboutLab: '/about/#lab',
@@ -126,6 +127,7 @@ export const EXTERNAL = {
   zzpackageWizard: 'https://zzpackage.flexgrafik.nl/',
   zzpackageWizardPath: 'https://zzpackage.flexgrafik.nl/wizard/',
   inspireDesignAgent: 'https://zzpackage.flexgrafik.nl/voertuigreclame-ontwerp/',
+  inspireFlexgrafik: 'https://inspireflexgrafik.nl/',
   leadMagnetGame: 'https://app.flexgrafik.nl/',
 } as const;
 

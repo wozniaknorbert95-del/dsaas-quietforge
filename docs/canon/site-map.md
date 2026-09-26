@@ -31,9 +31,10 @@ quietforge.flexgrafik.nl
 │   └── /systems/custom-ai-agent          NEW (etap 4)
 ├── /approach
 ├── /security
-├── /proof
+├── /proof                       Hours 0 · featured FlexGrafik (not a client slot) · 3 OPEN cases
 │   ├── /proof/methodology
 │   └── /proof/cases/[slug]
+├── /results/flexgrafik          OWNER-OPERATED REFERENCE — finished company (not a client slot)
 ├── /lab                         Builder's Lab / owner-operated reference
 ├── /about                       Founder story + #lab bridge
 ├── /pricing
@@ -54,7 +55,7 @@ Artefact URLs (`/artefacts/…`) stay stable.
 | Header | Systems · Approach · Security · Proof · Pricing · primary **Book a scan** |
 | CTA | PRIMARY: Book a scan — from €149 excl. VAT · SECONDARY: WhatsApp · TERTIARY: See the systems |
 | Footer | Promise: “Systems that give you back your time.” · Builder's Lab reference link · “this site runs on its own integrated platform” |
-| Counter | Home + /proof · start **0** · never hardcoded growth |
+| Counter | Home + /proof · start **0** · never hardcoded growth · /proof featured FlexGrafik above 3 OPEN client slots |
 | Language | English ✓ / Nederlands (later) |
 
 ## Claim rules (R7)
@@ -82,6 +83,7 @@ Until a client verifies a case, public statuses stay lab / new / open — never 
 | `/results/jadzia-coi/` | `/systems/owner-cockpit/` |
 | `/results/agent-orchestrator/` | `/systems/build-release-flow/` |
 | `/results/owner-ecosystem/` | `/lab/` |
+| `/results/flexgrafik/` | unchanged — owner-operated finished company |
 | `/solutions/` | `/systems/` |
 | `/solutions/sales-funnel/` | `/systems/quote-order-engine/` |
 | `/solutions/inbox-killer/` | `/systems/inbox-triage/` |

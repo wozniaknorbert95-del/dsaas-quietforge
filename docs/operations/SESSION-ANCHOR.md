@@ -1,34 +1,24 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** DEPLOYED · Scan SKU cutover LIVE
+**Updated:** 2026-09-26 · **Status:** LOCAL READY · FlexGrafik finished-company case (not deployed)
 
-**Commit:** `86b080d` on `main`
+**Live production (unchanged):** SKU cutover `86b080d` / `dpl_6t93ujLib1SUYVKeurMJAdpm1enW`
 
-**Deployment:** `dpl_6t93ujLib1SUYVKeurMJAdpm1enW` · project `flexgrafik-services` · Production (promoted — Git CD only built Preview)
+**Current handoff:** [`handoffs/2026-09-26-flexgrafik-company-case.md`](handoffs/2026-09-26-flexgrafik-company-case.md)
 
-**Live:** https://quietforge.flexgrafik.nl/
+**Prior:** [`handoffs/2026-09-26-scan-sku-cutover.md`](handoffs/2026-09-26-scan-sku-cutover.md) · Production `dpl_6t93ujLib1SUYVKeurMJAdpm1enW`
 
-**Current handoff:** [`handoffs/2026-09-26-scan-sku-cutover.md`](handoffs/2026-09-26-scan-sku-cutover.md)
-
-**Prior:** [`handoffs/2026-09-16-smb-clarity-w2-polish.md`](handoffs/2026-09-16-smb-clarity-w2-polish.md) · Production `dpl_DzAg7xJY`
-
-**SSoT:** tenant `oferty-v1.md` v1.1 + `src/content/scan.ts`
+**SSoT:** `src/content/flexgrafik-company-case.ts` + hours-counter `0` + lab Tenant 2 PROVEN
 
 ## CO
 
-Public Offer A is no longer Automation Scan €690 / 90 min. It is Hours Engine Scan:
-
-- Hours €149 excl. VAT (start here)
-- Both-lanes €290
-- Decision €490
-
-Credited 30 days toward Offer B. Ranking only of measured hours. Offer B (Core/Scale/Command) and C (Keep/Grow/Unlock) unchanged.
+`/proof/` keeps hours **0** and three OPEN client slots. Featured card = owner-operated FlexGrafik finished company → `/results/flexgrafik/` (not Case 01). Tenant 2 PROVEN. No MRR/GMV.
 
 ## NASTĘPNY KROK
 
-1. Runtime job Scan Measure stays a platform issue — not this repo.
-2. LinkedIn live cadence still PARKED (tool-first).
-3. Optional: set Git Integration Production for `flexgrafik-services` so push-to-main aliases the custom domain without a manual promote.
+1. Commander: commit + push + `vercel promote` if Git CD only builds Preview.
+2. Do not put FlexGrafik in the hours counter.
+3. LinkedIn live cadence still PARKED (tool-first).
 
 ---
 

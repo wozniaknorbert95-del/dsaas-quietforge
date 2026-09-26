@@ -130,7 +130,9 @@ Tertiary text: `Ask on WhatsApp` → WhatsApp deep link
 
 ```text
 /                                → Home
-/results/                        → Proof hub
+/proof/                          → Hours counter 0 + featured FlexGrafik finished company + 3 OPEN client slots
+/results/                        → Proof hub (301 → /proof/)
+/results/flexgrafik/             → FlexGrafik finished company (owner-operated, not a client slot)
 /results/inbox-killer/           → Case study
 /results/sales-funnel/           → Case study
 /results/lead-magnet/            → Case study
@@ -178,7 +180,7 @@ Tertiary text: `Ask on WhatsApp` → WhatsApp deep link
 |---|---:|---|
 | `/` | 1.0 | weekly |
 | Primary commercial: `/solutions/`, `/pricing/`, `/book-discovery/` | 0.9 | weekly |
-| Proof/process: `/results/`, `/how-it-works/`, `/founder/`, `/trust/` | 0.8 | weekly |
+| Proof/process: `/results/`, `/how-it-works/`, `/founder/`, `/trust/`, `/proof/`, `/results/flexgrafik/` | 0.8 | weekly |
 | Solution detail pages | 0.75 | weekly |
 | Case studies | 0.7 | monthly |
 | Blog | 0.5 | monthly |

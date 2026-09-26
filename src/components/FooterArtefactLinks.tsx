@@ -21,16 +21,15 @@ export default function FooterArtefactLinks({ links }: FooterArtefactLinksProps)
               download
               event="sample_map_download"
               detail={{ location: 'footer' }}
-              className="hover:text-[var(--qf-accent)]"
             >
-              {link.label} ↓
+              {link.label}
             </TrackedAnchor>
           );
         }
 
         return (
-          <a key={link.label} href={link.href} download className="hover:text-[var(--qf-accent)]">
-            {link.label} ↓
+          <a key={link.label} href={link.href} download>
+            {link.label}
           </a>
         );
       })}

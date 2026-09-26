@@ -1,23 +1,25 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** DEPLOYED · Footer calm (29 → 11 links)
+**Updated:** 2026-09-26 · **Status:** LOCAL READY · Footer last-mile (sticky hide) + polish plan
 
-**Live production:** `5fa1676` / `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V`
+**Live production (until promote):** `5fa1676` / `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V`
 
-**Current handoff:** [`handoffs/2026-09-26-footer-calm.md`](handoffs/2026-09-26-footer-calm.md)
+**Current handoff:** [`handoffs/2026-09-26-chrome-last-mile.md`](handoffs/2026-09-26-chrome-last-mile.md)
 
-**Prior:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md) · `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw`
+**Plan:** [`plans/2026-09-26-chrome-polish.md`](plans/2026-09-26-chrome-polish.md)
 
-**SSoT:** `src/lib/navigation.ts` footer lists + `Footer.tsx`
+**Prior:** [`handoffs/2026-09-26-footer-calm.md`](handoffs/2026-09-26-footer-calm.md) · `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V`
+
+**SSoT:** `src/lib/navigation.ts` + `Footer.tsx` + `StickyCta.tsx`
 
 ## CO
 
-Stopka = close + trust + legal. Nie katalog 9 systemów. Lab ×1. GitHub na About.
+Live footer slim PASS. Privacy tap FAIL under sticky. Last-mile: hide sticky over footer. Remaining overwhelm = cookie stack + home FAQ 13, not footer catalog.
 
 ## NASTĘPNY KROK
 
-1. Cookie banner / sticky CTA = osobna sesja.
-2. LinkedIn cadence PARKED. Hours counter stays 0.
+1. GO: commit + push + `vercel promote`.
+2. S1 cookie vs sticky. LinkedIn PARKED. Hours counter 0.
 
 ---
 

@@ -44,7 +44,7 @@ export const FOOTER_COMPANY: readonly NavLink[] = [
 ] as const;
 
 export const FOOTER_ARTEFACTS: readonly NavLink[] = [
-  { label: 'Scan sample', href: ARTEFACTS.automationMapSample },
+  { label: 'Scan sample (PDF)', href: ARTEFACTS.automationMapSample },
 ] as const;
 
 export const FOOTER_LEGAL: readonly NavLink[] = [

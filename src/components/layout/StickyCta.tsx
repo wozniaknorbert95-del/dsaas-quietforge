@@ -12,21 +12,42 @@ export default function StickyCta() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const target = document.querySelector('[data-home-section="hero"]');
-    if (!target) {
+    const hero = document.querySelector('[data-home-section="hero"]');
+    const footer = document.querySelector('footer');
+    if (!hero) {
       return;
     }
 
-    const observer = new IntersectionObserver(
+    let heroGone = false;
+    let footerInView = false;
+    const sync = () => setVisible(heroGone && !footerInView);
+
+    const heroObserver = new IntersectionObserver(
       ([entry]) => {
-        // Show after hero leaves the viewport (sales lift — earlier sticky access)
-        setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+        heroGone = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        sync();
       },
       { rootMargin: OBSERVER_ROOT_MARGIN, threshold: 0 }
     );
+    heroObserver.observe(hero);
 
-    observer.observe(target);
-    return () => observer.disconnect();
+    const footerObserver = footer
+      ? new IntersectionObserver(
+          ([entry]) => {
+            footerInView = entry.isIntersecting;
+            sync();
+          },
+          { rootMargin: '0px 0px -76px 0px', threshold: 0 }
+        )
+      : null;
+    if (footer && footerObserver) {
+      footerObserver.observe(footer);
+    }
+
+    return () => {
+      heroObserver.disconnect();
+      footerObserver?.disconnect();
+    };
   }, []);
 
   if (!visible) {
@@ -34,25 +55,21 @@ export default function StickyCta() {
   }
 
   return (
-    <div
-      className="qf-sticky-cta fixed inset-x-0 bottom-0 z-40 border-t border-[var(--qf-border)] bg-[rgba(14,12,10,0.95)] px-[var(--qf-sp-4)] py-[var(--qf-sp-3)] backdrop-blur-[8px] lg:hidden"
-      role="region"
-      aria-label="Quick actions"
-    >
-      <div className="mx-auto flex max-w-[var(--qf-maxw)] gap-[var(--qf-sp-3)]">
+    <div className="qf-sticky-cta" role="region" aria-label="Quick actions">
+      <div className="qf-sticky-cta-inner">
         <a
           href={WHATSAPP.url}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackEvent('cta_whatsapp_click', { location: 'sticky_mobile' })}
-          className="flex flex-1 items-center justify-center border border-[var(--qf-border)] px-4 py-3 text-sm font-semibold text-[var(--qf-text)]"
+          className="qf-sticky-cta-wa"
         >
           {WHATSAPP.label}
         </a>
         <Link
           href={HEADER_CTA.href}
           onClick={() => trackEvent('cta_book_map_click', { location: 'sticky_mobile' })}
-          className="flex flex-[1.4] items-center justify-center border border-[var(--qf-accent)] bg-[var(--qf-accent)] px-4 py-3 text-sm font-semibold text-[var(--qf-bg)]"
+          className="qf-sticky-cta-book"
         >
           {HEADER_CTA.label}
         </Link>

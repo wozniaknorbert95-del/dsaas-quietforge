@@ -1,8 +1,12 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** SHIPPING · Scan SKU cutover → `main` (Vercel CD)
+**Updated:** 2026-09-26 · **Status:** DEPLOYED · Scan SKU cutover LIVE
 
-**Branch:** `main`
+**Commit:** `86b080d` on `main`
+
+**Deployment:** `dpl_6t93ujLib1SUYVKeurMJAdpm1enW` · project `flexgrafik-services` · Production (promoted — Git CD only built Preview)
+
+**Live:** https://quietforge.flexgrafik.nl/
 
 **Current handoff:** [`handoffs/2026-09-26-scan-sku-cutover.md`](handoffs/2026-09-26-scan-sku-cutover.md)
 
@@ -22,9 +26,9 @@ Credited 30 days toward Offer B. Ranking only of measured hours. Offer B (Core/S
 
 ## NASTĘPNY KROK
 
-1. Post-deploy smoke on live home / pricing / book-a-scan / approach (see handoff).
-2. Runtime job Scan Measure stays a platform issue — not this repo.
-3. LinkedIn live cadence still PARKED.
+1. Runtime job Scan Measure stays a platform issue — not this repo.
+2. LinkedIn live cadence still PARKED (tool-first).
+3. Optional: set Git Integration Production for `flexgrafik-services` so push-to-main aliases the custom domain without a manual promote.
 
 ---
 

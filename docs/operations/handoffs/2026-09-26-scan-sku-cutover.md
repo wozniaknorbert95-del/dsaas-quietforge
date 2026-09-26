@@ -1,6 +1,10 @@
 # Handoff — Scan SKU cutover (2026-09-26)
 
-**Repo:** dsaas-quietforge · **Branch:** `main` (from `feat/scan-sku-cutover`) · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors) · `npm run build` ✅ (57 routes, sitemap 28)
+**Repo:** dsaas-quietforge · **Commit:** `86b080d` on `main` · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors) · `npm run build` ✅ (57 routes, sitemap 28)
+
+**Deploy:** `dpl_6t93ujLib1SUYVKeurMJAdpm1enW` · `flexgrafik-services` Production (CLI promote; Git CD left the domain on a 10-day-old Production until promote)
+
+**Live:** https://quietforge.flexgrafik.nl/
 
 ## Cel / Goal
 
@@ -52,17 +56,16 @@ Browser (localhost:3000 production server after rebuild):
 - `/book-a-scan/`: Hours default; click Decision radio → form `Requesting: Decision Scan · €490 excl. VAT`. No checkout UI.
 - `/approach/`: eyebrows Start here / Two work files / GO / PARK / NO; no “dearer SKU”.
 
-## Post-deploy smoke (Dowódca)
+## Post-deploy smoke (live)
 
-1. Live home hero meta + pricing card — Hours from €149, not €690.
-2. `/pricing/` three scan cards; build/care unchanged.
-3. `/book-a-scan/` switch SKU Hours → Both-lanes → Decision; WhatsApp prefill uses selected price + VAT line.
-4. `/approach/` OG in social inspector.
-5. Sample PDF `/artefacts/automation-map-sample.pdf` — Illustration, €40/h, no 47 weeks.
-6. `node scripts/audit-404s.mjs` → failed: [] per route.
+1. Home hero — `Book a scan from €149 excl. VAT · credited 30d`. Pricing card Hours/Both/Decision. B/C unchanged.
+2. `/pricing/` three scan cards with net + incl. VAT; Core/Scale/Command and Keep/Grow/Unlock unchanged.
+3. `/book-a-scan/` Hours default; Decision radio → form `Requesting: Decision Scan · €490 excl. VAT`.
+4. `/approach/` eyebrows Start here / Two work files / GO / PARK / NO.
+5. Domain aliases on this deploy: `quietforge.flexgrafik.nl` + `services.flexgrafik.nl`.
 
 ## Następny krok / Next steps
 
 - Runtime job Scan Measure remains a separate platform issue.
 - LinkedIn paste pack updated; live cadence still PARKED (tool-first).
-- No invented metrics; no live LinkedIn publish this session.
+- Optional: enable Production Git deployments on `flexgrafik-services` so the next `main` push does not require `vercel promote`.

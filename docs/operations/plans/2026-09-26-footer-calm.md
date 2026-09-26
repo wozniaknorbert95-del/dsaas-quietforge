@@ -2,7 +2,7 @@
 
 **Repo:** dsaas-quietforge · **Live:** https://quietforge.flexgrafik.nl/  
 **ICP:** Dutch SMB owner 3–15 · Funnel: end-of-page recovery, not a sitemap  
-**Status:** SHIPPED locally — awaiting promote
+**Status:** SHIPPED · Production `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V`
 
 ## Verdict
 

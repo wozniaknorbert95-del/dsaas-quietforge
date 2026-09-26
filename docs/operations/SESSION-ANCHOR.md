@@ -1,12 +1,12 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** SHIPPING · Footer calm (29 → 11 links)
+**Updated:** 2026-09-26 · **Status:** DEPLOYED · Footer calm (29 → 11 links)
 
-**Live production (until this promote):** Hours Scan education `eda0a5e` / `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw`
+**Live production:** `5fa1676` / `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V`
 
 **Current handoff:** [`handoffs/2026-09-26-footer-calm.md`](handoffs/2026-09-26-footer-calm.md)
 
-**Prior:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md)
+**Prior:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md) · `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw`
 
 **SSoT:** `src/lib/navigation.ts` footer lists + `Footer.tsx`
 
@@ -16,9 +16,8 @@ Stopka = close + trust + legal. Nie katalog 9 systemów. Lab ×1. GitHub na Abou
 
 ## NASTĘPNY KROK
 
-1. Push + `vercel promote` jeśli Git CD zostawi Preview.
-2. Smoke live footer: 11 linków, brak listy systemów.
-3. LinkedIn cadence PARKED.
+1. Cookie banner / sticky CTA = osobna sesja.
+2. LinkedIn cadence PARKED. Hours counter stays 0.
 
 ---
 

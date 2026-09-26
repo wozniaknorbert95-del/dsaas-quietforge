@@ -1,6 +1,10 @@
 # Handoff — Footer calm (2026-09-26)
 
-**Repo:** dsaas-quietforge · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes)
+**Repo:** dsaas-quietforge · **Commit:** `5fa1676` on `main` · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes)
+
+**Deploy:** `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V` · Production (CLI promote of Preview `q39hfa2dm`)
+
+**Live:** https://quietforge.flexgrafik.nl/
 
 **Local audit:** `node scripts/audit-menu-footer.mjs http://localhost:3000` → **PASS** (11 footer links, budget 12)
 

@@ -1,23 +1,23 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** LOCAL READY · FlexGrafik finished-company case (not deployed)
+**Updated:** 2026-09-26 · **Status:** SHIPPING · Hours Scan buyer education (after FlexGrafik case LIVE)
 
-**Live production (unchanged):** SKU cutover `86b080d` / `dpl_6t93ujLib1SUYVKeurMJAdpm1enW`
+**Live production:** FlexGrafik case `613b453` / `dpl_2TKESNuSHNEzSeVGeAAHFqXNkhZk`
 
-**Current handoff:** [`handoffs/2026-09-26-flexgrafik-company-case.md`](handoffs/2026-09-26-flexgrafik-company-case.md)
+**Current handoff:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md)
 
-**Prior:** [`handoffs/2026-09-26-scan-sku-cutover.md`](handoffs/2026-09-26-scan-sku-cutover.md) · Production `dpl_6t93ujLib1SUYVKeurMJAdpm1enW`
+**Prior:** [`handoffs/2026-09-26-flexgrafik-company-case.md`](handoffs/2026-09-26-flexgrafik-company-case.md) · Production `dpl_2TKESNuSHNEzSeVGeAAHFqXNkhZk`
 
-**SSoT:** `src/content/flexgrafik-company-case.ts` + hours-counter `0` + lab Tenant 2 PROVEN
+**SSoT:** `src/content/scan.ts` (lab hook, tracks, FAQ) + hours-counter `0` + FlexGrafik featured case
 
 ## CO
 
-`/proof/` keeps hours **0** and three OPEN client slots. Featured card = owner-operated FlexGrafik finished company → `/results/flexgrafik/` (not Case 01). Tenant 2 PROVEN. No MRR/GMV.
+`/book-a-scan/` sells a paid lab result (stack + gate), not a free 30-minute call. `/proof/` hours stay **0**. FlexGrafik featured case LIVE. LinkedIn cadence PARKED.
 
 ## NASTĘPNY KROK
 
-1. Commander: commit + push + `vercel promote` if Git CD only builds Preview.
-2. Do not put FlexGrafik in the hours counter.
+1. Push this scan commit (separate from FlexGrafik `613b453`). Promote Preview if Git CD does not alias Production.
+2. Smoke live `/book-a-scan/` H1 + FAQ foil + sample PDF illustration.
 3. LinkedIn live cadence still PARKED (tool-first).
 
 ---

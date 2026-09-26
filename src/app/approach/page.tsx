@@ -10,6 +10,7 @@ import {
   SCAN_COPY,
   SCAN_CREDIT_DAYS,
   SCAN_EVIDENCE_LABELS,
+  SCAN_FAQ,
   SCAN_SKUS,
   SCAN_TOOLS,
   scanVatLine,
@@ -124,10 +125,7 @@ const STEPS_AFTER = [
 ];
 
 const FAQ = [
-  {
-    q: 'Is this a sales call?',
-    a: 'No. The deliverable is a written report with evidence labels. If the answer is “do not automate”, the report says so, and that is a successful scan.',
-  },
+  SCAN_FAQ[0],
   {
     q: 'What exactly do I receive?',
     a: 'A written report. Every number carries a label: Measured hours, Waiting time, You stated, Website hypothesis, or Not enough data. Ranking only of measured hours.',
@@ -136,14 +134,13 @@ const FAQ = [
     q: 'How long until I get the report?',
     a: SCAN_COPY.reportWindow,
   },
+  SCAN_FAQ[2],
   {
     q: 'Is the fee really credited?',
     a: `${SCAN_COPY.creditLine} If there is nothing worth automating, you keep the report and stop there.`,
   },
-  {
-    q: 'What if I cannot send an export?',
-    a: SCAN_COPY.noExportHonesty,
-  },
+  SCAN_FAQ[1],
+  SCAN_FAQ[3],
   {
     q: 'Is my data safe during the scan?',
     a: 'Owner-only files. No staff inboxes. No live mailbox login. Raw files stay out of git and are deleted after you accept the report or abandon the scan. See Security.',
@@ -165,10 +162,11 @@ export default function ApproachPage() {
           <span className="qf-sys-intents">evidence · labels · no invented euro</span>
         </p>
         <h1 className="qf-sys-h1">The Hours Engine Scan — depth of evidence, not a sales call.</h1>
-        <p className="qf-sys-tagline">{SCAN_COPY.clientPicks} {SCAN_COPY.noWorkshop}</p>
+        <p className="qf-sys-tagline">{SCAN_COPY.labHook}</p>
         <p className="qf-sys-meta">
           {SCAN_COPY.fromPrice} · credited {SCAN_CREDIT_DAYS} days · {SCAN_COPY.reportWindow}
         </p>
+        <p className="qf-scan-aside">{SCAN_COPY.feeGoesTo}</p>
         <div className="qf-sys-cta-row">
           <Link href={ROUTES.bookAScan} className="qf-btn-fill">
             Book a scan →
@@ -196,6 +194,7 @@ export default function ApproachPage() {
               </h3>
               <p className="qf-approach-card-body">{scanVatLine(sku)}</p>
               <p className="qf-approach-card-body">{sku.youMustSend}</p>
+              <p className="qf-approach-card-body">{sku.feeGoesTo}</p>
               <p className="qf-approach-card-body">{sku.rankingMayInclude}</p>
             </li>
           ))}

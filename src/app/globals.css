@@ -2026,12 +2026,87 @@ body[data-app="services"] {
   color: var(--qf-accent);
 }
 
-.qf-scan-sku-grid {
+.qf-scan-h1 {
+  margin: 0 0 var(--qf-sp-4);
+  max-width: 18ch;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.qf-scan-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qf-sp-3);
+  margin: var(--qf-sp-6) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-scan-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--qf-sp-2);
+  min-height: 44px;
+  font-family: var(--qf-mono);
+  font-size: var(--qf-fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--qf-accent);
+}
+
+.qf-scan-aside {
+  max-width: 40rem;
+  margin: var(--qf-sp-4) 0 0;
+  padding-left: var(--qf-sp-4);
+  border-left: 2px solid var(--qf-accent);
+  color: var(--qf-text-dim);
+  font-size: var(--qf-fs-sm);
+}
+
+.qf-scan-pay-grid,
+.qf-scan-process,
+.qf-scan-fromto,
+.qf-scan-track-grid {
   display: grid;
   gap: var(--qf-sp-4);
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.qf-scan-fromto-value {
+  margin: 0 0 var(--qf-sp-2);
+  font-size: var(--qf-fs-xl);
+  font-weight: 700;
+}
+
+.qf-scan-fineprint {
+  margin: var(--qf-sp-4) 0 0;
+  font-size: var(--qf-fs-sm);
+  color: var(--qf-text-faint);
+}
+
+.qf-scan-privacy {
+  color: var(--qf-accent);
+}
+
+.qf-scan-publish,
+.qf-scan-edges {
+  max-width: 40rem;
+  margin: 0 0 var(--qf-sp-6);
+  padding-left: 1.25rem;
+  color: var(--qf-text-dim);
+}
+
+.qf-scan-publish li,
+.qf-scan-edges li {
+  margin-bottom: var(--qf-sp-3);
+}
+
+.qf-scan-method .qf-sys-h2 {
+  margin-top: var(--qf-sp-8);
 }
 
 .qf-scan-sku-fieldset {
@@ -2106,7 +2181,8 @@ body[data-app="services"] {
   color: var(--qf-text-dim);
 }
 
-.qf-scan-tool-grid {
+.qf-scan-tool-grid,
+.qf-scan-sku-grid {
   display: grid;
   gap: var(--qf-sp-4);
   margin: var(--qf-sp-4) 0 0;
@@ -2550,8 +2626,15 @@ body[data-app="services"] {
 
 @media (min-width: 768px) {
   .qf-scan-sku-grid,
-  .qf-scan-tool-grid {
+  .qf-scan-tool-grid,
+  .qf-scan-fromto,
+  .qf-scan-track-grid,
+  .qf-scan-pay-grid {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .qf-scan-process {
+    grid-template-columns: 1fr 1fr;
   }
 
   .qf-fg-door-grid {

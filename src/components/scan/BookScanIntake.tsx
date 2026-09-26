@@ -42,6 +42,7 @@ export default function BookScanIntake() {
                   </span>
                   <span className="qf-approach-card-body">{scanVatLine(sku)}</span>
                   <span className="qf-approach-card-body">{sku.youMustSend}</span>
+                  <span className="qf-approach-card-body">{sku.feeGoesTo}</span>
                 </label>
               </li>
             );

@@ -1,8 +1,33 @@
-# Hours Engine Scan — Sample Report
+# Hours Engine Scan — partner one-pager
 
-> **Illustration.** This is a fictional company built with the same evidence labels
-> and depth as a real Hours Scan. Numbers are illustrative, not from a real client.
-> Your report is written from your files.
+> **Illustration.** Fictional company. Same evidence labels and depth as a real Hours Scan.
+> Not a Quietforge client. Your report is written from your files.
+
+---
+
+## Hero
+
+**4 h/week · €160/week · Measured hours**
+
+Waiting time 3 calendar days · **€0 from this line**
+
+Website hypothesis · **no hours**
+
+**Ranking (one line):** quote-to-order, 4 h/week.
+
+Purchase-order matching = **NO**. That is a successful scan.
+
+Math: 4 h/week × €40/h = €160/week of measured owner time. We do **not** write “pays back in weeks” — that needs a build price, which this scan does not set.
+
+---
+
+## From → To
+
+| | Before (in the file) | What the ranking may say |
+|---|---|---|
+| **Quote handling** | Owner time with duration | **4 h/week · €160/week · Measured hours** |
+| **Inbox delay** | Dates only, no duration | 3 calendar days median · **€0 from this line** · Waiting time |
+| **Site lead capture** | Public host only | Form friction · **no hours** · Website hypothesis |
 
 ---
 
@@ -12,12 +37,9 @@
 
 Sources used: one website host + one owner quote spreadsheet (last 30 days). No live mailbox login.
 
-Three leaks showed up. Only **quote handling** had duration in the file, so only that line
-ranks as **Measured hours**. Inbox delay is **Waiting time** (not multiplied by €40).
-The website form is a **Website hypothesis** — no hours, no euro.
+Three leaks showed up. Only **quote handling** had duration in the file, so only that line ranks as **Measured hours**. Inbox delay is **Waiting time** (not multiplied by €40). The website form is a **Website hypothesis**.
 
-Recommendation: **PARK** the inbox-euro claim until a mailbox export exists.
-**GO** candidate: quote-to-order, if you later choose a build — this scan does not set a build price.
+Recommendation: **PARK** the inbox-euro claim until a mailbox export exists. **GO** candidate: quote-to-order, if you later choose a build — this scan does not set a build price.
 
 ---
 
@@ -26,6 +48,7 @@ Recommendation: **PARK** the inbox-euro claim until a mailbox export exists.
 - Hours Scan (€149 excl. VAT). You sent: site URL + quote spreadsheet.
 - Window written down by the owner: last 30 days.
 - All numbers below carry a label. Nothing here is “measured in session”.
+- You paid for the stack on these files and the gate that kept waiting time off the euro line.
 
 ---
 
@@ -51,10 +74,6 @@ Recommendation: **PARK** the inbox-euro claim until a mailbox export exists.
 | 4 | Monthly reporting pack | — | Not enough data | No duration in the file |
 | 5 | Purchase-order matching | — | You stated | Owner: “half an hour, not worth it” |
 
-**Ranking (measured hours only):** quote-to-order, 4 h/week.
-
-Math on that line: 4 h/week × €40/h = €160/week of measured owner time. We do **not** write “pays back in weeks” — that needs a build price, which this scan does not set.
-
 ---
 
 ## 5. Website (hypothesis only)
@@ -74,4 +93,5 @@ Purchase-order matching — owner-stated volume too low. That is a successful sc
 This report is yours regardless of whether we build. GO on a scan line is **not** start of build.
 
 ---
-*Illustration only · Quietforge Hours Engine · quietforge@flexgrafik.nl*
+
+*Illustration only · Quietforge Hours Engine · Hours Scan €149 excl. VAT · not a client · quietforge@flexgrafik.nl*

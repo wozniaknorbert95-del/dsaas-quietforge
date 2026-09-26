@@ -1,10 +1,12 @@
 # Handoff — Hours Scan buyer education (2026-09-26)
 
-**Repo:** dsaas-quietforge · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes, sitemap 29)
+**Repo:** dsaas-quietforge · **Commit:** `eda0a5e` on `main` · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes, sitemap 29)
 
-**Prior ship (same day):** FlexGrafik finished-company case `613b453` on `main` · Production `dpl_2TKESNuSHNEzSeVGeAAHFqXNkhZk` (aliases `quietforge.flexgrafik.nl` + `services.flexgrafik.nl`)
+**Deploy:** `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw` · `flexgrafik-services` Production (CLI promote of Preview `aywnx9865`; Git CD left Production on FlexGrafik `dpl_2TKESNu…` until promote)
 
-**This commit:** scan education only — not mixed with the FlexGrafik case.
+**Live:** https://quietforge.flexgrafik.nl/
+
+**Prior ship (same day):** FlexGrafik finished-company case `613b453` · `dpl_2TKESNuSHNEzSeVGeAAHFqXNkhZk`
 
 ## Cel / Goal
 

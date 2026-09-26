@@ -1,8 +1,8 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** SHIPPING · Hours Scan buyer education (after FlexGrafik case LIVE)
+**Updated:** 2026-09-26 · **Status:** DEPLOYED · Hours Scan buyer education
 
-**Live production:** FlexGrafik case `613b453` / `dpl_2TKESNuSHNEzSeVGeAAHFqXNkhZk`
+**Live production:** `eda0a5e` / `dpl_8J7RoKewDL3BjqUEJnaLfCuU7zYw`
 
 **Current handoff:** [`handoffs/2026-09-26-scan-buyer-education.md`](handoffs/2026-09-26-scan-buyer-education.md)
 
@@ -16,8 +16,8 @@
 
 ## NASTĘPNY KROK
 
-1. Push this scan commit (separate from FlexGrafik `613b453`). Promote Preview if Git CD does not alias Production.
-2. Smoke live `/book-a-scan/` H1 + FAQ foil + sample PDF illustration.
+1. Live smoke: `/book-a-scan/` H1 + FAQ foil + sample PDF illustration (done at promote).
+2. Do not put FlexGrafik in the hours counter.
 3. LinkedIn live cadence still PARKED (tool-first).
 
 ---

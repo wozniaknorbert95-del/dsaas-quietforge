@@ -2,7 +2,7 @@
 
 **Repo:** dsaas-quietforge · **Live:** https://quietforge.flexgrafik.nl/  
 **ICP:** Dutch SMB owner 3–15 · Funnel: post-footer calm, then home density  
-**Status:** PLAN · Session 0 last-mile (sticky hide + footer microcopy) coded this same day — ship on Commander GO
+**Status:** Session 0 **SHIPPED** · Production `dpl_4RdKJYtwhyw2kLWcDFSoNUWnSsku` (`47b6c45`) · S1–S5 queued
 
 ## Verdict
 

@@ -1,10 +1,14 @@
 # Handoff — Footer last-mile + chrome polish plan (2026-09-26)
 
-**Repo:** dsaas-quietforge · **Status:** LOCAL READY (not promoted) · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes)
+**Repo:** dsaas-quietforge · **Commit:** `47b6c45` on `main` · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes)
 
-**Live (still previous):** `5fa1676` / `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V` until Commander GO + `vercel promote`
+**Deploy:** `dpl_4RdKJYtwhyw2kLWcDFSoNUWnSsku` · Production (CLI promote of Preview `3scf4ooke`)
 
-**Plan:** [`docs/operations/plans/2026-09-26-chrome-polish.md`](../plans/2026-09-26-chrome-polish.md)
+**Live:** https://quietforge.flexgrafik.nl/
+
+**Live audit:** `node scripts/audit-menu-footer.mjs https://quietforge.flexgrafik.nl` → **PASS** (11 footer links, Scan sample (PDF))
+
+**Plan (next sessions):** [`docs/operations/plans/2026-09-26-chrome-polish.md`](../plans/2026-09-26-chrome-polish.md)
 
 ## Cel / Goal
 
@@ -43,17 +47,16 @@ npm run build       # pass (58 routes)
 
 Copy-polish: glued-copy 0. CTA source remains `Book a scan` (skill “Book Automation Map” is stale — do not revert).
 
-Local: `node scripts/audit-menu-footer.mjs http://localhost:3000` → **PASS** (11 links, Scan sample (PDF)). Privacy & terms at footer → `/legal/` (no sticky intercept). Live still intercepts until GO + promote.
+Local + live audit PASS. Footer label **Scan sample (PDF)** on production.
 
-## Post-deploy smoke (after GO)
+## Post-deploy smoke (Dowódca)
 
 1. Home @390: scroll to footer — Quick actions znika; Privacy & terms i Scan sample (PDF) tappable.
 2. Lab link nie łamie się na dwie linie.
-3. WhatsApp ikona = bubble, nie kółko czatu.
-4. Audit `node scripts/audit-menu-footer.mjs` nadal ≤12.
+3. WhatsApp ikona = bubble w stopce.
+4. `node scripts/audit-404s.mjs` — opcjonalnie pełny crawl.
 
 ## Następny krok
 
-- **GO** commit + push `main` + `vercel promote` (Git CD często zostawia stary Production alias).
-- Potem S1 cookie vs sticky — osobna sesja.
+- S1 cookie vs sticky (plan §S1).
 - LinkedIn live PARKED. Hours counter 0.

@@ -1,41 +1,36 @@
-# Handoff — Footer last-mile + chrome polish plan (2026-09-26)
+# Handoff — Chrome last-mile + polish plan (2026-09-26)
 
-**Repo:** dsaas-quietforge · **Commit:** `47b6c45` on `main` · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes)
+**Repo:** dsaas-quietforge · **Build:** `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors, 10 pre-existing warnings) · `npm run build` ✅ (58 routes)
 
-**Deploy:** `dpl_4RdKJYtwhyw2kLWcDFSoNUWnSsku` · Production (CLI promote of Preview `3scf4ooke`)
+**Commits:** `47b6c45` (fix) · `8e7463b` (ops docs) on `main`
+
+**Deploy:** `dpl_4RdKJYtwhyw2kLWcDFSoNUWnSsku` · Production (CLI promote Preview `3scf4ooke`)
 
 **Live:** https://quietforge.flexgrafik.nl/
 
-**Live audit:** `node scripts/audit-menu-footer.mjs https://quietforge.flexgrafik.nl` → **PASS** (11 footer links, Scan sample (PDF))
-
-**Plan (next sessions):** [`docs/operations/plans/2026-09-26-chrome-polish.md`](../plans/2026-09-26-chrome-polish.md)
-
 ## Cel / Goal
 
-Zweryfikować slim footer na live, domknąć ostatnie szlify chrome (klik w legal), spisać plan dalszej polerki bez wracania katalogu.
+Zweryfikować slim footer na live, naprawić intercept sticky CTA na mobile, domknąć microcopy stopki i spisać plan polerki home/chrome (S1–S5) bez powrotu katalogu w footerze.
 
-## Live verify (Production, przed szlifem)
+## Co zrobiono / What changed
 
-- Footer 11 linków. Brak katalogu. Privacy → `/legal/` 200. Sample PDF 200. Lab ×1.
-- **Bug:** na ~390px sticky CTA (`qf-sticky-cta`, z-40) przejmuje klik w Privacy & terms.
-
-## Co zrobiono / What changed (lokalnie)
-
-- Sticky chowa się, gdy footer wchodzi w strefę nad barem.
-- `Scan sample (PDF)` bez `↓`. Lab `nowrap`. WhatsApp = glyph, nie MessageCircle.
-- Sticky + social wyciągnięte do `qf-*`. Extra padding pod sticky usunięty (observer wystarcza).
-- Plan S1–S5: cookie vs sticky, FAQ 13→7, Evidence ×6, WhatsApp/strzałki, „Automation Scan” leftover.
+- **Sticky:** chowa się, gdy footer wchodzi w strefę nad barem (`IntersectionObserver`, `rootMargin` −76px); style w `qf-sticky-*`.
+- **Footer:** `Scan sample (PDF)` (SSoT + artefakt link bez `↓`); Lab link `nowrap`.
+- **Social:** WhatsApp = brand glyph (SVG), listy w `qf-social-*`.
+- **Ops:** plan [`2026-09-26-chrome-polish.md`](../plans/2026-09-26-chrome-polish.md) (Session 0 shipped; S1–S5 queued); SESSION-ANCHOR → DEPLOYED.
+- **Nie w tej sesji:** treść PDF sample — zrobiona wcześniej w [`2026-09-26-scan-buyer-education.md`](2026-09-26-scan-buyer-education.md) (4h/€160 Measured vs waiting €0).
 
 ## Pliki / Files
 
 | File | Action |
 |------|--------|
-| `src/components/layout/StickyCta.tsx` | hide on footer intersect; `qf-sticky-*` |
-| `src/app/globals.css` | sticky/social tokens; Lab nowrap |
-| `src/lib/navigation.ts` | Scan sample (PDF) |
-| `src/components/FooterArtefactLinks.tsx` | drop `↓` + hover util |
+| `src/components/layout/StickyCta.tsx` | footer-aware hide; `qf-sticky-*` |
+| `src/app/globals.css` | sticky + social tokens; Lab nowrap |
+| `src/lib/navigation.ts` | Scan sample (PDF) label |
+| `src/components/FooterArtefactLinks.tsx` | label from SSoT; no `↓` |
 | `src/components/ui/SocialLinks.tsx` | WhatsApp SVG; `qf-social-*` |
 | `docs/operations/plans/2026-09-26-chrome-polish.md` | new |
+| `docs/operations/SESSION-ANCHOR.md` | DEPLOYED pointer |
 
 ## Weryfikacja / Verification
 
@@ -43,20 +38,21 @@ Zweryfikować slim footer na live, domknąć ostatnie szlify chrome (klik w lega
 npm run typecheck   # pass
 npm run lint        # 0 errors, 10 pre-existing warnings
 npm run build       # pass (58 routes)
+rg '\[FILL:' src/   # 0 matches
+node scripts/audit-menu-footer.mjs https://quietforge.flexgrafik.nl  # PASS, 11 links
 ```
 
-Copy-polish: glued-copy 0. CTA source remains `Book a scan` (skill “Book Automation Map” is stale — do not revert).
-
-Local + live audit PASS. Footer label **Scan sample (PDF)** on production.
+CTA canon: `Book a scan` via `CTAS.bookAutomationMap` — do not revert skill text „Book Automation Map”.
 
 ## Post-deploy smoke (Dowódca)
 
-1. Home @390: scroll to footer — Quick actions znika; Privacy & terms i Scan sample (PDF) tappable.
-2. Lab link nie łamie się na dwie linie.
-3. WhatsApp ikona = bubble w stopce.
-4. `node scripts/audit-404s.mjs` — opcjonalnie pełny crawl.
+1. Home @390: scroll to footer — **Quick actions** znika; **Privacy & terms** + **Scan sample (PDF)** tappable.
+2. `/legal/` H1 Legal & Privacy; PDF `/artefacts/automation-map-sample.pdf` 200.
+3. Footer: 11 links, no system catalog; Lab ×1; LI + WA only.
+4. Optional: `node scripts/audit-404s.mjs` — failed routes = [].
 
-## Następny krok
+## Następny krok / Next steps
 
-- S1 cookie vs sticky (plan §S1).
-- LinkedIn live PARKED. Hours counter 0.
+- **S1** cookie vs sticky (first visit @390) — [`2026-09-26-chrome-polish.md`](../plans/2026-09-26-chrome-polish.md) §S1.
+- **S2–S5** home density (FAQ 13→7, Evidence ×6, WA/arrow canon, „Automation Scan” copy cleanup).
+- LinkedIn live **PARKED** (tool-first). Hours counter stays **0**. FlexGrafik ≠ client case.

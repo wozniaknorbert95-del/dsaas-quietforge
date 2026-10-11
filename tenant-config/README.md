@@ -7,7 +7,7 @@ Identity lock (do not contradict): [`docs/canon/identity.md`](../docs/canon/iden
 
 - `tenant.json` — tenant identity, status and operational ownership.
 - `business-profile.json` — QuietForge goals, KPI, voice, budget policy and
-  integration boundaries. Public pricing: Scan €690 / implementation from €2 500 /
+  integration boundaries. Public pricing: Hours scan from €149 (Both-lanes €290, Decision €490) / implementation from €2 500 /
   maintenance from €300. Hours-given-back starts at 0.
 
 Generic platform behavior is not copied here. Compatibility with

@@ -42,7 +42,7 @@ QuietForge is a one-person practice, strengthened by AI agents and external code
 
 Reference implementations (max 3, months 1–3) may be €0–1 500 **in exchange for** a named case with numbers. That discount is not the public site price.
 
-**Superseded:** Automation Scan €690 / 90 min workshop, and Automation Map €290 as a single SKU. Do not use them on site or LinkedIn.
+**Superseded:** the former single-SKU scan (Automation Scan, 90 min workshop) and Automation Map as a single SKU. Do not use them on site or LinkedIn.
 
 ## 4. Platform vs tenant
 

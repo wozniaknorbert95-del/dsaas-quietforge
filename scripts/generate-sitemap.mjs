@@ -70,7 +70,7 @@ function getSitemapMeta(path) {
   return { priority: '0.8', changefreq: 'weekly' };
 }
 
-const base = 'https://quietforge.flexgrafik.nl';
+const base = 'https://quietforge.nl';
 const lastmod = new Date().toISOString().slice(0, 10);
 
 const urls = ROUTES.map((path) => {

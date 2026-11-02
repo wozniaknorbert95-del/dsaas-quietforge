@@ -10,16 +10,7 @@ export const PRICING_NUMBERS = {
   scanDecision: 490,
   /** Lowest scan SKU — public “from” price. */
   scanFrom: 149,
-  implementationFrom: 2500,
-  maintenanceFrom: 300,
-  /** Build variants — oferty v1 (Oferta B). */
-  buildEssential: 2500,
-  buildSystem: 4500,
-  buildAutonomous: 7900,
-  /** Care variants — oferty v1 (Oferta C), per month. */
-  care: 300,
-  grow: 600,
-  autonomy: 1000,
+  /** Build and care: no fixed public price — the build is priced after the scan. */
   /** AI Security Audit fixed range — etap 4 §3.2. */
   securityAuditFrom: 1500,
   securityAuditTo: 3000,
@@ -189,8 +180,6 @@ export const PRICING = {
   scanHours: PRICING_NUMBERS.scanHours,
   scanBothLanes: PRICING_NUMBERS.scanBothLanes,
   scanDecision: PRICING_NUMBERS.scanDecision,
-  implementationFrom: PRICING_NUMBERS.implementationFrom,
-  maintenanceFrom: PRICING_NUMBERS.maintenanceFrom,
   inboxKiller: PRICING_NUMBERS.inboxKiller,
   webUpgrade: PRICING_NUMBERS.webUpgrade,
   salesFunnel: PRICING_NUMBERS.salesFunnel,

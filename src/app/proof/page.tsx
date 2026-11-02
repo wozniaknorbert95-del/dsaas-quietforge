@@ -1,33 +1,28 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
-import Card from '@/components/ui/Card';
 import { ROUTES } from '@/lib/constants';
-import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
-import { REFERENCE_PROGRAM, CTAS } from '@/content/conversion-copy';
+import { CTAS } from '@/content/conversion-copy';
 import {
   FLEXGRAFIK_COMPANY_CASE,
   FLEXGRAFIK_PROOF_FEATURED,
 } from '@/content/flexgrafik-company-case';
 
 export const metadata: Metadata = {
-  title: 'Proof: hours and money saved, counted publicly',
+  title: 'Proof: hours and money saved, verified by clients',
   description:
-    'The QuietForge hours counter starts at zero. Numbers move only after a client verifies them.',
+    'QuietForge publishes hours and money saved only after a client verifies them. FlexGrafik is the owner-operated reference.',
 };
 
 export default function ProofPage() {
   return (
     <Section padding="large">
       <h1 className="mb-4 text-[var(--qf-fs-3xl)] font-bold tracking-tight">
-        We count publicly what we give back.
+        Proof we publish only when it is verified.
       </h1>
-      <p className="text-[var(--qf-fs-2xl)] font-bold">
-        {hoursCounter.hoursConfirmed} hours · €{hoursValueEuro}
-      </p>
       <p className="mt-4 max-w-2xl text-[var(--qf-text-dim)]">
-        Counting starts at zero by design — the first verified client case opens the
-        count. Methodology is public.{' '}
+        Client hours and money saved appear here only after the client verifies them. No
+        invented numbers. Methodology is public.{' '}
         <Link href={ROUTES.proofMethodology} className="text-[var(--qf-accent)]">
           How we measure
         </Link>
@@ -43,46 +38,6 @@ export default function ProofPage() {
           {FLEXGRAFIK_PROOF_FEATURED.cta} →
         </Link>
       </article>
-
-      <ul className="qf-proof-open-grid">
-        {['01', '02', '03'].map((slot) => (
-          <li key={slot}>
-            <Card>
-              <p className="font-mono text-[var(--qf-fs-xs)] text-[var(--qf-accent)]">
-                OPEN — BECOME A CASE
-              </p>
-              <h2 className="mt-2 font-semibold">Case {slot}</h2>
-              <p className="mt-2 text-sm text-[var(--qf-text-dim)]">
-                Named hours after the client verifies. Until then, empty on purpose.
-              </p>
-            </Card>
-          </li>
-        ))}
-      </ul>
-
-      <div id="reference" className="mt-14 border-t border-[var(--qf-border)] pt-10">
-        <h2 className="text-[var(--qf-fs-2xl)] font-bold tracking-tight">
-          {REFERENCE_PROGRAM.heading}
-        </h2>
-        <p className="mt-4 max-w-2xl text-[var(--qf-text-dim)]">{REFERENCE_PROGRAM.lead}</p>
-        <p className="mt-4 font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
-          {referenceSpotsOpen} of {referenceProgram.spotsTotal} spots open
-        </p>
-        <p className="mt-6 mb-3 font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
-          In exchange, you agree to
-        </p>
-        <ul className="max-w-xl space-y-2 text-[var(--qf-text-dim)]">
-          {REFERENCE_PROGRAM.terms.map((term) => (
-            <li key={term.slice(0, 24)}>— {term}</li>
-          ))}
-        </ul>
-        <p className="mt-6 max-w-2xl text-sm text-[var(--qf-text-faint)]">
-          {REFERENCE_PROGRAM.closing}
-        </p>
-        <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-8 inline-flex">
-          Apply for a reference spot →
-        </Link>
-      </div>
 
       <p className="mt-8 text-[var(--qf-text-dim)]">
         See the build laboratory:{' '}

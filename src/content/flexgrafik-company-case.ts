@@ -1,16 +1,16 @@
 // ============================================================================
 // FLEXGRAFIK COMPANY CASE — one finished owner-operated company as proof.
 // Binding: /proof/ featured card + /results/flexgrafik/
-// Not a Quietforge client case. Hours counter stays 0 (hours-counter.ts).
+// Not a Quietforge client case. No client hours are claimed here.
 // Numbers: proof.ts metrics only. No MRR / orders / conversion / GMV.
 // Do not name DSAAS or LangGraph on this surface (canon censors).
 // ============================================================================
 
 import type { IntentId } from '@/content/ecosystem';
 import { metrics } from '@/content/proof';
-import { EXTERNAL, FLEXGRAFIK_URL, ROUTES } from '@/lib/constants';
+import { ROUTES } from '@/lib/constants';
 
-export type CompanyDoorStatus = 'LIVE' | 'PARTIAL';
+export type CompanyDoorStatus = 'LIVE' | 'PARTIAL' | 'OFFLINE';
 
 export interface CompanyDoor {
   id: string;
@@ -18,7 +18,8 @@ export interface CompanyDoor {
   name: string;
   role: string;
   status: CompanyDoorStatus;
-  href: string;
+  /** Omitted while the surface is offline — never link a dead service. */
+  href?: string;
   hrefLabel: string;
   body: string;
   intents: IntentId[];
@@ -35,7 +36,8 @@ export interface CompanyWalk {
   title: string;
   forYou: string;
   status: CompanyDoorStatus;
-  href: string;
+  /** Omitted while the surface is offline — never link a dead service. */
+  href?: string;
   hrefLabel: string;
   steps: readonly CompanyWalkStep[];
   intents: IntentId[];
@@ -46,43 +48,44 @@ export const FLEXGRAFIK_COMPANY_CASE = {
   eyebrow: 'Finished company',
   title: 'One finished Dutch company.',
   lead:
-    'FlexGrafik is the print and design studio I run. Quietforge does not sell it. You can walk the same paths a buyer walks — then book a scan for your leaks, not mine.',
+    'FlexGrafik is the print and design studio I run. Quietforge does not sell it. Below are the paths a buyer walks. They are offline right now and coming back. Book a scan for your leaks, not mine.',
   problemTitle: 'Before',
   problem:
     'A studio that quotes in email, takes custom jobs with no price, and meets cold traffic with a form, puts the owner in every thread. That is not a website problem. It is a company that cannot finish a path.',
   systemTitle: 'System',
   system:
-    'Four public doors and one tenant. The visitor picks a path. Repeatable work configures and pays. Cold attention earns a handoff. Exceptions stop for a human. The company runs as a live tenant on the same governed platform Quietforge uses — not a cloned shop.',
+    'Four public doors. The visitor picks a path. Repeatable work configures and pays. Cold attention earns a handoff. Exceptions stop for a human. Today the four doors are offline — the flexgrafik.nl domain and hosting lapsed — and they are coming back.',
   effectTitle: 'Effect',
   effect:
-    'A path can finish without ping-pong. Exceptions stay labelled exceptions. The owner stays on the approval gate. No Quietforge client hours are claimed here. The public counter on Proof stays at zero until an external client verifies.',
+    'A path can finish without ping-pong. Exceptions stay labelled exceptions. The owner stays on the approval gate. No QuietForge client hours are claimed here. Client numbers publish only after an external client verifies them.',
   offerMapTitle: 'What this maps to for you',
   offerMap:
-    'Hours Scan measures leaks from your files. Core is one door. Scale is doors connected. Command is the cockpit with a human gate. FlexGrafik illustrates Scale and Command in one company — not a FlexGrafik product, and not a price.',
+    'Hours Scan measures leaks from your files. The build is then priced from what the scan finds — one door, connected doors, or a cockpit with a human gate. FlexGrafik illustrates all three in one company — not a FlexGrafik product, and not a price.',
   notProven:
     'No order count, GMV, conversion rate or payback. Mockups on the custom path are not print-ready. This is not a Quietforge client result.',
   ctaPrimary: 'Book a scan',
   ctaSecondary: "Builder's Lab",
   methodologyLabel: 'How we measure',
-  walkLead: 'Three walks. About eight minutes. Live links, labelled.',
-  doorsTitle: 'Four doors. One tenant.',
-  platformTitle: 'The engine is a tenant, not a clone',
+  walkLead: 'Three walks. Offline right now — coming back.',
+  doorsTitle: 'Four doors.',
+  offlineLabel: 'Offline — coming back',
+  platformTitle: 'Next: FlexGrafik becomes a tenant, not a clone',
   platform:
-    'FlexGrafik runs as a live tenant on the governed platform Quietforge uses. Brand, data and configuration stay partitioned. You would receive your own tenant under contract — not a copy of this studio.',
-  platformStatus: 'PROVEN IN THE LAB' as const,
+    'In a later phase FlexGrafik becomes Tenant 2 on the governed platform QuietForge uses. Brand, data and configuration stay partitioned. You would receive your own tenant under contract — not a copy of this studio.',
+  platformStatus: 'PLANNED' as const,
 } as const;
 
 export const FLEXGRAFIK_COMPANY_META = {
   title: 'FlexGrafik — one finished Dutch company',
   description:
-    'Owner-operated reference: portal, catalog checkout, lead game and custom intake as live doors on one tenant. Not a Quietforge client case. Hours counter stays at zero.',
+    'Owner-operated reference: portal, catalog checkout, lead game and custom intake, built in one company. Offline right now and coming back. Not a QuietForge client case.',
   ogAlt: 'FlexGrafik — one finished Dutch company, owner-operated reference',
 } as const;
 
 export const FLEXGRAFIK_PROOF_FEATURED = {
   eyebrow: 'The company I finished first',
-  title: 'FlexGrafik — walk a finished company',
-  body: 'Four live doors, one tenant. Not a Quietforge client case. The hours counter above stays at zero on purpose.',
+  title: 'FlexGrafik — the company I built first',
+  body: 'Four doors built in one company. Offline right now — the domain and hosting lapsed — and coming back. Not a QuietForge client case.',
   cta: 'Open the FlexGrafik case',
   href: ROUTES.resultsFlexgrafik,
 } as const;
@@ -93,8 +96,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     n: '01',
     name: 'Portal',
     role: 'Front door',
-    status: 'LIVE',
-    href: FLEXGRAFIK_URL,
+    status: 'OFFLINE',
     hrefLabel: 'Open flexgrafik.nl',
     body: 'One trustworthy entry. The visitor chooses the next system instead of starting a manual conversation.',
     intents: ['order'],
@@ -104,8 +106,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     n: '02',
     name: 'Catalog',
     role: 'Configure and pay',
-    status: 'LIVE',
-    href: EXTERNAL.zzpackageWizard,
+    status: 'OFFLINE',
     hrefLabel: 'Open the Wizard',
     body: `${metrics.wizardStepsFootnote}, ${metrics.skus} SKUs, open pricing, Mollie from €199. Repeatable work gets a rules-based price.`,
     intents: ['money', 'efficiency'],
@@ -115,8 +116,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     n: '03',
     name: 'Game',
     role: 'Qualify cold attention',
-    status: 'LIVE',
-    href: EXTERNAL.leadMagnetGame,
+    status: 'OFFLINE',
     hrefLabel: 'Play the game',
     body: `${metrics.gameLevels} acts, a registration gate, then a handoff into the same catalog path — not a brochure form.`,
     intents: ['money'],
@@ -126,8 +126,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     n: '04',
     name: 'Custom intake',
     role: 'Exceptions stay human',
-    status: 'PARTIAL',
-    href: EXTERNAL.inspireFlexgrafik,
+    status: 'OFFLINE',
     hrefLabel: 'Open INSPIRE',
     body: 'Vehicle-branding brief and direction, then a studio quote. Visuals are not print-ready. This path is not checkout.',
     intents: ['calm', 'money'],
@@ -140,8 +139,7 @@ export const FLEXGRAFIK_WALKS: readonly CompanyWalk[] = [
     n: '1',
     title: 'Catalog',
     forYou: 'Your repeatable quotes.',
-    status: 'LIVE',
-    href: EXTERNAL.zzpackageWizardPath,
+    status: 'OFFLINE',
     hrefLabel: 'Walk catalog',
     intents: ['money', 'efficiency'],
     steps: [
@@ -156,8 +154,7 @@ export const FLEXGRAFIK_WALKS: readonly CompanyWalk[] = [
     n: '2',
     title: 'Cold traffic',
     forYou: 'Traffic that never leaves an email.',
-    status: 'LIVE',
-    href: EXTERNAL.leadMagnetGame,
+    status: 'OFFLINE',
     hrefLabel: 'Walk the game',
     intents: ['money'],
     steps: [
@@ -172,8 +169,7 @@ export const FLEXGRAFIK_WALKS: readonly CompanyWalk[] = [
     n: '3',
     title: 'Exception',
     forYou: 'The job you cannot configure.',
-    status: 'PARTIAL',
-    href: EXTERNAL.inspireDesignAgent,
+    status: 'OFFLINE',
     hrefLabel: 'Walk custom intake',
     intents: ['calm'],
     steps: [

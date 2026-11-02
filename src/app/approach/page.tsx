@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import FaqItem from '@/components/ui/FaqItem';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
-import SampleScanLink from '@/components/analytics/SampleScanLink';
 import { ROUTES, WHATSAPP } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
 import {
@@ -104,7 +103,7 @@ const METRICS = [
 const STEPS_AFTER = [
   {
     title: 'Scope',
-    body: 'One system, fixed price, two to four weeks. If it is not worth automating, we stop.',
+    body: 'One system, priced after the scan, two to four weeks. If it is not worth automating, we stop.',
     you: 'You choose the first leak to close.',
   },
   {
@@ -287,9 +286,6 @@ export default function ApproachPage() {
           ))}
         </ul>
         <p className="qf-sys-lead">{SCAN_COPY.howWeCalculate}</p>
-        <p className="qf-sys-lead">
-          <SampleScanLink />
-        </p>
       </Section>
 
       <Section background="surface">

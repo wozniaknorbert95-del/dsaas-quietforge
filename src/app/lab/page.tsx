@@ -6,17 +6,17 @@ import LabEvidenceBench from '@/components/lab/LabEvidenceBench';
 import LabPlatformChapter from '@/components/lab/LabPlatformChapter';
 import LabTimeline from '@/components/lab/LabTimeline';
 import { LAB_CONNECTIONS, LAB_MILESTONES, LAB_PAGE } from '@/content/lab';
-import { ROUTES, SITE_URL, FLEXGRAFIK_URL } from '@/lib/constants';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: "Builder's Lab - What I built in a live owner-operated business",
+  title: "Builder's Lab - What I built in an owner-operated business",
   description:
     'Follow connected customer paths to one governed platform — implementation proof from an owner-operated reference business, not a client case study.',
   alternates: { canonical: `${SITE_URL}${ROUTES.lab}` },
   openGraph: {
     title: "Builder's Lab | Quietforge",
     description:
-      'A live owner-operated reference business and build laboratory. I built this before I offered it.',
+      'An owner-operated reference business and build laboratory. I built this before I offered it.',
     url: `${SITE_URL}${ROUTES.lab}`,
     images: [
       {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Builder's Lab | Quietforge",
-    description: 'Implementation proof from a live owner-operated reference business.',
+    description: 'Implementation proof from an owner-operated reference business.',
     images: ['/og/lab.svg'],
   },
 };
@@ -72,6 +72,7 @@ export default function LabPage() {
             <p className="qf-lab-eyebrow">{LAB_PAGE.eyebrow}</p>
             <h1 className="qf-lab-h1">{LAB_PAGE.title}</h1>
             <p className="qf-lab-lead">{LAB_PAGE.lead}</p>
+            <p className="qf-lab-status-note">{LAB_PAGE.offlineNote}</p>
             <div className="qf-lab-actions">
               <Button
                 href={ROUTES.bookAScan}
@@ -82,14 +83,6 @@ export default function LabPage() {
               >
                 {LAB_PAGE.primaryCta}
               </Button>
-              <a
-                href={FLEXGRAFIK_URL}
-                className="qf-btn-ghost"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {LAB_PAGE.referenceCta} <span aria-hidden="true">↗</span>
-              </a>
             </div>
           </div>
 
@@ -99,7 +92,7 @@ export default function LabPage() {
               <li>OWNER-OPERATED REFERENCE BUSINESS</li>
               <li>BUILD LABORATORY</li>
               <li>NOT AN EXTERNAL CLIENT CASE</li>
-              <li>PUBLIC LIVE SURFACES</li>
+              <li>PUBLIC SURFACES OFFLINE · COMING BACK</li>
             </ul>
             <p className="qf-lab-status-note">
               FlexGrafik shows what was built and exercised. Verified client outcomes remain a
@@ -220,14 +213,6 @@ export default function LabPage() {
             >
               {LAB_PAGE.primaryCta}
             </Button>
-            <a
-              href={FLEXGRAFIK_URL}
-              className="qf-btn-ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {LAB_PAGE.referenceCta} <span aria-hidden="true">↗</span>
-            </a>
           </div>
         </div>
       </section>

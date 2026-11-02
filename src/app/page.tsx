@@ -13,12 +13,8 @@ import {
   HOME_SYSTEMS_PAINS,
   POSITIONING,
   PUBLIC_OFFER,
-  REFERENCE_PROGRAM,
 } from '@/content/conversion-copy';
 import { SCAN_COPY } from '@/content/scan';
-import { hoursCounter, hoursValueEuro, referenceProgram, referenceSpotsOpen } from '@/content/hours-counter';
-import ReferenceCta from '@/components/home/ReferenceCta';
-import SampleScanLink from '@/components/analytics/SampleScanLink';
 import WhatsAppLink from '@/components/analytics/WhatsAppLink';
 
 export const metadata: Metadata = {
@@ -28,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Quotes, leads and inbox — you approve | Quietforge',
     description:
-      'Systems for Dutch SMB owners: quotes, leads and inbox. You approve. FlexGrafik is the live reference lab.',
+      'Systems for Dutch SMB owners: quotes, leads and inbox. You approve. FlexGrafik is the reference lab where it was built.',
     images: [
       {
         url: '/og/home.svg',
@@ -51,7 +47,7 @@ const DISCIPLINE = [
 
 const STEPS = [
   'Scan — you send files, we measure leaks, written GO / PARK / NO. No invented euro.',
-  'Scope — one module, fixed price, usually 2–3 weeks after sign-off.',
+  'Scope — one module, priced after the scan, usually 2–3 weeks after sign-off.',
   'Build — AI speed, human review, scans.',
   'You approve — nothing live without it.',
   'Handover — docs, repo, optional maintenance.',
@@ -68,7 +64,7 @@ const FLEXGRAFIK_STORY = [
   },
   {
     label: 'Now',
-    text: 'Portal, quote wizard and triage patterns run in the FlexGrafik lab as an owner-operated reference — not a client case study.',
+    text: 'Portal, quote wizard, game and design intake were built and run in the FlexGrafik lab. Today they are offline — the flexgrafik.nl domain and hosting lapsed — and they are coming back. Not a client case study.',
   },
   {
     label: 'Not yet',
@@ -111,7 +107,7 @@ const FAQ = [
   },
   {
     q: 'Do you have client case studies yet?',
-    a: 'The public hours counter starts at zero. Lab examples are labelled examples. Real cases publish only after the client verifies numbers.',
+    a: 'Not yet. Lab examples are labelled examples. Real cases publish only after the client verifies the numbers.',
   },
   {
     q: 'Is FlexGrafik the proof?',
@@ -124,10 +120,6 @@ const FAQ = [
   {
     q: 'What if it doesn’t work?',
     a: 'You sign off before anything goes live — and the final 50% is invoiced only after it runs in your production.',
-  },
-  {
-    q: 'What’s the reference program?',
-    a: 'Five reference spots this quarter: the full scan at €0–€345 in exchange for publishing the measured results. After five, it closes.',
   },
 ];
 
@@ -188,36 +180,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Section data-home-section="counter" background="surface">
-        <p className="qf-home-kicker">Hours returned · verified by clients</p>
-        <div className="qf-hours-counter">
-          <p className="qf-hours-item">
-            <span>Hours confirmed</span>
-            <strong>{hoursCounter.hoursConfirmed}</strong>
-          </p>
-          <p className="qf-hours-item">
-            <span>At €{hoursCounter.ratePerHour}/h</span>
-            <strong>€{hoursValueEuro}</strong>
-          </p>
-        </div>
-        <p className="mt-[var(--qf-sp-4)] max-w-2xl text-[var(--qf-text-dim)]">
-          Counting starts at zero by design — the first verified client case opens the
-          count. No invented numbers.{' '}
-          <Link href={ROUTES.proofMethodology} className="qf-sys-link">
-            How we measure
-          </Link>
-          .
-        </p>
-        <p className="mt-[var(--qf-sp-3)] max-w-2xl text-sm text-[var(--qf-text-faint)]">
-          Reference program:{' '}
-          {referenceSpotsOpen} of {referenceProgram.spotsTotal} spots open —{' '}
-          <Link href={ROUTES.proof} className="qf-sys-link">
-            apply for a reference spot
-          </Link>
-          .
-        </p>
-      </Section>
-
       <Section data-home-section="systems">
         <h2 className="qf-sys-h2">Three places owners lose hours</h2>
         <ul className="mt-3 max-w-2xl list-disc space-y-1 pl-5 text-[var(--qf-text-dim)]">
@@ -247,70 +209,16 @@ export default function Home() {
           ))}
         </ol>
         <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">
-          Fixed price after the scan. Core, Scale or Command — you choose the depth.{' '}
+          The build has no fixed price. It is priced after the scan, from what your company
+          actually needs.{' '}
           <Link href={ROUTES.pricing} className="qf-sys-link">
-            See variants
+            How pricing works
           </Link>
           .
-        </p>
-        <p className="mt-4">
-          <SampleScanLink location="home_approach" />
         </p>
         <Link href={ROUTES.approach} className="mt-6 inline-block qf-sys-link">
           Full approach →
         </Link>
-      </Section>
-
-      <Section data-home-section="compare" background="surface">
-        <p className="qf-home-kicker">Fit</p>
-        <h2 className="qf-sys-h2">Agency, freelancer, QuietForge</h2>
-        <div className="overflow-x-auto">
-          <table className="qf-compare-table">
-            <thead>
-              <tr>
-                <th>Need</th>
-                <th>Agency</th>
-                <th>Freelancer</th>
-                <th>QuietForge</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Time to first system</td>
-                <td>Months</td>
-                <td>Depends</td>
-                <td>Scan, then usually 2–3 weeks to first module</td>
-              </tr>
-              <tr>
-                <td>Who owns the repo</td>
-                <td>Often the agency</td>
-                <td>Often nobody</td>
-                <td>You, from day one</td>
-              </tr>
-              <tr>
-                <td>Approval before live</td>
-                <td>Sometimes</td>
-                <td>Rarely</td>
-                <td>Always</td>
-              </tr>
-              <tr>
-                <td>ERP rewrite</td>
-                <td>Fits</td>
-                <td>Risky</td>
-                <td>We will say no</td>
-              </tr>
-              <tr>
-                <td>Who checks security</td>
-                <td>Sometimes</td>
-                <td>Rarely</td>
-                <td>Every build: review + scans</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-4 text-sm text-[var(--qf-text-faint)]">
-          Need a full ERP rewrite? An agency fits better — we will say so.
-        </p>
       </Section>
 
       <Section data-home-section="discipline">
@@ -350,14 +258,6 @@ export default function Home() {
             See the Builder&apos;s Lab →
           </Link>
         </p>
-        <h3 className="qf-sys-h2 mt-10">{REFERENCE_PROGRAM.heading}</h3>
-        <p className="max-w-2xl text-[var(--qf-text-dim)]">
-          {REFERENCE_PROGRAM.lead} Until a client verifies hours, we do not invent a number.
-          Lab measurements stay labelled as examples.
-        </p>
-        <ReferenceCta
-          label={`Apply — ${referenceSpotsOpen} spots open, scan from €0`}
-        />
       </Section>
 
       <Section data-home-section="about">
@@ -375,7 +275,7 @@ export default function Home() {
 
       <Section data-home-section="pricing">
         <p className="qf-home-kicker">Prices</p>
-        <h2 className="qf-sys-h2">Clear prices, fixed scope</h2>
+        <h2 className="qf-sys-h2">Scan first. The build is priced after the scan.</h2>
         <ul className="qf-price-grid">
           <li>
             <Card>
@@ -388,23 +288,9 @@ export default function Home() {
           <li>
             <Card>
               <h3 className="font-semibold">Build</h3>
-              <p className="qf-price-amount">
-                {PUBLIC_OFFER.buildVariants.map((variant) => variant.price).join(' / ')}
-              </p>
-              <p className="qf-price-note">
-                Core / Scale* / Command — you choose the depth. (* most chosen)
-              </p>
+              <p className="qf-price-amount">{PUBLIC_OFFER.buildPrice}</p>
+              <p className="qf-price-note">{PUBLIC_OFFER.buildPriceNote}</p>
               <p className="qf-price-note mt-[var(--qf-sp-2)]">{PUBLIC_OFFER.buildForWho}</p>
-            </Card>
-          </li>
-          <li>
-            <Card>
-              <h3 className="font-semibold">Care</h3>
-              <p className="qf-price-amount">
-                {PUBLIC_OFFER.careVariants.map((variant) => variant.price).join(' / ')}
-              </p>
-              <p className="qf-price-note">Keep / Grow* / Unlock — monthly, cancellable.</p>
-              <p className="qf-price-note mt-[var(--qf-sp-2)]">{PUBLIC_OFFER.careForWho}</p>
             </Card>
           </li>
         </ul>
@@ -434,9 +320,6 @@ export default function Home() {
           </h2>
           <p className="qf-final-cta-lead">
             {SCAN_COPY.fromPrice}. The report is yours. {SCAN_COPY.creditLine}
-          </p>
-          <p className="qf-final-cta-sample">
-            <SampleScanLink location="home_final_cta" />
           </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">

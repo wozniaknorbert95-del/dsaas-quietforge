@@ -1564,33 +1564,6 @@ body[data-app="services"] {
   contain-intrinsic-size: 0 500px;
 }
 
-.qf-hours-counter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--qf-sp-6);
-  align-items: baseline;
-}
-
-.qf-hours-counter strong {
-  font-size: var(--qf-fs-3xl);
-  color: var(--qf-text);
-}
-
-.qf-compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--qf-fs-sm);
-  font-variant-numeric: tabular-nums;
-}
-
-.qf-compare-table th,
-.qf-compare-table td {
-  border-bottom: 1px solid var(--qf-border);
-  padding: 12px 8px;
-  text-align: left;
-  vertical-align: top;
-}
-
 /* --- System spoke (B1–B10) --- */
 .qf-sys-crumb,
 .qf-sys-status {

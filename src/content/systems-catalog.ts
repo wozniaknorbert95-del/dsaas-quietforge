@@ -53,7 +53,7 @@ export interface SystemRecord {
   typicallyHours: string;
   replaces: string;
   timeline: string;
-  priceNote: 'Scan first — then a fixed price';
+  priceNote: 'Scan first — then priced from the scan result';
   integrations: string;
   tldr: { is: string; givesBack: string; replaces: string };
   costs: CostFact[];
@@ -72,7 +72,7 @@ export interface SystemRecord {
 }
 
 const TIMELINE = '2–4 weeks after scan';
-const PRICE = 'Scan first — then a fixed price' as const;
+const PRICE = 'Scan first — then priced from the scan result' as const;
 
 function monthFromHours(hoursPerWeek: number): number {
   return hoursPerWeek * HOURLY_RATE_EUR * 4;
@@ -1021,7 +1021,7 @@ export const SYSTEMS: SystemRecord[] = [
       'Documentation, scans, handover',
       'Your repository from day one',
     ],
-    roiExample: `Illustrative composite example — 8 h/week of information archaeology ≈ ${formatEuro(monthFromHours(8))}/month at €40/h. Market research puts company-brain builds at $5–25k (elevatedsignal.com, 2026); ours lands at €3.5–8k — agency discipline, solo price. Your scan gives the real numbers.`,
+    roiExample: `Illustrative composite example — 8 h/week of information archaeology ≈ ${formatEuro(monthFromHours(8))}/month at €40/h. Your scan gives the real numbers; the build is priced after the scan.`,
     faq: [
       {
         q: 'Who is this for — and who is it not for?',
@@ -1265,7 +1265,7 @@ export const SYSTEMS: SystemRecord[] = [
       'Snapshot and rollback on every release',
       'Your repository and IP from day one',
     ],
-    roiExample: `Illustrative composite example — 10 h/week of manual repeated work ≈ ${formatEuro(monthFromHours(10))}/month at €40/h. FDE agencies quote $40–90k for agent builds (market research, 2026); our SMB version lands at €4–9k. Your scan gives the real numbers.`,
+    roiExample: `Illustrative composite example — 10 h/week of manual repeated work ≈ ${formatEuro(monthFromHours(10))}/month at €40/h. Your scan gives the real numbers; the build is priced after the scan.`,
     faq: [
       {
         q: 'Will the agent act without me?',

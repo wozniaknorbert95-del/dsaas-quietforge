@@ -3,7 +3,7 @@
 // Binding: docs/canon/site-map.md
 // ============================================================================
 
-import { ARTEFACTS, ROUTES } from '@/lib/constants';
+import { ROUTES } from '@/lib/constants';
 import { CTAS } from '@/content/conversion-copy';
 import { SYSTEMS } from '@/content/systems-catalog';
 
@@ -43,15 +43,11 @@ export const FOOTER_COMPANY: readonly NavLink[] = [
   { label: 'Blog', href: ROUTES.blog },
 ] as const;
 
-export const FOOTER_ARTEFACTS: readonly NavLink[] = [
-  { label: 'Scan sample (PDF)', href: ARTEFACTS.automationMapSample },
-] as const;
-
 export const FOOTER_LEGAL: readonly NavLink[] = [
   { label: 'Privacy & terms', href: ROUTES.legal },
 ] as const;
 
-/** Chrome social: owner channels. GitHub stays on About / Lab. */
+/** Chrome social: owner channels. GitHub is not linked from the site (Commander decision). */
 export const FOOTER_SOCIAL_ICONS = ['linkedin', 'whatsapp'] as const;
 
 /** Audit budget — footer is close, not a sitemap. */

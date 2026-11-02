@@ -54,15 +54,15 @@ Artefact URLs (`/artefacts/…`) stay stable.
 |---------|------|
 | Header | Systems · Approach · Security · Proof · Pricing · primary **Book a scan** |
 | CTA | PRIMARY: Book a scan — from €149 excl. VAT · SECONDARY: WhatsApp · TERTIARY: See the systems |
-| Footer | Close, not a catalog. Promise + KVK. Book a scan + email. About · Proof · Blog. One Lab link in the platform sentence. Privacy & terms · scan sample. LinkedIn + WhatsApp (GitHub on About/Lab). No 9-system list. Max 12 links. |
-| Counter | Home + /proof · start **0** · never hardcoded growth · /proof featured FlexGrafik above 3 OPEN client slots |
+| Footer | Close, not a catalog. Promise + KVK. Book a scan + email. About · Proof · Blog. One Lab link in the platform sentence. Privacy & terms. LinkedIn + WhatsApp. GitHub is not linked from the site (Commander decision 2026-10-30). No 9-system list. Max 12 links. |
+| Counter | Removed (Commander decision 2026-10-30): no empty counter, no reference program, no open client slots. Client numbers publish only after client verification. |
 | Language | English ✓ / Nederlands (later) |
 
 ## Claim rules (R7)
 
 - FlexGrafik may be shown as an owner-operated reference business and live build laboratory. It is not an external client case, does not create client-result claims and does not replace verified customer proof.
 - Numbers: lab example labelled “example”, or verified case. Typical hours always with “typically”.
-- Counter grows only after client verification.
+- Client numbers publish only after client verification. No public counter until there is a verified case.
 - **Censors:** vibe coding, post-coding, DSAAS, agents-as-product, “we can build anything”.
 - **Allowed:** managed systems, engineering discipline, human approval, one integrated platform.
 

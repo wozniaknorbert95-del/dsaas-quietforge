@@ -106,12 +106,6 @@ const ARTEFACTS_LIST = [
     href: ARTEFACTS.maintenanceHandover,
     cta: 'Download (PDF)',
   },
-  {
-    title: 'Scan sample',
-    desc: 'See what a report looks like before you book the real thing.',
-    href: ARTEFACTS.automationMapSample,
-    cta: 'Open sample (PDF)',
-  },
 ];
 
 const FAQ = [
@@ -238,7 +232,7 @@ export default function SecurityPage() {
             Start with the scan
           </h2>
           <p className="qf-final-cta-lead">
-            You send files. Written report is yours. Then a fixed price — or a clear no.
+            You send files. Written report is yours. Then a price for the build — or a clear no.
           </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">

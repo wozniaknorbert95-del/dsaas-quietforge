@@ -6,6 +6,8 @@
     "dev": "next dev",
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "next build",
+    "postbuild": "node scripts/check-links.mjs",
+    "check:links": "node scripts/check-links.mjs --external",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

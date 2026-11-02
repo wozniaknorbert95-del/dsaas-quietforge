@@ -89,14 +89,18 @@ export default function FlexgrafikCompanyCasePage() {
                 {door.name} · {door.role}
               </h3>
               <p className="qf-approach-card-body">{door.body}</p>
-              <a
-                href={door.href}
-                className="qf-btn-ghost"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {door.hrefLabel} →
-              </a>
+              {door.href ? (
+                <a
+                  href={door.href}
+                  className="qf-btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {door.hrefLabel} →
+                </a>
+              ) : (
+                <span className="qf-fg-status">{C.offlineLabel}</span>
+              )}
             </li>
           ))}
         </ul>
@@ -126,14 +130,18 @@ export default function FlexgrafikCompanyCasePage() {
                   </li>
                 ))}
               </ol>
-              <a
-                href={walk.href}
-                className="qf-btn-ghost"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {walk.hrefLabel} →
-              </a>
+              {walk.href ? (
+                <a
+                  href={walk.href}
+                  className="qf-btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {walk.hrefLabel} →
+                </a>
+              ) : (
+                <span className="qf-fg-status">{C.offlineLabel}</span>
+              )}
             </li>
           ))}
         </ul>

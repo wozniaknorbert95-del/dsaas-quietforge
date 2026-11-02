@@ -9,6 +9,10 @@ interface LabEvidenceBenchProps {
 }
 
 function EvidenceAction({ link, milestone }: { link: LabLink; milestone: LabMilestone }) {
+  if (link.availability === 'offline') {
+    return <span className="qf-lab-evidence-private">{link.label} — offline, coming back</span>;
+  }
+
   if (!link.href || link.availability !== 'verified-public') {
     return <span className="qf-lab-evidence-private">{link.label}</span>;
   }
@@ -63,7 +67,13 @@ export default function LabEvidenceBench({ milestones }: LabEvidenceBenchProps) 
             <p>{link?.note ?? milestone.evidenceClass}</p>
             <p className="qf-lab-evidence-meta">{milestone.tenant}</p>
             <p className="qf-lab-evidence-meta">Last verified: {milestone.reviewed}</p>
-            <p className="qf-lab-evidence-meta">{link?.href ? 'Public link verified' : 'No public repository or dashboard link'}</p>
+            <p className="qf-lab-evidence-meta">
+              {link?.availability === 'offline'
+                ? 'Offline now — coming back'
+                : link?.href
+                  ? 'Public link verified'
+                  : 'No public repository or dashboard link'}
+            </p>
             {link ? <EvidenceAction link={link} milestone={milestone} /> : null}
           </article>
         );

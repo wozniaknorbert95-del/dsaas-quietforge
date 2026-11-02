@@ -26,10 +26,8 @@ const NAV_LINKS = [
 
 const HOME_SECTIONS = [
   'hero',
-  'counter',
   'systems',
   'approach',
-  'compare',
   'discipline',
   'proof',
   'about',

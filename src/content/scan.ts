@@ -234,7 +234,7 @@ export const SCAN_TRACKS = [
   },
 ] as const;
 
-/** Illustration only — not a Quietforge client. Numbers match the sample PDF. */
+/** Illustration only — not a Quietforge client. */
 export const SCAN_SAMPLE = {
   chip: 'Illustration — not a client case',
   company: 'Achterhuis & Zonen',

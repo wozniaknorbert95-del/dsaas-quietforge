@@ -45,19 +45,22 @@ export interface CompanyWalk {
 
 export const FLEXGRAFIK_COMPANY_CASE = {
   honestyChip: 'OWNER-OPERATED REFERENCE · NOT A CLIENT CASE',
-  eyebrow: 'Finished company',
-  title: 'One finished Dutch company.',
+  eyebrow: 'The company I built first',
+  title: 'FlexGrafik — the company I built first.',
   lead:
-    'FlexGrafik is the print and design studio I run. Quietforge does not sell it. Below are the paths a buyer walks. They are offline right now and coming back. Book a scan for your leaks, not mine.',
-  problemTitle: 'Before',
-  problem:
-    'A studio that quotes in email, takes custom jobs with no price, and meets cold traffic with a form, puts the owner in every thread. That is not a website problem. It is a company that cannot finish a path.',
-  systemTitle: 'System',
-  system:
-    'Four public doors. The visitor picks a path. Repeatable work configures and pays. Cold attention earns a handoff. Exceptions stop for a human. Today the four doors are offline — the flexgrafik.nl domain and hosting lapsed — and they are coming back.',
-  effectTitle: 'Effect',
-  effect:
-    'A path can finish without ping-pong. Exceptions stay labelled exceptions. The owner stays on the approval gate. No QuietForge client hours are claimed here. Client numbers publish only after an external client verifies them.',
+    'FlexGrafik is my own company. QuietForge does not sell it. Below are the paths a buyer walks. They are offline right now and coming back. Book a scan for your leaks, not mine.',
+  /** Story with a conclusion — Commander-approved wording (2026-11-02, L4-012). Do not edit without his OK. */
+  storyTitle: 'The story',
+  story: [
+    'FlexGrafik was a small Dutch company with a website and a Facebook page, making visual branding for ZZP builders.',
+    'I scanned it first, and only after that scan did FlexGrafik get its system: a portal, a configurator shop, a game and a design intake.',
+    'Building it was not the hard part.',
+    'The hard part was knowing what to build, why, and how much time and money it would really save.',
+    'I also learned that a working system is not the same as paying clients: when the hosting lapsed, the shop and the game went offline.',
+    'That is why the scan is now my main product, because the scan decides what gets built and what the client\'s budget is spent on.',
+  ],
+  conclusion:
+    'My conclusion: FlexGrafik is coming back and has to sell to ZZP builders again, so that its results become the first proven case for QuietForge.',
   offerMapTitle: 'What this maps to for you',
   offerMap:
     'Hours Scan measures leaks from your files. The build is then priced from what the scan finds — one door, connected doors, or a cockpit with a human gate. FlexGrafik illustrates all three in one company — not a FlexGrafik product, and not a price.',

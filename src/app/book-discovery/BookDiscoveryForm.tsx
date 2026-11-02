@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { trackEvent } from '@/lib/analytics';
-import { EMAIL } from '@/lib/constants';
+import { EMAIL, whatsappBookUrl } from '@/lib/constants';
 import { getScanSku, type ScanSkuId } from '@/content/scan';
 import { formatEuro } from '@/content/pricing';
 
@@ -23,7 +23,7 @@ const BUDGET_OPTIONS = [
   '€3,500+',
 ];
 
-type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
+type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error' | 'not_ready';
 
 export default function BookDiscoveryForm({ skuId }: { skuId: ScanSkuId }) {
   const sku = getScanSku(skuId);
@@ -75,6 +75,12 @@ export default function BookDiscoveryForm({ skuId }: { skuId: ScanSkuId }) {
       }
 
       const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (res.status === 503 && data.error === 'INTAKE_NOT_READY') {
+        // Online form not connected yet (MIG-30): say so honestly, offer WhatsApp.
+        setStatus('not_ready');
+        trackEvent('form_error', { location: 'book_discovery_form', reason: 'intake_not_ready' });
+        return;
+      }
       setErrorMessage(data.error ?? 'send_failed');
       setStatus('error');
       trackEvent('form_error', { location: 'book_discovery_form', reason: data.error ?? 'send_failed' });
@@ -95,6 +101,23 @@ export default function BookDiscoveryForm({ skuId }: { skuId: ScanSkuId }) {
           Thank you — if the fit is right, I will send a payment link and export
           instructions within 24 hours.
         </p>
+      </div>
+    );
+  }
+
+  if (status === 'not_ready') {
+    return (
+      <div className="rounded-[var(--qf-radius)] border border-[var(--qf-border)] bg-[var(--qf-bg-raised)] p-8 max-w-2xl">
+        <h3 className="text-[var(--qf-fs-lg)] font-bold text-[var(--qf-text)] mb-2">
+          The online form is not connected yet.
+        </h3>
+        <p className="text-[var(--qf-text-dim)] mb-4">
+          Your request was not sent — nothing was stored. Please message me on WhatsApp
+          instead; I reply within one working day.
+        </p>
+        <Button href={whatsappBookUrl(skuId)} withArrow>
+          Message me on WhatsApp
+        </Button>
       </div>
     );
   }

@@ -56,3 +56,6 @@ docs/*.mp4
 # Internal QuietForge strategy & finance docs — NOT for the public repo
 /quietforge/
 
+
+# Cloudflare wrangler local state (pages dev)
+.wrangler/

@@ -80,7 +80,7 @@ export default async function SystemSpokePage({ params }: Props) {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'EUR',
-      description: 'Scan first — then a fixed price after scope.',
+      description: 'Scan first — then priced from the scan result.',
     },
   };
 
@@ -217,7 +217,7 @@ export default async function SystemSpokePage({ params }: Props) {
             Start with the scan
           </h2>
           <p className="qf-final-cta-lead">
-            You send files. Written report is yours. Then a fixed price — or a clear no.
+            You send files. Written report is yours. Then a price for the build — or a clear no.
           </p>
           <div className="qf-sys-cta-row">
             <Link href={ROUTES.bookAScan} className="qf-btn-fill">

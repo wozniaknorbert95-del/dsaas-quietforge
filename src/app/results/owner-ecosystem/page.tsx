@@ -6,7 +6,7 @@ import LivingSystemDiagram from '@/components/diagram/LivingSystemDiagram';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Eyebrow from '@/components/ui/Eyebrow';
-import { ROUTES, ARTEFACTS, SITE_URL } from '@/lib/constants';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 import { CTAS } from '@/content/conversion-copy';
 import { GRATKA } from '@/lib/gratka';
 import { vcmsFeatureStatus } from '@/content/proof';
@@ -163,13 +163,6 @@ export default function OwnerEcosystemPage() {
                   <p className="mb-3 text-sm text-[var(--qf-text-dim)]">
                     Method / Hours Engine Scan — the paid first step.
                   </p>
-                  <Link
-                    href={ARTEFACTS.automationMapSample}
-                    download
-                    className="text-sm text-[var(--qf-accent)] hover:text-[var(--qf-text)]"
-                  >
-                    Hours Engine sample ↓
-                  </Link>
                 </>
               ) : repo.repoKey === 'flex-vcms' ? (
                 <Link

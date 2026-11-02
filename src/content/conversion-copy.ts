@@ -1,5 +1,5 @@
 // ============================================================================
-// CONVERSION COPY — hero, positioning, offer, reference program (binding strings).
+// CONVERSION COPY — hero, positioning, offer (binding strings).
 // Source: docs/strategy/marketing-strategy.md + inspiracja pro.md BLOK 2
 // ============================================================================
 
@@ -17,7 +17,7 @@ export const HERO = {
     'I automate quote flows, lead qualification and inbox triage for Dutch small businesses. The system collects the right inputs and prepares the next step.',
   hitlLine: 'The system proposes. You decide. Nothing customer-facing sends without your click.',
   dualBrandLine:
-    'QuietForge sells the system. FlexGrafik runs it live — owner-operated lab in the Netherlands, not a client case.',
+    'QuietForge sells the system. FlexGrafik is where it was built — owner-operated lab in the Netherlands, not a client case.',
   beats: {
     problem: {
       label: 'Problem',
@@ -34,13 +34,13 @@ export const HERO = {
   },
   proofStrip:
     'QuietForge implements. You approve. FlexGrafik is the reference business and build lab.',
-  proofLine: 'Hours given back · you approve · counter starts at zero',
+  proofLine: 'Hours given back · you approve · only client-verified numbers',
   proofChip: 'Human-reviewed · security-scanned · gated by you',
   microTrust:
-    'Validated on FlexGrafik. Client hours publish only after verification — the counter starts at zero.',
+    'Built and tested on FlexGrafik. Client hours publish only after the client verifies them.',
   primaryCta: 'Book a scan',
   primaryCtaMeta: `from ${formatEuro(PRICING_NUMBERS.scanFrom)} excl. VAT · credited 30d`,
-  secondaryCta: 'See live proof',
+  secondaryCta: 'See the proof',
   secondaryHref: '/proof/',
   wizardCta: 'Try the wizard (2 min)',
   wizardHref: 'https://zzpackage.flexgrafik.nl/',
@@ -58,64 +58,13 @@ export const PUBLIC_OFFER = {
   scanNote:
     'Hours €149 · Both-lanes €290 · Decision €490. You pick depth of evidence. Credited 30 days.',
   scanForWho: 'Not sure what to automate first — we measure from your files. No invented euro.',
-  implementationName: 'Implementation',
-  implementationPrice: `from ${formatEuro(PRICING_NUMBERS.implementationFrom)}`,
-  implementationNote: 'One concrete problem — first module usually 2–3 weeks after sign-off.',
+  /** Build — no fixed price (Commander decision 2026-10-30): priced after the scan. */
+  buildPrice: 'Priced after the scan',
+  buildPriceNote:
+    'No fixed price. The scan shows what your company needs; the build is quoted from that result.',
   buildForWho: 'One clear bottleneck — quote flow, inbox or lead hand-off.',
-  careForWho: 'You want monitoring, fixes and one improvement per month.',
-  maintenanceName: 'Maintenance',
-  maintenancePrice: `from ${formatEuro(PRICING_NUMBERS.maintenanceFrom)}/mo`,
-  maintenanceNote: 'Monitoring, fixes, one optimisation per month. Cancel monthly.',
-  /** Build variants — oferty v1 (Oferta B). Scale = most chosen. */
-  buildVariants: [
-    {
-      name: 'Core',
-      price: formatEuro(PRICING_NUMBERS.buildEssential),
-      what: '1 core workflow end-to-end (e.g. quote → order, or inbox triage)',
-      timeline: '2–3 weeks',
-      gates: 'at test & at live',
-      mostChosen: false,
-    },
-    {
-      name: 'Scale',
-      price: formatEuro(PRICING_NUMBERS.buildSystem),
-      what: '2–3 connected modules + owner dashboard',
-      timeline: '3–4 weeks',
-      gates: 'at architecture, test & live',
-      mostChosen: true,
-    },
-    {
-      name: 'Command',
-      price: formatEuro(PRICING_NUMBERS.buildAutonomous),
-      what: 'System + custom AI agent with approval gates + company-brain foundation',
-      timeline: '5–6 weeks',
-      gates: 'at architecture, test & live + agent scope',
-      mostChosen: false,
-    },
-  ],
-  /** Care variants — oferty v1 (Oferta C). Grow = most chosen. Monthly cancellable. */
-  careVariants: [
-    {
-      name: 'Keep',
-      price: `${formatEuro(PRICING_NUMBERS.care)}/mo`,
-      mostChosen: false,
-      features: ['Monitoring & health checks', 'Fixes <48h business days', 'Monthly report (hours · €)'],
-    },
-    {
-      name: 'Grow',
-      price: `${formatEuro(PRICING_NUMBERS.grow)}/mo`,
-      mostChosen: true,
-      features: ['Everything in Keep', '1 improvement per month', 'Priority response', 'Quarterly strategy review'],
-    },
-    {
-      name: 'Unlock',
-      price: `${formatEuro(PRICING_NUMBERS.autonomy)}/mo`,
-      mostChosen: false,
-      features: ['Everything in Grow', 'Agent-researched upgrade proposals (you approve)'],
-    },
-  ],
   paymentTerms:
-    'Scan: 100% upfront. Build: 50/50 — final 50% invoiced only after it runs in your production. Care: monthly, cancellable at month-end.',
+    'Scan: 100% upfront. Build: quoted after the scan; 50/50 — final 50% invoiced only after it runs in your production.',
   alwaysIncluded: [
     'Independent code review',
     'Secret and dependency scans',
@@ -124,19 +73,6 @@ export const PUBLIC_OFFER = {
     'Your repository from day one',
     '30 days post-launch support',
   ],
-} as const;
-
-/** Reference program — marketing v1 §6. Max 5 firms, then closed. */
-export const REFERENCE_PROGRAM = {
-  heading: 'Proof starts at zero — and we’re opening five doors.',
-  lead:
-    'Five reference spots this quarter: an Hours Engine Scan at €0–€345, in exchange for publishing the measured results. After five, the program closes.',
-  terms: [
-    'Before/after numbers (hours × €40/h) published in a case study',
-    'One named reference sentence + consent to name your industry',
-    'A 30-minute case-study conversation after the build',
-  ],
-  closing: 'Maximum five firms. Priority: webshops and accounting offices. After five — closed.',
 } as const;
 
 export const WEBSITE_ONLY_EXCEPTION =
@@ -148,7 +84,7 @@ export const SITE_GOAL =
 export const CTAS = {
   bookAutomationMap: 'Book a scan',
   seeSystems: 'Explore the systems',
-  seeResults: 'See live proof',
+  seeResults: 'See the proof',
 } as const;
 
 export const ABOUT = {

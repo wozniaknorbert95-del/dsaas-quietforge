@@ -4,7 +4,6 @@ import Section from '@/components/ui/Section';
 import FaqItem from '@/components/ui/FaqItem';
 import { EMAIL, ROUTES, SITE_URL } from '@/lib/constants';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
-import SampleScanLink from '@/components/analytics/SampleScanLink';
 import BookScanIntake from '@/components/scan/BookScanIntake';
 import {
   SCAN_CHIPS,
@@ -90,9 +89,6 @@ export default function BookAScanPage() {
             </li>
           ))}
         </ul>
-        <p className="qf-sys-lead">
-          <SampleScanLink />
-        </p>
       </Section>
 
       <Section>

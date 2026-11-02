@@ -1,9 +1,9 @@
 import { metrics } from '@/content/proof';
-import { EXTERNAL, ROUTES } from '@/lib/constants';
+import { ROUTES } from '@/lib/constants';
 
-export type LabProofTier = 'PROVEN' | 'DEMO' | 'PLANNED';
-export type LabReadiness = 'LIVE' | 'PARTIAL' | 'PLANNED' | 'TENANT-READY CORE (POC)';
-export type LabAvailability = 'verified-public' | 'private' | 'planned';
+export type LabProofTier = 'PROVEN' | 'DEMO' | 'PLANNED' | 'OFFLINE';
+export type LabReadiness = 'LIVE' | 'PARTIAL' | 'PLANNED' | 'OFFLINE' | 'TENANT-READY CORE (POC)';
+export type LabAvailability = 'verified-public' | 'private' | 'planned' | 'offline';
 
 export interface LabLink {
   label: string;
@@ -38,14 +38,15 @@ export const LAB_PAGE = {
   eyebrow: "Builder's Lab",
   title: 'I built this before I offered it.',
   lead:
-    'A live owner-operated reference business and build laboratory. Follow a connected customer path, keep owner control, and see how hours stop leaking into manual back-and-forth.',
+    'An owner-operated reference business and build laboratory. See the connected customer path that was built, how the owner keeps control, and how hours stop leaking into manual back-and-forth.',
   primaryCta: 'Book a scan',
-  referenceCta: 'Visit the FlexGrafik reference business',
+  offlineNote:
+    'The FlexGrafik public surfaces are offline right now: the flexgrafik.nl domain and hosting lapsed. They are coming back.',
   honestyTitle: 'Read this before you test anything',
   honesty: [
     {
       title: 'FlexGrafik business',
-      body: 'An independent owner-operated business with public products and customer-facing paths.',
+      body: 'An independent owner-operated business. Its public products and customer-facing paths are offline right now and coming back.',
     },
     {
       title: 'FlexGrafik lab',
@@ -78,8 +79,8 @@ export const LAB_PAGE = {
   timelineTitle: 'From one working surface to one governed platform',
   timelineLead:
     'Seven stages. Each has a public effect, a proof boundary and a next lesson. The last stage is one platform project — not three products. Nothing here is an external client case.',
-  testBenchTitle: 'Test the public surfaces',
-  testBenchLead: 'Start with the journey that matters. Private operations stay documented without exposing tenant data.',
+  testBenchTitle: 'The public surfaces',
+  testBenchLead: 'What was built and exercised. The public FlexGrafik surfaces are offline right now and coming back; each card says so. Private operations stay documented without exposing tenant data.',
   connectionsTitle: 'How the pieces connect',
   platformTitle: 'The platform chapter',
   platformLead:
@@ -102,25 +103,23 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     title: 'FlexGrafik Portal',
     eyebrow: 'Discover',
     tenant: 'FlexGrafik reference business',
-    status: 'PROVEN IN THE LAB',
-    readiness: 'PARTIAL',
-    proofTier: 'PROVEN',
-    evidenceClass: 'PUBLIC LIVE SURFACE',
+    status: 'BUILT IN THE LAB · OFFLINE NOW',
+    readiness: 'OFFLINE',
+    proofTier: 'OFFLINE',
+    evidenceClass: 'OFFLINE — HOSTING LAPSED, COMING BACK',
     problem: 'A specialist business needed one trustworthy front door instead of disconnected pages and contact paths.',
     built: 'A public business portal with clear routes to products, the Wizard, the game and design intake.',
     effect: 'A visitor can understand the offer and choose a next action without starting with a manual conversation.',
     learned: 'A portal is useful when every surface hands the visitor to the next system instead of becoming another silo.',
     notProven: 'The generic supervised chat is not an end-to-end qualification agent and does not prove QuietForge client results.',
     ownership: 'FlexGrafik brand and customer surface; not a QuietForge client tenant.',
-    reviewed: '2026-09-05',
+    reviewed: '2026-11-02',
     links: [
       {
         label: 'Open the portal',
-        href: EXTERNAL.flexgrafikPortal,
-        kind: 'live-demo',
-        availability: 'verified-public',
-        note: 'Public FlexGrafik business surface.',
-        external: true,
+        kind: 'fallback',
+        availability: 'offline',
+        note: 'Offline now — coming back. Public FlexGrafik business surface.',
       },
     ],
   },
@@ -130,25 +129,23 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     title: 'ZZPackage Commerce Surface',
     eyebrow: 'Configure',
     tenant: 'FlexGrafik reference business',
-    status: 'PROVEN IN THE LAB',
-    readiness: 'LIVE',
-    proofTier: 'PROVEN',
-    evidenceClass: 'PUBLIC LIVE SURFACE',
+    status: 'BUILT IN THE LAB · OFFLINE NOW',
+    readiness: 'OFFLINE',
+    proofTier: 'OFFLINE',
+    evidenceClass: 'OFFLINE — HOSTING LAPSED, COMING BACK',
     problem: 'Branding buyers needed a clearer path than a vague request for a quote.',
     built: 'A customer-facing commerce surface with product paths, pricing context and direct entry to the Wizard.',
     effect: 'The buyer can start with a defined product path before asking for manual help.',
     learned: 'A strong business system starts with a concrete decision, not a technology label.',
     notProven: 'Public traffic and product claims are not QuietForge commercial metrics.',
     ownership: 'FlexGrafik commerce property and operational workflow.',
-    reviewed: '2026-09-05',
+    reviewed: '2026-11-02',
     links: [
       {
         label: 'Open ZZPackage',
-        href: EXTERNAL.zzpackageWizard,
-        kind: 'live-demo',
-        availability: 'verified-public',
-        note: 'Live commerce surface.',
-        external: true,
+        kind: 'fallback',
+        availability: 'offline',
+        note: 'Offline now — coming back. Commerce surface.',
       },
     ],
   },
@@ -158,25 +155,23 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     title: 'Wizard Cash Engine',
     eyebrow: 'Configure and buy',
     tenant: 'FlexGrafik reference business',
-    status: 'PROVEN IN THE LAB',
-    readiness: 'LIVE',
-    proofTier: 'PROVEN',
-    evidenceClass: 'PUBLIC LIVE SURFACE + LAB MEASUREMENT',
+    status: 'BUILT IN THE LAB · OFFLINE NOW',
+    readiness: 'OFFLINE',
+    proofTier: 'OFFLINE',
+    evidenceClass: 'OFFLINE — HOSTING LAPSED, COMING BACK',
     problem: 'Repeated product questions, pricing and order handoff created avoidable manual work.',
     built: `A ${metrics.wizardSteps}-screen configurator with ${metrics.wizardBusinessSteps} business decision stages, open pricing and a Mollie payment path.`,
     effect: 'A buyer can configure an offer, see the rules-based price and continue without a manual quote thread.',
     learned: 'A guided flow can make complex choices clear without pretending every exception can be automated.',
     notProven: 'The recorded catalog and flow are lab evidence, not client traction, conversion or revenue proof.',
     ownership: 'FlexGrafik tenant-specific commerce implementation and reference pattern.',
-    reviewed: '2026-09-05',
+    reviewed: '2026-11-02',
     links: [
       {
         label: 'Try the Wizard',
-        href: EXTERNAL.zzpackageWizardPath,
-        kind: 'live-demo',
-        availability: 'verified-public',
-        note: `${metrics.wizardSteps} UI screens · ${metrics.wizardBusinessSteps} business stages.`,
-        external: true,
+        kind: 'fallback',
+        availability: 'offline',
+        note: `Offline now — coming back. ${metrics.wizardSteps} UI screens · ${metrics.wizardBusinessSteps} business stages.`,
       },
     ],
   },
@@ -186,25 +181,23 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     title: 'Bouwplaats Chaos Lead Game',
     eyebrow: 'Play and qualify',
     tenant: 'FlexGrafik reference business',
-    status: 'PROVEN IN THE LAB',
-    readiness: 'LIVE',
-    proofTier: 'PROVEN',
-    evidenceClass: 'PUBLIC LIVE SURFACE + LAB MEASUREMENT',
+    status: 'BUILT IN THE LAB · OFFLINE NOW',
+    readiness: 'OFFLINE',
+    proofTier: 'OFFLINE',
+    evidenceClass: 'OFFLINE — HOSTING LAPSED, COMING BACK',
     problem: 'Cold attention needed a reason to continue before being asked for a commercial next step.',
     built: 'A browser game with a registration path, reward rules, seasonal ranking and a Wizard handoff pattern.',
     effect: 'An interaction can become a tracked handoff into the same configuration journey instead of ending as an anonymous click.',
     learned: 'Engagement is useful only when it earns the next business action and remains honest about the reward rules.',
     notProven: 'No lead count, conversion rate or revenue result is claimed from the game.',
     ownership: 'FlexGrafik acquisition surface and reward logic.',
-    reviewed: '2026-09-05',
+    reviewed: '2026-11-02',
     links: [
       {
         label: 'Play the game',
-        href: EXTERNAL.leadMagnetGame,
-        kind: 'live-demo',
-        availability: 'verified-public',
-        note: 'Public game surface; the Wizard bridge is the relevant handoff.',
-        external: true,
+        kind: 'fallback',
+        availability: 'offline',
+        note: 'Offline now — coming back. Public game surface; the Wizard bridge is the relevant handoff.',
       },
     ],
   },
@@ -214,25 +207,23 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     title: 'FlexGrafik INSPIRE',
     eyebrow: 'Design intake',
     tenant: 'FlexGrafik reference business',
-    status: 'PROVEN IN THE LAB',
-    readiness: 'PARTIAL',
-    proofTier: 'PROVEN',
-    evidenceClass: 'PUBLIC LIVE SURFACE',
+    status: 'BUILT IN THE LAB · OFFLINE NOW',
+    readiness: 'OFFLINE',
+    proofTier: 'OFFLINE',
+    evidenceClass: 'OFFLINE — HOSTING LAPSED, COMING BACK',
     problem: 'A vehicle-branding request needed context, direction and a human follow-up instead of a random image generator.',
     built: 'A supervised intake path that collects logo and vehicle context, proposes design directions and routes an offer request.',
     effect: 'A visitor can explain the situation and receive a structured direction before a human prepares the final quote.',
     learned: 'AI is more useful when it structures the brief and preserves the handoff instead of pretending to finish production.',
     notProven: 'The generated inspiration is not print-ready artwork and this path is not Wizard checkout.',
     ownership: 'FlexGrafik design-intake workflow and tenant-specific assets.',
-    reviewed: '2026-09-05',
+    reviewed: '2026-11-02',
     links: [
       {
         label: 'Try the Design Agent',
-        href: EXTERNAL.inspireDesignAgent,
-        kind: 'live-demo',
-        availability: 'verified-public',
-        note: 'Supervised inspiration and quote-intake path.',
-        external: true,
+        kind: 'fallback',
+        availability: 'offline',
+        note: 'Offline now — coming back. Supervised inspiration and quote-intake path.',
       },
     ],
   },
@@ -267,24 +258,24 @@ export const LAB_MILESTONES: readonly LabMilestone[] = [
     sequence: '07',
     title: 'Governed tenant platform',
     eyebrow: 'Build the platform',
-    tenant: 'Platform core · QuietForge Tenant 1 · FlexGrafik Tenant 2',
+    tenant: 'Platform core · QuietForge Tenant 1 · FlexGrafik Tenant 2 (planned)',
     status: 'PROVEN IN THE LAB',
-    readiness: 'LIVE',
+    readiness: 'TENANT-READY CORE (POC)',
     proofTier: 'PROVEN',
     evidenceClass: 'PUBLIC LIVE SURFACE + LAB MEASUREMENT',
     problem:
       'Patterns proven in one business would spread chaos if copied without a governed boundary — more tools, more manual recovery, less owner control.',
     built:
-      'One platform project: a supervised work surface for queue, approvals and cost; policy and evidence boundaries with a human stop on sensitive paths; QuietForge as Tenant 1; FlexGrafik as Tenant 2 on the same core.',
+      'One platform project: a supervised work surface for queue, approvals and cost; policy and evidence boundaries with a human stop on sensitive paths; QuietForge as Tenant 1. FlexGrafik becomes Tenant 2 on the same core in a later phase.',
     effect:
-      'Work stays inspectable and consequential actions wait for approval — the owner spends time deciding, not chasing silent automation or scattered status. FlexGrafik runs as a live tenant, not a cloned shop.',
+      'Work stays inspectable and consequential actions wait for approval — the owner spends time deciding, not chasing silent automation or scattered status.',
     learned:
       'Surfaces and tenants are chapters of one build, not three products. A platform needs partitions, policies, evidence and ownership — not cloned repos.',
     notProven:
       'No universal production readiness, certification, anonymous Mission Control demo, client-scale multi-tenant SaaS, order counts, GMV or conversion rates.',
     ownership:
-      'Reusable platform core stays with QuietForge. QuietForge site is Tenant 1. FlexGrafik is Tenant 2 and the owner-operated reference business. Client delivery stays contract-scoped.',
-    reviewed: '2026-09-26',
+      'Reusable platform core stays with QuietForge. QuietForge site is Tenant 1. FlexGrafik is the owner-operated reference business and becomes Tenant 2 in a later phase. Client delivery stays contract-scoped.',
+    reviewed: '2026-11-02',
     links: [
       {
         label: 'Architecture chapter',
@@ -335,6 +326,6 @@ export const LAB_PLATFORM_FACTS = [
   },
   {
     title: 'Your business context stays separate',
-    body: 'QuietForge is Tenant 1. FlexGrafik is Tenant 2, live. Brand, data and configuration stay partitioned from the reusable core.',
+    body: 'QuietForge is Tenant 1. FlexGrafik becomes Tenant 2 in a later phase. Brand, data and configuration stay partitioned from the reusable core.',
   },
 ] as const;

@@ -4,20 +4,18 @@ import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import FaqItem from '@/components/ui/FaqItem';
 import AnalyticsPageView from '@/components/analytics/AnalyticsPageView';
-import SampleScanLink from '@/components/analytics/SampleScanLink';
-import VariantCta from '@/components/pricing/VariantCta';
 import { ROUTES, SITE_URL } from '@/lib/constants';
 import { formatEuro } from '@/content/pricing';
 import { SCAN_COPY, SCAN_SKUS, scanVatLine } from '@/content/scan';
 import { CTAS, PUBLIC_OFFER, WEBSITE_ONLY_EXCEPTION } from '@/content/conversion-copy';
 
 export const metadata: Metadata = {
-  title: 'Pricing: scan, build variants, care',
+  title: 'Pricing: scan first, build priced after the scan',
   description:
-    'Clear prices, fixed scope. Hours Scan from €149 excl. VAT. Builds: Core €2,500 · Scale €4,500 · Command €7,900. Care from €300/month, cancellable.',
+    'Hours Scan from €149 excl. VAT. The build has no fixed price — it is priced after the scan, from what your company actually needs.',
   openGraph: {
-    title: 'Pricing: scan, build variants, care | Quietforge',
-    description: 'Hours Scan from €149 excl. VAT. Builds €2,500–€7,900 fixed. Care €300–€1,000/mo, cancellable.',
+    title: 'Pricing: scan first, build priced after the scan | QuietForge',
+    description: 'Hours Scan from €149 excl. VAT. The build is priced after the scan — no fixed price list.',
     url: `${SITE_URL}/pricing/`,
     images: [{ url: '/og/pricing.svg', width: 1200, height: 630, alt: 'Quietforge pricing' }],
   },
@@ -44,8 +42,8 @@ const FAQS = [
     a: 'You sign off before anything goes live — and the final 50% is invoiced only after the system runs in your production.',
   },
   {
-    q: 'What does “most chosen” mean?',
-    a: 'The variant most owners pick at this stage. It is a default to think from, not pressure — the scan locks what you actually need.',
+    q: 'Why is there no fixed build price?',
+    a: 'Because it depends on the scan result: what your company needs, which stack the system requires and who builds it. You get a quote after the scan, before anything starts.',
   },
   {
     q: 'Must I take maintenance?',
@@ -59,13 +57,13 @@ export default function PricingPage() {
       <AnalyticsPageView event="pricing_view" />
       <Section padding="large">
         <p className="mb-3 font-mono text-[var(--qf-fs-xs)] uppercase tracking-[0.18em] text-[var(--qf-accent)]">
-          Clear prices, fixed scope
+          Scan first, then a quote
         </p>
         <h1 className="mb-4 max-w-3xl text-[var(--qf-fs-3xl)] font-bold tracking-tight">
           You buy given-back time, not a pile of hours.
         </h1>
         <p className="mb-10 max-w-2xl text-[var(--qf-text-dim)]">
-          Scan first. Then a fixed-price build at the depth you choose. Care only if you want it.
+          Scan first. The build has no fixed price — it is priced after the scan. Care only if you want it.
         </p>
 
         <p className="mb-6 max-w-2xl text-sm text-[var(--qf-text-dim)]">{SCAN_COPY.clientPicks}</p>
@@ -87,64 +85,25 @@ export default function PricingPage() {
         </ul>
         <p className="mt-4 max-w-2xl text-sm text-[var(--qf-text-faint)]">{SCAN_COPY.guarantee}</p>
         <p className="mt-2 max-w-2xl text-sm text-[var(--qf-text-faint)]">{SCAN_COPY.creditLine}</p>
-        <p className="mt-4 text-sm">
-          <SampleScanLink />
-        </p>
         <Link href={ROUTES.bookAScan} className="qf-btn-fill mt-6 inline-flex justify-center">
           {CTAS.bookAutomationMap} →
         </Link>
       </Section>
 
       <Section background="surface">
-        <h2 className="mb-2 text-[var(--qf-fs-2xl)] font-bold">Build — choose your depth</h2>
-        <p className="mb-8 max-w-2xl text-sm text-[var(--qf-text-dim)]">
-          All fixed-price. All include independent code review, security scans, tests on your real scenarios, documentation and your repo from day one.
+        <h2 className="mb-2 text-[var(--qf-fs-2xl)] font-bold">Build — priced after the scan</h2>
+        <p className="mb-4 max-w-2xl text-[var(--qf-text-dim)]">{PUBLIC_OFFER.buildPriceNote}</p>
+        <p className="max-w-2xl text-sm text-[var(--qf-text-dim)]">
+          Every build includes independent code review, security scans, tests on your real scenarios, documentation and your repo from day one.
         </p>
-        <ul className="grid gap-4 md:grid-cols-3">
-          {PUBLIC_OFFER.buildVariants.map((variant) => (
-            <li key={variant.name}>
-              <Card variant={variant.mostChosen ? 'accent' : 'default'} className="flex h-full flex-col p-6">
-                <h3 className="font-mono text-sm font-bold tracking-[0.14em]">
-                  {variant.name}
-                  {variant.mostChosen ? ' · most chosen' : ''}
-                </h3>
-                <p className="mt-3 text-2xl font-bold">{variant.price}</p>
-                <p className="mt-3 text-sm text-[var(--qf-text-dim)]">{variant.what}</p>
-                <p className="mt-2 text-sm text-[var(--qf-text-faint)]">Timeline: {variant.timeline}</p>
-                <p className="text-sm text-[var(--qf-text-faint)]">Your approval gates: {variant.gates}</p>
-                <div className="mt-auto">
-                  <VariantCta variant={variant.name} />
-                </div>
-              </Card>
-            </li>
-          ))}
-        </ul>
+        <p className="mt-6 max-w-2xl text-sm text-[var(--qf-text-faint)]">{PUBLIC_OFFER.paymentTerms}</p>
       </Section>
 
       <Section>
         <h2 className="mb-2 text-[var(--qf-fs-2xl)] font-bold">Care — keep it improving</h2>
-        <p className="mb-8 max-w-2xl text-sm text-[var(--qf-text-dim)]">
-          For every delivered system. Monthly cancellable, no lock-in. I earn when it works, not when it breaks.
+        <p className="max-w-2xl text-sm text-[var(--qf-text-dim)]">
+          Optional for every delivered system: monitoring, fixes and improvements. Scoped and priced together with the build. Monthly cancellable, no lock-in.
         </p>
-        <ul className="grid gap-4 md:grid-cols-3">
-          {PUBLIC_OFFER.careVariants.map((variant) => (
-            <li key={variant.name}>
-              <Card variant={variant.mostChosen ? 'accent' : 'default'} className="flex h-full flex-col p-6">
-                <h3 className="font-mono text-sm font-bold tracking-[0.14em]">
-                  {variant.name}
-                  {variant.mostChosen ? ' · most chosen' : ''}
-                </h3>
-                <p className="mt-3 text-2xl font-bold">{variant.price}</p>
-                <ul className="mt-3 space-y-1 text-sm text-[var(--qf-text-dim)]">
-                  {variant.features.map((feature) => (
-                    <li key={feature}>— {feature}</li>
-                  ))}
-                </ul>
-              </Card>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 max-w-2xl text-sm text-[var(--qf-text-faint)]">{PUBLIC_OFFER.paymentTerms}</p>
       </Section>
 
       <Section background="surface">

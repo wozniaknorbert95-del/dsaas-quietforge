@@ -4,13 +4,11 @@ import BrandLogo from '@/components/ui/BrandLogo';
 import { BRAND_LOGO, EMAIL, ROUTES } from '@/lib/constants';
 import SocialLinks from '@/components/ui/SocialLinks';
 import {
-  FOOTER_ARTEFACTS,
   FOOTER_COMPANY,
   FOOTER_LEGAL,
   FOOTER_SOCIAL_ICONS,
   HEADER_CTA,
 } from '@/lib/navigation';
-import FooterArtefactLinks from '@/components/FooterArtefactLinks';
 import { FOOTER, POSITIONING } from '@/content/conversion-copy';
 
 export default function Footer() {
@@ -58,7 +56,6 @@ export default function Footer() {
               {link.label}
             </Link>
           ))}
-          {FOOTER_ARTEFACTS.length > 0 ? <FooterArtefactLinks links={FOOTER_ARTEFACTS} /> : null}
         </div>
 
         <div className="qf-footer-meta">

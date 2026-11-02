@@ -8,7 +8,6 @@ const stylesheet = join(__dirname, 'artefact-pdf.css');
 
 const targets = [
   { dir: join(root, 'public', 'artefacts'), files: [
-    'automation-map-sample.md',
     'data-safety-playbook.md',
     'maintenance-handover.md',
   ]},

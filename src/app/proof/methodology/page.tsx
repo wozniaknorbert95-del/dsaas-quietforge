@@ -7,7 +7,7 @@ import { SCAN_COPY, SCAN_EVIDENCE_LABELS, SCAN_HOURS_RATE_EUR, SCAN_TRACKS } fro
 export const metadata: Metadata = {
   title: 'How we measure hours given back',
   description:
-    'Three tracks. Five labels. Ranking only from measured hours. Public counter moves only when the client verifies.',
+    'Three tracks. Five labels. Ranking only from measured hours. Client numbers publish only when the client verifies.',
 };
 
 export default function ProofMethodologyPage() {
@@ -48,7 +48,7 @@ export default function ProofMethodologyPage() {
       </table>
       <p className="qf-sys-lead">{SCAN_COPY.howWeCalculate}</p>
 
-      <h2 className="qf-sys-h2">When the public counter moves</h2>
+      <h2 className="qf-sys-h2">When a client number is published</h2>
       <ol className="qf-scan-publish">
         <li>
           <strong>Baseline.</strong> Hours from the owner export — duration or start–end —
@@ -59,8 +59,8 @@ export default function ProofMethodologyPage() {
           agrees a different rate in writing.
         </li>
         <li>
-          <strong>Publish.</strong> The public counter and the client case move only when
-          the client verifies. Today: 0.
+          <strong>Publish.</strong> A client case and its numbers publish only when the
+          client verifies them.
         </li>
       </ol>
       <h2 className="qf-sys-h2">Edge cases</h2>
@@ -70,7 +70,7 @@ export default function ProofMethodologyPage() {
         <li>Dispute → the number is held with a note.</li>
       </ul>
       <p className="qf-scan-fineprint">
-        Rounding: hours to tens, euro to hundreds — when a number exists. Today: 0.
+        Rounding: hours to tens, euro to hundreds — when a verified number exists.
       </p>
       <Link href={ROUTES.proof} className="qf-btn-ghost">
         Back to proof →

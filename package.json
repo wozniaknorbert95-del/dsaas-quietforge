@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-pages-files.mjs",
     "build": "next build",
     "postbuild": "node scripts/check-links.mjs",
     "check:links": "node scripts/check-links.mjs --external",
@@ -24,7 +24,8 @@
     "ga4:smoke": "node scripts/ga4-prod-smoke.mjs",
     "ga4:audit": "python scripts/ga4-api-audit.py",
     "ga4:gate": "node scripts/ga4-prod-smoke.mjs && python scripts/ga4-api-audit.py --strict --output docs/operations/ga4-audit-2026-06-28-quietforge.json",
-    "media:inspire-pro": "node scripts/capture-inspire-pro-screens.mjs && node scripts/render-inspire-slides.mjs && node scripts/assemble-linkedin-inspire-pro.mjs"
+    "media:inspire-pro": "node scripts/capture-inspire-pro-screens.mjs && node scripts/render-inspire-slides.mjs && node scripts/assemble-linkedin-inspire-pro.mjs",
+    "generate:pages-files": "node scripts/generate-pages-files.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

@@ -4,7 +4,7 @@ import { DEFAULT_SCAN_SKU_ID, getScanSku, scanPriceLine, type ScanSkuId } from '
 export { PRICING, PRODUCT_TIER_RANGES };
 
 export const SITE_NAME = 'Quietforge';
-export const SITE_URL = 'https://quietforge.flexgrafik.nl';
+export const SITE_URL = 'https://quietforge.nl';
 
 /** Lowercase typographic lockup — header/footer wordmark */
 export const BRAND_WORDMARK = 'quietforge';

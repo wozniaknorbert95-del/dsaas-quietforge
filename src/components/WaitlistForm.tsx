@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error' | 'not_ready'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function WaitlistForm() {
         return;
       }
 
-      setStatus('error');
+      setStatus(res.status === 503 ? 'not_ready' : 'error');
     } catch {
       setStatus('error');
     }
@@ -33,6 +33,14 @@ export default function WaitlistForm() {
     return (
       <p className="w-full rounded-[var(--qf-radius)] border border-[var(--qf-ok)] bg-[var(--qf-bg-inset)] px-4 py-3 text-sm text-[var(--qf-ok)]">
         Thank you! We will contact you when modernization opens.
+      </p>
+    );
+  }
+
+  if (status === 'not_ready') {
+    return (
+      <p className="w-full rounded-[var(--qf-radius)] border border-[var(--qf-border)] bg-[var(--qf-bg-inset)] px-4 py-3 text-sm text-[var(--qf-text-dim)]">
+        Sign-up is not connected yet — nothing was sent or stored. Please check back soon.
       </p>
     );
   }

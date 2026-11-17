@@ -21,7 +21,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
   <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#3d3830" stroke-width="2"/>
   <text x="80" y="140" fill="#d4a574" font-family="monospace" font-size="28">${eyebrow}</text>
   <text x="80" y="240" fill="#e8e4df" font-family="monospace" font-size="48" font-weight="bold">${title.slice(0, 42)}</text>
-  <text x="80" y="520" fill="#8a8278" font-family="monospace" font-size="24">quietforge.flexgrafik.nl</text>
+  <text x="80" y="520" fill="#8a8278" font-family="monospace" font-size="24">quietforge.nl</text>
 </svg>`;
 
 const out = join(ogDir, `${slug}.svg`);

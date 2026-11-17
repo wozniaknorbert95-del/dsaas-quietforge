@@ -25,7 +25,7 @@
 
 | | |
 |---|---|
-| **Domain** | `quietforge.flexgrafik.nl` (legacy: `services.flexgrafik.nl`) |
+| **Domain** | `quietforge.nl` + `www` — Cloudflare Pages (live 2026-11-09, project `dsaas-quietforge`) |
 | **Repo** | `wozniaknorbert95-del/dsaas-quietforge` (active DSaaS tenant) |
 | **Role** | QuietForge tenant — company operating systems for SMB |
 | **Positioning** | System builder for small businesses — see [`docs/canon/identity.md`](docs/canon/identity.md) |
@@ -83,15 +83,15 @@
 
 ## 5) DEPLOY
 
-### Vercel
+### Cloudflare Pages (live platform)
 
-```bash
-# Project: wozniaknorbert95-dels-projects/flexgrafik-services
-npx vercel projects ls
-npx vercel dist --prod --yes
-```
+- Project: `dsaas-quietforge` · domains `quietforge.nl` + `www.quietforge.nl` (Cloudflare DNS zone)
+- Deploy: from GitHub (push to master). **Agent never triggers production deploy (Zasada 11)** — the Commander ships.
+- Verified live 2026-11-09 (SoT: mapa, `c5_ekosystem.py`); `quietforge.flexgrafik.nl` is dead — do not link it.
+- Legacy Vercel (project `flexgrafik-services`, `flexgrafik-services.vercel.app`): decommission pending — do not deploy there.
+- Build: `npm run build` → `dist/` uploaded as the Pages artifact.
 
-**Env (production):**
+**Env (production):** — configure in Cloudflare Pages → Settings → Environment (same names as below)
 
 | Variable | Environment | Value / status |
 |---|---|---|
@@ -112,15 +112,15 @@ npx vercel dist --prod --yes
 
 ### DNS
 
-- A record `services` → `76.76.21.21` OR CNAME → `cname.vercel-dns.com`
-- Verify: `npx vercel domains inspect quietforge.flexgrafik.nl`
+- Zone `quietforge.nl` on Cloudflare; custom domains `quietforge.nl` + `www` pinned to the Pages project.
+- Verify: `curl -sI https://quietforge.nl/ | head -1` → HTTP 200
 
 ---
 
 ## 6) POST-DEPLOY VERIFICATION
 
 ```bash
-curl -sI https://quietforge.flexgrafik.nl/ | head -1
+curl -sI https://quietforge.nl/ | head -1
 npm run audit:links
 npm run lighthouse:ci   # A11y <95 or Perf <85 blocks merge
 ```

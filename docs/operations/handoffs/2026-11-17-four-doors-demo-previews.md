@@ -1,6 +1,6 @@
 # Handoff — Four doors → demo previews (2026-11-17)
 
-**Repo:** quietforge.flexgrafik.nl (dsaas-quietforge) · **Build:** `npm run build` ✅ (62 static pages, sitemap 33 routes) · **Branch:** `strona-sprzatanie` (commit only — push/PR/deploy = Dowódca)
+**Repo:** quietforge.nl (dsaas-quietforge) · **Build:** `npm run build` ✅ (62 static pages, sitemap 33 routes) · **Branch:** `strona-sprzatanie` (commit only — push/PR/deploy = Dowódca)
 
 ## Cel / Goal
 Enable potential clients to *see* what was built for FlexGrafik: each "Four doors" tile on `/results/flexgrafik/` now shows a real tool screenshot that leads to a sales-led demo preview page under `/lab/` (decision D9: demos = `/lab/` subpages, no subdomain). Copy direction (Commander, this session): sales-first, plain language, technical detail only where it builds trust — this proof exists to inspire viewers to consider a build for their own company.
@@ -10,6 +10,7 @@ Enable potential clients to *see* what was built for FlexGrafik: each "Four door
 - **Four doors tiles reworked**: clickable screenshot (proof-manifest screen) → demo page, chip `DEMO`, ghost CTA "See it in action →", sales-led body copy. Honest per-tile status line kept ("Offline — coming back").
 - **Content SSoT**: all demo copy in `src/content/lab-demos.ts` (traceable, proof-check friendly).
 - **New routes registered**: sitemap script (33 routes), `site-map.md` §5, OG images ×4 (`scripts/generate-og.mjs`).
+- **Domain fix (this session's correction):** live domain is `quietforge.nl` on **Cloudflare Pages** (project `dsaas-quietforge`, deploy from GitHub; verified HTTP 200). `quietforge.flexgrafik.nl` is dead — `SITE_URL`, sitemap base, robots.txt and OG footer pointed at it and now use `https://quietforge.nl`. `brain.md` deploy section updated (Vercel → Cloudflare Pages).
 
 ## Pliki / Files
 
@@ -20,12 +21,15 @@ Enable potential clients to *see* what was built for FlexGrafik: each "Four door
 | `src/app/lab/{portal,wizard,game,inspire}/page.tsx` | new ×4 — thin routes + metadata |
 | `src/content/flexgrafik-company-case.ts` | update — `CompanyDoor` + demoHref/demoLabel/screenKey, sales bodies, doorsLead/demoChip |
 | `src/app/results/flexgrafik/page.tsx` | update — tiles: clickable screen → demo, CTA, chip |
-| `src/lib/constants.ts` | update — 4 demo routes in `ROUTES` |
+| `src/lib/constants.ts` | update — `SITE_URL` → `https://quietforge.nl` + 4 demo routes in `ROUTES` |
 | `src/app/globals.css` | update — `qf-fg-door-shot`, `qf-demo-*` classes (tokens only, no inline) |
-| `scripts/generate-sitemap.mjs` | update — 4 routes registered |
-| `public/sitemap.xml` | regenerated (33 routes) |
-| `public/og/lab-{portal,wizard,game,inspire}.svg` | new — OG 1200×630 |
+| `scripts/generate-sitemap.mjs` | update — 4 routes registered, base → `quietforge.nl` |
+| `scripts/generate-og.mjs` | update — OG footer → `quietforge.nl` |
+| `public/robots.txt` | update — sitemap URL → `quietforge.nl` |
+| `public/sitemap.xml` | regenerated (33 routes, `quietforge.nl` base) |
+| `public/og/lab-{portal,wizard,game,inspire}.svg` | new — OG 1200×630 (regenerated with new domain footer) |
 | `docs/strategy/site-map.md` | update — §5 route map |
+| `brain.md` | update — domain + deploy: Cloudflare Pages (was stale Vercel) |
 
 ## Weryfikacja / Verification
 ```bash
@@ -47,5 +51,5 @@ grep '[FILL' src/        # 0 placeholders (1 pre-existing comment in proof.ts)
 - **Claim do zatwierdzenia (MR-16):** "typical build lands 2–4 weeks after the scan" — owner-stated delivery window (źródło: mapa/SoT). Zostawić, złagodzić czy usunąć — Twoja decyzja przed publikacją.
 - **"Three walks" section** — ten sam treatment (screen + demo link) jako osobna sesja, jeśli chcesz.
 - **Status LIVE:** gdy flexgrafik.nl wraca — pola `href`/`hrefLabel` w `FLEXGRAFIK_DOORS` są gotowe na linki do żywych powierzchni.
-- **Decyzja domenowa:** `SITE_URL` w `constants.ts` = `quietforge.flexgrafik.nl`, a operujesz na `quietforge.nl` — ustalić przed deployem (wpływa na canonical/OG/sitemap).
-- **Push/PR:** commit na `strona-sprzatanie`; push + merge do master (auto-deploy Vercel) = ręczny krok Dowódcy (Zasada 11).
+- **Domain sweep (follow-up session):** stare `quietforge.flexgrafik.nl` siedzi jeszcze w docs/canony, `.cursorrules`, `public/systems/*.svg` (footery), `config/ga4-quietforge.ids.json` (stream_url — wymaga zmiany też w GA4), `vercel.json` (dekomisja Vercel). Zmiany tylko runtime są zrobione w tej sesji.
+- **Push/PR:** commit na `strona-sprzatanie`; push + merge do master = ręczny krok Dowódcy (Cloudflare Pages deployuje z GitHuba przy pushu na master — Zasada 11).

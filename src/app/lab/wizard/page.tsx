@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { DEMO_PAGES } from '@/content/lab-demos';
-import { SITE_URL } from '@/lib/constants';
+import DemoFrame from '@/components/demo/DemoFrame';
+import { DEMO_PAGES, DEMO_SHARED } from '@/content/lab-demos';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 
 const demo = DEMO_PAGES.wizard;
 
@@ -37,10 +38,20 @@ export const metadata: Metadata = {
  */
 export default function LabWizardDemoPage() {
   return (
-    <iframe
+    <DemoFrame
       src="/demo/zzpackage/wizard/"
       title="FlexGrafik Wizard — werkende demo"
-      className="qf-demo-frame"
+      heading={demo.title}
+      lead={demo.lead}
+      backHref={ROUTES.resultsFlexgrafik}
+      backLabel={DEMO_SHARED.frameBackLabel}
+      proofHref={ROUTES.proof}
+      proofLabel={DEMO_SHARED.frameProofLabel}
+      scanHref={ROUTES.bookAScan}
+      scanLabel={DEMO_SHARED.frameScanLabel}
+      loadingLabel={DEMO_SHARED.frameLoading}
+      analyticsEvent="wizard_demo_click"
+      analyticsDetail={{ location: 'lab_wizard_replica' }}
     />
   );
 }

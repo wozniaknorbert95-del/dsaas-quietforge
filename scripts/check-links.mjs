@@ -83,7 +83,9 @@ function fileExists(path) {
     return existsSync(join(NEXT, 'static', decoded.slice('/_next/static/'.length)));
   }
   const file = join(PUBLIC, decoded);
-  return existsSync(file) && statSync(file).isFile();
+  if (existsSync(file) && statSync(file).isFile()) return true;
+  // Static hosts serve directory indexes: /path/ resolves to /path/index.html.
+  return existsSync(join(file, 'index.html'));
 }
 
 /** Resolve a path through redirects. Returns the final path or null if broken. */

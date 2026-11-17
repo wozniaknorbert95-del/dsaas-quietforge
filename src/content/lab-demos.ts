@@ -63,6 +63,10 @@ export const DEMO_SHARED = {
   ctaTitle: 'What would this look like in your company?',
   ctaBody:
     'The Hours Engine Scan measures where your company leaks hours — and which door is worth building first. The build is priced from what the scan finds, not from a catalogue.',
+  frameBackLabel: 'Back to the FlexGrafik story',
+  frameProofLabel: 'All proof',
+  frameScanLabel: 'Book a scan',
+  frameLoading: 'Loading the demo…',
 } as const;
 
 /** Shared scan step — the same promise on every demo page. */

@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 export default function LabWizardDemoPage() {
   return (
     <iframe
-      src="/demo/zzpackage/wizard/index.html"
+      src="/demo/zzpackage/wizard/"
       title="FlexGrafik Wizard — werkende demo"
       className="qf-demo-frame"
     />

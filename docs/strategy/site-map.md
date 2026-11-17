@@ -142,6 +142,12 @@ Tertiary text: `Ask on WhatsApp` → WhatsApp deep link
 /results/owner-ecosystem/        → Full LOS + governance proof
 /growth-os/                      → Growth OS multi-client dynamic agent cockpit and real-time ledger proof
 
+/lab/                            → Builder's Lab (owner-operated reference, not a client case)
+/lab/portal/                     → Demo preview — Portal (Four doors tile → demo)
+/lab/wizard/                     → Demo preview — Configurator (Four doors tile → demo)
+/lab/game/                       → Demo preview — Lead game (Four doors tile → demo)
+/lab/inspire/                    → Demo preview — Custom intake (Four doors tile → demo)
+
 /solutions/                      → Productised systems hub
 /solutions/inbox-killer/         → Product page
 /solutions/web-upgrade/          → Product page

@@ -6,7 +6,7 @@
 // Do not name DSAAS or LangGraph on this surface (canon censors).
 // ============================================================================
 
-import type { IntentId } from '@/content/ecosystem';
+import type { IntentId, ScreenKey } from '@/content/ecosystem';
 import { metrics } from '@/content/proof';
 import { ROUTES } from '@/lib/constants';
 
@@ -23,6 +23,11 @@ export interface CompanyDoor {
   hrefLabel: string;
   body: string;
   intents: IntentId[];
+  /** Demo preview page under /lab/ — the tile screenshot links here. */
+  demoHref: string;
+  demoLabel: string;
+  /** Proof-manifest screen shown on the tile. */
+  screenKey: ScreenKey;
 }
 
 export interface CompanyWalkStep {
@@ -71,6 +76,9 @@ export const FLEXGRAFIK_COMPANY_CASE = {
   methodologyLabel: 'How we measure',
   walkLead: 'Three walks. Offline right now — coming back.',
   doorsTitle: 'Four doors.',
+  doorsLead:
+    'Open any door — every screen leads to a demo preview of the tool behind it. The live FlexGrafik surfaces are offline right now and coming back.',
+  demoChip: 'DEMO',
   offlineLabel: 'Offline — coming back',
   platformTitle: 'Next: FlexGrafik becomes a tenant, not a clone',
   platform:
@@ -101,8 +109,11 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     role: 'Front door',
     status: 'OFFLINE',
     hrefLabel: 'Open flexgrafik.nl',
-    body: 'One trustworthy entry. The visitor chooses the next system instead of starting a manual conversation.',
+    body: 'One trustworthy front door. The visitor picks the right next step themselves — instead of starting another email thread.',
     intents: ['order'],
+    demoHref: ROUTES.labPortal,
+    demoLabel: 'See it in action',
+    screenKey: 'portalAssistant',
   },
   {
     id: 'catalog',
@@ -111,8 +122,11 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     role: 'Configure and pay',
     status: 'OFFLINE',
     hrefLabel: 'Open the Wizard',
-    body: `${metrics.wizardStepsFootnote}, ${metrics.skus} SKUs, open pricing, Mollie from €199. Repeatable work gets a rules-based price.`,
+    body: `Configure, see the price, pay. ${metrics.skus} SKUs priced by rule — repeatable quotes happen without you.`,
     intents: ['money', 'efficiency'],
+    demoHref: ROUTES.labWizard,
+    demoLabel: 'See it in action',
+    screenKey: 'wizardCheckout',
   },
   {
     id: 'game',
@@ -121,8 +135,11 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     role: 'Qualify cold attention',
     status: 'OFFLINE',
     hrefLabel: 'Play the game',
-    body: `${metrics.gameLevels} acts, a registration gate, then a handoff into the same catalog path — not a brochure form.`,
+    body: 'Cold attention earns its way in — play, register, collect the reward, land in the buying path. Not a brochure form.',
     intents: ['money'],
+    demoHref: ROUTES.labGame,
+    demoLabel: 'See it in action',
+    screenKey: 'leadMagnet',
   },
   {
     id: 'inspire',
@@ -131,8 +148,11 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     role: 'Exceptions stay human',
     status: 'OFFLINE',
     hrefLabel: 'Open INSPIRE',
-    body: 'Vehicle-branding brief and direction, then a studio quote. Visuals are not print-ready. This path is not checkout.',
+    body: 'The job you cannot configure arrives already described — brief, direction, then a human studio quote.',
     intents: ['calm', 'money'],
+    demoHref: ROUTES.labInspire,
+    demoLabel: 'See it in action',
+    screenKey: 'inspireIntake',
   },
 ] as const;
 

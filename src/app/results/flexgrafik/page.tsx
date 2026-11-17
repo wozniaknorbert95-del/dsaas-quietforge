@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
+import ProofEmptyState from '@/components/ui/ProofEmptyState';
+import ProofScreenImage from '@/components/ui/ProofScreenImage';
 import { CTAS } from '@/content/conversion-copy';
 import { getIntentMeta } from '@/content/ecosystem';
 import {
@@ -9,6 +11,7 @@ import {
   FLEXGRAFIK_DOORS,
   FLEXGRAFIK_WALKS,
 } from '@/content/flexgrafik-company-case';
+import { screens } from '@/content/proof';
 import { ROUTES, SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -68,36 +71,54 @@ export default function FlexgrafikCompanyCasePage() {
 
       <Section>
         <h2 className="qf-sys-h2">{C.doorsTitle}</h2>
+        <p className="qf-sys-lead">{C.doorsLead}</p>
         <ul className="qf-fg-door-grid">
-          {FLEXGRAFIK_DOORS.map((door) => (
-            <li key={door.id} className="qf-approach-card">
-              <span className="qf-approach-card-n">{door.n}</span>
-              <p className="qf-fg-intent-row">
-                {door.intents.map((id) => (
-                  <span key={id} className="qf-fg-intent" data-intent={id}>
-                    {getIntentMeta(id).shortLabel}
-                  </span>
-                ))}
-                <span className="qf-fg-status">{door.status}</span>
-              </p>
-              <h3 className="qf-approach-card-title">
-                {door.name} · {door.role}
-              </h3>
-              <p className="qf-approach-card-body">{door.body}</p>
-              {door.href ? (
-                <a
-                  href={door.href}
-                  className="qf-btn-ghost"
-                  target="_blank"
-                  rel="noopener noreferrer"
+          {FLEXGRAFIK_DOORS.map((door) => {
+            const screen = screens[door.screenKey];
+            const ready = Boolean(screen.ready && screen.src);
+            return (
+              <li key={door.id} className="qf-approach-card">
+                <span className="qf-approach-card-n">{door.n}</span>
+                <Link
+                  href={door.demoHref}
+                  className="qf-fg-door-shot"
+                  aria-label={`${door.demoLabel} — ${door.name}`}
                 >
-                  {door.hrefLabel} →
-                </a>
-              ) : (
-                <span className="qf-fg-status">{C.offlineLabel}</span>
-              )}
-            </li>
-          ))}
+                  {ready ? (
+                    <ProofScreenImage
+                      src={screen.src ?? ''}
+                      alt={screen.alt}
+                      width={800}
+                      height={500}
+                    />
+                  ) : (
+                    <ProofEmptyState
+                      eyebrow="// Demo"
+                      title="Screen coming soon"
+                      description="Open the demo page for the full walkthrough."
+                      aspect="screen"
+                    />
+                  )}
+                </Link>
+                <p className="qf-fg-intent-row">
+                  {door.intents.map((id) => (
+                    <span key={id} className="qf-fg-intent" data-intent={id}>
+                      {getIntentMeta(id).shortLabel}
+                    </span>
+                  ))}
+                  <span className="qf-fg-status">{C.demoChip}</span>
+                </p>
+                <h3 className="qf-approach-card-title">
+                  {door.name} · {door.role}
+                </h3>
+                <p className="qf-approach-card-body">{door.body}</p>
+                <Link href={door.demoHref} className="qf-btn-ghost">
+                  {door.demoLabel} →
+                </Link>
+                <p className="qf-fg-status">{C.offlineLabel}</p>
+              </li>
+            );
+          })}
         </ul>
       </Section>
 

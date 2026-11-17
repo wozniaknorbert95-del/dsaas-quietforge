@@ -88,6 +88,11 @@ export const ROUTES = {
   proofMethodology: '/proof/methodology/',
   resultsFlexgrafik: '/results/flexgrafik/',
   lab: '/lab/',
+  /** Demo previews — Four doors. Decision D9: demos live under /lab/, no subdomain. */
+  labPortal: '/lab/portal/',
+  labWizard: '/lab/wizard/',
+  labGame: '/lab/game/',
+  labInspire: '/lab/inspire/',
   about: '/about/',
   aboutLab: '/about/#lab',
   pricing: '/pricing/',

@@ -2584,6 +2584,49 @@ body[data-app="services"] {
   color: var(--qf-text-dim);
 }
 
+/* Four doors tiles + /lab/ demo previews */
+.qf-fg-door-shot {
+  display: block;
+  margin-bottom: var(--qf-sp-3);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: var(--qf-border-w) solid var(--qf-border);
+  background: var(--qf-bg-inset);
+}
+
+.qf-demo-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--qf-sp-4);
+  margin: var(--qf-sp-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-demo-grid {
+  display: grid;
+  gap: var(--qf-sp-4);
+  margin: var(--qf-sp-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-demo-shot-frame {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: var(--qf-border-w) solid var(--qf-border);
+  background: var(--qf-bg-inset);
+}
+
+.qf-demo-shot-caption {
+  margin: var(--qf-sp-3) 0 0;
+  color: var(--qf-text-dim);
+}
+
+.qf-demo-step-body {
+  margin: 0;
+}
+
 .qf-fg-door-grid .qf-btn-ghost,
 .qf-fg-walk-grid .qf-btn-ghost {
   margin-top: var(--qf-sp-4);
@@ -2619,6 +2662,10 @@ body[data-app="services"] {
   }
 
   .qf-proof-open-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .qf-demo-grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
 

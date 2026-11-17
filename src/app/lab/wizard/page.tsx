@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import DoorDemoPreview from '@/components/lab/DoorDemoPreview';
-import WizardDemo from '@/components/demo/WizardDemo';
 import { DEMO_PAGES } from '@/content/lab-demos';
 import { SITE_URL } from '@/lib/constants';
 
@@ -31,6 +29,18 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Faithful 1:1 replica of the original zzpackage.flexgrafik.nl Wizard —
+ * the untouched original client-side app (JS/CSS/catalog) with the PHP/WooCommerce
+ * layer stubbed; everything works, the order safely stops at "Afrekenen" (demo).
+ * Source: docs/operations/plans/2026-11-17-zzpackage-replica-spec.md
+ */
 export default function LabWizardDemoPage() {
-  return <DoorDemoPreview id="wizard" demo={<WizardDemo />} />;
+  return (
+    <iframe
+      src="/demo/zzpackage/wizard/index.html"
+      title="FlexGrafik Wizard — werkende demo"
+      className="qf-demo-frame"
+    />
+  );
 }

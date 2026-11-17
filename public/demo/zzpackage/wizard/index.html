@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZZPackage Configurator — FlexGrafik</title>
+    <!-- SITE-01: fonts load ONCE via wp_enqueue_style('fg-fonts') in functions.php -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+
+    <!-- fg_theme_scripts() enqueue order for page-wizard.php -->
+    <link rel="stylesheet" href="../css/zzp-design-tokens.css">
+    <link rel="stylesheet" href="../css/zzp-components.css">
+    <link rel="stylesheet" href="../css/zzp-utilities.css">
+    <link rel="stylesheet" href="../css/zzp-chrome.css">
+    <link rel="stylesheet" href="../css/zzp-buttons.css">
+    <link rel="stylesheet" href="zzp-style.css">
+    <link rel="stylesheet" href="../css/zzp-wizard.css">
+    <link rel="stylesheet" href="../css/zzp-wizard-vca.css">
+
+    <!-- fg_wizard_seo_meta() (theme fallback, Yoast inactive) -->
+    <meta name="description" content="Bouw in 5 minuten jouw professionele ZZP-uitstraling. Logo, voertuig branding, werkkleding en meer — volledig op maat.">
+    <meta property="og:title" content="ZZPackage Configurator — FlexGrafik">
+    <meta property="og:description" content="Bouw in 5 minuten jouw professionele ZZP-uitstraling. Logo, voertuig branding, werkkleding en meer — volledig op maat.">
+    <meta property="og:type" content="website">
+
+    <!-- Demo chrome only (banner + demo-stop modal) -->
+    <style>
+        .demo-banner{position:relative;z-index:1200;background:var(--zzp-bg-secondary);border-bottom:1px solid var(--zzp-border-default);color:var(--zzp-accent-yellow);font-family:var(--zzp-font-mono);font-size:12px;letter-spacing:.05em;text-align:center;padding:7px 12px}
+        .demo-modal-backdrop{position:fixed;inset:0;z-index:2000;background:rgba(5,5,5,.82);display:flex;align-items:center;justify-content:center;padding:16px}
+        .demo-modal-backdrop[hidden]{display:none}
+        .demo-modal{position:relative;width:min(460px,100%);background:var(--zzp-bg-secondary);border:1px solid var(--zzp-border-default);border-radius:2px;padding:24px}
+        .demo-modal h2{font-family:var(--zzp-font-display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:1.25rem;color:var(--zzp-text-primary);margin:16px 0 12px}
+        .demo-modal p{color:var(--zzp-text-secondary);font-size:.9375rem;margin:0 0 12px}
+        .demo-modal .demo-ref{font-family:var(--zzp-font-mono);color:var(--zzp-accent-cyan);font-size:.8125rem;letter-spacing:.08em}
+        .demo-modal .btn-vca{margin-top:8px}
+    </style>
+
+    <!-- Demo data/AJAX layer — must run before the original wizard scripts
+         (and before any <img> loads, for the missing-image fallback) -->
+    <script src="demo-boot.js"></script>
+</head>
+<body class="page-template page-template-page-wizard page-template-page-wizard-php page">
+
+<div class="demo-banner" role="status">DEMO · FlexGrafik is offline — de Wizard werkt volledig, alleen de bestelling wordt niet verzonden.</div>
+
+<a href="#primary" class="skip-link">Direct naar hoofdinhoud</a>
+
+<div id="page" class="site">
+    <header id="masthead" class="site-header-vca">
+        <div class="hazard-stripe-yellow"></div>
+        <div class="header-inner-vca">
+            <a href="#" class="header-logo" rel="home">
+                <img src="../images/zzpackage-logo-primary.png"
+                     alt="ZZPackage"
+                     class="header-logo-img"
+                     width="162"
+                     height="44"
+                     loading="eager">
+            </a>
+            <div class="header-actions">
+                <div class="status-display" aria-hidden="true">
+                    <span>STATUS:</span> ONLINE
+                </div>
+                <a href="#"
+                   class="header-cta header-cta--design-agent"
+                   id="header-design-agent-cta">
+                    <span class="header-cta__badge">Nieuw</span>
+                    Ontwerp je bus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#"
+                   class="header-cta header-cta--wizard"
+                   id="header-wizard-cta">
+                    Start de Wizard
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="primary" class="site-main wizard-page-wrapper">
+        <div class="fg-container wizard-container">
+            <div class="hazard-stripe-yellow" aria-hidden="true"></div>
+
+            <div id="zzp-wizard-app" class="zzp-wizard-app glass-panel wiz-shell">
+                <header class="wiz-title-block">
+                    <p class="wiz-eyebrow">Configurator · Gratis · Veilig betalen via Mollie</p>
+                    <h1 class="wiz-title wizard-main-title">Stel je ZZP-branding samen</h1>
+                    <p class="wiz-subtitle wizard-subtitle">Configureer in je eigen tempo. Voortgang wordt automatisch opgeslagen. Productie start pas na goedkeuring van je briefing. Alle prijzen zijn excl. BTW.</p>
+                </header>
+
+                <div class="wizard-header wizard-header--vca">
+                    <div class="wizard-progress-bar-container">
+                        <div id="wizard-progress-bar" class="wizard-progress-bar">
+                            <!-- Category stepper injected by JS (POLISH-D1S) -->
+                        </div>
+                    </div>
+                    <div class="wiz-progress-track" aria-hidden="true">
+                        <div class="wiz-progress-track__fill" id="wizard-progress-fill"></div>
+                    </div>
+                </div>
+
+                <div id="wizard-content-area" class="wizard-content-area">
+                    <!-- Step content injected by JS -->
+                </div>
+
+                <div class="wizard-navigation wiz-nav">
+                    <button type="button" id="wizard-prev-btn" class="btn-vca btn-ghost" style="display: none;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Vorige
+                    </button>
+                    <button type="button" id="wizard-next-btn" class="btn-vca btn-action">
+                        Volgende <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="wizard-mobile-cta-bar" class="wizard-mobile-cta-bar" hidden>
+                <span class="wizard-mobile-cta-bar__meta">Stap <span id="wizard-mobile-cta-step">1</span> van 9</span>
+                <button type="button" id="wizard-mobile-cta-btn" class="btn-vca btn-action btn-sm">Start de configurator</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="colophon" class="site-footer footer-vca" aria-label="Site footer">
+        <div class="hazard-stripe-cyan"></div>
+
+        <div class="footer-main-vca">
+
+            <!-- 1. Brand -->
+            <div class="footer-col-brand">
+                <div class="footer-brand-stack">
+                    <a href="#" class="footer-brand-link">
+                        <img src="../images/zzpackage-logo-primary.png"
+                             alt="ZZPackage"
+                             class="footer-logo-zzp"
+                             width="147"
+                             height="40"
+                             loading="eager"
+                             fetchpriority="low">
+                    </a>
+                    <a href="https://flexgrafik.nl/" class="footer-brand-link footer-brand-link--fg" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/flexgrafik-logo.webp"
+                             alt="FlexGrafik"
+                             class="footer-logo-fg"
+                             width="87"
+                             height="20"
+                             loading="lazy">
+                    </a>
+                </div>
+                <p class="footer-tagline">De specialist in ZZP-branding.</p>
+            </div>
+
+            <!-- 2. Snel naar -->
+            <div class="footer-col-nav">
+                <p class="footer-col-title">Snel naar</p>
+                <nav class="footer-nav-grid" aria-label="Footer navigatie">
+                    <a href="#" class="footer-link-vca">Start de Wizard</a>
+                    <a href="https://flexgrafik.nl/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Wie zijn wij?</a>
+                    <a href="https://flexgrafik.nl/portfolio-diensten/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                    <a href="https://flexgrafik.nl/contact/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Over ons</a>
+                    <a href="#" class="footer-link-vca">Veelgestelde vragen</a>
+                    <a href="#" class="footer-link-vca">Materialen</a>
+                    <a href="#" class="footer-link-vca">Ontwerp je bus</a>
+                    <a href="https://wa.me/31687286151" class="footer-link-vca footer-link-wa" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        WhatsApp
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 3. Game & contact (desktop only) -->
+            <div class="footer-col-game">
+                <p class="footer-col-title">Game &amp; contact</p>
+                <a href="https://app.flexgrafik.nl" target="_blank" rel="noopener noreferrer" aria-label="Speel de game en win kortingscodes" class="footer-game-link">
+                    <img src="../images/spel-icoon.webp" alt="Speel en win brandingpakket" class="footer-game-img">
+                </a>
+                <a href="https://flexgrafik.nl/contact/" target="_blank" rel="noopener noreferrer" class="btn-vca btn-outline footer-contact-btn">Contact &rarr;</a>
+            </div>
+
+        </div><!-- /.footer-main-vca -->
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom-vca">
+            <nav class="footer-legal" aria-label="Juridische links">
+                <a href="#" class="footer-link-vca">Algemene Voorwaarden</a>
+                <a href="#" class="footer-link-vca">Privacybeleid</a>
+            </nav>
+            <p class="footer-meta">FLEXGRAFIK ROTTERDAM // KVK: 89057554</p>
+            <a href="#page" class="footer-back-top">&uarr; Terug naar boven</a>
+            <p class="footer-copyright">&copy; 2026 <a href="https://flexgrafik.nl/" target="_blank" rel="noopener noreferrer" class="footer-fg-link">FlexGrafik</a> — Rotterdam, NL</p>
+        </div>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ZZPackage",
+            "url": "https://zzpackage.flexgrafik.nl/",
+            "logo": "https://zzpackage.flexgrafik.nl/wp-content/themes/flexgrafik-wizard-theme/assets/images/zzpackage-logo-primary.png",
+            "parentOrganization": {
+                "@type": "Organization",
+                "name": "FlexGrafik",
+                "url": "https://flexgrafik.nl/",
+                "identifier": { "@type": "PropertyValue", "propertyID": "KVK", "value": "89057554" }
+            },
+            "sameAs": ["https://wa.me/31687286151"],
+            "address": { "@type": "PostalAddress", "addressLocality": "Rotterdam", "addressCountry": "NL" }
+        }
+        </script>
+    </footer>
+
+</div><!-- #page -->
+
+<div class="demo-modal-backdrop" id="demo-stop-modal" hidden>
+    <div class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-stop-title">
+        <div class="hazard-stripe-yellow" aria-hidden="true"></div>
+        <h2 id="demo-stop-title">Demo — deze bestelling wordt niet verzonden.</h2>
+        <p>FlexGrafik is offline; dit is een werkende demo van de Wizard. Alles wat je ziet en klikt is echt, alleen de bestelling stopt hier.</p>
+        <p class="demo-ref">Referentie: <span id="demo-stop-ref">DEMO-0000</span></p>
+        <button type="button" id="demo-stop-close" class="btn-vca btn-action">Terug naar de Wizard</button>
+    </div>
+</div>
+
+<script>
+/* Sticky header scroll handler */
+(function() {
+    var header = document.querySelector('.site-header-vca');
+    if (!header) return;
+    function onScroll() {
+        if (window.scrollY > 180) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>
+
+<!-- wp_footer() script order for page-wizard.php (demo-boot.js is loaded in <head>) -->
+<script src="../js/wizard-1-3.js"></script>
+<script src="../js/wizard-presets.js"></script>
+<script src="../js/wizard-step-2.js"></script>
+</body>
+</html>

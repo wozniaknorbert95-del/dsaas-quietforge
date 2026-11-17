@@ -1,0 +1,393 @@
+/*
+Theme Name: FlexGrafik Wizard Theme
+Theme URI: https://flexgrafik.nl/
+Description: Dedykowany, superlekki motyw dla systemu SaaS "Wizard-Only". Czysty kod, integracja zamówień, brak buildera. (Odpowiedź na dług technologiczny v4).
+Author: Norbert Woźniak & AI
+Author URI: https://flexgrafik.nl/
+Version: 4.0.0
+Text Domain: flexgrafik-wizard
+Tags: custom, ecommerce, dark-theme, wizard
+*/
+
+/* NOTE: :root tokens live ONLY in assets/css/zzp-design-tokens.css (SITE-01).
+   This file consumes the legacy bridge (--bg-*, --accent-*, --space-*, --radius-*). */
+
+/* ==========================================================================
+ * CSS RESET & BASE
+ * ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  color: var(--text-main);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+ * TYPOGRAPHY
+ * ========================================================================== */
+.h1, h1 { font-size: 2.2rem; }
+.h2, h2 { font-size: 1.8rem; }
+.h3, h3 { font-size: 1.4rem; }
+.h4, h4 { font-size: 1.2rem; }
+
+@media (min-width: 768px) {
+  .h1, h1 { font-size: 3.5rem; }
+  .h2, h2 { font-size: 2.5rem; }
+  .h3, h3 { font-size: 1.75rem; }
+  .h4, h4 { font-size: 1.35rem; }
+}
+
+/* ==========================================================================
+ * BUTTONS — SITE-04: definitions live ONLY in zzp-buttons.css (canonical contract)
+ * ========================================================================== */
+
+/* ==========================================================================
+ * UTILITIES
+ * ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+.small { font-size: 0.875rem; }
+
+.mt-1 { margin-top: var(--space-sm); }
+.mt-2 { margin-top: var(--space-md); }
+.mt-3 { margin-top: var(--space-lg); }
+.mt-4 { margin-top: var(--space-xl); }
+.mt-5 { margin-top: var(--space-2xl); }
+
+.mb-1 { margin-bottom: var(--space-sm); }
+.mb-2 { margin-bottom: var(--space-md); }
+.mb-3 { margin-bottom: var(--space-lg); }
+.mb-4 { margin-bottom: var(--space-xl); }
+.mb-5 { margin-bottom: var(--space-2xl); }
+
+/* Image Placeholder (Faza 3) */
+.image-placeholder {
+  background: var(--bg-panel);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  min-height: 200px;
+  width: 100%;
+  font-size: 0.875rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+ * LAYOUT SHIFT (GRID) + CHECKOUT OVERRIDES 
+ * ========================================================================== */
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media(min-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* Checkout Place Order Button */
+#place_order {
+    background-color: var(--accent-secondary) !important;
+    color: #fff !important;
+    border-color: var(--accent-secondary) !important;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+#place_order:hover {
+    background-color: var(--accent-secondary-hover) !important;
+    transform: scale(1.02);
+}
+
+/* Ideal Icon fix */
+.payment_method_mollie_wc_gateway_ideal img {
+    content: url('/wp-content/themes/flexgrafik-wizard-theme/assets/images/homepage/ideal-logo.png');
+    max-height: 25px;
+}
+
+/* ==========================================================================
+ * HEADER — VCA Industrial Premium (Single Source of Truth)
+ * ========================================================================== */
+.site-header-vca {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(18, 18, 20, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    padding: var(--space-4) 0;
+}
+.site-header-vca.scrolled {
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+.header-inner-vca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    gap: var(--space-4);
+    flex-wrap: nowrap;
+    min-width: 0;
+}
+.header-logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.header-logo img {
+    max-height: 44px;
+    width: auto;
+    display: block;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
+    min-width: 0;
+}
+.status-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: #000;
+    border: 1px solid var(--vca-cyan);
+    color: var(--vca-cyan);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.status-display span { color: var(--text-bright); }
+
+/* VCA Industrial CTA — self-contained, no .btn-vca dependency */
+.header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 24px;
+    background: var(--vca-cyan);
+    color: var(--text-dark); /* dark on cyan = AA (white was 2.97:1) */
+    border: none;
+    border-bottom: 3px solid #0077a3;
+    border-radius: var(--radius-slight);
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-fast);
+    z-index: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-height: 44px;
+}
+.header-cta:hover {
+    background: var(--vca-yellow);
+    color: var(--text-dark);
+    border-bottom-color: #cc9900;
+    transform: translateY(-2px);
+}
+.header-cta svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* SITE-02: wizard CTA is the single primary; Design Agent renders as secondary outline */
+.header-cta--design-agent {
+  background: transparent;
+  color: var(--zzp-magenta-text-on-dark);
+  border: 2px solid var(--vca-magenta);
+    border-bottom-width: 3px;
+}
+.header-cta--design-agent:hover {
+    background: var(--vca-magenta);
+    color: var(--text-bright);
+    border-color: var(--vca-magenta);
+    transform: translateY(-2px);
+}
+.header-cta__badge {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-right: 4px;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    background: var(--vca-yellow);
+    color: var(--text-dark);
+    border-radius: 999px;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+ * VCA HAZARD STRIPES (Global — header + footer)
+ * ==========================================================================
+ *
+ * Header: yellow 6px (front-page) / 4px (subpages) — set by body class.
+ * Footer: cyan 4px — footer-only.
+ */
+
+/* Base yellow stripe (header — front-page default) */
+.hazard-stripe-yellow {
+  height: 6px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--accent-yellow) 0,
+    var(--accent-yellow) 15px,
+    #000 15px,
+    #000 30px
+  );
+}
+
+/* Subpages: 4px yellow stripe (home page has .home class) */
+.home .hazard-stripe-yellow {
+  height: 6px;
+}
+body:not(.home) .hazard-stripe-yellow {
+  height: 4px;
+}
+
+/* Footer cyan stripe */
+.hazard-stripe-cyan {
+  height: 4px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent-cyan) 0,
+    var(--accent-cyan) 15px,
+    #000 15px,
+    #000 30px
+  );
+}
+
+/* ==========================================================================
+ * RESPONSIVE UTILITIES
+ * ========================================================================== */
+@media (max-width: 480px) {
+    /* Pricing indicator — stacked op zeer klein scherm */
+    .price-divider { display: none; }
+    /* Game visual verbergen op klein scherm voor ruimte */
+    .game-visual { display: none; }
+}
+
+/* ==========================================================================
+ * HEADER RESPONSIVE — HDR-A1 2026-06-03
+ * ========================================================================== */
+
+/* Tablet / small desktop */
+@media (max-width: 767px) {
+    .site-header-vca { padding: var(--space-2) 0; }
+    .header-inner-vca {
+        padding: 0 var(--space-4);
+        gap: var(--space-2);
+    }
+    .header-logo img { max-height: 36px; }
+    .header-cta { padding: 0.4rem 1rem; font-size: 0.8rem; }
+    .header-cta--design-agent { display: none; }
+    .status-display { display: none; }
+    .hazard-stripe-yellow { height: 3px !important; }
+}
+/* Mobile */
+@media (max-width: 480px) {
+    .site-header-vca { padding: var(--space-2) 0; }
+    .header-inner-vca {
+        padding: 0 var(--space-3);
+        gap: var(--space-2);
+    }
+    .header-logo img { max-height: 32px; }
+    .header-cta { padding: 0.35rem 0.9rem; font-size: 0.75rem; }
+    .hazard-stripe-yellow { height: 2px !important; }
+}
+/* Small mobile */
+@media (max-width: 375px) {
+    .header-cta { font-size: 0.7rem; padding: 0.3rem 0.75rem; }
+    .header-cta svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* HDR-05: Focus-visible keyboard a11y */
+.header-logo:focus-visible,
+.header-cta:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+}
+
+/* HDR-06: Skip-to-content link */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: var(--accent-cyan);
+    color: #000;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+}
+.skip-link:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8px;
+}
+

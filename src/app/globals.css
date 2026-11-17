@@ -2870,6 +2870,14 @@ body[data-app="services"] {
   font-size: var(--qf-fs-xs);
 }
 
+/* Full-bleed frame for original-tool replicas (1:1 demo ports) */
+.qf-demo-frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 72px);
+  border: 0;
+}
+
 .qf-fg-door-grid .qf-btn-ghost,
 .qf-fg-walk-grid .qf-btn-ghost {
   margin-top: var(--qf-sp-4);

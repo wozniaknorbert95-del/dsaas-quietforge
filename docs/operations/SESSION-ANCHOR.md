@@ -1,27 +1,30 @@
 # SESSION-ANCHOR — Live Session Pointer
 
-**Updated:** 2026-09-26 · **Status:** DEPLOYED · Chrome last-mile (sticky hide + footer microcopy)
+**Updated:** 2026-11-17 · **Status:** DEPLOYED · Four doors → demo previews LIVE (następnie: 4 żywe demo)
 
-**Live production:** `47b6c45` / `dpl_4RdKJYtwhyw2kLWcDFSoNUWnSsku`
+**Live production:** `b4b54ba` on `main` · Cloudflare Pages CI (MIG-30)
 
-**Live:** https://quietforge.flexgrafik.nl/
+**Live:** https://quietforge.nl/
 
-**Current handoff:** [`handoffs/2026-09-26-chrome-last-mile.md`](handoffs/2026-09-26-chrome-last-mile.md)
+**Current handoff:** [`handoffs/2026-11-17-four-doors-demo-previews.md`](handoffs/2026-11-17-four-doors-demo-previews.md)
 
-**Plan (next):** [`plans/2026-09-26-chrome-polish.md`](plans/2026-09-26-chrome-polish.md) — S1 cookie vs sticky
+**Plan (next — kolejność P1→P4, 1 plan = 1 sesja):**
+1. [`plans/2026-11-17-demo-wizard.md`](plans/2026-11-17-demo-wizard.md) — żywy konfigurator (cena live, checkout DEMO, kupon GAME)
+2. [`plans/2026-11-17-demo-inspire.md`](plans/2026-11-17-demo-inspire.md) — żywy intake (brief → kierunek → mockup → offerte DEMO)
+3. [`plans/2026-11-17-demo-game.md`](plans/2026-11-17-demo-game.md) — grywalna gra (5 aktów → kupon → handoff do Wizard)
+4. [`plans/2026-11-17-demo-portal.md`](plans/2026-11-17-demo-portal.md) — klikalny portal + guided chooser (hub na drzwi)
 
-**Prior:** [`handoffs/2026-09-26-footer-calm.md`](handoffs/2026-09-26-footer-calm.md) · `dpl_4a6mpeDDu3MTGqBf8wGLkzb1VG8V`
-
-**SSoT:** `StickyCta.tsx` + `navigation.ts` footer lists + `Footer.tsx`
+**SSoT:** `src/content/lab-demos.ts` (copy demo) + `src/components/demo/*` (dema) + `src/lib/demo/*` (logika frontu)
 
 ## CO
 
-Session 0 shipped: mobile sticky nie blokuje footera. Stopka 11 linków, Scan sample (PDF). Home density = plan S1–S5, nie footer.
+Four doors na `/results/flexgrafik/` ma klikalne screeny → strony demo pod `/lab/` (opisowe). Dowódca: docelowo **żywe, działające demo** narzędzia przy każdym kafelku (pełna logika frontu, bezpieczny stop „zamów/wyślij" = komunikat DEMO — firma nie funkcjonuje). Screeny kafelków przygotowuje Dowódca (podmiana PNG).
 
 ## NASTĘPNY KROK
 
-1. S1 cookie vs sticky (first visit @390).
-2. LinkedIn PARKED. Hours counter 0.
+1. Sesja: Demo 1/4 — Wizard (`plans/2026-11-17-demo-wizard.md`).
+2. Claim do decyzji: „2–4 weeks after the scan" (MR-16) — zostawić / złagodzić.
+3. Domain sweep (osobno): resztki `quietforge.flexgrafik.nl` w docs/SVG/GA4/vercel.json.
 
 ---
 

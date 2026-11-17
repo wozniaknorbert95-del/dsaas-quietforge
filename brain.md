@@ -45,8 +45,8 @@
 | Animation | Framer Motion + `prefers-reduced-motion` |
 | Icons | Lucide React |
 | Email | Nodemailer (SMTP via Cyberfolks: `s34.cyber-folks.pl:465`) |
-| Deploy | Vercel static export (`output: 'export'`) |
-| Build artifact | `dist/` (not `.next/`) |
+| Deploy | Cloudflare Pages static export (`output: 'export'` → `out/`) |
+| Build artifact | `out/` (static export; not `.next/`) |
 
 ---
 
@@ -86,10 +86,10 @@
 ### Cloudflare Pages (live platform)
 
 - Project: `dsaas-quietforge` · domains `quietforge.nl` + `www.quietforge.nl` (Cloudflare DNS zone)
-- Deploy: from GitHub (push to master). **Agent never triggers production deploy (Zasada 11)** — the Commander ships.
-- Verified live 2026-11-09 (SoT: mapa, `c5_ekosystem.py`); `quietforge.flexgrafik.nl` is dead — do not link it.
-- Legacy Vercel (project `flexgrafik-services`, `flexgrafik-services.vercel.app`): decommission pending — do not deploy there.
-- Build: `npm run build` → `dist/` uploaded as the Pages artifact.
+- Deploy: Cloudflare Pages CI on push to **`main`** (build `npm run build` → `out/`). **Agent never triggers production deploy (Zasada 11)** — the Commander orders it. Rollback: Pages → Rollback deployment.
+- Verified live 2026-11-09 (SoT: mapa, `MIG-30-PAGES-RUNBOOK.md`); `quietforge.flexgrafik.nl` is dead — do not link it.
+- Legacy Vercel (project `flexgrafik-services`): decommissioned — workflow removed in PR #11.
+- Preview URL: `https://dsaas-quietforge.pages.dev`.
 
 **Env (production):** — configure in Cloudflare Pages → Settings → Environment (same names as below)
 

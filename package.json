@@ -17,7 +17,7 @@
     "generate:artefacts": "node scripts/generate-artefact-pdfs.mjs",
     "audit:static-los": "node scripts/validate-static-los.mjs",
     "audit:los-diagram": "node scripts/audit-los-diagram.mjs",
-    "audit:links": "npx broken-link-checker https://quietforge.flexgrafik.nl --ordered",
+    "audit:links": "npx broken-link-checker https://quietforge.nl --ordered",
     "audit:navigation": "node scripts/audit-navigation.mjs",
     "audit:menu-footer": "node scripts/audit-menu-footer.mjs",
     "audit:lab": "node scripts/audit-lab-smoke.mjs",

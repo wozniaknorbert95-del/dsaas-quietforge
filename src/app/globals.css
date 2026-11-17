@@ -2591,7 +2591,15 @@ body[data-app="services"] {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border: var(--qf-border-w) solid var(--qf-border);
+  border-radius: var(--qf-radius);
   background: var(--qf-bg-inset);
+}
+
+/* Graceful-empty fallback inside a framed shot: frame owns the border. */
+.qf-fg-door-shot > div,
+.qf-demo-shot-frame > div {
+  border: 0;
+  border-radius: 0;
 }
 
 .qf-demo-shot-grid {
@@ -2615,6 +2623,7 @@ body[data-app="services"] {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border: var(--qf-border-w) solid var(--qf-border);
+  border-radius: var(--qf-radius);
   background: var(--qf-bg-inset);
 }
 

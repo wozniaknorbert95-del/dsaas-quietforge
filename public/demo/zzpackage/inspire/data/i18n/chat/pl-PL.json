@@ -1,0 +1,380 @@
+{
+  "locale": "pl-PL",
+  "opening": "Super — 2 krótkie pytania, a od razu zobaczysz nazwę firmy na aucie. Potem dopracujemy to w 2 minuty pod finalne mockupy.",
+  "stap_labels": {
+    "1": "Firma",
+    "2": "Pojazd",
+    "3": "Marketing",
+    "4": "Kontakt",
+    "5": "Logo i marka",
+    "6": "Budżet",
+    "7": "Podsumowanie"
+  },
+  "field_questions": {
+    "company.bedrijfsnaam": "Jaka nazwa firmy ma znaleźć się na aucie?",
+    "company.advertising": "Skąd masz klientów? Polecenia, Google, Instagram, auto już? Co działa najlepiej?",
+    "company.branche": "W jakiej branży działasz?",
+    "company.regio": "W jakim regionie chcesz być głównie rozpoznawalny?",
+    "vehicle.type": "O jaki pojazd chodzi?",
+    "vehicle.color": "Bez zdjęcia też się uda — jaki kolor ma Twój bus? Biały, szary, czarny? Kolor wpływa na kontrast.",
+    "where_bus.upload": "Gdzie najczęściej jeździ bus — {regio}? Wgraj **zdjęcie boku + logo** (PNG/JPG). Biały Caddy? Kolor wpływa na kontrast.",
+    "vehicle.usage": "Używasz auta tylko służbowo, czy też prywatnie / leasing / tymczasowo?",
+    "marketing.doelgroep": "Kto ma Cię zapamiętać po zobaczeniu auta?",
+    "marketing.diensten": "Jakie 3 usługi ewentualnie mają być na aucie? Krótko proszę.",
+    "marketing.desired_impression": "Jakie wrażenie ma robić auto?",
+    "marketing.vibe_pick": "Wybierz styl — schludny czy wyrazisty. Kliknij obraz.",
+    "marketing.primary_cta": "Jaka ma być najważniejsza akcja?",
+    "company.telefoon": "Jaki numer telefonu ma się znaleźć na aucie?",
+    "company.website": "Jaka strona www ma się znaleźć na aucie?",
+    "marketing.slogan": "Masz krótki slogan? Max 6 słów. Możesz pominąć.",
+    "brand_assets.logo_status": "Wgraj logo. Jeśli nie masz dobrego pliku — powiedz śmiało.",
+    "brand_assets.brand_colors": "Jakich kolorów marki chcesz użyć?",
+    "preferences.must_include": "Co na pewno musi być widoczne?",
+    "budget.range": "Żeby nie pokazać mockupu poza Twoim budżetem: jaki jest orientacyjny budżet na realizację na aucie?"
+  },
+  "button_options": {
+    "company.branche": [
+      {
+        "id": "elektra",
+        "label": "Instalacje/elektryka"
+      },
+      {
+        "id": "bouw",
+        "label": "Budownictwo/malowanie"
+      },
+      {
+        "id": "schoonmaak",
+        "label": "Sprzątanie/opieka"
+      },
+      {
+        "id": "horeca",
+        "label": "HoReCa/handel"
+      },
+      {
+        "id": "it",
+        "label": "IT/usługi B2B"
+      },
+      {
+        "id": "anders",
+        "label": "Inne"
+      }
+    ],
+    "company.regio": [
+      {
+        "id": "rotterdam",
+        "label": "Rotterdam"
+      },
+      {
+        "id": "amsterdam",
+        "label": "Amsterdam"
+      },
+      {
+        "id": "utrecht",
+        "label": "Utrecht"
+      },
+      {
+        "id": "den_haag",
+        "label": "Haga"
+      },
+      {
+        "id": "eindhoven",
+        "label": "Eindhoven"
+      },
+      {
+        "id": "anders",
+        "label": "Inny"
+      }
+    ],
+    "vehicle.type": [
+      {
+        "id": "caddy",
+        "label": "Caddy/Partner"
+      },
+      {
+        "id": "bus_l",
+        "label": "Bus L"
+      },
+      {
+        "id": "bus_xl",
+        "label": "Bus XL"
+      },
+      {
+        "id": "passenger",
+        "label": "Osobowy/Kombi"
+      },
+      {
+        "id": "other",
+        "label": "Inne"
+      }
+    ],
+    "vehicle.usage": [
+      {
+        "id": "zakelijk",
+        "label": "Tylko służbowe"
+      },
+      {
+        "id": "prive_en_zakelijk",
+        "label": "Prywatne + służbowe"
+      },
+      {
+        "id": "lease",
+        "label": "Leasing"
+      },
+      {
+        "id": "tijdelijk",
+        "label": "Tymczasowo"
+      }
+    ],
+    "marketing.desired_impression": [
+      {
+        "id": "strak",
+        "label": "Czysto / schludnie"
+      },
+      {
+        "id": "opvallend",
+        "label": "Wyraziste"
+      },
+      {
+        "id": "premium",
+        "label": "Premium"
+      },
+      {
+        "id": "lokaal_betrouwbaar",
+        "label": "Lokalnie wiarygodne"
+      },
+      {
+        "id": "vriendelijk",
+        "label": "Przyjazne"
+      },
+      {
+        "id": "stoer",
+        "label": "Mocne / odważne"
+      }
+    ],
+    "marketing.primary_cta": [
+      {
+        "id": "telefoon",
+        "label": "Zadzwoń"
+      },
+      {
+        "id": "website",
+        "label": "Odwiedź stronę"
+      },
+      {
+        "id": "qr",
+        "label": "Skanuj QR"
+      },
+      {
+        "id": "geen",
+        "label": "Tylko rozpoznawalność"
+      }
+    ],
+    "budget.range": [
+      {
+        "id": "tot_150",
+        "label": "Do €150"
+      },
+      {
+        "id": "150_300",
+        "label": "€150–€300"
+      },
+      {
+        "id": "300_600",
+        "label": "€300–€600"
+      },
+      {
+        "id": "600_1000",
+        "label": "€600–€1000"
+      },
+      {
+        "id": "1000_plus",
+        "label": "€1000+"
+      },
+      {
+        "id": "weet_ik_niet",
+        "label": "Nie wiem"
+      }
+    ],
+    "budget.flexibility": [
+      {
+        "id": "strikt",
+        "label": "Sztywny"
+      },
+      {
+        "id": "flexibel_als_het_klopt",
+        "label": "Elastyczny, jeśli projekt naprawdę pasuje"
+      },
+      {
+        "id": "advies_nodig",
+        "label": "Nie wiem — doradź mi"
+      }
+    ],
+    "brand_assets.logo_status": [
+      {
+        "id": "uploaded_vector",
+        "label": "Wgraj logo"
+      },
+      {
+        "id": "uploaded_png",
+        "label": "Mam tylko PNG/JPG"
+      },
+      {
+        "id": "no_logo",
+        "label": "Nie mam dobrego logo"
+      },
+      {
+        "id": "needs_cleanup",
+        "label": "Logo wymaga odświeżenia"
+      }
+    ],
+    "brand_assets.logo_rescue_pick": [
+      {
+        "id": "bold",
+        "label": "Pogrubione"
+      },
+      {
+        "id": "minimal",
+        "label": "Minimalistyczne"
+      },
+      {
+        "id": "badge",
+        "label": "Badge / okrągłe"
+      }
+    ],
+    "preferences.must_include": [
+      {
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "id": "bedrijfsnaam",
+        "label": "Nazwa firmy"
+      },
+      {
+        "id": "telefoon",
+        "label": "Telefon"
+      },
+      {
+        "id": "website",
+        "label": "Strona WWW"
+      },
+      {
+        "id": "diensten",
+        "label": "Usługi"
+      },
+      {
+        "id": "slogan",
+        "label": "Slogan"
+      },
+      {
+        "id": "qr",
+        "label": "QR"
+      }
+    ]
+  },
+  "acks": {
+    "greeting": "Witaj! Zaczynajmy — jaka nazwa firmy ma znaleźć się na aucie?",
+    "invalid_name": "Tej nazwy nie odczytam dobrze. Jaka nazwa firmy ma znaleźć się na aucie?",
+    "intent_request": "Rozumiem — chcesz reklamę na pojeździe. Super.\nJaka nazwa firmy ma znaleźć się na aucie?",
+    "logo_boilerplate": "Logo otrzymane — super.\nJaka nazwa firmy ma znaleźć się na aucie?",
+    "bedrijfsnaam_question": "Jaka nazwa firmy ma znaleźć się na aucie?",
+    "tell_more": "Opowiedz więcej o firmie i aucie.",
+    "design_non_binding": "Projekt bez zobowiązań — najpierw widzisz kierunek. Potem wybierz konkretny termin montażu.",
+    "scarcity_planner": "W tym tygodniu zostały 2 miejsca u planisty.",
+    "scarcity_premium": "Dla Premium planujemy montaż zwykle w ciągu 10 dni.",
+    "no_logo_rescue": "Brak logo? Przygotowałem 3 szybkie kierunki w 30 s — wybierz ulubiony. Dopracujemy w DF-004 (w cenie €49).",
+    "logo_rescue_pick": "Która typografia Ci odpowiada?",
+    "confirm_prompt": "Zgadza się? Potwierdź, żeby przejść do mockupów.",
+    "edit_saved": "Zmiany zapisane — oto zaktualizowane podsumowanie:",
+    "confirmed_mockups": "Brief potwierdzony. Mogę teraz wygenerować dwa mockupy.",
+    "ack_name": "Rozumiem — **{name}**. Dobiorę pakiet do Twojej sytuacji.",
+    "ack_name_branche": "Rozumiem — **{name}**, {branche}.",
+    "ack_vehicle": "Rozumiem — **{name}**, {branche} w **{regio}**. Teraz auto — to wyznacza zestawy Wizard.",
+    "ack_vehicle_short": "Rozumiem — **{name}**. Teraz auto.",
+    "ack_marketing": "Rozumiem — {vtype}. Teraz komunikat:",
+    "ack_cta": "Jasne — ustawię właściwe CTA na aucie.",
+    "ack_budget": "Prawie gotowe — budżet chroni przed zbyt drogą lub zbyt słabą propozycją.",
+    "ack_business_v61": "Super — **{name}**, {detail}.",
+    "business_retry_v61": "Hmm, tego nie zapiszę jako nazwy firmy — bez linków i losowych liter. Jak nazywa się Twoja firma i czym się zajmuje? Wystarczy jedno zdanie.",
+    "ack_advertising_v61": "Jasne — {reason}",
+    "ack_diensten_v61": "OK — te 3 zostawiamy czytelne z 5m.",
+    "ack_doelgroep_v61": "Rozumiem — CTA ustawiam pod to.",
+    "no_logo_rescue_v61": "Brak logo? Zrobię 3 szybkie kierunki typo — wybierz jeden.",
+    "vibe_pick_v61": "Kliknij styl — schludny czy wyrazisty.",
+    "tel_site_v61": "Numer telefonu na bus? I strona www jeśli chcesz ją pokazać.",
+    "referral_tease_v61": "Tip: znasz kolegę z 2+ busami? Rabat flotowy do 20% — zapytaj po montażu.",
+    "quick_preview_intro_v61": "Tak może wyglądać — 3 szybkie kierunki z Twoim logo:",
+    "quick_preview_intro": "Zobacz — tak może wyglądać **{name}** na Twoim {vehicle}. To 3 szybkie kierunki na podstawie {branche}. Który vibe Ci pasuje? Potem dopracujemy finalne 2 mockupy.",
+    "quick_preview_pick": "Napisz, który kierunek Ci odpowiada — potem zadam jeszcze kilka pytań.",
+    "budget_advise": "do doradzenia",
+    "empty": "—",
+    "brief_integrity_block": "Widzę niespójność w briefie (region/budżet/strona). Najpierw to poprawimy — dopiero potem potwierdzenie.",
+    "reject_budget_not_url": "To wygląda na stronę WWW — wybierz opcję budżetu.",
+    "reject_budget_enum": "Wybierz budżet z opcji (lub „Nie wiem”).",
+    "reject_flexibility_enum": "Czy budżet jest sztywny, elastyczny, czy mam doradzić?",
+    "reject_website_url": "Jaka strona ma być na aucie? (np. www.firma.nl)",
+    "reject_phone_not_url": "Potrzebuję numer telefonu, nie strony WWW.",
+    "reject_phone_format": "Jaki numer telefonu ma być na aucie?",
+    "reject_regio_not_branche": "W jakim regionie chcesz być rozpoznawalny? (miasto/region, nie branża)",
+    "reject_regio_not_url": "Region to nie strona WWW — jakie miasto/region?",
+    "reject_regio_not_budget": "Region to nie budżet — jakie miasto/region?",
+    "reject_doelgroep_not_branche": "Kto ma Cię zapamiętać po zobaczeniu auta? (grupa docelowa)",
+    "reject_doelgroep_not_url": "Grupa docelowa to nie strona WWW — kto ma Cię zapamiętać?",
+    "reject_empty": "Nie odczytałem odpowiedzi — wpisz ponownie."
+  },
+  "summary": {
+    "intro": "Podsumowuję brief:",
+    "line1": "1. Firma: {bedrijfsnaam} — {branche}, region {regio}.",
+    "line2": "2. Pojazd: {vehicle}, użytkowanie: {usage}.",
+    "line3": "3. Grupa docelowa: {doelgroep}.",
+    "line4": "4. Komunikat: {diensten}. CTA: {cta}.",
+    "line5": "5. Wizerunek/budżet: {impression}, {budget}.",
+    "outro": "Jeśli się zgadza, robię dwa mockupy inspiracji na zaproponowanych kierunkach Wizard."
+  },
+  "chrome": {
+    "standard_label": "Standard — czytelny start widoczności",
+    "premium_label": "Premium — maksymalny efekt marki",
+    "premium_growth": "kierunek wzrostu",
+    "progress_label": "Krok {current}/{total} — {label}",
+    "quick_preview_step": "Szybki kierunek"
+  },
+  "errors": {
+    "empty_message": "Wiadomość nie może być pusta.",
+    "rate_limit_chat": "Zbyt wiele wiadomości. Spróbuj ponownie później.",
+    "rate_limit_generate": "Wygenerowano już 2 mockupy. Spróbuj ponownie później.",
+    "session_not_found": "Nie znaleziono sesji.",
+    "logo_required": "Najpierw wgraj logo, żeby zrobić mockupy.",
+    "brief_incomplete": "Brief nie jest jeszcze kompletny."
+  },
+  "edit_panel": {
+    "title": "Edytuj brief",
+    "group_bedrijf": "Firma",
+    "group_auto": "Auto",
+    "group_marketing": "Marketing",
+    "group_contact": "Kontakt i CTA",
+    "group_logo": "Logo i marka",
+    "group_budget": "Budżet",
+    "save": "Zapisz zmiany",
+    "saved": "Brief zaktualizowany.",
+    "logo_reupload": "Wgraj logo ponownie (PNG/JPG)"
+  },
+  "offerte": {
+    "cta": "Poproś o wycenę",
+    "title": "Wycena w ciągu 48 godzin",
+    "subtitle": "Wyślemy spersonalizowaną wycenę e-mailem — bez płatności, bez Wizarda.",
+    "email": "Adres e-mail",
+    "telefoon": "Numer telefonu",
+    "consent": "Wyrażam zgodę na kontakt FlexGrafik w sprawie wyceny.",
+    "consent_marketing": "Informuj mnie o tipach i promocjach (opcjonalnie).",
+    "submit": "Poproś o wycenę →",
+    "trust": "FlexGrafik · KVK · Portfolio na flexgrafik.nl",
+    "whatsapp": "Wolisz WhatsApp?",
+    "success_title": "Super — sprawdzamy to teraz!",
+    "success_body": "Nick sprawdza Twoje zgłoszenie — śr. odpowiedź <2h w dni robocze. Sprawdź mail: 2 mockupy + 2 realne przykłady busów + link do umówienia montażu. Wolisz WhatsApp? Kliknij poniżej.",
+    "success_ref": "Referencja",
+    "indicatief": "orientacyjnie",
+    "trust_after": "127 ZZP nam zaufało • 4.8★ Google • Własny montaż",
+    "calendar_url": "https://calendly.com/flexgrafik/montage-intake",
+    "whatsapp_prefill": "Cześć FlexGrafik, chcę kontynuować moje zapytanie o wycenę."
+  }
+}

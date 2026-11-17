@@ -1,0 +1,380 @@
+{
+  "locale": "nl-NL",
+  "opening": "Hoi, Nick hier — 10 jaar busjes Den Haag, 200+ gedaan. Om een mockup te maken die ook echt klanten oplevert, moet ik snappen wat je doet, waar je bus staat en wie moet bellen. Vertel in 2 zinnen: wat doet je bedrijf precies en voor wie?",
+  "stap_labels": {
+    "1": "Bedrijf",
+    "2": "Auto",
+    "3": "Marketing",
+    "4": "Contact",
+    "5": "Logo & merk",
+    "6": "Budget",
+    "7": "Samenvatting"
+  },
+  "field_questions": {
+    "company.bedrijfsnaam": "Hoe heet je bedrijf en wat doe je precies? Dus niet alleen naam maar 'elektricien zonnepanelen Ypenburg' — dan weet ik welke diensten op bus.",
+    "company.advertising": "Hoe kom je nu aan klanten? Mond-tot-mond, Google, Instagram, bus al? Wat werkt best? Vraag ik omdat als meeste mond-tot-mond is, bus moet vooral herkenning bouwen met telefoon groot.",
+    "company.branche": "In welke branche werk je?",
+    "company.regio": "Waar staat je bus het meest stil waar mensen hem zien? Bouwplaats hele dag of woonwijk voor deur? En welke wijken?",
+    "vehicle.type": "Welke bus en welke kleur? Wit, grijs? Kleur bepaalt contrast.",
+    "vehicle.color": "Geen foto nodig — welke kleur heeft je bus? Wit, grijs, zwart? Kleur bepaalt het contrast.",
+    "where_bus.upload": "Waar rijdt de bus het meest — {regio}? Upload **foto zijkant + logo** (PNG/JPG). Witte Caddy? Kleur bepaalt contrast op de wrap.",
+    "vehicle.usage": "Rij je ook privé met kids? Vraag ik omdat bij privé magneten eraf weekend handig zijn. Bij lease mag vaak geen wrap. Hoe zit het?",
+    "marketing.doelgroep": "En wie moet bellen als ie bus ziet — direct particulier met storing, of ook bedrijven voor vaste klus?",
+    "marketing.diensten": "Ik stel voor op bus: {diensten} — leesbaar vanaf 5m. Klopt of wil je andere?",
+    "marketing.desired_impression": "Welke vibe spreekt meer — strak professioneel of opvallend in de wijk?",
+    "marketing.vibe_pick": "Kijk — voor jouw branche 2 richtingen uit portfolio. Welke vibe spreekt meer? Klik plaatje.",
+    "marketing.primary_cta": "Moet ie direct bellen op 06 of eerst site kijken? Vraag ik omdat bij direct bellen telefoon 2x groter achter moet.",
+    "company.telefoon": "Welk telefoonnummer moet erop?",
+    "company.website": "Welke website moet erop?",
+    "marketing.slogan": "Heb je een korte slogan? Max 6 woorden. Je mag ook overslaan.",
+    "brand_assets.logo_status": "Upload je logo. Als je geen goed bestand hebt, zeg het gerust.",
+    "brand_assets.brand_colors": "Welke merkkleuren wil je gebruiken?",
+    "preferences.must_include": "Wat moet zeker zichtbaar zijn?",
+    "budget.range": "Start €149 testen eraf privé, Groei €399 vast. Waar voel je je comfortabel? €149–€399 of €600+? Adviseer graag."
+  },
+  "button_options": {
+    "company.branche": [
+      {
+        "id": "elektra",
+        "label": "Installatie/elektra"
+      },
+      {
+        "id": "bouw",
+        "label": "Bouw/schilder"
+      },
+      {
+        "id": "schoonmaak",
+        "label": "Schoonmaak/zorg"
+      },
+      {
+        "id": "horeca",
+        "label": "Horeca/retail"
+      },
+      {
+        "id": "it",
+        "label": "IT/zakelijke dienst"
+      },
+      {
+        "id": "anders",
+        "label": "Anders"
+      }
+    ],
+    "company.regio": [
+      {
+        "id": "rotterdam",
+        "label": "Rotterdam"
+      },
+      {
+        "id": "amsterdam",
+        "label": "Amsterdam"
+      },
+      {
+        "id": "utrecht",
+        "label": "Utrecht"
+      },
+      {
+        "id": "den_haag",
+        "label": "Den Haag"
+      },
+      {
+        "id": "eindhoven",
+        "label": "Eindhoven"
+      },
+      {
+        "id": "anders",
+        "label": "Anders"
+      }
+    ],
+    "vehicle.type": [
+      {
+        "id": "caddy",
+        "label": "Caddy/Partner"
+      },
+      {
+        "id": "bus_l",
+        "label": "Bestelbus L"
+      },
+      {
+        "id": "bus_xl",
+        "label": "Bestelbus XL"
+      },
+      {
+        "id": "passenger",
+        "label": "Personenauto/Kombi"
+      },
+      {
+        "id": "other",
+        "label": "Anders"
+      }
+    ],
+    "vehicle.usage": [
+      {
+        "id": "zakelijk",
+        "label": "Alleen zakelijk"
+      },
+      {
+        "id": "prive_en_zakelijk",
+        "label": "Privé + zakelijk"
+      },
+      {
+        "id": "lease",
+        "label": "Lease"
+      },
+      {
+        "id": "tijdelijk",
+        "label": "Tijdelijk"
+      }
+    ],
+    "marketing.desired_impression": [
+      {
+        "id": "strak",
+        "label": "Strak"
+      },
+      {
+        "id": "opvallend",
+        "label": "Opvallend"
+      },
+      {
+        "id": "premium",
+        "label": "Premium"
+      },
+      {
+        "id": "lokaal_betrouwbaar",
+        "label": "Lokaal betrouwbaar"
+      },
+      {
+        "id": "vriendelijk",
+        "label": "Vriendelijk"
+      },
+      {
+        "id": "stoer",
+        "label": "Stoer"
+      }
+    ],
+    "marketing.primary_cta": [
+      {
+        "id": "telefoon",
+        "label": "Bellen"
+      },
+      {
+        "id": "website",
+        "label": "Website bezoeken"
+      },
+      {
+        "id": "qr",
+        "label": "QR scannen"
+      },
+      {
+        "id": "geen",
+        "label": "Alleen herkenning"
+      }
+    ],
+    "budget.range": [
+      {
+        "id": "tot_150",
+        "label": "Tot €150"
+      },
+      {
+        "id": "150_300",
+        "label": "€150–€300"
+      },
+      {
+        "id": "300_600",
+        "label": "€300–€600"
+      },
+      {
+        "id": "600_1000",
+        "label": "€600–€1000"
+      },
+      {
+        "id": "1000_plus",
+        "label": "€1000+"
+      },
+      {
+        "id": "weet_ik_niet",
+        "label": "Ik weet het niet"
+      }
+    ],
+    "budget.flexibility": [
+      {
+        "id": "strikt",
+        "label": "Strikt"
+      },
+      {
+        "id": "flexibel_als_het_klopt",
+        "label": "Flexibel als het ontwerp echt klopt"
+      },
+      {
+        "id": "advies_nodig",
+        "label": "Ik weet het niet — adviseer mij"
+      }
+    ],
+    "brand_assets.logo_status": [
+      {
+        "id": "uploaded_vector",
+        "label": "Logo uploaden"
+      },
+      {
+        "id": "uploaded_png",
+        "label": "Ik heb alleen PNG/JPG"
+      },
+      {
+        "id": "no_logo",
+        "label": "Ik heb geen goed logo"
+      },
+      {
+        "id": "needs_cleanup",
+        "label": "Logo moet opgefrist worden"
+      }
+    ],
+    "brand_assets.logo_rescue_pick": [
+      {
+        "id": "bold",
+        "label": "Vet & krachtig"
+      },
+      {
+        "id": "minimal",
+        "label": "Minimal strak"
+      },
+      {
+        "id": "badge",
+        "label": "Badge / round"
+      }
+    ],
+    "preferences.must_include": [
+      {
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "id": "bedrijfsnaam",
+        "label": "Bedrijfsnaam"
+      },
+      {
+        "id": "telefoon",
+        "label": "Telefoon"
+      },
+      {
+        "id": "website",
+        "label": "Website"
+      },
+      {
+        "id": "diensten",
+        "label": "Diensten"
+      },
+      {
+        "id": "slogan",
+        "label": "Slogan"
+      },
+      {
+        "id": "qr",
+        "label": "QR"
+      }
+    ]
+  },
+  "acks": {
+    "greeting": "Welkom! Laten we beginnen — wat is de bedrijfsnaam die op de auto moet komen?",
+    "invalid_name": "Die naam kan ik niet goed lezen. Wat is de bedrijfsnaam die op de auto moet komen?",
+    "intent_request": "Begrijp ik — je wilt voertuigreclame. Top.\nWat is de bedrijfsnaam die op de auto moet komen?",
+    "logo_boilerplate": "Logo ontvangen — top.\nWat is de bedrijfsnaam die op de auto moet komen?",
+    "bedrijfsnaam_question": "Wat is de bedrijfsnaam die op de auto moet komen?",
+    "tell_more": "Vertel me meer over je bedrijf en auto.",
+    "design_non_binding": "Vrijblijvend ontwerp — je ziet eerst de richting. Wel graag daarna een concrete montagedatum prikken.",
+    "scarcity_planner": "Deze week nog 2 plekken bij onze planner.",
+    "scarcity_premium": "Voor Premium plannen we normaal binnen 10 dagen.",
+    "no_logo_rescue": "Geen goed logo? Ik maakte 3 snelle richtingen in 30 sec — kies je favoriet. Wij perfectioneren hem in DF-004 (inbegrepen €49).",
+    "logo_rescue_pick": "Welke typografie spreekt je aan?",
+    "confirm_prompt": "Klopt dit zo? Bevestig om door te gaan naar de mockups.",
+    "edit_saved": "Aanpassingen opgeslagen — hier is je bijgewerkte samenvatting:",
+    "confirmed_mockups": "Je brief is bevestigd. Ik kan nu twee mockups genereren.",
+    "brief_integrity_block": "Ik zie nog een tegenstrijdigheid in je brief (regio/budget/website). Laten we dat eerst rechtzetten — pas daarna kan ik bevestigen.",
+    "reject_budget_not_url": "Dat lijkt op een website — kies een richtbudget-optie.",
+    "reject_budget_enum": "Kies een richtbudget uit de opties (of ‘Ik weet het niet’).",
+    "reject_flexibility_enum": "Is dat budget strikt, flexibel, of zal ik adviseren?",
+    "reject_website_url": "Welke website moet erop? (bijv. www.bedrijf.nl)",
+    "reject_phone_not_url": "Ik heb een telefoonnummer nodig, geen website.",
+    "reject_phone_format": "Welk telefoonnummer moet erop?",
+    "reject_regio_not_branche": "In welke regio wil je herkend worden? (stad/regio, niet branche)",
+    "reject_regio_not_url": "Regio is geen website — welke regio/stad?",
+    "reject_regio_not_budget": "Regio is geen budget — welke regio/stad?",
+    "reject_doelgroep_not_branche": "Wie moet jou onthouden na het zien van de auto? (doelgroep)",
+    "reject_doelgroep_not_url": "Doelgroep is geen website — wie moet jou onthouden?",
+    "reject_empty": "Ik heb je antwoord niet goed gelezen — kun je het opnieuw typen?",
+    "ack_name": "Begrepen — **{name}**. Dan kies ik straks een passend pakket bij jouw situatie.",
+    "ack_name_branche": "Begrepen — **{name}**, {branche}.",
+    "ack_vehicle": "Begrepen — **{name}**, {branche} in **{regio}**. Nu je auto — dat bepaalt welke Wizard-sets passen.",
+    "ack_vehicle_short": "Begrepen — **{name}**. Nu je auto.",
+    "ack_marketing": "Begrepen — {vtype}. Nu de boodschap:",
+    "ack_cta": "Duidelijk — dan zet ik de juiste call-to-action op de auto.",
+    "ack_budget": "Bijna klaar — het richtbudget beschermt je tegen een te dure of te magere richting.",
+    "ack_business_v61": "Top — **{name}**, {detail}.",
+    "business_retry_v61": "Hmm, dat kan ik niet als bedrijfsnaam noteren — geen links of losse letters. Hoe heet je bedrijf, en wat doe je? 1 zin is genoeg.",
+    "ack_advertising_v61": "Check — {reason}",
+    "ack_diensten_v61": "Mooi — die 3 houden we leesbaar op 5m.",
+    "ack_doelgroep_v61": "Helder — dan richt ik CTA daarop.",
+    "no_logo_rescue_v61": "Geen logo? Dan maak ik 3 snelle typo-richtingen — kies er één.",
+    "vibe_pick_v61": "Klik welke vibe past — strak of opvallend.",
+    "tel_site_v61": "Telefoonnummer op de bus? En website als je die wilt vermelden.",
+    "referral_tease_v61": "Tip: ken je een collega met 2+ bussen? Fleet-korting tot 20% — vraag ernaar na montage.",
+    "quick_preview_intro_v61": "Kijk zo kan ie erop — 3 snelle richtingen met jouw logo:",
+    "quick_preview_intro": "Zie hem — {vehicle} met jouw logo. Kijk zo kan ie erop:",
+    "quick_preview_pick": "Typ gerust welke richting je aanspreekt — daarna stel ik nog een paar gerichte vragen.",
+    "budget_advise": "nog te adviseren",
+    "empty": "—"
+  },
+  "summary": {
+    "intro": "Ik vat je brief kort samen:",
+    "line1": "1. Bedrijf: {bedrijfsnaam} — {branche}, regio {regio}.",
+    "line2": "2. Auto: {vehicle}, gebruik: {usage}.",
+    "line3": "3. Doelgroep: {doelgroep}.",
+    "line4": "4. Boodschap: {diensten}. CTA: {cta}.",
+    "line5": "5. Uitstraling/budget: {impression}, {budget}.",
+    "outro": "Als dit klopt, maak ik twee inspiratie-mockups op de voorgestelde Wizard-richtingen."
+  },
+  "chrome": {
+    "standard_label": "Standard — Slim zichtbaar starten",
+    "premium_label": "Premium — Maximale merkuitstraling",
+    "premium_growth": "groeirichting",
+    "progress_label": "Stap {current}/{total} — {label}",
+    "quick_preview_step": "Snelle richting"
+  },
+  "errors": {
+    "empty_message": "Bericht mag niet leeg zijn.",
+    "rate_limit_chat": "Te veel chatberichten. Probeer het later opnieuw.",
+    "rate_limit_generate": "Je hebt al 2 mock-ups gegenereerd. Probeer het later opnieuw.",
+    "session_not_found": "Sessie niet gevonden.",
+    "logo_required": "Upload eerst je logo om mock-ups te maken.",
+    "brief_incomplete": "Brief is nog niet compleet."
+  },
+  "edit_panel": {
+    "title": "Brief aanpassen",
+    "group_bedrijf": "Bedrijf",
+    "group_auto": "Auto",
+    "group_marketing": "Marketing",
+    "group_contact": "Contact & CTA",
+    "group_logo": "Logo & merk",
+    "group_budget": "Budget",
+    "save": "Wijzigingen opslaan",
+    "saved": "Brief bijgewerkt.",
+    "logo_reupload": "Logo opnieuw uploaden (PNG/JPG)"
+  },
+  "offerte": {
+    "cta": "Offerte aanvragen",
+    "title": "Vrijblijvende offerte binnen 48 uur",
+    "subtitle": "Wij sturen je een persoonlijke offerte per e-mail — geen betaling, geen Wizard.",
+    "email": "E-mailadres",
+    "telefoon": "Telefoonnummer",
+    "consent": "Ik ga akkoord dat FlexGrafik contact opneemt voor mijn offerte-aanvraag.",
+    "consent_marketing": "Ja, houd me op de hoogte van tips en acties (optioneel).",
+    "submit": "Offerte aanvragen →",
+    "trust": "FlexGrafik · KVK · Portfolio op flexgrafik.nl",
+    "whatsapp": "Liever WhatsApp?",
+    "success_title": "Top — we bekijken het nu!",
+    "success_body": "Nick bekijkt je aanvraag — gem. reactie <2u op werkdagen. Check je mail: je 2 mockups + 2 echte bus-voorbeelden + link om montage datum te prikken. Ken je collega? €50 voor jullie allebei na montage. Liever direct appen? Klik hieronder.",
+    "success_ref": "Referentie",
+    "indicatief": "indicatief",
+    "trust_after": "127 ZZP gingen je voor • 4.8★ Google • Eigen montage",
+    "calendar_url": "https://calendly.com/flexgrafik/montage-intake",
+    "whatsapp_prefill": "Hoi FlexGrafik, ik wil graag verder met mijn offerte-aanvraag."
+  }
+}

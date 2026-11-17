@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Voertuigreclame Ontwerp — FlexGrafik</title>
+    <!-- SITE-01: fonts load ONCE via wp_enqueue_style('fg-fonts') in functions.php -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+
+    <!-- fg_theme_scripts() enqueue order for page-voertuigreclame-ontwerp.php -->
+    <link rel="stylesheet" href="../css/zzp-design-tokens.css">
+    <link rel="stylesheet" href="../css/zzp-components.css">
+    <link rel="stylesheet" href="../css/zzp-utilities.css">
+    <link rel="stylesheet" href="../css/zzp-chrome.css">
+    <link rel="stylesheet" href="../css/zzp-buttons.css">
+    <link rel="stylesheet" href="zzp-style.css">
+    <link rel="stylesheet" href="../css/zzp-home-vca.css">
+    <link rel="stylesheet" href="../css/dtp-design-agent.css">
+
+    <meta name="description" content="Geen gewone AI-generator. Advies op basis van wat je doet, waar je bus staat en wie er moet bellen. 2 richtingen Standard/Premium met prijs vanaf &euro;149 + offerte &lt;2u via WhatsApp.">
+    <meta property="og:title" content="Voertuigreclame Ontwerp — FlexGrafik">
+    <meta property="og:description" content="Zie in 2 min hoe je bus klanten oplevert — met jouw logo, niet nep tekst.">
+    <meta property="og:type" content="website">
+
+    <!-- Demo chrome only (banner + demo-stop modal) -->
+    <style>
+        .demo-banner{position:relative;z-index:1200;background:var(--zzp-bg-secondary);border-bottom:1px solid var(--zzp-border-default);color:var(--zzp-accent-yellow);font-family:var(--zzp-font-mono);font-size:12px;letter-spacing:.05em;text-align:center;padding:7px 12px}
+        .demo-modal-backdrop{position:fixed;inset:0;z-index:2000;background:rgba(5,5,5,.82);display:flex;align-items:center;justify-content:center;padding:16px}
+        .demo-modal-backdrop[hidden]{display:none}
+        .demo-modal{position:relative;width:min(460px,100%);background:var(--zzp-bg-secondary);border:1px solid var(--zzp-border-default);border-radius:2px;padding:24px}
+        .demo-modal h2{font-family:var(--zzp-font-display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:1.25rem;color:var(--zzp-text-primary);margin:16px 0 12px}
+        .demo-modal p{color:var(--zzp-text-secondary);font-size:.9375rem;margin:0 0 12px}
+        .demo-modal .demo-ref{font-family:var(--zzp-font-mono);color:var(--zzp-accent-cyan);font-size:.8125rem;letter-spacing:.08em}
+        .demo-modal .btn-vca{margin-top:8px}
+    </style>
+
+    <!-- Demo API/AJAX layer — must run before dtp-design-agent.js reads window.daConfig -->
+    <script src="demo-boot.js"></script>
+</head>
+<body class="page-template page-template-page-voertuigreclame-ontwerp page-template-page-voertuigreclame-ontwerp-php page">
+
+<div class="demo-banner" role="status">DEMO &middot; FlexGrafik is offline — het adviesgesprek werkt volledig, alleen de aanvraag wordt niet verzonden.</div>
+
+<a href="#primary" class="skip-link">Direct naar hoofdinhoud</a>
+
+<div id="page" class="site">
+    <header id="masthead" class="site-header-vca">
+        <div class="hazard-stripe-yellow"></div>
+        <div class="header-inner-vca">
+            <a href="#" class="header-logo" rel="home">
+                <img src="assets/zzpackage-logo-primary.png"
+                     alt="ZZPackage"
+                     class="header-logo-img"
+                     width="162"
+                     height="44"
+                     loading="eager">
+            </a>
+            <div class="header-actions">
+                <div class="status-display" aria-hidden="true">
+                    <span>STATUS:</span> ONLINE
+                </div>
+                <a href="#"
+                   class="header-cta header-cta--design-agent"
+                   id="header-design-agent-cta">
+                    <span class="header-cta__badge">Nieuw</span>
+                    Ontwerp je bus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="../wizard/"
+                   class="header-cta header-cta--wizard"
+                   id="header-wizard-cta">
+                    Start de Wizard
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="primary" class="site-main da-page">
+
+        <section class="da-hero da-hero--compact dah-hero">
+            <div class="container-vca">
+                <h1 class="da-hero__title dah-hero__title">
+                    Zie in 2 min hoe je bus klanten oplevert — <span class="accent">met jouw logo, niet nep tekst</span>
+                </h1>
+                <p class="da-hero__subtitle dah-hero__subtitle">
+                    Geen gewone AI-generator. Advies op basis van wat je doet, waar je bus staat en wie er moet bellen.
+                    2 richtingen Standard/Premium met prijs vanaf &euro;149 + offerte &lt;2u via WhatsApp.
+                </p>
+
+                <div class="dah-hero__ctas">
+                    <a href="#design-agent" class="btn-vca btn-action da-hero__cta">Start gratis adviesgesprek</a>
+                    <a href="#dah-portfolio" class="btn-vca btn-secondary da-hero__cta">Bekijk voorbeelden</a>
+                </div>
+                <p class="dah-hero__micro">Gratis &bull; geen account &bull; eerste preview in 30 sec</p>
+            </div>
+        </section>
+
+        <section class="da-section da-section--chat" id="design-agent">
+            <div class="container-vca">
+
+                <div class="dah-needget">
+                    <div class="dah-needget__col">
+                        <h2 class="dah-needget__title">Wat heb je nodig?</h2>
+                        <ul class="dah-needget__list" role="list">
+                            <li><strong>Foto van je bus (zijkant).</strong> Mag gewoon met je telefoon gemaakt.</li>
+                            <li><strong>Je logo.</strong> Mag van een visitekaartje, geen vector nodig. Geen logo? Wij maken 3 lettertype-richtingen.</li>
+                        </ul>
+                    </div>
+                    <div class="dah-needget__col">
+                        <h2 class="dah-needget__title">Wat krijg je in 2 min?</h2>
+                        <ol class="dah-needget__list dah-needget__list--steps">
+                            <li>Eerste preview met <strong>jouw logo</strong> op je bus — binnen 30 sec.</li>
+                            <li>2 professionele richtingen met reden waarom ze passen bij jouw situatie (waar je bus staat + hoe je aan klanten komt).</li>
+                            <li>Offerte &lt;2u via mail + WhatsApp + Calendly om de montagedatum te prikken.</li>
+                        </ol>
+                    </div>
+                    <p class="dah-needget__micro">Geen account &bull; gratis &bull; max 5 vragen &bull; logo upload in stap 2</p>
+                </div>
+
+                <p class="dah-chat-eyebrow">FlexGrafik INSPIRE — jouw logo, jouw bus, advies op basis van je bedrijf</p>
+
+                <div class="da-chat" role="region" aria-label="Design Agent gesprek" id="da-chat">
+                    <div class="da-chat__header">
+                        <span class="da-chat__dot" aria-hidden="true"></span>
+                        <span class="da-chat__title">FlexGrafik adviesgesprek</span>
+                        <div class="da-lang" id="da-lang" role="group" aria-label="Taal kiezen">
+                            <button type="button" class="da-lang__btn" data-locale="nl-NL" aria-pressed="true">NL</button>
+                            <button type="button" class="da-lang__btn" data-locale="pl-PL" aria-pressed="false">PL</button>
+                            <button type="button" class="da-lang__btn" data-locale="en-GB" aria-pressed="false">EN</button>
+                        </div>
+                        <span class="da-chat__status" id="da-status">Online</span>
+                    </div>
+                    <div class="da-chat__disclosure" role="note">Je chat met een AI-assistent van FlexGrafik. Wil je een mens? Laat het weten — we nemen over.</div>
+                    <div class="da-chat__body" id="da-chat-body" aria-live="polite" aria-relevant="additions"></div>
+                    <div class="da-chat__input-area" id="da-input-area"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="da-section dah-how" id="dah-how">
+            <div class="container-vca">
+                <div class="da-section-header">
+                    <h2>Hoe we adviseren (niet genereren)</h2>
+                </div>
+                <div class="dah-how__grid">
+                    <figure class="dah-step">
+                        <img src="assets/howitworks-vertelt.webp" alt="Klant maakt foto van de zijkant van zijn bus" width="600" height="600" loading="lazy">
+                        <figcaption>
+                            <strong>1. Jij vertelt</strong>
+                            <span>Wat je doet en waar je bus staat — 2 minuten in de chat.</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="dah-step">
+                        <img src="assets/howitworks-kijken.webp" alt="Analyse van logo, buskleur en contrast" width="600" height="448" loading="lazy">
+                        <figcaption>
+                            <strong>2. Wij kijken</strong>
+                            <span>Logo-kwaliteit, buskleur, contrast en waar je bus stilstaat.</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="dah-step">
+                        <img src="assets/howitworks-krijgt.webp" alt="Twee ontwerprichtingen met het eigen logo op de bus" width="600" height="448" loading="lazy">
+                        <figcaption>
+                            <strong>3. Jij krijgt</strong>
+                            <span>2 richtingen met jouw logo, waarom ze passen, prijs en offerte &lt;2u.</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="da-section dah-compare" id="dah-compare">
+            <div class="container-vca">
+                <div class="da-section-header">
+                    <h2>Waarom beter dan een gewone AI-generator?</h2>
+                </div>
+                <div class="dah-table-wrap">
+                    <table class="dah-table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="screen-reader-text">Aspect</span></th>
+                                <th scope="col">Gewone generator</th>
+                                <th scope="col">FlexGrafik INSPIRE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Logo</th>
+                                <td><span class="dah-cross" aria-hidden="true">&#10007;</span> Vervormd, witte rand</td>
+                                <td><span class="dah-check" aria-hidden="true">&#10003;</span> Exact — zwart vlak voor contrast, rood op wit blijft rood</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tekst</th>
+                                <td><span class="dah-cross" aria-hidden="true">&#10007;</span> Nep-telefoonnummers</td>
+                                <td><span class="dah-check" aria-hidden="true">&#10003;</span> Jouw 06 exact leesbaar op 5m, website exact</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Advies</th>
+                                <td><span class="dah-cross" aria-hidden="true">&#10007;</span> Niks — random plaatje</td>
+                                <td><span class="dah-check" aria-hidden="true">&#10003;</span> Op basis van waar je bus staat, hoe je aan klanten komt en priv&eacute;/lease</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Producten</th>
+                                <td><span class="dah-cross" aria-hidden="true">&#10007;</span> Alleen een plaatje</td>
+                                <td><span class="dah-check" aria-hidden="true">&#10003;</span> 2 richtingen: &euro;149 magneten vs &euro;399 wrap — met prijs en reden</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Volgende stap</th>
+                                <td><span class="dah-cross" aria-hidden="true">&#10007;</span> Niks</td>
+                                <td><span class="dah-check" aria-hidden="true">&#10003;</span> Offerte &lt;2u mail + WhatsApp + Calendly om de datum te prikken</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="da-section dah-get" id="dah-portfolio">
+            <div class="container-vca">
+                <div class="da-section-header">
+                    <h2>Wat krijg je na 2 min?</h2>
+                </div>
+
+                <div class="dah-get__cards">
+                    <div class="dah-offer">
+                        <h3>Standard — Magneten</h3>
+                        <p class="dah-offer__price">&euro;149</p>
+                        <ul role="list">
+                            <li>Set magneten op maat van je bus</li>
+                            <li>Test 3 maanden risicoloos — eraf in het weekend</li>
+                            <li>Past bij lease of priv&eacute;-bus</li>
+                        </ul>
+                        <p class="dah-offer__reason">Waarom: eerst testen of je wijk reageert, zonder meteen vast te zitten.</p>
+                    </div>
+                    <div class="dah-offer dah-offer--premium">
+                        <span class="dah-offer__badge">Meest gekozen</span>
+                        <h3>Premium — Wrap</h3>
+                        <p class="dah-offer__price">&euro;399 <span class="dah-offer__monthly">(&euro;33/mnd)</span></p>
+                        <ul role="list">
+                            <li>Professionele wrap in jouw huisstijl</li>
+                            <li>Drukklare bestanden (DF-004) inbegrepen</li>
+                            <li>3M/Avery folie — 2 jaar garantie, eigen montage</li>
+                        </ul>
+                        <p class="dah-offer__reason">Waarom: maximale zichtbaarheid als je bus dagelijks in de wijk staat.</p>
+                    </div>
+                </div>
+
+                <div class="dah-portfolio__grid">
+                    <figure class="dah-pair">
+                        <div class="dah-pair__imgs">
+                            <img src="assets/portfolio-caddy-voor.webp" alt="Witte Caddy zonder reclame" width="600" height="600" loading="lazy">
+                            <img src="assets/portfolio-caddy-na.webp" alt="Caddy met strakke wrap en logo" width="600" height="448" loading="lazy">
+                        </div>
+                        <figcaption><strong>Voor / na — Caddy</strong><span>&ldquo;Binnen 2 weken geregeld, veel bekijks in de wijk.&rdquo; — Schilder Janssen</span></figcaption>
+                    </figure>
+                    <figure class="dah-pair">
+                        <div class="dah-pair__imgs">
+                            <img src="assets/portfolio-busl-voor.webp" alt="Bus L zonder reclame" width="600" height="600" loading="lazy">
+                            <img src="assets/portfolio-busl-na.webp" alt="Bus L met strak ontwerp" width="600" height="448" loading="lazy">
+                        </div>
+                        <figcaption><strong>Voor / na — Bus L</strong><span>Strakke lijnen, logo exact, telefoon leesbaar op afstand.</span></figcaption>
+                    </figure>
+                    <figure class="dah-pair">
+                        <div class="dah-pair__imgs">
+                            <img src="assets/portfolio-busxl-voor.webp" alt="Bus XL zonder reclame" width="600" height="600" loading="lazy">
+                            <img src="assets/portfolio-busxl-na.webp" alt="Bus XL met opvallende wrap" width="600" height="448" loading="lazy">
+                        </div>
+                        <figcaption><strong>Voor / na — Bus XL</strong><span>Opvallende richting voor maximale zichtbaarheid op de bouwplaats.</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="da-section dah-proof" id="dah-proof">
+            <div class="container-vca">
+                <p class="dah-proof__bar">
+                    <strong>4,8&#9733;</strong> uit 127 <a href="https://g.page/flexgrafik" target="_blank" rel="noopener">Google-reviews</a> &bull;
+                    KVK 89057554 &bull; Sinds 2015 &bull; Eigen montage Den Haag &bull; 3M/Avery — 2 jaar garantie &bull; Reactie &lt;2u op werkdagen
+                </p>
+
+                <div class="dah-faq">
+                    <h2 class="dah-faq__title">Veelgestelde vragen</h2>
+                    <details class="dah-faq__item">
+                        <summary>Kost het geld?</summary>
+                        <p>Nee. Het adviesgesprek en je 2 mockups zijn gratis — je betaalt pas na akkoord op de offerte.</p>
+                    </details>
+                    <details class="dah-faq__item">
+                        <summary>Geen vectorlogo?</summary>
+                        <p>Geen probleem. Wij maken 3 lettertype-richtingen in &lt;1 seconde uit je bedrijfsnaam — jij kiest.</p>
+                    </details>
+                    <details class="dah-faq__item">
+                        <summary>Lease- of priv&eacute;-bus?</summary>
+                        <p>Ja, ook dan. We adviseren magneten die je in het weekend eraf haalt — dat staat expliciet in je advies.</p>
+                    </details>
+                    <details class="dah-faq__item">
+                        <summary>Hoe lang duurt het?</summary>
+                        <p>2 minuten chat, eerste preview met je logo binnen 30 seconden, offerte binnen 2 uur.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <a href="#design-agent" class="dah-sticky-cta btn-vca btn-action" id="dah-sticky-cta">Start adviesgesprek</a>
+
+        <section class="da-section da-section--results" id="da-results" hidden>
+            <div class="container-vca">
+                <div class="da-section-header">
+                    <h2>Jouw 2 ontwerpen</h2>
+                    <p>Kies je favoriet — dit is inspiratie. Professionele uitvoering en drukklare bestanden door FlexGrafik.</p>
+                    <p class="da-results-disclaimer" id="da-results-disclaimer">
+                        AI-voorbeelden: logo en tekst op het voertuig zijn ter inspiratie, geen definitief drukbestand.
+                    </p>
+                </div>
+
+                <div class="da-mockup-grid" id="da-mockups"></div>
+
+                <div class="da-offerte-panel" id="da-offerte-panel" hidden>
+                    <h3 id="da-offerte-title">Vrijblijvende offerte binnen 48 uur</h3>
+                    <p class="da-offerte-panel__subtitle">Wij sturen je een persoonlijke offerte per e-mail — geen betaling, geen Wizard.</p>
+                    <p class="da-offerte-panel__selection" id="da-offerte-selection"></p>
+                    <div class="da-offerte-panel__form">
+                        <div class="da-form-field">
+                            <label for="da-offerte-email">E-mailadres</label>
+                            <input type="email" id="da-offerte-email" class="da-form-input" autocomplete="email" required>
+                        </div>
+                        <div class="da-form-field">
+                            <label for="da-offerte-telefoon">Telefoonnummer</label>
+                            <input type="tel" id="da-offerte-telefoon" class="da-form-input" autocomplete="tel" required>
+                        </div>
+                        <label class="da-offerte-consent">
+                            <input type="checkbox" id="da-offerte-consent" required>
+                            <span>Ik ga akkoord dat FlexGrafik contact opneemt voor mijn offerte-aanvraag. <a href="#" target="_blank" rel="noopener">Privacy</a></span>
+                        </label>
+                        <label class="da-offerte-consent da-offerte-consent--optional">
+                            <input type="checkbox" id="da-offerte-consent-marketing">
+                            <span>Ja, houd me op de hoogte van tips en acties (optioneel).</span>
+                        </label>
+                        <p class="da-offerte-panel__error" id="da-offerte-error" role="alert"></p>
+                        <button type="button" class="btn-vca btn-action" id="da-offerte-submit">Offerte aanvragen &rarr;</button>
+                        <p class="da-offerte-panel__trust">FlexGrafik &middot; KVK &middot; Portfolio op flexgrafik.nl</p>
+                        <p class="da-offerte-panel__whatsapp">
+                            Liever WhatsApp?
+                            <a href="https://wa.me/31687286151" target="_blank" rel="noopener noreferrer">Stuur een bericht</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="da-offerte-success" id="da-offerte-success" hidden>
+                    <h3 id="da-offerte-success-title">Top — we bekijken het nu!</h3>
+                    <p id="da-offerte-success-body">Nick bekijkt je aanvraag — gem. reactie &lt;2u op werkdagen.</p>
+                    <p class="da-offerte-success__trust" id="da-offerte-success-trust">4,8&#9733; uit 127 Google-reviews &bull; Eigen montage</p>
+                    <p class="da-offerte-success__ref"><strong>Referentie:</strong> <span id="da-offerte-ref"></span></p>
+                    <div class="da-offerte-success__actions">
+                        <a class="btn-vca btn-action" id="da-offerte-success-whatsapp" href="https://wa.me/31687286151" target="_blank" rel="noopener noreferrer">WhatsApp Nick &rarr;</a>
+                        <a class="btn-vca btn-secondary" id="da-offerte-success-calendar" href="https://calendly.com/flexgrafik/montage-intake" target="_blank" rel="noopener noreferrer">Plan montage-intake &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="da-reco da-reco--hidden" id="da-recommendations" hidden>
+                    <h3>Aanbevolen voor jouw voertuig</h3>
+                    <div class="da-reco__grid" id="da-reco-grid"></div>
+                </div>
+
+                <div class="da-alt-path">
+                    <p>Ik heb al drukklare bestanden</p>
+                    <a href="https://wa.me/31687286151?text=Ik%20heb%20al%20drukklare%20bestanden" class="btn-vca btn-warning" target="_blank" rel="noopener noreferrer">Neem contact op &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="colophon" class="site-footer footer-vca" aria-label="Site footer">
+        <div class="hazard-stripe-cyan"></div>
+
+        <div class="footer-main-vca">
+
+            <!-- 1. Brand -->
+            <div class="footer-col-brand">
+                <div class="footer-brand-stack">
+                    <a href="#" class="footer-brand-link">
+                        <img src="assets/zzpackage-logo-primary.png"
+                             alt="ZZPackage"
+                             class="footer-logo-zzp"
+                             width="147"
+                             height="40"
+                             loading="eager"
+                             fetchpriority="low">
+                    </a>
+                    <a href="https://flexgrafik.nl/" class="footer-brand-link footer-brand-link--fg" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/flexgrafik-logo.webp"
+                             alt="FlexGrafik"
+                             class="footer-logo-fg"
+                             width="87"
+                             height="20"
+                             loading="lazy">
+                    </a>
+                </div>
+                <p class="footer-tagline">De specialist in ZZP-branding.</p>
+            </div>
+
+            <!-- 2. Snel naar -->
+            <div class="footer-col-nav">
+                <p class="footer-col-title">Snel naar</p>
+                <nav class="footer-nav-grid" aria-label="Footer navigatie">
+                    <a href="../wizard/" class="footer-link-vca">Start de Wizard</a>
+                    <a href="https://flexgrafik.nl/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Wie zijn wij?</a>
+                    <a href="https://flexgrafik.nl/portfolio-diensten/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                    <a href="https://flexgrafik.nl/contact/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Over ons</a>
+                    <a href="#" class="footer-link-vca">Veelgestelde vragen</a>
+                    <a href="#" class="footer-link-vca">Materialen</a>
+                    <a href="#" class="footer-link-vca">Ontwerp je bus</a>
+                    <a href="https://wa.me/31687286151" class="footer-link-vca footer-link-wa" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        WhatsApp
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 3. Game & contact (desktop only) -->
+            <div class="footer-col-game">
+                <p class="footer-col-title">Game &amp; contact</p>
+                <a href="https://app.flexgrafik.nl" target="_blank" rel="noopener noreferrer" aria-label="Speel de game en win kortingscodes" class="footer-game-link">
+                    <img src="assets/spel-icoon.webp" alt="Speel en win brandingpakket" class="footer-game-img">
+                </a>
+                <a href="https://flexgrafik.nl/contact/" target="_blank" rel="noopener noreferrer" class="btn-vca btn-outline footer-contact-btn">Contact &rarr;</a>
+            </div>
+
+        </div><!-- /.footer-main-vca -->
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom-vca">
+            <nav class="footer-legal" aria-label="Juridische links">
+                <a href="#" class="footer-link-vca">Algemene Voorwaarden</a>
+                <a href="#" class="footer-link-vca">Privacybeleid</a>
+            </nav>
+            <p class="footer-meta">FLEXGRAFIK ROTTERDAM // KVK: 89057554</p>
+            <a href="#page" class="footer-back-top">&uarr; Terug naar boven</a>
+            <p class="footer-copyright">&copy; 2026 <a href="https://flexgrafik.nl/" target="_blank" rel="noopener noreferrer" class="footer-fg-link">FlexGrafik</a> — Rotterdam, NL</p>
+        </div>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ZZPackage",
+            "url": "https://zzpackage.flexgrafik.nl/",
+            "logo": "https://zzpackage.flexgrafik.nl/wp-content/themes/flexgrafik-wizard-theme/assets/images/zzpackage-logo-primary.png",
+            "parentOrganization": {
+                "@type": "Organization",
+                "name": "FlexGrafik",
+                "url": "https://flexgrafik.nl/",
+                "identifier": { "@type": "PropertyValue", "propertyID": "KVK", "value": "89057554" }
+            },
+            "sameAs": ["https://wa.me/31687286151"],
+            "address": { "@type": "PostalAddress", "addressLocality": "Rotterdam", "addressCountry": "NL" }
+        }
+        </script>
+    </footer>
+
+</div><!-- #page -->
+
+<div class="demo-modal-backdrop" id="demo-stop-modal" hidden>
+    <div class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-stop-title">
+        <div class="hazard-stripe-yellow" aria-hidden="true"></div>
+        <h2 id="demo-stop-title">Demo — deze aanvraag wordt niet verzonden.</h2>
+        <p>FlexGrafik is offline; dit is een werkende demo van het INSPIRE-adviesgesprek. Alles wat je ziet en klikt is echt, alleen de aanvraag stopt hier.</p>
+        <p class="demo-ref">Referentie: <span id="demo-stop-ref">DEMO-0000</span></p>
+        <button type="button" id="demo-stop-close" class="btn-vca btn-action">Sluiten</button>
+    </div>
+</div>
+
+<script>
+/* Sticky header scroll handler (footer.php) */
+(function() {
+    var header = document.querySelector('.site-header-vca');
+    if (!header) return;
+    function onScroll() {
+        if (window.scrollY > 180) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>
+
+<!-- wp_footer() script order for page-voertuigreclame-ontwerp.php (demo-boot.js is loaded in <head>) -->
+<script src="../js/dtp-design-agent.js"></script>
+</body>
+</html>

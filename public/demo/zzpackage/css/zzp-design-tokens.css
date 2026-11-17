@@ -1,0 +1,326 @@
+/**
+ * ZZPBranding Design Tokens
+ * Foundation for the entire UX/UI redesign.
+ * Independent file — no external CSS dependencies.
+ * Generated from: DESIGN-SYSTEM-SPECIFICATION.md + design-tokens.json
+ */
+
+:root {
+  /* ================================================================
+     1. COLORS
+     ================================================================ */
+
+  /* --- Dark Surfaces (portal flexgrafik.nl anchors: #070707/#111111/#1a1a1a) --- */
+  --zzp-bg-void: #050505;
+  --zzp-bg-primary: #070707;
+  --zzp-bg-secondary: #111111;
+  --zzp-bg-tertiary: #1a1a1a;
+  --zzp-bg-elevated: #242429;
+
+  /* --- Light / Reversed --- */
+  --zzp-text-primary: #ffffff;
+  --zzp-text-secondary: #b8b8c0;
+  --zzp-text-muted: #9ca3af;
+  --zzp-magenta-text-on-dark: #ff4da6; /* AA-safe magenta for text on dark surfaces (#d60075 fails at 3.7:1) */
+
+  /* --- Accent — Cyan --- */
+  --zzp-accent-cyan: #009fe3;
+  --zzp-accent-cyan-hover: #00b3f5;
+  --zzp-accent-cyan-active: #007bb8;
+  --zzp-accent-cyan-subtle: rgba(0, 159, 227, 0.15);
+
+  /* --- Accent — Magenta (portal #d60075) --- */
+  --zzp-accent-magenta: #d60075;
+  --zzp-accent-magenta-hover: #cc006d;
+  --zzp-accent-magenta-active: #b80063;
+  --zzp-accent-magenta-subtle: rgba(214, 0, 117, 0.15);
+
+  /* --- Accent — Safety Yellow (portal #eab308) --- */
+  --zzp-accent-yellow: #eab308;
+  --zzp-accent-yellow-hover: #f7cc50;
+  --zzp-accent-yellow-subtle: rgba(234, 179, 8, 0.15);
+
+  /* --- VCA Industrial Hazard Colors (unified with portal triad) --- */
+  --zzp-vca-hazard-yellow: #eab308;
+  --zzp-vca-hazard-cyan: #009fe3;
+  --zzp-vca-hazard-magenta: #d60075;
+  --zzp-vca-hazard-green: #00C853;
+  --zzp-vca-hazard-red: #D32F2F;
+
+  /* --- Semantic Colors --- */
+  --zzp-success: #22c55e;
+  --zzp-success-subtle: rgba(34, 197, 94, 0.15);
+  --zzp-error: #ef4444;
+  --zzp-error-hover: #f87171;
+  --zzp-error-subtle: rgba(239, 68, 68, 0.15);
+  --zzp-warning: #f59e0b;
+  --zzp-warning-subtle: rgba(245, 158, 11, 0.15);
+  --zzp-info: #3b82f6;
+  --zzp-info-subtle: rgba(59, 130, 246, 0.15);
+
+  /* --- Borders --- */
+  --zzp-border-default: #2a2a32;
+  --zzp-border-hover: #3a3a45;
+  --zzp-border-active: #009fe3;
+  --zzp-border-error: #ef4444;
+
+  /* ================================================================
+     2. TYPOGRAPHY
+     ================================================================ */
+
+  /* --- Font Families --- */
+  --zzp-font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --zzp-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --zzp-font-display: 'Barlow', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --zzp-font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* --- Font Weights --- */
+  --zzp-weight-regular: 400;
+  --zzp-weight-medium: 500;
+  --zzp-weight-semibold: 600;
+  --zzp-weight-bold: 700;
+
+  /* --- Font Sizes — Mobile (base) --- */
+  --zzp-text-xs: 0.75rem;      /* 12px */
+  --zzp-text-sm: 0.875rem;     /* 14px */
+  --zzp-text-base: 1rem;       /* 16px — minimum! */
+  --zzp-text-lg: 1.125rem;     /* 18px */
+  --zzp-text-xl: 1.25rem;      /* 20px */
+  --zzp-text-2xl: 1.5rem;      /* 24px */
+  --zzp-text-3xl: 1.875rem;    /* 30px */
+  --zzp-text-4xl: 2.25rem;     /* 36px */
+  --zzp-text-5xl: 3rem;        /* 48px */
+  --zzp-text-6xl: 3.75rem;     /* 60px */
+
+  /* --- Line Heights --- */
+  --zzp-leading-tight: 1.25;
+  --zzp-leading-normal: 1.5;
+  --zzp-leading-relaxed: 1.75;
+
+  /* --- Letter Spacing --- */
+  --zzp-tracking-tight: -0.02em;
+  --zzp-tracking-normal: 0em;
+  --zzp-tracking-wide: 0.05em;
+  --zzp-tracking-wider: 0.1em;
+
+  /* ================================================================
+     3. SPACING
+     ================================================================ */
+
+  --zzp-space-1: 0.25rem;   /* 4px */
+  --zzp-space-2: 0.5rem;    /* 8px */
+  --zzp-space-3: 0.75rem;   /* 12px */
+  --zzp-space-4: 1rem;      /* 16px */
+  --zzp-space-5: 1.25rem;   /* 20px */
+  --zzp-space-6: 1.5rem;    /* 24px */
+  --zzp-space-8: 2rem;      /* 32px */
+  --zzp-space-10: 2.5rem;   /* 40px */
+  --zzp-space-12: 3rem;     /* 48px */
+  --zzp-space-16: 4rem;     /* 64px */
+  --zzp-space-20: 5rem;     /* 80px */
+  --zzp-space-24: 6rem;     /* 96px */
+  --zzp-space-32: 8rem;     /* 128px */
+
+  /* ================================================================
+     4. LAYOUT & GRID
+     ================================================================ */
+
+  --zzp-container-max: 1280px;
+  --zzp-container-padding: var(--zzp-space-4); /* Mobile: 16px */
+
+  --zzp-grid-columns: 4;   /* Mobile */
+  --zzp-grid-gap: var(--zzp-space-4);
+
+  --zzp-section-padding-y: var(--zzp-space-12); /* 48px mobile */
+
+  /* ================================================================
+     5. COMPONENT SPACING
+     ================================================================ */
+
+  --zzp-card-padding: var(--zzp-space-6);        /* 24px */
+  --zzp-card-gap: var(--zzp-space-4);            /* 16px */
+  --zzp-input-padding: var(--zzp-space-3) var(--zzp-space-4); /* 12px 16px */
+  --zzp-btn-padding: var(--zzp-space-3) var(--zzp-space-6);   /* 12px 24px */
+
+  /* ================================================================
+     6. WIZARD-SPECIFIC LAYOUT
+     ================================================================ */
+
+  --zzp-wizard-sidebar-width: 280px;
+  --zzp-wizard-content-max: 640px;
+  --zzp-step-header-height: 56px;
+  --zzp-progress-bar-height: 8px;
+  --zzp-card-min-height: 80px;
+  --zzp-touch-target: 44px;
+
+  /* ================================================================
+     7. ELEVATION — SHADOWS, GLOWS, RADIUS
+     ================================================================ */
+
+  /* --- Shadows --- */
+  --zzp-shadow-none: none;
+  --zzp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --zzp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --zzp-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.4);
+  --zzp-shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.6);
+
+  /* --- Glows (neon accents) --- */
+  --zzp-glow-cyan: 0 0 30px rgba(0, 159, 227, 0.4);
+  --zzp-glow-magenta: 0 0 30px rgba(214, 0, 117, 0.4);
+  --zzp-glow-yellow: 0 0 20px rgba(234, 179, 8, 0.3);
+  --zzp-glow-error: 0 0 20px rgba(239, 68, 68, 0.3);
+
+  /* --- Border Radius --- */
+  --zzp-radius-sharp: 0px;
+  --zzp-radius-slight: 2px;
+  --zzp-radius-sm: 2px;
+  --zzp-radius-md: 4px;
+  --zzp-radius-lg: 8px;
+  --zzp-radius-xl: 12px;
+  --zzp-radius-full: 9999px;
+
+  /* --- VCA Industrial Borders --- */
+  --zzp-border-heavy: 2px solid #333338;
+
+  /* ================================================================
+     8. ACCESSIBILITY
+     ================================================================ */
+
+  --zzp-touch-target-min: 44px;
+  --zzp-touch-target-cta: 48px;
+  --zzp-focus-ring-width: 2px;
+  --zzp-focus-ring-color: var(--zzp-accent-cyan);
+  --zzp-focus-ring-offset: 2px;
+
+  /* ================================================================
+     9. MOTION & ANIMATION
+     ================================================================ */
+
+  /* --- Durations --- */
+  --zzp-duration-instant: 50ms;
+  --zzp-duration-fast: 150ms;
+  --zzp-duration-normal: 250ms;
+  --zzp-duration-slow: 400ms;
+
+  /* --- Easings --- */
+  --zzp-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --zzp-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --zzp-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --zzp-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ================================================================
+   LEGACY BRIDGE — consumed by style.css / faq / legal pages.
+   Single source of truth = --zzp-* above. Do NOT add new values here.
+   ================================================================ */
+:root {
+  --bg-dark: var(--zzp-bg-primary);
+  --bg-panel: var(--zzp-bg-secondary);
+  --bg-panel-hover: var(--zzp-bg-tertiary);
+  --text-main: #f3f4f6;
+  --text-muted: var(--zzp-text-muted);
+  --accent-cyan: var(--zzp-accent-cyan);
+  --accent-magenta: var(--zzp-accent-magenta);
+  --accent-yellow: var(--zzp-accent-yellow);
+  --accent-primary: var(--accent-cyan);
+  --accent-primary-hover: #008fcc;
+  --accent-secondary: var(--accent-magenta);
+  --accent-secondary-hover: var(--zzp-accent-magenta-hover);
+  --accent-success: #10b981;
+  --accent-warning: var(--accent-yellow);
+  --accent-danger: var(--zzp-error);
+  --border-color: #262626;
+  --font-sans: var(--zzp-font-body);
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* ================================================================
+   10. DESKTOP OVERRIDES (min-width: 768px)
+   ================================================================ */
+
+@media (min-width: 768px) {
+  :root {
+    /* Typography scale up */
+    --zzp-text-3xl: 2.25rem;   /* 36px */
+    --zzp-text-4xl: 2.75rem;   /* 44px */
+    --zzp-text-5xl: 3.5rem;    /* 56px */
+    --zzp-text-6xl: 4.5rem;    /* 72px */
+
+    /* Layout */
+    --zzp-container-padding: var(--zzp-space-8); /* 32px */
+    --zzp-grid-columns: 8;
+    --zzp-grid-gap: var(--zzp-space-6);
+    --zzp-section-padding-y: var(--zzp-space-20); /* 80px */
+
+    /* Wizard */
+    --zzp-step-header-height: 72px;
+    --zzp-progress-bar-height: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --zzp-grid-columns: 12;
+    --zzp-grid-gap: var(--zzp-space-8);
+  }
+}
+
+/* ================================================================
+   VCA INDUSTRIAL PREMIUM — deprecated aliases (no new values!).
+   Single source = --zzp-* tokens. Kept for home/wizard/checkout-vca CSS.
+   NOTE: --transition-fast intentionally NOT redefined here (bridge wins:
+   150ms ease — same as rendered behavior before SITE-01).
+   ================================================================ */
+:root {
+  /* VCA Colors */
+  --vca-yellow: var(--zzp-vca-hazard-yellow);
+  --vca-cyan: var(--zzp-vca-hazard-cyan);
+  --vca-magenta: var(--zzp-vca-hazard-magenta);
+  --vca-green: var(--zzp-vca-hazard-green);
+  --vca-red: var(--zzp-vca-hazard-red);
+
+  /* Industrial Surfaces */
+  --bg-void: var(--zzp-bg-void);
+  --bg-primary: var(--zzp-bg-primary);
+  --bg-panel: var(--zzp-bg-secondary);
+  --bg-panel-hover: var(--zzp-bg-tertiary);
+
+  /* Industrial Typography */
+  --text-bright: var(--zzp-text-primary);
+  --text-primary: #e0e0e3;
+  --text-secondary: #a1a1aa;
+  --text-dark: #000000;
+
+  --font-display: var(--zzp-font-display);
+  --font-body: var(--zzp-font-body);
+
+  /* Industrial Spacing */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Industrial Architecture */
+  --radius-sharp: var(--zzp-radius-sharp);
+  --radius-slight: var(--zzp-radius-slight);
+
+  --border-heavy: var(--zzp-border-heavy);
+}

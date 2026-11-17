@@ -1,0 +1,195 @@
+/*
+ * CO-VCA-01 — WooCommerce /afrekenen/ VCA industrial overlay
+ * Loaded after zzp-checkout.css; overrides Dark Premium V2 rounded/glass tokens.
+ */
+
+body.woocommerce-checkout.fg-checkout-vca,
+body.woocommerce-cart.fg-checkout-vca{
+  --vca-cyan:var(--zzp-vca-hazard-cyan);
+  --vca-magenta:var(--zzp-vca-hazard-magenta);
+  --vca-yellow:var(--zzp-vca-hazard-yellow);
+  --vca-green:var(--zzp-vca-hazard-green);
+  --font-display:var(--zzp-font-display);
+  --font-body:var(--zzp-font-body);
+}
+
+/* Trust bar — reassure parity */
+body.woocommerce-checkout.fg-checkout-vca #fg-checkout-trust{
+  background:#000 !important;
+  border-bottom:2px solid #222 !important;
+  padding:var(--space-4, 16px) var(--space-6, 24px) !important;
+  gap:var(--space-4, 16px) !important;
+}
+body.woocommerce-checkout.fg-checkout-vca #fg-checkout-trust .fg-trust-item{
+  font-family:var(--font-display) !important;
+  font-weight:700 !important;
+  font-size:.72rem !important;
+  letter-spacing:1px !important;
+  color:#a1a1aa !important;
+}
+body.woocommerce-checkout.fg-checkout-vca #fg-checkout-trust .fg-trust-item svg{
+  color:var(--vca-green) !important;
+  opacity:1 !important;
+}
+
+/* Panels — sharp industrial */
+body.woocommerce-checkout.fg-checkout-vca #customer_details,
+body.woocommerce-checkout.fg-checkout-vca #order_review_heading,
+body.woocommerce-checkout.fg-checkout-vca #order_review,
+body.woocommerce-checkout.fg-checkout-vca #payment{
+  background:#000 !important;
+  border:2px solid #222 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+body.woocommerce-checkout.fg-checkout-vca #order_review_heading{
+  background:#0e0e10 !important;
+  border-bottom:none !important;
+}
+
+/* Labels */
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout label{
+  font-family:var(--font-display) !important;
+  font-weight:700 !important;
+  font-size:.74rem !important;
+  letter-spacing:1px !important;
+  color:#a1a1aa !important;
+}
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout .required{
+  color:var(--vca-magenta) !important;
+}
+
+/* Inputs */
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout input[type="text"],
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout input[type="email"],
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout input[type="password"],
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout input[type="tel"],
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout textarea,
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout select,
+body.woocommerce-checkout.fg-checkout-vca .select2-container .select2-selection--single{
+  background:#000 !important;
+  border:2px solid #333 !important;
+  border-radius:0 !important;
+  color:#fff !important;
+  font-family:var(--font-body) !important;
+  box-shadow:none !important;
+}
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout input:focus,
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout textarea:focus,
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout select:focus{
+  border-color:var(--vca-cyan) !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
+body.woocommerce-checkout.fg-checkout-vca .select2-dropdown{
+  border-radius:0 !important;
+  border:2px solid #333 !important;
+}
+
+/* Order review */
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout-review-order-table thead th{
+  font-family:var(--font-display) !important;
+  letter-spacing:1px !important;
+  border-bottom:1px solid #222 !important;
+}
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout-review-order-table th,
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout-review-order-table td{
+  border-top:1px dashed #222 !important;
+}
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout-review-order-table .product-name img{
+  width:40px !important;
+  height:40px !important;
+  max-width:40px !important;
+  max-height:40px !important;
+  border-radius:0 !important;
+  object-fit:contain !important;
+}
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout-review-order-table .order-total th,
+body.woocommerce-checkout.fg-checkout-vca .woocommerce-checkout-review-order-table .order-total td{
+  font-family:var(--font-display) !important;
+  font-weight:900 !important;
+  font-size:1.3rem !important;
+  color:var(--vca-cyan) !important;
+  border-top:2px solid #222 !important;
+}
+
+/* Payment */
+body.woocommerce-checkout.fg-checkout-vca #payment{
+  border-radius:0 !important;
+}
+body.woocommerce-checkout.fg-checkout-vca #payment .payment_box{
+  background:#0e0e10 !important;
+  border:2px solid #333 !important;
+  border-radius:0 !important;
+}
+
+/* Place order — VCA cyan CTA */
+body.woocommerce-checkout.fg-checkout-vca #place_order{
+  background:var(--vca-cyan) !important;
+  color:#fff !important;
+  border:none !important;
+  border-bottom:4px solid #0077a3 !important;
+  border-radius:0 !important;
+  font-family:var(--font-display) !important;
+  font-weight:800 !important;
+  text-transform:uppercase !important;
+  letter-spacing:1px !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  min-height:52px !important;
+}
+body.woocommerce-checkout.fg-checkout-vca #place_order:hover{
+  background:var(--vca-yellow) !important;
+  color:#080709 !important;
+  border-bottom-color:#cc9900 !important;
+}
+
+body.woocommerce-checkout.fg-checkout-vca h1.entry-title,
+body.woocommerce-checkout.fg-checkout-vca .entry-title{
+  font-family:var(--font-display) !important;
+  text-transform:uppercase !important;
+}
+
+/* Mobile */
+@media (max-width:767px){
+  body.woocommerce-checkout.fg-checkout-vca form.woocommerce-checkout{
+    grid-template-columns:1fr !important;
+  }
+  body.woocommerce-checkout.fg-checkout-vca .form-row-first,
+  body.woocommerce-checkout.fg-checkout-vca .form-row-last{
+    width:100% !important;
+    float:none !important;
+  }
+  body.woocommerce-checkout.fg-checkout-vca #place_order{
+    min-height:48px !important;
+  }
+}
+
+/* Cart page — same VCA tokens */
+body.woocommerce-cart.fg-checkout-vca .woocommerce-cart-form,
+body.woocommerce-cart.fg-checkout-vca .cart-collaterals{
+  background:#000 !important;
+  border:2px solid #222 !important;
+  border-radius:0 !important;
+}
+body.woocommerce-cart.fg-checkout-vca .shop_table th,
+body.woocommerce-cart.fg-checkout-vca .shop_table td{
+  border-color:#222 !important;
+}
+body.woocommerce-cart.fg-checkout-vca .wc-proceed-to-checkout a.checkout-button{
+  background:var(--vca-cyan) !important;
+  border:none !important;
+  border-bottom:4px solid #0077a3 !important;
+  border-radius:0 !important;
+  font-family:var(--font-display) !important;
+  font-weight:800 !important;
+  text-transform:uppercase !important;
+}
+
+@media (prefers-reduced-motion:reduce){
+  body.woocommerce-checkout.fg-checkout-vca #place_order{
+    transition:none !important;
+  }
+}

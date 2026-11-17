@@ -1,0 +1,112 @@
+/*
+ * ZZP BUTTONS — single canonical contract (SITE-04)
+ * Canon = .btn-vca family (VCA industrial, depth-b sub-brand).
+ * Loaded globally after zzp-design-tokens.css.
+ * Legacy classes (.btn, .btn-primary, .btn-secondary) are ALIASES onto the
+ * contract — do not add new variants outside this file.
+ */
+
+/* ===== BASE ===== */
+.btn-vca,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--zzp-font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 16px 32px;
+  border: none;
+  border-radius: var(--zzp-radius-sharp);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  z-index: 1;
+  text-decoration: none;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+.btn-vca:focus-visible,
+.btn:focus-visible {
+  outline: var(--zzp-focus-ring-width) solid var(--zzp-focus-ring-color);
+  outline-offset: var(--zzp-focus-ring-offset);
+}
+
+/* ===== VARIANT: action (primary cyan) ===== */
+.btn-vca.btn-action,
+.btn.btn-action,
+.btn.btn-primary {
+  background: var(--vca-cyan);
+  color: var(--text-dark); /* dark on cyan = AA 8.6:1 (white was 2.97) */
+  border-bottom: 4px solid #0077a3;
+}
+.btn-vca.btn-action:hover,
+.btn.btn-action:hover:not(:disabled),
+.btn.btn-primary:hover {
+  background: var(--vca-yellow);
+  color: var(--text-dark);
+  border-bottom-color: #cc9900;
+  transform: translateY(-2px);
+}
+.btn-vca.btn-action:active,
+.btn.btn-action:active:not(:disabled),
+.btn.btn-primary:active {
+  transform: translateY(2px);
+  border-bottom-width: 0;
+  margin-bottom: 4px;
+}
+
+/* ===== VARIANT: warning (magenta) ===== */
+.btn-vca.btn-warning,
+.btn.btn-warning {
+  background: var(--vca-magenta);
+  color: var(--text-bright);
+  border-bottom: 4px solid #a30059;
+}
+.btn-vca.btn-warning:hover,
+.btn.btn-warning:hover:not(:disabled) {
+  background: var(--text-bright);
+  color: var(--vca-magenta);
+}
+
+/* ===== VARIANT: outline (cyan outline) ===== */
+.btn-vca.btn-outline,
+.btn.btn-outline {
+  background: transparent;
+  color: var(--vca-cyan);
+  border: 2px solid var(--vca-cyan);
+}
+.btn-vca.btn-outline:hover,
+.btn.btn-outline:hover {
+  background: var(--vca-cyan);
+  color: var(--text-dark);
+}
+
+/* ===== VARIANT: ghost / secondary (neutral outline) ===== */
+.btn-vca.btn-ghost,
+.btn.btn-ghost,
+.btn-vca.btn-secondary,
+.btn.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid var(--zzp-border-default);
+}
+.btn-vca.btn-ghost:hover,
+.btn.btn-ghost:hover:not(:disabled),
+.btn-vca.btn-secondary:hover,
+.btn.btn-secondary:hover {
+  border-color: var(--vca-cyan);
+  color: var(--vca-cyan);
+}
+
+/* ===== SIZES ===== */
+.btn-vca.btn-sm,
+.btn.btn-sm { padding: 10px 20px; font-size: .8rem; min-height: 40px; }
+.btn-vca.btn-lg,
+.btn.btn-lg { padding: 20px 40px; font-size: 1.25rem; }
+.btn-vca.btn-block,
+.btn.btn-block { width: 100%; }

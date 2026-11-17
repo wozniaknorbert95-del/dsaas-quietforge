@@ -1,0 +1,221 @@
+/**
+ * Materials page styles — extracted from page-materials.php inline <style> (SITE-06)
+ * Loaded only on the Materials template. Brand rgba values aligned to canonical tokens.
+ */
+
+/* VCA Industrial Premium — scoped enhancements for Materials page */
+.vca-section-header {
+    border-left: 8px solid var(--vca-magenta);
+    padding-left: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+.vca-eyebrow {
+    font-family: var(--font-display);
+    color: var(--vca-cyan);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+.vca-section-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--text-bright);
+    line-height: 1;
+    margin-bottom: var(--space-4);
+}
+
+.vca-spec-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--bg-void);
+    border: var(--border-heavy);
+    margin-bottom: var(--space-12);
+}
+.vca-spec-item {
+    padding: var(--space-6);
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+.vca-spec-item:last-child { border-right: none; }
+.vca-spec-val {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-bright);
+    line-height: 1;
+}
+.vca-spec-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .vca-spec-bar { grid-template-columns: repeat(2, 1fr); }
+    .vca-spec-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+}
+
+/* Magneten landing — #voertuig-magneten */
+.mat-section--magneten {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+.mat-section--magneten .tech-specs-table {
+    width: 100%;
+    table-layout: fixed;
+}
+.mat-section--magneten .tech-specs-table td {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.mat-section--magneten .mat-section-header {
+    flex-wrap: wrap;
+    min-width: 0;
+}
+.mat-section--magneten .mat-section-header h2 {
+    min-width: 0;
+    flex: 1 1 12rem;
+    overflow-wrap: anywhere;
+    font-size: clamp(1rem, 4.5vw, 1.8rem);
+}
+.mat-section--magneten.mat-section--highlight {
+    outline: 2px solid var(--vca-cyan);
+    outline-offset: 4px;
+    transition: outline-color 0.3s ease;
+}
+.mat-magnet-hero {
+    margin-bottom: var(--space-8);
+    padding: var(--space-6);
+    background: rgba(0, 0, 0, 0.35);
+    border-left: 4px solid var(--vca-magenta);
+}
+.mat-magnet-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: var(--text-bright);
+    margin: 0 0 var(--space-3);
+    text-transform: uppercase;
+}
+.mat-magnet-hero__lead {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 72ch;
+}
+.mat-magnet-subtitle {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--vca-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 var(--space-4);
+}
+.mat-magnet-benefits {
+    margin-bottom: var(--space-8);
+}
+.mat-magnet-benefits__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-3);
+}
+.mat-magnet-benefits__list li {
+    padding: var(--space-4);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.mat-magnet-benefits__list strong {
+    color: var(--text-bright);
+}
+.mat-magnet-layers {
+    margin-bottom: var(--space-8);
+}
+.mat-magnet-layers__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: magnet-layer;
+    display: grid;
+    gap: var(--space-4);
+}
+.mat-magnet-layers__list li {
+    counter-increment: magnet-layer;
+    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-8);
+    position: relative;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mat-magnet-layers__list li::before {
+    content: counter(magnet-layer);
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-4);
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--vca-magenta);
+    font-size: 1.25rem;
+}
+.mat-magnet-layers__list li strong {
+    display: block;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+}
+.mat-magnet-layers__list li span {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.mat-magnet-cta {
+    margin-top: var(--space-8);
+    padding: var(--space-8);
+    text-align: center;
+    background: linear-gradient(135deg, rgba(214, 0, 117, 0.12), rgba(0, 159, 227, 0.08));
+    border: var(--border-heavy);
+}
+.mat-magnet-cta__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-bright);
+    margin: 0 0 var(--space-3);
+    text-transform: uppercase;
+}
+.mat-magnet-cta__text {
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-6);
+    max-width: 52ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* NOTE (SITE-04/SITE-06): .mat-magnet-cta__btn removed — CTA uses canonical .btn-vca contract. */
+@media (max-width: 768px) {
+    .mat-magnet-hero,
+    .mat-magnet-benefits__list li,
+    .mat-magnet-layers__list li,
+    .mat-magnet-cta {
+        padding: var(--space-4);
+    }
+    .mat-section--magneten .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    .mat-section--magneten .tech-card {
+        padding: var(--space-4);
+        min-width: 0;
+    }
+    .mat-magnet-benefits__list li,
+    .mat-magnet-layers__list li {
+        overflow-wrap: anywhere;
+    }
+}

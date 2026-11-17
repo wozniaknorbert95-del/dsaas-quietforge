@@ -1,0 +1,115 @@
+/**
+ * FAQ page styles — extracted from page-faq.php inline <style> (SITE-06)
+ * Loaded only on the FAQ template. All values reference zzp design tokens.
+ */
+
+.page-faq {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+}
+
+.page-faq__container {
+    max-width: 800px;
+}
+
+.page-faq__header {
+    border-left: 8px solid var(--vca-magenta);
+    padding-left: var(--space-4);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.page-faq__eyebrow {
+    font-family: var(--font-display);
+    color: var(--vca-cyan);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.page-faq__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--text-main);
+}
+
+.page-faq__lead {
+    margin-top: var(--space-4);
+    color: var(--text-muted);
+}
+
+/* Accordion */
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    text-align: left;
+    padding: 1.5rem 0;
+    gap: 1rem;
+    font-family: inherit;
+    transition: color var(--transition-fast);
+}
+
+.faq-question:hover { color: var(--accent-cyan); }
+
+.faq-question:focus-visible {
+    outline: 2px solid var(--vca-cyan);
+    outline-offset: 4px;
+}
+
+.faq-icon {
+    color: var(--accent-cyan);
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+}
+
+.faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+
+.faq-answer {
+    padding-bottom: 1.5rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.faq-answer[hidden] { display: none; }
+.faq-answer strong { color: var(--text-main); }
+
+/* CTA block */
+.faq-cta {
+    border-top: 1px solid var(--border-color);
+    padding-top: 3rem;
+    text-align: center;
+    margin-top: var(--space-2xl);
+}
+
+.faq-cta__title {
+    margin: 0 0 var(--space-lg);
+}
+
+.faq-cta__row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,158 @@
+{
+  "version": "1.0.0",
+  "currency": "EUR",
+  "price_basis": "excl_btw",
+  "presets": {
+    "starter-zzp": {
+      "id": "PKG-STARTER-ZZP",
+      "merchant_id": "PKG-STARTER-ZZP",
+      "label_nl": "Starter ZZP'er",
+      "tagline_nl": "Ik wil eruitzien als een serieus bedrijf",
+      "accent": "cyan",
+      "quote_mode": false,
+      "recommended": false,
+      "vehicle_required": true,
+      "vehicle_action": "magnets",
+      "display_from_excl": 299,
+      "bullets_nl": [
+        "Logo bronbestand + huisstijl basis",
+        "Magnetische belettering op jouw voertuig",
+        "3× T-shirt met jouw logo",
+        "300 sticker-visitekaartjes (zonder laminaat)"
+      ],
+      "lines": [
+        {
+          "sku": "F-001",
+          "qty": 1,
+          "bucket": "foundation"
+        },
+        {
+          "sku": "OC-001",
+          "qty": 3,
+          "bucket": "clothing"
+        },
+        {
+          "sku": "NW-102",
+          "qty": 1,
+          "bucket": "print"
+        }
+      ],
+      "vehicle_skus": {
+        "caddy": "MA-005",
+        "bus_l": "MA-006-L",
+        "bus_xl": "MA-006-XL",
+        "passenger": "MA-005-S"
+      }
+    },
+    "groeier": {
+      "id": "PKG-GROEIER",
+      "merchant_id": "PKG-GROEIER",
+      "label_nl": "De Groeier",
+      "tagline_nl": "Ik wil mijn tarieven serieus verhogen",
+      "accent": "magenta",
+      "quote_mode": false,
+      "recommended": true,
+      "vehicle_required": true,
+      "vehicle_action": "wrap",
+      "wrap_sku": "NA-WRAP-BASIC",
+      "display_from_excl": 799,
+      "bullets_nl": [
+        "Logo + huisstijl basis + voertuigontwerp",
+        "Partial wrap op jouw bedrijfsbus",
+        "5× werkkleding met branding",
+        "Bouwbord A3 op locatie",
+        "500 sticker-visitekaartjes (mét laminaat)"
+      ],
+      "lines": [
+        {
+          "sku": "F-001",
+          "qty": 1,
+          "bucket": "foundation"
+        },
+        {
+          "sku": "DF-004",
+          "qty": 1,
+          "bucket": "foundation"
+        },
+        {
+          "sku": "NA-WRAP-BASIC",
+          "qty": 1,
+          "bucket": "vehicleItems"
+        },
+        {
+          "sku": "OC-001",
+          "qty": 5,
+          "bucket": "clothing"
+        },
+        {
+          "sku": "TB-001",
+          "qty": 1,
+          "bucket": "visibility"
+        },
+        {
+          "sku": "NW-106",
+          "qty": 1,
+          "bucket": "print"
+        }
+      ],
+      "vehicle_skus": {}
+    },
+    "professional-flota": {
+      "id": "PKG-PROFESSIONAL-FLOTA",
+      "merchant_id": "PKG-PROFESSIONAL-FLOTA",
+      "label_nl": "Professional met Flota",
+      "tagline_nl": "Ik zoek absolute merksynchronisatie",
+      "accent": "yellow",
+      "quote_mode": true,
+      "recommended": false,
+      "vehicle_required": true,
+      "vehicle_action": "wrap",
+      "wrap_sku": "NA-WRAP-PRO",
+      "display_from_excl": 2499,
+      "bullets_nl": [
+        "Volledige merkidentiteit + voertuigontwerp",
+        "Partial wrap PRO (vloot-look)",
+        "6× gestandaardiseerde werkkleding",
+        "2× bouwborden op locatie",
+        "Persoonlijk traject — offerte op maat"
+      ],
+      "lines": [
+        {
+          "sku": "F-001",
+          "qty": 1,
+          "bucket": "foundation"
+        },
+        {
+          "sku": "DF-004",
+          "qty": 1,
+          "bucket": "foundation"
+        },
+        {
+          "sku": "NA-WRAP-PRO",
+          "qty": 1,
+          "bucket": "vehicleItems"
+        },
+        {
+          "sku": "OC-001",
+          "qty": 6,
+          "bucket": "clothing"
+        },
+        {
+          "sku": "TB-001",
+          "qty": 2,
+          "bucket": "visibility"
+        },
+        {
+          "sku": "NW-106",
+          "qty": 1,
+          "bucket": "print"
+        }
+      ],
+      "vehicle_skus": {},
+      "quote_cta": {
+        "whatsapp": "+31687286151",
+        "message_nl": "Hoi FlexGrafik, ik wil een offerte voor het traject Professional met Flota."
+      }
+    }
+  }
+}

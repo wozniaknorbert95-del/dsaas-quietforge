@@ -1,0 +1,196 @@
+/*
+ * ZZP CHROME — footer (SITE-02)
+ * Extracted from footer.php inline <style> (~190 lines). Header chrome styles
+ * still live in style.css (.site-header-vca) — consolidation candidate later.
+ * All values on tokens (single source: zzp-design-tokens.css).
+ */
+
+/* ===== VCA FOOTER — Enterprise Grade v5 ===== */
+.footer-vca {
+  background: var(--zzp-bg-void);
+  border-top: 4px solid var(--vca-cyan);
+  padding: var(--space-8) var(--space-4);
+}
+
+/* Hazard stripe */
+.footer-vca .hazard-stripe-cyan {
+  height: 4px;
+  width: 100%;
+  background: repeating-linear-gradient(-45deg, var(--vca-cyan) 0, var(--vca-cyan) 15px, var(--zzp-bg-void) 15px, var(--zzp-bg-void) 30px);
+  margin-bottom: var(--space-6);
+}
+
+/* Main grid */
+.footer-main-vca {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  max-width: 1200px;
+  margin: 0 auto var(--space-6);
+}
+
+/* Column titles */
+.footer-vca .footer-col-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* ===== BRAND ===== */
+.footer-col-brand { text-align: center; }
+.footer-brand-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+.footer-vca .footer-brand-link {
+  display: inline-flex;
+  line-height: 0;
+}
+.footer-vca .footer-logo-zzp {
+  max-height: 36px;
+  width: auto;
+  display: inline-block;
+}
+.footer-vca .footer-logo-fg {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  opacity: 0.9;
+}
+body.page-template-page-wizard .footer-vca .footer-logo-zzp {
+  max-height: 40px;
+}
+body.page-template-page-wizard .footer-vca .footer-logo-fg {
+  max-height: 20px;
+}
+.footer-vca .footer-tagline {
+  font-size: 0.75rem;
+  color: var(--zzp-text-muted);
+  margin: var(--space-2) 0 0;
+  opacity: 0.9;
+}
+
+/* ===== NAV GRID — 44px tap targets ===== */
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 var(--space-4);
+}
+.footer-vca .footer-link-vca {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.footer-vca .footer-link-vca:hover { color: var(--vca-cyan); }
+.footer-vca .footer-link-wa {
+  color: var(--vca-cyan);
+  font-weight: 600;
+  gap: 6px;
+}
+.footer-vca .footer-link-wa svg { flex-shrink: 0; }
+
+/* ===== GAME (desktop only hook) ===== */
+.footer-col-game { display: none; }
+
+/* ===== BOTTOM BAR ===== */
+.footer-bottom-vca {
+  border-top: 1px solid var(--zzp-border-default);
+  padding-top: var(--space-4);
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+.footer-legal .footer-link-vca::after {
+  content: "•";
+  margin: 0 var(--space-2);
+  color: var(--zzp-text-muted);
+}
+.footer-legal .footer-link-vca:last-child::after { content: none; }
+
+.footer-vca .footer-meta {
+  font-family: var(--font-display);
+  color: var(--zzp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.7rem;
+  margin: 0 0 var(--space-2);
+  opacity: 0.85;
+}
+.footer-vca .footer-back-top {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-fast);
+}
+.footer-vca .footer-back-top:hover { color: var(--vca-cyan); }
+.footer-vca .footer-copyright {
+  font-size: 0.7rem;
+  color: var(--zzp-text-muted);
+  margin: 0;
+}
+.footer-vca .footer-fg-link {
+  color: var(--zzp-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.footer-vca .footer-fg-link:hover { color: var(--vca-cyan); }
+
+/* ===== DESKTOP (>= 768px) ===== */
+@media (min-width: 768px) {
+  .footer-vca { padding: var(--space-10) var(--space-6); }
+  .footer-main-vca { grid-template-columns: 1fr 1.2fr 0.8fr; gap: var(--space-8); }
+
+  .footer-col-brand { text-align: left; }
+  .footer-brand-stack { align-items: flex-start; }
+  .footer-vca .footer-logo-zzp { max-height: 40px; }
+  .footer-vca .footer-logo-fg { max-height: 20px; }
+  .footer-vca .footer-tagline { font-size: 0.8rem; }
+
+  .footer-nav-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-vca .footer-link-vca { font-size: 0.875rem; }
+
+  .footer-col-game {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-vca .footer-game-link {
+    display: inline-block;
+    margin-bottom: var(--space-2);
+    transition: transform 0.3s ease;
+  }
+  .footer-vca .footer-game-link:hover { transform: scale(1.03); }
+  .footer-vca .footer-game-img {
+    max-height: 56px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 159, 227, 0.25);
+  }
+  .footer-vca .footer-contact-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    align-self: flex-start;
+  }
+
+  .footer-bottom-vca { padding-top: var(--space-6); }
+  .footer-vca .footer-meta { font-size: 0.8rem; }
+}

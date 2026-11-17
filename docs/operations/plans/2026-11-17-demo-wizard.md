@@ -1,44 +1,33 @@
-# Plan — DEMO 1/4: Wizard (działający konfigurator) · 2026-11-17
+# Plan — DEMO 1/4: Wizard = PORT oryginału zzpackage.flexgrafik.nl · 2026-11-17 (v2)
 
-**Cel / Goal:** kafelek „Catalog · Configure and pay" → `/lab/wizard/` = **żywy konfigurator**. Klient klika, wybiera, widzi cenę liczącą się na żywo, dochodzi do zamówienia — i zatrzymuje się na bezpiecznym „Order placed — DEMO" (firma nie funkcjonuje, nic nie wychodzi).
+**Rozkaz Dowódcy (korekta):** demo ma być **TO SAMO co było wyświetlane na zzpackage.flexgrafik.nl** — wierne odtworzenie, nie autorska wersja. Poprzedni build (zmyślony katalog „Vehicle wrap/Workwear…") = BŁĄD → usunąć.
 
-**Sesja:** 1 · **Priorytet:** P1 (drzwi od pieniędzy — budować pierwsze)
-**Zależności:** brak (kupon z gry — obsługa już wbudowana, patrz niżej)
+**Spec 1:1:** [`2026-11-17-zzpackage-replica-spec.md`](2026-11-17-zzpackage-replica-spec.md) · **Assety:** `public/demo/zzpackage/` (js/, css/, data/ — oryginalne pliki) · **Źródło:** kwarantanna `Secure-Quarantine\DSaaS-2026-08-18\repo-worktrees\zzpackage.flexgrafik.nl`
 
-## Zakres
-**IN:**
-- `WizardDemo.tsx` (`'use client'`) — maszyna kroków: **produkt → opcje → dodatki → podsumowanie + checkout → sukces**
-- Reguły cenowe frontu: baza produktu + opcje + dodatki × ilość, **cena zawsze widoczna** (sticky summary), **minimum €199** (global checkout rule), EUR
-- Katalog demo (ok. 4 produkty FlexGrafik: voertuigreclame, bedrijfskleding, signing, logo package) × realne grupy opcji (rozmiar, wykończenie, ilość)
-- Checkout form (imię, email, firma) → „Place order" → **ekran sukcesu DEMO**: numer referencyjny generowany client-side + komunikat „Demo — order not sent"
-- **Kupon z gry:** odczyt `sessionStorage['qf-demo-coupon']` → rabat naliczany w podsumowaniu (Game → Wizard handoff, plan 3/4)
-- Analytics: `wizard_demo_click` przy wejściu w demo i przy „Place order" (event istnieje)
+## Podejście: port, nie przepisanie
+Oryginalny Wizard jest **100% client-side JS** — więc demo ładuje ORYGINALNE pliki (`wizard-presets.js`, `wizard-1-3.js`, `wizard-step-2.js`, `wizard-4-7.js`, `zzp-*.css`, `product-master-table.json`, `preset-manifest.json`) i podmienia TYLKO warstwę serwerową PHP/WooCommerce na stub client-side:
+1. Iniekcja danych (`WizardWooCommerceData`, `fgMasterCatalog`, `fgPresetManifest`) — z JSON-ów w `public/demo/zzpackage/data/`
+2. Ceny: oryginalna formuła (`price_suggested` × qty, `Math.round`, meter €199, incl. 21% BTW, custom €49/m², kupony/bonusy gry)
+3. **Stub „Afrekenen":** zamiast AJAX → WooCommerce redirect = modal `Demo — bestelling wordt niet verzonden` + ref demo (firma offline). Reszta identyczna z oryginałem.
+4. Wygląd = oryginalny theme VCA Industrial (Barlow/Inter/JetBrains Mono, cyan/magenta/yellow, hazard stripes, sticky cart pill) — **bez** qf-* (to replika obcego UI, nie strona Quietforge; wrapper strony = standardowy shell /lab/)
 
-**OUT:** prawdziwy Mollie/backend/maile · prawdziwe 167 SKU (demo katalog, ceny ilustracyjne — oznaczone „demo pricing") · edycja copy sprzedażowego poza demo
+## Kolejność prac
+1. ~~Assety js/css/data do repo~~ ✅
+2. Strona demo: statyczny shell `/lab/wizard/` ładujący oryginalny CSS + JS + dane (bez React — czysty HTML+JS jak oryginał)
+3. Stub danych + stub „Agrekenen" + banner demo (jedyna dodana treść: „Demo — FlexGrafik offline, nic nie jest wysyłane")
+4. Pipeline obrazów: 161 plików `grafik_bestand` → WebP ≤1600px → `public/demo/zzpackage/images/`
+5. QA wizualne vs oryginalne screeny (`/gratka/wizard-checkout.png`, `wizard-demo.mp4` w repo dsaas-quietforge) — klatka po klatce
+6. USUNĄĆ mój wcześniejszy `WizardDemo.tsx` + `wizard-catalog.ts` (zmyślony katalog) i podmienić slot w `DoorDemoPreview`
 
-## Logika frontu (bez backendu)
-1. Krok 1 — produkt (karty) → Krok 2 — opcje produktu (single/multi/liczba) → Krok 3 — dodatki (np. montaż, plik produkcyjny, tryb ekspres +15%)
-2. Przy każdej zmianie: przeliczenie ceny + rozbicie (baza / opcje / dodatki / kupon / suma)
-3. Walidacja checkoutu (email format, wymagane pola) — komunikaty błędów przy polu
-4. „Place order" → blokada formularza → sukces DEMO (bez sieci)
+## DoD
+- [ ] 9 ekranów z oryginalnymi tytułami NL i kolejnością (Stap n van 9)
+- [ ] Prawdziwy katalog: 167 SKU, prawdziwe ceny (F-001 €129, OC-001 €15, MA-005 €129…)
+- [ ] Sticky cart + meter €199 + incl./excl. BTW jak oryginał
+- [ ] Kupony gry (?coupon=GAME10) + bonus SKUs działają
+- [ ] „Afrekenen" → bezpieczny stop demo (nic nie wychodzi)
+- [ ] Wygląd nieodróżnialny od oryginału (QA: screen vs screen)
+- [ ] typecheck/lint/build ✅ · brak mojej copy — tylko oryginalne NL
 
-## Pliki
-| Plik | Akcja |
-|---|---|
-| `src/components/demo/WizardDemo.tsx` | new — demo konfiguratora |
-| `src/lib/demo/wizard-catalog.ts` | new — katalog + reguły cenowe (typy, zero `any`) |
-| `src/content/lab-demos.ts` | update — copy sekcji demo (efekty, komunikaty demo) |
-| `src/app/lab/wizard/page.tsx` | update — hero + <WizardDemo/> + korzyści + CTA |
-| `src/app/globals.css` | update — `qf-demo-*` (tylko tokeny) |
-| `public/gratka/wizard-checkout.png` | **podmiana screena kafelka — Twoje PNG** |
-
-## Akceptacja (Definition of Done)
-- [ ] Pełny przepływ klikalny bez backendu; „Place order" zatrzymuje się na DEMO
-- [ ] Cena aktualizuje się przy KAŻDEJ zmianie; rozbicie poprawne (kupon GAME nalicza rabat)
-- [ ] Mobile 375px bez horizontal scroll; tap targety ≥44px
-- [ ] `prefers-reduced-motion` respektowane; dark-first; sharp corners; ≤8 utils/element
-- [ ] Ceny oznaczone jako demo/illustrative (MR-16 — brak fałszywych claimów)
-- [ ] `npm run typecheck` ✅ `npm run lint` ✅ `npm run build` ✅ · verify + design-review + proof-check
-
-## Materiał zewnętrzny
-- Screen kafelka „Catalog" od Dowódcy (podmiana pliku PNG — bez zmian w kodzie)
+## Ryzyka
+- Obrazy (200 MB oryginałów) — pipeline WebP, bez oryginałów w repo
+- `functions.php` (102KB) może zawierać reguły cenowe wykraczające poza JS — audyt stuba vs PHP przed QA

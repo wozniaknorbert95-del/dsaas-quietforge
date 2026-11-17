@@ -55,6 +55,9 @@ export interface DemoPage {
 export const DEMO_SHARED = {
   chip: 'DEMO PREVIEW · FLEXGRAFIK BUILD',
   shotsTitle: 'See it working',
+  demoTitle: 'Try it yourself',
+  demoNote:
+    'Everything below works — click through it like a customer. Nothing is sent; orders and messages stop safely at “demo”.',
   storyCta: 'Read the FlexGrafik story',
   storyHref: ROUTES.resultsFlexgrafik,
   ctaTitle: 'What would this look like in your company?',

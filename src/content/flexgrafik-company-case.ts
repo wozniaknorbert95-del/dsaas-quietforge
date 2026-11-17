@@ -112,7 +112,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     body: 'One trustworthy front door. The visitor picks the right next step themselves — instead of starting another email thread.',
     intents: ['order'],
     demoHref: ROUTES.labPortal,
-    demoLabel: 'See it in action',
+    demoLabel: 'Try the demo',
     screenKey: 'portalAssistant',
   },
   {
@@ -125,7 +125,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     body: `Configure, see the price, pay. ${metrics.skus} SKUs priced by rule — repeatable quotes happen without you.`,
     intents: ['money', 'efficiency'],
     demoHref: ROUTES.labWizard,
-    demoLabel: 'See it in action',
+    demoLabel: 'Try the demo',
     screenKey: 'wizardCheckout',
   },
   {
@@ -138,7 +138,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     body: 'Cold attention earns its way in — play, register, collect the reward, land in the buying path. Not a brochure form.',
     intents: ['money'],
     demoHref: ROUTES.labGame,
-    demoLabel: 'See it in action',
+    demoLabel: 'Try the demo',
     screenKey: 'leadMagnet',
   },
   {
@@ -151,7 +151,7 @@ export const FLEXGRAFIK_DOORS: readonly CompanyDoor[] = [
     body: 'The job you cannot configure arrives already described — brief, direction, then a human studio quote.',
     intents: ['calm', 'money'],
     demoHref: ROUTES.labInspire,
-    demoLabel: 'See it in action',
+    demoLabel: 'Try the demo',
     screenKey: 'inspireIntake',
   },
 ] as const;

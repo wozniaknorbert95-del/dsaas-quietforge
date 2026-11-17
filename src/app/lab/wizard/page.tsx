@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DoorDemoPreview from '@/components/lab/DoorDemoPreview';
+import WizardDemo from '@/components/demo/WizardDemo';
 import { DEMO_PAGES } from '@/content/lab-demos';
 import { SITE_URL } from '@/lib/constants';
 
@@ -31,5 +32,5 @@ export const metadata: Metadata = {
 };
 
 export default function LabWizardDemoPage() {
-  return <DoorDemoPreview id="wizard" />;
+  return <DoorDemoPreview id="wizard" demo={<WizardDemo />} />;
 }

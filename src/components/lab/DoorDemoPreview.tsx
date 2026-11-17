@@ -11,23 +11,26 @@ import { ROUTES } from '@/lib/constants';
 
 interface DoorDemoPreviewProps {
   id: DemoPageId;
+  /** Interactive live demo — replaces the static screenshot gallery when provided. */
+  demo?: React.ReactNode;
 }
 
 /**
  * Demo preview page for one FlexGrafik door — sales-led:
- * outcome hero → real screens → what it changes in your company →
+ * outcome hero → live demo (or real screens) → what it changes in your company →
  * how it lands → scan CTA with one honest boundary line.
  */
-export default function DoorDemoPreview({ id }: DoorDemoPreviewProps) {
-  const demo = DEMO_PAGES[id];
+export default function DoorDemoPreview({ id, demo }: DoorDemoPreviewProps) {
+  const demoPage = DEMO_PAGES[id];
 
   return (
     <>
       <Section padding="large">
         <p className="qf-fg-chip">{DEMO_SHARED.chip}</p>
-        <p className="qf-lab-eyebrow">{demo.eyebrow}</p>
-        <h1 className="qf-fg-h1">{demo.title}</h1>
-        <p className="qf-lab-lead">{demo.lead}</p>
+        <p className="qf-lab-eyebrow">{demoPage.eyebrow}</p>
+        <h1 className="qf-fg-h1">{demoPage.title}</h1>
+        <p className="qf-lab-lead">{demoPage.lead}</p>
+        {demo ? <p className="qf-lab-status-note">{DEMO_SHARED.demoNote}</p> : null}
         <div className="qf-fg-actions">
           <Button
             href={ROUTES.bookAScan}
@@ -44,10 +47,16 @@ export default function DoorDemoPreview({ id }: DoorDemoPreviewProps) {
         </div>
       </Section>
 
+      {demo ? (
+        <Section id="demo" background="surface">
+          <h2 className="qf-sys-h2">{DEMO_SHARED.demoTitle}</h2>
+          {demo}
+        </Section>
+      ) : (
       <Section id="screens" background="surface">
         <h2 className="qf-sys-h2">{DEMO_SHARED.shotsTitle}</h2>
         <ul className="qf-demo-shot-grid">
-          {demo.shots.map((shot) => {
+          {demoPage.shots.map((shot) => {
             const screen = screens[shot.key];
             const ready = Boolean(screen.ready && screen.src);
             return (
@@ -75,11 +84,12 @@ export default function DoorDemoPreview({ id }: DoorDemoPreviewProps) {
           })}
         </ul>
       </Section>
+      )}
 
       <Section>
-        <h2 className="qf-sys-h2">{demo.benefitsTitle}</h2>
+        <h2 className="qf-sys-h2">{demoPage.benefitsTitle}</h2>
         <ul className="qf-demo-grid">
-          {demo.benefits.map((benefit) => (
+          {demoPage.benefits.map((benefit) => (
             <li key={benefit.title} className="qf-approach-card">
               <p className="qf-fg-intent-row">
                 <span className="qf-fg-intent" data-intent={benefit.intent}>
@@ -94,9 +104,9 @@ export default function DoorDemoPreview({ id }: DoorDemoPreviewProps) {
       </Section>
 
       <Section background="surface">
-        <h2 className="qf-sys-h2">{demo.stepsTitle}</h2>
+        <h2 className="qf-sys-h2">{demoPage.stepsTitle}</h2>
         <ol className="qf-fg-walk-steps">
-          {demo.steps.map((step) => (
+          {demoPage.steps.map((step) => (
             <li key={step.n}>
               <span>{step.n}</span>
               <p className="qf-demo-step-body">
@@ -125,7 +135,7 @@ export default function DoorDemoPreview({ id }: DoorDemoPreviewProps) {
             </Link>
           </div>
           <p className="qf-fg-not-proven">
-            {demo.honesty} {PUBLIC_OFFER.scanNote}
+            {demoPage.honesty} {PUBLIC_OFFER.scanNote}
           </p>
         </div>
       </Section>

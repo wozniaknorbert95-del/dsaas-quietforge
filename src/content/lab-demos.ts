@@ -120,7 +120,7 @@ export const DEMO_PAGES: Record<DemoPageId, DemoPage> = {
     honesty:
       'Preview of the FlexGrafik portal — built and exercised in my own company, not a client result.',
     meta: {
-      title: 'Portal demo — one front door for your business | Quietforge',
+      title: 'Portal demo — one front door for your business',
       description:
         'Demo preview: a business portal where visitors choose their own next step. See what a connected front door could look like in your company.',
       ogImage: '/og/lab-portal.svg',
@@ -172,7 +172,7 @@ export const DEMO_PAGES: Record<DemoPageId, DemoPage> = {
     honesty:
       'Preview of the FlexGrafik configurator — built and exercised in my own company, not a client result.',
     meta: {
-      title: 'Configurator demo — see the price and pay | Quietforge',
+      title: 'Configurator demo — see the price and pay',
       description:
         'Demo preview: a guided configurator with open pricing and direct checkout. See how repeatable quotes could happen without you.',
       ogImage: '/og/lab-wizard.svg',
@@ -233,7 +233,7 @@ export const DEMO_PAGES: Record<DemoPageId, DemoPage> = {
     honesty:
       'Preview of the FlexGrafik lead game — no lead counts or conversion rates are claimed. Not a client result.',
     meta: {
-      title: 'Lead game demo — cold traffic leaves a contact | Quietforge',
+      title: 'Lead game demo — cold traffic leaves a contact',
       description:
         'Demo preview: a browser game that earns the email and hands players into the buying path. See what engagement with a business goal looks like.',
       ogImage: '/og/lab-game.svg',
@@ -295,7 +295,7 @@ export const DEMO_PAGES: Record<DemoPageId, DemoPage> = {
     honesty:
       'Preview of the FlexGrafik custom intake. Mockups show direction, not print-ready artwork — not a client result.',
     meta: {
-      title: 'Custom intake demo — exceptions arrive described | Quietforge',
+      title: 'Custom intake demo — exceptions arrive described',
       description:
         'Demo preview: a supervised design intake that turns a vague request into a structured brief and a human quote. See how custom work could arrive ready.',
       ogImage: '/og/lab-inspire.svg',

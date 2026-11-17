@@ -22,7 +22,7 @@ Four doors na `/results/flexgrafik/` ma klikalne screeny → strony demo pod `/l
 
 ## NASTĘPNY KROK
 
-1. Sesja: Demo 2/4 — INSPIRE (**w toku** — port repo flexgrafik-inspire + dtp-design-agent, plan `plans/2026-11-17-demo-inspire.md`). ✅ Demo 1/4 (Wizard = replika 1:1) LIVE — `handoffs/2026-11-17-demo-wizard.md`.
+1. Sesja: Demo 3/4 — GAME (port app.flexgrafik.nl — najpierw zlokalizować źródło gry). ✅ Demo 1/4 (Wizard) + 2/4 (INSPIRE = replika 1:1) LIVE — `handoffs/2026-11-17-demo-{wizard,inspire}.md`.
 2. Claim do decyzji: „2–4 weeks after the scan" (MR-16) — zostawić / złagodzić.
 3. Domain sweep (osobno): resztki `quietforge.flexgrafik.nl` w docs/SVG/GA4/vercel.json.
 

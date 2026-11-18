@@ -539,13 +539,13 @@
         var rec, head;
         if (diff < 40) {
             rec = (rgb[0] > 180) ? VISUAL_REC.lowLight : VISUAL_REC.low;
-            head = 'Zie hem — wit bus, logo valt weg in zon. ';
+            head = 'Jouw logo op een lichte ondergrond — contrast is laag, in de zon valt het weg. ';
         } else if (diff < 90) {
             rec = VISUAL_REC.medium;
-            head = 'Zie hem — wit bus. ';
+            head = 'Jouw logo op een lichte ondergrond. ';
         } else {
             rec = VISUAL_REC.high;
-            head = 'Zie hem — wit bus. ';
+            head = 'Jouw logo op een lichte ondergrond. ';
         }
         return head + rec;
     }

@@ -87,7 +87,7 @@
       offerteWhatsapp: 'Liever WhatsApp?',
       offerteSuccessTitle: 'Top — we bekijken het nu!',
       offerteSuccessBody:
-        'Nick bekijkt je aanvraag — gem. reactie <2u op werkdagen. Check je mail: je 2 mockups + 2 echte bus-voorbeelden + link om montage datum te prikken. Liever direct appen? Klik hieronder.',
+        'Nick bekijkt je aanvraag — gem. reactie binnen 2 uur op werkdagen. Check je mail: je 2 mockups + 2 echte bus-voorbeelden + link om montage datum te prikken. Liever direct appen? Klik hieronder.',
       offerteSuccessRef: 'Referentie',
       offerteTrustAfter: '127 ZZP gingen je voor • 4.8★ Google • Eigen montage',
       offerteWhatsappPrefill: 'Hoi FlexGrafik, ik wil graag verder met mijn offerte-aanvraag.',
@@ -827,7 +827,7 @@
         addBotMsg('<strong>Alleen afbeeldingen</strong> — PNG of JPG.');
         return;
       }
-      const msg = 'Witte Caddy Ypenburg — foto + logo geüpload';
+      const msg = 'Foto + logo geüpload — ' + (logo && logo.name ? logo.name : 'bestand') + (veh && veh.name ? ' + ' + veh.name : '');
       addUserMsg(msg);
       state.busy = true;
       showTyping();

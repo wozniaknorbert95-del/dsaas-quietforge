@@ -22,7 +22,7 @@ Four doors na `/results/flexgrafik/` ma klikalne screeny → strony demo pod `/l
 
 ## NASTĘPNY KROK
 
-1. ✅ **KOMPLET DEMO 4/4 LIVE** — Wizard, INSPIRE, Game, Portal = repliki 1:1, spięte (gra → kupon → Wizard; portal → wszystkie). Handoffy: `2026-11-17-demo-{wizard,inspire}.md`, `2026-11-18-demo-{game,portal}.md`. Następne: claim MR-16, domain sweep, „Three walks", screeny kafli od Dowódcy.
+1. **SoT = `todos/*.json`** (Linear NIE jest SoT — limit, zero kosztów; P-QUI-5 = widok). Program enterprise v2: `todos/README.md` + `opencode.json` (agent demo-optimizer/demo-reviewer, `/demo-todo`). ✅ Dema 4/4 LIVE (repliki 1:1). **Następne:** G0 audyty (L1, autonomiczne) → G1 fundament → G2 INSPIRE produktyzacja (pierwszy zarabia). Decyzje L4 Dowódcy blokujące: ceny, Mollie test+OpenAI key, R2/KV, story-edit, unlock prod, podgląd mockupy.
 2. Claim do decyzji: „2–4 weeks after the scan" (MR-16) — zostawić / złagodzić.
 3. Domain sweep (osobno): resztki `quietforge.flexgrafik.nl` w docs/SVG/GA4/vercel.json.
 

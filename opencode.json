@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["todos/README.md", "docs/operations/plans/2026-11-18-enterprise-program-v2.md", "AGENTS.md"],
+  "agent": {
+    "demo-optimizer": {
+      "description": "Autonomous builder for the FlexGrafik demo enterprise program. Reads todos/*.json (SoT), executes atomic tasks within scope lock, produces evidence, never touches live payments/keys/production.",
+      "mode": "primary",
+      "prompt": "{file:.opencode/agent/demo-optimizer.md}",
+      "tools": { "write": true, "edit": true, "bash": true, "read": true, "grep": true, "glob": true },
+      "permission": { "edit": "allow", "bash": { "npm run *": "allow", "git add *": "allow", "git commit *": "allow", "git push origin auto/*": "allow", "git push origin main": "deny", "*": "ask" } }
+    },
+    "demo-reviewer": {
+      "description": "Independent reviewer (Builder != Reviewer). Checks scope, regressions, security, complexity, tests, acceptance criteria. Does not accept a task just because tests pass.",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agent/demo-reviewer.md}",
+      "tools": { "write": false, "edit": false, "bash": true, "read": true, "grep": true, "glob": true }
+    }
+  },
+  "command": {
+    "demo-todo": {
+      "description": "Run the autonomous engineering loop over a todo file (SoT). Usage: /demo-todo todos/inspire.json",
+      "template": "Execute the enterprise autonomous loop defined in todos/README.md over the todo file: $ARGUMENTS\n\nSELECT the first open task whose dependencies are done (highest priority). Read its full context. PLAN within scope. IMPLEMENT only files_allowed (SCOPE LOCK). TEST (test_plan + npm run typecheck && npm run lint && npm run build). Invoke demo-reviewer for independent review when review_required. VERIFY and attach evidence_required. Only then mark status=done with commit+evidence in the todo JSON, commit on branch auto/<demo>. If blocked (secret/live money/canon conflict/3 attempts/budget), set status=blocked + failure_reason and STOP, escalate to Commander. Never deploy to production, never use live keys, never perform live payment operations. Report progress after each task.",
+      "agent": "demo-optimizer"
+    }
+  }
+}

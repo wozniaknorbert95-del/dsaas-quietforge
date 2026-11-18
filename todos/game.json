@@ -130,5 +130,6 @@
       "commit": null,
       "linear_ref": null
     }
-  ]
+  ],
+  "commander_guidelines_2026_11_18": "FAZA 1 (priorytet): (1) INSPIRE — domknac ustalony zakres, BEZ rozbudowy silnika grafik dla calej firmy; (2) /results/flexgrafik/ — pelna polerka, znika \"Offline — coming back\", teksty zyskuja potencjal sprzedazowy, sekcja PLANNED/tenant = wartosc dla klienta i jego klientow. FAZA 2 = osobny plik todos/flexgrafik-v2.json: rozbudowa INSPIRE jako silnik grafik calej firmy (SVG per produkt Wizarda), platnosci Mollie, weryfikacja projektow w Wizardzie, aktualizacja nagrod w grze."
 }

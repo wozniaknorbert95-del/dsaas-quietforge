@@ -1,0 +1,182 @@
+{
+  "demo": "flexgrafik-v2",
+  "version": "1.0.0",
+  "updated": "2026-11-18",
+  "sot": "todos/flexgrafik-v2.json",
+  "phase": "FAZA 2 — start po zamknieciu FAZY 1 (osobna sesja, osobny plan)",
+  "commander_guidelines_2026_11_18": "FAZA 2 = osobny plik todos/flexgrafik-v2.json: rozbudowa INSPIRE jako silnik grafik calej firmy (SVG per produkt Wizarda), platnosci Mollie, weryfikacja projektow w Wizardzie, aktualizacja nagrod w grze.",
+  "build_gate": "npm run typecheck && npm run lint && npm run build",
+  "tasks": [
+    {
+      "id": "V2-01",
+      "title": "INSPIRE jako silnik grafik dla calej firmy (SVG per produkt Wizarda)",
+      "objective": "Rozbudowa INSPIRE: profesjonalne generowanie grafik nie tylko na auta, ale na kazdy produkt oferowany w Wizardzie (grafiki SVG do druku).",
+      "problem": "Wizard ma sprzedawac grafiki jako PRODUKT; silnik generowania musi je objac wszystkie.",
+      "priority": "P0",
+      "phase": "F2",
+      "scope": "INSPIRE engine + integracja z Wizardem (per produkt generacja)",
+      "out_of_scope": "zmiana dotychczasowych produktow fizycznych w katalogu",
+      "files_allowed": [
+        "public/demo/zzpackage/inspire/",
+        "public/demo/zzpackage/wizard/",
+        "functions/"
+      ],
+      "files_forbidden": [
+        "public/demo/bouwplaats/"
+      ],
+      "dependencies": [
+        "FAZA-1-COMPLETE"
+      ],
+      "risk_level": "high",
+      "autonomy_level": "L4",
+      "acceptance_criteria": [
+        "Generowanie grafik SVG dla produktow Wizarda (profile produkcyjne z G4)",
+        "Jeden silnik generowania napeda cala oferte firmy",
+        "Jakosc wyjscia = profesjonalna (AI Output Quality Gate wdrozony)"
+      ],
+      "verification": "E2E: produkt Wizarda → generacja SVG → walidacja → download",
+      "test_plan": [
+        "E2E per produkt",
+        "SVG QA",
+        "jakosc outputu"
+      ],
+      "dod": [
+        "silnik obejmuje produkty Wizarda",
+        "pomiar jakosci zielony"
+      ],
+      "rollback": "git revert",
+      "evidence_required": "generowane SVG per produkt + QA scoring",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    },
+    {
+      "id": "V2-02",
+      "title": "Platnosci Mollie (live) za grafiki",
+      "objective": "Realne platnosci za generowane grafiki (mockupy + SVG).",
+      "problem": "Firma ma zarabiac — platnosc musi byc realna.",
+      "priority": "P0",
+      "phase": "F2",
+      "scope": "checkout + webhook + cennik grafik (zatwierdzony przez Dowódcę)",
+      "out_of_scope": "zmiana cen bez decyzji L4",
+      "files_allowed": [
+        "functions/",
+        "docs/"
+      ],
+      "files_forbidden": [],
+      "dependencies": [
+        "V2-01",
+        "DECISION-commander-keys-prices"
+      ],
+      "risk_level": "high",
+      "autonomy_level": "L3",
+      "acceptance_criteria": [
+        "Mollie lifecycle w produkcji (wg api-standard)",
+        "Idempotency + webhook dedup + refund workflow",
+        "Pobranie zakupionej grafiki po oplaceniu (ownership)"
+      ],
+      "verification": "E2E platnosc live (kontrolowany ruch)",
+      "test_plan": [
+        "payment live test",
+        "refund test",
+        "idempotency"
+      ],
+      "dod": [
+        "platnosc dziala end-to-end"
+      ],
+      "rollback": "wylaczenie endpointu platnosci",
+      "evidence_required": "flow platnosci + statusy Mollie + download",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    },
+    {
+      "id": "V2-03",
+      "title": "Weryfikacja projektow oferowanych w Wizardzie",
+      "objective": "Kazdy graficzny produkt w Wizardzie przechodzi weryfikacje jakosci przed publikacja w ofercie.",
+      "problem": "Nie mozna sprzedawac projektow niesprawdzonych.",
+      "priority": "P1",
+      "phase": "F2",
+      "scope": "workflow weryfikacji + bramka w katalogu Wizarda",
+      "out_of_scope": "zmiana mechaniki konfiguratora",
+      "files_allowed": [
+        "public/demo/zzpackage/wizard/",
+        "functions/",
+        "docs/"
+      ],
+      "files_forbidden": [],
+      "dependencies": [
+        "V2-01"
+      ],
+      "risk_level": "medium",
+      "autonomy_level": "L2",
+      "acceptance_criteria": [
+        "Kazdy projekt w ofercie Wizarda ma weryfikacje jakosci (SVG QA + walidacja produkcyjna)",
+        "Niesprawdzone projekty nie trafiaja do oferty"
+      ],
+      "verification": "workflow + przykladowa weryfikacja",
+      "test_plan": [
+        "walidacja katalogu"
+      ],
+      "dod": [
+        "bramka weryfikacji dziala"
+      ],
+      "rollback": "git revert",
+      "evidence_required": "workflow + raport weryfikacji",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    },
+    {
+      "id": "V2-04",
+      "title": "Aktualizacja nagrod w grze",
+      "objective": "Nagrody gry zgodne z nowa oferta grafik (kupony/nagrody = grafiki).",
+      "problem": "Nagrody musza prowadzic do realnej wartosci w nowym modelu.",
+      "priority": "P2",
+      "phase": "F2",
+      "scope": "logika nagrod gry + polaczenie z Wizardem/INSPIRE",
+      "out_of_scope": "zmiana mechaniki gry",
+      "files_allowed": [
+        "public/demo/bouwplaats/demo-boot.js",
+        "docs/"
+      ],
+      "files_forbidden": [
+        "public/demo/bouwplaats/assets/"
+      ],
+      "dependencies": [
+        "V2-01",
+        "V2-02"
+      ],
+      "risk_level": "medium",
+      "autonomy_level": "L2",
+      "acceptance_criteria": [
+        "Nagrody = realna wartosc w nowym modelu (grafiki/kupony)",
+        "Handoff nagroda → zakup dziala end-to-end"
+      ],
+      "verification": "E2E: gra → nagroda → zakup grafiki",
+      "test_plan": [
+        "E2E reward flow"
+      ],
+      "dod": [
+        "nagrody zsynchronizowane z oferta"
+      ],
+      "rollback": "git revert",
+      "evidence_required": "E2E reward flow + screenshoty",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    }
+  ]
+}

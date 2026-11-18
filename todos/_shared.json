@@ -437,9 +437,9 @@
     {
       "id": "SH-G7-01",
       "title": "/results/flexgrafik polish (statusy LIVE/DEMO, copy z OK, OG, screeny)",
-      "objective": "Polerka proof spojna z zywymi produktami.",
-      "problem": "Statusy offline vs zywy INSPIRE; screeny tymczasowe.",
-      "priority": "P2",
+      "objective": "DOPRACOWAC /results/flexgrafik/ pod kazdym wzgledem (wytyczna Dowódcy 2026-11-18).",
+      "problem": "Statusy OFFLINE zniechecaja klienta mimo dzialajacych demo; teksty nie sprzedaja; sekcja PLANNED nie daje klientowi wartosci.",
+      "priority": "P1",
       "phase": "G7",
       "scope": "src/app/results/flexgrafik/ + content (story L4-012 tylko z OK Dowódcy)",
       "out_of_scope": "zmiana story bez OK",
@@ -455,9 +455,13 @@
       "risk_level": "medium",
       "autonomy_level": "L4",
       "acceptance_criteria": [
-        "INSPIRE->LIVE(paid) reszta DEMO; 'first door is back' z OK",
-        "Screeny kafli od Dowódcy",
-        "OG/metadata spojne; claim 2-4 weeks MR-16 decyzja"
+        "Znika \"Offline — coming back\" i statusy OFFLINE z calej strony (naglowki, kafle Four doors, walks — wszedzie)",
+        "Statusy zgodne z prawda: drzwi z zywymi demo = DEMO (klikalne), bez zniechecajacych offline",
+        "Teksty zyskuja potencjal sprzedazowy — sprzedaja wdrozenie, nie opisuja muzeum (copy rewrite)",
+        "Sekcja PLANNED (\"FlexGrafik becomes a tenant\") zmieniona na wartosc dla klienta i jego klientow",
+        "Pelna polerka: hierarchia, CTA, spojnosc wizualna (strategy-check + design-review + copy-polish)",
+        "Screeny kafli — podmiana wg Dowódcy gdy dostarczy PNG",
+        "Build + proof-check + strategy-check zielone"
       ],
       "verification": "strategy-check + proof-check + build",
       "test_plan": [
@@ -468,7 +472,7 @@
         "polerka + sign-off copy"
       ],
       "rollback": "git revert",
-      "evidence_required": "screenshoty + checki + sign-off",
+      "evidence_required": "screenshoty przed/po + checki (strategy, design, copy) + build",
       "review_required": true,
       "status": "open",
       "attempts": 0,
@@ -559,5 +563,6 @@
       "commit": null,
       "linear_ref": null
     }
-  ]
+  ],
+  "commander_guidelines_2026_11_18": "FAZA 1 (priorytet): (1) INSPIRE — domknac ustalony zakres, BEZ rozbudowy silnika grafik dla calej firmy; (2) /results/flexgrafik/ — pelna polerka, znika \"Offline — coming back\", teksty zyskuja potencjal sprzedazowy, sekcja PLANNED/tenant = wartosc dla klienta i jego klientow. FAZA 2 = osobny plik todos/flexgrafik-v2.json: rozbudowa INSPIRE jako silnik grafik calej firmy (SVG per produkt Wizarda), platnosci Mollie, weryfikacja projektow w Wizardzie, aktualizacja nagrod w grze."
 }

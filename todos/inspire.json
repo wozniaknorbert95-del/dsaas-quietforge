@@ -506,5 +506,27 @@
       "commit": null,
       "linear_ref": null
     }
-  ]
+  ],
+  "commander_guidelines_2026_11_18": "FAZA 1 (priorytet): (1) INSPIRE — domknac ustalony zakres, BEZ rozbudowy silnika grafik dla calej firmy; (2) /results/flexgrafik/ — pelna polerka, znika \"Offline — coming back\", teksty zyskuja potencjal sprzedazowy, sekcja PLANNED/tenant = wartosc dla klienta i jego klientow. CZAT NIE JEST SKRACANY — wszystkie pytania i glebokosc zostaja. De-chaos = WYŁĄCZNIE otoczenie: input chatu widoczny nad foldem (dziś y=1251px), 1 CTA zamiast 4 konkurujacych, mniej tekstu przed rozmowa. Poprawiamy falszywa obietnice \"max 5 pytań\" w copy (flow ma ~10 krokow) — nie czat.",
+  "scope_lock_note": "Scope lock: zadania w tym pliku to CALY uzgodniony zakres FAZY 1. Silnik grafik dla calej firmy = FAZA 2 (todos/flexgrafik-v2.json), osobna sesja.",
+  "commander_approved_section_plan": {
+    "zostaje": [
+      "Pasek demo (uczciwosc — kanon)",
+      "Chat PELNY — input od razu nad foldem; to JEST produkt i serce konwersji",
+      "Karty ofert EUR149/399 — jasna cena = warunek zakupu produktu platnego",
+      "Portfolio voor/na (Caddy, Bus L, Bus XL) — najmocniejszy argument sprzedazowy dla grafik",
+      "Pasek dowodowy (4,8 gwiazdki, KVK, od 2015, montaz) — zaufanie B2B",
+      "FAQ (4 pytania) — zamyka obiekcje przed platnoscia",
+      "Offerte/success — czesc flow"
+    ],
+    "znika_lub_schodzi": [
+      "Need/Get box (Potrzebujesz/Dostajesz) — powtarza hero i obietnice chatu; glowna przyczyna chaosu (654 slowa nad foldem)",
+      "Sticky CTA — koliduje z chatiem; gdy chat jest na gorze, to ON jest CTA",
+      "Porownywarka \"zwykly generator\" — SCHODZI pod portfolio (nie ginie, ale nie blokuje sciezki)",
+      "Sekcja \"Hoe we adviseren\" 3 kroki → 1 linia pod chatem",
+      "FAŁSZYWY COPY analizy (\"Witte Caddy Ypenburg\", \"Zie hem — wit bus\" na sztywno) — ZNIKA (audyt: sprzeczne z obietnica \"advies op basis van jouw feiten\")",
+      "Rozjazd obietnicy \"<2u\" vs \"48 uur\" — jedna spojna obietnica czasu",
+      "9 martwych linkow (w tym Privacy przy zgodzie RODO) — naprawa lub usuniecie"
+    ]
+  }
 }

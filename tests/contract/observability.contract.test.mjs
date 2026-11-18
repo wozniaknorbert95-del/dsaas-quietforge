@@ -47,7 +47,9 @@ const obsDoc = read(path.join('docs', 'quality', 'observability-cost-control.md'
 const threatDoc = read(path.join('docs', 'SECURITY_THREAT_MODEL.md'));
 
 // Field-name mapping for declared doc↔code mismatches (see header).
-const FIELD_MISMATCHES = { costEstimate: 'cost' };
+// RESOLVED 2026-11-18 (L2): `costEstimate` → `cost` unified in observability §1 per
+// api-standard §2 "jedna nazwa wszędzie". Guard below now protects the unified name.
+const FIELD_MISMATCHES = {};
 
 // ---------------------------------------------------------------------------
 // PII masking (behavioral — real pii.ts module)
@@ -77,7 +79,7 @@ test('scrubText: no raw emails or tokens survive', () => {
 // ---------------------------------------------------------------------------
 
 test('emitEvent: covers every observability §1 field (declared mismatches applied)', () => {
-  const fieldLine = obsDoc.match(/`(requestId[^\n]*costEstimate)`/)[1];
+  const fieldLine = obsDoc.match(/`(requestId[^\n]*cost)`/)[1];
   const docFields = fieldLine.split(/[^\w]+/).filter(Boolean);
 
   const lineBlock = obsSrc.match(/const line = \{([\s\S]*?)\};/)[1];
@@ -105,10 +107,11 @@ test('emitEvent: request/job ids and endpoint flow through scrubText (T10)', () 
   }
 });
 
-test('doc §1 ↔ code mismatch `costEstimate`→`cost` is declared, not silent', () => {
-  assert.match(obsDoc, /costEstimate/, 'doc still says costEstimate (not silently edited)');
+test('doc §1 unifies cost field name as `cost` (mismatch resolved)', () => {
+  assert.doesNotMatch(obsDoc, /costEstimate/, 'doc must not resurrect the old name');
+  assert.match(obsDoc, /· cost`/, 'doc §1 names the field `cost`');
   assert.match(obsSrc, /cost: evt\.cost/, 'code emits the api-standard name `cost`');
-  assert.equal(FIELD_MISMATCHES.costEstimate, 'cost');
+  assert.equal(FIELD_MISMATCHES.costEstimate, undefined);
 });
 
 // ---------------------------------------------------------------------------

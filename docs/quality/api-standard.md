@@ -6,9 +6,9 @@
 ## 1. Envelope (wszystkie odpowiedzi)
 ```json
 { "success": true, "data": { }, "requestId": "req_...", "timestamp": "..." }
-{ "success": false, "error": { "code": "GENERATION_FAILED", "message": "Generation could not be completed", "retryable": true }, "requestId": "req_..." }
+{ "success": false, "error": { "code": "GENERATION_FAILED", "message": "Generation could not be completed", "retryable": true }, "requestId": "req_...", "timestamp": "..." }
 ```
-- `error.code` = stały enum (UPPER_SNAKE); `retryable` jawnie; `requestId` zawsze (trace).
+- `error.code` = stały enum (UPPER_SNAKE); `retryable` jawnie; `requestId` zawsze (trace); `timestamp` w obu wariantach (symetria).
 
 ## 2. Wymagania per endpoint (kontrakt)
 | Endpoint | Input | Auth | Error codes (specyficzne) | Rate limit |

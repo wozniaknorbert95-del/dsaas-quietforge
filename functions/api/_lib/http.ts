@@ -50,7 +50,7 @@ export interface SuccessEnvelope {
   timestamp: string;
 }
 
-/** Error envelope — exact shape from api-standard §1 line 2. */
+/** Error envelope — exact shape from api-standard §1 line 2 (timestamp in both variants). */
 export interface ErrorEnvelope {
   success: false;
   error: {
@@ -59,6 +59,7 @@ export interface ErrorEnvelope {
     retryable: boolean;
   };
   requestId: string;
+  timestamp: string;
 }
 
 export type Envelope = SuccessEnvelope | ErrorEnvelope;
@@ -84,7 +85,7 @@ export function ok(data: unknown, requestId: string = newRequestId()): SuccessEn
 }
 
 /**
- * Error envelope: `{ success, error { code, message, retryable }, requestId }`
+ * Error envelope: `{ success, error { code, message, retryable }, requestId, timestamp }`
  * (api-standard §1). `retryable` defaults to the code's flag in ERROR_CODES.
  */
 export function fail(
@@ -101,6 +102,7 @@ export function fail(
       retryable: retryable ?? ERROR_CODES[code].retryable,
     },
     requestId,
+    timestamp: new Date().toISOString(),
   };
 }
 

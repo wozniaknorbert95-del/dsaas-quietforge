@@ -12,7 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // 1:1 vendored demo replicas (original minified bundles — never edited):
+    // 1:1 frozen demo replica tree (vendored bundles + demo glue — never edited by tasks):
     "public/demo/**",
   ]),
 ]);

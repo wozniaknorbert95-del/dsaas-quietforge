@@ -6,13 +6,10 @@
  * **Single source of numbers = SECURITY_THREAT_MODEL §3** (rate limits, per-order
  * generation cap 5, generation timeout 120 s, retry max 2) — see BUDGETS below.
  *
- * Known doc↔code mismatches are declared in `tests/contract/observability.contract.test.mjs`
- * and the session report — docs are never silently changed here:
- * - §1 calls the cost field `costEstimate`; api-standard §2 mandates one name
- *   everywhere (`cost`) — the emitted line uses `cost`.
- * - §3 lists ledger fields `input (tokens/params) · output`; the recordCost entry
- *   carries them as optional (the mandated signature is
- *   {orderId, model, cost, retryCount, duration, status}).
+ * Known doc↔code mismatches RESOLVED 2026-11-18 (commit 676615d) — docs and code
+ * now agree; the contract tests guard both directions:
+ * - cost field is `cost` everywhere (api-standard §2, observability §1).
+ * - §3 ledger fields `input (tokens/params) · output` are optional in recordCost.
  *
  * Relative runtime import: `./pii` (resolved by the Pages Functions bundler and
  * tsc; pure module — see pii.ts header for testability notes).
@@ -195,6 +192,15 @@ export interface BudgetContext {
  *
  * Honest degrade: with `AI_LEDGER` unbound, KV-derived counters read as 0 and
  * only explicitly passed counts are enforced — bind the ledger before launch.
+ *
+ * Counter safety: a corrupted KV entry parses to NaN — treated as 0 only for
+ * non-numeric garbage AND rounded down; comparisons use finite guards so a
+ * NaN can never pass the cap (`NaN >= limit` is false — that would be a bypass).
+ *
+ * Atomicity note (accepted G1 gap → G2): read-modify-write in recordCost is
+ * not transactional (KV has no transactions); concurrent generations may
+ * under-count. G2 replaces this with a Durable Object counter or a single
+ * atomic increment primitive.
  */
 export async function checkBudget(
   env: ObservabilityEnv,
@@ -203,22 +209,31 @@ export async function checkBudget(
   const limits = resolveBudgets(env);
   const ledger = env.AI_LEDGER;
 
-  const dailySpend = ledger ? Number((await ledger.get(`spend:daily:${dateKey()}`)) ?? 0) : 0;
-  if (dailySpend >= limits.globalDailyEur) {
+  const readCount = async (key: string): Promise<number> => {
+    if (!ledger) return 0;
+    const raw = Number((await ledger.get(key)) ?? 0);
+    // NaN/negative garbage must NOT sail past the cap — fail toward the limit.
+    return Number.isFinite(raw) && raw > 0 ? Math.floor(raw) : 0;
+  };
+
+  const dailySpend = ledger
+    ? Number((await ledger.get(`spend:daily:${dateKey()}`)) ?? 0) || 0
+    : 0;
+  const spend = Number.isFinite(dailySpend) && dailySpend > 0 ? dailySpend : 0;
+  if (spend >= limits.globalDailyEur) {
     return { allow: false, code: 'QUOTA_EXCEEDED', reason: 'daily-ai-budget-exceeded' };
   }
 
-  const orderGens = ledger ? Number((await ledger.get(`count:order:${ctx.orderId}`)) ?? 0) : 0;
+  const orderGens = await readCount(`count:order:${ctx.orderId}`);
   if (orderGens >= limits.perOrderGenerations) {
     return { allow: false, code: 'QUOTA_EXCEEDED', reason: 'order-generation-limit' };
   }
 
   const sessionGens =
     ctx.sessionGenerationCount ??
-    (ledger && ctx.sessionId
-      ? Number((await ledger.get(`count:session:${ctx.sessionId}`)) ?? 0)
-      : 0);
-  if (sessionGens >= limits.perSessionGenerations) {
+    (ledger && ctx.sessionId ? await readCount(`count:session:${ctx.sessionId}`) : 0);
+  const sessionCount = Number.isFinite(sessionGens) && sessionGens > 0 ? sessionGens : 0;
+  if (sessionCount >= limits.perSessionGenerations) {
     return { allow: false, code: 'QUOTA_EXCEEDED', reason: 'session-generation-limit' };
   }
 

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=optional');
 @import "tailwindcss";
+/* Source scan stays on real components: docs/tests/public/scripts contain
+   literal class-like strings (e.g. historic handoffs) that Tailwind v4 would
+   compile into invalid CSS (var(--qf-fs-*) wildcard) and break the dev build. */
+@source not "../../docs";
+@source not "../../tests";
+@source not "../../public";
+@source not "../../scripts";
 
 @theme {
   --color-fx-time: var(--fx-time);

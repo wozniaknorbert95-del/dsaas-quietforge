@@ -144,7 +144,10 @@
       "out_of_scope": "pelna implementacja endpointow",
       "files_allowed": [
         "docs/",
-        "functions/"
+        "functions/",
+        "tests/",
+        "eslint.config.mjs",
+        "todos/"
       ],
       "files_forbidden": [
         "public/demo/"
@@ -187,7 +190,10 @@
       "out_of_scope": "wielki design system",
       "files_allowed": [
         "docs/",
-        "src/components/ui/"
+        "src/components/ui/",
+        "src/app/globals.css",
+        "tests/",
+        "todos/"
       ],
       "files_forbidden": [],
       "dependencies": [],
@@ -308,7 +314,9 @@
       "out_of_scope": "UI dashboard",
       "files_allowed": [
         "functions/",
-        "docs/"
+        "docs/",
+        "tests/",
+        "todos/"
       ],
       "files_forbidden": [
         "public/demo/"

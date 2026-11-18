@@ -12,16 +12,15 @@
  *    so its logic is verified at source level here; runtime coverage arrives
  *    with the E2E framework (SH-G1-04).
  *
- * KNOWN DOC↔CODE MISMATCHES (declared, NOT silently fixed in the docs):
- * - `costEstimate` (observability §1) vs `cost` (code): api-standard.md §2
- *   mandates ONE name everywhere — "Pole kosztu zdarzenia = `cost`". The emitted
- *   line uses `cost`; the docs disagree with each other and need an L2 decision.
- * - ledger fields `input`/`output` (observability §3) are OPTIONAL in the code:
- *   the mandated recordCost signature is
+ * RESOLVED DOC↔CODE MISMATCHES (decided 2026-11-18, commit 676615d):
+ * - `costEstimate` vs `cost`: unified on `cost` per api-standard §2 "jedna nazwa
+ *   wszędzie"; observability §1 now says `cost`. Guard below protects the name.
+ * - ledger fields `input`/`output` (observability §3): OPTIONAL in code and now
+ *   documented as optional — the mandated recordCost signature is
  *   {orderId, model, cost, retryCount, duration, status}.
- * - `perSessionGenerations: 3` and alertThresholds {3 EUR, 20%} have no numeric
- *   source in the docs (threat model §3 gives per-order 5 + retry max 2; §4
- *   suggests €20/day but defers the value to the Commander, L4).
+ * - `perSessionGenerations: 3` + alertThresholds {3 EUR, 20%}: now documented in
+ *   observability §4 ("Budżety — jedno źródło liczb"); per-order 5 and retry max 2
+ *   bind to SECURITY_THREAT_MODEL §3 (guarded in the budget test below).
  *
  * Run: node --test "tests/contract/*.test.mjs"
  * (Node 24 treats positional --test args as globs; a bare directory arg is not

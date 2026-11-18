@@ -170,13 +170,13 @@
         "standard + szkielet"
       ],
       "rollback": "usun szkielet",
-      "evidence_required": "API standard + test kontraktu",
+      "evidence_required": "docs/quality/api-standard.md + functions/api/_lib/http.ts + functions/api/v1/jobs.ts + tests/contract/ (33/33)",
       "evidence": "functions/api/_lib/http.ts (envelope/ERROR_CODES/validators/idempotency) + functions/api/v1/jobs.ts (GET /api/v1/jobs/:id reference) + tests/contract/api-standard.contract.test.mjs (21/21 PASS, node --test) — branch auto/g1-artifacts",
       "review_required": true,
-      "status": "in_progress",
+      "status": "done",
       "attempts": 2,
       "failure_reason": null,
-      "commit": "auto/g1-artifacts (code artifacts delivered 2026-11-18, pending re-review)",
+      "commit": "5fe13e5+676615d+3beb27b",
       "linear_ref": "QUI-272"
     },
     {
@@ -212,13 +212,13 @@
         "standard + proof"
       ],
       "rollback": "usun komponenty",
-      "evidence_required": "standard + screenshoty stanow",
+      "evidence_required": "docs/quality/design-quality-standard.md + src/components/ui/states/ (7 components) + tests/render/states-render.test.mjs (3/3) + docs/operations/evidence/states-ux-2026-11-18/ (375/768/1280)",
       "evidence": "src/components/ui/states/{LoadingState,ErrorState,SuccessState,EmptyState,DisabledHint,Toast,StatesProof}.tsx + qf-state-*/qf-toast* tokens w src/app/globals.css; render proof = StatesProof gallery (brak route celowo — route screenshots w G2 wg design-quality-standard §5) — branch auto/g1-artifacts",
       "review_required": true,
-      "status": "in_progress",
+      "status": "done",
       "attempts": 2,
       "failure_reason": null,
-      "commit": "auto/g1-artifacts (code artifacts delivered 2026-11-18, pending re-review)",
+      "commit": "5fe13e5+676615d+3beb27b",
       "linear_ref": "QUI-273"
     },
     {
@@ -341,13 +341,13 @@
         "ledger + alert dziala"
       ],
       "rollback": "usun ledger",
-      "evidence_required": "observability + cost ledger evidence",
+      "evidence_required": "docs/quality/observability-cost-control.md + functions/api/_lib/observability.ts + pii.ts + tests/contract/ (NaN guard, budgets single-source)",
       "evidence": "functions/api/_lib/observability.ts (emitEvent/recordCost/BUDGETS/checkBudget) + functions/api/_lib/pii.ts (maskEmail/maskToken/scrubText) + tests/contract/observability.contract.test.mjs (12/12 PASS, node --test) — branch auto/g1-artifacts",
       "review_required": true,
-      "status": "in_progress",
+      "status": "done",
       "attempts": 2,
       "failure_reason": null,
-      "commit": "auto/g1-artifacts (code artifacts delivered 2026-11-18, pending re-review)",
+      "commit": "5fe13e5+676615d+3beb27b",
       "linear_ref": "QUI-276"
     },
     {

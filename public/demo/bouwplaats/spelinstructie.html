@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Spelinstructie — Bouw je Imperium | ZZP Marketing Game</title>
+  <meta name="description" content="Leer Bouw je Imperium spelen: besturing, HUD, strategische keuzes, codes en bonussen. Claim je ZZP Wizard-codes na elke level." />
+  <link rel="canonical" href="https://app.flexgrafik.nl/spelinstructie.html" />
+
+  <meta property="og:title" content="Spelinstructie — Bouw je Imperium" />
+  <meta property="og:description" content="Hoe speel je Bouw je Imperium? Besturing, codes, bonussen en Wizard-claimstappen." />
+  <meta property="og:image" content="https://app.flexgrafik.nl/assets/menu/reward-korting.webp" />
+  <meta property="og:url" content="https://app.flexgrafik.nl/spelinstructie.html" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Spelinstructie — Bouw je Imperium" />
+  <meta name="twitter:description" content="Hoe speel je Bouw je Imperium? Besturing, codes, bonussen en Wizard-claimstappen." />
+  <meta name="twitter:image" content="https://app.flexgrafik.nl/assets/menu/reward-korting.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0D0D0F;
+      --card: #12121a;
+      --gold: #f4c430;
+      --orange: #f97316;
+      --text: #E5E7EB;
+      --muted: #94a3b8;
+      --link: #22d3ee;
+      --border: rgba(244,196,48,0.22);
+      --font-industrial: 'Montserrat', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover, a:focus { text-decoration: underline; }
+
+    /* Header */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header__inner {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .site-header__brand {
+      font-family: var(--font-industrial);
+      font-weight: 900;
+      font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .site-header__brand small {
+      display: block;
+      font-weight: 700;
+      font-size: 0.65em;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .site-header__nav {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .site-header__nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: color .15s, background .15s;
+    }
+    .site-header__nav a:hover, .site-header__nav a:focus {
+      color: var(--gold);
+      background: rgba(244,196,48,0.08);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    /* Typography */
+    h1 {
+      font-family: var(--font-industrial);
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: clamp(0.92rem, 2.2vw, 1.05rem);
+      max-width: 36rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: var(--font-industrial);
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+    }
+
+    ol, ul { padding-left: 1.35rem; }
+    li { margin-bottom: 0.5rem; }
+
+    code {
+      background: rgba(255,255,255,0.08);
+      padding: 0.15em 0.45em;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      word-break: break-word;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.15rem;
+      margin-top: 0.85rem;
+    }
+    .card h3 {
+      font-family: var(--font-industrial);
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      font-weight: 800;
+    }
+    .card p, .card li {
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .card ul { margin: 0.4rem 0 0; }
+
+    /* Reward grid */
+    .reward-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 0.85rem;
+    }
+    .reward-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .reward-card__img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.35);
+    }
+    .reward-card__title {
+      font-family: var(--font-industrial);
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+    .reward-card__code {
+      font-family: ui-monospace, monospace;
+      font-size: 0.85rem;
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .reward-card__desc {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .reward-card__terms {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* CTA block */
+    .cta-block {
+      background: var(--card);
+      border: 2px solid var(--orange);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+    .cta-block__label {
+      font-family: var(--font-industrial);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-industrial);
+      font-weight: 800;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      padding: 0.9rem 1.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.5);
+      transition: transform .1s, box-shadow .1s;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 rgba(0,0,0,0.5);
+      text-decoration: none;
+    }
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+    }
+    .cta-block__foot {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding: 1.5rem 1.25rem 2.5rem;
+      text-align: center;
+    }
+    .site-footer__inner {
+      max-width: 44rem;
+      margin: 0 auto;
+    }
+    .site-footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .site-footer__links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .site-footer__links a:hover { color: var(--gold); }
+    .site-footer__copy {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn-primary { transition: none; }
+    }
+
+    /* Safe area for notched phones */
+    @supports (padding: max(0px)) {
+      .site-header__inner, main, .site-footer { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right)); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Bouw je Imperium — ZZP Marketing Game",
+    "description": "ZZP-bouwplaatsgame in de browser. Verdien kortingscodes en fysieke bonussen bij activatie ZZPackage.",
+    "url": "https://app.flexgrafik.nl/spelinstructie.html",
+    "genre": ["Marketing", "Platformer", "ZZP"],
+    "inLanguage": "nl",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "FlexGrafik",
+      "url": "https://flexgrafik.nl"
+    }
+  }
+  </script>
+    <style>.demo-banner{position:relative;z-index:1200;background:#151519;border-bottom:1px solid #3a3a40;color:#f5c518;font-family:system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;text-align:center;padding:7px 12px}</style>
+</head>
+<body>
+
+<div class="demo-banner" role="status">DEMO &middot; FlexGrafik is offline &mdash; het spel werkt volledig, alleen gegevens worden niet verzonden.</div>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__brand">
+        Bouw je Imperium
+        <small>ZZP Marketing Game</small>
+      </div>
+      <nav class="site-header__nav" aria-label="Hoofdnavigatie">
+        <a href="index.html">&larr; Terug naar game</a>
+        <a href="spelreglement-winnaars.html">Voorwaarden</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Spelinstructie</h1>
+    <p class="lede">
+      <strong>Bouw je Imperium</strong> is een korte ZZP-bouwplaatsgame in je browser. Hier lees je hoe je speelt, wat de HUD betekent, en hoe je je codes claimt in de <strong>ZZP Wizard</strong> — <em>zonder</em> dat het scherm tijdens een run stilvalt.
+    </p>
+
+    <h2>Hoe start je</h2>
+    <ol>
+      <li>Kies op het startscherm <strong>Speel de game (±5 min)</strong>.</li>
+      <li>Vul bij de toegangspoort je gegevens in, of kies <strong>Spelen als gast</strong> (<code>SPELEN ALS GAST</code>).</li>
+      <li>Speel de run; <strong>vanaf level 2</strong> zie je na elk behaald level je Wizard-<strong>code</strong> en een korte einduitdaging. Level 1 is tutorial — geen code.</li>
+      <li>Na afloop: score <strong>opslaan</strong> &rarr; <strong>ranglijst</strong> &rarr; daarna de <strong>ZZP Wizard</strong> voor je pakket en codes.</li>
+    </ol>
+
+    <h2>Besturing</h2>
+    <ul>
+      <li><strong>Springen:</strong> tik of klik op het speelveld, of gebruik de <strong>spatiebalk</strong> (toetsenbord).</li>
+      <li><strong>Doel:</strong> blijf op platforms, pak power-ups, ontwijk obstakels. Je score (omzet) loopt automatisch op tijdens het vooruitgaan.</li>
+      <li><strong>Energie:</strong> daalt op de meeste levels; <strong>koffie</strong> helpt om bij te tanken.</li>
+    </ul>
+
+    <h2>HUD (bovenkant scherm)</h2>
+    <ul>
+      <li><strong>OMZET (€):</strong> je huidige score.</li>
+      <li><strong>Level + harten:</strong> resterende levens; geen harten meer = game over.</li>
+      <li><strong>PRO / REP / FIN:</strong> professionaliteit, reputatie en financiën — beïnvloeden onder andere moeilijkheid van het baasgevecht en of je een level afrondt.</li>
+      <li><strong>Voortgangsbalk:</strong> hoe ver je bent in het huidige level ten opzichte van het score-doel.</li>
+    </ul>
+
+    <h2>Einduitdaging (na elk level)</h2>
+    <p>
+      Na het halen van het leveldoel volgt kort een <strong>minigame</strong> — het type wisselt per level (bijv. tikken in het midden, balans houden, of links/rechts wisselen). Daarna zie je het levelresultaat met sterren en je Wizard-code (vanaf level 2). Oefen rustig: de eerste seconde telt vaak niet mee voor score.
+    </p>
+
+    <h2>Strategische keuzes</h2>
+    <p>
+      Tijdens een level kun je <strong>beslisschermen</strong> krijgen (meerdere opties). Die horen bij het verhaal en je stats — lees de opties even en kies wat bij jouw run past.
+    </p>
+
+    <h2>Tips per level</h2>
+
+    <div class="card">
+      <h3>Level 1 — Eerste klus</h3>
+      <ul>
+        <li>Verzamel koffie om je energie op peil te houden.</li>
+        <li>Gereedschap verhoogt je professionaliteit.</li>
+        <li>Pas op voor bureaucratie — het vertraagt je.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Level 2 — Reputatie opbouwen</h3>
+      <ul>
+        <li>Klant vraagt om portfolio — verzamel projecten.</li>
+        <li>Eerste review op Google laat de reputatie stijgen.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Level 3 — Merk &amp; zichtbaarheid</h3>
+      <ul>
+        <li>De markt wordt drukker — val op door professionaliteit.</li>
+        <li>Concurrentie steelt klanten met lage prijzen.</li>
+        <li>Je website begint aanvragen te genereren.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Level 4 — Expansie</h3>
+      <ul>
+        <li>Je bedrijf groeit — maar de chaos groeit ook.</li>
+        <li>Bus met logo = rijdende reclame.</li>
+        <li>Meerdere opdrachten tegelijk: blijf verzamelen tot de finish.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Level 5 — Belasting-eindbaas</h3>
+      <ul>
+        <li>Blauwe envelop: de Belastingdienst laat van zich horen.</li>
+        <li>Verzamel documenten — elk document telt mee in de inspectie.</li>
+        <li>Halverwege: de inspecteur wacht aan het einde.</li>
+        <li>Bereid je voor op de finale bossfight.</li>
+      </ul>
+    </div>
+
+    <h2>Code-overzicht &amp; beloningen</h2>
+    <p style="color:var(--muted);font-size:0.92rem;margin-bottom:0.5rem;">
+      Vanaf <strong>level 2</strong> ontgrendel je per behaald level een vaste Wizard-code. Level 1 is tutorial zonder code. Bij <strong>game over</strong> krijg je altijd <strong>GAME10</strong> (10% korting). Alle fysieke bonussen zijn <strong>aankoopbonussen</strong> bij activatie van je <strong>ZZPackage</strong> (min. €199 incl. BTW).
+    </p>
+
+    <div class="reward-grid">
+      <div class="reward-card">
+        <img class="reward-card__img" src="assets/menu/reward-korting.webp" alt="10% korting ZZPackage" loading="lazy" />
+        <div class="reward-card__title">10% korting</div>
+        <div class="reward-card__code">CODE: GAME10 &mdash; Level 2 (+ game over)</div>
+        <div class="reward-card__desc">Troost- en startbonus. Geldig bij elke bestelling via de ZZP Wizard.</div>
+        <div class="reward-card__terms">Min. besteding €199 incl. BTW bij activatie ZZPackage.</div>
+      </div>
+      <div class="reward-card">
+        <img class="reward-card__img" src="assets/menu/reward-stickers.webp" alt="Stickerpakket PRO-ZZP" loading="lazy" />
+        <div class="reward-card__title">Stickerpakket PRO-ZZP</div>
+        <div class="reward-card__code">CODE: STICKER1 &mdash; Level 3</div>
+        <div class="reward-card__desc">Professionele stickerset voor je werkbus en laptop.</div>
+        <div class="reward-card__terms">Inbegrepen bij activatie ZZPackage; min. besteding €199 incl. BTW.</div>
+      </div>
+      <div class="reward-card">
+        <img class="reward-card__img" src="assets/menu/reward-tshirt.webp" alt="T-shirt ZZP" loading="lazy" />
+        <div class="reward-card__title">T-shirt ZZP</div>
+        <div class="reward-card__code">CODE: TSHIRT2 &mdash; Level 4</div>
+        <div class="reward-card__desc">Premium kwaliteit, ZZP-branding. Geschikt voor op de bouwplaats.</div>
+        <div class="reward-card__terms">Aankoopbonus bij activatie ZZPackage; min. besteding €199 incl. BTW.</div>
+      </div>
+      <div class="reward-card">
+        <img class="reward-card__img" src="assets/menu/reward-hoodie.webp" alt="Hoodie STANDARD met logo" loading="lazy" />
+        <div class="reward-card__title">Hoodie STANDARD met logo</div>
+        <div class="reward-card__code">CODE: WINNER &mdash; Level 5</div>
+        <div class="reward-card__desc">Hoofdaankoopbonus. Warm, robuust, met opdruk.</div>
+        <div class="reward-card__terms">Inbegrepen bij activatie ZZPackage; min. besteding €199 incl. BTW. Geen losse "gratis" prijs.</div>
+      </div>
+    </div>
+
+    <h2>Ranglijst &amp; maandprijs</h2>
+    <p>
+      Sla je score op om te zien waar je staat. In de game toont de ranglijst het actieve <strong>seizoen</strong> (weeknummer, bijv. 2026-W26) voor live scores. Aan het einde van elke <strong>kalendermaand</strong> wint de speler met de <strong>hoogste score</strong> die minstens één levelbonus heeft geclaimd via ZZPackage-activatie.
+    </p>
+    <div class="card">
+      <h3>Maandprijs: jouw logo op een platform</h3>
+      <ul>
+        <li>De maandwinnaar mag het <strong>volgende kalendermaand</strong> zijn of haar <strong>bedrijfslogo</strong> plaatsen op een geselecteerd bouwplaats-platform in de game — zichtbaar voor <strong>alle spelers</strong> (demo-slots tonen nu „Plaats voor jouw logo”).</li>
+        <li>Voorwaarde: minstens één levelcode geclaimd via ZZPackage (min. €199 incl. BTW). Bij gelijke stand: <strong>snelste speeltijd</strong> wint.</li>
+        <li>Daarnaast kan FlexGrafik een <strong>fysieke bonus</strong> meegeven (bijv. magneetbord of stickerpakket), afhankelijk van voorraad die maand.</li>
+        <li>Niet bovenaan? Je kunt altijd je <strong>GAME10</strong>-code gebruiken in de Wizard.</li>
+      </ul>
+    </div>
+
+    <h2>Hoe claim je je bonus</h2>
+    <ol>
+      <li><strong>Speel</strong> een run en behaal een level.</li>
+      <li><strong>Sla je score op</strong> (na game over of na level 5) — dit legt je voortgang vast.</li>
+      <li>Ga naar de <strong>ZZP Wizard</strong> via de groene CTA in de game of hieronder.</li>
+      <li>Voltooi de activatie; je code(s) worden automatisch verrekend bij een besteding van <strong>minimaal €199 incl. BTW</strong>.</li>
+    </ol>
+
+    <div class="cta-block">
+      <p class="cta-block__label">&mdash; Start je ZZP-pakket &mdash;</p>
+      <a class="btn-primary" href="../zzpackage/wizard/?utm_source=game&amp;utm_medium=spelinstructie&amp;utm_campaign=bouw_je_imperium" target="_blank" rel="noopener" aria-label="Direct naar de ZZP Wizard">
+        Direct naar de ZZP Wizard
+      </a>
+      <p class="cta-block__foot">
+        Min. besteding €199 incl. BTW bij activatie ZZPackage.<br />
+        Code(s) worden verrekend in de Wizard. Geen loterij — bonussen zijn aankoopbonussen.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <nav class="site-footer__links" aria-label="Footer navigatie">
+        <a href="index.html">&larr; Terug naar de game</a>
+        <a href="spelreglement-winnaars.html">Winactievoorwaarden</a>
+        <a href="https://flexgrafik.nl/privacy" target="_blank" rel="noopener">Privacybeleid</a>
+        <a href="index.html?view=ranglijst">Ranglijst</a>
+      </nav>
+      <p class="site-footer__copy">
+        &copy; 2026 FlexGrafik. Bouw je Imperium — ZZP Marketing Game. Alle rechten voorbehouden.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

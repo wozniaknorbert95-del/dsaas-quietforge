@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import DoorDemoPreview from '@/components/lab/DoorDemoPreview';
-import { DEMO_PAGES } from '@/content/lab-demos';
-import { SITE_URL } from '@/lib/constants';
+import DemoFrame from '@/components/demo/DemoFrame';
+import { DEMO_PAGES, DEMO_SHARED } from '@/content/lab-demos';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 
 const demo = DEMO_PAGES.game;
 
@@ -30,6 +30,26 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Faithful replica of the original FlexGrafik lead game "Bouwplaats Chaos"
+ * (app.flexgrafik.nl) — the original built game with the backend stubbed.
+ * Registration safely stops at the demo modal (company offline); the game
+ * itself is fully playable and hands the reward coupon to the Wizard demo.
+ */
 export default function LabGameDemoPage() {
-  return <DoorDemoPreview id="game" />;
+  return (
+    <DemoFrame
+      src="/demo/bouwplaats/"
+      title="Bouwplaats Chaos — werkende demo"
+      heading={demo.title}
+      lead={demo.lead}
+      backHref={ROUTES.resultsFlexgrafik}
+      backLabel={DEMO_SHARED.frameBackLabel}
+      proofHref={ROUTES.proof}
+      proofLabel={DEMO_SHARED.frameProofLabel}
+      scanHref={ROUTES.bookAScan}
+      scanLabel={DEMO_SHARED.frameScanLabel}
+      loadingLabel={DEMO_SHARED.frameLoading}
+    />
+  );
 }

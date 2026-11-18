@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Bouw je Imperium — ZZP Marketing Game | FlexGrafik</title>
+    
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Word een slimme ZZP-er, verzamel opdrachten, vermijd bureaucratie en bouw jouw imperium! Speel i.s.m. FlexGrafik." />
+    <meta property="og:title" content="Bouw je Imperium — ZZP Marketing Game | FlexGrafik" />
+    <meta property="og:description" content="Bouw jouw ZZP-imperium in het meest verslavende bouwspel van het jaar! Speel nu." />
+    <meta property="og:image" content="https://app.flexgrafik.nl/assets/menu/reward-korting.webp" />
+    <meta property="og:url" content="https://app.flexgrafik.nl/" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://app.flexgrafik.nl/" />
+    
+    <!-- Cache Invalidation (Senior Deploy) -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bouw je Imperium — ZZP Marketing Game | FlexGrafik" />
+    <meta name="twitter:description" content="Word een slimme ZZP-er i.s.m. FlexGrafik i bouw jouw imperium!" />
+    <meta name="twitter:image" content="https://app.flexgrafik.nl/assets/menu/reward-korting.webp" />
+
+    <!-- PWA & Mobile -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="pwa-icon-192.png" />
+    <meta name="theme-color" content="#070707" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Bouw je Imperium" />
+    <link rel="apple-touch-icon" sizes="192x192" href="pwa-icon-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="pwa-icon-512.png" />
+
+    <!-- Resource Pre-fetching -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- PWA icons: rel=icon + manifest only — preload caused Chrome "not used within a few seconds" spam -->
+    <link rel="preload" as="image" href="assets/bg_bouwplaats.webp" fetchpriority="high" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@700;800;900&amp;display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+      html, body, #root {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      body {
+        background-color: var(--zzp-bg-dark, #0D0D0F);
+        font-family: var(--font-body, 'Inter', sans-serif);
+        touch-action: none; /* Prevent zoom/scroll on mobile */
+        overscroll-behavior: none; /* iOS rubber-band */
+      }
+      
+      /* ✅ SafeArea insets for notch/Dynamic Island (iPhone 15/16, etc.) */
+      #root {
+        padding-top: env(safe-area-inset-top, 0);
+        padding-bottom: env(safe-area-inset-bottom, 0);
+        padding-left: env(safe-area-inset-left, 0);
+        padding-right: env(safe-area-inset-right, 0);
+      }
+
+      /* Static LCP shell — paints hero text before React bundle loads */
+      .lcp-shell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100dvh;
+        padding: clamp(48px, 12vh, 80px) 20px;
+        box-sizing: border-box;
+        background:
+          linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)),
+          url('assets/bg_bouwplaats.webp') center / cover no-repeat;
+        color: #f5f5f5;
+        text-align: center;
+      }
+      .lcp-shell__title {
+        margin: 0 0 12px;
+        font-size: clamp(36px, 10vw, 56px);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+      .lcp-shell__subtitle {
+        margin: 0;
+        font-size: clamp(18px, 4.5vw, 24px);
+        font-weight: 800;
+        color: #c8c8cc;
+        letter-spacing: 0.04em;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+    </style>
+  <script type="module" crossorigin src="assets/index-CsBjo9Q_.js"></script>
+  <link rel="modulepreload" crossorigin href="assets/heavy-app-xM6nLHG8.js">
+  <link rel="modulepreload" crossorigin href="assets/vendor-BdAqs36z.js">
+  <link rel="stylesheet" crossorigin href="assets/index-CMZaRovJ.css">
+    <!-- Demo chrome only (banner + demo-stop modal) - mirrors zzpackage/wizard/index.html -->
+    <style>
+        .demo-banner{position:relative;z-index:1200;background:var(--zzp-bg-panel,#151519);border-bottom:1px solid var(--zzp-concrete-grey,#3a3a40);color:var(--zzp-action-yellow,#f5c518);font-family:var(--font-industrial,system-ui,sans-serif);font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;text-align:center;padding:7px 12px}
+        .demo-hazard{height:12px;background:repeating-linear-gradient(-45deg,var(--zzp-action-yellow,#f5c518) 0 12px,#0d0d0f 12px 24px)}
+        .demo-modal-backdrop{position:fixed;inset:0;z-index:3000;background:rgba(5,5,5,.82);display:flex;align-items:center;justify-content:center;padding:16px}
+        .demo-modal-backdrop[hidden]{display:none}
+        .demo-modal{position:relative;width:min(460px,100%);background:var(--zzp-bg-panel,#151519);border:2px solid var(--zzp-action-yellow,#f5c518);box-shadow:var(--shadow-hard-lg,0 10px 40px rgba(0,0,0,.6));padding:24px;box-sizing:border-box}
+        .demo-modal h2{font-family:var(--font-industrial,system-ui,sans-serif);font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:1.25rem;color:var(--zzp-text-primary,#f5f5f5);margin:16px 0 12px}
+        .demo-modal p{color:var(--zzp-text-secondary,#c8c8cc);font-size:.9375rem;line-height:1.5;margin:0 0 12px}
+        .demo-modal .demo-ref{font-family:ui-monospace,'Courier New',monospace;color:var(--zzp-action-yellow,#f5c518);font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase}
+        .demo-btn{margin-top:8px;min-height:44px;padding:12px 24px;background:var(--zzp-action-yellow,#f5c518);color:#0d0d0f;font-family:var(--font-industrial,system-ui,sans-serif);font-weight:900;text-transform:uppercase;letter-spacing:.05em;border:2px solid #0d0d0f;cursor:pointer}
+        .demo-btn:hover{background:var(--zzp-construction-orange,#ff6b00)}
+        /* Fullscreen 100dvh game layout - reserve the banner height */
+        #root{height:calc(100% - var(--demo-banner-h,32px))!important}
+        #root>div{height:calc(100dvh - var(--demo-banner-h,32px))!important}
+        .lcp-shell{min-height:calc(100dvh - var(--demo-banner-h,32px))!important}
+    </style>
+    <script src="demo-boot.js"></script>
+</head>
+  <body>
+
+<div class="demo-banner" role="status">DEMO &middot; FlexGrafik is offline &mdash; het spel werkt volledig, alleen gegevens worden niet verzonden.</div>
+    <div id="root">
+      <div class="lcp-shell" aria-hidden="true">
+        <h1 class="lcp-shell__title">BOUW JE IMPERIUM</h1>
+        <p class="lcp-shell__subtitle">ZZP Marketing Game</p>
+      </div>
+    </div>
+<div class="demo-modal-backdrop" id="demo-stop-modal" hidden>
+    <div class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-stop-title">
+        <div class="demo-hazard" aria-hidden="true"></div>
+        <h2 id="demo-stop-title">Demo &mdash; er wordt niets verzonden.</h2>
+        <p>FlexGrafik is offline; dit is een werkende demo van Bouwplaats Chaos. Alles wat je ziet en speelt is echt, alleen je gegevens worden niet verzonden.</p>
+        <p class="demo-ref">Referentie: <span id="demo-stop-ref">DEMO-0000</span></p>
+        <button type="button" id="demo-stop-close" class="demo-btn">Sluiten</button>
+    </div>
+</div>
+</body>
+</html>

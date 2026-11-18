@@ -127,10 +127,10 @@
       "rollback": "usun ADR",
       "evidence_required": "ADR + dowody repo",
       "review_required": true,
-      "status": "open",
-      "attempts": 0,
+      "status": "in_progress",
+      "attempts": 1,
       "failure_reason": null,
-      "commit": null,
+      "commit": "adr-pending-review",
       "linear_ref": "QUI-271"
     },
     {

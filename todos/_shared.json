@@ -89,7 +89,7 @@
       "status": "done",
       "attempts": 1,
       "failure_reason": null,
-      "commit": "pending-baseline-from-audits",
+      "commit": "e916c79+audits-2026-11-18",
       "linear_ref": "QUI-270"
     },
     {

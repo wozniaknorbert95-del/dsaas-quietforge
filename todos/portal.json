@@ -6,8 +6,130 @@
   "build_gate": "npm run typecheck && npm run lint && npm run build",
   "source_repo": "public/demo/zzpackage/portal/ + front-page.php (read-only)",
   "tasks": [
-    {"id":"POR-G0-01","title":"Deep audit + definicja funkcji biznesowej + DoE","objective":"JAKA akcje uzytkownik ma wykonac na PORTAL i dlaczego; audyt + DoE.","problem":"Optymalizacja wizualna bez celu biznesowego = nieskuteczna.","priority":"P0","phase":"G0","scope":"public/demo/zzpackage/portal/ + front-page.php (read-only)","out_of_scope":"przebudowa","files_allowed":["docs/"],"files_forbidden":["public/demo/"],"dependencies":[],"risk_level":"low","autonomy_level":"L1","acceptance_criteria":["Definicja: landing/katalog/hub/sprzedaz/portal klienta + glowna akcja","Raport CTA/linkow/routingu/responsywnosci","DoE PORTAL (journey, konwersja, perf, a11y)","Baseline"],"verification":"raport + evidence","test_plan":["przeglad CTA/linkow","screenshoty"],"dod":["definicja + raport + DoE"],"rollback":"usun raport","evidence_required":"definicja funkcji + raport + DoE","review_required":false,"status":"open","attempts":0,"failure_reason":null,"commit":null,"linear_ref":"QUI-269"},
-    {"id":"POR-G6-01","title":"Conversion journey + CTA/navigation optimization","objective":"Portal spelnia cel biznesowy (z G0).","problem":"Optymalizacja wizualna bez konwersji.","priority":"P2","phase":"G6","scope":"portal front","out_of_scope":"zmiana copy bez OK","files_allowed":["public/demo/zzpackage/portal/"],"files_forbidden":[],"dependencies":["POR-G0-01","SH-G1-03"],"risk_level":"low","autonomy_level":"L1","acceptance_criteria":["Journey wg definicji; glowna akcja jasna","CTA/nawigacja/routing zoptymalizowane; linki do zywych produktow","Status demo/live spojny"],"verification":"E2E CTA/linki + journey","test_plan":["E2E CTA","link audit"],"dod":["journey dziala"],"rollback":"git revert","evidence_required":"journey + screenshoty + link audit","review_required":true,"status":"open","attempts":0,"failure_reason":null,"commit":null,"linear_ref":null},
-    {"id":"POR-G6-02","title":"Performance/a11y/branding + readiness gate","objective":"Gotowosc PORTAL.","problem":"Perf/a11y nieznane.","priority":"P2","phase":"G6","scope":"portal + tests","out_of_scope":"nowe funkcje","files_allowed":["public/demo/zzpackage/portal/","tests/","docs/"],"files_forbidden":[],"dependencies":["POR-G6-01"],"risk_level":"low","autonomy_level":"L1","acceptance_criteria":["LCP<=2.5 INP<=200 CLS<=0.1; lazy images; overflow 0","WCAG podstawy; branding spojny","Readiness>=90"],"verification":"CWV + a11y audit","test_plan":["CWV","a11y","visual"],"dod":["readiness gate passed"],"rollback":"git revert","evidence_required":"pomiary + a11y + score","review_required":true,"status":"open","attempts":0,"failure_reason":null,"commit":null,"linear_ref":null}
+    {
+      "id": "POR-G0-01",
+      "title": "Deep audit + definicja funkcji biznesowej + DoE",
+      "objective": "JAKA akcje uzytkownik ma wykonac na PORTAL i dlaczego; audyt + DoE.",
+      "problem": "Optymalizacja wizualna bez celu biznesowego = nieskuteczna.",
+      "priority": "P0",
+      "phase": "G0",
+      "scope": "public/demo/zzpackage/portal/ + front-page.php (read-only)",
+      "out_of_scope": "przebudowa",
+      "files_allowed": [
+        "docs/"
+      ],
+      "files_forbidden": [
+        "public/demo/"
+      ],
+      "dependencies": [],
+      "risk_level": "low",
+      "autonomy_level": "L1",
+      "acceptance_criteria": [
+        "Definicja: landing/katalog/hub/sprzedaz/portal klienta + glowna akcja",
+        "Raport CTA/linkow/routingu/responsywnosci",
+        "DoE PORTAL (journey, konwersja, perf, a11y)",
+        "Baseline"
+      ],
+      "verification": "raport + evidence",
+      "test_plan": [
+        "przeglad CTA/linkow",
+        "screenshoty"
+      ],
+      "dod": [
+        "definicja + raport + DoE"
+      ],
+      "rollback": "usun raport",
+      "evidence_required": "docs/operations/audits/2026-11-18-portal-audit.md (raport+DoE+baseline+link audit)",
+      "review_required": false,
+      "status": "done",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": "audit-2026-11-18",
+      "linear_ref": "QUI-269"
+    },
+    {
+      "id": "POR-G6-01",
+      "title": "Conversion journey + CTA/navigation optimization",
+      "objective": "Portal spelnia cel biznesowy (z G0).",
+      "problem": "Optymalizacja wizualna bez konwersji.",
+      "priority": "P2",
+      "phase": "G6",
+      "scope": "portal front",
+      "out_of_scope": "zmiana copy bez OK",
+      "files_allowed": [
+        "public/demo/zzpackage/portal/"
+      ],
+      "files_forbidden": [],
+      "dependencies": [
+        "POR-G0-01",
+        "SH-G1-03"
+      ],
+      "risk_level": "low",
+      "autonomy_level": "L1",
+      "acceptance_criteria": [
+        "Journey wg definicji; glowna akcja jasna",
+        "CTA/nawigacja/routing zoptymalizowane; linki do zywych produktow",
+        "Status demo/live spojny"
+      ],
+      "verification": "E2E CTA/linki + journey",
+      "test_plan": [
+        "E2E CTA",
+        "link audit"
+      ],
+      "dod": [
+        "journey dziala"
+      ],
+      "rollback": "git revert",
+      "evidence_required": "journey + screenshoty + link audit",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    },
+    {
+      "id": "POR-G6-02",
+      "title": "Performance/a11y/branding + readiness gate",
+      "objective": "Gotowosc PORTAL.",
+      "problem": "Perf/a11y nieznane.",
+      "priority": "P2",
+      "phase": "G6",
+      "scope": "portal + tests",
+      "out_of_scope": "nowe funkcje",
+      "files_allowed": [
+        "public/demo/zzpackage/portal/",
+        "tests/",
+        "docs/"
+      ],
+      "files_forbidden": [],
+      "dependencies": [
+        "POR-G6-01"
+      ],
+      "risk_level": "low",
+      "autonomy_level": "L1",
+      "acceptance_criteria": [
+        "LCP<=2.5 INP<=200 CLS<=0.1; lazy images; overflow 0",
+        "WCAG podstawy; branding spojny",
+        "Readiness>=90"
+      ],
+      "verification": "CWV + a11y audit",
+      "test_plan": [
+        "CWV",
+        "a11y",
+        "visual"
+      ],
+      "dod": [
+        "readiness gate passed"
+      ],
+      "rollback": "git revert",
+      "evidence_required": "pomiary + a11y + score",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    }
   ]
 }

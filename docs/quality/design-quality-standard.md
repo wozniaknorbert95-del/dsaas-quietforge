@@ -20,6 +20,7 @@
 | **Recovery** | retry (z limitem), cofnięcie, bezpieczny powrót; po 3 próbach → jasna eskalacja (kontakt) |
 | **Empty** | co tu będzie + jak zacząć |
 | **Disabled** | dlaczego zablokowane (np. „Nog €70 tot minimum") |
+| **Notification (toast)** | pozycja: dolny-lewy (mobile: dolny-center, nie zasłania CTA); czas: 4 s (błąd: do dismiss); dismiss: przycisk + auto; `aria-live="polite"` (błędy: `assertive`); max 1 widoczny naraz |
 
 ## 3. Visual density („chaos na starcie")
 - Powyżej foldu: **maks. 1 główna akcja + 1 drugorzędna**. Reszta treści → accordion / poniżej foldu / progressive disclosure.

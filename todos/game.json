@@ -6,8 +6,129 @@
   "build_gate": "npm run typecheck && npm run lint && npm run build",
   "source_repo": "public/demo/bouwplaats/ + app.flexgrafik.nl src (read-only)",
   "tasks": [
-    {"id":"GAM-G0-01","title":"Deep product & technical audit + Definition of Excellence","objective":"Pelna diagnoza gry + DoE.","problem":"Brak gameplay QA; nieznana ukonczalnosc/soft-locki.","priority":"P0","phase":"G0","scope":"public/demo/bouwplaats/ + src (read-only)","out_of_scope":"przebudowa","files_allowed":["docs/"],"files_forbidden":["public/demo/"],"dependencies":[],"risk_level":"low","autonomy_level":"L1","acceptance_criteria":["Raport: ukonczalnosc/mechaniki/soft-locki/restart/pause/score/kolizje/input/audio/mobile","DoE GAME (gameplay regression, perf FPS/input/memory)","Baseline"],"verification":"gameplay test + raport","test_plan":["gameplay przeglad","screenshoty/video"],"dod":["raport + DoE + baseline"],"rollback":"usun raport","evidence_required":"raport + gameplay evidence + DoE","review_required":false,"status":"open","attempts":0,"failure_reason":null,"commit":null,"linear_ref":"QUI-268"},
-    {"id":"GAM-G5-01","title":"Automated Gameplay Regression Suite","objective":"Scenariusze gry po kazdej zmianie, nie tylko build.","problem":"Brak gameplay QA.","priority":"P1","phase":"G5","scope":"tests/gameplay harness","out_of_scope":"zmiana mechanik bez zgody","files_allowed":["tests/"],"files_forbidden":["public/demo/bouwplaats/assets/"],"dependencies":["GAM-G0-01","SH-G1-04"],"risk_level":"medium","autonomy_level":"L1","acceptance_criteria":["Ukonczalnosc/mechaniki/brak soft-lockow/restart/pause/score/state/kolizje/poziomy/sterowanie/audio/mobile input","Suite uruchamialna po zmianie"],"verification":"gameplay suite run","test_plan":["gameplay regression"],"dod":["suite dziala"],"rollback":"usun testy","evidence_required":"gameplay test + video","review_required":false,"status":"open","attempts":0,"failure_reason":null,"commit":null,"linear_ref":null},
-    {"id":"GAM-G5-02","title":"Performance/input/mobile/audio QA + polish + readiness gate","objective":"Wydajnosc i feel gry; gotowosc.","problem":"Perf/input latency nieznane.","priority":"P2","phase":"G5","scope":"game assets/loop + tests","out_of_scope":"zmiana core engine bez ADR","files_allowed":["public/demo/bouwplaats/","tests/","docs/"],"files_forbidden":[],"dependencies":["GAM-G5-01"],"risk_level":"low","autonomy_level":"L1","acceptance_criteria":["FPS/asset loading/input latency/memory budzet","Lazy audio/levels; mobile touch; reduced-motion; a11y overlayow","Polish + readiness>=90"],"verification":"pomiary + gameplay","test_plan":["perf pomiar","gameplay","a11y"],"dod":["readiness gate passed"],"rollback":"git revert","evidence_required":"perf + gameplay evidence + score","review_required":true,"status":"open","attempts":0,"failure_reason":null,"commit":null,"linear_ref":null}
+    {
+      "id": "GAM-G0-01",
+      "title": "Deep product & technical audit + Definition of Excellence",
+      "objective": "Pelna diagnoza gry + DoE.",
+      "problem": "Brak gameplay QA; nieznana ukonczalnosc/soft-locki.",
+      "priority": "P0",
+      "phase": "G0",
+      "scope": "public/demo/bouwplaats/ + src (read-only)",
+      "out_of_scope": "przebudowa",
+      "files_allowed": [
+        "docs/"
+      ],
+      "files_forbidden": [
+        "public/demo/"
+      ],
+      "dependencies": [],
+      "risk_level": "low",
+      "autonomy_level": "L1",
+      "acceptance_criteria": [
+        "Raport: ukonczalnosc/mechaniki/soft-locki/restart/pause/score/kolizje/input/audio/mobile",
+        "DoE GAME (gameplay regression, perf FPS/input/memory)",
+        "Baseline"
+      ],
+      "verification": "gameplay test + raport",
+      "test_plan": [
+        "gameplay przeglad",
+        "screenshoty/video"
+      ],
+      "dod": [
+        "raport + DoE + baseline"
+      ],
+      "rollback": "usun raport",
+      "evidence_required": "docs/operations/audits/2026-11-18-game-audit.md (raport+DoE+baseline) + gameplay video evidence = pending GAM-G5-01",
+      "review_required": false,
+      "status": "in_progress",
+      "attempts": 1,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": "QUI-268"
+    },
+    {
+      "id": "GAM-G5-01",
+      "title": "Automated Gameplay Regression Suite",
+      "objective": "Scenariusze gry po kazdej zmianie, nie tylko build.",
+      "problem": "Brak gameplay QA.",
+      "priority": "P1",
+      "phase": "G5",
+      "scope": "tests/gameplay harness",
+      "out_of_scope": "zmiana mechanik bez zgody",
+      "files_allowed": [
+        "tests/"
+      ],
+      "files_forbidden": [
+        "public/demo/bouwplaats/assets/"
+      ],
+      "dependencies": [
+        "GAM-G0-01",
+        "SH-G1-04"
+      ],
+      "risk_level": "medium",
+      "autonomy_level": "L1",
+      "acceptance_criteria": [
+        "Ukonczalnosc/mechaniki/brak soft-lockow/restart/pause/score/state/kolizje/poziomy/sterowanie/audio/mobile input",
+        "Suite uruchamialna po zmianie"
+      ],
+      "verification": "gameplay suite run",
+      "test_plan": [
+        "gameplay regression"
+      ],
+      "dod": [
+        "suite dziala"
+      ],
+      "rollback": "usun testy",
+      "evidence_required": "gameplay test + video",
+      "review_required": false,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    },
+    {
+      "id": "GAM-G5-02",
+      "title": "Performance/input/mobile/audio QA + polish + readiness gate",
+      "objective": "Wydajnosc i feel gry; gotowosc.",
+      "problem": "Perf/input latency nieznane.",
+      "priority": "P2",
+      "phase": "G5",
+      "scope": "game assets/loop + tests",
+      "out_of_scope": "zmiana core engine bez ADR",
+      "files_allowed": [
+        "public/demo/bouwplaats/",
+        "tests/",
+        "docs/"
+      ],
+      "files_forbidden": [],
+      "dependencies": [
+        "GAM-G5-01"
+      ],
+      "risk_level": "low",
+      "autonomy_level": "L1",
+      "acceptance_criteria": [
+        "FPS/asset loading/input latency/memory budzet",
+        "Lazy audio/levels; mobile touch; reduced-motion; a11y overlayow",
+        "Polish + readiness>=90"
+      ],
+      "verification": "pomiary + gameplay",
+      "test_plan": [
+        "perf pomiar",
+        "gameplay",
+        "a11y"
+      ],
+      "dod": [
+        "readiness gate passed"
+      ],
+      "rollback": "git revert",
+      "evidence_required": "perf + gameplay evidence + score",
+      "review_required": true,
+      "status": "open",
+      "attempts": 0,
+      "failure_reason": null,
+      "commit": null,
+      "linear_ref": null
+    }
   ]
 }

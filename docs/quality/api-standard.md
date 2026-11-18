@@ -10,19 +10,31 @@
 ```
 - `error.code` = stały enum (UPPER_SNAKE); `retryable` jawnie; `requestId` zawsze (trace).
 
-## 2. Wymagania per endpoint
+## 2. Wymagania per endpoint (kontrakt)
+| Endpoint | Input | Auth | Error codes (specyficzne) | Rate limit |
+|---|---|---|---|---|
+| `POST /api/v1/chat` | `{sessionId, message, locale, quickReplyId?, fieldUpdates?}` (max 4000 znaków) | order/session token | `VALIDATION_ERROR · RATE_LIMITED · QUOTA_EXCEEDED · GENERATION_TIMEOUT` | per IP 10/min · session 30/h |
+| `POST /api/v1/generate` | multipart: brief JSON + logo + `Idempotency-Key` | order token (PAYMENT_VERIFIED) | `PAYMENT_REQUIRED · GENERATION_FAILED · GENERATION_TIMEOUT · QUOTA_EXCEEDED · CONFLICT (dup)` | per order wg produktu (hard max 5) |
+| `POST /api/v1/checkout` | `{product, qty, locale, returnUrl}` | brak (publiczny) | `VALIDATION_ERROR · PAYMENT_FAILED · RATE_LIMITED` | per IP 10/min |
+| `POST /api/v1/mollie/webhook` | Mollie body + sygnatura | signature (T7) | `UNAUTHORIZED · CONFLICT (dedup) · INTERNAL` | dedup `paymentId+status` |
+| `GET /api/v1/asset/:id` | signed token (query) | order ownership (T5) | `UNAUTHORIZED · NOT_FOUND · EXPIRED` | per order 60/h |
+| `GET /api/v1/jobs/:id` | — | order token | `NOT_FOUND · UNAUTHORIZED` | per order 60/h |
+
+**Jedno źródło limitów:** per order = limit wg produktu (katalog produktów), **hard max 5 generacji/order** (cytowane w SECURITY_THREAT_MODEL §3 i observability §4). Pole kosztu zdarzenia = `cost` (jedna nazwa wszędzie).
+
+### Wymagania globalne (wszystkie endpointy)
 | Wymaganie | Reguła |
 |---|---|
 | Input | JSON schema walidowany na wejściu (typy, zakresy, długości); odrzucanie nieznanego pola |
 | Output | Envelope; pola camelCase; brak danych wrażliwych w logach/odpowiedziach |
-| Error codes | `VALIDATION_ERROR · UNAUTHORIZED · PAYMENT_REQUIRED · PAYMENT_FAILED · GENERATION_FAILED · GENERATION_TIMEOUT · RATE_LIMITED · QUOTA_EXCEEDED · NOT_FOUND · CONFLICT · INTERNAL` |
-| Auth | Order-scoped token (signed, TTL) dla generate/asset; webhook = signature Mollie; brak zgadywania ownership |
-| Rate limits | per IP + per session + per order + per user; stałe w kodzie (patrz threat model) |
-| Timeout | 10 s (checkout/webhook) · 120 s (generate async job, nie request) · 30 s (chat) |
-| Retry | tylko `retryable:true`; idempotency key na POST (unikalny order/generation ID) — powtórka NIE generuje duplikatu kosztu |
-| Idempotency | `Idempotency-Key` header; deduplikacja webhooków po `paymentId+status` |
-| Logging | requestId/orderId/endpoint/status/duration/cost — bez PII |
+| Auth | Order-scoped token (signed, TTL) dla generate/asset/job; webhook = signature Mollie (T7); brak zgadywania ownership |
+| Timeout | 10 s (checkout/webhook) · 120 s (generate = async job, nie request) · 30 s (chat) |
+| Idempotency | `Idempotency-Key` header na POST; deduplikacja webhooków po `paymentId+status` |
+| Logging | `requestId · orderId · projectId · endpoint · status · timestamp · duration · errorCode · model · cost` — bez PII (jedno źródło: observability §1) |
 | Versioning | `/api/v1/...`; zmiana kontraktu = L2 review + ADR |
+
+### Retry (jedno źródło: SECURITY_THREAT_MODEL §3)
+Tylko `retryable:true`; **max 2** powtórki generacji; retry UI (3 próby) = 1 próba + 2 retry. Idempotency-Key na POST — powtórka NIE generuje duplikatu kosztu.
 
 ## 3. Job lifecycle (generacje)
 `CREATED → PAYMENT_VERIFIED → QUEUED → PROCESSING → QA → COMPLETED` + `FAILED · RETRYING · CANCELLED · EXPIRED`.

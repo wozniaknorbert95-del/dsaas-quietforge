@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import DoorDemoPreview from '@/components/lab/DoorDemoPreview';
-import { DEMO_PAGES } from '@/content/lab-demos';
-import { SITE_URL } from '@/lib/constants';
+import DemoFrame from '@/components/demo/DemoFrame';
+import { DEMO_PAGES, DEMO_SHARED } from '@/content/lab-demos';
+import { ROUTES, SITE_URL } from '@/lib/constants';
 
 const demo = DEMO_PAGES.portal;
 
@@ -30,6 +30,24 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Faithful replica of the original FlexGrafik portal homepage (front-page.php)
+ * — the hub that routes to the three live tool replicas (Wizard, INSPIRE, Game).
+ */
 export default function LabPortalDemoPage() {
-  return <DoorDemoPreview id="portal" />;
+  return (
+    <DemoFrame
+      src="/demo/zzpackage/portal/"
+      title="FlexGrafik Portal — werkende demo"
+      heading={demo.title}
+      lead={demo.lead}
+      backHref={ROUTES.resultsFlexgrafik}
+      backLabel={DEMO_SHARED.frameBackLabel}
+      proofHref={ROUTES.proof}
+      proofLabel={DEMO_SHARED.frameProofLabel}
+      scanHref={ROUTES.bookAScan}
+      scanLabel={DEMO_SHARED.frameScanLabel}
+      loadingLabel={DEMO_SHARED.frameLoading}
+    />
+  );
 }

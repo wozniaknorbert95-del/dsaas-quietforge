@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZZPackage — Bouw je professionele uitstraling in 5 minuten</title>
+    <!-- SITE-01: fonts load ONCE via wp_enqueue_style('fg-fonts') in functions.php -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+
+    <!-- fg_theme_scripts() enqueue order for front-page.php (fg-wizard-style = style.css) -->
+    <link rel="stylesheet" href="../css/zzp-design-tokens.css">
+    <link rel="stylesheet" href="../css/zzp-components.css">
+    <link rel="stylesheet" href="../css/zzp-utilities.css">
+    <link rel="stylesheet" href="../css/zzp-chrome.css">
+    <link rel="stylesheet" href="../css/zzp-buttons.css">
+    <link rel="stylesheet" href="zzp-style.css">
+    <link rel="stylesheet" href="../css/zzp-home-vca.css">
+
+    <!-- fg_open_graph_tags() (theme fallback, Yoast inactive) — front-page branch -->
+    <meta property="og:title" content="ZZPackage — Bouw je professionele uitstraling in 5 minuten">
+    <meta property="og:description" content="Logo, voertuig, kleding, materiaal — alles in één order. Levering in ca. 10 werkdagen na goedkeuring briefing. Speciaal voor ZZP Nederland.">
+    <meta property="og:type" content="website">
+
+    <!-- Demo chrome only (banner) -->
+    <style>
+        .demo-banner{position:relative;z-index:1200;background:var(--zzp-bg-secondary);border-bottom:1px solid var(--zzp-border-default);color:var(--zzp-accent-yellow);font-family:var(--zzp-font-mono);font-size:12px;letter-spacing:.05em;text-align:center;padding:7px 12px}
+    </style>
+</head>
+<body class="home page-template-default page">
+
+<div class="demo-banner" role="status">DEMO · FlexGrafik is offline — de site werkt volledig, alleen er wordt niets verzonden.</div>
+
+<a href="#primary" class="skip-link">Direct naar hoofdinhoud</a>
+
+<div id="page" class="site">
+    <header id="masthead" class="site-header-vca">
+        <div class="hazard-stripe-yellow"></div>
+        <div class="header-inner-vca">
+            <a href="#" class="header-logo" rel="home">
+                <img src="../images/zzpackage-logo-primary.png"
+                     alt="ZZPackage"
+                     class="header-logo-img"
+                     width="162"
+                     height="44"
+                     loading="eager">
+            </a>
+            <div class="header-actions">
+                <div class="status-display" aria-hidden="true">
+                    <span>STATUS:</span> ONLINE
+                </div>
+                <a href="../inspire/"
+                   class="header-cta header-cta--design-agent"
+                   id="header-design-agent-cta">
+                    <span class="header-cta__badge">Nieuw</span>
+                    Ontwerp je bus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="../wizard/"
+                   class="header-cta header-cta--wizard"
+                   id="header-wizard-cta">
+                    Start de Wizard
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+<main id="primary" class="site-main front-page">
+
+    <!-- ====================================================
+         1. HERO SECTION — VCA Industrial
+         ==================================================== -->
+    <section class="hero-vca">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="vca-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 2L2 22h20L12 2z"/><path d="M12 16v.01M12 8v4"/></svg>
+                    Let Op: 33+ ZZP'ers gecertificeerd
+                </div>
+                <h1 class="hero-title-vca">
+                    Van anoniem<br>
+                    naar <span class="cyan">Premium</span><br>
+                    <span class="magenta">Vakman.</span>
+                </h1>
+                <p class="hero-desc-vca">
+                    Jij levert topwerk, maar je <strong>witte bus straalt niks uit.</strong>
+                    Bouw je professionele uitstraling in 5 minuten. Wij installeren het in 10 werkdagen.
+                    <strong>Klaar voor B2B contracten.</strong>
+                </p>
+                <div class="hero-cta-row">
+                    <a href="../wizard/" class="btn-vca btn-action" id="btn-hero-wizard">
+                        Start de Wizard
+                    </a>
+                    <a href="../inspire/" class="btn-vca btn-outline btn-vca--new" id="btn-hero-design-agent">
+                        <span class="btn-vca__badge">Nieuw</span>
+                        Ontwerp je bus — gratis
+                    </a>
+                </div>
+                <p class="hero-cta-note">
+                    Gratis Design Agent: upload je logo, kies je bus, ontvang 2 AI-mock-ups.
+                </p>
+            </div>
+
+            <div class="hero-visual">
+                <img src="../images/homepage/home-hero-na-pakket-mobile.webp" alt="Professioneel merk met ZZPackage branding">
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================
+         1b. DESIGN AGENT PROMO — P2-11 homepage exposure
+         ==================================================== -->
+    <section class="da-home-promo" aria-label="Nieuw: gratis bus-ontwerp">
+        <div class="da-home-promo__inner container-vca">
+            <div class="da-home-promo__copy">
+                <span class="da-home-promo__badge">Nieuw</span>
+                <h2 class="da-home-promo__title">Zie je bus vóór je bestelt</h2>
+                <p class="da-home-promo__desc">
+                    Upload je logo in onze Design Agent. Kies je voertuig. Ontvang <strong>2 AI-mock-ups</strong> op jouw merk — gratis, zonder betaling.
+                </p>
+            </div>
+            <a href="../inspire/" class="btn-vca btn-warning btn-vca--new" id="btn-promo-design-agent">
+                Ontwerp je bus — gratis
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ====================================================
+         2. SPEC BAR
+         ==================================================== -->
+    <div class="spec-bar">
+        <div class="spec-item">
+            <div class="spec-val">33+</div>
+            <div class="spec-label">Bedrijfswagens</div>
+        </div>
+        <div class="spec-item">
+            <div class="spec-val">10</div>
+            <div class="spec-label">Werkdagen Levertijd</div>
+        </div>
+        <!-- SITE-03: unverified "+€15 Uurtarief Stijging" claim replaced by the factual brand contract -->
+        <div class="spec-item">
+            <div class="spec-val">€199</div>
+            <div class="spec-label">Minimale bestelling</div>
+        </div>
+        <div class="spec-item">
+            <div class="spec-val">5,0</div>
+            <div class="spec-label">Google-score</div>
+        </div>
+    </div>
+
+    <!-- ====================================================
+         3. STATUS INSPECTIE (Voor / Na)
+         ==================================================== -->
+    <section class="section-vca section-vca--alt">
+        <div class="hazard-stripe-cyan"></div>
+        <div class="container-vca container-vca--pad-top">
+            <div class="section-header-vca section-header-vca--center">
+                <div class="section-eyebrow">Status Inspectie</div>
+                <h2 class="section-title-vca">Dezelfde Skills, Ander Respect</h2>
+            </div>
+
+            <div class="comparison-wrapper">
+                <div class="comp-box danger">
+                    <div class="comp-header">Ongeautoriseerd (Voorheen)</div>
+                    <ul class="comp-list">
+                        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Witte, anonieme bus</li>
+                        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Werkkleding zonder logo</li>
+                        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Particuliere, prijs-kritische klanten</li>
+                    </ul>
+                </div>
+
+                <div class="comp-arrow">
+                    <span>10 Dagen</span>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    <span>Montage</span>
+                </div>
+
+                <div class="comp-box safe">
+                    <div class="comp-header">Gecertificeerd (ZZPackage)</div>
+                    <ul class="comp-list">
+                        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Opvallende, strakke belettering</li>
+                        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Uniforme, premium werkkleding</li>
+                        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> B2B contracten en respect op de bouw</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================
+         4. PROTOCOL (5 stappen)
+         ==================================================== -->
+    <section id="proces" class="section-vca section-vca--void">
+        <div class="container-vca">
+            <div class="section-header-vca">
+                <div class="section-eyebrow">Werkwijze</div>
+                <h2 class="section-title-vca">Zo werkt het</h2>
+                <p class="section-intro-vca">Van Wizard tot levering — helder, online en in jouw tempo.</p>
+            </div>
+
+            <div class="home-swipe-carousel__wrap">
+            <div class="steps-grid-vca steps-grid-vca--5 home-swipe-carousel home-swipe-carousel--protocol" role="list" aria-label="Zo werkt het stappen">
+                <div class="step-card-vca step-card-vca--5" role="listitem">
+                    <div class="step-number-badge-vca">1</div>
+                    <div class="step-image-wrap-vca">
+                        <img src="../images/homepage/img-stap-1-wizard.webp" alt="Stap 1: Stel samen in de Wizard" loading="lazy" width="320" height="160">
+                    </div>
+                    <h3 class="step-title-vca">Stel samen in de Wizard</h3>
+                    <p class="step-desc-vca">Kies in minuten; wij regelen maten, druk en techniek.</p>
+                </div>
+                <div class="step-card-vca step-card-vca--5" role="listitem">
+                    <div class="step-number-badge-vca">2</div>
+                    <div class="step-image-wrap-vca">
+                        <img src="../images/homepage/img-stap-2-betalen.webp" alt="Stap 2: Betaal veilig" loading="lazy" width="320" height="160">
+                    </div>
+                    <h3 class="step-title-vca">Betaal veilig</h3>
+                    <p class="step-desc-vca">iDEAL of Bancontact — materialen en specs altijd inzichtelijk.</p>
+                </div>
+                <div class="step-card-vca step-card-vca--5" role="listitem">
+                    <div class="step-number-badge-vca">3</div>
+                    <div class="step-image-wrap-vca">
+                        <img src="../images/homepage/img-stap-3-formulier.webp" alt="Stap 3: Personalisatieformulier" loading="lazy" width="320" height="160">
+                    </div>
+                    <h3 class="step-title-vca">Personalisatieformulier</h3>
+                    <p class="step-desc-vca">Na elke order per e-mail; invul je zelf of deelt met je partner.</p>
+                </div>
+                <div class="step-card-vca step-card-vca--5" role="listitem">
+                    <div class="step-number-badge-vca">4</div>
+                    <div class="step-image-wrap-vca">
+                        <img src="../images/homepage/img-stap-4-heesch.webp" alt="Stap 4: Productie in Heesch" loading="lazy" width="320" height="160">
+                    </div>
+                    <h3 class="step-title-vca">Productie in Heesch</h3>
+                    <p class="step-desc-vca">Eigen drukkerij; grote formaten via premium partner.</p>
+                </div>
+                <div class="step-card-vca step-card-vca--5" role="listitem">
+                    <div class="step-number-badge-vca">5</div>
+                    <div class="step-image-wrap-vca">
+                        <img src="../images/homepage/img-stap-5-levering.webp" alt="Stap 5: Ontvang je ZZPackage" loading="lazy" width="320" height="160">
+                    </div>
+                    <h3 class="step-title-vca">Ontvang je ZZPackage</h3>
+                    <p class="step-desc-vca">InPost aan huis of ophalen bij ErKa montage.</p>
+                </div>
+            </div>
+            </div>
+
+            <p class="steps-footnote-vca">
+                <a href="#">Materialen</a>
+                <span aria-hidden="true">&middot;</span>
+                <a href="#">Formulier &amp; FAQ</a>
+                <span aria-hidden="true">&middot;</span>
+                10 werkdagen na akkoord
+            </p>
+
+            <div class="steps-cta-wrap-vca">
+                <a href="../wizard/" class="btn-vca btn-action" id="btn-steps-cta">
+                    Start de Wizard
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================
+         5. SYSTEEM ANALYSE (ROI)
+         ==================================================== -->
+    <section id="roi" class="section-vca section-vca--alt">
+        <div class="container-vca">
+            <div class="section-header-vca">
+                <div class="section-eyebrow">Rendement</div>
+                <h2 class="section-title-vca">De Harde Cijfers van Branding</h2>
+            </div>
+
+            <div class="grid-3 grid-3--roi">
+                <div class="data-panel data-panel--compact">
+                    <div class="panel-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <h3 class="panel-title">Gratis Reclame</h3>
+                    <!-- SITE-03: unverified "2M+ views" claim removed — restore only with documented source (Dowódca) -->
+                    <div class="panel-stat">Elke dag zichtbaar</div>
+                    <p class="panel-desc">Je bus rijdt dagelijks door je werkgebied. Geen dure Google Ads — je bus is je beste sales-agent op de weg.</p>
+                </div>
+
+                <div class="data-panel data-panel--compact">
+                    <div class="panel-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3 class="panel-title">Uurtarief Upgrade</h3>
+                    <!-- SITE-03: unverified "+€15/u" claim removed — restore only with documented source (Dowódca) -->
+                    <div class="panel-stat">Sterker tarief</div>
+                    <p class="panel-desc">Klanten betalen voor professionaliteit. Met complete branding positioneer je je boven de goedkoopste offerte.</p>
+                </div>
+
+                <div class="data-panel data-panel--compact">
+                    <div class="panel-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h3 class="panel-title">B2B Toegang</h3>
+                    <div class="panel-stat">3x Waarde</div>
+                    <p class="panel-desc">Vastgoedbeheerders en aannemers huren geen anonieme busjes in. Krijg toegang tot de grote projecten.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================
+         6. HARDWARE SETUP (Configurator Modules)
+         ==================================================== -->
+    <section class="section-vca section-hardware-setup">
+        <div class="container-vca">
+            <div class="section-header-vca">
+                <div class="section-eyebrow">Uitrusting</div>
+                <h2 class="section-title-vca">Configureer Jouw Uitrusting</h2>
+            </div>
+
+            <div class="home-swipe-carousel__wrap">
+            <div class="module-grid module-grid--catalog home-swipe-carousel home-swipe-carousel--hardware" role="list" aria-label="Hardware categorieën">
+                <a href="../wizard/?step=1" class="module-card module-card--catalog" data-featured-sku="F-001">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg></span>
+                    <img class="mod-product-hero" src="../images/F-001.webp" alt="Logo bronbestand + huisstijl basis" loading="eager" decoding="async" width="200" height="150" fetchpriority="high">
+                    <div class="mod-title">Fundament</div>
+                    <div class="mod-price">Vanaf <span>&euro;89</span></div>
+                </a>
+                <a href="../wizard/?step=2" class="module-card module-card--catalog" data-featured-sku="CS-SET-LOGO-CONTACT">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 13l1-6a2 2 0 0 1 2-2h9.5a2 2 0 0 1 1.8 1.1L21 11v6h-2"/><path d="M3 17h2"/><path d="M9 17h7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/><path d="M3 11h14"/></svg></span>
+                    <img class="mod-product-hero" src="../images/wizard-step2/wizard-step2_caddy_set_logo-contact_v1.png" alt="Startset logo + contact — Caddy / Partner" loading="eager" decoding="async" width="200" height="150" fetchpriority="high">
+                    <div class="mod-title">Voertuig</div>
+                    <div class="mod-price">Vanaf <span>&euro;8</span></div>
+                </a>
+                <a href="../wizard/?step=3" class="module-card module-card--catalog" data-featured-sku="OC-001">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3l4 2 4-2 4 3-2.5 3.5L16 9v11H8V9l-1.5.5L4 6z"/></svg></span>
+                    <img class="mod-product-hero" src="../images/OC-001.png" alt="T-shirt STANDARD (Fruit of the Loom)" loading="eager" decoding="async" width="200" height="150" fetchpriority="high">
+                    <div class="mod-title">Werkkleding</div>
+                    <div class="mod-price">Vanaf <span>&euro;7</span></div>
+                </a>
+                <a href="../wizard/?step=4" class="module-card module-card--catalog" data-featured-sku="VK-102">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M7 10h4"/><path d="M7 13h2"/><circle cx="16" cy="11" r="1.6"/><path d="M14 15c.4-1 1.1-1.6 2-1.6s1.6.6 2 1.6"/></svg></span>
+                    <img class="mod-product-hero" src="../images/VK-102.png" alt="Visitekaartjes 1-zijdig (300 stuks)" loading="eager" decoding="async" width="200" height="150" fetchpriority="high">
+                    <div class="mod-title">Eerste Indruk</div>
+                    <div class="mod-price">Vanaf <span>&euro;29</span></div>
+                </a>
+                <a href="../wizard/?step=5" class="module-card module-card--catalog" data-featured-sku="TB-001">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 21V3"/><path d="M5 4h12l-2.5 3.5L17 11H5"/></svg></span>
+                    <img class="mod-product-hero" src="../images/TB-001.png" alt="Bouwbord A3 (42x30 cm)" loading="lazy" decoding="async" width="200" height="150">
+                    <div class="mod-title">Zichtbaarheid</div>
+                    <div class="mod-price">Vanaf <span>&euro;25</span></div>
+                </a>
+                <a href="../wizard/?step=6" class="module-card module-card--catalog" data-featured-sku="NS-006">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.2 5.2L3 18v3h3l6.5-6.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2-2 2.6-2.6z"/></svg></span>
+                    <img class="mod-product-hero" src="../images/NS-006.png" alt="Batterij stickers 4×8 cm — 20 stuks" loading="lazy" decoding="async" width="200" height="150">
+                    <div class="mod-title">Gereedschap</div>
+                    <div class="mod-price">Vanaf <span>&euro;4</span></div>
+                </a>
+                <a href="../wizard/?step=7" class="module-card module-card--catalog" data-featured-sku="AP-002">
+                    <span class="mod-cat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3z"/></svg></span>
+                    <img class="mod-product-hero" src="../images/ap_002.png" alt="Thermotas met logo" loading="lazy" decoding="async" width="200" height="150">
+                    <div class="mod-title">Premium</div>
+                    <div class="mod-price">Vanaf <span>&euro;28</span></div>
+                </a>
+            </div>
+            </div>
+
+            <div class="home-cta-center">
+                <a href="../wizard/" class="btn-vca btn-action btn-lg" id="btn-configurator-cta">
+                    Start de Wizard
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <!-- SITE-03: aligned with reality — 100% upfront via Mollie before production (AUD-P0-02 covers checkout copy) -->
+                <p class="home-cta-note">Gratis configureren — je betaalt pas aan het einde, veilig via Mollie</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================
+         7. CERTIFICERING (Trust & Garantie)
+         ==================================================== -->
+    <section id="trust-section" class="section-vca section-vca--void">
+        <div class="container-vca">
+            <div class="section-header-vca section-header-vca--center">
+                <div class="section-eyebrow">Certificering</div>
+                <h2 class="section-title-vca">De FlexGrafik Garantie</h2>
+            </div>
+
+            <div class="trust-grid-vca">
+                <div class="data-panel">
+                    <div class="panel-icon panel-icon--cyan">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                    </div>
+                    <h3 class="panel-title">Premium Materialen</h3>
+                    <p class="panel-desc">Wij werken uitsluitend met 3M en Oracal folie — UV-bestendig en weerbestendig. Geproduceerd op Mimaki machines.</p>
+                </div>
+
+                <div class="data-panel">
+                    <div class="panel-icon panel-icon--cyan">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <h3 class="panel-title">Montage &amp; Bezorging</h3>
+                    <p class="panel-desc">Voertuigwrap-montage bij onze partner ErKaPremium, Nieuwstraat 11 A, 5384 TC Heesch. Overige producten uit je pakket bez montage? Die sturen we als pakket naar jouw adres via PostNL.</p>
+                </div>
+
+                <div class="data-panel">
+                    <div class="panel-icon panel-icon--cyan">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h3 class="panel-title">Veiligheid</h3>
+                    <p class="panel-desc">Veilig betalen via iDEAL en Mollie. Gegarandeerde productietijd van 10 werkdagen na briefing.</p>
+                </div>
+            </div>
+
+            <!-- Google Reviews (HOME-TRUST-01: mirror flexgrafik JSON) -->
+            <div class="home-reviews-vca">
+                <div class="home-reviews-vca__header">
+                    <h3 class="home-reviews-vca__title">Wat klanten zeggen</h3>
+                    <div class="home-reviews-vca__aggregate">
+                        <span class="home-reviews-vca__stars" aria-hidden="true">★★★★★</span>
+                        <span class="home-reviews-vca__score">5,0</span>
+                        <span class="home-reviews-vca__meta">op Google Reviews · 6 recensies</span>
+                    </div>
+                </div>
+
+                <div class="home-reviews-vca__track-wrap">
+                    <div class="home-reviews-vca__track" role="list" aria-label="Google recensies">
+                        <article class="home-reviews-vca__card" role="listitem">
+                            <div class="home-reviews-vca__card-stars" aria-label="5 van 5 sterren">★★★★★</div>
+                            <p class="home-reviews-vca__card-text">&ldquo;Aanrader!&rdquo;</p>
+                            <div class="home-reviews-vca__card-author">
+                                <div class="home-reviews-vca__avatar home-reviews-vca__avatar--c0 home-reviews-vca__avatar--dark-text" aria-hidden="true">T</div>
+                                <div>
+                                    <div class="home-reviews-vca__card-label">Tevreden klant</div>
+                                    <div class="home-reviews-vca__card-meta">1 maand geleden · Google</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="home-reviews-vca__card" role="listitem">
+                            <div class="home-reviews-vca__card-stars" aria-label="5 van 5 sterren">★★★★★</div>
+                            <p class="home-reviews-vca__card-text">&ldquo;Zeker een aanrader!&rdquo;</p>
+                            <div class="home-reviews-vca__card-author">
+                                <div class="home-reviews-vca__avatar home-reviews-vca__avatar--c1" aria-hidden="true">T</div>
+                                <div>
+                                    <div class="home-reviews-vca__card-label">Tevreden klant</div>
+                                    <div class="home-reviews-vca__card-meta">1 maand geleden · Google</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="home-reviews-vca__card" role="listitem">
+                            <div class="home-reviews-vca__card-stars" aria-label="5 van 5 sterren">★★★★★</div>
+                            <p class="home-reviews-vca__card-text">&ldquo;Ik wilde alleen een paar T-shirts voor de bouwplaats. Ze kwamen met een eigen ontwerp. Het materiaal is goed en de print blijft mooi na het wassen.&rdquo;</p>
+                            <div class="home-reviews-vca__card-author">
+                                <div class="home-reviews-vca__avatar home-reviews-vca__avatar--c2" aria-hidden="true">Z</div>
+                                <div>
+                                    <div class="home-reviews-vca__card-label">ZZP'er · bouw</div>
+                                    <div class="home-reviews-vca__card-meta">1 maand geleden · Google</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="home-reviews-vca__card" role="listitem">
+                            <div class="home-reviews-vca__card-stars" aria-label="5 van 5 sterren">★★★★★</div>
+                            <p class="home-reviews-vca__card-text">&ldquo;Ik bestelde een maatwerk wandafbeelding en ben erg blij met het resultaat. De printkwaliteit en kleuren zijn top, en het hele proces was snel en duidelijk.&rdquo;</p>
+                            <div class="home-reviews-vca__card-author">
+                                <div class="home-reviews-vca__avatar home-reviews-vca__avatar--c3 home-reviews-vca__avatar--dark-text" aria-hidden="true">P</div>
+                                <div>
+                                    <div class="home-reviews-vca__card-label">Particuliere klant</div>
+                                    <div class="home-reviews-vca__card-meta">1 maand geleden · Google</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="home-reviews-vca__card" role="listitem">
+                            <div class="home-reviews-vca__card-stars" aria-label="5 van 5 sterren">★★★★★</div>
+                            <p class="home-reviews-vca__card-text">&ldquo;Voor onze eco webshop hadden we snel productetiketten, stickers en kleding met logo nodig. Binnen een paar dagen waren de hoodies, T-shirts en etiketten klaar. Alles ziet er netjes en scherp uit. Fijn dat het zo snel kon, zonder gedoe.&rdquo;</p>
+                            <div class="home-reviews-vca__card-author">
+                                <div class="home-reviews-vca__avatar home-reviews-vca__avatar--c4 home-reviews-vca__avatar--dark-text" aria-hidden="true">E</div>
+                                <div>
+                                    <div class="home-reviews-vca__card-label">Eco webshop · NL</div>
+                                    <div class="home-reviews-vca__card-meta">2 weken geleden · Google</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="home-reviews-vca__card" role="listitem">
+                            <div class="home-reviews-vca__card-stars" aria-label="5 van 5 sterren">★★★★★</div>
+                            <p class="home-reviews-vca__card-text">&ldquo;Ik raad dit bedrijf aan: betrouwbaar en ze denken echt met je mee.&rdquo;</p>
+                            <div class="home-reviews-vca__card-author">
+                                <div class="home-reviews-vca__avatar home-reviews-vca__avatar--c5" aria-hidden="true">T</div>
+                                <div>
+                                    <div class="home-reviews-vca__card-label">Tevreden klant</div>
+                                    <div class="home-reviews-vca__card-meta">1 maand geleden · Google</div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="home-reviews-vca__footer">
+                    <a href="https://share.google/JEkcrqxIrfc7IiDg4" class="btn-vca btn-outline home-reviews-vca__link" target="_blank" rel="noopener noreferrer">Lees alle Google Reviews &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="trust-badges-row-vca">
+                <div class="trust-badge-vca">
+                    <img src="../images/homepage/ideal-logo.png" alt="iDEAL betaling" loading="lazy">
+                </div>
+                <div class="trust-badge-vca trust-badge-text-vca">
+                    <span>KvK</span><strong>89057554</strong>
+                </div>
+                <div class="trust-badge-vca trust-badge-text-vca">
+                    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><strong>Rotterdam</strong>
+                </div>
+                <div class="trust-badge-vca trust-badge-text-vca">
+                    <span>10 werkdagen</span><strong>Levering</strong>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ====================================================
+         8. ENGAGEMENT (Game)
+         ==================================================== -->
+    <section class="section-vca game-section-vca">
+        <div class="container-vca">
+            <div class="game-inner-vca">
+                <div class="game-content">
+                    <div class="section-header-vca section-header-vca--compact">
+                        <div class="section-eyebrow">Betrokkenheid</div>
+                        <h2 class="section-title-vca">Speel Mee en Win</h2>
+                    </div>
+                    <p class="panel-desc game-content__desc">
+                        Win kortingscodes of een gratis stickerset voor jouw gereedschap. De beste speler van de maand ontvangt een compleet brandingpakket.
+                    </p>
+                    <p class="game-content__hint">
+                        Heb je een kortingscode uit de game? Open bijvoorbeeld <code>../wizard/?coupon=WINCODE123</code> (vervang <code>WINCODE123</code> door jouw code) — de korting wordt automatisch meegenomen naar de checkout.
+                    </p>
+                    <a href="../../bouwplaats/" target="_blank" class="btn-vca btn-warning" rel="noopener noreferrer" id="btn-game-cta">
+                        Speel nu
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <p class="game-content__meta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01M10 12h4"/></svg> Skill-game met maandelijkse ranking</p>
+                </div>
+                <div class="game-visual-vca">
+                    <a href="../../bouwplaats/" target="_blank" rel="noopener noreferrer" class="game-visual-vca__link">
+                        <img src="../images/homepage/img-game-promo.png" alt="FlexGrafik game mascotte — ren voor kortingscodes en prijzen" width="512" height="512" loading="lazy">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOME-ZZP-HUB-V2-02 — fg_render_home_zzp_systems_hub_section() -->
+    <section id="zzp-systems-hub" class="section-vca section-zzp-systems-hub" aria-labelledby="zzp-systems-hub-title">
+        <div class="container-vca">
+            <div class="zzp-systems-hub__grid knowledge-inner-vca">
+
+                <div class="data-panel zzp-systems-hub__intro">
+                    <div class="section-header-vca zzp-systems-hub__header zzp-systems-hub__header--intro">
+                        <div class="section-eyebrow">Kennis voor ZZP'ers</div>
+                        <h2 id="zzp-systems-hub-title" class="section-title-vca zzp-systems-hub__title">
+                            Branding én slimmer werken — van dezelfde partner.
+                        </h2>
+                    </div>
+                    <p class="panel-desc zzp-systems-hub__lead">
+                        FlexGrafik is jouw partner voor professionele uitstraling in bouw en techniek. In onze blog duiken we dieper in twee thema's: hoe je eruitziet als vakman, en hoe je minder tijd kwijt bent aan offertes en mail — praktisch, zonder IT-jargon.
+                    </p>
+                    <ul class="zzp-systems-hub__bullets">
+                        <li>Branding: bus, kleding en huisstijl die klanten vertrouwen geven</li>
+                        <li>Slimmer werken: minder handmatig werk, meer tijd op de klus</li>
+                        <li>Alles onder één dak — dezelfde partij als je Wizard</li>
+                    </ul>
+                </div>
+
+                <div class="data-panel zzp-systems-hub__articles">
+                    <div class="zzp-systems-hub__tracks">
+                        <article class="zzp-systems-hub__track zzp-systems-hub__track--branding">
+                            <p class="zzp-systems-hub__track-label">Branding &amp; uitstraling</p>
+                            <span class="zzp-systems-hub__category">Branding &amp; uitstraling</span>
+                            <a href="#" class="zzp-systems-hub__post-title">
+                                Professionele uitstraling voor ZZP'ers in bouw: waarom zichtbaarheid en offertes samen horen
+                            </a>
+                            <div class="zzp-systems-hub__visual" aria-hidden="true">
+                                <span class="zzp-systems-hub__visual-glow"></span>
+                            </div>
+                            <p class="zzp-systems-hub__excerpt">Klanten oordelen over je bus en kleding vóór ze bellen. Zo zorg je dat je uitstraling en je werkwijze hetzelfde vertrouwen uitstralen — praktisch, zonder marketingpraat.</p>
+                            <a href="#" class="btn-vca btn-outline zzp-systems-hub__read">
+                                Lees artikel &rarr;
+                            </a>
+                        </article>
+                        <article class="zzp-systems-hub__track zzp-systems-hub__track--automatisering">
+                            <p class="zzp-systems-hub__track-label">Slimmer werken</p>
+                            <span class="zzp-systems-hub__category">Slimmer werken</span>
+                            <a href="#" class="zzp-systems-hub__post-title">
+                                ZZP in bouw en techniek: waar je eerst tijd wint op mail en administratie
+                            </a>
+                            <div class="zzp-systems-hub__visual" aria-hidden="true">
+                                <span class="zzp-systems-hub__visual-glow"></span>
+                            </div>
+                            <p class="zzp-systems-hub__excerpt">Als ZZP'er in bouw of techniek verlies je snel tijd aan mail, offertes en losse administratie. Dit zijn de drie plekken waar je het eerst kunt vereenvoudigen — zonder dure software of ingewikkelde IT.</p>
+                            <a href="#" class="btn-vca btn-outline zzp-systems-hub__read">
+                                Lees artikel &rarr;
+                            </a>
+                        </article>
+                    </div>
+                    <a href="#" class="btn-vca btn-outline zzp-systems-hub__more">
+                        Alle artikelen &rarr;
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+    <footer id="colophon" class="site-footer footer-vca" aria-label="Site footer">
+        <div class="hazard-stripe-cyan"></div>
+
+        <div class="footer-main-vca">
+
+            <!-- 1. Brand -->
+            <div class="footer-col-brand">
+                <div class="footer-brand-stack">
+                    <a href="#" class="footer-brand-link">
+                        <img src="../images/zzpackage-logo-primary.png"
+                             alt="ZZPackage"
+                             class="footer-logo-zzp"
+                             width="147"
+                             height="40"
+                             loading="eager"
+                             fetchpriority="low">
+                    </a>
+                    <a href="https://flexgrafik.nl/" class="footer-brand-link footer-brand-link--fg" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/homepage/flexgrafik-logo.webp"
+                             alt="FlexGrafik"
+                             class="footer-logo-fg"
+                             width="87"
+                             height="20"
+                             loading="lazy">
+                    </a>
+                </div>
+                <p class="footer-tagline">De specialist in ZZP-branding.</p>
+            </div>
+
+            <!-- 2. Snel naar -->
+            <div class="footer-col-nav">
+                <p class="footer-col-title">Snel naar</p>
+                <nav class="footer-nav-grid" aria-label="Footer navigatie">
+                    <a href="../wizard/" class="footer-link-vca">Start de Wizard</a>
+                    <a href="https://flexgrafik.nl/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Wie zijn wij?</a>
+                    <a href="https://flexgrafik.nl/portfolio-diensten/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                    <a href="https://flexgrafik.nl/contact/" class="footer-link-vca" target="_blank" rel="noopener noreferrer">Over ons</a>
+                    <a href="#" class="footer-link-vca">Veelgestelde vragen</a>
+                    <a href="#" class="footer-link-vca">Materialen</a>
+                    <a href="../inspire/" class="footer-link-vca">Ontwerp je bus</a>
+                    <a href="https://wa.me/31687286151" class="footer-link-vca footer-link-wa" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        WhatsApp
+                    </a>
+                </nav>
+            </div>
+
+            <!-- 3. Game & contact (desktop only) -->
+            <div class="footer-col-game">
+                <p class="footer-col-title">Game &amp; contact</p>
+                <a href="../../bouwplaats/" target="_blank" rel="noopener noreferrer" aria-label="Speel de game en win kortingscodes" class="footer-game-link">
+                    <img src="../images/homepage/spel-icoon.webp" alt="Speel en win brandingpakket" class="footer-game-img">
+                </a>
+                <a href="https://flexgrafik.nl/contact/" target="_blank" rel="noopener noreferrer" class="btn-vca btn-outline footer-contact-btn">Contact &rarr;</a>
+            </div>
+
+        </div><!-- /.footer-main-vca -->
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom-vca">
+            <nav class="footer-legal" aria-label="Juridische links">
+                <a href="#" class="footer-link-vca">Algemene Voorwaarden</a>
+                <a href="#" class="footer-link-vca">Privacybeleid</a>
+            </nav>
+            <p class="footer-meta">FLEXGRAFIK ROTTERDAM // KVK: 89057554</p>
+            <a href="#page" class="footer-back-top">↑ Terug naar boven</a>
+            <p class="footer-copyright">&copy; 2026 <a href="https://flexgrafik.nl/" target="_blank" rel="noopener noreferrer" class="footer-fg-link">FlexGrafik</a> — Rotterdam, NL</p>
+        </div>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ZZPackage",
+            "url": "https://zzpackage.flexgrafik.nl/",
+            "logo": "https://zzpackage.flexgrafik.nl/wp-content/themes/flexgrafik-wizard-theme/assets/images/zzpackage-logo-primary.png",
+            "parentOrganization": {
+                "@type": "Organization",
+                "name": "FlexGrafik",
+                "url": "https://flexgrafik.nl/",
+                "identifier": { "@type": "PropertyValue", "propertyID": "KVK", "value": "89057554" }
+            },
+            "sameAs": ["https://wa.me/31687286151"],
+            "address": { "@type": "PostalAddress", "addressLocality": "Rotterdam", "addressCountry": "NL" }
+        }
+        </script>
+    </footer>
+
+</div><!-- #page -->
+
+<script>
+/* Sticky header scroll handler (footer.php) */
+(function() {
+    var header = document.querySelector('.site-header-vca');
+    if (!header) return;
+    function onScroll() {
+        if (window.scrollY > 180) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>
+
+</body>
+</html>

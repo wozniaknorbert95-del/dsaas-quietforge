@@ -220,7 +220,6 @@ async function callProvider(env: Env, prompt: string): Promise<ProviderImage> {
     env.AI!.run(MODEL, {
       prompt,
       steps: STEPS,
-      seed: Math.floor(Math.random() * 2_147_483_647),
     }),
     timeout,
   ]);

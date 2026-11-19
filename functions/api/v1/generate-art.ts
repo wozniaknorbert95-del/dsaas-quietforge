@@ -1,19 +1,26 @@
 /**
  * POST /api/v1/generate-art — vehicle wrap ARTWORK generation (Phase 1, free).
  *
- * Decided stack (2026-11-19, todos/inspire.json): hybrid —
- *   SDXL (OVHcloud AI Endpoints, FREE, OpenAI-compatible) generates FLAT wrap
- *   artwork (text2image) for BOTH product variants in one action (Standard +
- *   Premium = our EUR149/EUR399 cards); the customer's real logo is composited
- *   MECHANICALLY on the client (panel-map.json + vehicle templates) — never
- *   through AI (brand integrity).
+ * Decided stack (2026-11-19, todos/inspire.json) — HYBRID:
+ *   Workers AI `flux-1-schnell` (FREE 10k neurons/day, no credit card, Apache-2.0)
+ *   generates FLAT wrap artwork (text2image) for BOTH product variants in one
+ *   action (Standard + Premium = our EUR149/EUR399 cards); the customer's real
+ *   logo is composited MECHANICALLY on the client (panel-map.json + vehicle
+ *   templates) — never through AI (brand integrity).
+ *
+ * Provider choice (2026-11-19, Commander decision): OVHcloud SDXL rejected —
+ * its Public Cloud project requires a EUR100 credit provision (hidden entry
+ * cost). Cloudflare SDXL is deprecated 2026-11-20. flux-1-schnell runs on the
+ * same account as this Pages project (binding `AI`), verified in official docs:
+ * env.AI.run -> { image: base64 }. Neuron math: 1024x1024 @ steps=4 = 19.2 +
+ * 4x38.4 = ~173 neurons/image; one action = 2 images ~= 346; daily cap 10
+ * actions ~= 3.5k of the free 10k/day.
  *
  * Phase 1 = free tier: ONE generation action (= 2 variants) per visitor + hard
  * daily cap (KV counters). Phase 2 = Mollie payments + premium model.
  *
  * Contract: docs/quality/api-standard.md §2 (envelope, codes, idempotency,
- * 120 s timeout). Limits via KV — GPT-proposed Durable Object is unavailable
- * on Pages Functions (ADR-001 Option B); atomicity gap documented in SH-G1-06.
+ * 120 s timeout). Limits via KV (atomicity gap documented in SH-G1-06).
  * Prompt: Commander-approved (2026-11-19) — flat artwork, no text/logo/vehicle.
  */
 
@@ -24,8 +31,14 @@ interface LedgerKV extends KVLike {
   delete(key: string): Promise<unknown>;
 }
 
+/** Minimal Workers AI binding shape (no @cloudflare/workers-types dependency). */
+interface AiLike {
+  run(model: string, input: Record<string, unknown>): Promise<{ image?: string }>;
+}
+
 interface Env {
-  OVH_API_KEY?: string;
+  /** Workers AI binding (Pages: Settings → Bindings → Workers AI, name `AI`). */
+  AI?: AiLike;
   /** KV — cost ledger + generation counters + idempotency keys (SH-G1-06). */
   AI_LEDGER?: LedgerKV;
   /** Daily generation-action cap override (default below). */
@@ -46,8 +59,8 @@ interface GenerateRequest {
   businessType?: string;
 }
 
-const OVH_URL = 'https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/images/generations';
-const MODEL = 'stable-diffusion-xl-base-v10';
+const MODEL = '@cf/black-forest-labs/flux-1-schnell';
+const STEPS = 4;
 /** api-standard §2: generate = async job budget 120 s. */
 const GENERATION_TIMEOUT_MS = 120_000;
 
@@ -192,42 +205,34 @@ async function releaseGeneration(ledger: LedgerKV, visitorToken: string): Promis
 }
 
 interface ProviderImage {
-  format: 'base64' | 'url';
-  mimeType?: string;
-  data?: string;
-  url?: string;
+  format: 'base64';
+  mimeType: string;
+  data: string;
 }
 
+/** flux-1-schnell via the Pages Workers AI binding (docs-verified contract). */
 async function callProvider(env: Env, prompt: string): Promise<ProviderImage> {
-  const apiResponse = await fetch(OVH_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${env.OVH_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ model: MODEL, prompt, n: 1, size: '1024x1024' }),
-    signal: AbortSignal.timeout(GENERATION_TIMEOUT_MS),
+  const timeout = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(Object.assign(new Error('generation timeout'), { name: 'TimeoutError' })), GENERATION_TIMEOUT_MS);
   });
 
-  if (!apiResponse.ok) {
-    const retryable = apiResponse.status === 429 || apiResponse.status >= 500;
-    const code: ErrorCode = apiResponse.status === 429 ? 'RATE_LIMITED' : 'GENERATION_FAILED';
-    throw Object.assign(new Error('provider error'), { code, retryable });
-  }
+  const result = await Promise.race([
+    env.AI!.run(MODEL, {
+      prompt,
+      steps: STEPS,
+      seed: Math.floor(Math.random() * 2_147_483_647),
+    }),
+    timeout,
+  ]);
 
-  const result = (await apiResponse.json()) as {
-    data?: Array<{ b64_json?: string; url?: string }>;
-  };
-  const image = result.data?.[0];
-  if (!image?.b64_json && !image?.url) {
+  if (!result || typeof result.image !== 'string' || result.image.length === 0) {
     throw Object.assign(new Error('empty provider response'), {
       code: 'GENERATION_FAILED' as ErrorCode,
       retryable: true,
     });
   }
-  return image.b64_json
-    ? { format: 'base64', mimeType: 'image/png', data: image.b64_json }
-    : { format: 'url', url: image.url };
+  // flux-1-schnell returns base64 JPEG (docs: data:image/jpeg;base64,...).
+  return { format: 'base64', mimeType: 'image/jpeg', data: result.image };
 }
 
 export async function onRequestPost(context: Context): Promise<Response> {
@@ -248,7 +253,7 @@ export async function onRequestPost(context: Context): Promise<Response> {
     return json(fail(code, message, retryable, requestId), status);
   };
 
-  if (!env.OVH_API_KEY) {
+  if (!env.AI) {
     return failAndLog('INTERNAL', 'Image generation service is not configured.', false, 503);
   }
 
@@ -335,9 +340,7 @@ export async function onRequestPost(context: Context): Promise<Response> {
       code,
       code === 'GENERATION_TIMEOUT'
         ? 'The image generation service took too long. Please try again.'
-        : code === 'RATE_LIMITED'
-          ? 'The image generation service is temporarily rate limited.'
-          : 'The image generation service failed.',
+        : 'The image generation service failed.',
       code === 'GENERATION_TIMEOUT' ? true : (e.retryable ?? true),
       code === 'RATE_LIMITED' ? 429 : code === 'GENERATION_TIMEOUT' ? 504 : 502,
     );

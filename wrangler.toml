@@ -1,0 +1,9 @@
+# Cloudflare Pages project config — bindings are picked up by Pages CI on build.
+# Workers AI binding for /api/v1/generate-art (flux-1-schnell, free tier).
+# KV (AI_LEDGER) is added here once the namespace exists — see todos/inspire.json.
+name = "dsaas-quietforge"
+compatibility_date = "2026-11-19"
+pages_build_output_dir = "./out"
+
+[ai]
+binding = "AI"

@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-07-09",
+  "spec_ref": "docs/superpowers/plans/2026-07-09-da-inspire-creative-director-enterprise.md",
+  "coordinate_system": "percent of template PNG width/height (side 3/4 view)",
+  "panels": {
+    "caddy": {
+      "deur": { "x_pct": 0.40, "y_pct": 0.40, "w_pct": 0.18, "h_pct": 0.22 },
+      "zij": { "x_pct": 0.54, "y_pct": 0.42, "w_pct": 0.24, "h_pct": 0.20 },
+      "achter": { "x_pct": 0.72, "y_pct": 0.40, "w_pct": 0.16, "h_pct": 0.22 },
+      "kap": { "x_pct": 0.42, "y_pct": 0.22, "w_pct": 0.18, "h_pct": 0.10 }
+    },
+    "bus_l": {
+      "deur": { "x_pct": 0.32, "y_pct": 0.28, "w_pct": 0.18, "h_pct": 0.32 },
+      "zij": { "x_pct": 0.48, "y_pct": 0.26, "w_pct": 0.32, "h_pct": 0.36 },
+      "achter": { "x_pct": 0.78, "y_pct": 0.28, "w_pct": 0.18, "h_pct": 0.30 },
+      "kap": { "x_pct": 0.38, "y_pct": 0.14, "w_pct": 0.22, "h_pct": 0.12 }
+    },
+    "bus_xl": {
+      "deur": { "x_pct": 0.30, "y_pct": 0.26, "w_pct": 0.16, "h_pct": 0.34 },
+      "zij": { "x_pct": 0.44, "y_pct": 0.24, "w_pct": 0.36, "h_pct": 0.38 },
+      "achter": { "x_pct": 0.78, "y_pct": 0.26, "w_pct": 0.18, "h_pct": 0.32 },
+      "kap": { "x_pct": 0.36, "y_pct": 0.12, "w_pct": 0.24, "h_pct": 0.12 }
+    },
+    "passenger": {
+      "deur": { "x_pct": 0.40, "y_pct": 0.34, "w_pct": 0.20, "h_pct": 0.26 },
+      "zij": { "x_pct": 0.55, "y_pct": 0.32, "w_pct": 0.22, "h_pct": 0.28 },
+      "achter": { "x_pct": 0.76, "y_pct": 0.34, "w_pct": 0.14, "h_pct": 0.24 },
+      "kap": { "x_pct": 0.44, "y_pct": 0.20, "w_pct": 0.18, "h_pct": 0.10 }
+    }
+  },
+  "sku_active_panels": {
+    "MA-005": ["zij", "achter"],
+    "CS-SET-LOGO-CONTACT": ["deur", "achter"],
+    "CS-SET-PRO-ZZP": ["deur", "zij", "achter"],
+    "NA-WRAP-BASIC": ["deur", "zij", "achter", "kap"],
+    "BLS-SET-LOGO-CONTACT": ["deur", "achter"],
+    "BLS-SET-PRO-ZZP": ["deur", "zij", "achter"],
+    "NA-WRAP-PRO": ["deur", "zij", "achter", "kap"],
+    "BXLS-SET-LOGO-CONTACT": ["deur", "achter"],
+    "BXLS-SET-PRO-ZZP": ["deur", "zij", "achter"],
+    "NA-WRAP-MAX": ["deur", "zij", "achter", "kap"],
+    "MA-006-L": ["zij", "achter"],
+    "MA-006-XL": ["zij", "achter"],
+    "MA-001-S": ["deur"],
+    "PS-SET-LOGO-CONTACT": ["deur", "achter"],
+    "PS-SET-PRO-ZZP": ["deur", "zij", "achter"]
+  },
+  "default_panels_by_tier": {
+    "standard": ["deur"],
+    "premium": ["deur", "zij", "achter"]
+  },
+  "mask_mode": "prompt_hint_only",
+  "panel_shape_style": "rounded_vinyl",
+  "perspective_skew": {
+    "default": { "tl_x": 0.02, "tr_x": -0.02, "bl_x": 0.0, "br_x": 0.0, "tl_y": 0.02, "tr_y": 0.02, "bl_y": -0.01, "br_y": -0.01 },
+    "deur": { "tl_x": 0.06, "tr_x": -0.04, "bl_x": 0.0, "br_x": 0.0, "tl_y": 0.03, "tr_y": 0.03, "bl_y": -0.02, "br_y": -0.02 },
+    "zij": { "tl_x": 0.0, "tr_x": 0.10, "bl_x": 0.0, "br_x": 0.14, "tl_y": 0.05, "tr_y": 0.0, "bl_y": 0.06, "br_y": 0.0 },
+    "achter": { "tl_x": -0.04, "tr_x": 0.06, "bl_x": 0.0, "br_x": 0.0, "tl_y": 0.03, "tr_y": 0.03, "bl_y": -0.02, "br_y": -0.02 },
+    "kap": { "tl_x": 0.04, "tr_x": -0.04, "bl_x": 0.06, "br_x": -0.06, "tl_y": 0.0, "tr_y": 0.0, "bl_y": 0.04, "br_y": 0.04 }
+  }
+}

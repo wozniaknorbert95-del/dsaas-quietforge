@@ -724,9 +724,331 @@
     // ============================================================
     // 6. Generate — 2 mockup directions (FIXTURE_RESPONSE shape)
     // ============================================================
+    // Step B — HYBRID GENERATION STACK (todos/inspire.json
+    // decided_generation_stack, 2026-11-19). The /generate call intercepted in
+    // §9 now runs the REAL artwork call to /api/v1/generate-art (Step A) and
+    // composes it MECHANICALLY on the client via mockup-composer.js:
+    //   vehicle template + AI wrap artwork (clipped to panel-map wrap zones)
+    //   + the customer's REAL logo over the "deur" zone. The logo NEVER passes
+    //   through AI — brand integrity is sacred.
+    // The hook: dtp-design-agent.js POSTs the uploaded logo File in the
+    // multipart /generate body (fd 'logo') — we read it right here in the stub.
+    // No protected asset is touched.
+    // Honest fallback: when the live call is unavailable (not configured, quota,
+    // network) TODAY's pre-baked examples are returned CLEARLY LABELLED as demo
+    // examples — never presented as generated.
+
+    var GEN_API_URL = '/api/v1/generate-art';
+    var LS_VISITOR_TOKEN = 'inspire-visitor-token';
+    var LS_GEN_USED = 'inspire-generate-used';
+    var LS_GEN_IDEM = 'inspire-generate-idem';
+    var VISITOR_TOKEN_RE = /^[a-zA-Z0-9_-]{16,128}$/;
+
+    function fallbackUuid() {
+        var bytes = new Uint8Array(16);
+        if (window.crypto && window.crypto.getRandomValues) {
+            window.crypto.getRandomValues(bytes);
+        } else {
+            for (var i = 0; i < 16; i++) bytes[i] = Math.floor(Math.random() * 256);
+        }
+        var hex = '';
+        for (var j = 0; j < 16; j++) hex += ('0' + bytes[j].toString(16)).slice(-2);
+        return hex; // 32 hex chars — matches VISITOR_TOKEN_RE
+    }
+
+    /** Server-enforced visitor token (regex-checked here too). */
+    function getVisitorToken() {
+        var tok = '';
+        try { tok = String(localStorage.getItem(LS_VISITOR_TOKEN) || ''); } catch (e) { /* storage off */ }
+        if (VISITOR_TOKEN_RE.test(tok)) return tok;
+        tok = (window.crypto && typeof window.crypto.randomUUID === 'function')
+            ? window.crypto.randomUUID()
+            : fallbackUuid();
+        if (!VISITOR_TOKEN_RE.test(tok)) tok = fallbackUuid();
+        try { localStorage.setItem(LS_VISITOR_TOKEN, tok); } catch (e) { /* ignore */ }
+        return tok;
+    }
+
+    function isGenerateUsed() {
+        try { return localStorage.getItem(LS_GEN_USED) === '1'; } catch (e) { return false; }
+    }
+
+    function markGenerateUsed() {
+        try {
+            localStorage.setItem(LS_GEN_USED, '1');
+            localStorage.removeItem(LS_GEN_IDEM);
+        } catch (e) { /* ignore */ }
+    }
+
+    /** Idempotency-Key (api-standard §2): reused across retries of one action. */
+    function getIdempotencyKey() {
+        var key = '';
+        try { key = String(localStorage.getItem(LS_GEN_IDEM) || ''); } catch (e) { /* ignore */ }
+        if (VISITOR_TOKEN_RE.test(key)) return key;
+        key = (window.crypto && typeof window.crypto.randomUUID === 'function')
+            ? window.crypto.randomUUID()
+            : fallbackUuid();
+        try { localStorage.setItem(LS_GEN_IDEM, key); } catch (e) { /* ignore */ }
+        return key;
+    }
+
+    function clearIdempotencyKey() {
+        try { localStorage.removeItem(LS_GEN_IDEM); } catch (e) { /* ignore */ }
+    }
+
+    // --- vehicle / panel mapping (panel-map.json ids → Step A contract) -----
+    function vehicleTypeForApi(vehicle) {
+        var map = {
+            caddy: 'compact van',
+            bus_l: 'medium van',
+            bus_xl: 'large van',
+            passenger: 'passenger car'
+        };
+        return map[vehicle] || 'medium van';
+    }
+
+    var PANEL_ID_TO_API = {
+        deur: 'side doors',
+        zij: 'full side panel',
+        achter: 'rear doors',
+        kap: 'front doors'
+    };
+
+    function apiPanels() {
+        // Union of both SKU panel sets (sku_active_panels: MA-005 zij+achter,
+        // NA-WRAP-BASIC deur+zij+achter+kap) — the prompt only hints at panels.
+        var ids = ['deur', 'zij', 'achter', 'kap'];
+        return ids.map(function (id) { return PANEL_ID_TO_API[id]; });
+    }
+
+    // --- honest loading + labelling (never pretend examples are generated) --
+    var NOTE_FALLBACK = 'Demo-voorbeeld — live generatie was niet beschikbaar.';
+    var NOTE_QUOTA = 'Je hebt je gratis generatie al gebruikt.';
+    var NOTE_DAILY = 'De dagelijkse gratis generatielimiet is bereikt — probeer het morgen opnieuw.';
+    var NOTE_SUCCESS = 'Live samengesteld uit AI-wrapgrafiek + jouw originele logo (je logo gaat nooit door AI).';
+    var CHAT_FALLBACK = '<strong>Demo-voorbeeld.</strong> Live generatie was niet beschikbaar — ' +
+        'de mock-ups hieronder zijn kant-en-klare voorbeelden, niet gegenereerd uit jouw logo.';
+
+    function setGenProgress(text) {
+        var el = document.getElementById('da-prog-text');
+        if (el) el.textContent = text;
+    }
+
+    function appendChatNote(html) {
+        var body = document.getElementById('da-chat-body');
+        if (!body) return;
+        var div = document.createElement('div');
+        div.className = 'da-msg da-msg--bot';
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function appendResultsNote(text) {
+        var results = document.getElementById('da-results');
+        if (!results || document.getElementById('da-gen-note')) return;
+        var div = document.createElement('p');
+        div.id = 'da-gen-note';
+        div.setAttribute('role', 'note');
+        div.style.cssText = 'margin:16px 0 0;padding:10px 12px;border:1px solid var(--zzp-border-default,#2a2a32);' +
+            'border-radius:2px;color:var(--zzp-text-secondary,#9ca3af);font-size:.8125rem;line-height:1.5';
+        div.textContent = text;
+        results.appendChild(div);
+    }
+
+    /** Label fallback examples honestly — notes land after the results UI paints. */
+    function labelFallback(fixture, noteText, chatHtml) {
+        setTimeout(function () {
+            appendResultsNote(noteText);
+            appendChatNote(chatHtml);
+        }, 450);
+        return fixture;
+    }
+
+    function brandColorsFromFd(fd, draft) {
+        var colors = [];
+        try { colors = JSON.parse(String(fd.get('brand_colors') || '[]')) || []; } catch (e) { colors = []; }
+        if (!Array.isArray(colors) || !colors.length) {
+            colors = (draft && draft.brand_colors) || [];
+        }
+        return Array.isArray(colors) ? colors : [];
+    }
+
+    function callGenerateArt(payload) {
+        var fetchFn = origFetch || window.fetch;
+        return fetchFn(GEN_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Idempotency-Key': getIdempotencyKey()
+            },
+            body: JSON.stringify(payload),
+            cache: 'no-store'
+        }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (body) {
+                return { status: res.status, ok: res.ok, body: body };
+            });
+        });
+    }
+
+    /** Provider image (base64|url) → HTMLImageElement (canvas-safe, untainted). */
+    function artworkToImage(img) {
+        if (!img) return Promise.reject(new Error('no artwork'));
+        if (img.format === 'base64' && img.data) {
+            return window.MockupComposer.loadImage('data:' + (img.mimeType || 'image/png') + ';base64,' + img.data);
+        }
+        if (img.format === 'url' && img.url) {
+            // Fetch to a Blob first — a cross-origin URL drawn straight onto the
+            // canvas would taint it and break toDataURL() for the preview.
+            return (origFetch || window.fetch)(img.url, { cache: 'no-store' })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('artwork url fetch failed');
+                    return r.blob();
+                })
+                .then(function (b) { return window.MockupComposer.loadImage(b); });
+        }
+        return Promise.reject(new Error('unsupported artwork payload'));
+    }
+
+    /** Compose both variants from real artwork + the REAL customer logo. */
+    function composeFromArtwork(vehicle, fixture, logoFile, bedrijfsnaam, colors, images) {
+        setGenProgress('Mock-ups samenstellen…');
+        var byStyle = {};
+        (images || []).forEach(function (item) {
+            if (item && item.style && item.image) byStyle[item.style] = item.image;
+        });
+        var templateSrc = (window.daConfig.vehicleImages || {})[vehicle] ||
+            (SHARED_IMAGES_DIR + 'voertuig_' + vehicle + '.png');
+        var logoPromise = (logoFile && logoFile.size > 0)
+            ? window.MockupComposer.loadImage(logoFile)
+            : Promise.resolve(null);
+
+        return Promise.all([
+            window.MockupComposer.loadPanelMap(),
+            window.MockupComposer.loadImage(templateSrc),
+            logoPromise,
+            byStyle.standard ? artworkToImage(byStyle.standard) : Promise.resolve(null),
+            byStyle.premium ? artworkToImage(byStyle.premium) : Promise.resolve(null)
+        ]).then(function (parts) {
+            var map = parts[0];
+            var templateImg = parts[1];
+            var logoImg = parts[2];
+            var stdArt = parts[3];
+            var premArt = parts[4];
+            if (!stdArt && !premArt) throw new Error('no artwork returned');
+
+            // sku_active_panels (panel-map SSoT) → artwork zones per variant
+            function panelsFor(sku, tier) {
+                if (map.sku_active_panels && map.sku_active_panels[sku]) return map.sku_active_panels[sku];
+                if (map.default_panels_by_tier && map.default_panels_by_tier[tier]) {
+                    return map.default_panels_by_tier[tier];
+                }
+                return ['zij', 'deur', 'achter'];
+            }
+
+            var common = {
+                vehicle: vehicle,
+                templateImg: templateImg,
+                logoImg: logoImg,                    // REAL logo — uniform scale only
+                bedrijfsnaam: bedrijfsnaam,          // typo logo only when no logo file
+                brandColor: colors[0] || '#101014'
+            };
+            var stdOpts = Object.assign({}, common, {
+                artworkImg: stdArt || premArt,
+                panels: panelsFor(STD_PRODUCT.sku, 'standard')
+            });
+            var premOpts = Object.assign({}, common, {
+                artworkImg: premArt || stdArt,
+                panels: panelsFor(PREM_PRODUCT.sku, 'premium')
+            });
+
+            return Promise.all([
+                window.MockupComposer.composeMockup(stdOpts),
+                window.MockupComposer.composeMockup(premOpts)
+            ]).then(function (urls) {
+                fixture.mockups.forEach(function (m) {
+                    if (m.variant === 'standard') m.url = urls[0];
+                    if (m.variant === 'premium') m.url = urls[1];
+                });
+                markGenerateUsed();
+                clearIdempotencyKey();
+                setTimeout(function () {
+                    appendResultsNote(NOTE_SUCCESS);
+                    appendChatNote('<strong>Klaar!</strong> ' + NOTE_SUCCESS);
+                }, 450);
+                return fixture;
+            });
+        });
+    }
+
+    /** Async orchestrator — always RESOLVES with the FIXTURE_RESPONSE shape. */
     function handleGenerate(sess, fd) {
         var draft = sess ? sess.draft : {};
         var vehicle = normalizeVehicle(fd.get('vehicle') || (draft.vehicle ? draft.vehicle.id : 'caddy'));
+        var fixture = fixtureGenerate(sess, fd, vehicle);
+        var colors = brandColorsFromFd(fd, draft);
+        var logoFile = fd.get('logo');
+        var hasLogo = !!(logoFile && typeof logoFile.size === 'number' && logoFile.size > 0);
+        var bedrijfsnaam = String(fd.get('bedrijfsnaam') ||
+            (draft.bedrijfsnaam ? draft.bedrijfsnaam.id : '') || '').trim();
+
+        // Visitor limit (client mirror of the server VISITOR_LIMIT) — skip the
+        // API entirely, show the honest message + labelled fallback examples.
+        if (isGenerateUsed()) {
+            return Promise.resolve(labelFallback(fixture, NOTE_QUOTA,
+                '<strong>' + NOTE_QUOTA + '</strong> Hieronder staan demo-voorbeelden — geen verse generatie.'));
+        }
+
+        if (!window.MockupComposer || typeof window.MockupComposer.composeMockup !== 'function') {
+            return Promise.resolve(labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK));
+        }
+
+        setGenProgress('Genereren… (±30 sec)');
+        var payload = {
+            visitorToken: getVisitorToken(),
+            vehicleType: vehicleTypeForApi(vehicle),
+            panels: apiPanels()
+        };
+        if (colors.length) payload.brandColors = colors.slice(0, 5);
+        if (bedrijfsnaam) payload.businessType = String(fd.get('branche') || (draft.branche ? draft.branche.id : '') || '');
+
+        return callGenerateArt(payload)
+            .then(function (res) {
+                var err = (res.body && res.body.error) || {};
+                if (res.status === 429 || err.code === 'QUOTA_EXCEEDED') {
+                    // Visitor limit = "already used"; daily cap = try tomorrow.
+                    var visitorLimit = /already used/i.test(String(err.message || ''));
+                    if (visitorLimit) markGenerateUsed();
+                    clearIdempotencyKey();
+                    var note = visitorLimit ? NOTE_QUOTA : NOTE_DAILY;
+                    return labelFallback(fixture, note,
+                        '<strong>' + note + '</strong> Hieronder staan demo-voorbeelden — geen verse generatie.');
+                }
+                if (res.status === 409 || err.code === 'CONFLICT') {
+                    // Idempotent retry — this generation was already submitted.
+                    markGenerateUsed();
+                    clearIdempotencyKey();
+                    return labelFallback(fixture, NOTE_QUOTA,
+                        '<strong>' + NOTE_QUOTA + '</strong> Hieronder staan demo-voorbeelden — geen verse generatie.');
+                }
+                if (!res.ok || !res.body || res.body.success !== true) {
+                    return labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK);
+                }
+                var data = res.body.data || {};
+                return composeFromArtwork(vehicle, fixture, logoFile, bedrijfsnaam, colors, data.images)
+                    .catch(function () {
+                        return labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK);
+                    });
+            })
+            .catch(function () {
+                // Network / CORS / parse failure — honest fallback, no pretending.
+                return labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK);
+            });
+    }
+
+    /** Today's pre-baked examples (the known product flaw) — fallback ONLY. */
+    function fixtureGenerate(sess, fd, vehicle) {
+        var draft = sess ? sess.draft : {};
         var imgs = mockupImages(vehicle);
         var note = budgetNote(draft);
         var mockups = [
@@ -932,13 +1254,18 @@
             });
         }
 
-        // POST /generate (multipart brief + logo)
+        // POST /generate (multipart brief + logo) — Step B: async hybrid
+        // generation (real /api/v1/generate-art + mechanical composition;
+        // always resolves with the FIXTURE_RESPONSE shape).
         if (/design-agent\/generate/.test(url)) {
             return packsReady.then(function () {
                 var fd = (init && init.body) ? init.body : new FormData();
                 var sid = String(fd.get('session_id') || '');
                 var sess = sessions[sid] || null;
-                return jsonResp(handleGenerate(sess, fd));
+                return handleGenerate(sess, fd).then(function (payload) {
+                    persistSessions();
+                    return jsonResp(payload);
+                });
             });
         }
 

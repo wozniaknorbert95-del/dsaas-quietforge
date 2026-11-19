@@ -105,69 +105,29 @@ function buildPrompt(
     colors.length > 0 ? colors.join(', ') : 'professional complementary commercial brand colors';
   const styleDescription =
     style === 'premium'
-      ? 'premium luxury commercial design, sophisticated minimalist composition, elegant typography-free graphics, high-end visual identity, refined metallic accents, carefully balanced negative space'
-      : 'modern professional commercial design, clean geometric graphics, bold visual hierarchy, attractive brand colors, practical and production-ready vinyl wrap artwork';
+      ? 'premium luxury commercial design, sophisticated minimalist composition, elegant typography-free graphics, high-end visual identity, refined metallic accents, balanced negative space'
+      : 'modern professional commercial design, clean geometric graphics, bold visual hierarchy, attractive brand colors, production-ready vinyl wrap artwork';
 
-  return `
-Create a professional commercial vehicle vinyl wrap DESIGN ARTWORK.
-
+  // flux-1-schnell schema hard limit: prompt maxLength 2048.
+  const prompt = `Create a professional commercial vehicle vinyl wrap DESIGN ARTWORK.
 IMPORTANT: Generate a FLAT GRAPHIC DESIGN, NOT a photograph of a vehicle.
 
-VEHICLE CATEGORY:
-${vehicle}
+VEHICLE CATEGORY: ${vehicle}
+BRAND COLORS: ${colorDescription}
+DESIGN STYLE: ${styleDescription}
+BUSINESS CATEGORY: ${businessType || 'general commercial business'}
+TARGET VEHICLE PANELS: ${panels.join(', ')}
 
-BRAND COLORS:
-${colorDescription}
-
-DESIGN STYLE:
-${styleDescription}
-
-BUSINESS CATEGORY:
-${businessType || 'general commercial business'}
-
-TARGET VEHICLE PANELS:
-${panels.join(', ')}
-
-ARTWORK REQUIREMENTS:
-
-- Create a flat, front-facing graphic artwork suitable for printing on commercial vehicle vinyl wrap.
-- The artwork must be a clean, professional, production-oriented branding design.
-- Design for the selected vehicle category and the selected body panels.
-- Use the requested brand colors as the primary color palette.
-- Create cohesive shapes, graphic patterns, flowing lines, geometric elements and decorative visual elements.
-- Ensure the composition has a clear hierarchy and balanced visual weight.
-- Keep areas for logo placement clean and uncluttered.
-- Leave a large, clean area where a company logo can be mechanically added later.
-- Leave clear space for contact details to be added programmatically.
-- Make the design look professional, commercially usable and visually attractive.
-- The artwork should be suitable for adaptation to vehicle body panels.
-- Use a clean vector-art aesthetic.
-- Crisp edges.
-- High contrast.
-- Consistent design language.
-- Professional graphic design quality.
+REQUIREMENTS:
+- Flat, front-facing graphic artwork for printing on commercial vehicle vinyl wrap; clean, professional, production-oriented branding design for the selected vehicle category and panels.
+- Use the brand colors as the primary palette; cohesive shapes, flowing lines and geometric elements; clear visual hierarchy and balanced weight.
+- Crisp edges, high contrast, clean vector-art aesthetic, professional commercial graphic design quality.
+- Keep the logo area clean: leave a large uncluttered space where a company logo and contact details will be added mechanically later.
 - 1024x1024 square canvas.
 
-DO NOT GENERATE:
+DO NOT GENERATE: any vehicle, car, van, truck, wheels, windows, mirrors, lights, body panels, photographs, 3D renders, mockups, perspective, streets, background scenes, text, letters, numbers, logos, brand names, watermarks, QR codes or signatures. No blurry, pixelated or cluttered output.`;
 
-- A photograph of a car, van, truck or vehicle.
-- A 3D vehicle render.
-- A mockup showing artwork applied to a vehicle.
-- Vehicle wheels, windows, mirrors, lights or body panels.
-- Any text.
-- Any letters.
-- Any numbers.
-- Any logo.
-- Any brand name.
-- Any watermark.
-- Any QR code.
-- Any signature.
-- Any photographic background.
-
-The final output must be ONLY a flat square commercial vehicle wrap graphic design, suitable for later compositing onto a real vehicle photograph.
-
-Avoid malformed graphics, random visual clutter, illegible details, low-quality vector shapes, blurry edges, pixelation, excessive gradients and inconsistent color usage.
-`.trim();
+  return prompt.slice(0, 2048);
 }
 
 /** One free generation ACTION per visitor + hard daily cap (KV; atomicity gap documented). */

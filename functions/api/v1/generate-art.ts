@@ -330,16 +330,18 @@ export async function onRequestPost(context: Context): Promise<Response> {
     );
   } catch (err) {
     await releaseGeneration(ledger, input.visitorToken);
-    const e = err as { code?: ErrorCode; retryable?: boolean; name?: string };
+    const e = err as { code?: ErrorCode; retryable?: boolean; name?: string; message?: string };
     const code: ErrorCode =
       e.name === 'TimeoutError' || e.name === 'AbortError'
         ? 'GENERATION_TIMEOUT'
         : (e.code ?? 'GENERATION_FAILED');
+    // DIAGNOSTIC (preview): include provider error text to identify the failing layer.
+    const detail = (e.message ?? '').slice(0, 160);
     return failAndLog(
       code,
       code === 'GENERATION_TIMEOUT'
         ? 'The image generation service took too long. Please try again.'
-        : 'The image generation service failed.',
+        : `The image generation service failed.${detail ? ` (${detail})` : ''}`,
       code === 'GENERATION_TIMEOUT' ? true : (e.retryable ?? true),
       code === 'RATE_LIMITED' ? 429 : code === 'GENERATION_TIMEOUT' ? 504 : 502,
     );

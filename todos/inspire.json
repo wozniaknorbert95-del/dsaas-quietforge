@@ -145,7 +145,7 @@
       "problem": "POST->AI->R2 uproszczenie; timeouty/duplikaty/koszt.",
       "priority": "P0",
       "phase": "G2",
-      "scope": "functions/api/generate + KV job state",
+      "scope": "Generation pipeline (decided stack): SDXL OVH free -> prompt z oryginalnego sales-prompt-templates -> kompozycja na szablonie pojazdu + prawdziwe logo (panel-map) -> 2 richtingen; fallback = biblioteka szablonow; limit 1/odwiedzajacy + cap dzienny.",
       "out_of_scope": "live payment",
       "files_allowed": [
         "functions/"
@@ -186,7 +186,7 @@
       "problem": "QA 'kontrast+czytelnosc' za malo.",
       "priority": "P0",
       "phase": "G2",
-      "scope": "functions/ QA module",
+      "scope": "AI Output Quality Gate dla hybrydy: jakosc grafiki SDXL (prompt adherence, artefakty) + integralnosc logo (brak deformacji — nakladka mechaniczna) + QA kompozycji.",
       "out_of_scope": "live generacja bez budzetu",
       "files_allowed": [
         "functions/",
@@ -528,5 +528,8 @@
       "Rozjazd obietnicy \"<2u\" vs \"48 uur\" — jedna spojna obietnica czasu",
       "9 martwych linkow (w tym Privacy przy zgodzie RODO) — naprawa lub usuniecie"
     ]
+  },
+  "decided_generation_stack": {
+    "decided_2026_11_19": "WYBRANY STACK GENEROWANIA (decyzja Dowódcy + porównanie research GPT vs rozeznanie silnika): HYBRYDA. (1) SDXL via OVHcloud AI Endpoints (FREE, 0 EUR, OpenAI-compatible, model stable-diffusion-xl-base-v10, endpoint https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/images/generations) generuje GRAFIKE WRAPU (text2image) na bazie ORYGINALNYCH promptow z brain/sales-prompt-templates.md (Template + Negative prompt). (2) KOMPOZYCJA mechaniczna: szablon pojazdu (voertuig_*.png) + wygenerowana grafika + PRAWDZIWE logo klienta w panelach z panel-map.json (deur/zij/achter/kap) — logo NIGDY przez AI (naruszenie brandu = niedopuszczalne). (3) 2 richtingen = warianty z biblioteki szablonow wrapow (19 szablonow w template-library.manifest.json). (4) FALLBACK przy wyczerpaniu darmowego progu: biblioteka szablonow + logo composite (bez AI) — graceful degrade. (5) LIMIT: 1 generacja / odwiedzajacy (localStorage + lekki fingerprint) + twardy cap dzienny w kodzie (BUDGETS). ODRZUCONE: czysty Tryb A (kompozycja bez AI — jakosc \"naklejka\", potwierdzona porazka), czysty Tryb B (generatywny bez nakladki logo — AI znieksztalca logo), Cloudflare SDXL img2img (deprecation 2026-11-20), OpenRouter Recraft free (oferta wycofana 2026-11-28, tylko t2i). FAZA 2: platnosci Mollie + mocny model (gpt-image)."
   }
 }

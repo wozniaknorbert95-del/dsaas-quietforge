@@ -3,20 +3,21 @@
  *
  * Decided stack (2026-11-19, todos/inspire.json): hybrid —
  *   SDXL (OVHcloud AI Endpoints, FREE, OpenAI-compatible) generates FLAT wrap
- *   artwork (text2image); the customer's real logo is composited MECHANICALLY
- *   on the client (panel-map.json + vehicle templates) — never through AI.
+ *   artwork (text2image) for BOTH product variants in one action (Standard +
+ *   Premium = our EUR149/EUR399 cards); the customer's real logo is composited
+ *   MECHANICALLY on the client (panel-map.json + vehicle templates) — never
+ *   through AI (brand integrity).
  *
- * Phase 1 = free tier, 1 generation per visitor + hard daily cap (KV counters).
- * Phase 2 (todos/flexgrafik-v2.json) = Mollie payments + premium model.
+ * Phase 1 = free tier: ONE generation action (= 2 variants) per visitor + hard
+ * daily cap (KV counters). Phase 2 = Mollie payments + premium model.
  *
- * Limits: GPT-proposed Durable Object is NOT available on Pages Functions
- * (ADR-001 Option B) — counters live in the same KV as the cost ledger
- * (accepted atomicity gap, same as recordCost; DO arrives with Phase 2 infra).
- * Prompt template: Commander-approved (2026-11-19) flat-artwork prompt —
- * no text/logos/vehicle in the image; logo/contact are added later.
+ * Contract: docs/quality/api-standard.md §2 (envelope, codes, idempotency,
+ * 120 s timeout). Limits via KV — GPT-proposed Durable Object is unavailable
+ * on Pages Functions (ADR-001 Option B); atomicity gap documented in SH-G1-06.
+ * Prompt: Commander-approved (2026-11-19) — flat artwork, no text/logo/vehicle.
  */
 
-import { ok, fail, json, newRequestId, type ErrorCode } from '../_lib/http';
+import { ok, fail, json, newRequestId, extractIdempotencyKey, type ErrorCode } from '../_lib/http';
 import { emitEvent, type KVLike } from '../_lib/observability';
 
 interface LedgerKV extends KVLike {
@@ -25,8 +26,10 @@ interface LedgerKV extends KVLike {
 
 interface Env {
   OVH_API_KEY?: string;
-  /** KV — cost ledger + generation counters (SH-G1-06). */
+  /** KV — cost ledger + generation counters + idempotency keys (SH-G1-06). */
   AI_LEDGER?: LedgerKV;
+  /** Daily generation-action cap override (default below). */
+  GEN_DAILY_CAP?: string;
 }
 
 interface Context {
@@ -45,14 +48,15 @@ interface GenerateRequest {
 
 const OVH_URL = 'https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/images/generations';
 const MODEL = 'stable-diffusion-xl-base-v10';
+/** api-standard §2: generate = async job budget 120 s. */
+const GENERATION_TIMEOUT_MS = 120_000;
 
-/** Phase 1 product rule: one free generation per visitor. */
+/** Phase 1 product rule: one free generation ACTION (= both variants) per visitor. */
 const VISITOR_LIMIT = 1;
 const DAILY_CAP_DEFAULT = 10;
 
 const VISITOR_TOKEN_RE = /^[a-zA-Z0-9_-]{16,128}$/;
 const ALLOWED_VEHICLES = ['compact van', 'medium van', 'large van', 'passenger car'];
-const ALLOWED_STYLES = ['standard', 'premium'];
 const ALLOWED_PANELS = [
   'side doors',
   'rear doors',
@@ -73,9 +77,11 @@ function sanitizeColors(value: unknown): string[] {
     .slice(0, 5);
 }
 
-function buildPrompt(input: GenerateRequest): string {
+function buildPrompt(
+  input: GenerateRequest,
+  style: 'standard' | 'premium',
+): string {
   const colors = sanitizeColors(input.brandColors);
-  const style = ALLOWED_STYLES.includes(input.style ?? '') ? input.style! : 'standard';
   const vehicle = ALLOWED_VEHICLES.includes(input.vehicleType ?? '') ? input.vehicleType! : 'medium van';
   const panels = Array.isArray(input.panels)
     ? input.panels.filter((p) => ALLOWED_PANELS.includes(p)).slice(0, 5)
@@ -151,7 +157,7 @@ Avoid malformed graphics, random visual clutter, illegible details, low-quality 
 `.trim();
 }
 
-/** One free generation per visitor + hard daily cap (KV; atomicity gap documented). */
+/** One free generation ACTION per visitor + hard daily cap (KV; atomicity gap documented). */
 async function reserveGeneration(
   ledger: LedgerKV,
   visitorToken: string,
@@ -185,6 +191,45 @@ async function releaseGeneration(ledger: LedgerKV, visitorToken: string): Promis
   }
 }
 
+interface ProviderImage {
+  format: 'base64' | 'url';
+  mimeType?: string;
+  data?: string;
+  url?: string;
+}
+
+async function callProvider(env: Env, prompt: string): Promise<ProviderImage> {
+  const apiResponse = await fetch(OVH_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.OVH_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ model: MODEL, prompt, n: 1, size: '1024x1024' }),
+    signal: AbortSignal.timeout(GENERATION_TIMEOUT_MS),
+  });
+
+  if (!apiResponse.ok) {
+    const retryable = apiResponse.status === 429 || apiResponse.status >= 500;
+    const code: ErrorCode = apiResponse.status === 429 ? 'RATE_LIMITED' : 'GENERATION_FAILED';
+    throw Object.assign(new Error('provider error'), { code, retryable });
+  }
+
+  const result = (await apiResponse.json()) as {
+    data?: Array<{ b64_json?: string; url?: string }>;
+  };
+  const image = result.data?.[0];
+  if (!image?.b64_json && !image?.url) {
+    throw Object.assign(new Error('empty provider response'), {
+      code: 'GENERATION_FAILED' as ErrorCode,
+      retryable: true,
+    });
+  }
+  return image.b64_json
+    ? { format: 'base64', mimeType: 'image/png', data: image.b64_json }
+    : { format: 'url', url: image.url };
+}
+
 export async function onRequestPost(context: Context): Promise<Response> {
   const started = Date.now();
   const requestId = newRequestId();
@@ -194,7 +239,7 @@ export async function onRequestPost(context: Context): Promise<Response> {
     emitEvent({
       requestId,
       endpoint: 'generate-art',
-      status: status,
+      status,
       duration: Date.now() - started,
       errorCode: code,
       model: MODEL,
@@ -223,12 +268,21 @@ export async function onRequestPost(context: Context): Promise<Response> {
     return failAndLog('INTERNAL', 'Generation limits are not configured.', false, 503);
   }
 
-  const dailyCap = DAILY_CAP_DEFAULT;
+  // Idempotency (api-standard §2): a retried request with the same key must not
+  // consume quota or provider calls again -> CONFLICT (dup).
+  const idempotencyKey = extractIdempotencyKey(request);
+  if (idempotencyKey) {
+    const seen = await ledger.get(`gen:idem:${idempotencyKey}`);
+    if (seen !== null) {
+      return failAndLog('CONFLICT', 'This generation was already submitted.', false, 409);
+    }
+  }
+
+  const dailyCap = Math.max(1, Number(env.GEN_DAILY_CAP) || DAILY_CAP_DEFAULT);
   const reservation = await reserveGeneration(ledger, input.visitorToken, dailyCap);
   if (!reservation.ok) {
-    const code: ErrorCode = 'QUOTA_EXCEEDED';
     return failAndLog(
-      code,
+      'QUOTA_EXCEEDED',
       reservation.reason === 'VISITOR_LIMIT'
         ? 'You have already used your free generation.'
         : 'The daily free generation limit has been reached. Please try again tomorrow.',
@@ -237,39 +291,18 @@ export async function onRequestPost(context: Context): Promise<Response> {
     );
   }
 
-  const prompt = buildPrompt(input);
+  // One action = both product variants (Standard + Premium = our two cards).
+  const variants: Array<'standard' | 'premium'> = input.style ? [input.style] : ['standard', 'premium'];
 
   try {
-    const apiResponse = await fetch(OVH_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.OVH_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ model: MODEL, prompt, n: 1, size: '1024x1024' }),
-    });
-
-    if (!apiResponse.ok) {
-      await releaseGeneration(ledger, input.visitorToken);
-      const retryable = apiResponse.status === 429 || apiResponse.status >= 500;
-      return failAndLog(
-        retryable ? 'GENERATION_FAILED' : 'GENERATION_FAILED',
-        apiResponse.status === 429
-          ? 'The image generation service is temporarily rate limited.'
-          : 'The image generation service failed.',
-        retryable,
-        apiResponse.status === 429 ? 429 : 502,
-      );
+    const images: Array<{ style: string; image: ProviderImage }> = [];
+    for (const style of variants) {
+      const image = await callProvider(env, buildPrompt(input, style));
+      images.push({ style, image });
     }
 
-    const result = (await apiResponse.json()) as {
-      data?: Array<{ b64_json?: string; url?: string }>;
-    };
-    const image = result.data?.[0];
-
-    if (!image?.b64_json && !image?.url) {
-      await releaseGeneration(ledger, input.visitorToken);
-      return failAndLog('GENERATION_FAILED', 'The image provider returned no image.', true, 502);
+    if (idempotencyKey) {
+      await ledger.put(`gen:idem:${idempotencyKey}`, requestId);
     }
 
     emitEvent({
@@ -284,17 +317,29 @@ export async function onRequestPost(context: Context): Promise<Response> {
     return json(
       ok(
         {
-          image: image.b64_json
-            ? { format: 'base64', mimeType: 'image/png', data: image.b64_json }
-            : { format: 'url', url: image.url },
+          images,
           quota: { dailyRemaining: reservation.dailyRemaining },
         },
         requestId,
       ),
       200,
     );
-  } catch {
+  } catch (err) {
     await releaseGeneration(ledger, input.visitorToken);
-    return failAndLog('GENERATION_FAILED', 'Could not reach the image generation service.', true, 502);
+    const e = err as { code?: ErrorCode; retryable?: boolean; name?: string };
+    const code: ErrorCode =
+      e.name === 'TimeoutError' || e.name === 'AbortError'
+        ? 'GENERATION_TIMEOUT'
+        : (e.code ?? 'GENERATION_FAILED');
+    return failAndLog(
+      code,
+      code === 'GENERATION_TIMEOUT'
+        ? 'The image generation service took too long. Please try again.'
+        : code === 'RATE_LIMITED'
+          ? 'The image generation service is temporarily rate limited.'
+          : 'The image generation service failed.',
+      code === 'GENERATION_TIMEOUT' ? true : (e.retryable ?? true),
+      code === 'RATE_LIMITED' ? 429 : code === 'GENERATION_TIMEOUT' ? 504 : 502,
+    );
   }
 }

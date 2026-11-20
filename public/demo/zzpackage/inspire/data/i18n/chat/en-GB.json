@@ -1,6 +1,6 @@
 {
   "locale": "en-GB",
-  "opening": "Let’s decide what people should remember about your business when they see your vehicle. You’ll receive two wrap directions, our recommendation and a brief for your designer.",
+  "opening": "We’ll clarify who you want to reach and what they should remember. Then you can compare two wrap directions for the same vehicle, see our recommendation and why, and take away a brief for your designer.",
   "stap_labels": {
     "1": "Company",
     "2": "Vehicle",
@@ -138,7 +138,7 @@
       },
       {
         "id": "premium",
-        "label": "Premium"
+        "label": "Refined"
       },
       {
         "id": "lokaal_betrouwbaar",
@@ -289,7 +289,7 @@
     ]
   },
   "acks": {
-    "greeting": "Welcome! Let's begin — what company name should appear on the vehicle?",
+    "greeting": "Welcome to INSPIRE. Which company name should appear on the vehicle?",
     "invalid_name": "I cannot read that name clearly. What company name should appear on the vehicle?",
     "intent_request": "Got it — you want vehicle branding. Great.\nWhat company name should appear on the vehicle?",
     "logo_boilerplate": "Logo received — great.\nWhat company name should appear on the vehicle?",

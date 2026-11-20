@@ -36,7 +36,7 @@
 
   const I18N = {
     'nl-NL': {
-      openingFallback: "Samen kiezen we wat mensen van je bedrijf moeten onthouden als ze je auto zien. Je krijgt twee wrapontwerpen, ons advies over de beste richting en een briefing voor je vormgever. Welke bedrijfsnaam moet op de auto komen?",
+      openingFallback: 'We brengen in kaart wie je wilt bereiken en wat die persoon moet onthouden. Daarna vergelijk je twee wraprichtingen voor hetzelfde voertuig, zie je onze aanbeveling met reden en krijg je een ontwerpbrief voor de vormgever. Welke bedrijfsnaam moet op de auto staan?',
       placeholder: 'Typ je antwoord...',
       send: 'Verstuur',
       attachTitle: 'Logo uploaden',
@@ -56,7 +56,7 @@
       editMsg: 'Ik wil iets in mijn briefing aanpassen.',
       logoUploadedMsg: 'Logo geüpload',
       fromPrice: 'vanaf',
-      chooseDirection: 'Kies deze richting →',
+      chooseDirection: 'Kies richting',
       offlineMsg: 'AI-mock-ups worden geactiveerd. Je kunt het gesprek straks doorlopen.',
       offlinePlaceholder: 'Chat volgt zodra live…',
       chatNotLive: 'De chat is nog niet live. Je briefing wordt straks hier doorlopen.',
@@ -66,12 +66,12 @@
         '<strong>Sessie verlopen.</strong> Je eerdere gesprek is niet meer beschikbaar (max. 2 uur). ' +
         'We starten een nieuw gesprek — upload je logo opnieuw als je dat al had gedaan.',
       colorsLabel: 'Kleuren',
-      statusOnline: 'Online',
+      statusOnline: 'AI-demo',
       editPanelTitle: 'Brief aanpassen',
       editSave: 'Wijzigingen opslaan',
       editSaved: 'Brief bijgewerkt.',
       editLogoReupload: 'Logo opnieuw uploaden (PNG/JPG)',
-      offerteCta: 'Kies deze richting',
+      offerteCta: 'Kies richting',
       offerteTitle: 'Vrijblijvende offerte binnen 48 uur',
       offerteSubtitle: 'Wij sturen je een persoonlijke offerte per e-mail — geen betaling, geen Wizard.',
       offerteEmail: 'E-mailadres',
@@ -94,7 +94,7 @@
       indicatief: 'indicatief'
     },
     'pl-PL': {
-      openingFallback: "Ustalimy, co odbiorca ma zapamiętać, gdy zobaczy Twoje auto. Otrzymasz dwa kierunki oklejenia, rekomendację i brief dla grafika. Jaka nazwa firmy ma się znaleźć na aucie?",
+      openingFallback: 'Ustalimy, do kogo chcesz dotrzeć i co ta osoba ma zapamiętać. Potem porównasz dwa kierunki oklejenia tego samego auta, poznasz naszą rekomendację z uzasadnieniem i dostaniesz brief dla grafika. Jaka nazwa firmy ma być widoczna na aucie?',
       placeholder: 'Wpisz odpowiedź...',
       send: 'Wyślij',
       attachTitle: 'Wgraj logo',
@@ -114,7 +114,7 @@
       editMsg: 'Chcę coś zmienić w briefie.',
       logoUploadedMsg: 'Logo wgrane',
       fromPrice: 'od',
-      chooseDirection: 'Wybierz ten kierunek →',
+      chooseDirection: 'Wybierz kierunek',
       offlineMsg: 'AI-mockupy są aktywowane. Niedługo przejdziesz przez rozmowę.',
       offlinePlaceholder: 'Czat wkrótce…',
       chatNotLive: 'Czat nie jest jeszcze aktywny.',
@@ -124,10 +124,10 @@
         '<strong>Sesja wygasła.</strong> Poprzednia rozmowa nie jest już dostępna (max. 2 godz.). ' +
         'Startujemy nową — wgraj logo ponownie, jeśli już je miałeś.',
       colorsLabel: 'Kolory',
-      statusOnline: 'Online'
+      statusOnline: 'Demo AI'
     },
     'en-GB': {
-      openingFallback: "Let’s decide what people should remember about your business when they see your vehicle. You’ll receive two wrap directions, our recommendation and a brief for your designer. Which company name should appear on the vehicle?",
+      openingFallback: 'We’ll clarify who you want to reach and what they should remember. Then you can compare two wrap directions for the same vehicle, see our recommendation and why, and take away a brief for your designer. Which company name should appear on the vehicle?',
       placeholder: 'Type your answer...',
       send: 'Send',
       attachTitle: 'Upload logo',
@@ -147,7 +147,7 @@
       editMsg: 'I want to change something in my briefing.',
       logoUploadedMsg: 'Logo uploaded',
       fromPrice: 'from',
-      chooseDirection: 'Choose this direction →',
+      chooseDirection: 'Choose direction',
       offlineMsg: 'AI mock-ups are being activated. You can run the chat shortly.',
       offlinePlaceholder: 'Chat coming soon…',
       chatNotLive: 'Chat is not live yet. Your briefing will run here shortly.',
@@ -157,7 +157,7 @@
         '<strong>Session expired.</strong> Your earlier chat is no longer available (max 2 hours). ' +
         'Starting a new chat — re-upload your logo if you already had one.',
       colorsLabel: 'Colours',
-      statusOnline: 'Online'
+      statusOnline: 'AI demo'
     }
   };
 
@@ -199,13 +199,6 @@
   }
 
   // Client-facing labels — brain product-route-matrix (never Tier A/B or legacy aliases).
-  const TIER_LABEL = {
-    tier_b: 'Standard',
-    tier_a: 'Premium',
-    standard: 'Standard',
-    premium: 'Premium'
-  };
-
   const VEHICLES = [
     { id: 'caddy', label: 'Caddy / Partner' },
     { id: 'bus_l', label: 'Bestelbus Middel (L)' },
@@ -241,7 +234,7 @@
     'marketing.desired_impression': [
       { id: 'strak', label: 'Strak' },
       { id: 'opvallend', label: 'Opvallend' },
-      { id: 'premium', label: 'Premium' },
+      { id: 'premium', label: 'Verfijnd' },
       { id: 'lokaal_betrouwbaar', label: 'Lokaal betrouwbaar' },
       { id: 'vriendelijk', label: 'Vriendelijk' },
       { id: 'stoer', label: 'Stoer' }
@@ -387,18 +380,18 @@
     });
   }
 
-  function formatPriceNl(price) {
-    const n = Number(price);
-    if (!Number.isFinite(n)) return '';
-    return '€' + n.toLocaleString('nl-NL', { minimumFractionDigits: n % 1 ? 2 : 0 });
-  }
-
-  function tierLetter(variant) {
-    return (variant === 'tier_a' || variant === 'premium') ? 'a' : 'b';
+  function wrapDirection(mockup) {
+    const direction = mockup && (mockup.direction === 'A' || mockup.direction === 'B')
+      ? mockup.direction
+      : (mockup && (mockup.variant === 'premium' || mockup.variant === 'tier_a') ? 'B' : 'A');
+    return {
+      letter: direction,
+      name: mockup?.naam || (direction === 'A' ? 'Rustig en helder' : 'Krachtig en opvallend')
+    };
   }
 
   function tierLabel(mockup) {
-    return mockup.label_nl || TIER_LABEL[mockup.variant] || TIER_LABEL.tier_b;
+    return 'Richting ' + wrapDirection(mockup).letter;
   }
 
   function sortMockupsTierOrder(mockups) {
@@ -541,7 +534,10 @@
     const incoming = data.brief_partial || {};
     const merged = { ...state.briefPartial };
     for (const [key, val] of Object.entries(incoming)) {
-      if (val === null || val === undefined || val === '') continue;
+      if (val === null || val === undefined || val === '') {
+        if (key === 'telefoon' || key === 'website') delete merged[key];
+        continue;
+      }
       if (Array.isArray(val) && !val.length) continue;
       merged[key] = val;
     }
@@ -1107,7 +1103,10 @@
       ['Zichtmoment', b.exposure],
       ['Doelgroep', b.doelgroep],
       ['Kerndienst', b.diensten],
-      ['Kernregel voor de vormgever', b.headline],
+      ['Voorgestelde reclameregel', b.headline],
+      ['INSPIRE beveelt aan', b.recommended_direction],
+      ['Waarom', b.recommendation_reason],
+      ['Hiërarchie', b.message_hierarchy],
       ['Indruk', b.desired_impression || b.positionering],
       ['Telefoon', b.telefoon],
       ['Website', b.website],
@@ -1187,15 +1186,18 @@
     const dienst = text('da-edit-dienst1');
     if (dienst) updates['marketing.diensten'] = dienst;
     const headline = text('da-edit-headline');
-    if (headline) updates['marketing.headline'] = headline;
+    const previousHeadline = String(state.briefPartial.headline || '');
+    const serviceChanged = !!dienst && dienst !== String(state.briefPartial.diensten || '');
+    if (headline !== previousHeadline) updates['marketing.headline'] = headline;
+    else if (serviceChanged) updates['marketing.headline'] = '';
     const impression = readEditChip('marketing.desired_impression');
     if (impression) updates['marketing.desired_impression'] = impression;
     const cta = readEditChip('marketing.primary_cta');
     if (cta) updates['marketing.primary_cta'] = cta;
     const telefoon = text('da-edit-telefoon');
-    if (telefoon) updates['company.telefoon'] = telefoon;
+    if (cta === 'telefoon' && telefoon) updates['company.telefoon'] = telefoon;
     const website = text('da-edit-website');
-    if (website) updates['company.website'] = website;
+    if (cta === 'website' && website) updates['company.website'] = website;
     const slogan = text('da-edit-slogan');
     if (slogan) updates['marketing.slogan'] = slogan;
     const budget = readEditChip('budget.range');
@@ -1241,7 +1243,7 @@
         '<fieldset class="da-edit-section"><legend>Marketing</legend>' +
           '<label class="da-edit-field">Doelgroep<input type="text" id="da-edit-doelgroep" class="da-form-input" value="' + escapeHtml(b.doelgroep || '') + '"></label>' +
           '<label class="da-edit-field">Kerndienst<input type="text" id="da-edit-dienst1" class="da-form-input" value="' + escapeHtml(b.diensten || '') + '"></label>' +
-          '<label class="da-edit-field">Kernregel voor de vormgever<input type="text" id="da-edit-headline" class="da-form-input" value="' + escapeHtml(b.headline || '') + '"></label>' +
+          '<label class="da-edit-field">Voorgestelde reclameregel (max. 60 tekens; staat in je brief, niet in de AI-afbeelding)<input type="text" id="da-edit-headline" class="da-form-input" maxlength="60" value="' + escapeHtml(b.headline || '') + '"></label>' +
           '<div class="da-edit-chips">' + renderEditChipGroup('marketing.desired_impression', EDIT_CHIP_OPTIONS['marketing.desired_impression']) + '</div>' +
         '</fieldset>' +
         '<fieldset class="da-edit-section"><legend>Contact & CTA</legend>' +
@@ -1596,6 +1598,7 @@
       '<div style="text-align:center;padding:8px;color:var(--zzp-success,#22c55e);font-weight:600;font-size:0.9rem">' +
       escapeHtml(state.apiResponse.notice || 'Bekijk je resultaten hieronder.') + '</div>';
     const mockups = state.apiResponse?.mockups || [];
+    state.selectedMockup = null;
     if (mockups.length && mockups.every(isStubMockup)) {
       addBotMsg(
         '<strong>Let op:</strong> De mock-ups lijken tijdelijke placeholders. ' +
@@ -1632,7 +1635,7 @@
     return 'standard';
   }
 
-  function selectMockupForOfferte(mockup) {
+  function selectWrapDirection(mockup) {
     state.selectedMockup = mockup;
     document.querySelectorAll('.da-mockup-card').forEach(c => c.classList.remove('da-mockup-card--selected'));
     const card = document.querySelector('.da-mockup-card[data-sku="' + (mockup.sku || '') + '"]');
@@ -1640,7 +1643,7 @@
     renderAgencyBrief(mockup);
     hideOffertePanel();
     hideOfferteSuccess();
-    MOCKUPS.querySelectorAll('[data-offerte-select]').forEach(button => {
+    MOCKUPS.querySelectorAll('[data-wrap-select]').forEach(button => {
       button.setAttribute('aria-pressed', String(button.closest('.da-mockup-card') === card));
     });
     daTrackEvent('mockup_selected', {
@@ -1723,7 +1726,6 @@
         variant: mockupVariantKey(m),
         sku: m.sku || '',
         product_naam: m.naam || tierLabel(m),
-        price_from_eur: m.price_suggested || null,
         mockup_url: m.url || m.data_url || ''
       },
       brief_partial: state.briefPartial,
@@ -1805,51 +1807,43 @@
     if (!mockups.length) return;
 
     mockups.forEach(m => {
-      const letter = tierLetter(m.variant);
-      const title = tierLabel(m);
-      const price = formatPriceNl(m.price_suggested);
-      const isPremium = letter === 'a';
-      const isAspirational = isPremium && (m.budget_note_nl || (isPremium && state.premiumAspirational));
-      const aspirationalBadge = isAspirational
-        ? '<span class="da-mockup-card__aspirational" title="' +
-            escapeHtml(m.budget_note_nl || state.premiumBudgetNote || '') +
-            '">Groeirichting</span>'
-        : '';
-      const aspirationalClass = isAspirational ? ' da-mockup-card--aspirational' : '';
+      const direction = wrapDirection(m);
+      const variantClass = direction.letter.toLowerCase();
+      const recommended = m.recommended === true || direction.letter === state.apiResponse?.recommended_direction;
+      const title = 'Richting ' + direction.letter + (recommended ? ' · Aanbevolen' : '');
+      const message = m.headline || state.briefPartial.headline || 'Nog te bevestigen';
+      const hierarchy = m.hierarchy || state.briefPartial.message_hierarchy || '';
       const card = document.createElement('article');
-      card.className = 'da-mockup-card da-mockup-card--' + letter + aspirationalClass;
+      card.className = 'da-mockup-card da-mockup-card--' + variantClass;
       card.dataset.sku = m.sku || '';
+      card.dataset.direction = direction.letter;
       const imgSrc = m.url || m.data_url || '';
       const imgTag = imgSrc
-        ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(title)}" loading="lazy">`
+        ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(title + ' — ' + direction.name)}" loading="lazy">`
         : '<div class="da-mockup-card__fallback">Mock-up laden...</div>';
       card.innerHTML =
         '<div class="da-mockup-card__preview">' +
-          `<span class="da-mockup-card__badge">${escapeHtml(title)}</span>` + aspirationalBadge + imgTag +
+          `<span class="da-mockup-card__badge">${escapeHtml(title)}</span>` + imgTag +
         '</div>' +
         '<div class="da-mockup-card__body">' +
-          '<h3>' + escapeHtml(m.naam || title) + '</h3><p>' + escapeHtml(m.reason_nl || '') + '</p>' +
-          (price ? '<p class="da-mockup-card__price">' + t('fromPrice') + ' ' + price +
-            ' <span class="da-mockup-card__indicatief">(' + t('indicatief') + ')</span></p>' : '') +
-          (isAspirational
-            ? '<p class="da-mockup-card__budget-note">' +
-                escapeHtml(m.budget_note_nl || state.premiumBudgetNote || '') +
-              '</p>'
-            : '') +
-          '<button type="button" class="da-mockup-card__cta btn-vca btn-action" data-offerte-select="1" aria-pressed="false">' +
-            t('offerteCta') +
+          '<h3>' + escapeHtml(direction.name) + '</h3>' +
+          '<p>' + escapeHtml(m.reason_nl || '') + '</p>' +
+          '<p class="da-mockup-card__message"><strong>Voorgestelde reclameregel voor je brief:</strong> ' + escapeHtml(message) + '</p>' +
+          (hierarchy ? '<p class="da-mockup-card__hierarchy"><strong>Hiërarchie:</strong> ' + escapeHtml(hierarchy) + '</p>' : '') +
+          '<button type="button" class="da-mockup-card__cta btn-vca btn-action" data-wrap-select="1" aria-pressed="false">' +
+            escapeHtml(t('chooseDirection') + ' ' + direction.letter) +
           '</button>' +
         '</div>';
-      const selectBtn = card.querySelector('[data-offerte-select]');
+      const selectBtn = card.querySelector('[data-wrap-select]');
       if (selectBtn) {
         selectBtn.addEventListener('click', e => {
           e.stopPropagation();
-          selectMockupForOfferte(m);
+          selectWrapDirection(m);
         });
       }
       card.addEventListener('click', e => {
         if (e.target.closest('button')) return;
-        selectMockupForOfferte(m);
+        selectWrapDirection(m);
       });
       MOCKUPS.appendChild(card);
     });
@@ -1863,12 +1857,31 @@
 
   function renderAgencyBrief(selected) {
     const response = state.apiResponse;
-    document.getElementById('wrap-source').textContent = response.notice;
+    const imageStatus = response.notice || 'DEMO-voorbeeld — dit is geen gegenereerd klantontwerp.';
+    const direction = selected ? wrapDirection(selected) : null;
+    const recommendation = response.recommended_direction
+      ? 'INSPIRE-aanbeveling: Richting ' + response.recommended_direction
+      : 'INSPIRE-aanbeveling: ' + (response.advice || 'Nog te bepalen');
+    const customerChoice = direction
+      ? 'Keuze van de klant: Richting ' + direction.letter + ' · ' + direction.name
+      : 'Keuze van de klant: Nog niet gekozen';
+    document.getElementById('wrap-source').textContent = imageStatus;
     document.getElementById('wrap-advice').textContent = response.advice;
     const brief = document.getElementById('wrap-brief');
-    brief.value = response.brief + '\nRichting: ' + (selected ? tierLabel(selected) + ' · ' + selected.naam + '\nMotivatie: ' + selected.reason_nl : 'Nog te kiezen') + (selected?.placement ? '\nLogopositie (% beeld): x ' + selected.placement.x + ', y ' + selected.placement.y + ', max. breedte ' + selected.placement.size + '\nContact op dit ontwerp: ' + (selected.contactVisible ? 'ja' : 'nee') : '') + '\nBeeldstatus: ' + response.notice;
+    brief.value = [
+      response.brief,
+      recommendation,
+      response.recommendation_reason ? 'Reden voor aanbeveling: ' + response.recommendation_reason : '',
+      customerChoice,
+      selected?.reason_nl ? 'Reden bij gekozen richting: ' + selected.reason_nl : '',
+      response.headline ? 'Actuele reclameregel: ' + response.headline : '',
+      response.message_hierarchy ? 'Voorgestelde hiërarchie: ' + response.message_hierarchy : '',
+      selected?.placement ? 'Logopositie (% beeld): x ' + selected.placement.x + ', y ' + selected.placement.y + ', max. breedte ' + selected.placement.size : '',
+      selected?.placement ? 'Contact op dit ontwerp: ' + (selected.contactVisible ? 'ja' : 'nee') : '',
+      'Beeldstatus: ' + imageStatus
+    ].filter(Boolean).join('\n');
     document.getElementById('wrap-choice').textContent = selected
-      ? 'Jouw keuze: ' + selected.naam + '. Je kunt nog wisselen; de brief wordt dan bijgewerkt.'
+      ? customerChoice + '. Je kunt zonder e-mail wisselen; de brief wordt bijgewerkt.'
       : 'Nog geen richting gekozen. Je kunt de briefing nu al bewaren.';
     const quote = document.getElementById('wrap-quote');
     quote.hidden = !selected;

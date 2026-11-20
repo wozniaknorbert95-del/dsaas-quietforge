@@ -10,10 +10,12 @@ window.MockupComposer = (() => {
         });
     }
     async function inspect(image, logo, initial, label, contact) {
+        const previouslyFocused = document.activeElement;
         const dialog = document.createElement('dialog');
         dialog.className = 'wrap-proof';
         dialog.setAttribute('aria-labelledby','wrap-proof-title');
-        dialog.innerHTML = '<h2 id="wrap-proof-title" tabindex="-1"></h2><p>Controleer eerst: hele voertuig zichtbaar, juiste kleur, geen verzonnen tekst, beeldmerk of vervorming. Keur het beeld af bij twijfel. Tik in het midden van een leeg deurvlak, weg van naden en handgreep. Gebruik de schuiven voor fijnafstelling.</p><canvas aria-label="Voorbeeld met je originele logo"></canvas><div class="wrap-controls"></div><button type="button" class="btn-vca btn-action">Plaatsing goedkeuren</button> <button type="button">Beeld afkeuren</button>';
+        dialog.setAttribute('aria-describedby','wrap-proof-instructions');
+        dialog.innerHTML = '<h2 id="wrap-proof-title" tabindex="-1"></h2><p id="wrap-proof-instructions">Controleer eerst: hele voertuig zichtbaar, juiste kleur, geen verzonnen tekst, beeldmerk of vervorming. Keur het beeld af bij twijfel. Tik in het midden van een leeg deurvlak, weg van naden en handgreep. Gebruik de schuiven voor fijnafstelling.</p><canvas aria-label="Voorbeeld met je originele logo"></canvas><div class="wrap-controls"></div><button type="button" class="btn-vca btn-action">Plaatsing goedkeuren</button> <button type="button">Beeld afkeuren</button>';
         dialog.querySelector('h2').textContent = 'Controle logoplaatsing · ' + label;
         const canvas = dialog.querySelector('canvas');
         canvas.width = image.width; canvas.height = image.height;
@@ -48,6 +50,7 @@ window.MockupComposer = (() => {
         for (const [key, title, min, max, def] of [['x','Horizontaal',10,90,36],['y','Verticaal',16,84,54],['size','Logobreedte',3,17,10]]) {
             const label = document.createElement('label'); label.textContent = title;
             const el = document.createElement('input'); el.type = 'range'; el.min=min; el.max=max; el.step=.1;
+            el.setAttribute('aria-label', title);
             el.value=initial?.[key] ?? def; controls[key]=el;
             el.oninput = () => { draw(); accept.disabled=false; };
             label.append(el); dialog.querySelector('.wrap-controls').append(label);
@@ -66,7 +69,14 @@ window.MockupComposer = (() => {
                 dialog.querySelectorAll('button')[1].onclick=dialog.oncancel=()=>reject(new Error('Beeld afgekeurd.'));
             });
             return { url: canvas.toDataURL('image/png'), contactVisible: showContact, placement: Object.fromEntries(Object.entries(controls).map(([key,el])=>[key,Number(el.value)])) };
-        } finally { dialog.close(); dialog.remove(); canvas.width=canvas.height=0; }
+        } finally {
+            dialog.close();
+            dialog.remove();
+            canvas.width = canvas.height = 0;
+            if (previouslyFocused && typeof previouslyFocused.focus === 'function' && document.contains(previouslyFocused)) {
+                previouslyFocused.focus({preventScroll:true});
+            }
+        }
     }
     async function compose(images, file, vehicle, contact) {
         if (!(file instanceof Blob) || !file.size || !Array.isArray(images) || images.length!==2) throw new Error('Bronbestand ontbreekt.');
@@ -77,6 +87,7 @@ window.MockupComposer = (() => {
         const logoUrl=URL.createObjectURL(file);
         try {
             const logo=await load(logoUrl);
+            // Provider-internal style keys map to directions A/B, not product tiers.
             const variants=['standard','premium'];
             const sources=variants.map(style=>{
                 const img=images.find(it=>it.style===style)?.image;

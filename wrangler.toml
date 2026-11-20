@@ -4,9 +4,33 @@ name = "dsaas-quietforge"
 compatibility_date = "2026-11-19"
 pages_build_output_dir = "./out"
 
+[vars]
+IMAGE_PROVIDER = "openai"
+IMAGE_MODEL = "gpt-image-2.6-sunburst"
+IMAGE_CALL_BOUND_CONFIRMED = "no"
+
 [ai]
 binding = "AI"
 
 [[kv_namespaces]]
 binding = "AI_LEDGER"
 id = "9cbcc48d9a1e445486d8be61c4a169d8"
+
+# Isolated Preview resources. The existing top-level AI_LEDGER remains the
+# Production binding; paid image generation stays fail-closed until the
+# Preview-only secret and cost-bound approval are configured in Pages.
+[env.preview.ai]
+binding = "AI"
+
+[[env.preview.kv_namespaces]]
+binding = "AI_LEDGER"
+id = "949a0d9c335b499a8a52fbb30d490640"
+
+[[env.preview.d1_databases]]
+binding = "IMAGE_BUDGET"
+database_name = "inspire-image-budget-preview"
+database_id = "988440fd-61b9-4a6a-bbb1-6344e154825a"
+
+[env.preview.vars]
+IMAGE_PROVIDER = "openai"
+IMAGE_MODEL = "gpt-image-2.6-sunburst"

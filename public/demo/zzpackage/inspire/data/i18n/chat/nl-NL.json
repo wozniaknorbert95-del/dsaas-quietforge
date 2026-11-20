@@ -1,6 +1,6 @@
 {
   "locale": "nl-NL",
-  "opening": "Samen kiezen we wat mensen van je bedrijf moeten onthouden als ze je auto zien. Je krijgt twee wrapontwerpen, ons advies over de beste richting en een briefing voor je vormgever.",
+  "opening": "We brengen in kaart wie je wilt bereiken en wat die persoon moet onthouden. Daarna vergelijk je twee wraprichtingen voor hetzelfde voertuig, zie je onze aanbeveling met reden en krijg je een ontwerpbrief voor de vormgever.",
   "stap_labels": {
     "1": "Bedrijf",
     "2": "Auto",
@@ -138,7 +138,7 @@
       },
       {
         "id": "premium",
-        "label": "Premium"
+        "label": "Verfijnd"
       },
       {
         "id": "lokaal_betrouwbaar",
@@ -289,7 +289,7 @@
     ]
   },
   "acks": {
-    "greeting": "Welkom! Laten we beginnen — wat is de bedrijfsnaam die op de auto moet komen?",
+    "greeting": "Welkom bij INSPIRE. Welke bedrijfsnaam moet op de auto staan?",
     "invalid_name": "Die naam kan ik niet goed lezen. Wat is de bedrijfsnaam die op de auto moet komen?",
     "intent_request": "Begrijp ik — je wilt voertuigreclame. Top.\nWat is de bedrijfsnaam die op de auto moet komen?",
     "logo_boilerplate": "Logo ontvangen — top.\nWat is de bedrijfsnaam die op de auto moet komen?",

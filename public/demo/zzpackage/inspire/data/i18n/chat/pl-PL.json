@@ -1,6 +1,6 @@
 {
   "locale": "pl-PL",
-  "opening": "Ustalimy, co odbiorca ma zapamiętać, gdy zobaczy Twoje auto. Otrzymasz dwa kierunki oklejenia, rekomendację i brief dla grafika.",
+  "opening": "Ustalimy, do kogo chcesz dotrzeć i co ta osoba ma zapamiętać. Potem porównasz dwa kierunki oklejenia tego samego auta, poznasz naszą rekomendację z uzasadnieniem i dostaniesz brief dla grafika.",
   "stap_labels": {
     "1": "Firma",
     "2": "Pojazd",
@@ -138,7 +138,7 @@
       },
       {
         "id": "premium",
-        "label": "Premium"
+        "label": "Wyrafinowany"
       },
       {
         "id": "lokaal_betrouwbaar",
@@ -289,7 +289,7 @@
     ]
   },
   "acks": {
-    "greeting": "Witaj! Zaczynajmy — jaka nazwa firmy ma znaleźć się na aucie?",
+    "greeting": "Witaj w INSPIRE. Jaka nazwa firmy ma być widoczna na aucie?",
     "invalid_name": "Tej nazwy nie odczytam dobrze. Jaka nazwa firmy ma znaleźć się na aucie?",
     "intent_request": "Rozumiem — chcesz reklamę na pojeździe. Super.\nJaka nazwa firmy ma znaleźć się na aucie?",
     "logo_boilerplate": "Logo otrzymane — super.\nJaka nazwa firmy ma znaleźć się na aucie?",

@@ -239,7 +239,8 @@ export async function onRequestPost(context: Context): Promise<Response> {
     );
   }
 
-  // One action = both product variants (Standard + Premium = our two cards).
+  // One action = two visual directions (A/B) for the same vehicle and wrap;
+  // standard/premium remain provider-internal style keys, not product tiers.
   const variants: Direction[] = input.style ? [input.style] : ['standard', 'premium'];
 
   try {

@@ -189,8 +189,28 @@
         return v ? v.label : '';
     }
 
-    function openingReply(pack) {
-        return pack.opening + '\n\n' + fq(pack, 'company.bedrijfsnaam');
+    var OPENING_FALLBACKS = {
+        'nl-NL': {
+            opening: 'We brengen in kaart wie je wilt bereiken en wat die persoon moet onthouden. Daarna vergelijk je twee wraprichtingen voor hetzelfde voertuig, zie je onze aanbeveling met reden en krijg je een ontwerpbrief voor de vormgever.',
+            nameQuestion: 'Welke bedrijfsnaam moet op de auto staan?'
+        },
+        'pl-PL': {
+            opening: 'Ustalimy, do kogo chcesz dotrzeć i co ta osoba ma zapamiętać. Potem porównasz dwa kierunki oklejenia tego samego auta, poznasz naszą rekomendację z uzasadnieniem i dostaniesz brief dla grafika.',
+            nameQuestion: 'Jaka nazwa firmy ma być widoczna na aucie?'
+        },
+        'en-GB': {
+            opening: 'We’ll clarify who you want to reach and what they should remember. Then you can compare two wrap directions for the same vehicle, see our recommendation and why, and take away a brief for your designer.',
+            nameQuestion: 'Which company name should appear on the vehicle?'
+        }
+    };
+
+    function openingReply(pack, requestedLocale) {
+        var locale = requestedLocale || pack.locale || 'nl-NL';
+        var fallback = OPENING_FALLBACKS[locale] || OPENING_FALLBACKS['nl-NL'];
+        var hasRequestedPack = pack.locale === locale;
+        var opening = String((hasRequestedPack && pack.opening) || fallback.opening).trim();
+        var question = String((hasRequestedPack && fq(pack, 'company.bedrijfsnaam')) || fallback.nameQuestion).trim();
+        return opening + '\n\n' + question;
     }
 
     /** acks.* + next question — engine orchestrator _ack() composition. */
@@ -255,20 +275,22 @@
         const headline = d.headline?.label || service;
         const moving = d.exposure?.id === 'moving';
         const bold = !moving && ['opvallend','stoer'].includes(d.impression?.id);
+        const direction = bold ? 'B' : 'A';
         const recognition = d.cta?.id === 'geen';
         const priority = recognition ? 'Eerst de bedrijfsnaam, daarna de kerndienst. Geen contactregel nodig.' :
             'Eerst de kerndienst, dan het merk. De contactactie (' + (d.cta?.label || 'nog te kiezen') + ') komt op de derde plaats.';
-        const reason = bold ? 'Je wilt opvallen. Contrasterende banen trekken de aandacht naar één korte boodschap.' : moving ?
-            'Voorbijgangers hebben maar kort de tijd. Een rustig vlak geeft de boodschap voorrang boven de decoratie.' :
-            'Je wilt dat iemand de dienst en het merk kan plaatsen. Eén hoofdvlak houdt beide bij elkaar.';
-        const trade = bold ? 'Kies A als rust en directe herkenning belangrijker zijn dan opvallen.' : 'Kies B als je liever opvalt met de vorm van de wrap, ook als de tekst minder nadruk krijgt.';
-        return {headline, priority, recommended:bold?'premium':'standard', name:bold?'B · Krachtig en opvallend':'A · Rustig en helder', reason, trade};
+        const reason = moving ? 'Je voertuig rijdt vaak rond en de kijktijd is kort. Richting A houdt één boodschap rustig leesbaar.' : bold ?
+            'Je wilt vooral opvallen wanneer het voertuig stilstaat. Richting B gebruikt meer contrast en beweging.' :
+            'Je wilt dat iemand de dienst en het merk rustig kan plaatsen. Richting A geeft de kernboodschap meer ruimte.';
+        const trade = bold ? 'Richting A is rustiger; kies B als extra visuele nadruk belangrijker is.' : 'Richting B valt sterker op; kies A als rustige herkenning belangrijker is.';
+        return {headline, priority, direction, name:'Richting '+direction+' · '+(bold?'Krachtig en opvallend':'Rustig en helder'), reason, trade};
     }
 
     function proposalText(pack, sess) {
         const plan=creativeDecision(sess.draft);
-        return '**Kernregel voor de vormgever:** “' + plan.headline + '”\nVoor ' + valueLabel(sess,'doelgroep') + '. ' + plan.priority +
-            ' De overige diensten laten we weg.\n\n**Ons advies: ' + plan.name + '.** ' + plan.reason + ' ' + plan.trade;
+        return '**Voorgestelde reclameregel:** “' + plan.headline + '”\nVoor ' + valueLabel(sess,'doelgroep') + '. ' + plan.priority +
+            ' De overige diensten laten we weg.\n\n**Onze aanbeveling: ' + plan.name + '.** ' + plan.reason + ' ' + plan.trade +
+            '\n\nRichting A en B zijn twee ontwerpen voor dezelfde wrap; jij kiest. Pas de reclameregel aan in je briefing als je andere woorden wilt.';
     }
 
     function summaryReply(pack, sess, locale) {
@@ -306,15 +328,23 @@
         if (d.vehicle_usage) b.vehicle_usage = d.vehicle_usage.id;
         if (d.impression) b.desired_impression = d.impression.id;
         if (d.cta) b.primary_cta = d.cta.id;
-        if (d.telefoon) b.telefoon = d.telefoon.id;
-        if (d.website) b.website = d.website.id;
+        // Only expose the contact selected as the primary CTA. Empty markers
+        // let the client clear a previously selected phone number or URL.
+        b.telefoon = d.cta?.id === 'telefoon' ? valueLabel(sess, 'telefoon') : '';
+        b.website = d.cta?.id === 'website' ? valueLabel(sess, 'website') : '';
         if (d.slogan) b.slogan = d.slogan.id;
         if (d.budget) b.budget_range = d.budget.id;
         if (d.flex) b.budget_flexibility = d.flex.id;
         if (d.brand_colors && d.brand_colors.length) b.brand_colors = d.brand_colors;
         if (sess.budgetExplicit) b._budget_explicit = true;
         if (d.logo_file) b.logo_file = d.logo_file;
-        if (d.diensten) b.headline = creativeDecision(d).headline;
+        if (d.diensten) {
+            var decision = creativeDecision(d);
+            b.headline = decision.headline;
+            b.recommended_direction = 'Richting ' + decision.direction;
+            b.recommendation_reason = decision.reason;
+            b.message_hierarchy = decision.priority;
+        }
         b.exposure = valueLabel(sess,'exposure'); b.diensten = valueLabel(sess,'diensten'); b.doelgroep = valueLabel(sess,'doelgroep');
         b.budget_label = valueLabel(sess,'budget'); b.cta_label = valueLabel(sess,'cta');
         return b;
@@ -396,9 +426,16 @@
                 var v = body.field_updates[k];
                 if (map[k] === 'brand_colors') {
                     sess.draft.brand_colors = Array.isArray(v) ? v : [];
+                } else if (map[k] === 'headline' && (v == null || String(v).trim() === '')) {
+                    delete sess.draft.headline;
                 } else if (map[k] && v != null && v !== '') {
-                    var lbl = chipLabel(pack, k, v);
-                    sess.draft[map[k]] = { id: String(v), label: lbl };
+                    var fieldValue = map[k] === 'headline' ? String(v).trim().slice(0, 60) : String(v);
+                    var lbl = chipLabel(pack, k, fieldValue) || fieldValue;
+                    sess.draft[map[k]] = { id: fieldValue, label: lbl };
+                    if (map[k] === 'cta') {
+                        if (v !== 'telefoon') delete sess.draft.telefoon;
+                        if (v !== 'website') delete sess.draft.website;
+                    }
                     if (map[k] === 'budget') sess.budgetExplicit = true;
                 }
             });
@@ -674,7 +711,9 @@
                 const contact = draft.cta?.id === 'telefoon' ? fd.get('telefoon') : draft.cta?.id === 'website' ? fd.get('website') : '';
                 return window.MockupComposer.compose(data.images, fd.get('logo'), vehicle, String(contact || '').slice(0,80)).then(compositions => {
                     fixture.mockups.forEach((m,i)=>Object.assign(m,compositions[i]));
-                    fixture.notice = data.provider==='cf-flux' ? 'Gratis indelingstest — geen definitief klantontwerp.' : 'Concept op basis van je briefing · origineel logo lokaal geplaatst.';
+                    fixture.notice = data.provider === 'cf-flux'
+                        ? 'FLUX-indelingstest — geen definitief klantontwerp.'
+                        : 'AI-concept op basis van je briefing · origineel logo en bevestigd contact lokaal toegevoegd.';
                     return fixture;
                 }).catch(()=>labelFallback(fixture,'Plaatsing niet goedgekeurd of bronbeeld onleesbaar.',CHAT_FALLBACK));
             })
@@ -696,12 +735,58 @@
         const situation = draft.exposure?.id === 'parked' ? 'Bij een stilstaande auto kan de kijker het contactgegeven rustig lezen.' : draft.exposure?.id === 'moving' ? 'In het verkeer is de kijktijd kort: laat de vormgever de boodschap testen als miniatuur.' : 'Ontwerp voor een korte blik in het verkeer en controleer het contactgegeven daarna op de geparkeerde auto.';
         const plan = creativeDecision(draft);
         const advice = situation + ' ' + plan.priority + ' Test de leesbaarheid van het originele logo op vijf meter; schrap details die dan wegvallen.' + colorReason;
-        const brief = ['ONTWERPOPDRACHT · VOERTUIGWRAPPING', 'Door de klant bevestigde kernregel: '+plan.headline, 'Tekst voor de vormgever: de kernregel staat niet automatisch op het modelbeeld.', 'Advies: '+plan.name+' — '+plan.reason, 'Hiërarchie: '+plan.priority, 'Weglaten: overige diensten en extra contactacties.', '', 'FEITEN UIT DE BRIEFING', 'Bedrijf: '+label('bedrijfsnaam'), 'Branche: '+label('branche'), 'Doelgroep: '+label('doelgroep'), 'Zichtmoment: '+label('exposure'), 'Dienst: '+label('diensten'), ...(needsFocus(draft) && draft.focus?.label ? ['Gewenste opdracht: '+draft.focus.label] : []), 'Regio: '+label('regio'), 'Voertuig: '+label('vehicle')+' · '+label('vehicle_usage'), 'Gewenste indruk: '+label('impression'), 'CTA: '+label('cta'), 'Contact: '+((draft.cta?.id === 'telefoon' ? draft.telefoon?.label : draft.cta?.id === 'website' ? draft.website?.label : '') || 'Niet opgegeven'), 'Budget voor offerte: '+label('budget')+' · '+label('flex'), 'Logo: '+(draft.logo_file || 'Nog te bevestigen'), 'Kleurproef: '+((draft.brand_colors || []).join(', ') || 'Nog te bevestigen'), '','NOG TE CONTROLEREN','Vóór productie: meet deur en naden, controleer contactgegevens, folie en kleur op staal.' ];
+        const brief = [
+            'ONTWERPBRIEF · VOERTUIGWRAPPING',
+            'Beide richtingen zijn concepten voor dezelfde wrap en hetzelfde voertuig.',
+            'Weglaten: overige diensten en extra contactacties.',
+            '',
+            'FEITEN UIT DE BRIEFING',
+            'Bedrijf: ' + label('bedrijfsnaam'),
+            'Branche: ' + label('branche'),
+            'Doelgroep: ' + label('doelgroep'),
+            'Zichtmoment: ' + label('exposure'),
+            'Dienst: ' + label('diensten'),
+            ...(needsFocus(draft) && draft.focus?.label ? ['Gewenste opdracht: ' + draft.focus.label] : []),
+            'Regio: ' + label('regio'),
+            'Voertuig: ' + label('vehicle') + ' · ' + label('vehicle_usage'),
+            'Gewenste indruk: ' + label('impression'),
+            'CTA: ' + label('cta'),
+            'Gekozen contactgegeven: ' + ((draft.cta?.id === 'telefoon' ? draft.telefoon?.label : draft.cta?.id === 'website' ? draft.website?.label : '') || 'Niet opgegeven'),
+            'Budget voor offerte: ' + label('budget') + ' · ' + label('flex'),
+            'Logo: ' + (draft.logo_file || 'Nog te bevestigen'),
+            'Merkkleuren: ' + ((draft.brand_colors || []).join(', ') || 'Nog te bevestigen'),
+            '',
+            'NOG TE CONTROLEREN',
+            'Vóór productie: meet deur en naden, controleer contactgegevens, folie en kleur op staal.'
+        ];
         if (draft.vehicle_usage?.id==='lease') brief.push('Toestemming voor wrapping nog te bevestigen.');
-        return {brief_id:'inspire-wrap', engine_mode:'inspirationOnly', recommended_products:[], advice:'Ons advies: '+plan.name+'. '+plan.reason+' '+plan.trade+' '+advice, brief:brief.join('\n'), mockups:[
-            {variant:'standard', sku:'wrap-rustig', label_nl:'Richting A'+(plan.recommended==='standard'?' · Ons advies':''), naam:'Rustig en helder', url:imgs.strak, reason_nl:language+' Eén hoofdvlak geeft '+label('diensten')+' voorrang boven extra details.'},
-            {variant:'premium', sku:'wrap-krachtig', label_nl:'Richting B'+(plan.recommended==='premium'?' · Ons advies':''), naam:'Krachtig en opvallend', url:imgs.opvallend, reason_nl:language+' Contrasterende banen trekken eerder aandacht; houd de boodschap kort voor '+label('doelgroep')+'.'}
-        ]};
+        return {
+            brief_id: 'inspire-wrap',
+            engine_mode: 'inspirationOnly',
+            recommended_products: [],
+            advice: 'Ons advies: ' + plan.name + '. ' + plan.reason + ' ' + plan.trade + ' ' + advice,
+            recommended_direction: plan.direction,
+            recommendation_reason: plan.reason,
+            headline: plan.headline,
+            message_hierarchy: plan.priority,
+            brief: brief.join('\n'),
+            mockups: [
+                {
+                    variant: 'standard', direction: 'A', recommended: plan.direction === 'A', sku: 'wrap-rustig',
+                    label_nl: 'Richting A' + (plan.direction === 'A' ? ' · INSPIRE beveelt aan' : ''),
+                    naam: 'Rustig en helder', url: imgs.strak,
+                    headline: plan.headline, hierarchy: plan.priority,
+                    reason_nl: language + ' Eén hoofdvlak geeft ' + label('diensten') + ' voorrang boven extra details.'
+                },
+                {
+                    variant: 'premium', direction: 'B', recommended: plan.direction === 'B', sku: 'wrap-krachtig',
+                    label_nl: 'Richting B' + (plan.direction === 'B' ? ' · INSPIRE beveelt aan' : ''),
+                    naam: 'Krachtig en opvallend', url: imgs.opvallend,
+                    headline: plan.headline, hierarchy: plan.priority,
+                    reason_nl: language + ' Contrasterende banen trekken eerder aandacht; houd de boodschap kort voor ' + label('doelgroep') + '.'
+                }
+            ]
+        };
     }
 
     // ============================================================
@@ -827,7 +912,7 @@
             return packsReady.then(function () {
                 var pack = packFor(locale);
                 var sess = newSession(locale);
-                var reply = openingReply(pack);
+                var reply = openingReply(pack, locale);
                 pushMsg(sess, 'assistant', reply);
                 var out = baseResponse(sess);
                 out.reply = reply;

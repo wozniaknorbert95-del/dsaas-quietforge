@@ -7,7 +7,7 @@ pages_build_output_dir = "./out"
 [vars]
 IMAGE_PROVIDER = "openai"
 IMAGE_MODEL = "gpt-image-2.6-sunburst"
-IMAGE_CALL_BOUND_CONFIRMED = "no"
+IMAGE_CALL_BOUND_CONFIRMED = "yes"
 
 [ai]
 binding = "AI"
@@ -15,6 +15,11 @@ binding = "AI"
 [[kv_namespaces]]
 binding = "AI_LEDGER"
 id = "9cbcc48d9a1e445486d8be61c4a169d8"
+
+[[d1_databases]]
+binding = "IMAGE_BUDGET"
+database_name = "inspire-image-budget-production"
+database_id = "a50967a5-e5db-45f3-8d91-5a47ef1bee27"
 
 # Isolated Preview resources. The existing top-level AI_LEDGER remains the
 # Production binding; paid image generation stays fail-closed until the
@@ -34,3 +39,4 @@ database_id = "988440fd-61b9-4a6a-bbb1-6344e154825a"
 [env.preview.vars]
 IMAGE_PROVIDER = "openai"
 IMAGE_MODEL = "gpt-image-2.6-sunburst"
+IMAGE_CALL_BOUND_CONFIRMED = "no"

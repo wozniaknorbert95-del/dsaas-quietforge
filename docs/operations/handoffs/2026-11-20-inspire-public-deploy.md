@@ -1,8 +1,8 @@
-# Handoff — INSPIRE client polish / private Preview gate
+# Handoff — INSPIRE client polish / public Production deploy
 
 **Branch:** `arena/54308398-dsaas-quietforge`  
 **Starting SHA:** `3b8b3036c8fe6217c075610d6cf4d9b55f6387f6`  
-**Scope:** INSPIRE only. No production merge, image generation, user-flow/E2E test, or paid API call.
+**Scope:** INSPIRE only. Public Production deployment was explicitly ordered by the Commander. No image generation, user-flow/E2E test, or paid API call was run by the agent.
 
 ## Client-path changes prepared
 
@@ -15,22 +15,23 @@
 - Clarified the concept-image boundary and demo-only quote step. Improved keyboard focus restoration and accessible descriptions/labels in the logo-placement dialog.
 - Updated the generation API comment: A/B are visual directions for one wrap; `standard`/`premium` are internal provider keys.
 
-## Preview resources prepared (no deploy)
+## Isolated budget resources
 
 - Created isolated preview KV namespace `AI_LEDGER_PREVIEW` (`949a0d9c335b499a8a52fbb30d490640`); the existing `AI_LEDGER` was not changed.
 - Created D1 `inspire-image-budget-preview` (`988440fd-61b9-4a6a-bbb1-6344e154825a`) and applied `docs/operations/scripts/inspire/budget.sql`; `image_spend` exists. No generation calls or spend records were made.
-- Added `env.preview` bindings and non-secret model vars in `wrangler.toml`: `IMAGE_PROVIDER=openai`, `IMAGE_MODEL=gpt-image-2.6-sunburst`. Preview intentionally lacks `IMAGE_CALL_BOUND_CONFIRMED=yes` and `IMAGE_SECOND_HALF_APPROVED=yes`; no secret value was read or added.
-- Wrangler type generation validated the preview config and showed the intended `AI`, `AI_LEDGER`, `IMAGE_BUDGET`, and model vars.
+- Created separate production D1 `inspire-image-budget-production` (`a50967a5-e5db-45f3-8d91-5a47ef1bee27`) and applied the schema. Its `image_spend` table has zero rows. Production and preview use distinct D1 databases and KV namespaces.
+- Preview uses `AI_LEDGER_PREVIEW` and its own D1, with no `IMAGE_CALL_BOUND_CONFIRMED` or second-half approval; its paid route fails closed. Wrangler type generation confirmed the separate bindings.
+- OpenAI published rates: $5/1M text input and $30/1M image output. The 1536×1024 high image-output estimate is 1,372 tokens (~$0.0412); the prompt is bounded by the code and contains no reference image. The $1.25/image reserve is >20× this estimate, so the cost assumption is confirmed for the configured dimensions/quality. Production keeps the initial D1 cap at $5; `IMAGE_SECOND_HALF_APPROVED` is unset.
 
 ## Deployment — Commander override to public Production
 
 The previously requested private-preview gate was blocked: the existing Pages deployment for SHA `3b8b303` is `https://225c29de.dsaas-quietforge.pages.dev`, and unauthenticated `HEAD /lab/inspire/` returned **200**. A later explicit Commander order requested deployment to the public production route `https://quietforge.nl/lab/inspire/`; deployment was therefore performed directly to the Pages `main`/Production environment without merging or pushing Git `main`. Exact deployment metadata is in the session's final response. The preview remains public and was not used as a private link.
 
-Wrangler identity has Pages write, but no Cloudflare Access control scope. Wrangler reports an encrypted `IMAGE_API_KEY` secret in **Production**; its value was not read. The Production secret was not changed. OpenAI's current published rates are token-based ($5/1M text input; $30/1M image output); the docs do not establish a guaranteed maximum for this exact high-quality image, so the $1.25/image bound is **not confirmed**. The public Production deployment explicitly uses `IMAGE_PROVIDER=openai`, but has no `IMAGE_BUDGET` binding and sets `IMAGE_CALL_BOUND_CONFIRMED=no`; generation therefore fails closed rather than calling OpenAI or silently falling back to FLUX. `IMAGE_SECOND_HALF_APPROVED` is unset.
+Wrangler reports an encrypted `IMAGE_API_KEY` secret in **Production**; its value was not read, displayed, or changed. Production uses `IMAGE_PROVIDER=openai`, the dedicated `IMAGE_BUDGET` ledger, and `IMAGE_CALL_BOUND_CONFIRMED=yes`; the hard cap is $5 until the Commander explicitly approves the second half. The private Preview setting is still off; Preview itself stays fail-closed because its cost-bound approval is unset.
 
-**Immediate Commander action:** Cloudflare Dashboard → Workers & Pages → `dsaas-quietforge` → Settings → General → **Enable access policy** for Preview deployments before any further Preview push. The public production site is already live by explicit order.
+**Preview note:** Cloudflare Dashboard → Workers & Pages → `dsaas-quietforge` → Settings → General → **Enable access policy** before treating any branch Preview as private. Production is public by explicit order.
 
-To enable a paid test later, the owner must configure the key in the intended environment and confirm the cost bound before setting `IMAGE_CALL_BOUND_CONFIRMED=yes`. Leave the second half unapproved. Review of the existing Production secret is separate; this session did not alter it.
+The existing Production secret is available to the server runtime; no key was copied or read. The first owner test is protected by the $5 global D1 cap. Review/rotate the existing Production secret after acceptance as planned.
 
 ## Verification — not product acceptance
 
@@ -43,11 +44,11 @@ To enable a paid test later, the owner must configure the key in the intended en
 | NL/PL/EN JSON parse + `git diff --check` | PASS |
 | `wrangler types --env preview` | PASS |
 | Chat, E2E, Generate, GPT-Image call, logo QA | **NOT RUN** — Commander owns first product test |
-| Private Preview for the new SHA | **NOT DEPLOYED** — Preview Access remains unverified/public |
+| Exact private Preview | **NOT DEPLOYED** — Preview Access remains off |
 
 ## Next steps
 
-1. Commander enables the Preview Access policy before future branch pushes.
-2. If enabling paid generation, configure a secret only in the chosen environment and confirm the image-cost bound. Do not set second-half approval before the Commander's explicit decision.
-3. The first real chat + one A/B pair remains the Commander's test; this session made no generation calls.
-4. Check reserved spend in D1 `image_spend` and per-call estimates in server KV `inspire:spend:<requestId>:<style>` / Pages Logs. Do not infer output quality or logo calibration before the owner reviews the pair.
+1. The first real chat + one A/B pair remains the Commander's test; this session made no generation calls.
+2. Check reservations in Production D1 `image_spend` and per-call estimates in production KV `inspire:spend:<requestId>:<style>` / Pages Logs.
+3. Stop at $5; do not approve the second half until the Commander reviews the first pair.
+4. Do not infer output quality or logo calibration before the owner reviews the pair.

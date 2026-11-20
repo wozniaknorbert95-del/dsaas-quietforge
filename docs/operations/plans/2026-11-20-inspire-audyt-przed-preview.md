@@ -1,0 +1,26 @@
+# INSPIRE — plan audytu przed prywatnym preview
+
+Punkt odniesienia: `dd68502`. Cel: nie kupować obrazu, którego nie można dostarczyć, i nie mylić sprawnej ścieżki demo z jakością projektu. To plan, nie protokół zaliczenia. Przed deployem: wyłącznie dane testowe, lokalny Pages runtime i atrapa dostawcy; koszt 0 USD. Bez zmian innych dem i bez deployu produkcyjnego.
+
+## Co już wiadomo z kodu
+
+- `generate-art.ts` rezerwuje i wywołuje model **osobno** dla A i B. Jeżeli budżet wystarczy tylko na A lub dostawca odrzuci B, odpowiedź nie zawiera pary. Istniejący test budżetu wysyła `style: 'standard'`; zielony wynik nie rozstrzyga tego przypadku.
+- `wrangler.toml` deklaruje AI i KV, ale nie `IMAGE_BUDGET`. Sam push nie dowodzi, że w preview istnieje właściwe D1, schema, ochrona dostępu ani sekret. Kwota 1,25 USD jest warunkowym założeniem rezerwy, a nie gwarancją cennika.
+- `mockup-composer.js` dekoduje parę obrazów i tworzy kolejne kopie PNG przez `canvas.toDataURL`. E2E 375 px używa małych plików z repo. To nie pomiar zachowania telefonu dla dwóch pełnych obrazów 1536×1024.
+
+## Kolejność i kryteria decyzji
+
+| Priorytet / właściciel | Próba | Kryterium akceptacji i dowód |
+|---|---|---|
+| P0 · backend — budżet całej akcji | W `tests/inspire/provider.cjs` wysłać żądania **bez `style`** tuż przed progami 5 i 10 USD, równolegle i po ponowieniu tego samego klucza. Dodać osobne przypadki: timeout B po sukcesie A, brak `usage`, awaria KV po odpowiedzi modelu. | Jeśli już przed A brakuje rezerwy na parę, zero wywołań, jawny powód. Przy błędzie po A koszt pozostaje zapisany; ponowienie nie kupuje ponownie A. Zestawić liczbę wywołań atrapy, rekordy D1, KV i komunikat klienta. Przy niepowodzeniu: rezerwować parę atomowo lub wdrożyć jawne wznowienie; nie podnosić capu. |
+| P0 · platforma — izolacja preview | Uruchomić zbudowane `out/` przez `wrangler pages dev` z lokalnym D1/KV. Sprawdzić `/api/v1/generate-art`, migrację, zasoby i przypadki brakującego bindingu/sekretu. Przed włączeniem płatności operator potwierdza osobne bindingi preview, Access obejmujący także API, aktualny koszt graniczny i brak zgody na drugą połowę budżetu. | Brak konfiguracji → 503 i zero wywołań. W preview bez autoryzacji nie można wywołać funkcji. Dowód: statusy, nazwy bindingów, data weryfikacji ceny; nigdy wartości sekretów. Bez izolacji lub wiarygodnej granicy ceny: tylko preview bez płatnego modelu. |
+| P0 · prywatność — granica danych | Na syntetycznym briefie sprawdzić żądanie upstream, logi błędu, KV i pamięć przeglądarki po odświeżeniu i nowej sesji. Zweryfikować renderowanie swobodnego tekstu jako tekstu w rozmowie, podsumowaniu i briefie. | Brak nazwy klienta, logo, telefonu i strony w promptach/logach kosztowych; klucz nigdy po stronie klienta. Nowa sesja nie ujawnia poprzedniego briefu. Dowód: asercje na nazwach pól i danych testowych, nie pełny HAR. |
+| P1 · grafika i wydajność — telefon | Podać z lokalnej atrapy dwa różne PNG 1536×1024 i oryginalne logo z przezroczystością. Zmierzyć osobno dekodowanie, rysowanie i zatwierdzenie; porównać piksele poza obszarem logo/kontaktu oraz proporcje znaku. Sprawdzić anulowanie B, EOF obrazu i brakujący wariant. | Żadnego rozciągnięcia, zamiany wariantów ani naruszenia tła poza nakładką. Brak zawieszenia lub utraty briefu przy obu obrazach. Zapisać rozmiary plików i czasy; dopiero przy wykazanym problemie porównać `toBlob` + object URL, z testem zwalniania zasobów. |
+| P1 · strategia i UX — wartość wyboru | Dwa przeciwstawne briefy: elektryk w ruchu z CTA telefon oraz hydraulik na postoju z CTA strona. Przejść A i B, zmianę danych, kopiowanie, leasing i fallback. Sprawdzić klawiaturę, fokus po zamknięciu dialogu, odczyt etykiet suwaków, mobile 375 px i desktop. | W każdym briefie poprawna usługa, odbiorca, jedna aktualna CTA, powód wyboru i punkt do sprawdzenia przed drukiem. Żadnych starych cen, magnesów ani obietnicy wysłanej oferty. Osoba testująca potrafi uzasadnić wybór bez podpowiedzi operatora. Dowód: dwa briefy testowe i screen z oznaczeniem „offline”. |
+| P1 · release — powtarzalność | Z czystego checkoutu uruchomić `npm ci`, `typecheck`, `lint`, `build`, test promptów, providera i Playwright (`tests/inspire/`). Sprawdzić właściwy SHA, czysty diff po buildzie i skan sekretów. | Jeden raport: SHA, wersja Node, komendy, statusy, ostrzeżenia, koszt i otwarte wyjątki. Nie traktować samego builda jako testu Pages Functions. |
+
+## Decyzja i wycofanie
+
+QA zapisuje w `docs/operations/evidence/` dla każdego wiersza **PASS / FAIL / NIE SPRAWDZONO**, właściciela, dowód i decyzję. Błąd ochrony danych, budżetu, utrata briefu lub mylący wynik = **NO-GO dla płatnego preview**. Optymalizacja szybkości bez zmierzonego problemu nie blokuje wdrożenia. W razie regresji wyłączyć płatny provider w preview; nie usuwać księgi wydatków ani nie podstawiać FLUX po cichu.
+
+**Po deployu, osobna bramka:** najpierw jeden rzeczywisty brief i dwa obrazy. Sprawdzić koszt z `usage`, czas, czystą strefę drzwi, fotorealizm, logo i CTA. Tylko po pozytywnym wyniku przejść do pozostałych trzech klas pojazdów. Pierwsza para liczy się do ośmiu. Limit 10 USD razem z powtórkami; pauza przed przekroczeniem 5 USD do decyzji Dowódcy. Bez ośmiu ocenionych obrazów i werdyktu brak odbioru końcowego.

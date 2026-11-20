@@ -96,25 +96,37 @@ interface ProviderImage {
   data: string;
 }
 
-/** flux-1-schnell via the Pages Workers AI binding (docs-verified contract). */
 const SUNBURST = 'gpt-image-2.6-sunburst';
-const RESERVE_CENTS = 125; // Conservative per-call allowance; never refunded automatically.
-async function callProvider(env: Env, prompt: string, requestId: string, style: string, vehicle: string, action: string): Promise<ProviderImage> {
+const RESERVE_CENTS = 125;
+type Direction = 'standard' | 'premium';
+
+/** Admit the whole action in a single D1 write, before buying either image. */
+async function reserveImages(env: Env, requestId: string, vehicle: string, action: string, styles: Direction[]) {
+  const limit = env.IMAGE_SECOND_HALF_APPROVED === 'yes' ? 1000 : 500;
+  const values = styles.map(() => '(?, ?, ?)').join(', ');
+  const rows = styles.flatMap(style => [`${requestId}:${style}`, `${action}:${style}`, `${vehicle}:${style}`]);
+  const reservation = await env.IMAGE_BUDGET!.prepare(`
+    WITH wanted(id, replay, slot) AS (VALUES ${values}),
+    admitted AS MATERIALIZED (
+      SELECT * FROM wanted
+      WHERE (SELECT COALESCE(SUM(reserved_cents),0) FROM image_spend) + ? <= ?
+        AND NOT EXISTS (SELECT 1 FROM image_spend WHERE reserved_cents > ?)
+        AND NOT EXISTS (SELECT 1 FROM wanted w WHERE
+          EXISTS (SELECT 1 FROM image_spend WHERE replay_id=w.replay) OR
+          (SELECT COUNT(*) FROM image_spend WHERE vehicle_variant=w.slot) >= 3)
+    )
+    INSERT INTO image_spend(call_id,replay_id,vehicle_variant,reserved_cents)
+    SELECT id,replay,slot,? FROM admitted`)
+    .bind(...rows, styles.length * RESERVE_CENTS, limit, RESERVE_CENTS, RESERVE_CENTS).run();
+  if (reservation.meta.changes !== styles.length) {
+    console.info(JSON.stringify({requestId, model:SUNBURST, event:'inspire.review_required', limitUsd:limit/100, vehicle}));
+    throw Object.assign(new Error('Budget or attempt stop'), {code:'QUOTA_EXCEEDED', retryable:false});
+  }
+}
+
+async function callProvider(env: Env, prompt: string, requestId: string, style: Direction, vehicle: string): Promise<ProviderImage> {
   if (env.IMAGE_PROVIDER === 'openai') {
-    const limit = env.IMAGE_SECOND_HALF_APPROVED === 'yes' ? 1000 : 500;
-    // Single SQLite statement, serialized by D1, unlike read/modify/write on KV.
     const id = `${requestId}:${style}`;
-    const slot = vehicle + ':' + style;
-    const replay = action + ':' + style;
-    const reservation = await env.IMAGE_BUDGET!.prepare(`INSERT OR IGNORE INTO image_spend(call_id,replay_id,vehicle_variant,reserved_cents)
-      SELECT ?, ?, ?, ? WHERE (SELECT COALESCE(SUM(reserved_cents),0) FROM image_spend) + ? <= ?
-      AND (SELECT COUNT(*) FROM image_spend WHERE vehicle_variant=?) < 3
-      AND NOT EXISTS (SELECT 1 FROM image_spend WHERE reserved_cents > ?)`)
-      .bind(id, replay, slot, RESERVE_CENTS, RESERVE_CENTS, limit, slot, RESERVE_CENTS).run();
-    if (reservation.meta.changes !== 1) {
-      console.info(JSON.stringify({requestId,model:SUNBURST,event:'inspire.review_required',limitUsd:limit/100,vehicle,style}));
-      throw Object.assign(new Error('Budget or attempt stop'), {code:'QUOTA_EXCEEDED', retryable:false});
-    }
     const record = {requestId, model:SUNBURST, vehicle, style, reservedUsd:RESERVE_CENTS / 100};
     const key = `inspire:spend:${id}`;
     await env.AI_LEDGER!.put(key, JSON.stringify(record));
@@ -228,13 +240,30 @@ export async function onRequestPost(context: Context): Promise<Response> {
   }
 
   // One action = both product variants (Standard + Premium = our two cards).
-  const variants: Array<'standard' | 'premium'> = input.style ? [input.style] : ['standard', 'premium'];
+  const variants: Direction[] = input.style ? [input.style] : ['standard', 'premium'];
 
   try {
     const images: Array<{ style: string; image: ProviderImage }> = [];
-    for (const style of variants) {
-      const image = await callProvider(env, buildPrompt(input, style), requestId, style, input.vehicleType!, idempotencyKey || requestId);
-      images.push({ style, image });
+    if (env.IMAGE_PROVIDER === 'openai') {
+      await reserveImages(env, requestId, input.vehicleType!, idempotencyKey || requestId, variants);
+    }
+    let startedCount = 0;
+    try {
+      for (const style of variants) {
+        const prompt = buildPrompt(input, style);
+        startedCount++;
+        const image = await callProvider(env, prompt, requestId, style, input.vehicleType!);
+        images.push({ style, image });
+      }
+    } finally {
+      // Release only holds for directions never entered. A timeout on a started
+      // call is ambiguous and must retain its hold, including its replay guard.
+      if (env.IMAGE_PROVIDER === 'openai') {
+        for (const style of variants.slice(startedCount)) {
+          await env.IMAGE_BUDGET!.prepare('DELETE FROM image_spend WHERE call_id=?')
+            .bind(`${requestId}:${style}`).run();
+        }
+      }
     }
 
     if (idempotencyKey) {

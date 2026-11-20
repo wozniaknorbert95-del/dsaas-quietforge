@@ -1876,7 +1876,7 @@
     document.getElementById('wrap-source').textContent = response.notice;
     document.getElementById('wrap-advice').textContent = response.advice;
     const brief = document.getElementById('wrap-brief');
-    brief.value = response.brief + '\nRichting: ' + (selected ? tierLabel(selected) + ' · ' + selected.naam + '\nMotivatie: ' + selected.reason_nl : 'Nog te kiezen') + (selected?.placement ? '\nLogopositie (% beeld): x ' + selected.placement.x + ', y ' + selected.placement.y + ', max. breedte ' + selected.placement.size : '') + '\nBeeldstatus: ' + response.notice;
+    brief.value = response.brief + '\nRichting: ' + (selected ? tierLabel(selected) + ' · ' + selected.naam + '\nMotivatie: ' + selected.reason_nl : 'Nog te kiezen') + (selected?.placement ? '\nLogopositie (% beeld): x ' + selected.placement.x + ', y ' + selected.placement.y + ', max. breedte ' + selected.placement.size + '\nContact op dit ontwerp: ' + (selected.contactVisible ? 'ja' : 'nee') : '') + '\nBeeldstatus: ' + response.notice;
     const copy = document.getElementById('wrap-copy');
     copy.textContent = 'Kopieer ontwerpbrief';
     copy.onclick = async () => {

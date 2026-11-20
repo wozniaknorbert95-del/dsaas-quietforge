@@ -94,6 +94,7 @@
         { key: 'exposure', field: 'vehicle.exposure', stap: 2, chips: 'vehicle.exposure' },
         { key: 'doelgroep', field: 'marketing.doelgroep', stap: 3 },
         { key: 'diensten', field: 'marketing.diensten', stap: 3 },
+        { key: 'focus', field: 'marketing.focus', stap: 3 },
         { key: 'impression', field: 'marketing.desired_impression', stap: 3, chips: 'marketing.desired_impression' },
         { key: 'cta', field: 'marketing.primary_cta', stap: 4, chips: 'marketing.primary_cta' },
         { key: 'telefoon', field: 'company.telefoon', stap: 4, when: 'telefoon' },
@@ -153,6 +154,7 @@
 
     function currentStep(sess) {
         for (var i = 0; i < FLOW.length; i++) {
+            if (FLOW[i].key === 'focus' && !needsFocus(sess.draft)) continue;
             if ((!FLOW[i].when || sess.draft.cta?.id === FLOW[i].when) && !stepDone(sess, FLOW[i])) return FLOW[i];
         }
         return null;
@@ -241,8 +243,33 @@
     }
 
     // --- agency proposal (agency_copy.format_agency_proposal) -------------
+    function needsFocus(draft) {
+        const service = String(draft.diensten?.label || '').trim().toLowerCase();
+        return service.length > 0 && (service === String(draft.branche?.label || '').toLowerCase() ||
+            /^(alles|allround|diverse werkzaamheden|installatie|elektra|loodgieter(swerk)?|bouw|schoonmaak|plumbing|hydraulika)$/.test(service));
+    }
+
+    // Same decision before confirmation, after generation and in the designer's handoff.
+    function creativeDecision(d) {
+        const service = (needsFocus(d) && d.focus?.label) || d.diensten?.label || 'Nog te bepalen';
+        const headline = d.headline?.label || service;
+        const moving = d.exposure?.id === 'moving';
+        const bold = !moving && ['opvallend','stoer'].includes(d.impression?.id);
+        const recognition = d.cta?.id === 'geen';
+        const priority = recognition ? 'Eerst de bedrijfsnaam, daarna de kerndienst. Geen contactregel nodig.' :
+            'Eerst de kerndienst, dan het merk. De contactactie (' + (d.cta?.label || 'nog te kiezen') + ') komt op de derde plaats.';
+        const reason = bold ? 'Je wilt opvallen. Contrasterende banen trekken de aandacht naar één korte boodschap.' : moving ?
+            'Voorbijgangers hebben maar kort de tijd. Een rustig vlak geeft de boodschap voorrang boven de decoratie.' :
+            'Je wilt dat iemand de dienst en het merk kan plaatsen. Eén hoofdvlak houdt beide bij elkaar.';
+        const trade = bold ? 'Kies A als rust en directe herkenning belangrijker zijn dan opvallen.' : 'Kies B als je liever opvalt met de vorm van de wrap, ook als de tekst minder nadruk krijgt.';
+        return {headline, priority, recommended:bold?'premium':'standard', name:bold?'B · Krachtig en opvallend':'A · Rustig en helder', reason, trade};
+    }
+
     function proposalText(pack, sess) {
-        return 'Voor ' + valueLabel(sess,'bedrijfsnaam') + ' vergelijken we twee ontwerpen op hetzelfde folieoppervlak. A geeft de kernboodschap ruimte; B trekt aandacht met een ritme over de flank. Je budget is een grens voor de offerte, geen vaste montageprijs.';
+        const plan=creativeDecision(sess.draft);
+        return 'Voor ' + valueLabel(sess,'doelgroep') + ' stellen we deze kernregel voor: “' + plan.headline + '”. ' + plan.priority +
+            ' We laten de lijst met overige diensten weg. Ons advies: ' + plan.name + '. ' + plan.reason + ' ' + plan.trade +
+            ' Klopt de kernregel? Via Aanpassen kun je de tekst wijzigen voordat we beide ontwerpen maken.';
     }
 
     function summaryReply(pack, sess, locale) {
@@ -288,6 +315,7 @@
         if (d.brand_colors && d.brand_colors.length) b.brand_colors = d.brand_colors;
         if (sess.budgetExplicit) b._budget_explicit = true;
         if (d.logo_file) b.logo_file = d.logo_file;
+        if (d.diensten) b.headline = creativeDecision(d).headline;
         b.exposure = valueLabel(sess,'exposure'); b.diensten = valueLabel(sess,'diensten'); b.doelgroep = valueLabel(sess,'doelgroep');
         b.budget_label = valueLabel(sess,'budget'); b.cta_label = valueLabel(sess,'cta');
         return b;
@@ -362,7 +390,7 @@
                 'marketing.doelgroep': 'doelgroep', 'marketing.diensten': 'diensten',
                 'marketing.desired_impression': 'impression', 'marketing.primary_cta': 'cta',
                 'company.telefoon': 'telefoon', 'company.website': 'website',
-                'marketing.slogan': 'slogan', 'budget.range': 'budget',
+                'marketing.headline': 'headline', 'marketing.slogan': 'slogan', 'budget.range': 'budget',
                 'budget.flexibility': 'flex', 'brand_assets.brand_colors': 'brand_colors'
             };
             Object.keys(body.field_updates).forEach(function (k) {
@@ -667,12 +695,13 @@
         const palette = (draft.brand_colors || []).slice(0,3);
         const colorReason = palette.length ? ' Gebruik '+palette[0]+' uit het logo als herkenningskleur; laat de vormgever de folie op staal vergelijken.' : ' Zonder bevestigd kleurstaal is de neutrale paletkeuze voorlopig.';
         const situation = draft.exposure?.id === 'parked' ? 'Bij een stilstaande auto kan de kijker het contactgegeven rustig lezen.' : draft.exposure?.id === 'moving' ? 'In het verkeer is de kijktijd kort: laat de vormgever de boodschap testen als miniatuur.' : 'Ontwerp voor een korte blik in het verkeer en controleer het contactgegeven daarna op de geparkeerde auto.';
-        const advice = situation + ' Laat eerst de dienst herkennen: ' + label('diensten') + '. Kies daarna één actie: ' + label('cta') + '. Test de leesbaarheid van het originele logo op vijf meter; schrap details die dan wegvallen.' + colorReason;
-        const brief = ['Ontwerpbrief · voertuigwrapping', 'Bedrijf: '+label('bedrijfsnaam'), 'Branche: '+label('branche'), 'Doelgroep: '+label('doelgroep'), 'Zichtmoment: '+label('exposure'), 'Dienst: '+label('diensten'), 'Regio: '+label('regio'), 'Voertuig: '+label('vehicle')+' · '+label('vehicle_usage'), 'Gewenste indruk: '+label('impression'), 'CTA: '+label('cta'), 'Contact: '+((draft.cta?.id === 'telefoon' ? draft.telefoon?.label : draft.cta?.id === 'website' ? draft.website?.label : '') || 'Niet opgegeven'), 'Budget voor offerte: '+label('budget')+' · '+label('flex'), 'Logo: '+(draft.logo_file || 'Nog te bevestigen'), 'Kleurproef: '+((draft.brand_colors || []).join(', ') || 'Nog te bevestigen'), 'Vóór productie: meet deur en naden, controleer contactgegevens, folie en kleur op staal.' ];
+        const plan = creativeDecision(draft);
+        const advice = situation + ' ' + plan.priority + ' Test de leesbaarheid van het originele logo op vijf meter; schrap details die dan wegvallen.' + colorReason;
+        const brief = ['ONTWERPOPDRACHT · VOERTUIGWRAPPING', 'Door de klant bevestigde kernregel: '+plan.headline, 'Tekst voor de vormgever: de kernregel staat niet automatisch op het modelbeeld.', 'Advies: '+plan.name+' — '+plan.reason, 'Hiërarchie: '+plan.priority, 'Weglaten: overige diensten en extra contactacties.', '', 'FEITEN UIT DE BRIEFING', 'Bedrijf: '+label('bedrijfsnaam'), 'Branche: '+label('branche'), 'Doelgroep: '+label('doelgroep'), 'Zichtmoment: '+label('exposure'), 'Dienst: '+label('diensten'), ...(needsFocus(draft) && draft.focus?.label ? ['Gewenste opdracht: '+draft.focus.label] : []), 'Regio: '+label('regio'), 'Voertuig: '+label('vehicle')+' · '+label('vehicle_usage'), 'Gewenste indruk: '+label('impression'), 'CTA: '+label('cta'), 'Contact: '+((draft.cta?.id === 'telefoon' ? draft.telefoon?.label : draft.cta?.id === 'website' ? draft.website?.label : '') || 'Niet opgegeven'), 'Budget voor offerte: '+label('budget')+' · '+label('flex'), 'Logo: '+(draft.logo_file || 'Nog te bevestigen'), 'Kleurproef: '+((draft.brand_colors || []).join(', ') || 'Nog te bevestigen'), '','NOG TE CONTROLEREN','Vóór productie: meet deur en naden, controleer contactgegevens, folie en kleur op staal.' ];
         if (draft.vehicle_usage?.id==='lease') brief.push('Toestemming voor wrapping nog te bevestigen.');
-        return {brief_id:'inspire-wrap', engine_mode:'inspirationOnly', recommended_products:[], advice, brief:brief.join('\n'), mockups:[
-            {variant:'standard', sku:'wrap-rustig', label_nl:'Richting A', naam:'Rustig en helder', url:imgs.strak, reason_nl:language+' Eén hoofdvlak geeft '+label('diensten')+' voorrang boven extra details.'},
-            {variant:'premium', sku:'wrap-krachtig', label_nl:'Richting B', naam:'Krachtig en opvallend', url:imgs.opvallend, reason_nl:language+' Contrasterende banen trekken eerder aandacht; houd de boodschap kort voor '+label('doelgroep')+'.'}
+        return {brief_id:'inspire-wrap', engine_mode:'inspirationOnly', recommended_products:[], advice:'Ons advies: '+plan.name+'. '+plan.reason+' '+plan.trade+' '+advice, brief:brief.join('\n'), mockups:[
+            {variant:'standard', sku:'wrap-rustig', label_nl:'Richting A'+(plan.recommended==='standard'?' · Ons advies':''), naam:'Rustig en helder', url:imgs.strak, reason_nl:language+' Eén hoofdvlak geeft '+label('diensten')+' voorrang boven extra details.'},
+            {variant:'premium', sku:'wrap-krachtig', label_nl:'Richting B'+(plan.recommended==='premium'?' · Ons advies':''), naam:'Krachtig en opvallend', url:imgs.opvallend, reason_nl:language+' Contrasterende banen trekken eerder aandacht; houd de boodschap kort voor '+label('doelgroep')+'.'}
         ]};
     }
 

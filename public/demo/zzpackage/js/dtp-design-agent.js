@@ -36,11 +36,7 @@
 
   const I18N = {
     'nl-NL': {
-      openingFallback:
-        'Mooi — ik pak dit aan zoals een professionele voertuig-reclame studio dat zou doen. ' +
-        'Ik stel een paar gerichte vragen (±3 minuten), zodat de mockup straks niet zomaar “mooi” is, ' +
-        'maar ook logisch past bij jouw bedrijf, auto en budget. Laten we beginnen. ' +
-        'Wat is de bedrijfsnaam die op de auto moet komen?',
+      openingFallback: "Samen kiezen we wat mensen van je bedrijf moeten onthouden als ze je auto zien. Je krijgt twee wrapontwerpen, ons advies over de beste richting en een briefing voor je vormgever. Welke bedrijfsnaam moet op de auto komen?",
       placeholder: 'Typ je antwoord...',
       send: 'Verstuur',
       attachTitle: 'Logo uploaden',
@@ -98,9 +94,7 @@
       indicatief: 'indicatief'
     },
     'pl-PL': {
-      openingFallback:
-        'Świetnie — poprowadzę to jak profesjonalne studio reklamy na pojazdach. ' +
-        'Zadam kilka konkretnych pytań (±3 minuty). Zaczynajmy. Jaka nazwa firmy ma znaleźć się na aucie?',
+      openingFallback: "Ustalimy, co odbiorca ma zapamiętać, gdy zobaczy Twoje auto. Otrzymasz dwa kierunki oklejenia, rekomendację i brief dla grafika. Jaka nazwa firmy ma się znaleźć na aucie?",
       placeholder: 'Wpisz odpowiedź...',
       send: 'Wyślij',
       attachTitle: 'Wgraj logo',
@@ -133,10 +127,7 @@
       statusOnline: 'Online'
     },
     'en-GB': {
-      openingFallback:
-        'Great — I will handle this like a professional vehicle-branding studio. ' +
-        'I will ask a few focused questions (±3 minutes). Let\'s begin. ' +
-        'What company name should appear on the vehicle?',
+      openingFallback: "Let’s decide what people should remember about your business when they see your vehicle. You’ll receive two wrap directions, our recommendation and a brief for your designer. Which company name should appear on the vehicle?",
       placeholder: 'Type your answer...',
       send: 'Send',
       attachTitle: 'Upload logo',
@@ -1115,7 +1106,8 @@
       ['Gebruik', b.vehicle_usage],
       ['Zichtmoment', b.exposure],
       ['Doelgroep', b.doelgroep],
-      ['Diensten', Array.isArray(b.diensten) ? b.diensten.join(', ') : b.diensten],
+      ['Kerndienst', b.diensten],
+      ['Kernregel voor de vormgever', b.headline],
       ['Indruk', b.desired_impression || b.positionering],
       ['Telefoon', b.telefoon],
       ['Website', b.website],
@@ -1192,12 +1184,10 @@
     if (usage) updates['vehicle.usage'] = usage;
     const doelgroep = text('da-edit-doelgroep');
     if (doelgroep) updates['marketing.doelgroep'] = doelgroep;
-    const diensten = [
-      text('da-edit-dienst1'),
-      text('da-edit-dienst2'),
-      text('da-edit-dienst3')
-    ].filter(Boolean);
-    if (diensten.length) updates['marketing.diensten'] = diensten;
+    const dienst = text('da-edit-dienst1');
+    if (dienst) updates['marketing.diensten'] = dienst;
+    const headline = text('da-edit-headline');
+    if (headline) updates['marketing.headline'] = headline;
     const impression = readEditChip('marketing.desired_impression');
     if (impression) updates['marketing.desired_impression'] = impression;
     const cta = readEditChip('marketing.primary_cta');
@@ -1231,9 +1221,6 @@
     removeBriefEditPanel();
     if (!shouldShowBriefEditPanel()) return;
     const b = state.briefPartial;
-    const diensten = Array.isArray(b.diensten)
-      ? b.diensten
-      : String(b.diensten || '').split(',').map(s => s.trim()).filter(Boolean);
     const colors = b.brand_colors || state.brandColors || [];
     const panel = document.createElement('div');
     panel.className = 'da-brief-edit-panel';
@@ -1253,9 +1240,8 @@
         '</fieldset>' +
         '<fieldset class="da-edit-section"><legend>Marketing</legend>' +
           '<label class="da-edit-field">Doelgroep<input type="text" id="da-edit-doelgroep" class="da-form-input" value="' + escapeHtml(b.doelgroep || '') + '"></label>' +
-          '<label class="da-edit-field">Dienst 1<input type="text" id="da-edit-dienst1" class="da-form-input" value="' + escapeHtml(diensten[0] || '') + '"></label>' +
-          '<label class="da-edit-field">Dienst 2<input type="text" id="da-edit-dienst2" class="da-form-input" value="' + escapeHtml(diensten[1] || '') + '"></label>' +
-          '<label class="da-edit-field">Dienst 3<input type="text" id="da-edit-dienst3" class="da-form-input" value="' + escapeHtml(diensten[2] || '') + '"></label>' +
+          '<label class="da-edit-field">Kerndienst<input type="text" id="da-edit-dienst1" class="da-form-input" value="' + escapeHtml(b.diensten || '') + '"></label>' +
+          '<label class="da-edit-field">Kernregel voor de vormgever<input type="text" id="da-edit-headline" class="da-form-input" value="' + escapeHtml(b.headline || '') + '"></label>' +
           '<div class="da-edit-chips">' + renderEditChipGroup('marketing.desired_impression', EDIT_CHIP_OPTIONS['marketing.desired_impression']) + '</div>' +
         '</fieldset>' +
         '<fieldset class="da-edit-section"><legend>Contact & CTA</legend>' +

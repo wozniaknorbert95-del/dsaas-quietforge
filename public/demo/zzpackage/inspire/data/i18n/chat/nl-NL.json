@@ -1,6 +1,6 @@
 {
   "locale": "nl-NL",
-  "opening": "We ontwerpen twee wraprichtingen voor dezelfde auto. Eerst bepalen we samen wie je wilt bereiken en wat die persoon moet onthouden.",
+  "opening": "Samen kiezen we wat mensen van je bedrijf moeten onthouden als ze je auto zien. Je krijgt twee wrapontwerpen, ons advies over de beste richting en een briefing voor je vormgever.",
   "stap_labels": {
     "1": "Bedrijf",
     "2": "Auto",
@@ -11,7 +11,7 @@
     "7": "Samenvatting"
   },
   "field_questions": {
-    "company.bedrijfsnaam": "Hoe heet je bedrijf?",
+    "company.bedrijfsnaam": "Welke bedrijfsnaam moet op de auto komen?",
     "company.advertising": "Hoe kom je nu aan klanten? Mond-tot-mond, Google, Instagram, bus al? Wat werkt best? Vraag ik omdat als meeste mond-tot-mond is, bus moet vooral herkenning bouwen met telefoon groot.",
     "company.branche": "In welke branche werk je?",
     "company.regio": "Waar staat je bus het meest stil waar mensen hem zien? Bouwplaats hele dag of woonwijk voor deur? En welke wijken?",
@@ -31,7 +31,8 @@
     "brand_assets.brand_colors": "Welke merkkleuren wil je gebruiken?",
     "preferences.must_include": "Wat moet zeker zichtbaar zijn?",
     "budget.range": "Welke budgetgrens moet de vormgever meenemen naar de offerte?",
-    "vehicle.exposure": "Waar ziet de klant het voertuig vooral? Dat bepaalt hoeveel informatie er leesbaar is."
+    "vehicle.exposure": "Waar ziet de klant het voertuig vooral? Dat bepaalt hoeveel informatie er leesbaar is.",
+    "marketing.focus": "Welke opdracht wil je vooral krijgen? Noem één concrete klus waar een klant je voor kan bellen."
   },
   "button_options": {
     "company.branche": [

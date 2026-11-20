@@ -1,6 +1,6 @@
 {
   "locale": "pl-PL",
-  "opening": "Super — 2 krótkie pytania, a od razu zobaczysz nazwę firmy na aucie. Potem dopracujemy to w 2 minuty pod finalne mockupy.",
+  "opening": "Ustalimy, co odbiorca ma zapamiętać, gdy zobaczy Twoje auto. Otrzymasz dwa kierunki oklejenia, rekomendację i brief dla grafika.",
   "stap_labels": {
     "1": "Firma",
     "2": "Pojazd",
@@ -11,7 +11,7 @@
     "7": "Podsumowanie"
   },
   "field_questions": {
-    "company.bedrijfsnaam": "Jaka nazwa firmy ma znaleźć się na aucie?",
+    "company.bedrijfsnaam": "Jaka nazwa firmy ma się znaleźć na aucie?",
     "company.advertising": "Skąd masz klientów? Polecenia, Google, Instagram, auto już? Co działa najlepiej?",
     "company.branche": "W jakiej branży działasz?",
     "company.regio": "W jakim regionie chcesz być głównie rozpoznawalny?",
@@ -31,7 +31,8 @@
     "brand_assets.brand_colors": "Jakich kolorów marki chcesz użyć?",
     "preferences.must_include": "Co na pewno musi być widoczne?",
     "budget.range": "Żeby nie pokazać mockupu poza Twoim budżetem: jaki jest orientacyjny budżet na realizację na aucie?",
-    "vehicle.exposure": "Kiedy odbiorca zobaczy auto?"
+    "vehicle.exposure": "Kiedy odbiorca zobaczy auto?",
+    "marketing.focus": "Na jakim zleceniu zależy Ci najbardziej? Podaj jedną konkretną pracę, z którą ma zadzwonić klient."
   },
   "button_options": {
     "company.branche": [

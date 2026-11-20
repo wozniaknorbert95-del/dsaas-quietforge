@@ -1,6 +1,6 @@
 {
   "locale": "en-GB",
-  "opening": "Great — 2 short questions, then you will see your company name on the vehicle right away. After that we fine-tune in 2 minutes for the final mockups.",
+  "opening": "Let’s decide what people should remember about your business when they see your vehicle. You’ll receive two wrap directions, our recommendation and a brief for your designer.",
   "stap_labels": {
     "1": "Company",
     "2": "Vehicle",
@@ -11,7 +11,7 @@
     "7": "Summary"
   },
   "field_questions": {
-    "company.bedrijfsnaam": "What company name should appear on the vehicle?",
+    "company.bedrijfsnaam": "Which company name should appear on the vehicle?",
     "company.advertising": "How do you get customers today? Word of mouth, Google, Instagram, vehicle already? What works best?",
     "company.branche": "What industry do you work in?",
     "company.regio": "In which region do you most want to be recognised?",
@@ -31,7 +31,8 @@
     "brand_assets.brand_colors": "Which brand colours do you want to use?",
     "preferences.must_include": "What must definitely be visible?",
     "budget.range": "So I do not show a mockup outside your comfort or budget: what is roughly your target budget for the vehicle execution?",
-    "vehicle.exposure": "When will your customer see the vehicle?"
+    "vehicle.exposure": "When will your customer see the vehicle?",
+    "marketing.focus": "Which job do you most want to win? Name one specific job a customer could call you about."
   },
   "button_options": {
     "company.branche": [

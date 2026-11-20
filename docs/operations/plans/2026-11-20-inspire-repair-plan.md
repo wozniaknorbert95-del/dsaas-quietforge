@@ -1,6 +1,6 @@
 # PLAN NAPRAWCZY — INSPIRE: porządek w plikach źródłowych + API makiety rastrowe
 
-**Data:** 2026-11-20 · **Status:** DO AKCEPTACJI PRZEZ DOWÓDCY · **Priorytet:** P0
+**Data:** 2026-11-20 · **Status:** WYKONANY K0–K5 (2026-11-20, commit `ec02cc2` na `preview/flux-generation`; smoke preview PASS) · **Priorytet:** P0
 **Rozkaz:** zrobić porządek w plikach źródłowych INSPIRE, twarde nakazy/zakazy, a na koniec wstawić API generowania makiet rastrowych — piękne makiety w pełni wykorzystujące dane zebrane podczas czatu.
 
 ---

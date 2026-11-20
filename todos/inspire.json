@@ -530,6 +530,19 @@
     ]
   },
   "decided_generation_stack": {
-    "decided_2026_11_19": "WYBRANY STACK GENEROWANIA (decyzja Dowódcy + porównanie research GPT vs rozeznanie silnika): HYBRYDA. (1) SDXL via OVHcloud AI Endpoints (FREE, 0 EUR, OpenAI-compatible, model stable-diffusion-xl-base-v10, endpoint https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/images/generations) generuje GRAFIKE WRAPU (text2image) na bazie ORYGINALNYCH promptow z brain/sales-prompt-templates.md (Template + Negative prompt). (2) KOMPOZYCJA mechaniczna: szablon pojazdu (voertuig_*.png) + wygenerowana grafika + PRAWDZIWE logo klienta w panelach z panel-map.json (deur/zij/achter/kap) — logo NIGDY przez AI (naruszenie brandu = niedopuszczalne). (3) 2 richtingen = warianty z biblioteki szablonow wrapow (19 szablonow w template-library.manifest.json). (4) FALLBACK przy wyczerpaniu darmowego progu: biblioteka szablonow + logo composite (bez AI) — graceful degrade. (5) LIMIT: 1 generacja / odwiedzajacy (localStorage + lekki fingerprint) + twardy cap dzienny w kodzie (BUDGETS). ODRZUCONE: czysty Tryb A (kompozycja bez AI — jakosc \"naklejka\", potwierdzona porazka), czysty Tryb B (generatywny bez nakladki logo — AI znieksztalca logo), Cloudflare SDXL img2img (deprecation 2026-11-20), OpenRouter Recraft free (oferta wycofana 2026-11-28, tylko t2i). FAZA 2: platnosci Mollie + mocny model (gpt-image)."
-  }
+    "decided_2026_11_19": "(archiwum) HYBRYDA: model rastrowy (SDXL/flux) generuje grafike wrapu + kompozycja mechaniczna z prawdziwym logo + fallback szablonowy + limit 1/visitor. Zob. decided_2026_11_20.",
+    "decided_2026_11_20": "RASTER-FIRST (werdykt Dowodcy po odrzuceniu wlasnego generatora SVG - spalona sesja, jakosc nie dorownuje modelom). JEDYNE zrodlo grafiki makiety = MODEL RASTROWY przez POST /api/v1/generate-art (adapter callProvider() w functions/api/v1/generate-art.ts; flux-1-schnell = Phase 1 darmowy; profesjonalny model rastrowy (GPT 2.6) = podmiana jednej funkcji + klucz w env). Prompt = DANE Z CZATU (vehicleType, brandColors z logo, businessType, panele z sku_active_panels) + czysta strefa na logo. Kompozycja mechaniczna: szablon voertuig_*.png + raster + PRAWDZIWE logo klienta (mockup-composer: union-clip fix, maska karoserii voertuig_*-mask.png, multiply z cieniami zdjecia) - logo NIGDY przez AI. ODRZUCONE: wlasne generatory grafiki (SVG/proceduralne/design-engine/golden-sheet). FAZA 2: Mollie + mocny model."
+  },
+  "hard_rules": [
+    "API-first: jedyne zrodlo grafiki makiety = /api/v1/generate-art (model rastrowy)",
+    "Dane z czatu = jedyny input (nazwa, branza, pojazd, kolory, panele); zero zmyslen",
+    "Logo klienta NIGDY przez AI - wylacznie mockup-composer",
+    "ZAKAZ wlasnych generatorow grafiki (SVG/proceduralne/design-engine)",
+    "ZAKAZ plikow narzedziowych/dev w public/demo/",
+    "ZAKAZ zmian happy-pathu demo-boot.js poza krokami planu 2026-11-20",
+    "Gate po kazdej zmianie: build + typecheck + lint",
+    "Evidence przed werdyktem (screen przed/po + viewporty)",
+    "Fallback demo = uczciwie oznaczony; limit 1 generacja/visitor (Phase 1)",
+    "SCOPE LOCK: wszystko poza planem = odrzucane"
+  ]
 }

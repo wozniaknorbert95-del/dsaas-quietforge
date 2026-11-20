@@ -48,7 +48,7 @@
      * vehicle instead of a flat sticker. The real logo is pasted LAST at full
      * opacity on top of everything.
      */
-    var ARTWORK_ALPHA = 0.62;
+    var ARTWORK_ALPHA = 1.0;         // opaque art + multiply shading (K1 verdict 2026-11-20)
     var PANEL_RADIUS = 4;           // panel_shape_style: "rounded_vinyl"
     var DEFAULT_WRAP_ZONE = ['zij', 'deur', 'achter'];
 
@@ -203,9 +203,11 @@
     // ============================================================
     // Artwork placement — clip to panel rects (rounded_vinyl), "cover" fit
     // ============================================================
-    function roundedPanelPath(ctx, x, y, w, h, r) {
+    function roundedPanelPath(ctx, x, y, w, h, r, reset) {
         var radius = Math.min(r, w / 2, h / 2);
-        ctx.beginPath();
+        // reset=false adds a SUBPATH to the current path (union clips);
+        // default resets the path first (single shape).
+        if (reset !== false) ctx.beginPath();
         ctx.moveTo(x + radius, y);
         ctx.arcTo(x + w, y, x + w, y + h, radius);
         ctx.arcTo(x + w, y + h, x, y + h, radius);
@@ -262,10 +264,11 @@
             ctx.imageSmoothingQuality = 'high';
             ctx.drawImage(opts.templateImg, 0, 0, w, h);
 
-            // --- 2. AI wrap artwork over the wrap-zone panels (documented blend)
+            // --- 2. Wrap artwork as ONE continuous design across the wrap-zone
+            // bounding box (per-panel repetition looked like tiled wallpaper;
+            // a real wrap is one composition flowing over the panels).
             if (opts.artworkImg) {
-                ctx.save();
-                ctx.globalAlpha = ARTWORK_ALPHA;
+                var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
                 wrapZone.forEach(function (key) {
                     var p = panels[key];
                     var rx = Math.trunc(w * p.x_pct);
@@ -273,13 +276,57 @@
                     var rw = Math.trunc(w * p.w_pct);
                     var rh = Math.trunc(h * p.h_pct);
                     if (rw < 1 || rh < 1) return;
-                    ctx.save();
-                    roundedPanelPath(ctx, rx, ry, rw, rh, PANEL_RADIUS);
-                    ctx.clip();
-                    drawCover(ctx, opts.artworkImg, rx, ry, rw, rh);
-                    ctx.restore();
+                    minX = Math.min(minX, rx); minY = Math.min(minY, ry);
+                    maxX = Math.max(maxX, rx + rw); maxY = Math.max(maxY, ry + rh);
                 });
-                ctx.restore();
+                if (maxX > minX && maxY > minY) {
+                    var off = document.createElement('canvas');
+                    off.width = w;
+                    off.height = h;
+                    var octx = off.getContext('2d');
+                    octx.imageSmoothingEnabled = true;
+                    octx.imageSmoothingQuality = 'high';
+                    // a. OPAQUE vinyl artwork on the offscreen canvas
+                    octx.save();
+                    octx.globalAlpha = ARTWORK_ALPHA;
+                    // clip to the UNION of panel shapes so the design flows
+                    // across them — one path, each panel a subpath (the old
+                    // per-panel beginPath() kept only the LAST panel's shape)
+                    octx.beginPath();
+                    wrapZone.forEach(function (key) {
+                        var p = panels[key];
+                        var rx = Math.trunc(w * p.x_pct);
+                        var ry = Math.trunc(h * p.y_pct);
+                        var rw = Math.trunc(w * p.w_pct);
+                        var rh = Math.trunc(h * p.h_pct);
+                        if (rw < 1 || rh < 1) return;
+                        roundedPanelPath(octx, rx, ry, rw, rh, PANEL_RADIUS, false);
+                    });
+                    octx.clip();
+                    drawCover(octx, opts.artworkImg, minX, minY, maxX - minX, maxY - minY);
+                    octx.restore();
+
+                    // b. PHOTO SHADING through the vinyl: re-apply the template
+                    // with 'multiply' — white body keeps the artwork, shadows,
+                    // panel gaps and contours show through (transparent areas
+                    // stay untouched). This is what separates a mock-up from a
+                    // colour patch.
+                    octx.save();
+                    octx.globalCompositeOperation = 'multiply';
+                    octx.drawImage(opts.templateImg, 0, 0, w, h);
+                    octx.restore();
+
+                    // c. BODY-SILHOUETTE MASK: the design lands only on body
+                    // panels — never on glass, wheels or the studio backdrop.
+                    if (opts.maskImg) {
+                        octx.save();
+                        octx.globalCompositeOperation = 'destination-in';
+                        octx.drawImage(opts.maskImg, 0, 0, w, h);
+                        octx.restore();
+                    }
+
+                    ctx.drawImage(off, 0, 0);
+                }
             }
 
             // --- 3. REAL logo on top (or minimal typo logo when no logo file)

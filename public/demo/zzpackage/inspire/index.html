@@ -241,20 +241,24 @@
         <section class="da-section da-section--results" id="da-results" hidden>
             <div class="container-vca">
                 <div class="da-section-header">
-                    <h2>Jouw 2 ontwerpen</h2>
-                    <p>Kies je favoriet — dit is inspiratie. Professionele uitvoering en drukklare bestanden door FlexGrafik.</p>
+                    <h2>Welke richting past bij jouw bedrijf?</h2>
+                    <p>Vergelijk de twee wraprichtingen voor dezelfde auto. Je keuze komt in de ontwerpbrief; je vraagt daarmee nog geen offerte aan.</p>
                     <p class="da-results-disclaimer" id="da-results-disclaimer">
                         Presentatieconcept, geen drukbestand. Foliekleur en afmetingen worden vóór productie gecontroleerd.
                     </p>
                 </div>
 
                 <p id="wrap-source" role="status"></p>
+                <section class="wrap-advice-panel" aria-labelledby="wrap-advice-title"><h3 id="wrap-advice-title">Ons ontwerpadvies</h3><p id="wrap-advice"></p></section>
                 <div class="da-mockup-grid" id="da-mockups"></div>
 
-                <section aria-labelledby="wrap-advice-title"><h3 id="wrap-advice-title">Advies voor op de weg</h3><p id="wrap-advice"></p>
+                <section aria-labelledby="wrap-handoff-title"><h3 id="wrap-handoff-title">Mee naar je vormgever</h3>
+                    <p id="wrap-choice" role="status"></p>
                     <label for="wrap-brief">Ontwerpbrief voor de vormgever</label>
                     <textarea id="wrap-brief" class="agency-brief" readonly></textarea>
                     <button type="button" id="wrap-copy" class="btn-vca btn-action">Kopieer ontwerpbrief</button>
+                    <button type="button" id="wrap-download" class="btn-vca">Download als tekstbestand</button>
+                    <button type="button" id="wrap-quote" class="btn-vca" hidden>Bekijk de offertestap (demo)</button>
                 </section>
                 <div class="da-offerte-panel" id="da-offerte-panel" hidden>
                     <h3 id="da-offerte-title">Offerte voor de gekozen wrap</h3>

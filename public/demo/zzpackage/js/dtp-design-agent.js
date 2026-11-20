@@ -71,7 +71,7 @@
       editSave: 'Wijzigingen opslaan',
       editSaved: 'Brief bijgewerkt.',
       editLogoReupload: 'Logo opnieuw uploaden (PNG/JPG)',
-      offerteCta: 'Offerte aanvragen',
+      offerteCta: 'Kies deze richting',
       offerteTitle: 'Vrijblijvende offerte binnen 48 uur',
       offerteSubtitle: 'Wij sturen je een persoonlijke offerte per e-mail — geen betaling, geen Wizard.',
       offerteEmail: 'E-mailadres',
@@ -1638,7 +1638,11 @@
     const card = document.querySelector('.da-mockup-card[data-sku="' + (mockup.sku || '') + '"]');
     if (card) card.classList.add('da-mockup-card--selected');
     renderAgencyBrief(mockup);
-    showOffertePanel(mockup);
+    hideOffertePanel();
+    hideOfferteSuccess();
+    MOCKUPS.querySelectorAll('[data-offerte-select]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.closest('.da-mockup-card') === card));
+    });
     daTrackEvent('mockup_selected', {
       variant: mockupVariantKey(mockup),
       sku: mockup.sku || ''
@@ -1832,7 +1836,7 @@
                 escapeHtml(m.budget_note_nl || state.premiumBudgetNote || '') +
               '</p>'
             : '') +
-          '<button type="button" class="da-mockup-card__cta btn-vca btn-action" data-offerte-select="1">' +
+          '<button type="button" class="da-mockup-card__cta btn-vca btn-action" data-offerte-select="1" aria-pressed="false">' +
             t('offerteCta') +
           '</button>' +
         '</div>';
@@ -1863,6 +1867,19 @@
     document.getElementById('wrap-advice').textContent = response.advice;
     const brief = document.getElementById('wrap-brief');
     brief.value = response.brief + '\nRichting: ' + (selected ? tierLabel(selected) + ' · ' + selected.naam + '\nMotivatie: ' + selected.reason_nl : 'Nog te kiezen') + (selected?.placement ? '\nLogopositie (% beeld): x ' + selected.placement.x + ', y ' + selected.placement.y + ', max. breedte ' + selected.placement.size + '\nContact op dit ontwerp: ' + (selected.contactVisible ? 'ja' : 'nee') : '') + '\nBeeldstatus: ' + response.notice;
+    document.getElementById('wrap-choice').textContent = selected
+      ? 'Jouw keuze: ' + selected.naam + '. Je kunt nog wisselen; de brief wordt dan bijgewerkt.'
+      : 'Nog geen richting gekozen. Je kunt de briefing nu al bewaren.';
+    const quote = document.getElementById('wrap-quote');
+    quote.hidden = !selected;
+    quote.onclick = () => { if (selected) showOffertePanel(selected); };
+    document.getElementById('wrap-download').onclick = () => {
+      const url = URL.createObjectURL(new Blob([brief.value], {type:'text/plain;charset=utf-8'}));
+      const link = document.createElement('a');
+      link.href = url; link.download = 'INSPIRE-ontwerpbrief.txt';
+      document.body.append(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    };
     const copy = document.getElementById('wrap-copy');
     copy.textContent = 'Kopieer ontwerpbrief';
     copy.onclick = async () => {

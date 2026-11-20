@@ -267,9 +267,8 @@
 
     function proposalText(pack, sess) {
         const plan=creativeDecision(sess.draft);
-        return 'Voor ' + valueLabel(sess,'doelgroep') + ' stellen we deze kernregel voor: “' + plan.headline + '”. ' + plan.priority +
-            ' We laten de lijst met overige diensten weg. Ons advies: ' + plan.name + '. ' + plan.reason + ' ' + plan.trade +
-            ' Klopt de kernregel? Via Aanpassen kun je de tekst wijzigen voordat we beide ontwerpen maken.';
+        return '**Kernregel voor de vormgever:** “' + plan.headline + '”\nVoor ' + valueLabel(sess,'doelgroep') + '. ' + plan.priority +
+            ' De overige diensten laten we weg.\n\n**Ons advies: ' + plan.name + '.** ' + plan.reason + ' ' + plan.trade;
     }
 
     function summaryReply(pack, sess, locale) {

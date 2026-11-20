@@ -544,5 +544,12 @@
     "Evidence przed werdyktem (screen przed/po + viewporty)",
     "Fallback demo = uczciwie oznaczony; limit 1 generacja/visitor (Phase 1)",
     "SCOPE LOCK: wszystko poza planem = odrzucane"
-  ]
+  ],
+  "product_vision": {
+    "ref": "docs/canons/inspire-product-vision.md",
+    "status": "WIĄŻĄCY od 2026-11-20",
+    "sedno": "INSPIRE generuje MAKIETY prezentacyjne pojazdu klienta z prawdziwym logo (mockup-first) - wizualizacja, na bazie której grafik tworzy projekt wektorowy. NIGDY flat artwork. Logo NIGDY przez AI.",
+    "model_prompts": "docs/canons/inspire-model-prompts.md",
+    "executor_prompt": "docs/operations/prompts/2026-11-20-inspire-fix-executor-prompt.md"
+  }
 }

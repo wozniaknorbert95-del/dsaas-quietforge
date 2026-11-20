@@ -1,6 +1,6 @@
 {
   "locale": "nl-NL",
-  "opening": "Hoi, Nick hier — 10 jaar busjes Den Haag, 200+ gedaan. Om een mockup te maken die ook echt klanten oplevert, moet ik snappen wat je doet, waar je bus staat en wie moet bellen. Vertel in 2 zinnen: wat doet je bedrijf precies en voor wie?",
+  "opening": "We ontwerpen twee wraprichtingen voor dezelfde auto. Eerst bepalen we samen wie je wilt bereiken en wat die persoon moet onthouden.",
   "stap_labels": {
     "1": "Bedrijf",
     "2": "Auto",
@@ -11,16 +11,16 @@
     "7": "Samenvatting"
   },
   "field_questions": {
-    "company.bedrijfsnaam": "Hoe heet je bedrijf en wat doe je precies? Dus niet alleen naam maar 'elektricien zonnepanelen Ypenburg' — dan weet ik welke diensten op bus.",
+    "company.bedrijfsnaam": "Hoe heet je bedrijf?",
     "company.advertising": "Hoe kom je nu aan klanten? Mond-tot-mond, Google, Instagram, bus al? Wat werkt best? Vraag ik omdat als meeste mond-tot-mond is, bus moet vooral herkenning bouwen met telefoon groot.",
     "company.branche": "In welke branche werk je?",
     "company.regio": "Waar staat je bus het meest stil waar mensen hem zien? Bouwplaats hele dag of woonwijk voor deur? En welke wijken?",
-    "vehicle.type": "Welke bus en welke kleur? Wit, grijs? Kleur bepaalt contrast.",
+    "vehicle.type": "Welke voertuigklasse wil je laten wrappen?",
     "vehicle.color": "Geen foto nodig — welke kleur heeft je bus? Wit, grijs, zwart? Kleur bepaalt het contrast.",
-    "where_bus.upload": "Waar rijdt de bus het meest — {regio}? Upload **foto zijkant + logo** (PNG/JPG). Witte Caddy? Kleur bepaalt contrast op de wrap.",
-    "vehicle.usage": "Rij je ook privé met kids? Vraag ik omdat bij privé magneten eraf weekend handig zijn. Bij lease mag vaak geen wrap. Hoe zit het?",
+    "where_bus.upload": "Upload je originele logo als PNG of JPG. We plaatsen het lokaal; het gaat niet naar het beeldmodel.",
+    "vehicle.usage": "Gebruik je het voertuig zakelijk, privé of op lease? Bij lease moet de eigenaar de wrapping goedkeuren.",
     "marketing.doelgroep": "En wie moet bellen als ie bus ziet — direct particulier met storing, of ook bedrijven voor vaste klus?",
-    "marketing.diensten": "Ik stel voor op bus: {diensten} — leesbaar vanaf 5m. Klopt of wil je andere?",
+    "marketing.diensten": "Welke ene dienst moet iemand na het voorbijrijden onthouden?",
     "marketing.desired_impression": "Welke vibe spreekt meer — strak professioneel of opvallend in de wijk?",
     "marketing.vibe_pick": "Kijk — voor jouw branche 2 richtingen uit portfolio. Welke vibe spreekt meer? Klik plaatje.",
     "marketing.primary_cta": "Moet ie direct bellen op 06 of eerst site kijken? Vraag ik omdat bij direct bellen telefoon 2x groter achter moet.",
@@ -30,13 +30,18 @@
     "brand_assets.logo_status": "Upload je logo. Als je geen goed bestand hebt, zeg het gerust.",
     "brand_assets.brand_colors": "Welke merkkleuren wil je gebruiken?",
     "preferences.must_include": "Wat moet zeker zichtbaar zijn?",
-    "budget.range": "Start €149 testen eraf privé, Groei €399 vast. Waar voel je je comfortabel? €149–€399 of €600+? Adviseer graag."
+    "budget.range": "Welke budgetgrens moet de vormgever meenemen naar de offerte?",
+    "vehicle.exposure": "Waar ziet de klant het voertuig vooral? Dat bepaalt hoeveel informatie er leesbaar is."
   },
   "button_options": {
     "company.branche": [
       {
         "id": "elektra",
         "label": "Installatie/elektra"
+      },
+      {
+        "id": "loodgieter",
+        "label": "Loodgieterswerk"
       },
       {
         "id": "bouw",
@@ -101,10 +106,6 @@
       {
         "id": "passenger",
         "label": "Personenauto/Kombi"
-      },
-      {
-        "id": "other",
-        "label": "Anders"
       }
     ],
     "vehicle.usage": [
@@ -270,6 +271,20 @@
         "id": "qr",
         "label": "QR"
       }
+    ],
+    "vehicle.exposure": [
+      {
+        "id": "moving",
+        "label": "Tijdens het rijden"
+      },
+      {
+        "id": "parked",
+        "label": "Geparkeerd bij een klant"
+      },
+      {
+        "id": "both",
+        "label": "Beide situaties"
+      }
     ]
   },
   "acks": {
@@ -300,9 +315,9 @@
     "reject_doelgroep_not_branche": "Wie moet jou onthouden na het zien van de auto? (doelgroep)",
     "reject_doelgroep_not_url": "Doelgroep is geen website — wie moet jou onthouden?",
     "reject_empty": "Ik heb je antwoord niet goed gelezen — kun je het opnieuw typen?",
-    "ack_name": "Begrepen — **{name}**. Dan kies ik straks een passend pakket bij jouw situatie.",
+    "ack_name": "Dank je, {name}.",
     "ack_name_branche": "Begrepen — **{name}**, {branche}.",
-    "ack_vehicle": "Begrepen — **{name}**, {branche} in **{regio}**. Nu je auto — dat bepaalt welke Wizard-sets passen.",
+    "ack_vehicle": "We hebben de branche en regio. Nu bepalen we het oppervlak voor de folie.",
     "ack_vehicle_short": "Begrepen — **{name}**. Nu je auto.",
     "ack_marketing": "Begrepen — {vtype}. Nu de boodschap:",
     "ack_cta": "Duidelijk — dan zet ik de juiste call-to-action op de auto.",
@@ -316,7 +331,7 @@
     "vibe_pick_v61": "Klik welke vibe past — strak of opvallend.",
     "tel_site_v61": "Telefoonnummer op de bus? En website als je die wilt vermelden.",
     "referral_tease_v61": "Tip: ken je een collega met 2+ bussen? Fleet-korting tot 20% — vraag ernaar na montage.",
-    "quick_preview_intro_v61": "Kijk zo kan ie erop — 3 snelle richtingen met jouw logo:",
+    "quick_preview_intro_v61": "Eventuele voorbeelden zijn referenties, geen persoonlijke ontwerpen.",
     "quick_preview_intro": "Zie hem — {vehicle} met jouw logo. Kijk zo kan ie erop:",
     "quick_preview_pick": "Typ gerust welke richting je aanspreekt — daarna stel ik nog een paar gerichte vragen.",
     "budget_advise": "nog te adviseren",

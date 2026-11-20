@@ -20,7 +20,7 @@
     "where_bus.upload": "Gdzie najczęściej jeździ bus — {regio}? Wgraj **zdjęcie boku + logo** (PNG/JPG). Biały Caddy? Kolor wpływa na kontrast.",
     "vehicle.usage": "Używasz auta tylko służbowo, czy też prywatnie / leasing / tymczasowo?",
     "marketing.doelgroep": "Kto ma Cię zapamiętać po zobaczeniu auta?",
-    "marketing.diensten": "Jakie 3 usługi ewentualnie mają być na aucie? Krótko proszę.",
+    "marketing.diensten": "Którą jedną usługę odbiorca ma zapamiętać?",
     "marketing.desired_impression": "Jakie wrażenie ma robić auto?",
     "marketing.vibe_pick": "Wybierz styl — schludny czy wyrazisty. Kliknij obraz.",
     "marketing.primary_cta": "Jaka ma być najważniejsza akcja?",
@@ -30,13 +30,18 @@
     "brand_assets.logo_status": "Wgraj logo. Jeśli nie masz dobrego pliku — powiedz śmiało.",
     "brand_assets.brand_colors": "Jakich kolorów marki chcesz użyć?",
     "preferences.must_include": "Co na pewno musi być widoczne?",
-    "budget.range": "Żeby nie pokazać mockupu poza Twoim budżetem: jaki jest orientacyjny budżet na realizację na aucie?"
+    "budget.range": "Żeby nie pokazać mockupu poza Twoim budżetem: jaki jest orientacyjny budżet na realizację na aucie?",
+    "vehicle.exposure": "Kiedy odbiorca zobaczy auto?"
   },
   "button_options": {
     "company.branche": [
       {
         "id": "elektra",
         "label": "Instalacje/elektryka"
+      },
+      {
+        "id": "loodgieter",
+        "label": "Hydraulika"
       },
       {
         "id": "bouw",
@@ -101,10 +106,6 @@
       {
         "id": "passenger",
         "label": "Osobowy/Kombi"
-      },
-      {
-        "id": "other",
-        "label": "Inne"
       }
     ],
     "vehicle.usage": [
@@ -269,6 +270,20 @@
       {
         "id": "qr",
         "label": "QR"
+      }
+    ],
+    "vehicle.exposure": [
+      {
+        "id": "moving",
+        "label": "W ruchu"
+      },
+      {
+        "id": "parked",
+        "label": "Na postoju u klienta"
+      },
+      {
+        "id": "both",
+        "label": "W obu sytuacjach"
       }
     ]
   },

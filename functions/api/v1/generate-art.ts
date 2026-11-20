@@ -1,29 +1,5 @@
-/**
- * POST /api/v1/generate-art — vehicle wrap ARTWORK generation (Phase 1, free).
- *
- * Decided stack (2026-11-19, todos/inspire.json) — HYBRID:
- *   Workers AI `flux-1-schnell` (FREE 10k neurons/day, no credit card, Apache-2.0)
- *   generates FLAT wrap artwork (text2image) for BOTH product variants in one
- *   action (Standard + Premium = our EUR149/EUR399 cards); the customer's real
- *   logo is composited MECHANICALLY on the client (panel-map.json + vehicle
- *   templates) — never through AI (brand integrity).
- *
- * Provider choice (2026-11-19, Commander decision): OVHcloud SDXL rejected —
- * its Public Cloud project requires a EUR100 credit provision (hidden entry
- * cost). Cloudflare SDXL is deprecated 2026-11-20. flux-1-schnell runs on the
- * same account as this Pages project (binding `AI`), verified in official docs:
- * env.AI.run -> { image: base64 }. Neuron math: 1024x1024 @ steps=4 = 19.2 +
- * 4x38.4 = ~173 neurons/image; one action = 2 images ~= 346; daily cap 10
- * actions ~= 3.5k of the free 10k/day.
- *
- * Phase 1 = free tier: ONE generation action (= 2 variants) per visitor + hard
- * daily cap (KV counters). Phase 2 = Mollie payments + premium model.
- *
- * Contract: docs/quality/api-standard.md §2 (envelope, codes, idempotency,
- * 120 s timeout). Limits via KV (atomicity gap documented in SH-G1-06).
- * Prompt: Commander-approved (2026-11-19) — flat artwork, no text/logo/vehicle.
- */
-
+/** INSPIRE: server-only mockup generation. No logo, name or contact sent upstream. */
+import { buildPrompt } from "./prompt-templates";
 import { ok, fail, json, newRequestId, extractIdempotencyKey, type ErrorCode } from '../_lib/http';
 import { emitEvent, type KVLike } from '../_lib/observability';
 
@@ -36,7 +12,16 @@ interface AiLike {
   run(model: string, input: Record<string, unknown>): Promise<{ image?: string }>;
 }
 
+interface BudgetDB {
+  prepare(sql: string): { bind(...values: (string | number)[]): { run(): Promise<{meta: {changes: number}}> } };
+}
 interface Env {
+  IMAGE_PROVIDER?: string;
+  IMAGE_MODEL?: string;
+  IMAGE_API_KEY?: string;
+  IMAGE_BUDGET?: BudgetDB;
+  IMAGE_CALL_BOUND_CONFIRMED?: string;
+  IMAGE_SECOND_HALF_APPROVED?: string;
   /** Workers AI binding (Pages: Settings → Bindings → Workers AI, name `AI`). */
   AI?: AiLike;
   /** KV — cost ledger + generation counters + idempotency keys (SH-G1-06). */
@@ -55,7 +40,8 @@ interface GenerateRequest {
   brandColors?: string[];
   style?: 'standard' | 'premium';
   vehicleType?: 'compact van' | 'medium van' | 'large van' | 'passenger car';
-  panels?: string[];
+  exposure?: string;
+  impression?: string;
   businessType?: string;
 }
 
@@ -70,66 +56,6 @@ const DAILY_CAP_DEFAULT = 10;
 
 const VISITOR_TOKEN_RE = /^[a-zA-Z0-9_-]{16,128}$/;
 const ALLOWED_VEHICLES = ['compact van', 'medium van', 'large van', 'passenger car'];
-const ALLOWED_PANELS = [
-  'side doors',
-  'rear doors',
-  'rear hatch',
-  'full side panel',
-  'front doors',
-];
-
-function sanitizeText(value: unknown, maxLength = 100): string {
-  if (typeof value !== 'string') return '';
-  return value.replace(/[<>]/g, '').trim().slice(0, maxLength);
-}
-
-function sanitizeColors(value: unknown): string[] {
-  if (!Array.isArray(value)) return [];
-  return value
-    .filter((c): c is string => typeof c === 'string' && /^#[0-9A-Fa-f]{6}$/.test(c))
-    .slice(0, 5);
-}
-
-function buildPrompt(
-  input: GenerateRequest,
-  style: 'standard' | 'premium',
-): string {
-  const colors = sanitizeColors(input.brandColors);
-  const vehicle = ALLOWED_VEHICLES.includes(input.vehicleType ?? '') ? input.vehicleType! : 'medium van';
-  const panels = Array.isArray(input.panels)
-    ? input.panels.filter((p) => ALLOWED_PANELS.includes(p)).slice(0, 5)
-    : ['side doors', 'rear doors'];
-  const businessType = sanitizeText(input.businessType, 80);
-
-  const colorDescription =
-    colors.length > 0 ? colors.join(', ') : 'professional complementary commercial brand colors';
-  const styleDescription =
-    style === 'premium'
-      ? 'premium luxury commercial design, sophisticated minimalist composition, elegant typography-free graphics, high-end visual identity, refined metallic accents, balanced negative space'
-      : 'modern professional commercial design, clean geometric graphics, bold visual hierarchy, attractive brand colors, production-ready vinyl wrap artwork';
-
-  // flux-1-schnell schema hard limit: prompt maxLength 2048.
-  const prompt = `Create a professional commercial vehicle vinyl wrap DESIGN ARTWORK.
-IMPORTANT: Generate a FLAT GRAPHIC DESIGN, NOT a photograph of a vehicle.
-
-VEHICLE CATEGORY: ${vehicle}
-BRAND COLORS: ${colorDescription}
-DESIGN STYLE: ${styleDescription}
-BUSINESS CATEGORY: ${businessType || 'general commercial business'}
-TARGET VEHICLE PANELS: ${panels.join(', ')}
-
-REQUIREMENTS:
-- Flat, front-facing graphic artwork for printing on commercial vehicle vinyl wrap; clean, professional, production-oriented branding design for the selected vehicle category and panels.
-- Use the brand colors as the primary palette; cohesive shapes, flowing lines and geometric elements; clear visual hierarchy and balanced weight.
-- Crisp edges, high contrast, clean vector-art aesthetic, professional commercial graphic design quality.
-- Keep the logo area clean: leave a large uncluttered space where a company logo and contact details will be added mechanically later.
-- 1024x1024 square canvas.
-
-DO NOT GENERATE: any vehicle, car, van, truck, wheels, windows, mirrors, lights, body panels, photographs, 3D renders, mockups, perspective, streets, background scenes, text, letters, numbers, logos, brand names, watermarks, QR codes or signatures. No blurry, pixelated or cluttered output.`;
-
-  return prompt.slice(0, 2048);
-}
-
 /** One free generation ACTION per visitor + hard daily cap (KV; atomicity gap documented). */
 async function reserveGeneration(
   ledger: LedgerKV,
@@ -171,7 +97,50 @@ interface ProviderImage {
 }
 
 /** flux-1-schnell via the Pages Workers AI binding (docs-verified contract). */
-async function callProvider(env: Env, prompt: string): Promise<ProviderImage> {
+const SUNBURST = 'gpt-image-2.6-sunburst';
+const RESERVE_CENTS = 125; // Conservative per-call allowance; never refunded automatically.
+async function callProvider(env: Env, prompt: string, requestId: string, style: string, vehicle: string, action: string): Promise<ProviderImage> {
+  if (env.IMAGE_PROVIDER === 'openai') {
+    const limit = env.IMAGE_SECOND_HALF_APPROVED === 'yes' ? 1000 : 500;
+    // Single SQLite statement, serialized by D1, unlike read/modify/write on KV.
+    const id = `${requestId}:${style}`;
+    const slot = vehicle + ':' + style;
+    const replay = action + ':' + style;
+    const reservation = await env.IMAGE_BUDGET!.prepare(`INSERT OR IGNORE INTO image_spend(call_id,replay_id,vehicle_variant,reserved_cents)
+      SELECT ?, ?, ?, ? WHERE (SELECT COALESCE(SUM(reserved_cents),0) FROM image_spend) + ? <= ?
+      AND (SELECT COUNT(*) FROM image_spend WHERE vehicle_variant=?) < 3
+      AND NOT EXISTS (SELECT 1 FROM image_spend WHERE reserved_cents > ?)`)
+      .bind(id, replay, slot, RESERVE_CENTS, RESERVE_CENTS, limit, slot, RESERVE_CENTS).run();
+    if (reservation.meta.changes !== 1) {
+      console.info(JSON.stringify({requestId,model:SUNBURST,event:'inspire.review_required',limitUsd:limit/100,vehicle,style}));
+      throw Object.assign(new Error('Budget or attempt stop'), {code:'QUOTA_EXCEEDED', retryable:false});
+    }
+    const record = {requestId, model:SUNBURST, vehicle, style, reservedUsd:RESERVE_CENTS / 100};
+    const key = `inspire:spend:${id}`;
+    await env.AI_LEDGER!.put(key, JSON.stringify(record));
+    console.info(JSON.stringify(record));
+    const response = await fetch('https://api.openai.com/v1/images/generations', {
+      method:'POST', redirect:'error', signal:AbortSignal.timeout(GENERATION_TIMEOUT_MS),
+      headers:{Authorization:`Bearer ${env.IMAGE_API_KEY}`, 'Content-Type':'application/json'},
+      body:JSON.stringify({model:SUNBURST, prompt, n:1, size:'1536x1024', quality:'high', output_format:'png'})
+    });
+    if (!response.ok) throw new Error('Image provider rejected request');
+    const body = await response.json() as {data?: {b64_json?:string}[], usage?: {input_tokens:number; output_tokens:number}};
+    const u = body.usage;
+    const estimatedUsd = u && Number.isSafeInteger(u.input_tokens) && Number.isSafeInteger(u.output_tokens)
+      ? (u.input_tokens * 5 + u.output_tokens * 30) / 1_000_000 : null;
+    await env.AI_LEDGER!.put(key, JSON.stringify({...record, estimatedUsd}));
+    console.info(JSON.stringify({...record, estimatedUsd}));
+    if (estimatedUsd !== null && estimatedUsd > 0) {
+      // Round up, never down. No usage/ambiguous failure keeps the entire hold.
+      await env.IMAGE_BUDGET!.prepare('UPDATE image_spend SET reserved_cents=? WHERE call_id=?')
+        .bind(Math.ceil(estimatedUsd * 100), id).run();
+      if (estimatedUsd > RESERVE_CENTS / 100) throw Object.assign(new Error('Revalidate provider price bound'), {code:'QUOTA_EXCEEDED',retryable:false});
+    }
+    const data = body.data?.[0]?.b64_json;
+    if (typeof data !== 'string' || !data.startsWith('iVBORw0KGgo')) throw new Error('Missing PNG');
+    return {format:'base64', mimeType:'image/png', data};
+  }
   const timeout = new Promise<never>((_, reject) => {
     setTimeout(() => reject(Object.assign(new Error('generation timeout'), { name: 'TimeoutError' })), GENERATION_TIMEOUT_MS);
   });
@@ -206,13 +175,16 @@ export async function onRequestPost(context: Context): Promise<Response> {
       status,
       duration: Date.now() - started,
       errorCode: code,
-      model: MODEL,
-      cost: 0,
+      model: env.IMAGE_PROVIDER === 'openai' ? SUNBURST : MODEL,
+      cost: env.IMAGE_PROVIDER === 'openai' ? undefined : 0,
     });
     return json(fail(code, message, retryable, requestId), status);
   };
 
-  if (!env.AI) {
+  const configured = env.IMAGE_PROVIDER === 'openai'
+    ? env.IMAGE_MODEL === SUNBURST && env.IMAGE_API_KEY && env.IMAGE_BUDGET && env.IMAGE_CALL_BOUND_CONFIRMED === 'yes'
+    : env.IMAGE_PROVIDER === 'cf-flux' && env.AI;
+  if (!configured) {
     return failAndLog('INTERNAL', 'Image generation service is not configured.', false, 503);
   }
 
@@ -223,8 +195,8 @@ export async function onRequestPost(context: Context): Promise<Response> {
     return failAndLog('VALIDATION_ERROR', 'Invalid JSON request body.', false, 400);
   }
 
-  if (!input.visitorToken || !VISITOR_TOKEN_RE.test(input.visitorToken)) {
-    return failAndLog('VALIDATION_ERROR', 'A valid visitor token is required.', false, 400);
+  if (!input || !ALLOWED_VEHICLES.includes(input.vehicleType ?? '') || (input.style !== undefined && !['standard', 'premium'].includes(input.style)) || typeof input.visitorToken !== 'string' || !VISITOR_TOKEN_RE.test(input.visitorToken)) {
+    return failAndLog('VALIDATION_ERROR', 'Valid vehicle, variant and visitor token required.', false, 400);
   }
 
   const ledger = env.AI_LEDGER;
@@ -261,7 +233,7 @@ export async function onRequestPost(context: Context): Promise<Response> {
   try {
     const images: Array<{ style: string; image: ProviderImage }> = [];
     for (const style of variants) {
-      const image = await callProvider(env, buildPrompt(input, style));
+      const image = await callProvider(env, buildPrompt(input, style), requestId, style, input.vehicleType!, idempotencyKey || requestId);
       images.push({ style, image });
     }
 
@@ -274,14 +246,16 @@ export async function onRequestPost(context: Context): Promise<Response> {
       endpoint: 'generate-art',
       status: 200,
       duration: Date.now() - started,
-      model: MODEL,
-      cost: 0,
+      model: env.IMAGE_PROVIDER === 'openai' ? SUNBURST : MODEL,
+      cost: env.IMAGE_PROVIDER === 'openai' ? undefined : 0,
     });
 
     return json(
       ok(
         {
           images,
+          provider: env.IMAGE_PROVIDER,
+          imageKind: 'vehicle-mockup',
           quota: { dailyRemaining: reservation.dailyRemaining },
         },
         requestId,
@@ -295,15 +269,15 @@ export async function onRequestPost(context: Context): Promise<Response> {
       e.name === 'TimeoutError' || e.name === 'AbortError'
         ? 'GENERATION_TIMEOUT'
         : (e.code ?? 'GENERATION_FAILED');
-    // DIAGNOSTIC (preview): include provider error text to identify the failing layer.
-    const detail = (e.message ?? '').slice(0, 160);
+    // Never expose provider response bodies or credentials.
+
     return failAndLog(
       code,
       code === 'GENERATION_TIMEOUT'
         ? 'The image generation service took too long. Please try again.'
-        : `The image generation service failed.${detail ? ` (${detail})` : ''}`,
+        : code === 'QUOTA_EXCEEDED' ? 'Image budget paused. Operator review required.' : 'The image generation service failed.',
       code === 'GENERATION_TIMEOUT' ? true : (e.retryable ?? true),
-      code === 'RATE_LIMITED' ? 429 : code === 'GENERATION_TIMEOUT' ? 504 : 502,
+      code === 'RATE_LIMITED' || code === 'QUOTA_EXCEEDED' ? 429 : code === 'GENERATION_TIMEOUT' ? 504 : 502,
     );
   }
 }

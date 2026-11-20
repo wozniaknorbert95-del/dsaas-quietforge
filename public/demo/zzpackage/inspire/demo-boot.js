@@ -1,37 +1,4 @@
-/**
- * ==========================================
- * ZZPACKAGE INSPIRE — STATIC DEMO BOOT LAYER
- * ==========================================
- *
- * Faithful client-side re-implementation of the Design Agent backend that
- * dtp-design-agent.js talks to through the WP REST proxy
- * (inc/integrations/fg-design-agent-api.php → jadzia-core), so the ORIGINAL
- * dtp-design-agent.js runs unmodified against static files.
- *
- * Stubbed endpoints (same contract as fg_design_agent_register_routes()):
- *   - GET  wp-json/fg/v1/design-agent/chat/opening      -> opening + first question
- *   - POST wp-json/fg/v1/design-agent/chat              -> question turn (JSON)
- *   - POST wp-json/fg/v1/design-agent/chat/turn         -> logo/photo turn (multipart)
- *   - GET  wp-json/fg/v1/design-agent/chat/<session_id> -> session restore
- *   - POST wp-json/fg/v1/design-agent/generate          -> 2 mockup directions
- *   - POST wp-json/fg/v1/design-agent/offerte-request   -> DEMO STOP (modal)
- *
- * All chat copy comes verbatim from the INSPIRE engine's own language packs
- * (flexgrafik-inspire / brain/i18n/chat/{nl-NL,pl-PL,en-GB}.json — copied to
- * data/i18n/chat/). Question order follows engine/v4/intake/state.py
- * PHASE_FIELDS + chat_bridge.STAP_TO_LEGACY_PHASE. Proposal/reason strings
- * come from engine/v4/intake/agency_copy.py (format_agency_proposal),
- * engine/v4/recommendation/recommend.py (reason_nl / budget_note_nl) and
- * brain/trust-pack.json. The 2 output directions are the page's own
- * "Standard — Magneten €149 / Premium — Wrap €399" (product-ladder.json /
- * brain/tier-matrix.json) with the real mockup-example renders
- * (assets/images/mockup-examples/).
- *
- * DEMO STOP (the only behavioural change): the offerte-request e-mail POST is
- * replaced by a demo modal. Everything before it — the full chat, logo upload,
- * briefing card, mockup generation, direction choice and offerte validation —
- * is the original code path.
- */
+/* INSPIRE wrapping brief and client-side demo transport. */
 (function () {
     'use strict';
 
@@ -57,7 +24,7 @@
         wizardUrl: '../wizard',
         themeUri: '..',
         defaultLocale: 'nl-NL',
-        allowResultsFixture: true,
+        allowResultsFixture: false,
         vehicleImages: {
             caddy: SHARED_IMAGES_DIR + 'voertuig_caddy.png',
             bus_l: SHARED_IMAGES_DIR + 'voertuig_bus_l.png',
@@ -113,69 +80,6 @@
     // ============================================================
     // 2. Output content SSoT (verbatim strings from the repos)
     // ============================================================
-    // brain/product-ladder.json (tripwire MA-005 "Startpakket Magneten" €149,
-    // bestseller NA-WRAP-BASIC bundle €399) + brain/tier-matrix.json
-    // (NA-WRAP-BASIC price_suggested 399) + page-voertuigreclame-ontwerp.php
-    // ("Standard — Magneten" €149 / "Premium — Wrap" €399).
-    var STD_PRODUCT = {
-        sku: 'MA-005',
-        name: 'Startpakket Magneten',        // brain/product-ladder.json tripwire.name
-        cardNaam: 'Magneten',                // page card "Standard — Magneten"
-        price: 149,
-        label: 'Standard'
-    };
-    var PREM_PRODUCT = {
-        sku: 'NA-WRAP-BASIC',
-        name: 'Partial Wrap Basis',          // product-master-table / product-route-matrix name_nl
-        cardNaam: 'Wrap',                    // page card "Premium — Wrap"
-        price: 399,
-        label: 'Premium'
-    };
-    var ADDON_PRODUCT = {
-        sku: 'DF-004',
-        naam: 'Voertuigreclame ontwerp + drukbestand', // theme FIXTURE_RESPONSE naam
-        price_suggested: 199
-    };
-
-    // engine/v4/recommendation/recommend.py — real reason_nl / budget_note_nl strings
-    var REASON_STANDARD_MAGNET =
-        'Omdat flexibiliteit of een lager instapbudget belangrijk is, is magnetisch de veiligste Standard-route.';
-    var REASON_PREMIUM_BASIS =
-        'Dit laat zien wat extra wrap-elementen doen voor merkuitstraling.';
-    var REASON_PREMIUM_PRO =
-        'Dit geeft duidelijk meer aanwezigheid en voelt als professioneel ontworpen wrap.';
-    var REASON_PREMIUM_MAX =
-        'Dit maakt van de auto een maximale rijdende merkdrager.';
-    var BUDGET_NOTE_GROWTH =
-        'Dit is waarschijnlijk boven je huidige richtbudget; zie het als groeirichting.';
-
-    // engine/v4/intake/agency_copy.py format_agency_proposal — real headers
-    var PROPOSAL_HEADER = {
-        'nl-NL': 'Mijn voorstel uit de Wizard (op basis van jouw feiten):',
-        'pl-PL': 'Moja propozycja z Wizarda (na podstawie faktów):',
-        'en-GB': 'My Wizard proposal (based on your facts):'
-    };
-
-    // brain/trust-pack.json (inject_trust_snippet / _pick_portfolio data)
-    var TRUST_PACK = {
-        reviews: { count: 127, score: 4.8 },
-        portfolio: [
-            { id: 'schilder-janssen', branche: 'bouw', quote: 'Binnen 2 weken geregeld, veel bekijks in wijk' },
-            { id: 'mimaki', branche: 'bouw' },
-            { id: 'quietforge', branche: 'it' }
-        ]
-    };
-
-    // engine/v4/intake/visual_analyzer.py analyze_logo()/feedback_sentence() —
-    // rule-based contrast feedback; recomputed here from the client-extracted
-    // brand colours the original JS already sends along with the logo upload.
-    var VISUAL_REC = {
-        lowLight: 'Op wit valt rood/licht weg — zet ik zwart vlak achter voor contrast.',
-        low: 'Laag contrast op buskleur — donker vlak achter logo voor leesbaarheid.',
-        medium: 'Contrast ok — finetune achter logo voor 5m leesbaarheid.',
-        high: 'Logo knalt al — houd vlak compact zodat telefoon ook past.'
-    };
-
     // ============================================================
     // 3. Session state machine
     //    Question order: engine/v4/intake/state.py PHASE_FIELDS.
@@ -187,8 +91,13 @@
         { key: 'regio', field: 'company.regio', stap: 1, chips: 'company.regio' },
         { key: 'vehicle', field: 'vehicle.type', stap: 2, chips: 'vehicle.type' },
         { key: 'vehicle_usage', field: 'vehicle.usage', stap: 2, chips: 'vehicle.usage' },
+        { key: 'exposure', field: 'vehicle.exposure', stap: 2, chips: 'vehicle.exposure' },
+        { key: 'doelgroep', field: 'marketing.doelgroep', stap: 3 },
+        { key: 'diensten', field: 'marketing.diensten', stap: 3 },
         { key: 'impression', field: 'marketing.desired_impression', stap: 3, chips: 'marketing.desired_impression' },
         { key: 'cta', field: 'marketing.primary_cta', stap: 4, chips: 'marketing.primary_cta' },
+        { key: 'telefoon', field: 'company.telefoon', stap: 4, when: 'telefoon' },
+        { key: 'website', field: 'company.website', stap: 4, when: 'website' },
         { key: 'budget', field: 'budget.range', stap: 6, chips: 'budget.range' },
         { key: 'flex', field: 'budget.flexibility', stap: 6, chips: 'budget.flexibility', fallbackQuestion: FLEX_QUESTION_NL },
         // v6.1 WHERE_BUS turn (chat_bridge: where_bus → stap 2) — bus photo + logo upload.
@@ -202,7 +111,7 @@
     var sessions = {};
     var sessionSeq = 0;
 
-    var STORE_KEY = 'demoDaSessions';
+    var STORE_KEY = 'demoWrapSessionsV1';
 
     function loadStoredSessions() {
         try {
@@ -238,13 +147,13 @@
 
     function stepDone(sess, step) {
         var d = sess.draft;
-        if (step.upload) return !!(d.logo_file || d.logo_rescue_picked);
+        if (step.upload) return !!d.logo_file;
         return !!d[step.key];
     }
 
     function currentStep(sess) {
         for (var i = 0; i < FLOW.length; i++) {
-            if (!stepDone(sess, FLOW[i])) return FLOW[i];
+            if ((!FLOW[i].when || sess.draft.cta?.id === FLOW[i].when) && !stepDone(sess, FLOW[i])) return FLOW[i];
         }
         return null;
     }
@@ -301,7 +210,7 @@
             ackText = ack(pack, 'ack_cta');
         } else if (doneStep.key === 'logo') {
             // v6.1 WHERE_BUS turn: visual_analyzer feedback + quick preview intro
-            ackText = feedbackSentence(sess) + '\n\n' + ack(pack, 'quick_preview_intro_v61');
+            ackText = 'Het originele logo blijft ongewijzigd. We controleren contrast en positie op de gekozen deur.';
         }
         return ackText;
     }
@@ -332,115 +241,8 @@
     }
 
     // --- agency proposal (agency_copy.format_agency_proposal) -------------
-    function premiumReason(draft) {
-        var b = draft.budget ? draft.budget.id : '';
-        var imp = draft.impression ? draft.impression.id : '';
-        if (b === '1000_plus') return REASON_PREMIUM_MAX;
-        if (b === '600_1000') return REASON_PREMIUM_PRO;
-        if (b === '300_600') return REASON_PREMIUM_BASIS;
-        return (imp === 'premium' || imp === 'opvallend' || imp === 'stoer')
-            ? REASON_PREMIUM_PRO
-            : REASON_PREMIUM_BASIS;
-    }
-
-    function premiumGrowth(draft) {
-        var b = draft.budget ? draft.budget.id : '';
-        return (b === 'tot_150' || b === '150_300' || b === 'weet_ik_niet' || !b);
-    }
-
-    function budgetNote(draft) {
-        return premiumGrowth(draft) ? BUDGET_NOTE_GROWTH : '';
-    }
-
-    // agency_copy._branche_key — branche id → trust-pack pool key
-    function brancheKey(branche) {
-        var raw = String(branche || 'anders').trim().toLowerCase();
-        var aliases = {
-            elektra: 'it', installatie: 'it', bouw: 'bouw', schilder: 'bouw',
-            schoonmaak: 'bouw', horeca: 'bouw', it: 'it', anders: 'bouw'
-        };
-        if (aliases[raw]) return aliases[raw];
-        return raw.split('_')[0];
-    }
-
-    // agency_copy._pick_portfolio — deterministic pick (sha256(key)[:8] % len).
-    // The engine's sha256 results are precomputed here for the reachable
-    // branche keys (all chip ids map to 'it' or 'bouw' via _branche_key):
-    //   sha256('bouw')[:8] = a46f2d29 -> 2765473065 % 2 = 1 -> mimaki
-    //   'it' -> pool of 1 -> quietforge
-    // Unknown free-text branche keys fall back to pool[0].
-    var PORTFOLIO_PICK = { bouw: 1, it: 0 };
-
-    function pickPortfolio(branche) {
-        var key = brancheKey(branche);
-        var items = TRUST_PACK.portfolio;
-        var matched = items.filter(function (p) {
-            return String(p.branche || '').toLowerCase().indexOf(key) >= 0;
-        });
-        var pool = matched.length ? matched : items;
-        if (pool.length === 1) return pool[0];
-        var idx = PORTFOLIO_PICK[key];
-        if (idx == null || idx >= pool.length) idx = 0;
-        return pool[idx];
-    }
-
-    function pidOf(item) {
-        return String(item.id || '').split('-').map(function (w) {
-            return w.charAt(0).toUpperCase() + w.slice(1);
-        }).join(' ');
-    }
-
-    function injectTrustSnippet(item, locale) {
-        var count = TRUST_PACK.reviews.count;
-        var score = TRUST_PACK.reviews.score;
-        var quote = String(item.quote || '').trim();
-        var pid = pidOf(item);
-        if (locale === 'pl-PL') {
-            var basePl = count + ' ZZP już nam zaufało · ' + score + '★ Google';
-            return quote ? basePl + ' — jak ' + pid + ': „' + quote + '”' : basePl;
-        }
-        if (locale === 'en-GB') {
-            var baseEn = count + ' sole traders went before you · ' + score + '★ Google';
-            return quote ? baseEn + ' — like ' + pid + ': "' + quote + '"' : baseEn;
-        }
-        var base = count + ' ZZP gingen je voor · ' + score + '★ Google';
-        return quote ? base + ' — net als voor ' + pid + ': „' + quote + '”' : base;
-    }
-
-    function proposalText(pack, sess, locale) {
-        var chrome = pack.chrome || {};
-        var stdLabel = chrome.standard_label || 'Standard — Slim zichtbaar starten';
-        var premLabel = chrome.premium_label || 'Premium — Maximale merkuitstraling';
-        var growth = chrome.premium_growth || 'groeirichting';
-        var header = PROPOSAL_HEADER[locale] || PROPOSAL_HEADER['nl-NL'];
-
-        var stdLine = '**' + stdLabel + ':** ' + STD_PRODUCT.name + ' — vanaf €' +
-            STD_PRODUCT.price + '. ' + REASON_STANDARD_MAGNET;
-        var premLine;
-        if (premiumGrowth(sess.draft)) {
-            premLine = '**' + premLabel + '** (' + growth + '): ' + PREM_PRODUCT.name + ' — vanaf €' +
-                PREM_PRODUCT.price + '. ' + premiumReason(sess.draft) + ' ' + budgetNote(sess.draft);
-        } else {
-            premLine = '**' + premLabel + ':** ' + PREM_PRODUCT.name + ' — vanaf €' +
-                PREM_PRODUCT.price + '. ' + premiumReason(sess.draft);
-        }
-
-        var item = pickPortfolio(sess.draft.branche ? sess.draft.branche.id : '');
-        var pid = pidOf(item);
-        var q = String(item.quote || '').trim();
-        var portfolioLine = '';
-        if (item.id) {
-            if (locale === 'pl-PL') {
-                portfolioLine = '\n\nJak u **' + pid + '**' + (q ? ' — ' + q : '') + '.';
-            } else if (locale === 'en-GB') {
-                portfolioLine = '\n\nLike **' + pid + '**' + (q ? ' — "' + q + '"' : '') + '.';
-            } else {
-                portfolioLine = '\n\nNet als voor **' + pid + '**' + (q ? ' — ' + q : '') + '.';
-            }
-        }
-
-        var trust = injectTrustSnippet(item, locale);
-        return header + '\n\n- ' + stdLine + '\n- ' + premLine + portfolioLine + '\n\n_' + trust + '_';
+    function proposalText(pack, sess) {
+        return 'Voor ' + valueLabel(sess,'bedrijfsnaam') + ' vergelijken we twee ontwerpen op hetzelfde folieoppervlak. A geeft de kernboodschap ruimte; B trekt aandacht met een ritme over de flank. Je budget is een grens voor de offerte, geen vaste montageprijs.';
     }
 
     function summaryReply(pack, sess, locale) {
@@ -486,10 +288,8 @@
         if (d.brand_colors && d.brand_colors.length) b.brand_colors = d.brand_colors;
         if (sess.budgetExplicit) b._budget_explicit = true;
         if (d.logo_file) b.logo_file = d.logo_file;
-        if (sess.summaryReached) {
-            b.mockup_b_sku = STD_PRODUCT.sku;
-            b.mockup_a_sku = PREM_PRODUCT.sku;
-        }
+        b.exposure = valueLabel(sess,'exposure'); b.diensten = valueLabel(sess,'diensten'); b.doelgroep = valueLabel(sess,'doelgroep');
+        b.budget_label = valueLabel(sess,'budget'); b.cta_label = valueLabel(sess,'cta');
         return b;
     }
 
@@ -511,7 +311,7 @@
         if (v.indexOf('bus_l') >= 0 || v.indexOf('bus l') >= 0 || v.indexOf('bestelbus') >= 0) return 'bus_l';
         if (v.indexOf('passenger') >= 0 || v.indexOf('kombi') >= 0) return 'passenger';
         if (v.indexOf('caddy') >= 0 || v.indexOf('partner') >= 0) return 'caddy';
-        return 'caddy'; // engine/v4/recommendation/recommend.py _vehicle_key: other → caddy
+        return ''; // Unknown classes must not silently become a Caddy.
     }
 
     function mockupImages(vehicle) {
@@ -520,34 +320,6 @@
             strak: MOCKUP_DIR + 'mockup-' + v + '-strak.png',
             opvallend: MOCKUP_DIR + 'mockup-' + v + '-opvallend.png'
         };
-    }
-
-    // visual_analyzer.analyze_logo() + feedback_sentence() — rule-based
-    function feedbackSentence(sess) {
-        var colors = sess.draft.brand_colors || [];
-        var rgb = [0, 159, 227]; // engine default fallback colour
-        if (colors.length && /^#[0-9a-fA-F]{6}$/.test(colors[0])) {
-            rgb = [
-                parseInt(colors[0].substr(1, 2), 16),
-                parseInt(colors[0].substr(3, 2), 16),
-                parseInt(colors[0].substr(5, 2), 16)
-            ];
-        }
-        var lum = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]; // _luminance()
-        var vLum = 240; // vehicle colour "wit" (analyze_logo default)
-        var diff = Math.abs(lum - vLum);
-        var rec, head;
-        if (diff < 40) {
-            rec = (rgb[0] > 180) ? VISUAL_REC.lowLight : VISUAL_REC.low;
-            head = 'Jouw logo op een lichte ondergrond — contrast is laag, in de zon valt het weg. ';
-        } else if (diff < 90) {
-            rec = VISUAL_REC.medium;
-            head = 'Jouw logo op een lichte ondergrond. ';
-        } else {
-            rec = VISUAL_REC.high;
-            head = 'Jouw logo op een lichte ondergrond. ';
-        }
-        return head + rec;
     }
 
     // ============================================================
@@ -569,34 +341,6 @@
     function recordText(sess, step, text) {
         sess.draft[step.key] = { id: text, label: text };
         if (step.key === 'budget') sess.budgetExplicit = true;
-    }
-
-    function isNoLogoIntent(text) {
-        var t = String(text || '').toLowerCase();
-        return (/geen/.test(t) && /logo/.test(t)) ||
-            (/no logo/.test(t) || /don.?t have/.test(t) || /without logo/.test(t)) ||
-            (/nie mam/.test(t) || /brak logo/.test(t));
-    }
-
-    function buildRescueResponse(pack, sess) {
-        var reply = ack(pack, 'no_logo_rescue_v61') + '\n\n' + ack(pack, 'logo_rescue_pick');
-        pushMsg(sess, 'assistant', reply);
-        var out = baseResponse(sess);
-        out.reply = reply;
-        out.stap = 5;
-        out.phase = 5;
-        out.stap_label = (pack.stap_labels || {})['5'] || '';
-        out.quick_replies = chipOptions(pack, 'brand_assets.logo_rescue_pick');
-        out.quick_reply_field = 'brand_assets.logo_rescue_pick';
-        out.quick_previews = [
-            'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="80">' +
-                '<rect width="240" height="80" fill="#101014"/>' +
-                '<text x="120" y="48" fill="#e4e4e7" font-family="Arial" font-size="26" font-weight="700" text-anchor="middle">' +
-                escapeHtml(String(sess.draft.bedrijfsnaam ? sess.draft.bedrijfsnaam.id : 'Logo').slice(0, 14)) +
-                '</text></svg>')
-        ];
-        return out;
     }
 
     /** Advance after an answer; returns the next response object. */
@@ -645,15 +389,6 @@
         if (body.quick_reply_id && body.quick_reply_field) {
             var field = body.quick_reply_field;
             pushMsg(sess, 'user', chipLabel(pack, field, body.quick_reply_id));
-            if (field === 'brand_assets.logo_rescue_pick') {
-                // orchestrator_v61._handle_logo_rescue_pick — typo direction picked
-                sess.draft.logo_rescue_picked = body.quick_reply_id;
-                sess.draft.logo_file = 'typo-' + body.quick_reply_id + '.png';
-                var outRescue = advance(pack, sess, STEP_BY_FIELD['where_bus.upload']);
-                var imgsRescue = mockupImages(sess.draft.vehicle ? sess.draft.vehicle.id : 'caddy');
-                outRescue.quick_previews = [imgsRescue.strak, imgsRescue.opvallend, SHARED_IMAGES_DIR + 'MA-005.png'];
-                return outRescue;
-            }
             var step = recordChip(sess, field, body.quick_reply_id);
             if (!step) return buildQuestionResponse(pack, sess, null);
             return advance(pack, sess, step);
@@ -669,7 +404,7 @@
         }
         pushMsg(sess, 'user', text);
         if (cur.upload) {
-            if (isNoLogoIntent(text)) return buildRescueResponse(pack, sess);
+
             var outLogo = baseResponse(sess);
             outLogo.reply = (pack.errors || {}).logo_required || '';
             pushMsg(sess, 'assistant', outLogo.reply);
@@ -706,38 +441,20 @@
         // v6.1 WHERE_BUS turn: visual feedback + quick preview bundle + next beat
         var doneStep = STEP_BY_FIELD['where_bus.upload'];
         var next = currentStep(sess);
-        var quick = [];
-        if (sess.draft.vehicle || logo) {
-            var imgs = mockupImages(sess.draft.vehicle ? sess.draft.vehicle.id : 'caddy');
-            quick = [imgs.strak, imgs.opvallend, SHARED_IMAGES_DIR + 'MA-005.png'];
-        }
         var out;
         if (!next) {
             out = buildSummaryResponse(pack, sess, doneStep);
         } else {
             out = buildQuestionResponse(pack, sess, doneStep);
         }
-        if (quick.length) out.quick_previews = quick;
         return out;
     }
 
     // ============================================================
     // 6. Generate — 2 mockup directions (FIXTURE_RESPONSE shape)
     // ============================================================
-    // Step B — HYBRID GENERATION STACK (todos/inspire.json
-    // decided_generation_stack, 2026-11-19). The /generate call intercepted in
-    // §9 now runs the REAL artwork call to /api/v1/generate-art (Step A) and
-    // composes it MECHANICALLY on the client via mockup-composer.js:
-    //   vehicle template + AI wrap artwork (clipped to panel-map wrap zones)
-    //   + the customer's REAL logo over the "deur" zone. The logo NEVER passes
-    //   through AI — brand integrity is sacred.
-    // The hook: dtp-design-agent.js POSTs the uploaded logo File in the
-    // multipart /generate body (fd 'logo') — we read it right here in the stub.
-    // No protected asset is touched.
-    // Honest fallback: when the live call is unavailable (not configured, quota,
-    // network) TODAY's pre-baked examples are returned CLEARLY LABELLED as demo
-    // examples — never presented as generated.
-
+    // Private QA receives model mockups, not artwork for a vehicle template.
+    // Until the new logo zones pass review, the UI shows labelled examples only.
     var GEN_API_URL = '/api/v1/generate-art';
     var LS_VISITOR_TOKEN = 'inspire-visitor-token';
     var LS_GEN_USED = 'inspire-generate-used';
@@ -807,25 +524,10 @@
         return map[vehicle] || 'medium van';
     }
 
-    var PANEL_ID_TO_API = {
-        deur: 'side doors',
-        zij: 'full side panel',
-        achter: 'rear doors',
-        kap: 'front doors'
-    };
-
-    function apiPanels() {
-        // Union of both SKU panel sets (sku_active_panels: MA-005 zij+achter,
-        // NA-WRAP-BASIC deur+zij+achter+kap) — the prompt only hints at panels.
-        var ids = ['deur', 'zij', 'achter', 'kap'];
-        return ids.map(function (id) { return PANEL_ID_TO_API[id]; });
-    }
-
     // --- honest loading + labelling (never pretend examples are generated) --
     var NOTE_FALLBACK = 'Demo-voorbeeld — live generatie was niet beschikbaar.';
     var NOTE_QUOTA = 'Je hebt je gratis generatie al gebruikt.';
     var NOTE_DAILY = 'De dagelijkse gratis generatielimiet is bereikt — probeer het morgen opnieuw.';
-    var NOTE_SUCCESS = 'Live samengesteld uit AI-wrapgrafiek + jouw originele logo (je logo gaat nooit door AI).';
     var CHAT_FALLBACK = '<strong>Demo-voorbeeld.</strong> Live generatie was niet beschikbaar — ' +
         'de mock-ups hieronder zijn kant-en-klare voorbeelden, niet gegenereerd uit jouw logo.';
 
@@ -858,6 +560,7 @@
 
     /** Label fallback examples honestly — notes land after the results UI paints. */
     function labelFallback(fixture, noteText, chatHtml) {
+        fixture.notice = 'Demo-voorbeelden — niet jouw ontwerp. ' + noteText;
         setTimeout(function () {
             appendResultsNote(noteText);
             appendChatNote(chatHtml);
@@ -892,106 +595,13 @@
     }
 
     /** Provider image (base64|url) → HTMLImageElement (canvas-safe, untainted). */
-    function artworkToImage(img) {
-        if (!img) return Promise.reject(new Error('no artwork'));
-        if (img.format === 'base64' && img.data) {
-            return window.MockupComposer.loadImage('data:' + (img.mimeType || 'image/png') + ';base64,' + img.data);
-        }
-        if (img.format === 'url' && img.url) {
-            // Fetch to a Blob first — a cross-origin URL drawn straight onto the
-            // canvas would taint it and break toDataURL() for the preview.
-            return (origFetch || window.fetch)(img.url, { cache: 'no-store' })
-                .then(function (r) {
-                    if (!r.ok) throw new Error('artwork url fetch failed');
-                    return r.blob();
-                })
-                .then(function (b) { return window.MockupComposer.loadImage(b); });
-        }
-        return Promise.reject(new Error('unsupported artwork payload'));
-    }
-
-    /** Compose both variants from real artwork + the REAL customer logo. */
-    function composeFromArtwork(vehicle, fixture, logoFile, bedrijfsnaam, colors, images) {
-        setGenProgress('Mock-ups samenstellen…');
-        var byStyle = {};
-        (images || []).forEach(function (item) {
-            if (item && item.style && item.image) byStyle[item.style] = item.image;
-        });
-        var templateSrc = (window.daConfig.vehicleImages || {})[vehicle] ||
-            (SHARED_IMAGES_DIR + 'voertuig_' + vehicle + '.png');
-        var logoPromise = (logoFile && logoFile.size > 0)
-            ? window.MockupComposer.loadImage(logoFile)
-            : Promise.resolve(null);
-
-        return Promise.all([
-            window.MockupComposer.loadPanelMap(),
-            window.MockupComposer.loadImage(templateSrc),
-            logoPromise,
-            byStyle.standard ? artworkToImage(byStyle.standard) : Promise.resolve(null),
-            byStyle.premium ? artworkToImage(byStyle.premium) : Promise.resolve(null)
-        ]).then(function (parts) {
-            var map = parts[0];
-            var templateImg = parts[1];
-            var logoImg = parts[2];
-            var stdArt = parts[3];
-            var premArt = parts[4];
-            if (!stdArt && !premArt) throw new Error('no artwork returned');
-
-            // sku_active_panels (panel-map SSoT) → artwork zones per variant
-            function panelsFor(sku, tier) {
-                if (map.sku_active_panels && map.sku_active_panels[sku]) return map.sku_active_panels[sku];
-                if (map.default_panels_by_tier && map.default_panels_by_tier[tier]) {
-                    return map.default_panels_by_tier[tier];
-                }
-                return ['zij', 'deur', 'achter'];
-            }
-
-            var common = {
-                vehicle: vehicle,
-                templateImg: templateImg,
-                logoImg: logoImg,                    // REAL logo — uniform scale only
-                bedrijfsnaam: bedrijfsnaam,          // typo logo only when no logo file
-                brandColor: colors[0] || '#101014'
-            };
-            var stdOpts = Object.assign({}, common, {
-                artworkImg: stdArt || premArt,
-                panels: panelsFor(STD_PRODUCT.sku, 'standard')
-            });
-            var premOpts = Object.assign({}, common, {
-                artworkImg: premArt || stdArt,
-                panels: panelsFor(PREM_PRODUCT.sku, 'premium')
-            });
-
-            return Promise.all([
-                window.MockupComposer.composeMockup(stdOpts),
-                window.MockupComposer.composeMockup(premOpts)
-            ]).then(function (urls) {
-                fixture.mockups.forEach(function (m) {
-                    if (m.variant === 'standard') m.url = urls[0];
-                    if (m.variant === 'premium') m.url = urls[1];
-                });
-                markGenerateUsed();
-                clearIdempotencyKey();
-                setTimeout(function () {
-                    appendResultsNote(NOTE_SUCCESS);
-                    appendChatNote('<strong>Klaar!</strong> ' + NOTE_SUCCESS);
-                }, 450);
-                return fixture;
-            });
-        });
-    }
-
     /** Async orchestrator — always RESOLVES with the FIXTURE_RESPONSE shape. */
     function handleGenerate(sess, fd) {
         var draft = sess ? sess.draft : {};
         var vehicle = normalizeVehicle(fd.get('vehicle') || (draft.vehicle ? draft.vehicle.id : 'caddy'));
         var fixture = fixtureGenerate(sess, fd, vehicle);
         var colors = brandColorsFromFd(fd, draft);
-        var logoFile = fd.get('logo');
-        var hasLogo = !!(logoFile && typeof logoFile.size === 'number' && logoFile.size > 0);
-        var bedrijfsnaam = String(fd.get('bedrijfsnaam') ||
-            (draft.bedrijfsnaam ? draft.bedrijfsnaam.id : '') || '').trim();
-
+        if (!normalizeVehicle(draft.vehicle?.id)) return Promise.reject(new Error('Kies eerst een ondersteunde voertuigklasse.'));
         // Visitor limit (client mirror of the server VISITOR_LIMIT) — skip the
         // API entirely, show the honest message + labelled fallback examples.
         if (isGenerateUsed()) {
@@ -999,18 +609,15 @@
                 '<strong>' + NOTE_QUOTA + '</strong> Hieronder staan demo-voorbeelden — geen verse generatie.'));
         }
 
-        if (!window.MockupComposer || typeof window.MockupComposer.composeMockup !== 'function') {
-            return Promise.resolve(labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK));
-        }
-
-        setGenProgress('Genereren… (±30 sec)');
+        setGenProgress('Maketten voorbereiden…');
         var payload = {
             visitorToken: getVisitorToken(),
-            vehicleType: vehicleTypeForApi(vehicle),
-            panels: apiPanels()
+            vehicleType: vehicleTypeForApi(vehicle)
         };
         if (colors.length) payload.brandColors = colors.slice(0, 5);
-        if (bedrijfsnaam) payload.businessType = String(fd.get('branche') || (draft.branche ? draft.branche.id : '') || '');
+        payload.exposure = draft.exposure?.id;
+        payload.impression = draft.impression?.id;
+        payload.businessType = String(fd.get('branche') || (draft.branche ? draft.branche.id : '') || '');
 
         return callGenerateArt(payload)
             .then(function (res) {
@@ -1020,7 +627,7 @@
                     var visitorLimit = /already used/i.test(String(err.message || ''));
                     if (visitorLimit) markGenerateUsed();
                     clearIdempotencyKey();
-                    var note = visitorLimit ? NOTE_QUOTA : NOTE_DAILY;
+                    var note = /budget paused/i.test(err.message || '') ? 'Het beeldbudget is gepauzeerd voor beoordeling.' : visitorLimit ? NOTE_QUOTA : NOTE_DAILY;
                     return labelFallback(fixture, note,
                         '<strong>' + note + '</strong> Hieronder staan demo-voorbeelden — geen verse generatie.');
                 }
@@ -1034,11 +641,15 @@
                 if (!res.ok || !res.body || res.body.success !== true) {
                     return labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK);
                 }
-                var data = res.body.data || {};
-                return composeFromArtwork(vehicle, fixture, logoFile, bedrijfsnaam, colors, data.images)
-                    .catch(function () {
-                        return labelFallback(fixture, NOTE_FALLBACK, CHAT_FALLBACK);
-                    });
+                markGenerateUsed(); clearIdempotencyKey();
+                const data = res.body.data;
+                if (!data || data.imageKind !== 'vehicle-mockup' || !['openai','cf-flux'].includes(data.provider)) throw new Error('Onbekende beeldbron');
+                const contact = draft.cta?.id === 'telefoon' ? fd.get('telefoon') : draft.cta?.id === 'website' ? fd.get('website') : '';
+                return window.MockupComposer.compose(data.images, fd.get('logo'), vehicle, String(contact || '').slice(0,80)).then(compositions => {
+                    fixture.mockups.forEach((m,i)=>Object.assign(m,compositions[i]));
+                    fixture.notice = data.provider==='cf-flux' ? 'Gratis indelingstest — geen definitief klantontwerp.' : 'Concept op basis van je briefing · origineel logo lokaal geplaatst.';
+                    return fixture;
+                }).catch(()=>labelFallback(fixture,'Plaatsing niet goedgekeurd of bronbeeld onleesbaar.',CHAT_FALLBACK));
             })
             .catch(function () {
                 // Network / CORS / parse failure — honest fallback, no pretending.
@@ -1050,43 +661,19 @@
     function fixtureGenerate(sess, fd, vehicle) {
         var draft = sess ? sess.draft : {};
         var imgs = mockupImages(vehicle);
-        var note = budgetNote(draft);
-        var mockups = [
-            {
-                variant: 'standard',
-                panel: 'side',
-                url: imgs.strak,
-                sku: STD_PRODUCT.sku,
-                naam: STD_PRODUCT.cardNaam,
-                price_suggested: STD_PRODUCT.price,
-                label_nl: STD_PRODUCT.label,
-                reason_nl: REASON_STANDARD_MAGNET
-            },
-            {
-                variant: 'premium',
-                panel: 'side',
-                url: imgs.opvallend,
-                sku: PREM_PRODUCT.sku,
-                naam: PREM_PRODUCT.cardNaam,
-                price_suggested: PREM_PRODUCT.price,
-                label_nl: PREM_PRODUCT.label,
-                reason_nl: premiumReason(draft)
-            }
-        ];
-        if (note) mockups[1].budget_note_nl = note;
-        return {
-            brief_id: 'demo-inspire-v2',
-            engine_mode: 'inspirationOnly',
-            mockups: mockups,
-            recommended_products: [
-                { sku: STD_PRODUCT.sku, naam: STD_PRODUCT.name, price_suggested: STD_PRODUCT.price, highlight: true },
-                { sku: PREM_PRODUCT.sku, naam: PREM_PRODUCT.name, price_suggested: PREM_PRODUCT.price, highlight: true },
-                { sku: ADDON_PRODUCT.sku, naam: ADDON_PRODUCT.naam, price_suggested: ADDON_PRODUCT.price_suggested, highlight: false }
-            ],
-            mockup_b_sku: STD_PRODUCT.sku,
-            mockup_a_sku: PREM_PRODUCT.sku,
-            wizard_deeplink: '/wizard/?voertuig=' + encodeURIComponent(vehicle) + '&highlight=' + encodeURIComponent(STD_PRODUCT.sku)
-        };
+        const label = k => draft[k]?.label || 'Nog te bevestigen';
+        const branch = String(draft.branche?.id || '');
+        const language = /elektr|installatie/i.test(branch) ? 'Parallelle lijnen verwijzen naar technisch precisiewerk.' : /loodgiet|hydraul/i.test(branch) ? 'Een doorlopende curve begeleidt het oog langs de flank.' : /bouw|schilder/i.test(branch) ? 'Brede kleurvlakken blijven herkenbaar zonder een lijst van klussen.' : /schoon|clean/i.test(branch) ? 'Een rustig licht vlak geeft het merk ademruimte.' : 'Eén herkenbaar accent houdt de merkidentiteit centraal.';
+        const palette = (draft.brand_colors || []).slice(0,3);
+        const colorReason = palette.length ? ' Gebruik '+palette[0]+' uit het logo als herkenningskleur; laat de vormgever de folie op staal vergelijken.' : ' Zonder bevestigd kleurstaal is de neutrale paletkeuze voorlopig.';
+        const situation = draft.exposure?.id === 'parked' ? 'Bij een stilstaande auto kan de kijker het contactgegeven rustig lezen.' : draft.exposure?.id === 'moving' ? 'In het verkeer is de kijktijd kort: laat de vormgever de boodschap testen als miniatuur.' : 'Ontwerp voor een korte blik in het verkeer en controleer het contactgegeven daarna op de geparkeerde auto.';
+        const advice = situation + ' Laat eerst de dienst herkennen: ' + label('diensten') + '. Kies daarna één actie: ' + label('cta') + '. Test de leesbaarheid van het originele logo op vijf meter; schrap details die dan wegvallen.' + colorReason;
+        const brief = ['Ontwerpbrief · voertuigwrapping', 'Bedrijf: '+label('bedrijfsnaam'), 'Branche: '+label('branche'), 'Doelgroep: '+label('doelgroep'), 'Zichtmoment: '+label('exposure'), 'Dienst: '+label('diensten'), 'Regio: '+label('regio'), 'Voertuig: '+label('vehicle')+' · '+label('vehicle_usage'), 'Gewenste indruk: '+label('impression'), 'CTA: '+label('cta'), 'Contact: '+((draft.cta?.id === 'telefoon' ? draft.telefoon?.label : draft.cta?.id === 'website' ? draft.website?.label : '') || 'Niet opgegeven'), 'Budget voor offerte: '+label('budget')+' · '+label('flex'), 'Logo: '+(draft.logo_file || 'Nog te bevestigen'), 'Kleurproef: '+((draft.brand_colors || []).join(', ') || 'Nog te bevestigen'), 'Vóór productie: meet deur en naden, controleer contactgegevens, folie en kleur op staal.' ];
+        if (draft.vehicle_usage?.id==='lease') brief.push('Toestemming voor wrapping nog te bevestigen.');
+        return {brief_id:'inspire-wrap', engine_mode:'inspirationOnly', recommended_products:[], advice, brief:brief.join('\n'), mockups:[
+            {variant:'standard', sku:'wrap-rustig', label_nl:'Richting A', naam:'Rustig en helder', url:imgs.strak, reason_nl:language+' Eén hoofdvlak geeft '+label('diensten')+' voorrang boven extra details.'},
+            {variant:'premium', sku:'wrap-krachtig', label_nl:'Richting B', naam:'Krachtig en opvallend', url:imgs.opvallend, reason_nl:language+' Contrasterende banen trekken eerder aandacht; houd de boodschap kort voor '+label('doelgroep')+'.'}
+        ]};
     }
 
     // ============================================================
@@ -1301,34 +888,11 @@
     // ============================================================
     // 10. Missing-image fallback (same pipeline as the wizard demo)
     // ============================================================
-    var PLACEHOLDER_IMG = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180">' +
-        '<rect width="320" height="180" fill="#111111"/>' +
-        '<rect x="8" y="8" width="304" height="164" fill="none" stroke="#2a2a32" stroke-width="2"/>' +
-        '<g fill="none" stroke="#9ca3af" stroke-width="2" opacity="0.5">' +
-        '<rect x="132" y="66" width="56" height="48"/>' +
-        '<circle cx="148" cy="82" r="5"/>' +
-        '<polyline points="184,106 168,90 140,114"/>' +
-        '</g></svg>'
-    );
-
-    window.addEventListener('error', function (e) {
-        var t = e.target;
-        if (!t || !t.tagName || t.tagName !== 'IMG') return;
-        if (t.getAttribute('data-demo-fallback') === '1') return;
-        var src = t.getAttribute('src') || '';
-        // one extension retry (.png/.jpg/.webp) in case the image pipeline re-encoded
-        if (/\.png$/i.test(src) && t.getAttribute('data-demo-retry') !== '1') {
-            t.setAttribute('data-demo-retry', '1');
-            t.src = src.replace(/\.png$/i, '.webp');
-            return;
+    window.addEventListener('error', function (event) {
+        const img=event.target;
+        if (img instanceof HTMLImageElement && img.closest('#da-results')) {
+            const notice=document.createElement('p'); notice.textContent='Beeld niet beschikbaar — geen vervangende weergave.';
+            img.replaceWith(notice);
         }
-        if (/\.(webp|jpe?g)$/i.test(src) && t.getAttribute('data-demo-retry') !== '1') {
-            t.setAttribute('data-demo-retry', '1');
-            t.src = src.replace(/\.(webp|jpe?g)$/i, '.png');
-            return;
-        }
-        t.setAttribute('data-demo-fallback', '1');
-        t.src = PLACEHOLDER_IMG;
     }, true);
 })();

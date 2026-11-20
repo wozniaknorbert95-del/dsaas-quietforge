@@ -204,7 +204,7 @@
 
   function botReply(data) {
     if (!data) return '';
-    return data.reply || data.reply_nl || data.last_reply || data.last_reply_nl || '';
+    return escapeHtml(data.reply || data.reply_nl || data.last_reply || data.last_reply_nl || '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   }
 
   // Client-facing labels — brain product-route-matrix (never Tier A/B or legacy aliases).
@@ -213,37 +213,6 @@
     tier_a: 'Premium',
     standard: 'Standard',
     premium: 'Premium'
-  };
-
-  /** Dev/screenshot fixture only (?da_fixture=results). Blocked on prod hostname + allowResultsFixture=false. */
-  const FIXTURE_RESPONSE = {
-    brief_id: 'fixture-inspire-v2',
-    mockups: [
-      {
-        variant: 'standard',
-        panel: 'side',
-        url: (CFG.vehicleImages && CFG.vehicleImages.caddy) || (CFG.themeUri + '/assets/images/voertuig_caddy.png'),
-        sku: 'MA-005',
-        naam: 'Magneetset compleet (3 stuks) — Caddy',
-        price_suggested: 129,
-        label_nl: 'Standard'
-      },
-      {
-        variant: 'premium',
-        panel: 'side',
-        url: (CFG.vehicleImages && CFG.vehicleImages.caddy) || (CFG.themeUri + '/assets/images/voertuig_caddy.png'),
-        sku: 'CS-SET-PRO-ZZP',
-        naam: 'Pro freelancer set — Caddy / Partner',
-        price_suggested: 199,
-        label_nl: 'Premium'
-      }
-    ],
-    recommended_products: [
-      { sku: 'MA-005', naam: 'Magneetset compleet (3 stuks) — Caddy', price_suggested: 129, highlight: true },
-      { sku: 'CS-SET-PRO-ZZP', naam: 'Pro freelancer set — Caddy / Partner', price_suggested: 199, highlight: true },
-      { sku: 'DF-004', naam: 'Voertuigreclame ontwerp + drukbestand', price_suggested: 199, highlight: false }
-    ],
-    wizard_deeplink: '/wizard/?voertuig=caddy&highlight=MA-005'
   };
 
   const VEHICLES = [
@@ -256,6 +225,7 @@
   const EDIT_CHIP_OPTIONS = {
     'company.branche': [
       { id: 'elektra', label: 'Installatie/elektra' },
+      { id: 'loodgieter', label: 'Loodgieterswerk' },
       { id: 'bouw', label: 'Bouw/schilder' },
       { id: 'schoonmaak', label: 'Schoonmaak/zorg' },
       { id: 'horeca', label: 'Horeca/retail' },
@@ -1137,36 +1107,23 @@
 
   function briefSummaryHtml() {
     const b = state.briefPartial;
-    const budgetExplicit = !!b._budget_explicit;
-    const budgetValue = String(b.budget_range || '').trim();
-    const budgetIsPlaceholder =
-      !budgetValue || (budgetValue === 'weet_ik_niet' && !budgetExplicit);
-    const budgetRow = budgetIsPlaceholder
-      ? ['Budget', '<em class="da-row--warning">Kies je richtbudget hierboven</em>']
-      : ['Budget', budgetValue];
-
-    // P0-5 — when premium carries budget_note_nl, flag premium aspirational
-    const premiumAspirational = !!state.premiumBudgetNote;
-    const premiumLabel = premiumAspirational
-      ? 'Premium <em class="da-row--aspirational">(groeirichting — buiten budget)</em>'
-      : 'Premium';
-
     const rows = [
       ['Bedrijf', b.bedrijfsnaam],
       ['Branche', b.branche],
       ['Regio', b.regio],
       ['Voertuig', b.vehicle],
       ['Gebruik', b.vehicle_usage],
+      ['Zichtmoment', b.exposure],
       ['Doelgroep', b.doelgroep],
       ['Diensten', Array.isArray(b.diensten) ? b.diensten.join(', ') : b.diensten],
       ['Indruk', b.desired_impression || b.positionering],
       ['Telefoon', b.telefoon],
       ['Website', b.website],
-      budgetRow,
-      ['Standard', b.mockup_b_label || b.mockup_b_sku],
-      [premiumLabel + ' (richting)', b.mockup_a_label || b.mockup_a_sku]
+      ['Doelactie', b.cta_label || b.primary_cta],
+      ['Budget voor offerte', b.budget_label || 'Nog te bevestigen'],
+      ['Ontwerpopdracht', 'Vergelijk twee wraprichtingen voor dezelfde flank.']
     ].filter(([, v]) => v);
-    return rows.map(([k, v]) => `<strong>${k}:</strong> ${v}`).join('<br>');
+    return rows.map(([k, v]) => `<strong>${k}:</strong> ${escapeHtml(String(v))}`).join('<br>');
   }
 
   function shouldShowBriefEditPanel() {
@@ -1550,8 +1507,8 @@
       if (rateLimited) {
         addBotMsg(
           '<strong>Je hebt al 2 mock-ups.</strong> ' +
-          'Per netwerk genereren we één Standard + één Premium per uur (kostenvrije demo). ' +
-          'Wacht een uur of neem contact op via flexgrafik.nl.'
+          'De generatielimiet voor deze demo is bereikt. ' +
+          'Neem bij vragen contact op via flexgrafik.nl.'
         );
       } else {
         addBotMsg('<strong>Generatie mislukt.</strong> ' + (msg || 'Probeer later opnieuw.') +
@@ -1616,7 +1573,7 @@
       sessionStorage.setItem('designAgentBrief', JSON.stringify({
         session_id: state.sessionId,
         brief_id: state.apiResponse?.brief_id || null,
-        mockups: state.apiResponse?.mockups || [],
+        mockups: (state.apiResponse?.mockups || []).map(({variant,naam,sku}) => ({variant,naam,sku})),
         bedrijfsnaam: b.bedrijfsnaam || '',
         branche: b.branche || '',
         vehicle: normalizeVehicleId(b.vehicle) || 'caddy',
@@ -1637,7 +1594,7 @@
     tail.forEach(msg => {
       if (!msg || !msg.content) return;
       if (msg.role === 'user') addUserMsg(msg.content);
-      else if (msg.role === 'assistant') addBotMsg(msg.content);
+      else if (msg.role === 'assistant') addBotMsg(escapeHtml(msg.content));
     });
   }
 
@@ -1651,7 +1608,7 @@
   function showResults() {
     INPUT.innerHTML =
       '<div style="text-align:center;padding:8px;color:var(--zzp-success,#22c55e);font-weight:600;font-size:0.9rem">' +
-      '✓ Ontwerp klaar — scroll naar beneden voor je resultaten</div>';
+      escapeHtml(state.apiResponse.notice || 'Bekijk je resultaten hieronder.') + '</div>';
     const mockups = state.apiResponse?.mockups || [];
     if (mockups.length && mockups.every(isStubMockup)) {
       addBotMsg(
@@ -1659,10 +1616,11 @@
         'Probeer het later opnieuw of neem contact op met FlexGrafik.'
       );
     } else {
-      addBotMsg('<strong>Hier zijn je twee ontwerpen!</strong> Scroll naar beneden om ze te bekijken.');
+      addBotMsg(escapeHtml(state.apiResponse.notice || 'Bekijk de twee richtingen.'));
     }
     renderMockups();
     renderRecommendations();
+    renderAgencyBrief(null);
     hideOfferteSuccess();
     RESULTS.hidden = false;
     setTimeout(() => RESULTS.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
@@ -1693,6 +1651,7 @@
     document.querySelectorAll('.da-mockup-card').forEach(c => c.classList.remove('da-mockup-card--selected'));
     const card = document.querySelector('.da-mockup-card[data-sku="' + (mockup.sku || '') + '"]');
     if (card) card.classList.add('da-mockup-card--selected');
+    renderAgencyBrief(mockup);
     showOffertePanel(mockup);
     daTrackEvent('mockup_selected', {
       variant: mockupVariantKey(mockup),
@@ -1879,7 +1838,7 @@
           `<span class="da-mockup-card__badge">${escapeHtml(title)}</span>` + aspirationalBadge + imgTag +
         '</div>' +
         '<div class="da-mockup-card__body">' +
-          '<h3>' + escapeHtml(m.naam || title) + '</h3>' +
+          '<h3>' + escapeHtml(m.naam || title) + '</h3><p>' + escapeHtml(m.reason_nl || '') + '</p>' +
           (price ? '<p class="da-mockup-card__price">' + t('fromPrice') + ' ' + price +
             ' <span class="da-mockup-card__indicatief">(' + t('indicatief') + ')</span></p>' : '') +
           (isAspirational
@@ -1910,6 +1869,20 @@
     const mockups = state.apiResponse?.mockups || [];
     const hit = mockups.find(m => m.sku === sku);
     return hit ? tierLabel(hit) : '';
+  }
+
+  function renderAgencyBrief(selected) {
+    const response = state.apiResponse;
+    document.getElementById('wrap-source').textContent = response.notice;
+    document.getElementById('wrap-advice').textContent = response.advice;
+    const brief = document.getElementById('wrap-brief');
+    brief.value = response.brief + '\nRichting: ' + (selected ? tierLabel(selected) + ' · ' + selected.naam + '\nMotivatie: ' + selected.reason_nl : 'Nog te kiezen') + (selected?.placement ? '\nLogopositie (% beeld): x ' + selected.placement.x + ', y ' + selected.placement.y + ', max. breedte ' + selected.placement.size : '') + '\nBeeldstatus: ' + response.notice;
+    const copy = document.getElementById('wrap-copy');
+    copy.textContent = 'Kopieer ontwerpbrief';
+    copy.onclick = async () => {
+      try { await navigator.clipboard.writeText(brief.value); copy.textContent='Gekopieerd'; }
+      catch { brief.focus(); brief.select(); copy.textContent='Tekst geselecteerd — kopieer handmatig'; }
+    };
   }
 
   function renderRecommendations() {
@@ -1987,26 +1960,6 @@
     }
   }
 
-  function loadResultsFixture() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('da_fixture') !== 'results') return false;
-    const host = window.location.hostname || '';
-    // Wave3 P2 — double lock: prod hostname OR allowResultsFixture===false → no faux mockups.
-    const hostIsProd = isProdDesignAgentHost(host);
-    const fixtureOptIn = CFG.allowResultsFixture !== false;
-    if (hostIsProd || !fixtureOptIn) {
-      stripFixtureQueryParam();
-      return false;
-    }
-    state.apiResponse = FIXTURE_RESPONSE;
-    state.briefPartial = { vehicle: 'caddy', mockup_b_sku: 'MA-005', mockup_a_sku: 'CS-SET-PRO-ZZP' };
-    INPUT.innerHTML =
-      '<div style="text-align:center;padding:8px;color:var(--text-secondary,#a1a1aa);font-size:0.85rem">' +
-      'Voorbeeldresultaten (fixture)</div>';
-    showResults();
-    return true;
-  }
-
   function syncLocalePicker() {
     const root = document.getElementById('da-lang');
     if (!root) return;
@@ -2066,7 +2019,7 @@
 
   async function init() {
     bindOfferteForm();
-    if (loadResultsFixture()) return;
+
 
     state.locale = setLocale(getLocale());
     bindLocalePicker();

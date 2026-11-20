@@ -1,7 +1,7 @@
 {
   "demo": "inspire",
   "version": "2.0.0",
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "sot": "todos/inspire.json",
   "build_gate": "npm run typecheck && npm run lint && npm run build",
   "doe_ref": "docs/operations/plans/2026-11-18-enterprise-program-v2.md (DoE INSPIRE z G0)",
@@ -531,7 +531,7 @@
   },
   "decided_generation_stack": {
     "decided_2026_11_19": "(archiwum) HYBRYDA: model rastrowy (SDXL/flux) generuje grafike wrapu + kompozycja mechaniczna z prawdziwym logo + fallback szablonowy + limit 1/visitor. Zob. decided_2026_11_20.",
-    "decided_2026_11_20": "RASTER-FIRST (werdykt Dowodcy po odrzuceniu wlasnego generatora SVG - spalona sesja, jakosc nie dorownuje modelom). JEDYNE zrodlo grafiki makiety = MODEL RASTROWY przez POST /api/v1/generate-art (adapter callProvider() w functions/api/v1/generate-art.ts; flux-1-schnell = Phase 1 darmowy; profesjonalny model rastrowy (GPT 2.6) = podmiana jednej funkcji + klucz w env). Prompt = DANE Z CZATU (vehicleType, brandColors z logo, businessType, panele z sku_active_panels) + czysta strefa na logo. Kompozycja mechaniczna: szablon voertuig_*.png + raster + PRAWDZIWE logo klienta (mockup-composer: union-clip fix, maska karoserii voertuig_*-mask.png, multiply z cieniami zdjecia) - logo NIGDY przez AI. ODRZUCONE: wlasne generatory grafiki (SVG/proceduralne/design-engine/golden-sheet). FAZA 2: Mollie + mocny model."
+    "decided_2026_11_20": "Tylko wrapping: dwa kierunki dla tego samego auta i zakresu folii. Sunburst generuje makietę, cf-flux to jawny test układu. Lokalna kompozycja oryginalnego logo i kontaktu po przeglądzie strefy, bez starego pipeline flat artwork."
   },
   "hard_rules": [
     "API-first: jedyne zrodlo grafiki makiety = /api/v1/generate-art (model rastrowy)",
@@ -544,5 +544,13 @@
     "Evidence przed werdyktem (screen przed/po + viewporty)",
     "Fallback demo = uczciwie oznaczony; limit 1 generacja/visitor (Phase 1)",
     "SCOPE LOCK: wszystko poza planem = odrzucane"
-  ]
+  ],
+  "agency_gates": {
+    "T1": "gotowe offline: 4 klasy × 2 kierunki i bank branż",
+    "T2": "adapter + test atomowych limitów lokalnie; płatne QA po deployu preview",
+    "T3": "kompozycja działa w E2E offline; kalibracja realnych kadrów 0/4",
+    "T4": "karty z uzasadnieniem, poradą i kopiowalnym briefem po NL; test wyboru B",
+    "T5": "wersjonowane statyczne heurystyki; live research nieaktywne",
+    "T6": "lokalne bramki i E2E; 0/8 obrazów Sunburst odebranych, werdykt otwarty"
+  }
 }

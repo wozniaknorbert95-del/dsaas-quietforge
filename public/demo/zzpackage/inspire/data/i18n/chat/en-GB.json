@@ -20,7 +20,7 @@
     "where_bus.upload": "Where does the van mostly drive — {regio}? Upload **side photo + logo** (PNG/JPG). White Caddy? Colour drives wrap contrast.",
     "vehicle.usage": "Is the vehicle business-only, or also private / lease / temporary?",
     "marketing.doelgroep": "Who should remember you after seeing the vehicle?",
-    "marketing.diensten": "Which 3 services should possibly appear on the vehicle? Keep it short.",
+    "marketing.diensten": "Which single service should someone remember?",
     "marketing.desired_impression": "What impression should the vehicle make?",
     "marketing.vibe_pick": "Pick which vibe fits — clean professional or bold standout. Click the image.",
     "marketing.primary_cta": "What should be the main call to action?",
@@ -30,13 +30,18 @@
     "brand_assets.logo_status": "Upload your logo. If you do not have a good file, just say so.",
     "brand_assets.brand_colors": "Which brand colours do you want to use?",
     "preferences.must_include": "What must definitely be visible?",
-    "budget.range": "So I do not show a mockup outside your comfort or budget: what is roughly your target budget for the vehicle execution?"
+    "budget.range": "So I do not show a mockup outside your comfort or budget: what is roughly your target budget for the vehicle execution?",
+    "vehicle.exposure": "When will your customer see the vehicle?"
   },
   "button_options": {
     "company.branche": [
       {
         "id": "elektra",
         "label": "Installation/electrical"
+      },
+      {
+        "id": "loodgieter",
+        "label": "Plumbing"
       },
       {
         "id": "bouw",
@@ -101,10 +106,6 @@
       {
         "id": "passenger",
         "label": "Passenger/Kombi"
-      },
-      {
-        "id": "other",
-        "label": "Other"
       }
     ],
     "vehicle.usage": [
@@ -269,6 +270,20 @@
       {
         "id": "qr",
         "label": "QR"
+      }
+    ],
+    "vehicle.exposure": [
+      {
+        "id": "moving",
+        "label": "In traffic"
+      },
+      {
+        "id": "parked",
+        "label": "Parked at a job"
+      },
+      {
+        "id": "both",
+        "label": "Both"
       }
     ]
   },

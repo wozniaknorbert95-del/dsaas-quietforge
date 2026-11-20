@@ -1,405 +1,80 @@
-/**
- * ==========================================
- * ZZPACKAGE INSPIRE — MECHANICAL MOCKUP COMPOSER (Step B)
- * ==========================================
- *
- * Vanilla JS + canvas port of the ORIGINAL engine composition logic
- * (flexgrafik-inspire / engine/compose_ref.py + brain/panel-map.json).
- * No dependencies, no bundler — loaded before demo-boot.js.
- *
- * HYBRID GENERATION STACK (todos/inspire.json decided_generation_stack):
- *   1. SDXL generates FLAT WRAP ARTWORK only (Step A: /api/v1/generate-art).
- *   2. THIS MODULE composes it mechanically: vehicle template (voertuig_*.png)
- *      + AI artwork clipped to the panel-map wrap zones + the customer's REAL
- *      logo over the "deur" zone.
- *   3. THE LOGO NEVER PASSES THROUGH AI. It is only knocked out (white plate
- *      removal) and uniformly scaled — no warp, no colour change, no redraw.
- *
- * Faithful ports (exact original maths):
- *   - knockoutWhiteBackground(): r,g,b >= 245 → transparent (threshold 245).
- *   - logoRect(): "deur" panel, x = w*x_pct + 8, y = h*y_pct + 8,
- *     x2 = x + w*w_pct*0.75, y2 = y + h*h_pct*0.45 (int truncation like int()).
- *   - logo fit: ratio = min(max_w/logo_w, max_h/logo_h), trunc resize, paste
- *     top-left at (lx, ly) (compose_ref.py compose_template_on_vehicle).
- *   - downscale(): max width 800, height truncated (downscale_png).
- *   - template is downscaled BEFORE the logo maths (preview path of
- *     compose_template_on_vehicle: resize base first, then _logo_rect).
- *   - no-logo fallback: minimal typographic logo (draw_typo_logo port).
- */
-(function () {
-    'use strict';
-
-    // ============================================================
-    // Constants — compose_ref.py / brain/panel-map.json
-    // ============================================================
-    var PANEL_MAP_URL = 'data/panel-map.json';
-    var KNOCKOUT_THRESHOLD = 245;   // knockout_white_background(threshold=245)
-    var LOGO_OFFSET_PX = 8;         // _logo_rect +8px offsets
-    var LOGO_W_FACTOR = 0.75;       // _logo_rect x2 factor
-    var LOGO_H_FACTOR = 0.45;       // _logo_rect y2 factor
-    var PREVIEW_MAX_WIDTH = 800;    // downscale_png(max_width=800)
-
-    /**
-     * ARTWORK BLEND (documented, Step B decision): the AI wrap artwork is
-     * clipped to the panel-map wrap-zone rects (rounded_vinyl clip) and drawn
-     * with source-over compositing at globalAlpha 0.62. The vehicle photo
-     * stays visible underneath at 38% — body shading, contours and reflections
-     * read through, so the artwork looks like printed vinyl on the photographed
-     * vehicle instead of a flat sticker. The real logo is pasted LAST at full
-     * opacity on top of everything.
-     */
-    var ARTWORK_ALPHA = 1.0;         // opaque art + multiply shading (K1 verdict 2026-11-20)
-    var PANEL_RADIUS = 4;           // panel_shape_style: "rounded_vinyl"
-    var DEFAULT_WRAP_ZONE = ['zij', 'deur', 'achter'];
-
-    var panelMapCache = null;
-
-    // ============================================================
-    // Panel map (repo SSoT — brain/panel-map.json, copied verbatim to
-    // data/panel-map.json). logoRect() needs it; composeMockup() loads it.
-    // ============================================================
-    function loadPanelMap() {
-        if (panelMapCache) return Promise.resolve(panelMapCache);
-        return fetch(PANEL_MAP_URL, { cache: 'no-store' })
-            .then(function (res) {
-                if (!res.ok) throw new Error('[mockup-composer] panel-map.json HTTP ' + res.status);
-                return res.json();
-            })
-            .then(function (json) {
-                if (!json || !json.panels || !json.panels.caddy || !json.panels.caddy.deur) {
-                    throw new Error('[mockup-composer] panel-map.json has no panels.*.deur data');
-                }
-                panelMapCache = json;
-                return json;
-            });
-    }
-
-    // ============================================================
-    // knockout_white_background — exact port (threshold 245)
-    // ============================================================
-    function knockoutWhiteBackground(imageData) {
-        var d = imageData.data;
-        for (var i = 0; i < d.length; i += 4) {
-            if (d[i + 3] === 0) continue;
-            if (d[i] >= KNOCKOUT_THRESHOLD && d[i + 1] >= KNOCKOUT_THRESHOLD && d[i + 2] >= KNOCKOUT_THRESHOLD) {
-                d[i + 3] = 0;
-            }
-        }
-        return imageData;
-    }
-
-    // ============================================================
-    // _logo_rect — exact port (deur panel + 8px offsets, 0.75/0.45 factors)
-    // ============================================================
-    function logoRect(w, h, vehicle, map) {
-        var m = map || panelMapCache;
-        if (!m || !m.panels) {
-            throw new Error('[mockup-composer] panel-map not loaded (call loadPanelMap first)');
-        }
-        // compose_ref.py: panels.get(vehicle, panels["caddy"])
-        var panels = m.panels[vehicle] || m.panels.caddy;
-        var deur = panels.deur;
-        var x = Math.trunc(w * deur.x_pct) + LOGO_OFFSET_PX;
-        var y = Math.trunc(h * deur.y_pct) + LOGO_OFFSET_PX;
-        var x2 = x + Math.trunc(w * deur.w_pct * LOGO_W_FACTOR);
-        var y2 = y + Math.trunc(h * deur.h_pct * LOGO_H_FACTOR);
-        return { x: x, y: y, x2: x2, y2: y2 };
-    }
-
-    // ============================================================
-    // Image loading helpers (File / Blob / URL / data URL → HTMLImageElement)
-    // ============================================================
-    function loadImage(source) {
-        return new Promise(function (resolve, reject) {
-            if (!source) {
-                reject(new Error('[mockup-composer] empty image source'));
-                return;
-            }
-            if (source.tagName === 'IMG' || source.tagName === 'CANVAS') {
-                resolve(source);
-                return;
-            }
-            var img = new Image();
-            var objectUrl = null;
-            img.onload = function () {
-                if (objectUrl) URL.revokeObjectURL(objectUrl);
-                resolve(img);
-            };
-            img.onerror = function () {
-                if (objectUrl) URL.revokeObjectURL(objectUrl);
-                reject(new Error('[mockup-composer] image load failed'));
-            };
-            if (typeof source === 'string') {
-                img.src = source;
-            } else if (typeof Blob !== 'undefined' && source instanceof Blob) {
-                objectUrl = URL.createObjectURL(source);
-                img.src = objectUrl;
-            } else {
-                reject(new Error('[mockup-composer] unsupported image source'));
-            }
+/* A finished vehicle photograph is the background. Only the uploaded logo and
+   confirmed contact are drawn locally; the original logo file never leaves the browser. */
+window.MockupComposer = (() => {
+    function load(src) {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.onload = () => resolve(image);
+            image.onerror = () => reject(new Error('Beeld niet leesbaar.'));
+            image.src = src;
         });
     }
-
-    function sourceSize(img) {
-        return {
-            w: img.naturalWidth || img.width || 0,
-            h: img.naturalHeight || img.height || 0
+    async function inspect(image, logo, initial, label, contact) {
+        const dialog = document.createElement('dialog');
+        dialog.className = 'wrap-proof';
+        dialog.innerHTML = '<h2></h2><p>Controleer eerst: hele voertuig zichtbaar, juiste kleur, geen verzonnen tekst, beeldmerk of vervorming. Keur het beeld af bij twijfel. Tik in het midden van een leeg deurvlak, weg van naden en handgreep. Gebruik de schuiven voor fijnafstelling.</p><canvas></canvas><div class="wrap-controls"></div><button type="button" class="btn-vca btn-action">Plaatsing goedkeuren</button> <button type="button">Beeld afkeuren</button>';
+        dialog.querySelector('h2').textContent = 'Controle logoplaatsing · ' + label;
+        const canvas = dialog.querySelector('canvas');
+        canvas.width = image.width; canvas.height = image.height;
+        const ctx = canvas.getContext('2d');
+        const controls = {};
+        const accept = dialog.querySelector('button');
+        accept.disabled = !initial;
+        function draw() {
+            ctx.drawImage(image, 0, 0);
+            const w = canvas.width, h = canvas.height;
+            const scale = Math.min(w * controls.size.value / 100 / logo.width, h * 0.10 / logo.height);
+            const lw = logo.width * scale, lh = logo.height * scale;
+            const x = w * controls.x.value / 100, y = h * controls.y.value / 100;
+            ctx.drawImage(logo, x-lw/2, y-lh/2, lw, lh);
+            if (contact) {
+                ctx.fillStyle = '#111'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+                ctx.font = `bold ${Math.round(h * .018)}px sans-serif`;
+                ctx.fillText(contact, x, y+lh/2+2, w*.19);
+            }
+        }
+        for (const [key, title, min, max, def] of [['x','Horizontaal',10,90,36],['y','Verticaal',16,84,54],['size','Logobreedte',3,17,10]]) {
+            const label = document.createElement('label'); label.textContent = title;
+            const el = document.createElement('input'); el.type = 'range'; el.min=min; el.max=max; el.step=.1;
+            el.value=initial?.[key] ?? def; controls[key]=el;
+            el.oninput = () => { draw(); accept.disabled=false; };
+            label.append(el); dialog.querySelector('.wrap-controls').append(label);
+        }
+        canvas.onclick = event => {
+            const rect = canvas.getBoundingClientRect();
+            controls.x.value=100*(event.clientX-rect.left)/rect.width;
+            controls.y.value=100*(event.clientY-rect.top)/rect.height;
+            draw(); accept.disabled=false;
         };
+        document.body.append(dialog);
+        try {
+            draw(); dialog.showModal();
+            await new Promise((resolve,reject) => {
+                accept.onclick=resolve;
+                dialog.querySelectorAll('button')[1].onclick=dialog.oncancel=()=>reject(new Error('Beeld afgekeurd.'));
+            });
+            return { url: canvas.toDataURL('image/png'), placement: Object.fromEntries(Object.entries(controls).map(([key,el])=>[key,Number(el.value)])) };
+        } finally { dialog.remove(); }
     }
-
-    /** Logo plate → knockout canvas (white plate removed, alpha preserved). */
-    function knockoutCanvas(img) {
-        var size = sourceSize(img);
-        var c = document.createElement('canvas');
-        c.width = size.w;
-        c.height = size.h;
-        var ctx = c.getContext('2d', { willReadFrequently: true });
-        ctx.drawImage(img, 0, 0);
-        var data = ctx.getImageData(0, 0, size.w, size.h);
-        knockoutWhiteBackground(data);
-        ctx.putImageData(data, 0, 0);
-        return c;
+    async function compose(images, file, vehicle, contact) {
+        if (!(file instanceof Blob) || !file.size || !Array.isArray(images) || images.length!==2) throw new Error('Bronbestand ontbreekt.');
+        const mapResponse=await fetch('data/panel-map.json');
+        if (!mapResponse.ok) throw new Error('Plaatsingskaart ontbreekt.');
+        const map=await mapResponse.json();
+        if (!Object.hasOwn(map.vehicles,vehicle)) throw new Error('Onbekend voertuig.');
+        const logoUrl=URL.createObjectURL(file);
+        try {
+            const logo=await load(logoUrl);
+            const variants=['standard','premium'];
+            const photos=await Promise.all(variants.map(async style=>{
+                const img=images.find(it=>it.style===style)?.image;
+                if (!img || img.format!=='base64' || !['image/png','image/jpeg'].includes(img.mimeType)) throw new Error('Variant ontbreekt.');
+                return load('data:'+img.mimeType+';base64,'+img.data);
+            }));
+            const out=[];
+            for (const [i,style] of variants.entries()) out.push(await inspect(photos[i],logo,map.vehicles[vehicle]?.[style],i?'B':'A',contact));
+            return out;
+        } finally { URL.revokeObjectURL(logoUrl); }
     }
-
-    // ============================================================
-    // draw_typo_logo — minimal typographic logo (T-008 port): bold sans,
-    // brand colour, used ONLY when the customer has no logo file.
-    // ============================================================
-    function drawTypoLogo(text, color) {
-        var label = String(text || '').trim().slice(0, 24) || 'Logo';
-        var font = '700 72px Arial, Helvetica, sans-serif';
-        var probe = document.createElement('canvas').getContext('2d');
-        probe.font = font;
-        var pad = 24;
-        var c = document.createElement('canvas');
-        c.width = Math.ceil(probe.measureText(label).width) + pad * 2;
-        c.height = 72 + pad * 2;
-        var ctx = c.getContext('2d'); // resizing resets context state
-        ctx.font = font;
-        ctx.fillStyle = /^#[0-9a-fA-F]{6}$/.test(String(color || '')) ? color : '#101014';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(label, c.width / 2, c.height / 2);
-        return c;
-    }
-
-    // ============================================================
-    // downscale_png — preview downscale (max width 800, height truncated)
-    // ============================================================
-    function downscale(canvas, maxWidth) {
-        var max = maxWidth || PREVIEW_MAX_WIDTH;
-        if (canvas.width <= max) return canvas;
-        var ratio = max / canvas.width;
-        var out = document.createElement('canvas');
-        out.width = max;
-        out.height = Math.max(1, Math.trunc(canvas.height * ratio));
-        var ctx = out.getContext('2d');
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high'; // closest canvas analogue to LANCZOS
-        ctx.drawImage(canvas, 0, 0, out.width, out.height);
-        return out;
-    }
-
-    // ============================================================
-    // Artwork placement — clip to panel rects (rounded_vinyl), "cover" fit
-    // ============================================================
-    function roundedPanelPath(ctx, x, y, w, h, r, reset) {
-        var radius = Math.min(r, w / 2, h / 2);
-        // reset=false adds a SUBPATH to the current path (union clips);
-        // default resets the path first (single shape).
-        if (reset !== false) ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.arcTo(x + w, y, x + w, y + h, radius);
-        ctx.arcTo(x + w, y + h, x, y + h, radius);
-        ctx.arcTo(x, y + h, x, y, radius);
-        ctx.arcTo(x, y, x + w, y, radius);
-        ctx.closePath();
-    }
-
-    function drawCover(ctx, img, x, y, w, h) {
-        var size = sourceSize(img);
-        if (!size.w || !size.h) return;
-        var scale = Math.max(w / size.w, h / size.h);
-        var dw = size.w * scale;
-        var dh = size.h * scale;
-        ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
-    }
-
-    // ============================================================
-    // composeMockup — layered composition (compose_ref.py port + wrap zone)
-    //   1. vehicle template base (downscaled to <=800 FIRST, like the original
-    //      preview path — the logo maths runs on the downscaled size)
-    //   2. AI wrap artwork clipped to the wrap-zone panels at alpha 0.62
-    //   3. REAL logo (knockout + uniform min-ratio fit) over the "deur" zone,
-    //      ON TOP — never transformed beyond uniform scale.
-    // Returns a Promise< PNG data URL (<=800px wide) >.
-    // ============================================================
-    function composeMockup(opts) {
-        opts = opts || {};
-        return loadPanelMap().then(function (map) {
-            if (!opts.templateImg) throw new Error('[mockup-composer] templateImg required');
-            var vehicle = (opts.vehicle && map.panels[opts.vehicle]) ? opts.vehicle : 'caddy';
-            var panels = map.panels[vehicle];
-            var wrapZone = (Array.isArray(opts.panels) && opts.panels.length ? opts.panels : DEFAULT_WRAP_ZONE)
-                .filter(function (key) { return !!panels[key]; });
-            if (!wrapZone.length) wrapZone = DEFAULT_WRAP_ZONE.filter(function (key) { return !!panels[key]; });
-
-            // --- 1. base: template, downscaled BEFORE the logo maths
-            var tplSize = sourceSize(opts.templateImg);
-            if (!tplSize.w || !tplSize.h) throw new Error('[mockup-composer] template has no size');
-            var w, h;
-            if (tplSize.w > PREVIEW_MAX_WIDTH) {
-                var ratio = PREVIEW_MAX_WIDTH / tplSize.w;
-                w = PREVIEW_MAX_WIDTH;
-                h = Math.max(1, Math.trunc(tplSize.h * ratio));
-            } else {
-                w = tplSize.w;
-                h = tplSize.h;
-            }
-            var canvas = document.createElement('canvas');
-            canvas.width = w;
-            canvas.height = h;
-            var ctx = canvas.getContext('2d');
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            ctx.drawImage(opts.templateImg, 0, 0, w, h);
-
-            // --- 2. Wrap artwork as ONE continuous design across the wrap-zone
-            // bounding box (per-panel repetition looked like tiled wallpaper;
-            // a real wrap is one composition flowing over the panels).
-            if (opts.artworkImg) {
-                var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-                wrapZone.forEach(function (key) {
-                    var p = panels[key];
-                    var rx = Math.trunc(w * p.x_pct);
-                    var ry = Math.trunc(h * p.y_pct);
-                    var rw = Math.trunc(w * p.w_pct);
-                    var rh = Math.trunc(h * p.h_pct);
-                    if (rw < 1 || rh < 1) return;
-                    minX = Math.min(minX, rx); minY = Math.min(minY, ry);
-                    maxX = Math.max(maxX, rx + rw); maxY = Math.max(maxY, ry + rh);
-                });
-                if (maxX > minX && maxY > minY) {
-                    var off = document.createElement('canvas');
-                    off.width = w;
-                    off.height = h;
-                    var octx = off.getContext('2d');
-                    octx.imageSmoothingEnabled = true;
-                    octx.imageSmoothingQuality = 'high';
-                    // a. OPAQUE vinyl artwork on the offscreen canvas
-                    octx.save();
-                    octx.globalAlpha = ARTWORK_ALPHA;
-                    // clip to the UNION of panel shapes so the design flows
-                    // across them — one path, each panel a subpath (the old
-                    // per-panel beginPath() kept only the LAST panel's shape)
-                    octx.beginPath();
-                    wrapZone.forEach(function (key) {
-                        var p = panels[key];
-                        var rx = Math.trunc(w * p.x_pct);
-                        var ry = Math.trunc(h * p.y_pct);
-                        var rw = Math.trunc(w * p.w_pct);
-                        var rh = Math.trunc(h * p.h_pct);
-                        if (rw < 1 || rh < 1) return;
-                        roundedPanelPath(octx, rx, ry, rw, rh, PANEL_RADIUS, false);
-                    });
-                    octx.clip();
-                    drawCover(octx, opts.artworkImg, minX, minY, maxX - minX, maxY - minY);
-                    octx.restore();
-
-                    // b. PHOTO SHADING through the vinyl: re-apply the template
-                    // with 'multiply' — white body keeps the artwork, shadows,
-                    // panel gaps and contours show through (transparent areas
-                    // stay untouched). This is what separates a mock-up from a
-                    // colour patch.
-                    octx.save();
-                    octx.globalCompositeOperation = 'multiply';
-                    octx.drawImage(opts.templateImg, 0, 0, w, h);
-                    octx.restore();
-
-                    // c. BODY-SILHOUETTE MASK: the design lands only on body
-                    // panels — never on glass, wheels or the studio backdrop.
-                    if (opts.maskImg) {
-                        octx.save();
-                        octx.globalCompositeOperation = 'destination-in';
-                        octx.drawImage(opts.maskImg, 0, 0, w, h);
-                        octx.restore();
-                    }
-
-                    ctx.drawImage(off, 0, 0);
-                }
-            }
-
-            // --- 3. REAL logo on top (or minimal typo logo when no logo file)
-            var mark = null;
-            if (opts.logoImg) {
-                mark = knockoutCanvas(opts.logoImg);
-            } else if (opts.bedrijfsnaam) {
-                mark = drawTypoLogo(opts.bedrijfsnaam, opts.brandColor);
-            }
-            if (mark) {
-                // compose_ref.py _logo_rect + min-ratio fit + top-left paste
-                var rect = logoRect(w, h, vehicle, map);
-                var maxW = Math.max(1, rect.x2 - rect.x);
-                var maxH = Math.max(1, rect.y2 - rect.y);
-                var fit = Math.min(maxW / Math.max(mark.width, 1), maxH / Math.max(mark.height, 1));
-                var nw = Math.max(1, Math.trunc(mark.width * fit));
-                var nh = Math.max(1, Math.trunc(mark.height * fit));
-                ctx.drawImage(mark, rect.x, rect.y, nw, nh); // alpha-aware, uniform scale only
-            }
-
-            return downscale(canvas).toDataURL('image/png');
-        });
-    }
-
-    // ============================================================
-    // extractBrandColors — dominant colours from a logo (canvas quantise,
-    // same approach as the client extractor in dtp-design-agent.js).
-    // Returns ['#rrggbb', ...] (max `count`, engine fallback palette).
-    // ============================================================
-    function extractBrandColors(source, count) {
-        var max = count || 3;
-        return loadImage(source).then(function (img) {
-            var canvas = document.createElement('canvas');
-            var size = 80;
-            canvas.width = size;
-            canvas.height = size;
-            var ctx = canvas.getContext('2d', { willReadFrequently: true });
-            ctx.drawImage(img, 0, 0, size, size);
-            var data = ctx.getImageData(0, 0, size, size).data;
-            var colorMap = {};
-            for (var i = 0; i < data.length; i += 16) {
-                var r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
-                if (a < 128) continue;
-                var brightness = (r + g + b) / 3;
-                if (brightness < 20 || brightness > 235) continue;
-                var key = Math.round(r / 32) * 32 + ',' + Math.round(g / 32) * 32 + ',' + Math.round(b / 32) * 32;
-                colorMap[key] = (colorMap[key] || 0) + 1;
-            }
-            var sorted = Object.keys(colorMap)
-                .sort(function (a, b) { return colorMap[b] - colorMap[a]; })
-                .slice(0, max)
-                .map(function (key) {
-                    return '#' + key.split(',').map(function (c) {
-                        return ('0' + Number(c).toString(16)).slice(-2);
-                    }).join('');
-                });
-            return sorted.length ? sorted : ['#009fe3', '#d60075'];
-        });
-    }
-
-    window.MockupComposer = {
-        loadPanelMap: loadPanelMap,
-        knockoutWhiteBackground: knockoutWhiteBackground,
-        knockoutCanvas: knockoutCanvas,
-        logoRect: logoRect,
-        composeMockup: composeMockup,
-        downscale: downscale,
-        drawTypoLogo: drawTypoLogo,
-        loadImage: loadImage,
-        extractBrandColors: extractBrandColors,
-        PANEL_MAP_URL: PANEL_MAP_URL,
-        KNOCKOUT_THRESHOLD: KNOCKOUT_THRESHOLD,
-        ARTWORK_ALPHA: ARTWORK_ALPHA,
-        PREVIEW_MAX_WIDTH: PREVIEW_MAX_WIDTH
-    };
+    return {compose};
 })();

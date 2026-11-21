@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
-import CookieConsent from "@/components/analytics/CookieConsent";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HashScroll from "@/components/layout/HashScroll";
@@ -107,12 +105,10 @@ export default function RootLayout({
         />
       </head>
       <body data-app="services" className="min-h-full flex flex-col bg-[var(--qf-bg)] text-[var(--qf-text)]">
-        <GoogleAnalytics />
         <HashScroll />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <CookieConsent />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 /**
- * Conversion analytics — thin wrapper for measurement events.
- * Binding: docs/strategy/conversion-pipeline.md §10
+ * Conversion analytics hooks — client-only; no third-party tags on quietforge.nl
+ * (site traffic is measured by Cloudflare Web Analytics at the edge).
  */
 
 export type AnalyticsEvent =
@@ -31,17 +31,9 @@ export type AnalyticsEvent =
   | 'lab_evidence_open';
 
 export function trackEvent(event: AnalyticsEvent, detail?: Record<string, string>): void {
-  if (typeof window === 'undefined') {
+  if (typeof window === 'undefined' || process.env.NODE_ENV !== 'development') {
     return;
   }
 
-  window.dispatchEvent(
-    new CustomEvent('qf_analytics', {
-      detail: { event, ...detail },
-    })
-  );
-
-  if (process.env.NODE_ENV === 'development') {
-    console.info('[analytics]', event, detail ?? '');
-  }
+  console.info('[analytics]', event, detail ?? '');
 }

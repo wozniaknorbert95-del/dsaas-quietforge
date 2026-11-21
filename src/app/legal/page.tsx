@@ -102,18 +102,14 @@ export default function LegalPage() {
             </h2>
             <div className="mt-4 space-y-3 text-[var(--qf-text-dim)]">
               <p>
-                This site uses only anonymous visitor statistics (Google Analytics 4) to
-                understand which pages help small businesses. No advertising cookies and
-                no cross-site tracking are used.
+                This site uses Cloudflare Web Analytics to count aggregate page views and
+                help us see which content is useful. It is cookieless: no analytics
+                cookies, no local storage for tracking, no advertising, and no cross-site
+                tracking.
               </p>
               <p>
-                Analytics are disabled by default and are enabled only after you accept
-                the consent banner. You can withdraw or change your choice at any time by
-                clearing the site&apos;s storage in your browser settings.
-              </p>
-              <p>
-                A strictly necessary local-storage flag remembers your consent choice. It
-                contains no personal data.
+                The beacon is provided by our host (Cloudflare). We do not run Google
+                Analytics or similar third-party marketing tags on quietforge.nl.
               </p>
             </div>
           </section>
@@ -135,11 +131,11 @@ export default function LegalPage() {
                 controller.
               </p>
               <p>
-                <strong className="text-[var(--qf-text)]">Sub-processors:</strong> hosting
-                and CDN (Cloudflare Pages), email transport, and the messaging channel used
-                for delivery.
-                Each is bound by its own GDPR-compliant terms; a list is available on
-                request.
+                <strong className="text-[var(--qf-text)]">Sub-processors:</strong>{' '}
+                Cloudflare (hosting, CDN, and cookieless Web Analytics for quietforge.nl),
+                Resend (EU region, sending form notification emails to {EMAIL}), and
+                WhatsApp when you start a discovery chat. Each is bound by its own
+                GDPR-compliant terms; details are available on request.
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Security:</strong> processing is

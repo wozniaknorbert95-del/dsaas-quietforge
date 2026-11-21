@@ -132,10 +132,10 @@ export default function LegalPage() {
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Sub-processors:</strong>{' '}
-                Cloudflare (hosting and cookieless Web Analytics for quietforge.nl) and
-                Resend (EU region, sending form notification emails to {EMAIL}). WhatsApp
-                is used only when you start a discovery chat. Each provider operates under
-                its own GDPR-aligned terms.
+                Cloudflare (hosting, CDN, and cookieless Web Analytics for quietforge.nl),
+                Resend (EU region, sending form notification emails to {EMAIL}), and
+                WhatsApp when you start a discovery chat. Each is bound by its own
+                GDPR-compliant terms; details are available on request.
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Security:</strong> processing is

@@ -12,7 +12,7 @@ import {
   pause,
 } from './lib/video-record.mjs';
 
-const SITE = 'https://quietforge.flexgrafik.nl';
+const SITE = 'https://quietforge.nl';
 
 const SCENES = [
   { url: `${SITE}/founder/`, dwell: 6000 },

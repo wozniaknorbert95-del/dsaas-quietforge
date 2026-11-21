@@ -84,7 +84,7 @@ Prospect enters configurator
 
 Book a paid **Hours Engine Scan**. We measure quoting leaks from your files and recommend whether a configurator is the right first build.
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

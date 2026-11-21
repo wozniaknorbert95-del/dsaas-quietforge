@@ -2,18 +2,19 @@
  * Cloudflare Pages Function — POST /api/intake (MIG-30 / QUI-247).
  *
  * Replaces the former Next.js route src/app/api/intake (a static export has no API routes).
- * Mail goes out via the Resend HTTP API. Until Resend is configured in the Pages project
- * settings (RESEND_API_KEY, INTAKE_FROM, INTAKE_TO — secrets live ONLY there, never in
- * the repo), the endpoint answers 503 { error: 'INTAKE_NOT_READY' } and the form shows an
- * honest message instead of failing silently.
+ * Mail goes out via the Resend HTTP API. Until RESEND_API_KEY is set in the Pages project
+ * (secret — never in the repo), the endpoint answers 503 { error: 'INTAKE_NOT_READY' }.
+ * INTAKE_FROM / INTAKE_TO default to hello@quietforge.nl (see _lib/intake-env.ts).
  */
 
-interface Env {
-  RESEND_API_KEY?: string;
-  INTAKE_FROM?: string;
-  INTAKE_TO?: string;
-  INTAKE_DISABLED?: string;
-}
+import {
+  type IntakeMailEnv,
+  intakeFrom,
+  intakeTo,
+  isIntakeMailReady,
+} from './_lib/intake-env';
+
+type Env = IntakeMailEnv;
 
 interface Context {
   request: Request;
@@ -30,11 +31,8 @@ const json = (body: Record<string, unknown>, status: number): Response =>
     headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
   });
 
-const isReady = (env: Env): boolean =>
-  env.INTAKE_DISABLED !== 'true' && Boolean(env.RESEND_API_KEY && env.INTAKE_FROM && env.INTAKE_TO);
-
 async function handlePost(request: Request, env: Env): Promise<Response> {
-  if (!isReady(env)) {
+  if (!isIntakeMailReady(env)) {
     return json({ ok: false, error: 'INTAKE_NOT_READY' }, 503);
   }
 
@@ -94,8 +92,8 @@ async function handlePost(request: Request, env: Env): Promise<Response> {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: env.INTAKE_FROM,
-      to: [env.INTAKE_TO],
+      from: intakeFrom(env),
+      to: [intakeTo(env)],
       reply_to: email,
       subject: `[Scan: ${skuId}] ${company} — ${name}`,
       text,

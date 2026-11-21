@@ -17,7 +17,7 @@ superseded_reason: "Wrong angle — EN dev chat slide, not NL client intake on p
 
 # LinkedIn Post — INSPIRE build-in-public (v1 — archived)
 
-**Profile:** https://www.linkedin.com/in/flexgrafik-quietforge  
+**Profile:** https://www.linkedin.com/in/quietforge/  
 **Media:** 2-slide carousel (upload in order)  
 **Canon:** [rules.md](../rules.md) · [strategy.md](../strategy.md)
 

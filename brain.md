@@ -1,3 +1,5 @@
+> **ZASTĄPIONY — 2026-11-21.** Ten plik jest nieaktualny i częściowo sprzeczny. Cel, decyzje, fakty i pytania prowadzi teraz [`docs/ceo/`](docs/ceo/README.md) (CEO QuietForge). Nie opieraj na nim decyzji. Plik zostaje tylko jako historia.
+
 # Brain — dsaas-quietforge
 
 ## Canonical project memory | v2.0 | 2026-06-25
@@ -77,7 +79,7 @@
 11. **WhatsApp AVG:** opt-in, 90-day retention, delete webhook, privacy before agent launch.
 12. **Build fail = PR blocked.** Missing prod env blocks deploy.
 13. **Images:** WebP preferred; screenshots max 1600px; lazy below fold.
-14. **Form intake:** BookDiscovery + Waitlist POST to `/api/intake` and `/api/waitlist` — SMTP via Nodemailer to `quietforge@flexgrafik.nl`. Honeypot + rate-limit (3/10min/IP). Env `INTAKE_DISABLED=true` kills submissions server-side.
+14. **Form intake:** BookDiscovery + Waitlist POST to `/api/intake` and `/api/waitlist` — Cloudflare Pages Functions + Resend → `hello@quietforge.nl` (defaults in `functions/api/_lib/intake-env.ts`). Honeypot on form. Env `INTAKE_DISABLED=true` kills submissions server-side.
 
 ---
 
@@ -99,14 +101,10 @@
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Development | `G-LY0E7MW0HF` |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Preview | **Dashboard** — CLI blocked; see [`vercel-ga-preview-env.ps1`](scripts/vercel-ga-preview-env.ps1) |
 | `NEXT_PUBLIC_WHATSAPP_URL` | Production | WhatsApp deep link override |
-| `SMTP_HOST` | Production + Preview | `s34.cyber-folks.pl` |
-| `SMTP_PORT` | Production + Preview | `465` |
-| `SMTP_SECURE` | Production + Preview | `true` |
-| `SMTP_USER` | Production + Preview | `quietforge@flexgrafik.nl` |
-| `SMTP_PASS` | Production + Preview | **Dashboard** — mailbox password (never committed) |
-| `INTAKE_FROM` | Production + Preview | `quietforge@flexgrafik.nl` |
-| `INTAKE_TO` | Production + Preview | `quietforge@flexgrafik.nl` |
-| `INTAKE_DISABLED` | Production + Preview | `false` (set `true` to kill submissions) |
+| `RESEND_API_KEY` | Production (+ Preview) | **Secret** — Resend API key (never committed) |
+| `INTAKE_FROM` | Production (+ Preview) | Optional; default `Quietforge <hello@quietforge.nl>` in repo |
+| `INTAKE_TO` | Production (+ Preview) | Optional; default `hello@quietforge.nl` in repo |
+| `INTAKE_DISABLED` | Production (+ Preview) | `false` (set `true` to kill submissions) |
 
 **GA weekly gate:** `npm run ga4:gate` (requires `GOOGLE_APPLICATION_CREDENTIALS` for audit step).
 

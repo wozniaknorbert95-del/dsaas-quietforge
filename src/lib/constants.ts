@@ -16,7 +16,7 @@ export const BRAND_LOGO = {
   height: 1024,
 } as const;
 /** Public contact + intake destination mailbox */
-export const EMAIL = 'quietforge@flexgrafik.nl';
+export const EMAIL = 'hello@quietforge.nl';
 export const CREATOR = 'Norbert Wozniak';
 
 /** WhatsApp discovery — override via NEXT_PUBLIC_WHATSAPP_URL in Vercel if needed */
@@ -60,7 +60,7 @@ export function whatsappBookUrlWithLeak(
   );
 }
 
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/flexgrafik-quietforge';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/quietforge/';
 /** Independent owner-operated reference business and build laboratory. */
 export const FLEXGRAFIK_URL = 'https://flexgrafik.nl';
 

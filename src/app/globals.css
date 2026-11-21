@@ -233,7 +233,7 @@ body[data-app="flex-vcms"] .led--missing {
   background-color: var(--fx-time);
 }
 
-/* quietforge.flexgrafik.nl theme */
+/* quietforge.nl theme */
 body[data-app="services"] {
   --accent-primary: #e8a33d;   /* bursztyn/forge */
   --accent-secondary: #b8842f; 

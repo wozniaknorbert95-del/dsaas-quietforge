@@ -9,7 +9,7 @@ impact: "P0 — closes 1.5/5 conversion gap from LI audit"
 
 # LinkedIn Featured V2 — 4 slots mirror homepage
 
-**Profile:** [linkedin.com/in/flexgrafik-quietforge](https://www.linkedin.com/in/flexgrafik-quietforge)  
+**Profile:** [linkedin.com/in/flexgrafik-quietforge](https://www.linkedin.com/in/quietforge/)  
 **Time:** ~15 min · **HITL only** (no API automation)
 
 ## Before you start

@@ -1,10 +1,10 @@
 /**
- * GA4 prod smoke — quietforge.flexgrafik.nl
+ * GA4 prod smoke — quietforge.nl
  * Run: node scripts/ga4-prod-smoke.mjs
  */
 import { chromium } from 'playwright';
 
-const BASE = 'https://quietforge.flexgrafik.nl';
+const BASE = 'https://quietforge.nl';
 const MEASUREMENT_ID = 'G-LY0E7MW0HF';
 
 const REQUIRED_COLLECTS = [

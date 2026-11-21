@@ -6,5 +6,5 @@ if (-not (Test-Path $chrome)) {
 }
 Get-Process chrome -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 2
-Start-Process $chrome -ArgumentList "--remote-debugging-port=9222", "https://quietforge.flexgrafik.nl/"
+Start-Process $chrome -ArgumentList "--remote-debugging-port=9222", "https://quietforge.nl/"
 Write-Host "Chrome ready on :9222"

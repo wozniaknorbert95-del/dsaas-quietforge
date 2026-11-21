@@ -49,7 +49,7 @@ Welcome → [7 config steps] → Summary & checkout → your CRM / inbox / sheet
 
 Want a self-service funnel shaped around *your* offer? Book a paid **Hours Engine Scan** — we measure your quoting leaks and whether a configurator is the right first system.
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

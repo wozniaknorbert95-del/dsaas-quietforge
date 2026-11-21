@@ -3,7 +3,7 @@
  */
 import { chromium } from 'playwright';
 
-const BASE = 'https://flexgrafik-services.vercel.app';
+const BASE = 'https://quietforge.nl';
 const ROUTES = ['/', '/results/', '/pricing/', '/about/', '/book-discovery/'];
 
 async function main() {

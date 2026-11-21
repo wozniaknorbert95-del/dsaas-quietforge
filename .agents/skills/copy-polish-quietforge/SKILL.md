@@ -1,6 +1,6 @@
 ---
 name: copy-polish-quietforge
-description: Final microcopy and UI text polish for quietforge.flexgrafik.nl — eyebrow prefix rules, CTA canon, glued-copy grep gates, agency anti-positioning. Invoke before ship after section work or a live QA pass.
+description: Final microcopy and UI text polish for quietforge.nl — eyebrow prefix rules, CTA canon, glued-copy grep gates, agency anti-positioning. Invoke before ship after section work or a live QA pass.
 ---
 
 # copy-polish-quietforge — Quietforge Microcopy Gate

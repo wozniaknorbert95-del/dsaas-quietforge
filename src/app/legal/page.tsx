@@ -136,7 +136,8 @@ export default function LegalPage() {
               </p>
               <p>
                 <strong className="text-[var(--qf-text)]">Sub-processors:</strong> hosting
-                (Vercel), email transport, and the messaging channel used for delivery.
+                and CDN (Cloudflare Pages), email transport, and the messaging channel used
+                for delivery.
                 Each is bound by its own GDPR-compliant terms; a list is available on
                 request.
               </p>

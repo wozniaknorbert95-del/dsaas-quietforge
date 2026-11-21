@@ -143,7 +143,7 @@ export const ABOUT = {
   numbers: [
     { value: '30', label: 'trades — I see the patterns between them' },
     { value: 'Build → platform', label: 'working business patterns extracted into a governed core' },
-    { value: 'EN · PL · NL', label: 'spoken EN/PL · written NL (email)' },
+    { value: 'EN · PL', label: 'customer service in English and Polish' },
   ],
   offClockTitle: 'Off the clock',
   offClockBody:
@@ -166,7 +166,7 @@ export const HOME_SYSTEMS_PAINS = [
 
 export const FOOTER = {
   tagline: 'Systems that give you back your time.',
-  trustLine: 'Rotterdam, Netherlands · KVK 89057554 · Service in EN and NL',
+  trustLine: 'Rotterdam, Netherlands · KVK 89057554 · Service in EN and PL',
   portfolioPrompt: 'This site runs on its own integrated platform.',
   portfolioLink: "Builder's Lab →",
   portfolioHref: '/lab/',

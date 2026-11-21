@@ -3,7 +3,7 @@
   "tenant_id": "quietforge",
   "display_name": "QuietForge",
   "status": "active-test",
-  "domain": "quietforge.flexgrafik.nl",
+  "domain": "quietforge.nl",
   "industry": "smb-operating-systems",
   "locale": "en",
   "decision_owner": "commander",

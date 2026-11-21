@@ -5,7 +5,7 @@
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "services.flexgrafik.nl" }],
-      "destination": "https://quietforge.flexgrafik.nl/:path*",
+      "destination": "https://quietforge.nl/:path*",
       "permanent": true
     }
   ]

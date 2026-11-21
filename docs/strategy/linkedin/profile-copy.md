@@ -5,7 +5,7 @@ owner: "Norbert Wozniak"
 updated: "2026-06-30"
 version: "3.0"
 classification: "L3 — LinkedIn profile implementation"
-profile_url: "https://www.linkedin.com/in/flexgrafik-quietforge/"
+profile_url: "https://www.linkedin.com/in/quietforge//"
 ---
 
 # LinkedIn Profile Copy

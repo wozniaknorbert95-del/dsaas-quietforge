@@ -4,7 +4,7 @@ title: "LinkedIn Audit — flexgrafik-quietforge"
 owner: "Norbert Wozniak"
 auditor: "Agent (Chrome DevTools MCP)"
 date: "2026-06-29"
-profile_url: "https://www.linkedin.com/in/flexgrafik-quietforge/"
+profile_url: "https://www.linkedin.com/in/quietforge//"
 method: "Live session — logged-in Chrome CDP, full-page scroll + Services admin view"
 screenshots:
   - assets/linkedin-audit-2026-06-29-profile-full.png
@@ -15,7 +15,7 @@ supersedes_partial: "docs/archive/audits/2026-06-23/03-linkedin-audit.md (v2 own
 
 # LinkedIn Audit — Norbert Wozniak / Quietforge
 
-**Profile:** [linkedin.com/in/flexgrafik-quietforge](https://www.linkedin.com/in/flexgrafik-quietforge)  
+**Profile:** [linkedin.com/in/flexgrafik-quietforge](https://www.linkedin.com/in/quietforge/)  
 **Audit date:** 2026-06-29  
 **Goal lens:** B2B Quietforge (Automation Map €290 → builds €1,200+) — investor track secondary
 

@@ -15,7 +15,7 @@ persona: "Schilder Janssen (ZZP schilder, bus_l)"
 
 # LinkedIn Post — INSPIRE build-in-public v3 (carousel, no video)
 
-**Profile:** https://www.linkedin.com/in/flexgrafik-quietforge  
+**Profile:** https://www.linkedin.com/in/quietforge/  
 **Media:** 4-slide carousel (1080×1350, PNG, no video)  
 **Persona:** Schilder Janssen (NL ZZP schilder, Mercedes Vito `bus_l`)  
 **Canon:** [rules.md](../rules.md) · LI-R02 · LI-R03 · LI-R04 · LI-R06 · LI-R15  

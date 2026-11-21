@@ -21,5 +21,5 @@
   <rect class="box" x="160" y="260" width="400" height="72"/><text x="360" y="302" class="s" text-anchor="middle">Secret and dependency scan before the click</text>
   <rect class="box" x="640" y="260" width="400" height="72"/><text x="840" y="302" class="s" text-anchor="middle">No silent deploy to your production</text>
   <text x="600" y="400" class="s" text-anchor="middle">Lab schematic. Specialist steps — not a free-for-all. You still press the last button.</text>
-  <text x="600" y="480" class="s" text-anchor="middle">Quietforge — quietforge.flexgrafik.nl</text>
+  <text x="600" y="480" class="s" text-anchor="middle">Quietforge — quietforge.nl</text>
 </svg>

@@ -5,7 +5,7 @@ updated: 2026-09-16
 
 # SESSION ANCHOR — 2026-09-16
 
-> **Live domain:** https://quietforge.flexgrafik.nl/lab/ — **LIVE (7 stages, Governed tenant platform)**  
+> **Live domain:** https://quietforge.nl/lab/ — **LIVE (7 stages, Governed tenant platform)**  
 > **Branch:** `main` @ `5fb4ec0`  
 > **Deploy:** `dpl_rxjATdSR5mzj31kj9b7WmroWFV1q` · `flexgrafik-services` Production  
 > **Smoke:** `audit:lab` PASS on production · stages 01–07 · no 08/09 numbers  
@@ -28,7 +28,7 @@ Handoff: `docs/operations/handoffs/2026-09-16-lab-prod-live.md` · prior: `2026-
 
 ## Werdykt
 
-Lab 7-etapów jest na `quietforge.flexgrafik.nl/lab/`. Bloker Promote rozwiązany lokalnym CLI.
+Lab 7-etapów jest na `quietforge.nl/lab/`. Bloker Promote rozwiązany lokalnym CLI.
 
 ---
 
@@ -93,7 +93,7 @@ Wynik sesji (kod, deploy, decyzje).
 # PROMPT DLA AGENTA LOKALNEGO
 
 > Skopiuj blok poniżej 1:1 do lokalnego Cursor / OpenCode po pullu `main`.  
-> Cel: weryfikacja → polerka → deploy kompleksowy na `quietforge.flexgrafik.nl`.
+> Cel: weryfikacja → polerka → deploy kompleksowy na `quietforge.nl`.
 
 ```text
 MODE: executor lokalny (masz vercel login + sekrety) — QuietForge / dsaas-quietforge
@@ -101,7 +101,7 @@ MODE: executor lokalny (masz vercel login + sekrety) — QuietForge / dsaas-quie
 ## Kontekst (cloud już zrobił)
 - Branch produkcyjny: `main` @ ~`bc527cd` (Lab ICP: stages 07+08+09 → jeden `platform-build` / `#stage-07`).
 - Kod i git-main alias mają NOWĄ Lab (7 etapów, „Governed tenant platform”).
-- `https://quietforge.flexgrafik.nl/lab/` nadal STARA (9 etapów) — Production domain nieprzypięta.
+- `https://quietforge.nl/lab/` nadal STARA (9 etapów) — Production domain nieprzypięta.
 - Cloud NIE mógł: `npx vercel --prod`, Promote, `gh workflow run deploy.yml` (403).
 - Canon: nie „DSAAS” / OPA / Cedar jako produkt na Lab; public EN; proof tiers uczciwe.
 - Handoff: `docs/operations/handoffs/2026-09-16-lab-production-deploy.md`
@@ -140,10 +140,10 @@ Preferowana ścieżka (lokalny CLI, brain.md):
 
 ### D) Post-deploy smoke (MUST na żywej domenie)
 ```bash
-curl -sI https://quietforge.flexgrafik.nl/lab/ | head -5
-curl -sL https://quietforge.flexgrafik.nl/lab/ | rg -c 'Governed tenant platform'   # >0
-curl -sL https://quietforge.flexgrafik.nl/lab/ | rg 'qf-lab-stage-number">0[89]'     # expect 0
-AUDIT_BASE_URL=https://quietforge.flexgrafik.nl npm run audit:lab
+curl -sI https://quietforge.nl/lab/ | head -5
+curl -sL https://quietforge.nl/lab/ | rg -c 'Governed tenant platform'   # >0
+curl -sL https://quietforge.nl/lab/ | rg 'qf-lab-stage-number">0[89]'     # expect 0
+AUDIT_BASE_URL=https://quietforge.nl npm run audit:lab
 ```
 Ręcznie w przeglądarce:
 1. `/lab/` — 7 etapów; ostatni = Governed tenant platform
@@ -166,7 +166,7 @@ Ręcznie w przeglądarce:
 - Nie force-push `main`
 
 ## DONE WHEN
-- [ ] quietforge.flexgrafik.nl/lab/ pokazuje 7 etapów + Governed tenant platform
+- [ ] quietforge.nl/lab/ pokazuje 7 etapów + Governed tenant platform
 - [ ] audit:lab na produkcji PASS
 - [ ] SESSION-ANCHOR + handoff zaktualizowane
 ```

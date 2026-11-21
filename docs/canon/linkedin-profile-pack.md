@@ -3,7 +3,7 @@ status: ACTIVE
 title: LinkedIn profile pack — QuietForge
 owner: Norbert Wozniak
 updated: 2026-08-19
-profile: https://www.linkedin.com/in/flexgrafik-quietforge
+profile: https://www.linkedin.com/in/quietforge/
 cadence: PARKED
 ---
 

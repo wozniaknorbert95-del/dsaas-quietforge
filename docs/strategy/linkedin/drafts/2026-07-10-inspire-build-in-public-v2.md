@@ -13,7 +13,7 @@ supersedes: "2026-07-10-inspire-build-in-public.md"
 
 # LinkedIn Post — INSPIRE build-in-public v2
 
-**Profile:** https://www.linkedin.com/in/flexgrafik-quietforge  
+**Profile:** https://www.linkedin.com/in/quietforge/  
 **Media:** 4-slide carousel **or** screen recording + cover slide  
 **Video:** `docs/operations/media/linkedin-inspire-pro-9x16.mp4` (56s · QF EN captions · no VO)  
 **Rebuild video:** `npm run media:inspire-pro` from `services/` repo root  

@@ -20,7 +20,7 @@ import {
 import { join } from 'node:path';
 
 const INBOX_URL = process.env.JADZIA_INBOX_URL ?? '';
-const SITE = 'https://quietforge.flexgrafik.nl';
+const SITE = 'https://quietforge.nl';
 
 async function recordLiveInbox(page) {
   await page.goto(INBOX_URL, { waitUntil: 'networkidle', timeout: 90_000 });

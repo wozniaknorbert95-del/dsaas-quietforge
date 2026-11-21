@@ -111,4 +111,4 @@ Considering a similar programme for your advisory or professional services firm?
 **Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

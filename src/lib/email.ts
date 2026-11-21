@@ -3,7 +3,8 @@
  * Binding: docs/operations/handoffs/2026-07-15-intake-email.md
  * Secrets: SMTP_PASS only in .env.local / Vercel env (never committed — AGENTS.md §7).
  *
- * Configured SMTP (Cyberfolks): s34.cyber-folks.pl:465 SSL, mailbox quietforge@flexgrafik.nl.
+ * Local/dev SMTP optional; production intake uses Resend in functions/api/intake.ts.
+ * Public mailbox default: hello@quietforge.nl (Migadu).
  * Required env: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, INTAKE_FROM, INTAKE_TO.
  * Optional kill-switch: INTAKE_DISABLED='true' disables submission server-side.
  */

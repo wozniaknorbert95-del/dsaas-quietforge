@@ -87,4 +87,4 @@ Book a paid **Hours Engine Scan**. We measure quoting leaks from your files and 
 **Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

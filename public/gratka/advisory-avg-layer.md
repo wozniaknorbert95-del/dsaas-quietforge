@@ -75,4 +75,4 @@ Want the same rigour applied to your firm? Book a paid **Hours Engine Scan** —
 **Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

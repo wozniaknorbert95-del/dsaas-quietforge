@@ -57,4 +57,4 @@ README, walkthrough, optional light monthly care. Take it in-house anytime.
 **Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

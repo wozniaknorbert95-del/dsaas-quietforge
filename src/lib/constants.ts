@@ -16,7 +16,7 @@ export const BRAND_LOGO = {
   height: 1024,
 } as const;
 /** Public contact + intake destination mailbox */
-export const EMAIL = 'quietforge@flexgrafik.nl';
+export const EMAIL = 'hello@quietforge.nl';
 export const CREATOR = 'Norbert Wozniak';
 
 /** WhatsApp discovery — override via NEXT_PUBLIC_WHATSAPP_URL in Vercel if needed */

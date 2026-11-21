@@ -57,4 +57,4 @@ Not sure if your inbox is worth automating first? Book a paid **Hours Engine Sca
 **Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

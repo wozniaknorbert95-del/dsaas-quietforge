@@ -2,16 +2,17 @@
  * Cloudflare Pages Function — POST /api/waitlist (MIG-30 / QUI-247).
  *
  * Replaces the former Next.js route src/app/api/waitlist. Mail via the Resend HTTP API.
- * Until RESEND_API_KEY, INTAKE_FROM and INTAKE_TO are set in the Pages project settings
- * (never in the repo), it answers 503 { error: 'INTAKE_NOT_READY' }.
+ * Until RESEND_API_KEY is set in Pages (secret), it answers 503 { error: 'INTAKE_NOT_READY' }.
  */
 
-interface Env {
-  RESEND_API_KEY?: string;
-  INTAKE_FROM?: string;
-  INTAKE_TO?: string;
-  INTAKE_DISABLED?: string;
-}
+import {
+  type IntakeMailEnv,
+  intakeFrom,
+  intakeTo,
+  isIntakeMailReady,
+} from './_lib/intake-env';
+
+type Env = IntakeMailEnv;
 
 interface Context {
   request: Request;
@@ -26,11 +27,8 @@ const json = (body: Record<string, unknown>, status: number): Response =>
     headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
   });
 
-const isReady = (env: Env): boolean =>
-  env.INTAKE_DISABLED !== 'true' && Boolean(env.RESEND_API_KEY && env.INTAKE_FROM && env.INTAKE_TO);
-
 async function handlePost(request: Request, env: Env): Promise<Response> {
-  if (!isReady(env)) {
+  if (!isIntakeMailReady(env)) {
     return json({ ok: false, error: 'INTAKE_NOT_READY' }, 503);
   }
 
@@ -54,8 +52,8 @@ async function handlePost(request: Request, env: Env): Promise<Response> {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: env.INTAKE_FROM,
-      to: [env.INTAKE_TO],
+      from: intakeFrom(env),
+      to: [intakeTo(env)],
       reply_to: email,
       subject: `[Waitlist] ${email}`,
       text: `New waitlist sign-up\n\nEmail:     ${email}\nSubmitted: ${new Date().toISOString()}\nReferrer:  ${referrer || '—'}\n`,

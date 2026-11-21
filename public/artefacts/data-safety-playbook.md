@@ -26,4 +26,4 @@
 - You receive a **README** and can hand the system to any developer. This is never a trap.
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

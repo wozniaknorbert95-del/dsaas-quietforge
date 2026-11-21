@@ -52,4 +52,4 @@ Want a self-service funnel shaped around *your* offer? Book a paid **Hours Engin
 **Book:** quietforge.nl/book-discovery/
 
 ---
-*Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*
+*Norbert — Conversion Systems Architect · Quietforge · hello@quietforge.nl*

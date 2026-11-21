@@ -1,3 +1,5 @@
+> **ZASTĄPIONY — 2026-11-21.** Ten plik jest nieaktualny i częściowo sprzeczny. Cel, decyzje, fakty i pytania prowadzi teraz [`docs/ceo/`](docs/ceo/README.md) (CEO QuietForge). Nie opieraj na nim decyzji. Plik zostaje tylko jako historia.
+
 # Brain — dsaas-quietforge
 
 ## Canonical project memory | v2.0 | 2026-06-25

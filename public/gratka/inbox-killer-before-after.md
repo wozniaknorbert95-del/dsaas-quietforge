@@ -54,7 +54,7 @@ classify → plan → diff → approve
 
 Not sure if your inbox is worth automating first? Book a paid **Hours Engine Scan** — you send files, we measure, document is yours either way.
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
 *Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*

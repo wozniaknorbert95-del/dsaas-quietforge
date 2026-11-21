@@ -431,7 +431,7 @@ export const DIAGRAM_NODES: readonly DiagramNode[] = [
     northStar: 'Service layer — deploy governed conversion systems for SMB clients.',
     hoverLine: 'Hours Engine Scan from €149 → scoped build → handover',
     asIs: [
-      'B2B portfolio at quietforge.flexgrafik.nl',
+      'B2B portfolio at quietforge.nl',
       'Case studies + honest Built vs Planned',
       'Hours Engine Scan entry (from €149 excl. VAT, credited 30 days)',
     ],

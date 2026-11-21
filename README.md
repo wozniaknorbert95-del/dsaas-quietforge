@@ -1,6 +1,6 @@
 # dsaas-quietforge
 
-Tenant: QuietForge (quietforge.flexgrafik.nl) — this repository is the tenant instance and the operating repository that backs the public site.
+Tenant: QuietForge (quietforge.nl) — this repository is the tenant instance and the operating repository that backs the public site.
 
 ## Elevator pitch
 
@@ -8,7 +8,7 @@ QuietForge is an autonomous operating system for small teams (SMEs). This tenant
 
 ## What this repo proves
 
-- Live tenant content and tenant-config used to power quietforge.flexgrafik.nl
+- Live tenant content and tenant-config used to power quietforge.nl
 - Knowledge map, governance pointers and handoffs (docs/)
 - Demo-ready deploy and quick-start for evaluators
 
@@ -29,7 +29,7 @@ We deliver Company Brains and multi-agent orchestration that reduce administrati
 
 ## How this maps to the public site
 
-- Site: https://quietforge.flexgrafik.nl/
+- Site: https://quietforge.nl/
 - This repo: tenant-config, docs/Knowledge Map and content SSoT
 - Platform canonical: see `dsaas-platform-main` (platform policies & runtime)
 

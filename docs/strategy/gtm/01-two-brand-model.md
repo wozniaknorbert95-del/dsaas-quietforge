@@ -23,7 +23,7 @@ Dwa brandy, jedna rzeczywistość operacyjna:
 | **FlexGrafik** | RUN + EARN + **PROOF** | Holenderska drukarnia / ZZP — na niej **działa** silnik (wizard, inbox, LOS). | **Proof layer** — `DualBrandBand` §2, `/results/`, founder story |
 | **Quietforge** | DEPLOY + EXPLAIN + **SELL B2B** | Conversion Systems Architect — **wdraża** ten sam typ systemu u innych NL SMB. | **Primary w hero** — Problem→System→Effect, de-jargon, L3 Map (v3.0 ✅) |
 
-Profil LinkedIn: [linkedin.com/in/flexgrafik-quietforge](https://www.linkedin.com/in/flexgrafik-quietforge) — **jedno konto**, oba brandy widoczne, ale **job sprzedażowy = Quietforge**.
+Profil LinkedIn: [linkedin.com/in/flexgrafik-quietforge](https://www.linkedin.com/in/quietforge/) — **jedno konto**, oba brandy widoczne, ale **job sprzedażowy = Quietforge**.
 
 ---
 

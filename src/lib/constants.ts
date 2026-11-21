@@ -60,7 +60,7 @@ export function whatsappBookUrlWithLeak(
   );
 }
 
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/flexgrafik-quietforge';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/quietforge/';
 /** Independent owner-operated reference business and build laboratory. */
 export const FLEXGRAFIK_URL = 'https://flexgrafik.nl';
 

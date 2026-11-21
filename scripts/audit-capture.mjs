@@ -6,7 +6,7 @@ import { chromium } from 'playwright';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const BASE = process.argv[2] ?? 'https://flexgrafik-services.vercel.app';
+const BASE = process.argv[2] ?? 'https://quietforge.nl';
 const OUT = join(process.cwd(), 'docs/audits/2026-06-23/assets');
 
 const ROUTES = [
@@ -37,7 +37,7 @@ const EXTERNAL = [
   { name: 'flexgrafik-nl', url: 'https://flexgrafik.nl/' },
   {
     name: 'linkedin-profile',
-    url: 'https://www.linkedin.com/in/norbert-wozniak-172b76367',
+    url: 'https://www.linkedin.com/in/quietforge/',
   },
 ];
 

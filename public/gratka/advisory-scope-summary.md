@@ -108,7 +108,7 @@ Work proceeds in **six phases** (timeline diagram available as separate download
 
 Considering a similar programme for your advisory or professional services firm? Book a paid **Hours Engine Scan** — we measure whether web + assistant + content is the right first build, or something simpler gets you there faster.
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
 *Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*

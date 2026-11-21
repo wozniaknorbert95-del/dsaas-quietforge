@@ -54,7 +54,7 @@ README, walkthrough, optional light monthly care. Take it in-house anytime.
 
 **Hours Engine Scan** — you send owner files; we measure. Fee credited 30 days toward your first build.
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
 *Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*

@@ -28,6 +28,6 @@
   <line x1="80" y1="385" x2="360" y2="385" stroke="#e8a33d" stroke-width="2"/>
 
   <!-- bottom meta strip -->
-  <text x="80" y="565" fill="#645c4e" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="14" font-weight="400">quietforge.flexgrafik.nl/solutions/</text>
+  <text x="80" y="565" fill="#645c4e" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="14" font-weight="400">quietforge.nl/solutions/</text>
   <text x="1120" y="565" fill="#645c4e" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="14" font-weight="400" text-anchor="end">© 2026 Quietforge</text>
 </svg>

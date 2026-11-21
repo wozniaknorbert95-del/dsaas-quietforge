@@ -5,7 +5,7 @@ owner: "Norbert Wozniak"
 updated: "2026-06-30"
 version: "2.1 — linkedin SSoT pointer"
 classification: "L3 — LinkedIn strategy"
-profile: "https://www.linkedin.com/in/flexgrafik-quietforge/"
+profile: "https://www.linkedin.com/in/quietforge//"
 audit: "./audits/linkedin-audit-2026-06-29.md"
 ---
 

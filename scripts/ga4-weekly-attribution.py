@@ -151,7 +151,7 @@ def main() -> None:
         "property_id": audit.PROPERTY_ID,
         "measurement_id": "G-LY0E7MW0HF",
         "display_name": "Quietforge",
-        "domain": "quietforge.flexgrafik.nl",
+        "domain": "quietforge.nl",
         "period": "28d rolling + 7d funnel",
         "summary": {
             **traffic_summary,

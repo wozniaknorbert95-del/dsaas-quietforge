@@ -45,7 +45,7 @@ A living system runs: **Sense → Interpret → Propose → Verify → HITL → 
 ---
 
 **SVG diagram:** `/gratka/los-architecture.svg`  
-**Interactive map:** https://quietforge.flexgrafik.nl/founder/#system-diagram  
-**Full proof:** https://quietforge.flexgrafik.nl/results/owner-ecosystem/#los  
+**Interactive map:** https://quietforge.nl/founder/#system-diagram  
+**Full proof:** https://quietforge.nl/results/owner-ecosystem/#los  
 
 Norbert Wozniak · Conversion Systems Architect · Quietforge

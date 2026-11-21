@@ -12,7 +12,7 @@ import {
   pause,
 } from './lib/video-record.mjs';
 
-const SITE = 'https://quietforge.flexgrafik.nl';
+const SITE = 'https://quietforge.nl';
 const TABS = [
   { url: `${SITE}/results/owner-ecosystem/`, label: 'LOS map', dwell: 5000 },
   { url: 'https://app.flexgrafik.nl/', label: 'Lead magnet', dwell: 6000 },

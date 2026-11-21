@@ -13,7 +13,7 @@ description: Deploy services.flexgrafik.nl to Vercel production
 
 1. Follow `build-check.md` first — build must pass
 2. Deploy: `npx vercel dist --prod --yes`
-3. Verify production URL: `curl -sI https://flexgrafik-services.vercel.app/` → HTTP 200
+3. Verify production URL: `curl -sI https://quietforge.nl/` → HTTP 200
 4. Check domain status: `npx vercel domains inspect services.flexgrafik.nl`
 5. If DNS not active:
    - In Cyber-Folks panel (ns1.cyberfolks.pl):
@@ -26,15 +26,15 @@ description: Deploy services.flexgrafik.nl to Vercel production
 
 ```bash
 # Production health
-curl -sI https://flexgrafik-services.vercel.app/ | head -1
+curl -sI https://quietforge.nl/ | head -1
 
 # Custom domain (after DNS)
 curl -sI https://services.flexgrafik.nl/ | head -1
 
 # Check all routes
-curl -s https://flexgrafik-services.vercel.app/ | grep -o '<title>.*</title>'
-curl -s https://flexgrafik-services.vercel.app/inbox-killer/ | grep -o '<title>.*</title>'
-curl -s https://flexgrafik-services.vercel.app/legal/ | grep -o '<title>.*</title>'
+curl -s https://quietforge.nl/ | grep -o '<title>.*</title>'
+curl -s https://quietforge.nl/inbox-killer/ | grep -o '<title>.*</title>'
+curl -s https://quietforge.nl/legal/ | grep -o '<title>.*</title>'
 ```
 
 ## Rollback

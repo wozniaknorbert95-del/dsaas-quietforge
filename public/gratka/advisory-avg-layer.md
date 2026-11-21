@@ -72,7 +72,7 @@ Any system that collects, stores or processes **personal data** on behalf of an 
 
 Want the same rigour applied to your firm? Book a paid **Hours Engine Scan** — we identify what data your first system will touch and what agreements you need before a single line of code hits production.
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
 *Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*

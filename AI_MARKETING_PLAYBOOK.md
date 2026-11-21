@@ -9,7 +9,7 @@ recommendations are hypotheses to test against account data.
 
 ### Two brands, two jobs
 
-- **Quietforge** (`quietforge.flexgrafik.nl`): Conversion Systems Architect for
+- **Quietforge** (`quietforge.nl`): Conversion Systems Architect for
   Dutch SMBs, small BVs, professional services, and an investor bridge.
 - **FlexGrafik** (`flexgrafik.nl`): the live operating portfolio and production
   proof. Use it to demonstrate systems, not to blur the Quietforge offer.

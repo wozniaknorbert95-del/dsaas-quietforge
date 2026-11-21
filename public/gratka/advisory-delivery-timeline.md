@@ -105,7 +105,7 @@ Phase 01 ──gate──► Phase 02 ──gate──► Phase 03 ──gate─
 
 ## Next step
 
-**Book:** quietforge.flexgrafik.nl/book-discovery/
+**Book:** quietforge.nl/book-discovery/
 
 ---
 *Norbert — Conversion Systems Architect · Quietforge · quietforge@flexgrafik.nl*

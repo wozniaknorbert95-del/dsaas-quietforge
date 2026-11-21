@@ -71,8 +71,8 @@ async function main() {
   // Data stream setup — Web
   await page.getByRole('button', { name: /Web|Strona|Website/i }).click().catch(() => {});
   await sleep(1000);
-  await page.getByLabel(/Website URL|URL witryny/i).fill('https://quietforge.flexgrafik.nl').catch(async () => {
-    await page.locator('input[type="url"], input[placeholder*="http"]').first().fill('https://quietforge.flexgrafik.nl');
+  await page.getByLabel(/Website URL|URL witryny/i).fill('https://quietforge.nl').catch(async () => {
+    await page.locator('input[type="url"], input[placeholder*="http"]').first().fill('https://quietforge.nl');
   });
   await page.getByLabel(/Stream name|Nazwa strumienia/i).fill('Quietforge Web').catch(async () => {
     const inputs = page.locator('input[type="text"]');
@@ -112,7 +112,7 @@ async function main() {
 
   const ids = {
     display_name: 'Quietforge',
-    domain: 'quietforge.flexgrafik.nl',
+    domain: 'quietforge.nl',
     account_id: ACCOUNT_ID,
     property_id: propertyId,
     measurement_id: measurementId,

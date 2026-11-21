@@ -22,6 +22,7 @@ Jeśli fakt się zmieni, poprawiamy go tutaj z nową datą. Rzeczy niesprawdzone
 | Domena zarejestrowana 2026-10-26; DNSSEC wyłączony (`delegationSigned: false`) | https://rdap.sidn.nl/domain/quietforge.nl | 2026-11-21 |
 | A/AAAA quietforge.nl i www = adresy Cloudflare (104.21.16.157, 172.67.213.242) | https://dns.google/resolve?name=quietforge.nl&type=A | 2026-11-21 |
 | MX quietforge.nl = aspmx1/aspmx2.migadu.com; SPF `include:spf.migadu.com -all`; DKIM key1–3 → Migadu; DMARC `p=quarantine` | https://dns.google/resolve?name=quietforge.nl&type=MX, …&type=TXT, _dmarc.quietforge.nl | 2026-11-21 |
+| Konto Migadu dla quietforge.nl: okres próbny skończył się 17.11.2026, usługa poczty zawieszona (zrzut ekranu panelu Migadu od Norberta, 21.11.2026). Rekordy MX/SPF/DKIM/DMARC nadal wskazują Migadu. | zrzut panelu Migadu (Norbert, 21.11.2026), dns.google | 2026-11-21 |
 | flexgrafik.nl nie istnieje w DNS (NXDOMAIN) | https://dns.google/resolve?name=flexgrafik.nl&type=A | 2026-11-21 |
 
 ## Oferta i kontakt (na żywej stronie)
@@ -31,7 +32,7 @@ Jeśli fakt się zmieni, poprawiamy go tutaj z nową datą. Rzeczy niesprawdzone
 | Cennik skanów: €149 (Hours), €290 (Both-lanes), €490 (Decision) netto | https://quietforge.nl/pricing/ | 2026-11-21 |
 | Formularz „Book a scan” wysyła dane do `/api/intake/`; GET na ten adres zwraca 405 (funkcja istnieje) | https://quietforge.nl/book-a-scan/, [functions/api/intake.ts](https://github.com/wozniaknorbert95-del/dsaas-quietforge/blob/ae365a0dda642a021ef9a89ea8b1a8c25172d620/functions/api/intake.ts) | 2026-11-21 |
 | Publiczny adres e-mail na stronie to quietforge@flexgrafik.nl (domena nie istnieje — patrz wyżej) | https://quietforge.nl/legal/ | 2026-11-21 |
-| Kontakt WhatsApp i LinkedIn (/in/flexgrafik-quietforge) są na stronie głównej; linki WhatsApp mają UTM (`utm_source=quietforge`) | https://quietforge.nl/ | 2026-11-21 |
+| Kontakt WhatsApp jest na stronie głównej; linki WhatsApp mają UTM (`utm_source=quietforge`). Na stronie nadal widnieje stary LinkedIn (/in/flexgrafik-quietforge); decyzja D9: właściwy profil to https://www.linkedin.com/in/quietforge/ | https://quietforge.nl/, D9 (21.11.2026) | 2026-11-21 |
 | W HTML strony nie ma skryptu analityki (ani Umami, ani Google Analytics); kod GA istnieje, ale włącza się tylko z ID w buildzie | https://quietforge.nl/, [GoogleAnalytics.tsx](https://github.com/wozniaknorbert95-del/dsaas-quietforge/blob/ae365a0dda642a021ef9a89ea8b1a8c25172d620/src/components/analytics/GoogleAnalytics.tsx) | 2026-11-21 |
 | Tytuł /proof/: „Proof: hours and money saved, verified by clients”; treść: jedyny przykład to FlexGrafik oznaczony „NOT A CLIENT CASE” i „Offline right now” | https://quietforge.nl/proof/ | 2026-11-21 |
 | /privacy/, /cookies/, /contact/, /nl/ zwracają 404; stopka mówi „Service in EN and NL” | https://quietforge.nl/nl/ itd. | 2026-11-21 |
